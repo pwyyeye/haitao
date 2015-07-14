@@ -8,11 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		70152CF38A173F9DADD78F53 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB8432FE812FC9929501C476 /* libPods.a */; };
-		A2CE1F761B551A61006156E8 /* restViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE1F751B551A61006156E8 /* restViewController.m */; };
 		AD1386921B54D5BF00130E49 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1386901B54D5BF00130E49 /* LoginViewController.m */; };
 		AD1386931B54D5BF00130E49 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1386911B54D5BF00130E49 /* LoginViewController.xib */; };
-		AD1386991B551C6700130E49 /* 123ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1386981B551C6700130E49 /* 123ViewController.m */; };
-		AD13869C1B551DD600130E49 /* eeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD13869B1B551DD600130E49 /* eeeViewController.m */; };
 		ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC811B53CB5F0022B2C2 /* main.m */; };
 		ADB5AC851B53CB5F0022B2C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC841B53CB5F0022B2C2 /* AppDelegate.m */; };
 		ADB5AC881B53CB5F0022B2C2 /* haitao.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC861B53CB5F0022B2C2 /* haitao.xcdatamodeld */; };
@@ -37,15 +34,9 @@
 /* Begin PBXFileReference section */
 		240B8E23FB42A177712EC5FF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		3C8F0106971265CAA672CF83 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		A2CE1F741B551A61006156E8 /* restViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = restViewController.h; sourceTree = "<group>"; };
-		A2CE1F751B551A61006156E8 /* restViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = restViewController.m; sourceTree = "<group>"; };
 		AD13868F1B54D5BF00130E49 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AD1386901B54D5BF00130E49 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		AD1386911B54D5BF00130E49 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		AD1386971B551C6700130E49 /* 123ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 123ViewController.h; sourceTree = "<group>"; };
-		AD1386981B551C6700130E49 /* 123ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = 123ViewController.m; sourceTree = "<group>"; };
-		AD13869A1B551DD600130E49 /* eeeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eeeViewController.h; sourceTree = "<group>"; };
-		AD13869B1B551DD600130E49 /* eeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eeeViewController.m; sourceTree = "<group>"; };
 		ADB5AC7C1B53CB5F0022B2C2 /* haitao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = haitao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADB5AC801B53CB5F0022B2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADB5AC811B53CB5F0022B2C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -205,12 +196,6 @@
 		ADB5ACAF1B5406AC0022B2C2 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
-				A2CE1F741B551A61006156E8 /* restViewController.h */,
-				A2CE1F751B551A61006156E8 /* restViewController.m */,
-				AD1386971B551C6700130E49 /* 123ViewController.h */,
-				AD1386981B551C6700130E49 /* 123ViewController.m */,
-				AD13869A1B551DD600130E49 /* eeeViewController.h */,
-				AD13869B1B551DD600130E49 /* eeeViewController.m */,
 			);
 			name = Cart;
 			sourceTree = "<group>";
@@ -385,10 +370,7 @@
 				ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */,
 				ADB5AC8B1B53CB5F0022B2C2 /* ViewController.m in Sources */,
 				ADB5AC881B53CB5F0022B2C2 /* haitao.xcdatamodeld in Sources */,
-				AD13869C1B551DD600130E49 /* eeeViewController.m in Sources */,
-				A2CE1F761B551A61006156E8 /* restViewController.m in Sources */,
 				AD1386921B54D5BF00130E49 /* LoginViewController.m in Sources */,
-				AD1386991B551C6700130E49 /* 123ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
