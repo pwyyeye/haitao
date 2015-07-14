@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		70152CF38A173F9DADD78F53 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB8432FE812FC9929501C476 /* libPods.a */; };
+		A2CE1F761B551A61006156E8 /* restViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE1F751B551A61006156E8 /* restViewController.m */; };
 		AD1386921B54D5BF00130E49 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1386901B54D5BF00130E49 /* LoginViewController.m */; };
 		AD1386931B54D5BF00130E49 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1386911B54D5BF00130E49 /* LoginViewController.xib */; };
 		ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC811B53CB5F0022B2C2 /* main.m */; };
@@ -34,6 +35,8 @@
 /* Begin PBXFileReference section */
 		240B8E23FB42A177712EC5FF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		3C8F0106971265CAA672CF83 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A2CE1F741B551A61006156E8 /* restViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = restViewController.h; sourceTree = "<group>"; };
+		A2CE1F751B551A61006156E8 /* restViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = restViewController.m; sourceTree = "<group>"; };
 		AD13868F1B54D5BF00130E49 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AD1386901B54D5BF00130E49 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		AD1386911B54D5BF00130E49 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -196,6 +199,8 @@
 		ADB5ACAF1B5406AC0022B2C2 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
+				A2CE1F741B551A61006156E8 /* restViewController.h */,
+				A2CE1F751B551A61006156E8 /* restViewController.m */,
 			);
 			name = Cart;
 			sourceTree = "<group>";
@@ -370,6 +375,7 @@
 				ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */,
 				ADB5AC8B1B53CB5F0022B2C2 /* ViewController.m in Sources */,
 				ADB5AC881B53CB5F0022B2C2 /* haitao.xcdatamodeld in Sources */,
+				A2CE1F761B551A61006156E8 /* restViewController.m in Sources */,
 				AD1386921B54D5BF00130E49 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
