@@ -11,6 +11,7 @@
 		A2CE1F761B551A61006156E8 /* restViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE1F751B551A61006156E8 /* restViewController.m */; };
 		AD1386921B54D5BF00130E49 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1386901B54D5BF00130E49 /* LoginViewController.m */; };
 		AD1386931B54D5BF00130E49 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1386911B54D5BF00130E49 /* LoginViewController.xib */; };
+		AD1386991B551C6700130E49 /* 123ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1386981B551C6700130E49 /* 123ViewController.m */; };
 		ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC811B53CB5F0022B2C2 /* main.m */; };
 		ADB5AC851B53CB5F0022B2C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC841B53CB5F0022B2C2 /* AppDelegate.m */; };
 		ADB5AC881B53CB5F0022B2C2 /* haitao.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC861B53CB5F0022B2C2 /* haitao.xcdatamodeld */; };
@@ -40,6 +41,8 @@
 		AD13868F1B54D5BF00130E49 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AD1386901B54D5BF00130E49 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		AD1386911B54D5BF00130E49 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		AD1386971B551C6700130E49 /* 123ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 123ViewController.h; sourceTree = "<group>"; };
+		AD1386981B551C6700130E49 /* 123ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = 123ViewController.m; sourceTree = "<group>"; };
 		ADB5AC7C1B53CB5F0022B2C2 /* haitao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = haitao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADB5AC801B53CB5F0022B2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADB5AC811B53CB5F0022B2C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -201,6 +204,8 @@
 			children = (
 				A2CE1F741B551A61006156E8 /* restViewController.h */,
 				A2CE1F751B551A61006156E8 /* restViewController.m */,
+				AD1386971B551C6700130E49 /* 123ViewController.h */,
+				AD1386981B551C6700130E49 /* 123ViewController.m */,
 			);
 			name = Cart;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 				ADB5AC881B53CB5F0022B2C2 /* haitao.xcdatamodeld in Sources */,
 				A2CE1F761B551A61006156E8 /* restViewController.m in Sources */,
 				AD1386921B54D5BF00130E49 /* LoginViewController.m in Sources */,
+				AD1386991B551C6700130E49 /* 123ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
