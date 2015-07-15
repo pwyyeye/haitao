@@ -16,8 +16,6 @@
 		A2CE1F791B551CA7006156E8 /* 345ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE1F781B551CA7006156E8 /* 345ViewController.m */; };
 		AD1386921B54D5BF00130E49 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1386901B54D5BF00130E49 /* LoginViewController.m */; };
 		AD1386931B54D5BF00130E49 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1386911B54D5BF00130E49 /* LoginViewController.xib */; };
-		AD1386991B551C6700130E49 /* 123ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1386981B551C6700130E49 /* 123ViewController.m */; };
-		AD13869C1B551DD600130E49 /* eeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD13869B1B551DD600130E49 /* eeeViewController.m */; };
 		ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC811B53CB5F0022B2C2 /* main.m */; };
 		ADB5AC851B53CB5F0022B2C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC841B53CB5F0022B2C2 /* AppDelegate.m */; };
 		ADB5AC881B53CB5F0022B2C2 /* haitao.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC861B53CB5F0022B2C2 /* haitao.xcdatamodeld */; };
@@ -415,8 +413,6 @@
 				ADB5AC8B1B53CB5F0022B2C2 /* ViewController.m in Sources */,
 				A21814251B56060100D64E70 /* ZRScrollableTabBar.m in Sources */,
 				ADB5AC881B53CB5F0022B2C2 /* haitao.xcdatamodeld in Sources */,
-				AD13869C1B551DD600130E49 /* eeeViewController.m in Sources */,
-				A2CE1F761B551A61006156E8 /* restViewController.m in Sources */,
 				AD1386921B54D5BF00130E49 /* LoginViewController.m in Sources */,
 				AD1386991B551C6700130E49 /* 123ViewController.m in Sources */,
 				A218142C1B5609BE00D64E70 /* HomeTableViewController.m in Sources */,
