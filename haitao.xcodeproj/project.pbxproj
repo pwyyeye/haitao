@@ -12,7 +12,11 @@
 		A21814281B56063300D64E70 /* arrrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = A21814261B56063300D64E70 /* arrrow_left.png */; };
 		A21814291B56063300D64E70 /* arrrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = A21814271B56063300D64E70 /* arrrow_right.png */; };
 		A218142C1B5609BE00D64E70 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A218142B1B5609BE00D64E70 /* HomeTableViewController.m */; };
-		A2CE1F761B551A61006156E8 /* restViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE1F751B551A61006156E8 /* restViewController.m */; };
+		A21814351B5652F000D64E70 /* ManitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21814341B5652F000D64E70 /* ManitViewController.m */; };
+		A21814391B56544400D64E70 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21814371B56544400D64E70 /* TestViewController.m */; };
+		A218143A1B56544400D64E70 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21814381B56544400D64E70 /* TestViewController.xib */; };
+		A218143E1B565BBB00D64E70 /* Test1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A218143C1B565BBB00D64E70 /* Test1ViewController.m */; };
+		A218143F1B565BBB00D64E70 /* Test1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A218143D1B565BBB00D64E70 /* Test1ViewController.xib */; };
 		A2CE1F791B551CA7006156E8 /* 345ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE1F781B551CA7006156E8 /* 345ViewController.m */; };
 		AD1386921B54D5BF00130E49 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1386901B54D5BF00130E49 /* LoginViewController.m */; };
 		AD1386931B54D5BF00130E49 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1386911B54D5BF00130E49 /* LoginViewController.xib */; };
@@ -46,6 +50,14 @@
 		A21814271B56063300D64E70 /* arrrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrrow_right.png; sourceTree = "<group>"; };
 		A218142A1B5609BE00D64E70 /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
 		A218142B1B5609BE00D64E70 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
+		A21814331B5652F000D64E70 /* ManitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManitViewController.h; sourceTree = "<group>"; };
+		A21814341B5652F000D64E70 /* ManitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManitViewController.m; sourceTree = "<group>"; };
+		A21814361B56544400D64E70 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		A21814371B56544400D64E70 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		A21814381B56544400D64E70 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		A218143B1B565BBB00D64E70 /* Test1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test1ViewController.h; sourceTree = "<group>"; };
+		A218143C1B565BBB00D64E70 /* Test1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test1ViewController.m; sourceTree = "<group>"; };
+		A218143D1B565BBB00D64E70 /* Test1ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Test1ViewController.xib; sourceTree = "<group>"; };
 		A2CE1F741B551A61006156E8 /* restViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = restViewController.h; sourceTree = "<group>"; };
 		A2CE1F751B551A61006156E8 /* restViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = restViewController.m; sourceTree = "<group>"; };
 		A2CE1F771B551CA7006156E8 /* 345ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 345ViewController.h; sourceTree = "<group>"; };
@@ -55,7 +67,6 @@
 		AD1386911B54D5BF00130E49 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		AD1386971B551C6700130E49 /* 123ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 123ViewController.h; sourceTree = "<group>"; };
 		AD1386981B551C6700130E49 /* 123ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = 123ViewController.m; sourceTree = "<group>"; };
-		AD13869B1B551DD600130E49 /* eeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eeeViewController.m; sourceTree = "<group>"; };
 		ADB5AC7C1B53CB5F0022B2C2 /* haitao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = haitao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADB5AC801B53CB5F0022B2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADB5AC811B53CB5F0022B2C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -207,6 +218,14 @@
 			children = (
 				A218142A1B5609BE00D64E70 /* HomeTableViewController.h */,
 				A218142B1B5609BE00D64E70 /* HomeTableViewController.m */,
+				A21814331B5652F000D64E70 /* ManitViewController.h */,
+				A21814341B5652F000D64E70 /* ManitViewController.m */,
+				A21814361B56544400D64E70 /* TestViewController.h */,
+				A21814371B56544400D64E70 /* TestViewController.m */,
+				A21814381B56544400D64E70 /* TestViewController.xib */,
+				A218143B1B565BBB00D64E70 /* Test1ViewController.h */,
+				A218143C1B565BBB00D64E70 /* Test1ViewController.m */,
+				A218143D1B565BBB00D64E70 /* Test1ViewController.xib */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -351,11 +370,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A218143F1B565BBB00D64E70 /* Test1ViewController.xib in Resources */,
 				A21814281B56063300D64E70 /* arrrow_left.png in Resources */,
 				AD1386931B54D5BF00130E49 /* LoginViewController.xib in Resources */,
 				ADB5AC8E1B53CB5F0022B2C2 /* Main.storyboard in Resources */,
 				A21814291B56063300D64E70 /* arrrow_right.png in Resources */,
 				ADB5AC931B53CB5F0022B2C2 /* LaunchScreen.xib in Resources */,
+				A218143A1B56544400D64E70 /* TestViewController.xib in Resources */,
 				ADB5AC901B53CB5F0022B2C2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,11 +431,13 @@
 				ADB5AC851B53CB5F0022B2C2 /* AppDelegate.m in Sources */,
 				A2CE1F791B551CA7006156E8 /* 345ViewController.m in Sources */,
 				ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */,
+				A218143E1B565BBB00D64E70 /* Test1ViewController.m in Sources */,
 				ADB5AC8B1B53CB5F0022B2C2 /* ViewController.m in Sources */,
+				A21814391B56544400D64E70 /* TestViewController.m in Sources */,
 				A21814251B56060100D64E70 /* ZRScrollableTabBar.m in Sources */,
 				ADB5AC881B53CB5F0022B2C2 /* haitao.xcdatamodeld in Sources */,
 				AD1386921B54D5BF00130E49 /* LoginViewController.m in Sources */,
-				AD1386991B551C6700130E49 /* 123ViewController.m in Sources */,
+				A21814351B5652F000D64E70 /* ManitViewController.m in Sources */,
 				A218142C1B5609BE00D64E70 /* HomeTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
