@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QL1-7I-VWx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QL1-7I-VWx">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--搜索-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="WeF-YC-3Fy"/>
+                    <tabBarItem key="tabBarItem" title="搜索" id="WeF-YC-3Fy"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
@@ -34,8 +34,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="PFe-BZ-bwJ"/>
                         <segue destination="xRd-jd-Gp6" kind="relationship" relationship="viewControllers" id="DhI-pS-CmA"/>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="PFe-BZ-bwJ"/>
                         <segue destination="Pjl-i8-3Ja" kind="relationship" relationship="viewControllers" id="Mgv-if-JrP"/>
                         <segue destination="BdD-7D-gW8" kind="relationship" relationship="viewControllers" id="Jj6-VI-s4P"/>
                         <segue destination="YGc-wK-PnG" kind="relationship" relationship="viewControllers" id="Vwf-gO-rbm"/>
@@ -45,10 +45,10 @@
             </objects>
             <point key="canvasLocation" x="440" y="337"/>
         </scene>
-        <!--Item-->
+        <!--首页-->
         <scene sceneID="UV5-yQ-Uu4">
             <objects>
-                <tableViewController id="xRd-jd-Gp6" sceneMemberID="viewController">
+                <tableViewController id="xRd-jd-Gp6" customClass="HomeTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="9iJ-0I-dNF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -66,13 +66,13 @@
                             <outlet property="delegate" destination="xRd-jd-Gp6" id="kUa-ds-1sn"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="ynu-Js-AAD"/>
+                    <tabBarItem key="tabBarItem" title="首页" id="ynu-Js-AAD"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KVS-lf-AYp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-755" y="1093"/>
         </scene>
-        <!--Item-->
+        <!--个人中心-->
         <scene sceneID="62i-xy-YBN">
             <objects>
                 <viewController id="YGc-wK-PnG" sceneMemberID="viewController">
@@ -85,13 +85,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Ybr-6I-72x"/>
+                    <tabBarItem key="tabBarItem" title="个人中心" id="Ybr-6I-72x"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yKK-NT-lku" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-69" y="1093"/>
         </scene>
-        <!--Item-->
+        <!--购物车-->
         <scene sceneID="7eh-p7-r8D">
             <objects>
                 <tableViewController id="BdD-7D-gW8" sceneMemberID="viewController">
@@ -112,13 +112,13 @@
                             <outlet property="delegate" destination="BdD-7D-gW8" id="Q4d-hH-MVr"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="5XV-Ll-DbN"/>
+                    <tabBarItem key="tabBarItem" title="购物车" id="5XV-Ll-DbN"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Af4-A7-Rxz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1310" y="1093"/>
         </scene>
-        <!--Item-->
+        <!--精品推荐-->
         <scene sceneID="09K-8T-IUg">
             <objects>
                 <tableViewController id="Pjl-i8-3Ja" sceneMemberID="viewController">
@@ -139,7 +139,7 @@
                             <outlet property="delegate" destination="Pjl-i8-3Ja" id="Hx0-h3-PO4"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="XZd-pi-MtO"/>
+                    <tabBarItem key="tabBarItem" title="精品推荐" id="XZd-pi-MtO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l2Q-QQ-CEW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
