@@ -28,38 +28,42 @@
 @synthesize previousButton;
 @synthesize tabScrollView;
 
-- (id)initWithItems:(NSArray *)items {
+- (id)initWithItems:(NSArray *)items  withFrame:(CGRect)frame{
     screenWidth = [[UIScreen mainScreen] bounds].size.width;
     screenHeight = [[UIScreen mainScreen] bounds].size.height;
     self = [super initWithFrame:CGRectMake(0.0, 10.0, screenWidth, TabHeight)];
+    self.backgroundColor=[UIColor clearColor];
+    self.tabScrollView.backgroundColor=[UIColor clearColor];
     if (self)
     {
-        tabScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(10.0, 0.0, TabWidth, TabHeight)];
-        previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [previousButton setFrame:CGRectMake(2, 14, 10, 21)];
-        nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [nextButton setFrame:CGRectMake(TabWidth + 8, 14, 10, 21)];
-        [nextButton addTarget:self action:@selector(goToNextTabBar) forControlEvents:UIControlEventTouchUpInside];
-        [previousButton addTarget:self action:@selector(goToPreviousTabBar) forControlEvents:UIControlEventTouchUpInside];
-        [previousButton setImage:nil forState:UIControlStateNormal];
-        [nextButton setImage:[UIImage imageNamed:@"arrrow_right.png"] forState:UIControlStateNormal];
-        [self setBackgroundColor:[UIColor colorWithRed:246.0/255 green:246.0/255 blue:246.0/255 alpha:1.0]];
-        [nextButton setBackgroundColor:[UIColor colorWithRed:246.0/255 green:246.0/255 blue:246.0/255 alpha:1.0]];
-        [previousButton setBackgroundColor:[UIColor colorWithRed:246.0/255 green:246.0/255 blue:246.0/255 alpha:1.0]];
-        [self addSubview:nextButton];
-        [self addSubview:previousButton];
-        tabScrollView.pagingEnabled = YES;
-        tabScrollView.delegate = self;
-        tabScrollView.showsHorizontalScrollIndicator = NO;
-        tabScrollView.bounces = NO;
-
+        tabScrollView = [[UIScrollView alloc]initWithFrame:frame];
+        tabScrollView.backgroundColor=[UIColor clearColor];
+        /*
+         previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
+         [previousButton setFrame:CGRectMake(2, 14, 10, 21)];
+         nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
+         [nextButton setFrame:CGRectMake(TabWidth + 8, 14, 10, 21)];
+         [nextButton addTarget:self action:@selector(goToNextTabBar) forControlEvents:UIControlEventTouchUpInside];
+         [previousButton addTarget:self action:@selector(goToPreviousTabBar) forControlEvents:UIControlEventTouchUpInside];
+         [previousButton setImage:nil forState:UIControlStateNormal];
+         [nextButton setImage:[UIImage imageNamed:@"arrrow_right.png"] forState:UIControlStateNormal];
+         [self setBackgroundColor:[UIColor colorWithRed:246.0/255 green:246.0/255 blue:246.0/255 alpha:1.0]];
+         [nextButton setBackgroundColor:[UIColor colorWithRed:246.0/255 green:246.0/255 blue:246.0/255 alpha:1.0]];
+         [previousButton setBackgroundColor:[UIColor colorWithRed:246.0/255 green:246.0/255 blue:246.0/255 alpha:1.0]];
+         [self addSubview:nextButton];
+         [self addSubview:previousButton];
+         tabScrollView.pagingEnabled = YES;
+         tabScrollView.delegate = self;
+         tabScrollView.showsHorizontalScrollIndicator = NO;
+         tabScrollView.bounces = NO;
+         */
         self.tabBars = [[NSMutableArray alloc] init];
         
         float x = 0.0;
         
         for (double d = 0; d < ceil(items.count / ButtonNoPerTab); d ++)
         {
-            UITabBar *tabBar = [[UITabBar alloc] initWithFrame:CGRectMake(x, 0.0, TabWidth, TabHeight)];
+            UITabBar *tabBar = [[UITabBar alloc] initWithFrame:CGRectMake(x, 0.0, frame.size.width, frame.size.height)];
             tabBar.delegate = self;
             int len = 0;
             
@@ -68,7 +72,7 @@
                     len ++;
             
             tabBar.items = [items objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(d * ButtonNoPerTab, len)]];
-            
+            tabBar.backgroundColor=[UIColor clearColor];
             [self.tabScrollView addSubview:tabBar];
             
             [self.tabBars addObject:tabBar];
@@ -77,7 +81,7 @@
             x += TabWidth;
         }
         [self selectItemWithTag:(int)[(UITabBarItem *)[items firstObject] tag]];
-        [self.tabScrollView setContentSize:CGSizeMake(x, TabHeight)];
+        [self.tabScrollView setContentSize:CGSizeMake(x, frame.size.height)];
         
     }
     
@@ -178,7 +182,7 @@
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-
+    
 }
 
 -(void)scrollToPage:(int)page animation:(BOOL)animated

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
@@ -13,7 +13,49 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CZv-6C-M5d">
+                    <rect key="frame" x="181" y="154" width="239" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ywq-5J-UDj">
+                    <rect key="frame" x="373" y="203" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9A-Nx-Hs4">
+                    <rect key="frame" x="181" y="253" width="234" height="30"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="忘记密码？" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E3J-Mk-DSI">
+                    <rect key="frame" x="181" y="203" width="68" height="26"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jge-zo-0lg">
+                    <rect key="frame" x="181" y="85" width="239" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="jge-zo-0lg" secondAttribute="trailing" constant="180" id="0Hf-yf-Kda"/>
+                <constraint firstItem="CZv-6C-M5d" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="181" id="7pN-wk-gWM"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jge-zo-0lg" secondAttribute="trailing" constant="20" id="Hoe-vx-0Za"/>
+                <constraint firstAttribute="centerY" secondItem="jge-zo-0lg" secondAttribute="centerY" constant="200" id="MMc-Vc-01z"/>
+                <constraint firstItem="jge-zo-0lg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="181" id="YRF-5D-7P2"/>
+                <constraint firstItem="CZv-6C-M5d" firstAttribute="top" secondItem="jge-zo-0lg" secondAttribute="bottom" constant="39" id="akt-6z-2yC"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CZv-6C-M5d" secondAttribute="trailing" constant="20" id="jKU-8Z-M6n"/>
+                <constraint firstAttribute="trailing" secondItem="CZv-6C-M5d" secondAttribute="trailing" constant="180" id="jY0-Yj-sv4"/>
+                <constraint firstItem="jge-zo-0lg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="85" id="mpw-LD-mY6"/>
+                <constraint firstItem="CZv-6C-M5d" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="uvJ-7X-d31"/>
+            </constraints>
         </view>
     </objects>
 </document>

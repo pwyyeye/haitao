@@ -4,7 +4,7 @@
 //
 //  Created by Abdullah Md. Zubair on 2/2/15.
 //  Copyright (c) 2015 Abdullah Md. Zubair. All rights reserved.
-//123
+//
 
 #import <UIKit/UIKit.h>
 
@@ -24,7 +24,7 @@
 @property (nonatomic, retain) UIButton *previousButton;
 @property (nonatomic, strong) __strong UIScrollView *tabScrollView;
 
-- (id)initWithItems:(NSArray *)items;
+- (id)initWithItems:(NSArray *)items withFrame:(CGRect)frame;
 - (void)setItems:(NSArray *)items animated:(BOOL)animated;
 - (int)currentTabBarTag;
 - (int)selectedItemTag;

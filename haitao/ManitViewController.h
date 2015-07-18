@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZRScrollableTabBar.h"
+#import "HaiTaoBase.h"
 @interface ManitViewController : UITabBarController
 {
     ZRScrollableTabBar *tabBar;
+    CGRect mainFrame;
 }
+
 @end
