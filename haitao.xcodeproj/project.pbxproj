@@ -73,6 +73,7 @@
 		A2FC74E21B5A3F340094BC59 /* BARightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC74DD1B5A3F340094BC59 /* BARightCell.m */; };
 		A2FC74E31B5A3F340094BC59 /* BARightTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC74DF1B5A3F340094BC59 /* BARightTableView.m */; };
 		A2FC74E71B5A405A0094BC59 /* BALabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC74E61B5A405A0094BC59 /* BALabel.m */; };
+		A2FC74E91B5B5DD00094BC59 /* 奶粉.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A2FC74E81B5B5DD00094BC59 /* 奶粉.jpg */; };
 		AD1386921B54D5BF00130E49 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1386901B54D5BF00130E49 /* LoginViewController.m */; };
 		AD1386931B54D5BF00130E49 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1386911B54D5BF00130E49 /* LoginViewController.xib */; };
 		AD8AA5871B59416000E324AD /* CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8AA57C1B59416000E324AD /* CustomTabBar.m */; };
@@ -285,6 +286,7 @@
 		A2FC74E41B5A3F700094BC59 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		A2FC74E51B5A405A0094BC59 /* BALabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BALabel.h; sourceTree = "<group>"; };
 		A2FC74E61B5A405A0094BC59 /* BALabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BALabel.m; sourceTree = "<group>"; };
+		A2FC74E81B5B5DD00094BC59 /* 奶粉.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "奶粉.jpg"; path = "分类2级/奶粉.jpg"; sourceTree = "<group>"; };
 		AD13868F1B54D5BF00130E49 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AD1386901B54D5BF00130E49 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		AD1386911B54D5BF00130E49 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -1155,6 +1157,7 @@
 		ADB5ACB21B5406FA0022B2C2 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A2FC74E81B5B5DD00094BC59 /* 奶粉.jpg */,
 				A2FC74AE1B5A31340094BC59 /* 分类2级 */,
 				A21815821B5A0E9A00D64E70 /* 商品详情 */,
 				AD8AA6AD1B59E1D900E324AD /* 工具栏 */,
@@ -1263,6 +1266,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2FC74E91B5B5DD00094BC59 /* 奶粉.jpg in Resources */,
 				AD8AA6A61B59E14400E324AD /* icon_05@2x.png in Resources */,
 				A2FC74C61B5A31340094BC59 /* ic_01_h.png in Resources */,
 				A21815B71B5A0E9A00D64E70 /* df_03_@2x.png in Resources */,
