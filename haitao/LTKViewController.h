@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-
+#import "Toolkit.h"
+#import "HaiTaoBase.h"
+#import "UrlImageView.h"
+#import "UrlImageButton.h"
+#import "AppDelegate.h"
 @interface LTKViewController : UIViewController
 @property(nonatomic,assign)CGRect mainFrame;
 @end

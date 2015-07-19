@@ -10,6 +10,8 @@
 #import"EScrollerView.h"
 #import "Toolkit.h"
 #import "UrlImageButton.h"
+#import "HTGoodDetailsViewController.h"
+
 @interface HomeViewController ()
 {
     UrlImageButton *btn;
@@ -87,14 +89,42 @@
         [_scrollView addSubview:label2];
         
     }
+    UIImageView *img1=[[UIImageView alloc]initWithFrame:CGRectMake(0,label2.frame.size.height+label2.frame.origin.y+6 , self.view.frame.size.width, 33)];
+    img1.image=BundleImage(@"titlebar.png");
+    img1.backgroundColor=[UIColor clearColor];
+    [_scrollView addSubview:img1];
+    for (int i =0; i<8; i++)
+    {
+        fourBtn=[[UrlImageButton alloc]initWithFrame:CGRectMake(12+i*75, img1.frame.size.height+img1.frame.origin.y+8, 70, 70)];
+        [fourBtn addTarget:self action:@selector(btnShopStore:) forControlEvents:UIControlEventTouchUpInside];
+        [_scrollView addSubview:fourBtn];
+        [fourBtn setBackgroundImage: [UIImage imageNamed:@"default_02.png"] forState:0];
+        [fourBtn setImage: [UIImage imageNamed:@"spic_01.png"] forState:0];
+        fourLab=[[UILabel alloc]initWithFrame:CGRectMake(12+i*75, fourBtn.frame.size.height+fourBtn.frame.origin.y+8, 70, 20)];
+        fourLab.text=@"孝敬父母";
+        fourLab.textColor=[UIColor grayColor];
+        fourLab.font=[UIFont boldSystemFontOfSize:10];
+        fourLab.textAlignment=1;
+        fourLab.backgroundColor=[UIColor clearColor];
+        [_scrollView addSubview:fourLab];
+        
+    }
     
+
    
     
 }
--(void)btnGoodsList:(id)sender
+-(void)btnShopStore:(id)sender
 {
     
     //
+}
+-(void)btnGoodsList:(id)sender
+{
+    HTGoodDetailsViewController *shop=[[HTGoodDetailsViewController alloc]init];
+    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    [delegate.navigationController pushViewController:shop animated:YES];
+    //HTGoodsDetailsViewController
 }
 /*
 #pragma mark - Navigation

@@ -54,16 +54,16 @@
     manitViewController.tabBarItem =item1;
     //搜索页
     HTSeachViewController *seachViewController= [[HTSeachViewController alloc] init];
-    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"gre icon_02.png"]tag:-301];
+    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"gre icon_04.png"]tag:-301];
     seachViewController.tabBarItem=item2;
     //精品推荐
     
     HTBoutiqueViewController *boutiqueViewController= [[HTBoutiqueViewController alloc] init];
-    UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"gre icon_03.png"]tag:-302];
+    UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"gre icon_02.png"]tag:-302];
     boutiqueViewController.tabBarItem=item3;
     //购物车
     HTCartViewController *cartViewController= [[HTCartViewController alloc] init];
-    UITabBarItem *item4 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"gre icon_04.png"]tag:-303];
+    UITabBarItem *item4 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"gre icon_02.png"]tag:-303];
     cartViewController.tabBarItem=item4;
     //个人中心
     LoginViewController  *loginViewController= [[LoginViewController alloc] init];
