@@ -946,6 +946,16 @@
 		AD8AA6741B594EF600E324AD /* BasicViews */ = {
 			isa = PBXGroup;
 			children = (
+				AD8AA66B1B594EED00E324AD /* DejalActivityView.h */,
+				AD8AA66C1B594EED00E324AD /* DejalActivityView.m */,
+				AD8AA66D1B594EED00E324AD /* HZLocation.h */,
+				AD8AA66E1B594EED00E324AD /* HZLocation.m */,
+				AD8AA66F1B594EED00E324AD /* LTKView.h */,
+				AD8AA6701B594EED00E324AD /* LTKView.m */,
+				A2FC74A31B5A1E580094BC59 /* FCImageTextViewController.h */,
+				A2FC74A41B5A1E580094BC59 /* FCImageTextViewController.m */,
+				A2FC74A61B5A1EE00094BC59 /* FCImageTextView.h */,
+				A2FC74A71B5A1EE00094BC59 /* FCImageTextView.m */,
 			);
 			name = BasicViews;
 			sourceTree = "<group>";
