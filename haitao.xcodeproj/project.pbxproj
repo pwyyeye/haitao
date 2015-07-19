@@ -123,6 +123,8 @@
 		AD8AA6A81B59E14400E324AD /* shop_zy_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8AA68D1B59E14400E324AD /* shop_zy_@2x.png */; };
 		AD8AA6A91B59E14400E324AD /* sy_setup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8AA68E1B59E14400E324AD /* sy_setup@2x.png */; };
 		AD8AA6AA1B59E14400E324AD /* top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8AA68F1B59E14400E324AD /* top@2x.png */; };
+		AD8AA6B71B59F4A300E324AD /* UserCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8AA6B51B59F4A300E324AD /* UserCenterController.m */; };
+		AD8AA6B81B59F4A300E324AD /* UserCenterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD8AA6B61B59F4A300E324AD /* UserCenterController.xib */; };
 		ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC811B53CB5F0022B2C2 /* main.m */; };
 		ADB5AC851B53CB5F0022B2C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC841B53CB5F0022B2C2 /* AppDelegate.m */; };
 		ADB5AC881B53CB5F0022B2C2 /* haitao.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC861B53CB5F0022B2C2 /* haitao.xcdatamodeld */; };
@@ -332,6 +334,9 @@
 		AD8AA68D1B59E14400E324AD /* shop_zy_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shop_zy_@2x.png"; sourceTree = "<group>"; };
 		AD8AA68E1B59E14400E324AD /* sy_setup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sy_setup@2x.png"; sourceTree = "<group>"; };
 		AD8AA68F1B59E14400E324AD /* top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top@2x.png"; sourceTree = "<group>"; };
+		AD8AA6B41B59F4A300E324AD /* UserCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCenterController.h; sourceTree = "<group>"; };
+		AD8AA6B51B59F4A300E324AD /* UserCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCenterController.m; sourceTree = "<group>"; };
+		AD8AA6B61B59F4A300E324AD /* UserCenterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCenterController.xib; sourceTree = "<group>"; };
 		ADB5AC7C1B53CB5F0022B2C2 /* haitao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = haitao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADB5AC801B53CB5F0022B2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADB5AC811B53CB5F0022B2C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -674,12 +679,6 @@
 		AD8AA6741B594EF600E324AD /* BasicViews */ = {
 			isa = PBXGroup;
 			children = (
-				AD8AA66B1B594EED00E324AD /* DejalActivityView.h */,
-				AD8AA66C1B594EED00E324AD /* DejalActivityView.m */,
-				AD8AA66D1B594EED00E324AD /* HZLocation.h */,
-				AD8AA66E1B594EED00E324AD /* HZLocation.m */,
-				AD8AA66F1B594EED00E324AD /* LTKView.h */,
-				AD8AA6701B594EED00E324AD /* LTKView.m */,
 			);
 			name = BasicViews;
 			sourceTree = "<group>";
@@ -722,6 +721,32 @@
 				AD8AA68C1B59E14400E324AD /* icon_05C@2x.png */,
 			);
 			name = "工具栏";
+			sourceTree = "<group>";
+		};
+		AD8AA6B31B59E79B00E324AD /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				AD8AA6741B594EF600E324AD /* BasicViews */,
+				AD8AA66B1B594EED00E324AD /* DejalActivityView.h */,
+				AD8AA66C1B594EED00E324AD /* DejalActivityView.m */,
+				AD8AA66D1B594EED00E324AD /* HZLocation.h */,
+				AD8AA66E1B594EED00E324AD /* HZLocation.m */,
+				AD8AA66F1B594EED00E324AD /* LTKView.h */,
+				AD8AA6701B594EED00E324AD /* LTKView.m */,
+				AD8AA57B1B59416000E324AD /* CustomTabBar.h */,
+				AD8AA57C1B59416000E324AD /* CustomTabBar.m */,
+				AD8AA57D1B59416000E324AD /* FCTabBarController.h */,
+				AD8AA57E1B59416000E324AD /* FCTabBarController.m */,
+				AD8AA57F1B59416000E324AD /* LTKNavigationViewController.h */,
+				AD8AA5801B59416000E324AD /* LTKNavigationViewController.m */,
+				AD8AA5811B59416000E324AD /* LTKViewController.h */,
+				AD8AA5821B59416000E324AD /* LTKViewController.m */,
+				AD8AA5831B59416000E324AD /* TMNavigationController.h */,
+				AD8AA5841B59416000E324AD /* TMNavigationController.m */,
+				AD8AA5851B59416000E324AD /* HaiTaoBase.h */,
+				AD8AA5861B59416000E324AD /* HaiTaoBase.m */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 		ADB5AC731B53CB5F0022B2C2 = {
@@ -793,19 +818,7 @@
 		ADB5ACAA1B54065B0022B2C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				AD8AA6741B594EF600E324AD /* BasicViews */,
-				AD8AA57B1B59416000E324AD /* CustomTabBar.h */,
-				AD8AA57C1B59416000E324AD /* CustomTabBar.m */,
-				AD8AA57D1B59416000E324AD /* FCTabBarController.h */,
-				AD8AA57E1B59416000E324AD /* FCTabBarController.m */,
-				AD8AA57F1B59416000E324AD /* LTKNavigationViewController.h */,
-				AD8AA5801B59416000E324AD /* LTKNavigationViewController.m */,
-				AD8AA5811B59416000E324AD /* LTKViewController.h */,
-				AD8AA5821B59416000E324AD /* LTKViewController.m */,
-				AD8AA5831B59416000E324AD /* TMNavigationController.h */,
-				AD8AA5841B59416000E324AD /* TMNavigationController.m */,
-				AD8AA5851B59416000E324AD /* HaiTaoBase.h */,
-				AD8AA5861B59416000E324AD /* HaiTaoBase.m */,
+				AD8AA6B31B59E79B00E324AD /* Base */,
 				ADB5ACAC1B54067B0022B2C2 /* Home */,
 				ADB5ACAE1B5406A20022B2C2 /* Search */,
 				AD8AA5971B59428E00E324AD /* 精品推荐 */,
@@ -822,6 +835,9 @@
 				AD13868F1B54D5BF00130E49 /* LoginViewController.h */,
 				AD1386901B54D5BF00130E49 /* LoginViewController.m */,
 				AD1386911B54D5BF00130E49 /* LoginViewController.xib */,
+				AD8AA6B41B59F4A300E324AD /* UserCenterController.h */,
+				AD8AA6B51B59F4A300E324AD /* UserCenterController.m */,
+				AD8AA6B61B59F4A300E324AD /* UserCenterController.xib */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -1028,6 +1044,7 @@
 				AD8AA69F1B59E14400E324AD /* icon_01C@2x.png in Resources */,
 				AD8AA6991B59E14400E324AD /* pic_03@2x.png in Resources */,
 				AD8AA69E1B59E14400E324AD /* icon_01@2x.png in Resources */,
+				AD8AA6B81B59F4A300E324AD /* UserCenterController.xib in Resources */,
 				AD8AA62D1B59435C00E324AD /* ItemView.xib in Resources */,
 				AD8AA6A31B59E14400E324AD /* icon_03C@2x.png in Resources */,
 			);
@@ -1083,6 +1100,7 @@
 				AD8AA6301B59435C00E324AD /* MJPopupBackgroundView.m in Sources */,
 				ADB5AC851B53CB5F0022B2C2 /* AppDelegate.m in Sources */,
 				AD8AA6721B594EED00E324AD /* HZLocation.m in Sources */,
+				AD8AA6B71B59F4A300E324AD /* UserCenterController.m in Sources */,
 				ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */,
 				AD8AA58A1B59416000E324AD /* LTKViewController.m in Sources */,
 				AD8AA63D1B59435C00E324AD /* ProfileViewController.m in Sources */,
@@ -1267,6 +1285,7 @@
 			baseConfigurationReference = 3C8F0106971265CAA672CF83 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = haitao/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1279,6 +1298,7 @@
 			baseConfigurationReference = 240B8E23FB42A177712EC5FF /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = haitao/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
