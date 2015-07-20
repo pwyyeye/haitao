@@ -192,6 +192,12 @@
 		ADB5ACA91B5404140022B2C2 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB5ACA81B5404140022B2C2 /* libz.dylib */; };
 		ADD4D40B1B5B298F004AFBE2 /* HTGoodDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D40A1B5B298F004AFBE2 /* HTGoodDetailsViewController.m */; };
 		ADD4D40E1B5B29AF004AFBE2 /* TMRulerColor.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D40D1B5B29AF004AFBE2 /* TMRulerColor.m */; };
+		ADD4D4131B5B999B004AFBE2 /* MyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D4121B5B999B004AFBE2 /* MyUtil.m */; };
+		ADD4D41E1B5BA39B004AFBE2 /* UserDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D41C1B5BA39B004AFBE2 /* UserDetailController.m */; };
+		ADD4D41F1B5BA39B004AFBE2 /* UserDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD4D41D1B5BA39B004AFBE2 /* UserDetailController.xib */; };
+		ADD4D4231B5BB0D7004AFBE2 /* AddressListController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D4221B5BB0D7004AFBE2 /* AddressListController.m */; };
+		ADD4D4271B5BB202004AFBE2 /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D4251B5BB202004AFBE2 /* AddAddressViewController.m */; };
+		ADD4D4281B5BB202004AFBE2 /* AddAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD4D4261B5BB202004AFBE2 /* AddAddressViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -481,6 +487,18 @@
 		ADD4D40A1B5B298F004AFBE2 /* HTGoodDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTGoodDetailsViewController.m; sourceTree = "<group>"; };
 		ADD4D40C1B5B29AF004AFBE2 /* TMRulerColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMRulerColor.h; sourceTree = "<group>"; };
 		ADD4D40D1B5B29AF004AFBE2 /* TMRulerColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMRulerColor.m; sourceTree = "<group>"; };
+		ADD4D40F1B5B98F9004AFBE2 /* haitao.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = haitao.pch; sourceTree = "<group>"; };
+		ADD4D4101B5B9923004AFBE2 /* MacroDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroDefinition.h; sourceTree = "<group>"; };
+		ADD4D4111B5B997B004AFBE2 /* MyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUtil.h; sourceTree = "<group>"; };
+		ADD4D4121B5B999B004AFBE2 /* MyUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUtil.m; sourceTree = "<group>"; };
+		ADD4D41B1B5BA39B004AFBE2 /* UserDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailController.h; sourceTree = "<group>"; };
+		ADD4D41C1B5BA39B004AFBE2 /* UserDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailController.m; sourceTree = "<group>"; };
+		ADD4D41D1B5BA39B004AFBE2 /* UserDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailController.xib; sourceTree = "<group>"; };
+		ADD4D4211B5BB0D7004AFBE2 /* AddressListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListController.h; sourceTree = "<group>"; };
+		ADD4D4221B5BB0D7004AFBE2 /* AddressListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressListController.m; sourceTree = "<group>"; };
+		ADD4D4241B5BB202004AFBE2 /* AddAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAddressViewController.h; sourceTree = "<group>"; };
+		ADD4D4251B5BB202004AFBE2 /* AddAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressViewController.m; sourceTree = "<group>"; };
+		ADD4D4261B5BB202004AFBE2 /* AddAddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAddressViewController.xib; sourceTree = "<group>"; };
 		DB8432FE812FC9929501C476 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1027,6 +1045,7 @@
 			children = (
 				ADB5AC801B53CB5F0022B2C2 /* Info.plist */,
 				ADB5AC811B53CB5F0022B2C2 /* main.m */,
+				ADD4D40F1B5B98F9004AFBE2 /* haitao.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1065,9 +1084,9 @@
 		ADB5ACAB1B54066A0022B2C2 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				AD13868F1B54D5BF00130E49 /* LoginViewController.h */,
-				AD1386901B54D5BF00130E49 /* LoginViewController.m */,
-				AD1386911B54D5BF00130E49 /* LoginViewController.xib */,
+				ADD4D4201B5BAEE0004AFBE2 /* Address */,
+				ADD4D4151B5B9B92004AFBE2 /* UserInfo */,
+				ADD4D4141B5B9B73004AFBE2 /* Login */,
 				AD8AA6B41B59F4A300E324AD /* UserCenterController.h */,
 				AD8AA6B51B59F4A300E324AD /* UserCenterController.m */,
 				AD8AA6B61B59F4A300E324AD /* UserCenterController.xib */,
@@ -1120,6 +1139,9 @@
 		ADB5ACB01B5406CB0022B2C2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				ADD4D4111B5B997B004AFBE2 /* MyUtil.h */,
+				ADD4D4121B5B999B004AFBE2 /* MyUtil.m */,
+				ADD4D4101B5B9923004AFBE2 /* MacroDefinition.h */,
 				AD8AA59F1B59435C00E324AD /* Toolkit */,
 				A21814221B5605D100D64E70 /* 水平菜单 */,
 			);
@@ -1151,6 +1173,38 @@
 				AD8AA6801B59E14400E324AD /* titlebar@2x.png */,
 			);
 			name = Sources;
+			sourceTree = "<group>";
+		};
+		ADD4D4141B5B9B73004AFBE2 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				AD13868F1B54D5BF00130E49 /* LoginViewController.h */,
+				AD1386901B54D5BF00130E49 /* LoginViewController.m */,
+				AD1386911B54D5BF00130E49 /* LoginViewController.xib */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		ADD4D4151B5B9B92004AFBE2 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				ADD4D41B1B5BA39B004AFBE2 /* UserDetailController.h */,
+				ADD4D41C1B5BA39B004AFBE2 /* UserDetailController.m */,
+				ADD4D41D1B5BA39B004AFBE2 /* UserDetailController.xib */,
+			);
+			name = UserInfo;
+			sourceTree = "<group>";
+		};
+		ADD4D4201B5BAEE0004AFBE2 /* Address */ = {
+			isa = PBXGroup;
+			children = (
+				ADD4D4211B5BB0D7004AFBE2 /* AddressListController.h */,
+				ADD4D4221B5BB0D7004AFBE2 /* AddressListController.m */,
+				ADD4D4241B5BB202004AFBE2 /* AddAddressViewController.h */,
+				ADD4D4251B5BB202004AFBE2 /* AddAddressViewController.m */,
+				ADD4D4261B5BB202004AFBE2 /* AddAddressViewController.xib */,
+			);
+			name = Address;
 			sourceTree = "<group>";
 		};
 		EE4E5575F3F92981227C96AC /* Pods */ = {
@@ -1273,6 +1327,7 @@
 				AD8AA6981B59E14400E324AD /* pic_02@2x.png in Resources */,
 				A21815B11B5A0E9A00D64E70 /* bt_08_@2x.png in Resources */,
 				AD8AA6971B59E14400E324AD /* line@2x.png in Resources */,
+				ADD4D41F1B5BA39B004AFBE2 /* UserDetailController.xib in Resources */,
 				AD8AA6A51B59E14400E324AD /* icon_04C@2x.png in Resources */,
 				A21815A41B5A0E9A00D64E70 /* bg@2x.png in Resources */,
 				A21815A71B5A0E9A00D64E70 /* bt_01_n.png in Resources */,
@@ -1282,6 +1337,7 @@
 				A21815B61B5A0E9A00D64E70 /* bt_share_@2x.png in Resources */,
 				AD8AA6A91B59E14400E324AD /* sy_setup@2x.png in Resources */,
 				AD8AA69C1B59E14400E324AD /* ddqr_01@2x.png in Resources */,
+				ADD4D4281B5BB202004AFBE2 /* AddAddressViewController.xib in Resources */,
 				AD8AA69A1B59E14400E324AD /* spic_01@2x.png in Resources */,
 				A21815AB1B5A0E9A00D64E70 /* bt_04_01_@2x.png in Resources */,
 				AD8AA6A21B59E14400E324AD /* icon_03@2x.png in Resources */,
@@ -1418,6 +1474,7 @@
 				AD8AA6391B59435C00E324AD /* Toolkit.m in Sources */,
 				AD8AA5891B59416000E324AD /* LTKNavigationViewController.m in Sources */,
 				AD8AA6191B59435C00E324AD /* ELCAssetTablePicker.m in Sources */,
+				ADD4D41E1B5BA39B004AFBE2 /* UserDetailController.m in Sources */,
 				AD8AA6711B594EED00E324AD /* DejalActivityView.m in Sources */,
 				A2FC74E01B5A3F340094BC59 /* BADockCell.m in Sources */,
 				A2FC74E21B5A3F340094BC59 /* BARightCell.m in Sources */,
@@ -1433,10 +1490,12 @@
 				AD8AA6361B59435C00E324AD /* NSData+Base64.m in Sources */,
 				AD8AA62F1B59435C00E324AD /* JUUserDefaults.m in Sources */,
 				AD8AA62B1B59435C00E324AD /* UrlImageButton.m in Sources */,
+				ADD4D4231B5BB0D7004AFBE2 /* AddressListController.m in Sources */,
 				AD8AA62C1B59435C00E324AD /* UrlImageView.m in Sources */,
 				ADD4D40E1B5B29AF004AFBE2 /* TMRulerColor.m in Sources */,
 				ADD4D40B1B5B298F004AFBE2 /* HTGoodDetailsViewController.m in Sources */,
 				AD8AA6211B59435C00E324AD /* FCLoadingVIew.m in Sources */,
+				ADD4D4271B5BB202004AFBE2 /* AddAddressViewController.m in Sources */,
 				AD8AA6431B59435C00E324AD /* ioapi.m in Sources */,
 				AD8AA6411B59435C00E324AD /* WCAlertView.m in Sources */,
 				AD8AA6311B59435C00E324AD /* UIViewController+MJPopupViewController.m in Sources */,
@@ -1461,6 +1520,7 @@
 				AD8AA64A1B59435C00E324AD /* ZSYPopoverListView.m in Sources */,
 				AD8AA63B1B59435C00E324AD /* ProfileImagesViewController.m in Sources */,
 				AD8AA5871B59416000E324AD /* CustomTabBar.m in Sources */,
+				ADD4D4131B5B999B004AFBE2 /* MyUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1584,6 +1644,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PREFIX_HEADER = haitao/haitao.pch;
 				INFOPLIST_FILE = haitao/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1597,6 +1658,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PREFIX_HEADER = haitao/haitao.pch;
 				INFOPLIST_FILE = haitao/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

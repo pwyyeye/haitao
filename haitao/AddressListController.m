@@ -1,23 +1,21 @@
 //
-//  UserCenterController.m
+//  AddressListController.m
 //  haitao
 //
-//  Created by pwy on 15/7/18.
+//  Created by pwy on 15/7/19.
 //  Copyright (c) 2015年 上海市配夸网络科技有限公司. All rights reserved.
 //
 
-#import "UserCenterController.h"
-#import "UserDetailController.h"
-#import "AddAddressViewController.h"
-@interface UserCenterController ()
+#import "AddressListController.h"
+
+@interface AddressListController ()
 
 @end
 
-@implementation UserCenterController
+@implementation AddressListController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _tableList=@[@"用户昵称",@"我的订单",@"消息中心",@"优惠券",@"关税缴纳",@"地址管理",@"收藏",@"分享app",@"帮助说明",@"在线客服"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -36,37 +34,24 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return _tableList.count;
+    return 0;
 }
 
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
     // Configure the cell...
-    UITableViewCell *cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    cell.textLabel.text=_tableList[indexPath.item];
-    cell.imageView.image=[UIImage imageNamed:@"default_04.png"];
-    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    
     return cell;
 }
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    //    UITableViewCell *cell =[self tableView:tableView cellForRowAtIndexPath:indexPath];
-    //    return cell.frame.size.height;
-    if(indexPath.item==0){
-        return 50.0;
-    }else{
-        return 30.0;
-    }
-    
-}
+*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -101,29 +86,6 @@
     return YES;
 }
 */
-
-/*
-#pragma mark - Table view delegate
-
- */
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    UIViewController *detailViewController;
-    if (indexPath.item==0) {
-        detailViewController  = [[UserDetailController alloc] init];
-    }else if(indexPath.item==5){
-        detailViewController  = [[AddAddressViewController alloc] initWithNibName:@"AddAddressViewController" bundle:nil];
-    }
-    
-    
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-}
-
 
 /*
 #pragma mark - Navigation

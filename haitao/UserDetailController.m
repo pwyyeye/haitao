@@ -1,23 +1,21 @@
 //
-//  UserCenterController.m
+//  UserDetailController.m
 //  haitao
 //
-//  Created by pwy on 15/7/18.
+//  Created by pwy on 15/7/19.
 //  Copyright (c) 2015年 上海市配夸网络科技有限公司. All rights reserved.
 //
 
-#import "UserCenterController.h"
 #import "UserDetailController.h"
-#import "AddAddressViewController.h"
-@interface UserCenterController ()
+
+@interface UserDetailController ()
 
 @end
 
-@implementation UserCenterController
+@implementation UserDetailController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _tableList=@[@"用户昵称",@"我的订单",@"消息中心",@"优惠券",@"关税缴纳",@"地址管理",@"收藏",@"分享app",@"帮助说明",@"在线客服"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -36,37 +34,54 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
+//    UIView *view = [UIView new];
+//    
+//    view.backgroundColor = [UIColor clearColor];
+//    
+//    [tableView setTableFooterView:view];
+//    [tableView setTableHeaderView:view];
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return _tableList.count;
+    NSLog(@"%d",section);
+//    if (section==0) {
+//        tableView.separatorStyle=UITableViewCellSeparatorStyleSingleLine ;
+//    }else{
+//        tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+//    }
+    
+    return 2;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 16.0;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 20.0;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
+    UITableViewCell *cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 5, 60, 30)];
+    label.font=[UIFont systemFontOfSize:12.0];
     
-    // Configure the cell...
-    UITableViewCell *cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    cell.textLabel.text=_tableList[indexPath.item];
-    cell.imageView.image=[UIImage imageNamed:@"default_04.png"];
+    if (indexPath.item==0) {
+        label.text=@"修改头像";
+        cell.imageView.image=[UIImage imageNamed:@"default_04.png"];
+        
+    }else{
+        cell.textLabel.text=@"xxxxx";
+        label.text=@"修改昵称";
+    }
+    [cell.contentView addSubview:label];
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     return cell;
+
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    //    UITableViewCell *cell =[self tableView:tableView cellForRowAtIndexPath:indexPath];
-    //    return cell.frame.size.height;
-    if(indexPath.item==0){
-        return 50.0;
-    }else{
-        return 30.0;
-    }
-    
-}
 
 /*
 // Override to support conditional editing of the table view.
@@ -105,25 +120,18 @@
 /*
 #pragma mark - Table view delegate
 
- */
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here, for example:
     // Create the next view controller.
-    UIViewController *detailViewController;
-    if (indexPath.item==0) {
-        detailViewController  = [[UserDetailController alloc] init];
-    }else if(indexPath.item==5){
-        detailViewController  = [[AddAddressViewController alloc] initWithNibName:@"AddAddressViewController" bundle:nil];
-    }
-    
+    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
     
     // Pass the selected object to the new view controller.
     
     // Push the view controller.
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
-
+*/
 
 /*
 #pragma mark - Navigation
