@@ -10,4 +10,8 @@
 
 @interface AddressListController : UITableViewController
 
+@property(strong,nonatomic) NSArray *data;
+
+@property(strong,nonatomic) UIView *emptyView;
+
 @end

@@ -8,16 +8,33 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddAddressViewController : UIViewController
+#define PROVINCE_COMPONENT  0
+#define CITY_COMPONENT      1
+#define DISTRICT_COMPONENT  2
+
+@interface AddAddressViewController : UIViewController<UIActionSheetDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *username;
 
 @property (weak, nonatomic) IBOutlet UITextField *telephone;
 
-@property (weak, nonatomic) IBOutlet UITextField *
-    idcard;
+@property (weak, nonatomic) IBOutlet UITextField *idcard;
+
+@property (weak, nonatomic) IBOutlet UITextField *address;
 
 @property (weak, nonatomic) IBOutlet UITextField *addressDetail;
 
 @property (weak, nonatomic) IBOutlet UITextField *postcode;
+
+@property(strong,nonatomic) UIPickerView *picker;
+
+
+@property (strong, nonatomic)  NSDictionary *areaDic;
+@property (strong, nonatomic)  NSArray *province;
+@property (strong, nonatomic)  NSArray *city;
+@property (strong, nonatomic)  NSArray *district;
+
+@property (strong, nonatomic)  NSString *selectedProvince;
+
+- (IBAction)areaPick:(id)sender;
 @end

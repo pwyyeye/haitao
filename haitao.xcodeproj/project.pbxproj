@@ -198,6 +198,9 @@
 		ADD4D4231B5BB0D7004AFBE2 /* AddressListController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D4221B5BB0D7004AFBE2 /* AddressListController.m */; };
 		ADD4D4271B5BB202004AFBE2 /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D4251B5BB202004AFBE2 /* AddAddressViewController.m */; };
 		ADD4D4281B5BB202004AFBE2 /* AddAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD4D4261B5BB202004AFBE2 /* AddAddressViewController.xib */; };
+		ADD4D42C1B5CBC06004AFBE2 /* AddressListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D42A1B5CBC06004AFBE2 /* AddressListCell.m */; };
+		ADD4D42D1B5CBC06004AFBE2 /* AddressListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD4D42B1B5CBC06004AFBE2 /* AddressListCell.xib */; };
+		ADD4D42F1B5CDCB0004AFBE2 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADD4D42E1B5CDCB0004AFBE2 /* area.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -499,6 +502,10 @@
 		ADD4D4241B5BB202004AFBE2 /* AddAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAddressViewController.h; sourceTree = "<group>"; };
 		ADD4D4251B5BB202004AFBE2 /* AddAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressViewController.m; sourceTree = "<group>"; };
 		ADD4D4261B5BB202004AFBE2 /* AddAddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAddressViewController.xib; sourceTree = "<group>"; };
+		ADD4D4291B5CBC06004AFBE2 /* AddressListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListCell.h; sourceTree = "<group>"; };
+		ADD4D42A1B5CBC06004AFBE2 /* AddressListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressListCell.m; sourceTree = "<group>"; };
+		ADD4D42B1B5CBC06004AFBE2 /* AddressListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressListCell.xib; sourceTree = "<group>"; };
+		ADD4D42E1B5CDCB0004AFBE2 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		DB8432FE812FC9929501C476 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1043,6 +1050,7 @@
 		ADB5AC7F1B53CB5F0022B2C2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ADD4D42E1B5CDCB0004AFBE2 /* area.plist */,
 				ADB5AC801B53CB5F0022B2C2 /* Info.plist */,
 				ADB5AC811B53CB5F0022B2C2 /* main.m */,
 				ADD4D40F1B5B98F9004AFBE2 /* haitao.pch */,
@@ -1198,11 +1206,14 @@
 		ADD4D4201B5BAEE0004AFBE2 /* Address */ = {
 			isa = PBXGroup;
 			children = (
-				ADD4D4211B5BB0D7004AFBE2 /* AddressListController.h */,
-				ADD4D4221B5BB0D7004AFBE2 /* AddressListController.m */,
 				ADD4D4241B5BB202004AFBE2 /* AddAddressViewController.h */,
 				ADD4D4251B5BB202004AFBE2 /* AddAddressViewController.m */,
 				ADD4D4261B5BB202004AFBE2 /* AddAddressViewController.xib */,
+				ADD4D4211B5BB0D7004AFBE2 /* AddressListController.h */,
+				ADD4D4221B5BB0D7004AFBE2 /* AddressListController.m */,
+				ADD4D4291B5CBC06004AFBE2 /* AddressListCell.h */,
+				ADD4D42A1B5CBC06004AFBE2 /* AddressListCell.m */,
+				ADD4D42B1B5CBC06004AFBE2 /* AddressListCell.xib */,
 			);
 			name = Address;
 			sourceTree = "<group>";
@@ -1327,6 +1338,7 @@
 				AD8AA6981B59E14400E324AD /* pic_02@2x.png in Resources */,
 				A21815B11B5A0E9A00D64E70 /* bt_08_@2x.png in Resources */,
 				AD8AA6971B59E14400E324AD /* line@2x.png in Resources */,
+				ADD4D42F1B5CDCB0004AFBE2 /* area.plist in Resources */,
 				ADD4D41F1B5BA39B004AFBE2 /* UserDetailController.xib in Resources */,
 				AD8AA6A51B59E14400E324AD /* icon_04C@2x.png in Resources */,
 				A21815A41B5A0E9A00D64E70 /* bg@2x.png in Resources */,
@@ -1379,6 +1391,7 @@
 				ADB5AC901B53CB5F0022B2C2 /* Images.xcassets in Resources */,
 				AD8AA69D1B59E14400E324AD /* gwc_line_@2x.png in Resources */,
 				AD8AA69B1B59E14400E324AD /* titlebar@2x.png in Resources */,
+				ADD4D42D1B5CBC06004AFBE2 /* AddressListCell.xib in Resources */,
 				A21815BB1B5A0E9A00D64E70 /* gwc_line_@2x.png in Resources */,
 				A21815B31B5A0E9A00D64E70 /* bt_09_s_@2x.png in Resources */,
 				AD8AA6AA1B59E14400E324AD /* top@2x.png in Resources */,
@@ -1520,6 +1533,7 @@
 				AD8AA64A1B59435C00E324AD /* ZSYPopoverListView.m in Sources */,
 				AD8AA63B1B59435C00E324AD /* ProfileImagesViewController.m in Sources */,
 				AD8AA5871B59416000E324AD /* CustomTabBar.m in Sources */,
+				ADD4D42C1B5CBC06004AFBE2 /* AddressListCell.m in Sources */,
 				ADD4D4131B5B999B004AFBE2 /* MyUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

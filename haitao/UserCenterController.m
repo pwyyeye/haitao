@@ -8,7 +8,7 @@
 
 #import "UserCenterController.h"
 #import "UserDetailController.h"
-#import "AddAddressViewController.h"
+#import "AddressListController.h"
 @interface UserCenterController ()
 
 @end
@@ -114,7 +114,7 @@
     if (indexPath.item==0) {
         detailViewController  = [[UserDetailController alloc] init];
     }else if(indexPath.item==5){
-        detailViewController  = [[AddAddressViewController alloc] initWithNibName:@"AddAddressViewController" bundle:nil];
+        detailViewController  = [[AddressListController alloc] init];
     }
     
     

@@ -7,6 +7,8 @@
 //
 
 #import "AddressListController.h"
+#import "AddressListCell.h"
+#import "AddAddressViewController.h"
 
 @interface AddressListController ()
 
@@ -22,8 +24,43 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UINib *nib=[UINib nibWithNibName:@"AddressListCell" bundle:nil];
+    
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"addressListCell"];
+    
+//    _data=@[@"hello",@"word"];
+    
 }
+-(void)viewWillAppear:(BOOL)animated{
+    if (_data.count==0) {
+        if (_emptyView==nil) {
+            _emptyView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
+            UILabel *emptyLabel=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-80, SCREEN_HEIGHT/2-45, 160, 30)];
+            emptyLabel.font=[UIFont systemFontOfSize:12.0];
+            emptyLabel.text=@"暂无收获人地址，请添加创建";
+            
+            UIButton *emptyButton=[[UIButton alloc] initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, 40)];
+            emptyButton.backgroundColor=[UIColor redColor];
+            [emptyButton setTitle:@"+添加收货人地址" forState:UIControlStateNormal];
+           // [emptyButton setTintColor:[UIColor redColor]];
+            
+            [emptyButton addTarget:self action:@selector(gotoAddAddress) forControlEvents:UIControlEventTouchUpInside];
+            [_emptyView addSubview:emptyLabel];
+            [_emptyView addSubview:emptyButton];
+            
+            [self.view addSubview:_emptyView];
+            
+            self.tableView.separatorColor=[UIColor clearColor];
 
+        }
+        
+    }else{
+        
+        [_emptyView removeFromSuperview];
+    
+    }
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -34,24 +71,28 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return _data.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
+    AddressListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"addressListCell" forIndexPath:indexPath];
+    cell.username.text=_data[indexPath.item];
+    cell.textLabel.text=@"12312312312312321313";
+    cell.detailTextLabel.text=@"sdfasdfadsfasdfasfasdfsadfasfasdfasd";
+    cell.accessoryType=UITableViewCellAccessoryCheckmark;
+
     // Configure the cell...
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -96,5 +137,20 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+#pragma mark - custom Methods
+
+-(void)gotoAddAddress{
+    
+    NSLog(@"----pass gotoAddAddress%@---",@"test");
+    
+    UIViewController *detailViewController =[[AddAddressViewController alloc] initWithNibName:@"AddAddressViewController" bundle:nil];
+    
+    // Pass the selected object to the new view controller.
+    
+    // Push the view controller.
+    [self.navigationController pushViewController:detailViewController animated:YES];
+}
 
 @end
