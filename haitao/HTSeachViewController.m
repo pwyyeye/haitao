@@ -142,7 +142,8 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     
-    NSString* url =@"http://www.peikua.com/app.php?app.php?m=home&a=app&f=getHomeNav" ;
+    NSString* url =[NSString stringWithFormat:@"%@&m=home&f=getHomeNav",requestUrl]
+    ;
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:GETURL withUrlName:@"menu"];
     httpController.delegate = self;
     [httpController onSearch];

@@ -10,7 +10,7 @@
 #define MacroDefinition_h
 //请求cgi
 //#define requestUrl [NSString stringWithFormat:@"http://192.168.40.188:80/cgi-bin/app.cgi"]
-#define requestUrl [NSString stringWithFormat:@"http://114.215.155.176:81/cgi-bin/app.cgi"]
+#define requestUrl [NSString stringWithFormat:@"http://www.peikua.com/app.php?a=app"]
 
 
 //-------------------获取设备大小-------------------------

@@ -59,7 +59,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self drawViewRect];
     HomeViewController *homeViewController=[[HomeViewController alloc]init];
     homeViewController.mainFrame=mainFrame;
@@ -80,13 +80,60 @@
 -(void)drawViewRect
 {
     UIView *naviView=(UIView*) [self getNavigationBar];
-    mainFrame=CGRectMake(0, naviView.frame.size.height-20, self.view.frame.size.width, self.view.frame.size.height-naviView.frame.size.height-49);
+    mainFrame=CGRectMake(0, naviView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height-naviView.frame.size.height-49);
 }
 -(void)ChangeTabType{
     [self.tabBar setHidden:YES];
     [tabBar setHidden:YES];
 }
+-(void)getMenuData{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+//    http://www.peikua.com/app.php?app.php?m=home&a=app&f=getHomeData
+    NSString* url =[NSString stringWithFormat:@"%@&m=home&f=getHomeNav",requestUrl]
+    ;
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:GETURL withUrlName:@"getHomeNav"];
+    httpController.delegate = self;
+    [httpController onSearch];
+}
 
+//获取数据
+-(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app stopLoading];
+    NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
+    NSString *status=[dictemp objectForKey:@"status"];
+    //    if(![status isEqualToString:@"1"]){
+    ////        [self showMessage:message];
+    ////        return ;
+    //    }
+    if([urlname isEqualToString:@"getHomeNav"]){
+        NSArray *arrtemp=[dictemp objectForKey:@"data"];
+        if ((NSNull *)arrtemp == [NSNull null]) {
+            showMessage(@"暂无数据!");
+            //            [self showMessage:@"暂无数据!"];
+            return;
+            
+        }
+//        for (NSDictionary *employeeDic in arrtemp) {
+//            MenuModel *menuModel= [MenuModel objectWithKeyValues:employeeDic] ;
+//            NSArray *arr=menuModel.child;
+//            NSMutableArray *childList=[[NSMutableArray alloc]init];
+//            for (NSDictionary *childDic in arr) {
+//                MenuModel *menuTepm= [MenuModel objectWithKeyValues:childDic] ;
+//                [childList addObject:menuTepm];
+//            }
+//            menuModel.child = childList;
+//            [menuArr addObject:menuModel];
+//        }
+//        [self initTable];
+//        NSLog(@"");
+        //保存数据
+        
+    }
+    
+    
+}
 
 - (void)scrollableTabBar:(ZRScrollableTabBar *)tabBar didSelectItemWithTag:(int)tag
 {
