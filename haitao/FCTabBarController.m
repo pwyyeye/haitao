@@ -12,7 +12,7 @@
 #import "HTSeachViewController.h"
 #import "HTBoutiqueViewController.h"
 #import "HTCartViewController.h"
-#import "LoginViewController.h"
+#import "UserCenterController.h"
 //#import "TMClassicViewController.h"
 //#import "TMShopStoreViewController.h"
 //#import "TMBuildShopStoreViewController.h"
@@ -66,15 +66,15 @@
     UITabBarItem *item4 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"gre icon_02.png"]tag:-303];
     cartViewController.tabBarItem=item4;
     //个人中心
-    LoginViewController  *loginViewController= [[LoginViewController alloc] init];
+    UserCenterController  *userCenteController= [[UserCenterController alloc] init];
     UITabBarItem *item5 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"gre icon_05.png"]tag:-304];
-    loginViewController.tabBarItem=item5;
+    userCenteController.tabBarItem=item5;
     //
     LTKNavigationViewController*navigationController1= [[LTKNavigationViewController alloc] initWithRootViewController:manitViewController] ;
     LTKNavigationViewController*navigationController2= [[LTKNavigationViewController alloc] initWithRootViewController:seachViewController] ;
     LTKNavigationViewController*navigationController3= [[LTKNavigationViewController alloc] initWithRootViewController:boutiqueViewController] ;
     LTKNavigationViewController*navigationController4= [[LTKNavigationViewController alloc] initWithRootViewController:cartViewController] ;
-    LTKNavigationViewController*navigationController5= [[LTKNavigationViewController alloc] initWithRootViewController:loginViewController] ;
+    LTKNavigationViewController*navigationController5= [[LTKNavigationViewController alloc] initWithRootViewController:userCenteController] ;
 
     NSArray *viewArray = [NSArray arrayWithObjects:navigationController1,navigationController2,navigationController3,navigationController4,navigationController5,nil];
 
