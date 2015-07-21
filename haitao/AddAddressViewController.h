@@ -36,5 +36,6 @@
 
 @property (strong, nonatomic)  NSString *selectedProvince;
 
+
 - (IBAction)areaPick:(id)sender;
 @end
