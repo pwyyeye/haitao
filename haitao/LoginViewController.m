@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    _loginRequestURL=[NSString stringWithFormat:@"%@&f=doLogin&m=user",requestUrl];
+    NSLog(@"----pass-pass%@---",_loginRequestURL);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,5 +35,28 @@
     // Pass the selected object to the new view controller.
 }
 */
+#pragma mark - login
+- (IBAction)login:(id)sender {
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+     NSDictionary *parameters = @{@"user_name":_user_name.text,@"user_pass":_user_pass.text};
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:_loginRequestURL withType:POSTURL withPam:parameters withUrlName:@"login"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
+    
+}
 
+- (IBAction)didEndOnExit:(id)sender {
+    [sender resignFirstResponder];
+}
+
+-(void)didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
+    
+    NSLog(@"----pass-login%@---",dictemp);
+    
+    
+    
+
+}
 @end

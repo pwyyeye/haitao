@@ -12,30 +12,31 @@
 #define CITY_COMPONENT      1
 #define DISTRICT_COMPONENT  2
 
-@interface AddAddressViewController : UIViewController<UIActionSheetDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+@interface AddAddressStep1 : UIViewController<UIActionSheetDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *username;
+@property (weak, nonatomic) IBOutlet UITextField *consignee;//收货人
 
-@property (weak, nonatomic) IBOutlet UITextField *telephone;
+@property (weak, nonatomic) IBOutlet UITextField *mobile;
 
 @property (weak, nonatomic) IBOutlet UITextField *idcard;
 
+@property (weak, nonatomic) IBOutlet UITextField *province;
+
 @property (weak, nonatomic) IBOutlet UITextField *address;
 
-@property (weak, nonatomic) IBOutlet UITextField *addressDetail;
-
-@property (weak, nonatomic) IBOutlet UITextField *postcode;
+@property (weak, nonatomic) IBOutlet UITextField *zipcode;
 
 @property(strong,nonatomic) UIPickerView *picker;
 
 
 @property (strong, nonatomic)  NSDictionary *areaDic;
-@property (strong, nonatomic)  NSArray *province;
+@property (strong, nonatomic)  NSArray *provinces;
 @property (strong, nonatomic)  NSArray *city;
 @property (strong, nonatomic)  NSArray *district;
 
 @property (strong, nonatomic)  NSString *selectedProvince;
 
+- (IBAction)gotoStep2:(id)sender;
 
 - (IBAction)areaPick:(id)sender;
 @end

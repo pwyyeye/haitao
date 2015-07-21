@@ -9,6 +9,7 @@
 #import "UserCenterController.h"
 #import "UserDetailController.h"
 #import "AddressListController.h"
+#import "LoginViewController.h"
 @interface UserCenterController ()
 
 @end
@@ -24,6 +25,18 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    
+    NSString *isLogin=[USER_DEFAULT objectForKey:@"isLogin"];
+    //判断是否登录
+    if ([MyUtil isEmptyString:isLogin]||[isLogin isEqual:@"0"]) {
+        UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

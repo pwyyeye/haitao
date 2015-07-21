@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+
 @interface MyUtil : NSObject
 //判断字符串是否为空
 + (BOOL) isEmptyString:(NSString *)string;

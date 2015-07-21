@@ -8,7 +8,7 @@
 
 #import "AddressListController.h"
 #import "AddressListCell.h"
-#import "AddAddressViewController.h"
+#import "AddAddressStep1.h"
 
 @interface AddressListController ()
 
@@ -30,7 +30,15 @@
     
 //    _data=@[@"hello",@"word"];
     
+    _selfRequestURL=[NSString stringWithFormat:@"%@&f=getAddress&m=user",requestUrl];
+    
 }
+
+-(void)initData{
+
+
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     if (_data.count==0) {
         if (_emptyView==nil) {
@@ -145,7 +153,7 @@
     
     NSLog(@"----pass gotoAddAddress%@---",@"test");
     
-    UIViewController *detailViewController =[[AddAddressViewController alloc] initWithNibName:@"AddAddressViewController" bundle:nil];
+    UIViewController *detailViewController =[[AddAddressStep1 alloc] initWithNibName:@"AddAddressStep1" bundle:nil];
     
     // Pass the selected object to the new view controller.
     

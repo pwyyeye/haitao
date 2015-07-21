@@ -6,13 +6,13 @@
 //  Copyright (c) 2015年 上海市配夸网络科技有限公司. All rights reserved.
 //
 
-#import "AddAddressViewController.h"
-
-@interface AddAddressViewController ()
+#import "AddAddressStep1.h"
+#import "AddAddressStep2.h"
+@interface AddAddressStep1 ()
 
 @end
 
-@implementation AddAddressViewController
+@implementation AddAddressStep1
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -74,10 +74,10 @@
         [provinceTmp addObject: [tmp objectAtIndex:0]];
     }
     
-    _province = [[NSArray alloc] initWithArray: provinceTmp];
+    _provinces = [[NSArray alloc] initWithArray: provinceTmp];
     
     NSString *index = [sortedArray objectAtIndex:0];
-    NSString *selected = [_province objectAtIndex:0];
+    NSString *selected = [_provinces objectAtIndex:0];
     NSDictionary *dic = [NSDictionary dictionaryWithDictionary: [[_areaDic objectForKey:index]objectForKey:selected]];
     
     NSArray *cityArray = [dic allKeys];
@@ -88,9 +88,18 @@
     NSString *selectedCity = [_city objectAtIndex: 0];
     _district = [[NSArray alloc] initWithArray: [cityDic objectForKey: selectedCity]];
     
-    _selectedProvince = [_province objectAtIndex: 0];
+    _selectedProvince = [_provinces objectAtIndex: 0];
 
 }
+- (IBAction)gotoStep2:(id)sender {
+    UIViewController *detailViewController =[[AddAddressStep1 alloc] initWithNibName:@"AddAddressStep2" bundle:nil];
+    
+    // Pass the selected object to the new view controller.
+    
+    // Push the view controller.
+    [self.navigationController pushViewController:detailViewController animated:YES];
+}
+
 - (IBAction)areaPick:(id)sender {
     
     UIAlertController* alertVc=[UIAlertController alertControllerWithTitle:@"\n\n\n\n\n\n\n\n\n\n" message:nil preferredStyle:(UIAlertControllerStyleActionSheet)];
@@ -100,7 +109,7 @@
         NSInteger cityIndex = [_picker selectedRowInComponent: CITY_COMPONENT];
         NSInteger districtIndex = [_picker selectedRowInComponent: DISTRICT_COMPONENT];
         
-        NSString *provinceStr = [_province objectAtIndex: provinceIndex];
+        NSString *provinceStr = [_provinces objectAtIndex: provinceIndex];
         NSString *cityStr = [_city objectAtIndex: cityIndex];
         NSString *districtStr = [_district objectAtIndex:districtIndex];
         
@@ -139,7 +148,7 @@
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     if (component == PROVINCE_COMPONENT) {
-        return [_province count];
+        return [_provinces count];
     }
     else if (component == CITY_COMPONENT) {
         return [_city count];
@@ -153,7 +162,7 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     if (component == PROVINCE_COMPONENT) {
-        _selectedProvince = [_province objectAtIndex: row];
+        _selectedProvince = [_provinces objectAtIndex: row];
         NSDictionary *tmp = [NSDictionary dictionaryWithDictionary: [_areaDic objectForKey: [NSString stringWithFormat:@"%d", row]]];
         NSDictionary *dic = [NSDictionary dictionaryWithDictionary: [tmp objectForKey: _selectedProvince]];
         NSArray *cityArray = [dic allKeys];
@@ -187,7 +196,7 @@
         
     }
     else if (component == CITY_COMPONENT) {
-        NSString *provinceIndex = [NSString stringWithFormat: @"%lu", (unsigned long)[_province indexOfObject: _selectedProvince]];
+        NSString *provinceIndex = [NSString stringWithFormat: @"%lu", (unsigned long)[_provinces indexOfObject: _selectedProvince]];
         NSDictionary *tmp = [NSDictionary dictionaryWithDictionary: [_areaDic objectForKey: provinceIndex]];
         NSDictionary *dic = [NSDictionary dictionaryWithDictionary: [tmp objectForKey: _selectedProvince]];
         NSArray *dicKeyArray = [dic allKeys];
@@ -234,7 +243,7 @@
     if (component == PROVINCE_COMPONENT) {
         myView = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 78, 30)];
         myView.textAlignment = UITextAlignmentCenter;
-        myView.text = [_province objectAtIndex:row];
+        myView.text = [_provinces objectAtIndex:row];
         myView.font = [UIFont systemFontOfSize:14];
         myView.backgroundColor = [UIColor clearColor];
     }

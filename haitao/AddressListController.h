@@ -14,4 +14,8 @@
 
 @property(strong,nonatomic) UIView *emptyView;
 
+@property(strong,nonatomic) NSString *selfRequestURL;
+
+-(void)initData;
+
 @end
