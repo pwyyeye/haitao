@@ -79,6 +79,7 @@
 		A2FC75051B5D1FFA0094BC59 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC74FD1B5D1FFA0094BC59 /* NSString+MJExtension.m */; };
 		A2FC75081B5D22E20094BC59 /* HTTPController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC75071B5D22E20094BC59 /* HTTPController.m */; };
 		A2FC750D1B5DDF090094BC59 /* MenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC750C1B5DDF090094BC59 /* MenuModel.m */; };
+		A2FC75101B5E1F640094BC59 /* App_Home_Bigegg.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC750F1B5E1F640094BC59 /* App_Home_Bigegg.m */; };
 		AD1386921B54D5BF00130E49 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1386901B54D5BF00130E49 /* LoginViewController.m */; };
 		AD1386931B54D5BF00130E49 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1386911B54D5BF00130E49 /* LoginViewController.xib */; };
 		AD8AA5871B59416000E324AD /* CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8AA57C1B59416000E324AD /* CustomTabBar.m */; };
@@ -326,6 +327,8 @@
 		A2FC75071B5D22E20094BC59 /* HTTPController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPController.m; sourceTree = "<group>"; };
 		A2FC750B1B5DDF090094BC59 /* MenuModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuModel.h; sourceTree = "<group>"; };
 		A2FC750C1B5DDF090094BC59 /* MenuModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuModel.m; sourceTree = "<group>"; };
+		A2FC750E1B5E1F640094BC59 /* App_Home_Bigegg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App_Home_Bigegg.h; sourceTree = "<group>"; };
+		A2FC750F1B5E1F640094BC59 /* App_Home_Bigegg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = App_Home_Bigegg.m; sourceTree = "<group>"; };
 		AD13868F1B54D5BF00130E49 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AD1386901B54D5BF00130E49 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		AD1386911B54D5BF00130E49 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -758,6 +761,8 @@
 		AD8AA5901B59424100E324AD /* model */ = {
 			isa = PBXGroup;
 			children = (
+				A2FC750E1B5E1F640094BC59 /* App_Home_Bigegg.h */,
+				A2FC750F1B5E1F640094BC59 /* App_Home_Bigegg.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1570,6 +1575,7 @@
 				AD8AA6401B59435C00E324AD /* URBAlertView.m in Sources */,
 				AD8AA58C1B59416000E324AD /* HaiTaoBase.m in Sources */,
 				AD8AA6481B59435C00E324AD /* ZipArchive.m in Sources */,
+				A2FC75101B5E1F640094BC59 /* App_Home_Bigegg.m in Sources */,
 				A2FC74FF1B5D1FFA0094BC59 /* MJFoundation.m in Sources */,
 				A2FC74E11B5A3F340094BC59 /* BAWineShoppingDockTavleView.m in Sources */,
 				AD8AA6201B59435C00E324AD /* EScrollerView.m in Sources */,

@@ -39,14 +39,14 @@
         NSDictionary *dic = [array objectAtIndex:i];
         [imagePathArray addObject:[dic objectForKey:@"ititle"]];
         [titleArray addObject:[dic objectForKey:@"mainHeading"]];
-        [idArray addObject:[dic objectForKey:@"id"]];
+//        [idArray addObject:[dic objectForKey:@"id"]];
     }
 	if ((self=[super initWithFrame:rect]))
     {
         self.userInteractionEnabled=YES;
 		viewSize=rect;
-        NSUInteger pageCount=3;
-//           NSUInteger pageCount=titleArray.count;
+//        NSUInteger pageCount=3;
+           NSUInteger pageCount=titleArray.count;
         scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, viewSize.size.width, viewSize.size.height)];
         scrollView.pagingEnabled = YES;
         scrollView.contentSize = CGSizeMake(viewSize.size.width * pageCount, viewSize.size.height);
@@ -55,19 +55,19 @@
         scrollView.scrollsToTop = NO;
         scrollView.delegate = self;
         scrollView.backgroundColor=[UIColor clearColor];
-        for (int i=0; i<3; i++)
+        for (int i=0; i<pageCount; i++)
         {
             UrlImageView *imgView=[[UrlImageView alloc] init];
 
             [imgView setFrame:CGRectMake(viewSize.size.width*i, 0,viewSize.size.width, viewSize.size.height)];
             imgView.tag= i;
             imgView.backgroundColor=[UIColor grayColor];
-//            if ([[imagePathArray objectAtIndex:i]length]>0)
-//            {
-//                NSString *urlStr = [NSString stringWithFormat:@"%@/mobile/attachment/download/%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"current_imgUrl" ],[imagePathArray objectAtIndex:i]];
-//                [imgView setImageWithURL:[NSURL URLWithString:[urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
-//            }
-            [imgView setImage:[UIImage imageNamed:@"default_01.png"]];
+            if ([[imagePathArray objectAtIndex:i]length]>0)
+            {
+                NSString *urlStr = [imagePathArray objectAtIndex:i];
+                [imgView setImageWithURL:[NSURL URLWithString:[urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+            }
+//            [imgView setImage:[UIImage imageNamed:@"default_01.png"]];
             imgView.contentMode = UIViewContentModeScaleToFill;
 
             UITapGestureRecognizer *Tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imagePressed:)] ;

@@ -11,7 +11,7 @@
 #import "Toolkit.h"
 #import "UrlImageButton.h"
 #import "HTGoodDetailsViewController.h"
-
+#import "App_Home_Bigegg.h"
 @interface HomeViewController ()
 {
     UrlImageButton *btn;
@@ -28,10 +28,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self drawViewRect];
+    app_home_bigegg=[[NSMutableArray alloc]init] ;//首页通栏即广告栏
+    app_home_grab=[[NSMutableArray alloc]init];//手机端抢购
+    app_home_command=[[NSMutableArray alloc]init];//手机端精品推荐
+    app_home_brand=[[NSMutableArray alloc]init];//手机端国际名品
+    new_goods=[[NSMutableArray alloc]init];//手机端国际名品
+    [self getMenuData];
+    
     // Do any additional setup after loading the view.
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if(_scrollView){
+        _scrollView.frame=self.mainFrame;
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -50,9 +61,19 @@
     _scrollView.showsVerticalScrollIndicator=NO;
     _scrollView.backgroundColor=[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
     [self.view addSubview:_scrollView];
-    
+    //
+//    [imagePathArray addObject:[dic objectForKey:@"ititle"]];
+//    [titleArray addObject:[dic objectForKey:@"mainHeading"]];
+//    [idArray addObject:[dic objectForKey:@"id"]];
+    NSMutableArray *bigArr=[[NSMutableArray alloc]init];
+    for (App_Home_Bigegg *bigTemp in app_home_bigegg) {
+        NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
+        [dicTemp setObject:bigTemp.img_url forKey:@"ititle"];
+        [dicTemp setObject:bigTemp.content forKey:@"mainHeading"];
+        [bigArr addObject:dicTemp];
+    }
     EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 160)
-                                                          scrolArray:[NSArray arrayWithArray:self._scrol_marray] needTitile:YES];
+                                                          scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
     scroller.delegate=self;
     scroller.backgroundColor=[UIColor clearColor];
     [_scrollView addSubview:scroller];
@@ -113,6 +134,60 @@
 
    
     
+}
+-(void)getMenuData{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    //    http://www.peikua.com/app.php?app.php?m=home&a=app&f=getHomeData
+    NSString* url =[NSString stringWithFormat:@"%@&m=home&f=getHomeData",requestUrl]
+    ;
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:GETURL withUrlName:@"getHomeData"];
+    httpController.delegate = self;
+    [httpController onSearch];
+}
+
+//获取数据
+-(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app stopLoading];
+    NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
+    NSString *status=[dictemp objectForKey:@"status"];
+    //    if(![status isEqualToString:@"1"]){
+    ////        [self showMessage:message];
+    ////        return ;
+    //    }
+    if([urlname isEqualToString:@"getHomeData"]){
+         NSDictionary *dic=[dictemp objectForKey:@"data"];
+        if ((NSNull *)dic == [NSNull null]) {
+            showMessage(@"暂无数据!");
+            //            [self showMessage:@"暂无数据!"];
+            return;
+            
+        }
+//        app_home_bigegg=[[NSMutableArray alloc]init] ;//首页通栏即广告栏
+//        app_home_grab=[[NSMutableArray alloc]init];//手机端抢购
+//        app_home_command=[[NSMutableArray alloc]init];//手机端精品推荐
+//        app_home_brand=[[NSMutableArray alloc]init];//手机端国际名品
+//        new_goods=[[NSMutableArray alloc]init];//手机端国际名品
+        NSDictionary *ad_infoDic=[dic objectForKey:@"ad_info"];
+       //首页通栏即广告栏
+        NSArray *app_home_bigeggArr= [ad_infoDic objectForKey:@"app_home_bigegg"];
+        for (NSDictionary *bigeggDic in app_home_bigeggArr) {
+            App_Home_Bigegg *app_Home_Bigegg= [App_Home_Bigegg objectWithKeyValues:bigeggDic] ;
+            [app_home_bigegg addObject:app_Home_Bigegg];
+        }
+        NSArray *app_home_grabArr= [ad_infoDic objectForKey:@"app_home_grab"];
+        for (NSDictionary *grabDic in app_home_grabArr) {
+            App_Home_Bigegg *app_Home_Bigegg= [App_Home_Bigegg objectWithKeyValues:grabDic] ;
+            [app_home_bigegg addObject:app_Home_Bigegg];
+        }
+        [self drawViewRect];
+    }
+    
+    
+}
+-(void)EScrollerViewDidClicked:(NSUInteger)index{
+    NSLog([NSString stringWithFormat:@"第几个%ld",index]);
 }
 -(void)btnShopStore:(id)sender
 {
