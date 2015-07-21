@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "FCTabBarController.h"
-
+#import "DejalActivityView.h"
 @interface AppDelegate ()
 
 @end
@@ -32,12 +32,12 @@
 }
 - (void)startLoading
 {
-    //    [DejalBezelActivityView activityViewForView:self.window];
+        [DejalBezelActivityView activityViewForView:self.window];
 }
 
 - (void)stopLoading
 {
-    //    [DejalBezelActivityView removeViewAnimated:YES];
+        [DejalBezelActivityView removeViewAnimated:YES];
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

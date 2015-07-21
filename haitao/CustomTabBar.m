@@ -94,13 +94,13 @@
         
         }else if (i==1)
         {
-            [btn setBackgroundImage:[UIImage imageNamed:@"icon_02.png"] forState:UIControlStateNormal];
+            [btn setBackgroundImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
         }else if (i==2)
         {
-            [btn setBackgroundImage:[UIImage imageNamed:@"icon_03.png"] forState:UIControlStateNormal];
+            [btn setBackgroundImage:[UIImage imageNamed:@"icon_02.png"] forState:UIControlStateNormal];
         }else if (i==3)
         {
-            [btn setBackgroundImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+            [btn setBackgroundImage:[UIImage imageNamed:@"icon_02.png"] forState:UIControlStateNormal];
         }
         else if(i==4)
         {

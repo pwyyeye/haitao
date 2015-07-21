@@ -7,7 +7,7 @@
 //2121
 
 #import "ZRScrollableTabBar.h"
-
+#import "Toolkit.h"
 #define ButtonNoPerTab 5.0
 #define TabHeight 49.0
 #define TabWidth [[UIScreen mainScreen] bounds].size.width-20
@@ -31,13 +31,17 @@
 - (id)initWithItems:(NSArray *)items  withFrame:(CGRect)frame{
     screenWidth = [[UIScreen mainScreen] bounds].size.width;
     screenHeight = [[UIScreen mainScreen] bounds].size.height;
-    self = [super initWithFrame:CGRectMake(0.0, 10.0, screenWidth, TabHeight)];
+    self = [super initWithFrame:frame];
+    //CGRectMake(0.0, 10.0, screenWidth, TabHeight)
     self.backgroundColor=[UIColor clearColor];
-    self.tabScrollView.backgroundColor=[UIColor clearColor];
+//    self.tabScrollView.backgroundColor=[UIColor clearColor];
+    
     if (self)
     {
         tabScrollView = [[UIScrollView alloc]initWithFrame:frame];
-        tabScrollView.backgroundColor=[UIColor clearColor];
+        tabScrollView.showsVerticalScrollIndicator=false;
+        tabScrollView.showsHorizontalScrollIndicator=false;
+        tabScrollView.backgroundColor=[UIColor redColor];
         /*
          previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
          [previousButton setFrame:CGRectMake(2, 14, 10, 21)];
@@ -63,7 +67,11 @@
         
         for (double d = 0; d < ceil(items.count / ButtonNoPerTab); d ++)
         {
-            UITabBar *tabBar = [[UITabBar alloc] initWithFrame:CGRectMake(x, 0.0, frame.size.width, frame.size.height)];
+            UITabBar *tabBar = [[UITabBar alloc] initWithFrame:CGRectMake(x, 30.0, frame.size.width, frame.size.height-30)];
+            UIView *bgView = [[UIView alloc] initWithFrame:tabBar.bounds];
+            bgView.backgroundColor = [UIColor redColor];
+            [tabBar insertSubview:bgView atIndex:0];
+            tabBar.opaque = YES;
             tabBar.delegate = self;
             int len = 0;
             
