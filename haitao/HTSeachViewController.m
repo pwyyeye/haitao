@@ -12,7 +12,11 @@
 #import "BADockCell.h"
 #import "Header.h"
 #import "BALabel.h"
-@interface HTSeachViewController ()<DockTavleViewDelegate,RightTableViewDelegate>
+#import "MenuModel.h"
+
+@interface HTSeachViewController ()<DockTavleViewDelegate,RightTableViewDelegate>{
+    UIView *view_bar1;
+}
 @property (nonatomic ,strong) BAWineShoppingDockTavleView *dockTavleView;
 
 @property (nonatomic ,strong) BARightTableView *rightTableView;
@@ -40,16 +44,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UILabel *titleLabel =[[UILabel alloc]init];
-    titleLabel.text =@"酒水超市";
-    titleLabel.font =Font(18);
-    titleLabel.frame =(CGRect){0,0,100,44};
-    titleLabel.textColor = UIColorRGBA(255, 127, 0, 1);
-    titleLabel.textAlignment=NSTextAlignmentCenter;
-    self.title=titleLabel.text;
-    self.navigationItem.titleView =titleLabel;
+    menuArr=[[NSMutableArray alloc]init];
     
-    BAWineShoppingDockTavleView *dockTavleView =[[BAWineShoppingDockTavleView alloc]initWithFrame:(CGRect){0,0,75,kWindowHeight-50}];
+    UIView *naviView=(UIView*) [self getNavigationBar];
+    //CGRectMake(self.view.frame.size.width-50, naviView.frame.size.height+10, 42, 42)
+    
+    
+    BAWineShoppingDockTavleView *dockTavleView =[[BAWineShoppingDockTavleView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height+1,75,kWindowHeight-50}];
     dockTavleView.rowHeight=50;
     dockTavleView.dockDelegate=self;
     dockTavleView.backgroundColor=UIColorRGBA(238, 238, 238, 1);
@@ -57,7 +58,7 @@
     [self.view addSubview:dockTavleView];
     _dockTavleView =dockTavleView;
     
-    BARightTableView *rightTableView =[[BARightTableView alloc]initWithFrame:(CGRect){75,0,kWindowWidth-75,kWindowHeight-50}];
+    BARightTableView *rightTableView =[[BARightTableView alloc]initWithFrame:(CGRect){75,naviView.frame.size.height+1,kWindowWidth-75,kWindowHeight-50}];
     rightTableView.rowHeight=90;
     rightTableView.rightDelegate=self;
     rightTableView.backgroundColor=UIColorRGBA(238, 238, 238, 1);
@@ -67,282 +68,8 @@
     
     
     _dockArray =[NSMutableArray array];
-    for ( int i=0; i<7; i++) {
-        if (i==0) {
-            NSMutableDictionary *dic =[NSMutableDictionary dictionary];
-            
-            NSMutableArray *array =[NSMutableArray array];
-            
-            
-            
-            for (int i=0; i<7; i++) {
-                if (i==0) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"1.jpg",@"name":@"德国OETTINGER奥丁格大麦啤酒500ml*4罐/组",@"money":@"39",@"OriginalPrice":@"56",@"Quantity":@"0",@"ProductID":@"q",@"Discount":@"7折"} mutableCopy];
-                    [array addObject:dic1];
-                }
-                if (i==1) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"2.jpg",@"name":@"德拉克（Durlacher） 黑啤酒 330ml*6听",@"money":@"40",@"OriginalPrice":@"67",@"Quantity":@"0",@"ProductID":@"w",@"Discount":@"6折"} mutableCopy];
-                    [array addObject:dic1];
-                }
-                if (i==2) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"3.jpg",@"name":@"奥塔利金爵 啤酒500ml*12 匈牙利原装低度进口啤酒酒水饮品",@"money":@"109",@"OriginalPrice":@"218",@"Quantity":@"0",@"ProductID":@"e",@"Discount":@"5折"} mutableCopy];
-                    [array addObject:dic1];
-                }
-                if (i==3) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"4.jpg",@"name":@"德国啤酒 原装进口啤酒 flensburger/弗伦斯堡啤酒 土豪金啤 5L 桶装啤酒",@"money":@"158",@"OriginalPrice":@"226",@"Quantity":@"0",@"ProductID":@"r",@"Discount":@"7折"} mutableCopy];
-                    [array addObject:dic1];
-                }
-                if (i==4) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"5.jpg",@"name":@"青岛啤酒 经典 醇厚 啤酒500ml*12听/箱 国产 整箱",@"money":@"66",@"OriginalPrice":@"110",@"Quantity":@"0",@"ProductID":@"t",@"Discount":@"6折"} mutableCopy];
-                    [array addObject:dic1];
-                }
-                if (i==5) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"6.jpg",@"name":@"京姿 百威罐装330ml*24 啤酒",@"money":@"140",@"OriginalPrice":@"200",@"Quantity":@"0",@"ProductID":@"y",@"Discount":@"7折"} mutableCopy];
-                    [array addObject:dic1];
-                }
-                if (i==6) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"7.jpg",@"name":@"德国OETTINGER奥丁格自然浑浊型小麦啤酒500ml*4罐/组",@"money":@"58",@"OriginalPrice":@"129",@"Quantity":@"0",@"ProductID":@"u",@"Discount":@"4.5折"} mutableCopy];
-                    [array addObject:dic1];
-                }
-                
-                
-            }
-            dic =[@{@"dockName":@"啤酒",@"right":array} mutableCopy];
-            [_dockArray addObject:dic];
-            
-        }
-        if (i==1) {
-            NSMutableDictionary *dic =[NSMutableDictionary dictionary];
-            
-            NSMutableArray *array =[NSMutableArray array];
-            
-            
-            
-            for (int i=0; i<8; i++) {
-                if (i==0) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"8.jpg",@"name":@"Martell马爹利名士1000ML 进口洋酒 名仕干邑白兰地1L",@"money":@"695",@"Quantity":@"0",@"ProductID":@"a"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==1) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"9.jpg",@"name":@"奥美加银龙舌兰【OLMECA TEQUILA】38% 750ml",@"money":@"108",@"Quantity":@"0",@"ProductID":@"s"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==2) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"10.jpg",@"name":@"人头马天醇XO特优香槟干邑白兰地700ml",@"money":@"1386",@"Quantity":@"0",@"ProductID":@"d"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==3) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"11.jpg",@"name":@"40°法国马爹利蓝带干邑白兰地700ml",@"money":@"1080",@"Quantity":@"0",@"ProductID":@"f"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==4) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"12.jpg",@"name":@"沙皇伏特加塞珞700ml限量版",@"money":@"598",@"Quantity":@"0",@"ProductID":@"g"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==5) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"13.jpg",@"name":@"百加得黑朗姆酒 烈酒 750ml",@"money":@"92",@"Quantity":@"0",@"ProductID":@"h"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==6) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"14.jpg",@"name":@"Seagrams Gin 750ML 40度",@"money":@"99",@"Quantity":@"0",@"ProductID":@"j"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==7) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"15.jpg",@"name":@"马爹利蓝带干邑白兰地 700ml",@"money":@"1060",@"Quantity":@"0",@"ProductID":@"k"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                
-                
-            }
-            dic =[@{@"dockName":@"洋酒",@"right":array} mutableCopy];
-            [_dockArray addObject:dic];
-            
-        }
-        if (i==2) {
-            NSMutableDictionary *dic =[NSMutableDictionary dictionary];
-            
-            NSMutableArray *array =[NSMutableArray array];
-            
-            
-            
-            for (int i=0; i<8; i++) {
-                if (i==0) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"16.jpg",@"name":@"张裕解百纳干红葡萄酒双支礼盒 750ml*2",@"money":@"158",@"Quantity":@"0",@"ProductID":@"z"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==1) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"17.jpg",@"name":@"爱之湾+兰贵人组合",@"money":@"1230",@"Quantity":@"0",@"ProductID":@"x"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==2) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"18.jpg",@"name":@"菲卡珍藏莎当妮葡萄酒750ml",@"money":@"138",@"Quantity":@"0",@"ProductID":@"c"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==3) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"19.jpg",@"name":@"拉图嘉利庄园干红葡萄酒",@"money":@"1580",@"Quantity":@"0",@"ProductID":@"v"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==4) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"20.jpg",@"name":@"报恩城堡干红葡萄酒 六支装",@"money":@"1890",@"Quantity":@"0",@"ProductID":@"b"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==5) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"21.jpg",@"name":@"豪克玛歌庄园干红葡萄酒 750ml 1支装",@"money":@"2360",@"Quantity":@"0",@"ProductID":@"h"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==6) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"22.jpg",@"name":@"白浪莎庄园干红葡萄酒 750ml",@"money":@"98",@"Quantity":@"0",@"ProductID":@"n"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==7) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"23.jpg",@"name":@"布兰多庄园干红葡萄酒 750ml 1支装",@"money":@"3690",@"Quantity":@"0",@"ProductID":@"m"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                
-                
-            }
-            dic =[@{@"dockName":@"红酒",@"right":array} mutableCopy];
-            [_dockArray addObject:dic];
-            
-        }
-        if (i==3) {
-            NSMutableDictionary *dic =[NSMutableDictionary dictionary];
-            
-            NSMutableArray *array =[NSMutableArray array];
-            
-            for (int i=0; i<8; i++) {
-                if (i==0) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"24.jpg",@"name":@"白俄罗斯鸡尾酒",@"money":@"238",@"Quantity":@"0",@"ProductID":@"z"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==1) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"25.jpg",@"name":@"莫吉托",@"money":@"233",@"Quantity":@"0",@"ProductID":@"x"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==2) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"26.jpg",@"name":@"绝对柚惑",@"money":@"115",@"Quantity":@"0",@"ProductID":@"c"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==3) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"27.jpg",@"name":@"马蒂尼里",@"money":@"1580",@"Quantity":@"0",@"ProductID":@"v"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==4) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"28.jpg",@"name":@"绝对甜蜜",@"money":@"138",@"Quantity":@"0",@"ProductID":@"b"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==5) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"29.jpg",@"name":@"精致女士",@"money":@"138",@"Quantity":@"0",@"ProductID":@"h"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==6) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"30.jpg",@"name":@"绝对柠檬",@"money":@"138",@"Quantity":@"0",@"ProductID":@"n"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                if (i==7) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"31.jpg",@"name":@"绝对野趣",@"money":@"138",@"Quantity":@"0",@"ProductID":@"m"} mutableCopy];
-                    [array addObject:dic1]; ;
-                }
-                
-                
-            }            dic =[@{@"dockName":@"特色酒",@"right":array} mutableCopy];
-            [_dockArray addObject:dic];
-        }
-        
-        if (i==4) {
-            NSMutableDictionary *dic =[NSMutableDictionary dictionary];
-            
-            NSMutableArray *array =[NSMutableArray array];
-            
-            for (int i=0; i<2; i++) {
-                if (i==0) {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"32.jpg",@"name":@"苹果、火龙果、西瓜、哈密瓜、杨桃（大）",@"money":@"89",@"Quantity":@"0",@"ProductID":@"ww"} mutableCopy];
-                    [array addObject:dic1];
-                }
-                if(i==1)
-                {
-                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                    dic1=[@{@"image":@"32.jpg",@"name":@"苹果、火龙果、西瓜、哈密瓜、杨桃（小）",@"money":@"89",@"Quantity":@"0",@"ProductID":@"ww"} mutableCopy];
-                    [array addObject:dic1];
-                }
-            }
-            dic =[@{@"dockName":@"果盘",@"right":array} mutableCopy];
-            [_dockArray addObject:dic];
-            
-        }
-        //        if (i==5) {
-        //            NSMutableDictionary *dic =[NSMutableDictionary dictionary];
-        //
-        //            NSMutableArray *array =[NSMutableArray array];
-        //
-        //            for (int i=0; i<2; i++) {
-        //                if (i==0) {
-        //                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-        //                    dic1=[@{@"image":@"32.jpg",@"name":@"瓜子（大）",@"money":@"89",@"Quantity":@"0",@"ProductID":@"ww"} mutableCopy];
-        //                    [array addObject:dic1];
-        //                }
-        //                if(i==1)
-        //                {
-        //                    NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-        //                    dic1=[@{@"image":@"32.jpg",@"name":@"瓜子（小）",@"money":@"89",@"Quantity":@"0",@"ProductID":@"ww"} mutableCopy];
-        //                    [array addObject:dic1];
-        //                }
-        //            dic =[@{@"dockName":@"休闲食品",@"right":array} mutableCopy];
-        //            [_dockArray addObject:dic];
-        //
-        //        }
-        //        if (i==6) {
-        //            NSMutableDictionary *dic =[NSMutableDictionary dictionary];
-        //
-        //            NSMutableArray *array =[NSMutableArray array];
-        //
-        //            for (int i=0; i<20; i++) {
-        //                NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-        //                dic1=[@{@"image":@"0000000.jpg",@"name":@"大缤纷",@"money":@"56",@"Quantity":@"0",@"ProductID":@"rr"} mutableCopy];
-        //                [array addObject:dic1]; ;
-        //            }
-        //            dic =[@{@"dockName":@"软饮",@"right":array} mutableCopy];
-        //            [_dockArray addObject:dic];
-        //
-        //        }
-        
-        dockTavleView.dockArray=_dockArray;
-        [dockTavleView reloadData];
-        
-    }
     
+ 
     _offsArray =[NSMutableArray array];
     for ( int i=0; i<[_dockArray count]; i++) {
         CGPoint point =CGPointMake(0, 0);
@@ -406,10 +133,116 @@
     //    [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
     //    [self.view addSubview:btn];
     
-    
+    [self getMenuData];
     
     // Do any additional setup after loading the view.
     // Do any additional setup after loading the view.
+}
+-(void)getMenuData{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    NSString* url =@"http://www.peikua.com/app.php?app.php?m=home&a=app&f=getHomeNav" ;
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:GETURL withUrlName:@"menu"];
+    httpController.delegate = self;
+    [httpController onSearch];
+}
+
+//获取数据
+-(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app stopLoading];
+    NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
+    NSString *status=[dictemp objectForKey:@"status"];
+    //    if(![status isEqualToString:@"1"]){
+    ////        [self showMessage:message];
+    ////        return ;
+    //    }
+    if([urlname isEqualToString:@"menu"]){
+        NSArray *arrtemp=[dictemp objectForKey:@"data"];
+        if ((NSNull *)arrtemp == [NSNull null]) {
+            showMessage(@"暂无数据!");
+            //            [self showMessage:@"暂无数据!"];
+            return;
+            
+        }
+        for (NSDictionary *employeeDic in arrtemp) {
+            MenuModel *menuModel= [MenuModel objectWithKeyValues:employeeDic] ;
+            NSArray *arr=menuModel.child;
+            NSMutableArray *childList=[[NSMutableArray alloc]init];
+            for (NSDictionary *childDic in arr) {
+                MenuModel *menuTepm= [MenuModel objectWithKeyValues:childDic] ;
+                [childList addObject:menuTepm];
+            }
+            menuModel.child = childList;
+            [menuArr addObject:menuModel];
+        }
+        [self initTable];
+        NSLog(@"");
+        //保存数据
+        
+    }
+    
+    
+}
+-(void)initTable{
+    for ( int i=0; i<menuArr.count; i++) {
+        MenuModel *menu=menuArr[i];
+        NSMutableDictionary *dic =[NSMutableDictionary dictionary];
+        
+        NSMutableArray *array =[NSMutableArray array];
+        
+        
+        
+        for (int j=0; j<7; j++) {
+            if (j==0) {
+                NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
+                dic1=[@{@"image":@"1.jpg",@"name":@"德国OETTINGER奥丁格大麦啤酒500ml*4罐/组",@"money":@"39",@"OriginalPrice":@"56",@"Quantity":@"0",@"ProductID":@"q",@"Discount":@"7折"} mutableCopy];
+                [array addObject:dic1];
+            }
+            if (j==1) {
+                NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
+                dic1=[@{@"image":@"2.jpg",@"name":@"德拉克（Durlacher） 黑啤酒 330ml*6听",@"money":@"40",@"OriginalPrice":@"67",@"Quantity":@"0",@"ProductID":@"w",@"Discount":@"6折"} mutableCopy];
+                [array addObject:dic1];
+            }
+            if (j==2) {
+                NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
+                dic1=[@{@"image":@"3.jpg",@"name":@"奥塔利金爵 啤酒500ml*12 匈牙利原装低度进口啤酒酒水饮品",@"money":@"109",@"OriginalPrice":@"218",@"Quantity":@"0",@"ProductID":@"e",@"Discount":@"5折"} mutableCopy];
+                [array addObject:dic1];
+            }
+            if (j==3) {
+                NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
+                dic1=[@{@"image":@"4.jpg",@"name":@"德国啤酒 原装进口啤酒 flensburger/弗伦斯堡啤酒 土豪金啤 5L 桶装啤酒",@"money":@"158",@"OriginalPrice":@"226",@"Quantity":@"0",@"ProductID":@"r",@"Discount":@"7折"} mutableCopy];
+                [array addObject:dic1];
+            }
+            if (j==4) {
+                NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
+                dic1=[@{@"image":@"5.jpg",@"name":@"青岛啤酒 经典 醇厚 啤酒500ml*12听/箱 国产 整箱",@"money":@"66",@"OriginalPrice":@"110",@"Quantity":@"0",@"ProductID":@"t",@"Discount":@"6折"} mutableCopy];
+                [array addObject:dic1];
+            }
+            if (j==5) {
+                NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
+                dic1=[@{@"image":@"6.jpg",@"name":@"京姿 百威罐装330ml*24 啤酒",@"money":@"140",@"OriginalPrice":@"200",@"Quantity":@"0",@"ProductID":@"y",@"Discount":@"7折"} mutableCopy];
+                [array addObject:dic1];
+            }
+            if (j==6) {
+                NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
+                dic1=[@{@"image":@"7.jpg",@"name":@"德国OETTINGER奥丁格自然浑浊型小麦啤酒500ml*4罐/组",@"money":@"58",@"OriginalPrice":@"129",@"Quantity":@"0",@"ProductID":@"u",@"Discount":@"4.5折"} mutableCopy];
+                [array addObject:dic1];
+            }
+            
+            
+        }
+        dic =[@{@"dockName":menu.name,@"right":array} mutableCopy];
+        [_dockArray addObject:dic];
+        
+        
+        
+        
+    }
+    _dockTavleView.dockArray=_dockArray;
+    [_dockTavleView reloadData];
+    
 }
 -(void)bottomLabelClick
 {
@@ -460,24 +293,61 @@
     [_rightTableView setContentOffset:point];
     //    NSLog(@"%@",row);
 }
+-(UIView*)getNavigationBar
+{
+    self.navigationController.navigationBarHidden = YES;
+    view_bar1 =[[UIView alloc]init];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>6.1)
+    {
+        view_bar1 .frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
+        UIImageView *imageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, 44+20)];
+        imageV.image = BundleImage(@"top.png");
+        [view_bar1 addSubview:imageV];
+        
+        
+    }else{
+        view_bar1 .frame=CGRectMake(0, 0, self.view.frame.size.width,44);
+        UIImageView *imageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width,44)];
+        imageV.image = BundleImage(@"top.png");
+        [view_bar1 addSubview:imageV];
+        
+    }
+    view_bar1.backgroundColor=[UIColor clearColor];
+    
+    [self.view addSubview:view_bar1];
+    //    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar1.frame.size.height-44, self.view.frame.size.width-130, 44)];
+    ////        title_label.text=@"商品详情";
+    //    title_label.font=[UIFont boldSystemFontOfSize:20];
+    //    title_label.backgroundColor=[UIColor clearColor];
+    //    title_label.textColor =[UIColor whiteColor];
+    //    title_label.textAlignment=1;
+    //    [view_bar1 addSubview:title_label];
+    
+    
+    
+    
+    
+    return view_bar1;
+}
 
 -(void)cartImageClick
 {
     
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

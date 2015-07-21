@@ -9,6 +9,7 @@
 #import "ManitViewController.h"
 #import "HomeViewController.h"
 #import "Toolkit.h"
+#import "AFNetworking.h"
 
 @interface ManitViewController ()
 
@@ -27,18 +28,20 @@
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>6.1)
     {
         view_bar .frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
-        UIImageView *imageV = [[UIImageView alloc]initWithImage:BundleImage(@"top.png")];
-        [view_bar addSubview:imageV];
+//        UIImageView *imageV = [[UIImageView alloc]initWithImage:BundleImage(@"top.png")];
+//        [view_bar addSubview:imageV];
         
         
     }else{
         view_bar .frame=CGRectMake(0, 0, self.view.frame.size.width, 44);
-        UIImageView *imageV = [[UIImageView alloc]initWithImage:BundleImage(@"top.png")];
-        [view_bar addSubview:imageV];
+//        UIImageView *imageV = [[UIImageView alloc]initWithImage:BundleImage(@"top.png")];
+//        [view_bar addSubview:imageV];
         
     }
-    view_bar.backgroundColor=[UIColor whiteColor];
-    UITabBarItem *item1 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:1];
+    view_bar.backgroundColor=[UIColor clearColor];
+    UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:nil image:BundleImage(@"ic_01_h.png") selectedImage:BundleImage(@"ic_01_h.png")];
+    
+    item1.tag=1;
     UITabBarItem *item2 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemContacts tag:2];
     UITabBarItem *item3 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemDownloads tag:3];
     UITabBarItem *item4 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:4];
@@ -56,6 +59,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self drawViewRect];
     HomeViewController *homeViewController=[[HomeViewController alloc]init];
     homeViewController.mainFrame=mainFrame;
