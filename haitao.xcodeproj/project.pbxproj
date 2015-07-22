@@ -44,6 +44,7 @@
 		A21815C11B5A0E9A00D64E70 /* shopbt_01_n_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A21815A01B5A0E9A00D64E70 /* shopbt_01_n_@2x.png */; };
 		A21815C21B5A0E9A00D64E70 /* shopbt_02_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A21815A11B5A0E9A00D64E70 /* shopbt_02_@2x.png */; };
 		A21815C41B5A0E9A00D64E70 /* tbt_02_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A21815A31B5A0E9A00D64E70 /* tbt_02_@2x.png */; };
+		A2D039031B5E902E00EB0FDC /* New_Goods.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D039021B5E902E00EB0FDC /* New_Goods.m */; };
 		A2FC74A51B5A1E580094BC59 /* FCImageTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC74A41B5A1E580094BC59 /* FCImageTextViewController.m */; };
 		A2FC74A81B5A1EE00094BC59 /* FCImageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC74A71B5A1EE00094BC59 /* FCImageTextView.m */; };
 		A2FC74C21B5A31340094BC59 /* bg_01_h.png in Resources */ = {isa = PBXBuildFile; fileRef = A2FC74AF1B5A31340094BC59 /* bg_01_h.png */; };
@@ -275,6 +276,8 @@
 		A21815A11B5A0E9A00D64E70 /* shopbt_02_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopbt_02_@2x.png"; sourceTree = "<group>"; };
 		A21815A21B5A0E9A00D64E70 /* shopbt_03_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopbt_03_@2x.png"; sourceTree = "<group>"; };
 		A21815A31B5A0E9A00D64E70 /* tbt_02_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tbt_02_@2x.png"; sourceTree = "<group>"; };
+		A2D039011B5E902E00EB0FDC /* New_Goods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = New_Goods.h; sourceTree = "<group>"; };
+		A2D039021B5E902E00EB0FDC /* New_Goods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = New_Goods.m; sourceTree = "<group>"; };
 		A2FC74A31B5A1E580094BC59 /* FCImageTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCImageTextViewController.h; sourceTree = "<group>"; };
 		A2FC74A41B5A1E580094BC59 /* FCImageTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCImageTextViewController.m; sourceTree = "<group>"; };
 		A2FC74A61B5A1EE00094BC59 /* FCImageTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCImageTextView.h; sourceTree = "<group>"; };
@@ -774,6 +777,8 @@
 			children = (
 				A2FC750E1B5E1F640094BC59 /* App_Home_Bigegg.h */,
 				A2FC750F1B5E1F640094BC59 /* App_Home_Bigegg.m */,
+				A2D039011B5E902E00EB0FDC /* New_Goods.h */,
+				A2D039021B5E902E00EB0FDC /* New_Goods.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1644,6 +1649,7 @@
 				A2FC75031B5D1FFA0094BC59 /* NSObject+MJKeyValue.m in Sources */,
 				AD8AA6361B59435C00E324AD /* NSData+Base64.m in Sources */,
 				AD8AA62F1B59435C00E324AD /* JUUserDefaults.m in Sources */,
+				A2D039031B5E902E00EB0FDC /* New_Goods.m in Sources */,
 				AD8AA62B1B59435C00E324AD /* UrlImageButton.m in Sources */,
 				ADD4D4231B5BB0D7004AFBE2 /* AddressListController.m in Sources */,
 				AD8AA62C1B59435C00E324AD /* UrlImageView.m in Sources */,

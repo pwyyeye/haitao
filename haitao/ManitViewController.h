@@ -13,6 +13,7 @@
 {
     ZRScrollableTabBar *tabBar;
     CGRect mainFrame;
+    UIView *navTopView;
 }
 
 @end
