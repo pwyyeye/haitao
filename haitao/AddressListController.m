@@ -112,25 +112,6 @@
     }
 
 }
--(void)viewDidAppear:(BOOL)animated{
-     [super viewDidAppear:animated];
-     [self initData];
-
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-}
-
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-
-}
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-
-}
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"noticeToReload" object:nil];
@@ -176,8 +157,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here, for example:
     // Create the next view controller.
-    UIViewController *detailViewController=[[UpdateAddress alloc] initWithNibName:@"UpdateAddress" bundle:nil];
-    
+    UpdateAddress *detailViewController=[[UpdateAddress alloc] initWithNibName:@"UpdateAddress" bundle:nil];
+    detailViewController.addressModel=_data[indexPath.item];
     // Push the view controller.
     [self.navigationController pushViewController:detailViewController animated:YES];
 }

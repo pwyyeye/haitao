@@ -35,6 +35,8 @@
 
 @property(strong,nonatomic) NSString *idcard;
 
+@property(strong,nonatomic) NSString *mobile;
+
 @property(strong,nonatomic) NSString *idcard_status;
 
 @property(strong,nonatomic) NSString *province;

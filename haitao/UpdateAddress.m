@@ -17,6 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    if (_addressModel!=nil) {
+        _consignee.text=_addressModel.consignee;
+        _mobile.text=_addressModel.mobile;
+        _idcard.text=_addressModel.idcard;
+        _province.text=_addressModel.province;
+        _address.text=_addressModel.address;
+        _zipcode.text=_addressModel.zipcode;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

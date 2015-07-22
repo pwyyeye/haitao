@@ -19,9 +19,6 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner_01_02.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gnk-U0-Sl8">
                     <rect key="frame" x="10" y="144.5" width="285" height="151.5"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner_02_02.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rzj-vy-22F">
-                    <rect key="frame" x="305" y="144.5" width="285" height="151.5"/>
-                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份证照片（务必为收件人身份证）" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCY-iu-t3f">
                     <rect key="frame" x="10" y="100" width="570" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -34,6 +31,9 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner_02_02.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rzj-vy-22F">
+                    <rect key="frame" x="305" y="144" width="285" height="151.5"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
