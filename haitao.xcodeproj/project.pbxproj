@@ -203,14 +203,20 @@
 		ADB5AC931B53CB5F0022B2C2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADB5AC911B53CB5F0022B2C2 /* LaunchScreen.xib */; };
 		ADB5AC9F1B53CB5F0022B2C2 /* haitaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC9E1B53CB5F0022B2C2 /* haitaoTests.m */; };
 		ADB5ACA91B5404140022B2C2 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB5ACA81B5404140022B2C2 /* libz.dylib */; };
+		ADD171801B5E1C9900E451D5 /* AddAddressStep2.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1717E1B5E1C9900E451D5 /* AddAddressStep2.m */; };
+		ADD171811B5E1C9900E451D5 /* AddAddressStep2.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD1717F1B5E1C9900E451D5 /* AddAddressStep2.xib */; };
+		ADD171851B5E39B100E451D5 /* UpdateAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD171831B5E39B100E451D5 /* UpdateAddress.m */; };
+		ADD171861B5E39B100E451D5 /* UpdateAddress.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD171841B5E39B100E451D5 /* UpdateAddress.xib */; };
+		ADD1718A1B5F2E8A00E451D5 /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD171891B5F2E8A00E451D5 /* AddressModel.m */; };
+		ADD1718D1B5F2F7A00E451D5 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1718C1B5F2F7A00E451D5 /* BaseModel.m */; };
 		ADD4D40B1B5B298F004AFBE2 /* HTGoodDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D40A1B5B298F004AFBE2 /* HTGoodDetailsViewController.m */; };
 		ADD4D40E1B5B29AF004AFBE2 /* TMRulerColor.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D40D1B5B29AF004AFBE2 /* TMRulerColor.m */; };
 		ADD4D4131B5B999B004AFBE2 /* MyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D4121B5B999B004AFBE2 /* MyUtil.m */; };
 		ADD4D41E1B5BA39B004AFBE2 /* UserDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D41C1B5BA39B004AFBE2 /* UserDetailController.m */; };
 		ADD4D41F1B5BA39B004AFBE2 /* UserDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD4D41D1B5BA39B004AFBE2 /* UserDetailController.xib */; };
 		ADD4D4231B5BB0D7004AFBE2 /* AddressListController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D4221B5BB0D7004AFBE2 /* AddressListController.m */; };
-		ADD4D4271B5BB202004AFBE2 /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D4251B5BB202004AFBE2 /* AddAddressViewController.m */; };
-		ADD4D4281B5BB202004AFBE2 /* AddAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD4D4261B5BB202004AFBE2 /* AddAddressViewController.xib */; };
+		ADD4D4271B5BB202004AFBE2 /* AddAddressStep1.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D4251B5BB202004AFBE2 /* AddAddressStep1.m */; };
+		ADD4D4281B5BB202004AFBE2 /* AddAddressStep1.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD4D4261B5BB202004AFBE2 /* AddAddressStep1.xib */; };
 		ADD4D42C1B5CBC06004AFBE2 /* AddressListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D42A1B5CBC06004AFBE2 /* AddressListCell.m */; };
 		ADD4D42D1B5CBC06004AFBE2 /* AddressListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD4D42B1B5CBC06004AFBE2 /* AddressListCell.xib */; };
 		ADD4D42F1B5CDCB0004AFBE2 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADD4D42E1B5CDCB0004AFBE2 /* area.plist */; };
@@ -525,6 +531,16 @@
 		ADB5AC9D1B53CB5F0022B2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADB5AC9E1B53CB5F0022B2C2 /* haitaoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = haitaoTests.m; sourceTree = "<group>"; };
 		ADB5ACA81B5404140022B2C2 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		ADD1717D1B5E1C9900E451D5 /* AddAddressStep2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAddressStep2.h; sourceTree = "<group>"; };
+		ADD1717E1B5E1C9900E451D5 /* AddAddressStep2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressStep2.m; sourceTree = "<group>"; };
+		ADD1717F1B5E1C9900E451D5 /* AddAddressStep2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAddressStep2.xib; sourceTree = "<group>"; };
+		ADD171821B5E39B100E451D5 /* UpdateAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateAddress.h; sourceTree = "<group>"; };
+		ADD171831B5E39B100E451D5 /* UpdateAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateAddress.m; sourceTree = "<group>"; };
+		ADD171841B5E39B100E451D5 /* UpdateAddress.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateAddress.xib; sourceTree = "<group>"; };
+		ADD171881B5F2E8A00E451D5 /* AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
+		ADD171891B5F2E8A00E451D5 /* AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
+		ADD1718B1B5F2F7A00E451D5 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
+		ADD1718C1B5F2F7A00E451D5 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		ADD4D4091B5B298F004AFBE2 /* HTGoodDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTGoodDetailsViewController.h; sourceTree = "<group>"; };
 		ADD4D40A1B5B298F004AFBE2 /* HTGoodDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTGoodDetailsViewController.m; sourceTree = "<group>"; };
 		ADD4D40C1B5B29AF004AFBE2 /* TMRulerColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMRulerColor.h; sourceTree = "<group>"; };
@@ -538,9 +554,9 @@
 		ADD4D41D1B5BA39B004AFBE2 /* UserDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailController.xib; sourceTree = "<group>"; };
 		ADD4D4211B5BB0D7004AFBE2 /* AddressListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListController.h; sourceTree = "<group>"; };
 		ADD4D4221B5BB0D7004AFBE2 /* AddressListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressListController.m; sourceTree = "<group>"; };
-		ADD4D4241B5BB202004AFBE2 /* AddAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAddressViewController.h; sourceTree = "<group>"; };
-		ADD4D4251B5BB202004AFBE2 /* AddAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressViewController.m; sourceTree = "<group>"; };
-		ADD4D4261B5BB202004AFBE2 /* AddAddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAddressViewController.xib; sourceTree = "<group>"; };
+		ADD4D4241B5BB202004AFBE2 /* AddAddressStep1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAddressStep1.h; sourceTree = "<group>"; };
+		ADD4D4251B5BB202004AFBE2 /* AddAddressStep1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressStep1.m; sourceTree = "<group>"; };
+		ADD4D4261B5BB202004AFBE2 /* AddAddressStep1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAddressStep1.xib; sourceTree = "<group>"; };
 		ADD4D4291B5CBC06004AFBE2 /* AddressListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListCell.h; sourceTree = "<group>"; };
 		ADD4D42A1B5CBC06004AFBE2 /* AddressListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressListCell.m; sourceTree = "<group>"; };
 		ADD4D42B1B5CBC06004AFBE2 /* AddressListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressListCell.xib; sourceTree = "<group>"; };
@@ -1172,6 +1188,7 @@
 		ADB5ACAB1B54066A0022B2C2 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				ADD171871B5F2E6300E451D5 /* model */,
 				ADD4D4201B5BAEE0004AFBE2 /* Address */,
 				ADD4D4151B5B9B92004AFBE2 /* UserInfo */,
 				ADD4D4141B5B9B73004AFBE2 /* Login */,
@@ -1264,6 +1281,17 @@
 			name = Sources;
 			sourceTree = "<group>";
 		};
+		ADD171871B5F2E6300E451D5 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				ADD171881B5F2E8A00E451D5 /* AddressModel.h */,
+				ADD171891B5F2E8A00E451D5 /* AddressModel.m */,
+				ADD1718B1B5F2F7A00E451D5 /* BaseModel.h */,
+				ADD1718C1B5F2F7A00E451D5 /* BaseModel.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
 		ADD4D4141B5B9B73004AFBE2 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -1287,11 +1315,17 @@
 		ADD4D4201B5BAEE0004AFBE2 /* Address */ = {
 			isa = PBXGroup;
 			children = (
-				ADD4D4241B5BB202004AFBE2 /* AddAddressViewController.h */,
-				ADD4D4251B5BB202004AFBE2 /* AddAddressViewController.m */,
-				ADD4D4261B5BB202004AFBE2 /* AddAddressViewController.xib */,
+				ADD4D4241B5BB202004AFBE2 /* AddAddressStep1.h */,
+				ADD4D4251B5BB202004AFBE2 /* AddAddressStep1.m */,
+				ADD4D4261B5BB202004AFBE2 /* AddAddressStep1.xib */,
+				ADD1717D1B5E1C9900E451D5 /* AddAddressStep2.h */,
+				ADD1717E1B5E1C9900E451D5 /* AddAddressStep2.m */,
+				ADD1717F1B5E1C9900E451D5 /* AddAddressStep2.xib */,
 				ADD4D4211B5BB0D7004AFBE2 /* AddressListController.h */,
 				ADD4D4221B5BB0D7004AFBE2 /* AddressListController.m */,
+				ADD171821B5E39B100E451D5 /* UpdateAddress.h */,
+				ADD171831B5E39B100E451D5 /* UpdateAddress.m */,
+				ADD171841B5E39B100E451D5 /* UpdateAddress.xib */,
 				ADD4D4291B5CBC06004AFBE2 /* AddressListCell.h */,
 				ADD4D42A1B5CBC06004AFBE2 /* AddressListCell.m */,
 				ADD4D42B1B5CBC06004AFBE2 /* AddressListCell.xib */,
@@ -1397,6 +1431,7 @@
 				A21815AE1B5A0E9A00D64E70 /* bt_05_@2x.png in Resources */,
 				AD8AA6471B59435C00E324AD /* readme.txt in Resources */,
 				A21814281B56063300D64E70 /* arrrow_left.png in Resources */,
+				ADD171811B5E1C9900E451D5 /* AddAddressStep2.xib in Resources */,
 				A21815B51B5A0E9A00D64E70 /* bt_pj_@2x.png in Resources */,
 				A2FC74C31B5A31340094BC59 /* bg_01_n.png in Resources */,
 				A21815C21B5A0E9A00D64E70 /* shopbt_02_@2x.png in Resources */,
@@ -1431,7 +1466,7 @@
 				A21815B61B5A0E9A00D64E70 /* bt_share_@2x.png in Resources */,
 				AD8AA6A91B59E14400E324AD /* sy_setup@2x.png in Resources */,
 				AD8AA69C1B59E14400E324AD /* ddqr_01@2x.png in Resources */,
-				ADD4D4281B5BB202004AFBE2 /* AddAddressViewController.xib in Resources */,
+				ADD4D4281B5BB202004AFBE2 /* AddAddressStep1.xib in Resources */,
 				AD8AA69A1B59E14400E324AD /* spic_01@2x.png in Resources */,
 				A21815AB1B5A0E9A00D64E70 /* bt_04_01_@2x.png in Resources */,
 				AD8AA6A21B59E14400E324AD /* icon_03@2x.png in Resources */,
@@ -1483,6 +1518,7 @@
 				AD8AA69E1B59E14400E324AD /* icon_01@2x.png in Resources */,
 				AD8AA6B81B59F4A300E324AD /* UserCenterController.xib in Resources */,
 				AD8AA62D1B59435C00E324AD /* ItemView.xib in Resources */,
+				ADD171861B5E39B100E451D5 /* UpdateAddress.xib in Resources */,
 				A2FC74D01B5A31340094BC59 /* ic_06_h.png in Resources */,
 				A2FC74CE1B5A31340094BC59 /* ic_05_h.png in Resources */,
 				AD8AA6A31B59E14400E324AD /* icon_03C@2x.png in Resources */,
@@ -1545,6 +1581,7 @@
 				A2FC75051B5D1FFA0094BC59 /* NSString+MJExtension.m in Sources */,
 				A2FC74FE1B5D1FFA0094BC59 /* MJConst.m in Sources */,
 				AD8AA58A1B59416000E324AD /* LTKViewController.m in Sources */,
+				ADD171801B5E1C9900E451D5 /* AddAddressStep2.m in Sources */,
 				AD8AA63D1B59435C00E324AD /* ProfileViewController.m in Sources */,
 				ADB5AC8B1B53CB5F0022B2C2 /* ViewController.m in Sources */,
 				A2FC75021B5D1FFA0094BC59 /* NSObject+MJCoding.m in Sources */,
@@ -1568,6 +1605,7 @@
 				AD8AA6451B59435C00E324AD /* unzip.m in Sources */,
 				AD8AA6421B59435C00E324AD /* XCLoadingView.m in Sources */,
 				AD8AA62A1B59435C00E324AD /* SDWebImageManager.m in Sources */,
+				ADD1718A1B5F2E8A00E451D5 /* AddressModel.m in Sources */,
 				AD8AA6731B594EED00E324AD /* LTKView.m in Sources */,
 				AD8AA6371B59435C00E324AD /* RegexKitLite.m in Sources */,
 				ADB5AC881B53CB5F0022B2C2 /* haitao.xcdatamodeld in Sources */,
@@ -1588,6 +1626,7 @@
 				AD8AA6171B59435C00E324AD /* ELCAsset.m in Sources */,
 				AD8AA6271B59435C00E324AD /* NSURLAdditions.m in Sources */,
 				AD8AA6381B59435C00E324AD /* SwipeView.m in Sources */,
+				ADD171851B5E39B100E451D5 /* UpdateAddress.m in Sources */,
 				A2FC74E71B5A405A0094BC59 /* BALabel.m in Sources */,
 				A2FC75031B5D1FFA0094BC59 /* NSObject+MJKeyValue.m in Sources */,
 				AD8AA6361B59435C00E324AD /* NSData+Base64.m in Sources */,
@@ -1599,7 +1638,7 @@
 				ADD4D40E1B5B29AF004AFBE2 /* TMRulerColor.m in Sources */,
 				ADD4D40B1B5B298F004AFBE2 /* HTGoodDetailsViewController.m in Sources */,
 				AD8AA6211B59435C00E324AD /* FCLoadingVIew.m in Sources */,
-				ADD4D4271B5BB202004AFBE2 /* AddAddressViewController.m in Sources */,
+				ADD4D4271B5BB202004AFBE2 /* AddAddressStep1.m in Sources */,
 				AD8AA6431B59435C00E324AD /* ioapi.m in Sources */,
 				AD8AA6411B59435C00E324AD /* WCAlertView.m in Sources */,
 				AD8AA6311B59435C00E324AD /* UIViewController+MJPopupViewController.m in Sources */,
@@ -1628,6 +1667,7 @@
 				AD8AA63B1B59435C00E324AD /* ProfileImagesViewController.m in Sources */,
 				AD8AA5871B59416000E324AD /* CustomTabBar.m in Sources */,
 				ADD4D42C1B5CBC06004AFBE2 /* AddressListCell.m in Sources */,
+				ADD1718D1B5F2F7A00E451D5 /* BaseModel.m in Sources */,
 				ADD4D4131B5B999B004AFBE2 /* MyUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "FCTabBarController.h"
 #import "DejalActivityView.h"
+#import "LoginViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -27,6 +28,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     //    [self isConnectionAvailable];
+    
+    
     return YES;
     
 }
@@ -55,6 +58,14 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    NSUserDefaults *userdefault=[NSUserDefaults standardUserDefaults];
+    NSString *username=[userdefault objectForKey:@"user_name"];
+    NSString *password=[userdefault objectForKey:@"user_pass"];
+    
+    if (![MyUtil isEmptyString:username]&&![MyUtil isEmptyString:password]) {
+        LoginViewController *login=[[LoginViewController alloc] initWithNibName:@"" bundle:nil];
+        [login login:nil];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

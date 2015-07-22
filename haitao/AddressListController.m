@@ -8,7 +8,11 @@
 
 #import "AddressListController.h"
 #import "AddressListCell.h"
-#import "AddAddressViewController.h"
+#import "AddAddressStep1.h"
+#import "AddressModel.h"
+#import "LoginViewController.h"
+#import "UpdateAddress.h"
+
 
 @interface AddressListController ()
 
@@ -30,8 +34,54 @@
     
 //    _data=@[@"hello",@"word"];
     
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initData) name:@"noticeToReload" object:nil];
+    
+    [self initData];
 }
--(void)viewWillAppear:(BOOL)animated{
+
+-(void)initData{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    NSLog(@"----pass-app%@---",app.s_app_id);
+    _selfRequestURL=[NSString stringWithFormat:@"%@&f=getAddress&m=user",requestUrl];
+
+    HTTPController *httpController =  [[HTTPController alloc]initWith:[NSString stringWithFormat:@"%@&f=getAddress&m=user",requestUrl] withType:POSTURL withUrlName:@"addressList"];
+    
+    
+    
+    httpController.delegate = self;
+    [httpController onSearch];
+    
+
+}
+
+-(void)didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app stopLoading];
+    if ([urlname isEqual:@"addressList"]) {
+        if ([[dictemp objectForKey:@"status"] integerValue] ==1) {
+            NSDictionary *dic=[dictemp objectForKey:@"data"];
+            
+            NSArray *list=[dic objectForKey:@"list"];
+            NSMutableArray *marray=[[NSMutableArray alloc] init];
+            for (NSDictionary *obj in list) {
+                AddressModel *model=[AddressModel objectWithKeyValues:obj];
+                [marray addObject:model];
+            }
+            _data=[marray copy];
+            [self reloadData];
+        }else{
+            NSArray *array=[dictemp objectForKey:@"msg"];
+            ShowMessage([array objectAtIndex:0]);
+        }
+
+    }
+    
+
+}
+
+-(void)reloadData{
     if (_data.count==0) {
         if (_emptyView==nil) {
             _emptyView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
@@ -42,7 +92,7 @@
             UIButton *emptyButton=[[UIButton alloc] initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, 40)];
             emptyButton.backgroundColor=[UIColor redColor];
             [emptyButton setTitle:@"+添加收货人地址" forState:UIControlStateNormal];
-           // [emptyButton setTintColor:[UIColor redColor]];
+            // [emptyButton setTintColor:[UIColor redColor]];
             
             [emptyButton addTarget:self action:@selector(gotoAddAddress) forControlEvents:UIControlEventTouchUpInside];
             [_emptyView addSubview:emptyLabel];
@@ -51,16 +101,24 @@
             [self.view addSubview:_emptyView];
             
             self.tableView.separatorColor=[UIColor clearColor];
-
+            
         }
         
     }else{
         
         [_emptyView removeFromSuperview];
-    
+        [self.tableView reloadData];
+        
     }
 
 }
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"noticeToReload" object:nil];
+
+
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -83,17 +141,27 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AddressListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"addressListCell" forIndexPath:indexPath];
-    cell.username.text=_data[indexPath.item];
+    AddressModel *model=_data[indexPath.item];
+    cell.username.text=model.consignee;
     cell.textLabel.text=@"12312312312312321313";
     cell.detailTextLabel.text=@"sdfasdfadsfasdfasfasdfsadfasfasdfasd";
-    cell.accessoryType=UITableViewCellAccessoryCheckmark;
+    if([model.is_default integerValue]==1){
+        cell.accessoryType=UITableViewCellAccessoryCheckmark;
+    }
 
     // Configure the cell...
     
     return cell;
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Navigation logic may go here, for example:
+    // Create the next view controller.
+    UpdateAddress *detailViewController=[[UpdateAddress alloc] initWithNibName:@"UpdateAddress" bundle:nil];
+    detailViewController.addressModel=_data[indexPath.item];
+    // Push the view controller.
+    [self.navigationController pushViewController:detailViewController animated:YES];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -145,7 +213,7 @@
     
     NSLog(@"----pass gotoAddAddress%@---",@"test");
     
-    UIViewController *detailViewController =[[AddAddressViewController alloc] initWithNibName:@"AddAddressViewController" bundle:nil];
+    UIViewController *detailViewController =[[AddAddressStep1 alloc] initWithNibName:@"AddAddressStep1" bundle:nil];
     
     // Pass the selected object to the new view controller.
     

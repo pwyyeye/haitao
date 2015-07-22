@@ -7,7 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LTKViewController.h"
+@interface LoginViewController : UIViewController<HTTPControllerProtocol>
 
-@interface LoginViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *user_name;
+
+@property (weak, nonatomic) IBOutlet UITextField *user_pass;
+
+@property(strong,nonatomic) NSString *loginRequestURL;
+
+@property(strong,nonatomic) NSString *username;
+
+@property(strong,nonatomic) NSString *password;
+
+- (IBAction)login:(id)sender;
+
+- (IBAction)didEndOnExit:(id)sender;
 
 @end

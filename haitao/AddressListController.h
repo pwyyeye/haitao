@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddressListController : UITableViewController
+
+@interface AddressListController : UITableViewController<HTTPControllerProtocol>
 
 @property(strong,nonatomic) NSArray *data;
 
 @property(strong,nonatomic) UIView *emptyView;
+
+@property(strong,nonatomic) NSString *selfRequestURL;
+
+-(void)initData;
 
 @end

@@ -8,10 +8,17 @@
 
 #import "HTTPController.h"
 #import "AppDelegate.h"
+#import "LoginViewController.h"
 @implementation HTTPController
 -(instancetype)initWith:(NSString *)urlStr withType:(int)type withUrlName:(NSString *)name{
     self = [super init];
-    urlPam = urlStr;
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+
+    if (![MyUtil isEmptyString:app.s_app_id]) {
+        urlPam = [NSString stringWithFormat:@"%@&s_app_id=%@",urlStr,app.s_app_id];
+    }else{
+        urlPam=urlStr;
+    }
     typePam = type;
     urlName = name;
   
@@ -19,7 +26,13 @@
 }
 -(instancetype)initWith:(NSString *)urlStr withType:(int)type withPam:(NSDictionary *)pam  withUrlName:(NSString *)name {
     self = [super init];
-    urlPam = urlStr;
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if (![MyUtil isEmptyString:app.s_app_id]) {
+        urlPam = [NSString stringWithFormat:@"%@&s_app_id=%@",urlStr,app.s_app_id];
+    }else{
+        urlPam=urlStr;
+    }
+    
     typePam = type;
     urlName = name;
     pamDic = pam;
@@ -36,8 +49,27 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
 //     [self showToast:@"查询中....."];
     [manager GET:urlPam parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self.delegate didRecieveResults:responseObject withName:urlName];
-        NSLog(@"JSON: %@", responseObject);
+        if ([urlName isEqual:@"login"]) {
+            NSLog(@"JSON: %@", responseObject);
+
+        }
+        //判断是否登录如果未登录 则进入登录页面
+        NSNumber *status=[responseObject objectForKey:@"status"];
+        NSLog(@"----pass-httprequest header%@---",operation.request);
+        if([status integerValue] == -1){
+            
+            UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            [app stopLoading];
+            [app.navigationController pushViewController:vc animated:YES];
+//            [app.navigationController presentViewController:vc animated:YES completion:^{
+//                
+//            }];
+        }else{
+            [self.delegate didRecieveResults:responseObject withName:urlName];
+        }
+        
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         [app stopLoading];
@@ -56,9 +88,9 @@
     //申明返回的结果是json类型
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     //申明请求的数据是json类型
-    manager.requestSerializer=[AFJSONRequestSerializer serializer];
+    //manager.requestSerializer=[AFJSONRequestSerializer serializer];
     //如果报接受类型不一致请替换一致text/html或别的
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     //传入的参数
     NSDictionary *parameters = pamDic;
     //你的接口地址
@@ -69,7 +101,19 @@
         //[timer invalidate];
         //[indicator stopAnimating];
         //[alertView dismissWithClickedButtonIndex:0 animated:YES];
-        [self.delegate didRecieveResults:responseObject withName:urlName];
+        
+        //判断是否登录如果未登录 则进入登录页面
+        NSNumber *status=[responseObject objectForKey:@"status"];
+        
+        if([status integerValue] == -1){
+            
+            UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            [app stopLoading];
+            [app.navigationController pushViewController:vc animated:YES];
+        }else{
+            [self.delegate didRecieveResults:responseObject withName:urlName];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //[mi_statusbar setHidden:YES];
         //[timer invalidate];
