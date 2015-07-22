@@ -206,6 +206,8 @@
 		ADD171811B5E1C9900E451D5 /* AddAddressStep2.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD1717F1B5E1C9900E451D5 /* AddAddressStep2.xib */; };
 		ADD171851B5E39B100E451D5 /* UpdateAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD171831B5E39B100E451D5 /* UpdateAddress.m */; };
 		ADD171861B5E39B100E451D5 /* UpdateAddress.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD171841B5E39B100E451D5 /* UpdateAddress.xib */; };
+		ADD1718A1B5F2E8A00E451D5 /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD171891B5F2E8A00E451D5 /* AddressModel.m */; };
+		ADD1718D1B5F2F7A00E451D5 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1718C1B5F2F7A00E451D5 /* BaseModel.m */; };
 		ADD4D40B1B5B298F004AFBE2 /* HTGoodDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D40A1B5B298F004AFBE2 /* HTGoodDetailsViewController.m */; };
 		ADD4D40E1B5B29AF004AFBE2 /* TMRulerColor.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D40D1B5B29AF004AFBE2 /* TMRulerColor.m */; };
 		ADD4D4131B5B999B004AFBE2 /* MyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D4121B5B999B004AFBE2 /* MyUtil.m */; };
@@ -532,6 +534,10 @@
 		ADD171821B5E39B100E451D5 /* UpdateAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateAddress.h; sourceTree = "<group>"; };
 		ADD171831B5E39B100E451D5 /* UpdateAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateAddress.m; sourceTree = "<group>"; };
 		ADD171841B5E39B100E451D5 /* UpdateAddress.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateAddress.xib; sourceTree = "<group>"; };
+		ADD171881B5F2E8A00E451D5 /* AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
+		ADD171891B5F2E8A00E451D5 /* AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
+		ADD1718B1B5F2F7A00E451D5 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
+		ADD1718C1B5F2F7A00E451D5 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		ADD4D4091B5B298F004AFBE2 /* HTGoodDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTGoodDetailsViewController.h; sourceTree = "<group>"; };
 		ADD4D40A1B5B298F004AFBE2 /* HTGoodDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTGoodDetailsViewController.m; sourceTree = "<group>"; };
 		ADD4D40C1B5B29AF004AFBE2 /* TMRulerColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMRulerColor.h; sourceTree = "<group>"; };
@@ -1177,6 +1183,7 @@
 		ADB5ACAB1B54066A0022B2C2 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				ADD171871B5F2E6300E451D5 /* model */,
 				ADD4D4201B5BAEE0004AFBE2 /* Address */,
 				ADD4D4151B5B9B92004AFBE2 /* UserInfo */,
 				ADD4D4141B5B9B73004AFBE2 /* Login */,
@@ -1267,6 +1274,17 @@
 				AD8AA6801B59E14400E324AD /* titlebar@2x.png */,
 			);
 			name = Sources;
+			sourceTree = "<group>";
+		};
+		ADD171871B5F2E6300E451D5 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				ADD171881B5F2E8A00E451D5 /* AddressModel.h */,
+				ADD171891B5F2E8A00E451D5 /* AddressModel.m */,
+				ADD1718B1B5F2F7A00E451D5 /* BaseModel.h */,
+				ADD1718C1B5F2F7A00E451D5 /* BaseModel.m */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 		ADD4D4141B5B9B73004AFBE2 /* Login */ = {
@@ -1582,6 +1600,7 @@
 				AD8AA6451B59435C00E324AD /* unzip.m in Sources */,
 				AD8AA6421B59435C00E324AD /* XCLoadingView.m in Sources */,
 				AD8AA62A1B59435C00E324AD /* SDWebImageManager.m in Sources */,
+				ADD1718A1B5F2E8A00E451D5 /* AddressModel.m in Sources */,
 				AD8AA6731B594EED00E324AD /* LTKView.m in Sources */,
 				AD8AA6371B59435C00E324AD /* RegexKitLite.m in Sources */,
 				ADB5AC881B53CB5F0022B2C2 /* haitao.xcdatamodeld in Sources */,
@@ -1642,6 +1661,7 @@
 				AD8AA63B1B59435C00E324AD /* ProfileImagesViewController.m in Sources */,
 				AD8AA5871B59416000E324AD /* CustomTabBar.m in Sources */,
 				ADD4D42C1B5CBC06004AFBE2 /* AddressListCell.m in Sources */,
+				ADD1718D1B5F2F7A00E451D5 /* BaseModel.m in Sources */,
 				ADD4D4131B5B999B004AFBE2 /* MyUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

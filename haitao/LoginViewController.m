@@ -55,6 +55,19 @@
     
     NSLog(@"----pass-login%@---",dictemp);
     
+    if ([[dictemp objectForKey:@"status"] integerValue]== 1) {
+        [USER_DEFAULT setObject:[dictemp objectForKey:@"s_app_id"] forKey:@"s_app_id"];
+        NSDictionary *dic=[dictemp objectForKey:@"data"];
+        [USER_DEFAULT setObject:[dic objectForKey:@"user_name"] forKey:@"user_name"];
+        [USER_DEFAULT setObject:[dic objectForKey:@"user_nick"]  forKey:@"user_nick"];
+        //返回原来界面
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [app stopLoading];
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }
+    
+    
     
     
 

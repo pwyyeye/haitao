@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddressListController : UITableViewController
+@interface AddressListController : UITableViewController<HTTPControllerProtocol>
 
 @property(strong,nonatomic) NSArray *data;
 

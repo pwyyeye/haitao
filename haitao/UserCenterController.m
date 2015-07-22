@@ -27,16 +27,15 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+-(void)initData{
+
+}
+
 -(void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
     
-    NSString *isLogin=[USER_DEFAULT objectForKey:@"isLogin"];
-    //判断是否登录
-    if ([MyUtil isEmptyString:isLogin]||[isLogin isEqual:@"0"]) {
-        UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+   
 }
 
 - (void)didReceiveMemoryWarning {

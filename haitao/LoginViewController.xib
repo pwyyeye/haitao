@@ -17,6 +17,14 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CZv-6C-M5d">
+                    <rect key="frame" x="20" y="130" width="560" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="didEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="OMQ-Kv-Icm"/>
+                    </connections>
+                </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="立即注册" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ywq-5J-UDj">
                     <rect key="frame" x="540" y="180" width="40" height="12"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -45,14 +53,6 @@
                     <textInputTraits key="textInputTraits"/>
                     <connections>
                         <action selector="didEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="78I-ur-U40"/>
-                    </connections>
-                </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CZv-6C-M5d">
-                    <rect key="frame" x="20" y="130" width="560" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                    <connections>
-                        <action selector="didEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="OMQ-Kv-Icm"/>
                     </connections>
                 </textField>
             </subviews>
