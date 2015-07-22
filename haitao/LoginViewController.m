@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-
+#import "RegisterViewController.h"
 @interface LoginViewController ()
 
 @end
@@ -29,7 +29,8 @@
     if (![MyUtil isEmptyString:password]) {
         _user_pass.text=password;
     }
-    
+
+    [self.navigationController setNavigationBarHidden:NO];
     
     
 }
@@ -77,6 +78,13 @@
 
 - (IBAction)didEndOnExit:(id)sender {
     [sender resignFirstResponder];
+}
+
+- (IBAction)gotoRegister:(id)sender {
+    RegisterViewController * vc=[[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
+   // AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{

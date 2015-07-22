@@ -208,6 +208,8 @@
 		ADD171861B5E39B100E451D5 /* UpdateAddress.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD171841B5E39B100E451D5 /* UpdateAddress.xib */; };
 		ADD1718A1B5F2E8A00E451D5 /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD171891B5F2E8A00E451D5 /* AddressModel.m */; };
 		ADD1718D1B5F2F7A00E451D5 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1718C1B5F2F7A00E451D5 /* BaseModel.m */; };
+		ADD171971B5FCD9D00E451D5 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD171951B5FCD9D00E451D5 /* RegisterViewController.m */; };
+		ADD171981B5FCD9D00E451D5 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD171961B5FCD9D00E451D5 /* RegisterViewController.xib */; };
 		ADD4D40B1B5B298F004AFBE2 /* HTGoodDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D40A1B5B298F004AFBE2 /* HTGoodDetailsViewController.m */; };
 		ADD4D40E1B5B29AF004AFBE2 /* TMRulerColor.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D40D1B5B29AF004AFBE2 /* TMRulerColor.m */; };
 		ADD4D4131B5B999B004AFBE2 /* MyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D4121B5B999B004AFBE2 /* MyUtil.m */; };
@@ -538,6 +540,9 @@
 		ADD171891B5F2E8A00E451D5 /* AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
 		ADD1718B1B5F2F7A00E451D5 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		ADD1718C1B5F2F7A00E451D5 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		ADD171941B5FCD9D00E451D5 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		ADD171951B5FCD9D00E451D5 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		ADD171961B5FCD9D00E451D5 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		ADD4D4091B5B298F004AFBE2 /* HTGoodDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTGoodDetailsViewController.h; sourceTree = "<group>"; };
 		ADD4D40A1B5B298F004AFBE2 /* HTGoodDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTGoodDetailsViewController.m; sourceTree = "<group>"; };
 		ADD4D40C1B5B29AF004AFBE2 /* TMRulerColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMRulerColor.h; sourceTree = "<group>"; };
@@ -1183,6 +1188,7 @@
 		ADB5ACAB1B54066A0022B2C2 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				ADD171991B5FCDA500E451D5 /* Register */,
 				ADD171871B5F2E6300E451D5 /* model */,
 				ADD4D4201B5BAEE0004AFBE2 /* Address */,
 				ADD4D4151B5B9B92004AFBE2 /* UserInfo */,
@@ -1285,6 +1291,16 @@
 				ADD1718C1B5F2F7A00E451D5 /* BaseModel.m */,
 			);
 			name = model;
+			sourceTree = "<group>";
+		};
+		ADD171991B5FCDA500E451D5 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				ADD171941B5FCD9D00E451D5 /* RegisterViewController.h */,
+				ADD171951B5FCD9D00E451D5 /* RegisterViewController.m */,
+				ADD171961B5FCD9D00E451D5 /* RegisterViewController.xib */,
+			);
+			name = Register;
 			sourceTree = "<group>";
 		};
 		ADD4D4141B5B9B73004AFBE2 /* Login */ = {
@@ -1470,6 +1486,7 @@
 				A2FC74C51B5A31340094BC59 /* df_02_@2x.png in Resources */,
 				AD8AA61B1B59435C00E324AD /* ELCAlbumPickerController.xib in Resources */,
 				AD8AA6A11B59E14400E324AD /* icon_02C@2x.png in Resources */,
+				ADD171981B5FCD9D00E451D5 /* RegisterViewController.xib in Resources */,
 				A21815A61B5A0E9A00D64E70 /* bt_01_@2x.png in Resources */,
 				AD8AA61C1B59435C00E324AD /* ELCAssetPicker.xib in Resources */,
 				A2FC74CF1B5A31340094BC59 /* ic_05_n.png in Resources */,
@@ -1623,6 +1640,7 @@
 				AD8AA6381B59435C00E324AD /* SwipeView.m in Sources */,
 				ADD171851B5E39B100E451D5 /* UpdateAddress.m in Sources */,
 				A2FC74E71B5A405A0094BC59 /* BALabel.m in Sources */,
+				ADD171971B5FCD9D00E451D5 /* RegisterViewController.m in Sources */,
 				A2FC75031B5D1FFA0094BC59 /* NSObject+MJKeyValue.m in Sources */,
 				AD8AA6361B59435C00E324AD /* NSData+Base64.m in Sources */,
 				AD8AA62F1B59435C00E324AD /* JUUserDefaults.m in Sources */,

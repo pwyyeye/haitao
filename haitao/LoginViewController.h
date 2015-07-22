@@ -24,4 +24,5 @@
 
 - (IBAction)didEndOnExit:(id)sender;
 
+- (IBAction)gotoRegister:(id)sender;
 @end
