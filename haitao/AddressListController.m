@@ -11,6 +11,7 @@
 #import "AddAddressStep1.h"
 #import "AddressModel.h"
 #import "LoginViewController.h"
+#import "UpdateAddress.h"
 
 
 @interface AddressListController ()
@@ -33,31 +34,25 @@
     
 //    _data=@[@"hello",@"word"];
     
-    _selfRequestURL=[NSString stringWithFormat:@"%@&f=getAddress&m=user",requestUrl];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initData) name:@"noticeToReload" object:nil];
     
-    
+    [self initData];
 }
 
 -(void)initData{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
-    NSDictionary *parameters ;
-    NSString *s_app_id=[USER_DEFAULT objectForKey:@"s_app_id"];
-    if (![MyUtil isEmptyString:s_app_id]) {
-        parameters = @{@"s_app_id":s_app_id};
-    }else{
-        parameters=nil;
-    }
-   
-    
-    HTTPController *httpController =  [[HTTPController alloc]initWith:[NSString stringWithFormat:@"%@&f=getAddress&m=user",requestUrl] withType:POSTURL withPam:parameters withUrlName:@"addressList"];
+    NSLog(@"----pass-app%@---",app.s_app_id);
+    _selfRequestURL=[NSString stringWithFormat:@"%@&f=getAddress&m=user",requestUrl];
+
+    HTTPController *httpController =  [[HTTPController alloc]initWith:[NSString stringWithFormat:@"%@&f=getAddress&m=user",requestUrl] withType:POSTURL withUrlName:@"addressList"];
     
     
     
     httpController.delegate = self;
     [httpController onSearch];
-
+    
 
 }
 
@@ -117,10 +112,32 @@
     }
 
 }
--(void)viewWillAppear:(BOOL)animated{
-    [self initData];
+-(void)viewDidAppear:(BOOL)animated{
+     [super viewDidAppear:animated];
+     [self initData];
 
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+
+}
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"noticeToReload" object:nil];
+
+
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -147,14 +164,23 @@
     cell.username.text=model.consignee;
     cell.textLabel.text=@"12312312312312321313";
     cell.detailTextLabel.text=@"sdfasdfadsfasdfasfasdfsadfasfasdfasd";
-    cell.accessoryType=UITableViewCellAccessoryCheckmark;
+    if([model.is_default integerValue]==1){
+        cell.accessoryType=UITableViewCellAccessoryCheckmark;
+    }
 
     // Configure the cell...
     
     return cell;
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Navigation logic may go here, for example:
+    // Create the next view controller.
+    UIViewController *detailViewController=[[UpdateAddress alloc] initWithNibName:@"UpdateAddress" bundle:nil];
+    
+    // Push the view controller.
+    [self.navigationController pushViewController:detailViewController animated:YES];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

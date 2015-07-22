@@ -16,6 +16,10 @@
 
 @property(strong,nonatomic) NSString *loginRequestURL;
 
+@property(strong,nonatomic) NSString *username;
+
+@property(strong,nonatomic) NSString *password;
+
 - (IBAction)login:(id)sender;
 
 - (IBAction)didEndOnExit:(id)sender;

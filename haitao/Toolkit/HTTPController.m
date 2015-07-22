@@ -12,7 +12,13 @@
 @implementation HTTPController
 -(instancetype)initWith:(NSString *)urlStr withType:(int)type withUrlName:(NSString *)name{
     self = [super init];
-    urlPam = urlStr;
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+
+    if (![MyUtil isEmptyString:app.s_app_id]) {
+        urlPam = [NSString stringWithFormat:@"%@&s_app_id=%@",urlStr,app.s_app_id];
+    }else{
+        urlPam=urlStr;
+    }
     typePam = type;
     urlName = name;
   
@@ -20,7 +26,13 @@
 }
 -(instancetype)initWith:(NSString *)urlStr withType:(int)type withPam:(NSDictionary *)pam  withUrlName:(NSString *)name {
     self = [super init];
-    urlPam = urlStr;
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if (![MyUtil isEmptyString:app.s_app_id]) {
+        urlPam = [NSString stringWithFormat:@"%@&s_app_id=%@",urlStr,app.s_app_id];
+    }else{
+        urlPam=urlStr;
+    }
+    
     typePam = type;
     urlName = name;
     pamDic = pam;
@@ -37,17 +49,22 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
 //     [self showToast:@"查询中....."];
     [manager GET:urlPam parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSLog(@"JSON: %@", responseObject);
+        if ([urlName isEqual:@"login"]) {
+            NSLog(@"JSON: %@", responseObject);
+
+        }
         //判断是否登录如果未登录 则进入登录页面
         NSNumber *status=[responseObject objectForKey:@"status"];
-        
+        NSLog(@"----pass-httprequest header%@---",operation.request);
         if([status integerValue] == -1){
             
             UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
             AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             [app stopLoading];
             [app.navigationController pushViewController:vc animated:YES];
+//            [app.navigationController presentViewController:vc animated:YES completion:^{
+//                
+//            }];
         }else{
             [self.delegate didRecieveResults:responseObject withName:urlName];
         }
