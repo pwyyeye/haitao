@@ -8,14 +8,21 @@
 
 #import "LTKViewController.h"
 #import "HaiTaoBase.h"
-@interface HomeViewController : LTKViewController<UIScrollViewDelegate,HTTPControllerProtocol>
+
+@interface HomeViewController : LTKViewController<UIScrollViewDelegate,HTTPControllerProtocol,MJRefreshBaseViewDelegate>
 {
     UIScrollView              *_scrollView;
     NSMutableArray *app_home_bigegg;//首页通栏即广告栏
     NSMutableArray *app_home_grab;//手机端抢购
     NSMutableArray *app_home_command;//手机端精品推荐
     NSMutableArray *app_home_brand;//手机端国际名品
-    NSMutableArray *new_goods;//手机端国际名品
+    NSMutableArray *new_goods;//新品推荐
+    NSString *nowpage;
+    NSMutableDictionary *new_goods_pageDic;
+    MJRefreshHeaderView                 *_header;
+    MJRefreshFooterView                 *_footer;
+    CGRect lastFrameForPage;
+//    NSMutableArray *new_goods_add;//新品推荐
 }
 @property(nonatomic,retain)NSMutableArray *_scrol_marray;//滚动图片数组
 @end

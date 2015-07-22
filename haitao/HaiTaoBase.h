@@ -15,6 +15,7 @@
 #import "MJExtension.h"
 #import "HTTPController.h"
 #import "Toolkit.h"
+#import "MJRefresh.h"
  #define hongShe [UIColor colorWithRed:1.0 green:.23 blue:.49 alpha:1.0];
  #define IS_IPHONE_5 (fabs((double)[[UIScreen mainScreen] bounds].size.height - (double )568) < DBL_EPSILON )
 #define hui2 [UIColor colorWithRed:.2 green:.2 blue:.2 alpha:1.0];
