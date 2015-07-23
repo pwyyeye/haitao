@@ -77,54 +77,7 @@
     }
     
     
-    UIView *bottomView =[[UIView alloc]initWithFrame:(CGRect){0,kWindowHeight-50,kWindowWidth,50}];
-    bottomView.backgroundColor=UIColorRGBA(29, 29, 29, 1);
-    [self.view addSubview:bottomView];
     
-    BALabel *bottomLabel =[[BALabel alloc]initWithFrame:(CGRect){kWindowWidth-55-10,50/2-24/2,55,24}];
-    bottomLabel.text=@"请选购";
-    bottomLabel.textColor=[UIColor whiteColor];
-    bottomLabel.textAlignment=NSTextAlignmentCenter;
-    bottomLabel.font=Font(13);
-    bottomLabel.backgroundColor=[UIColor lightGrayColor];
-    bottomLabel.layer.masksToBounds=YES;
-    bottomLabel.layer.cornerRadius=6;
-    bottomLabel.layer.borderWidth = 1;
-    bottomLabel.userInteractionEnabled=NO;
-    [bottomLabel addTarget:self action:@selector(bottomLabelClick) forControlEvents:BALabelControlEventTap];
-    bottomLabel.layer.borderColor = [[UIColor whiteColor] CGColor];
-    [bottomView addSubview:bottomLabel];
-    _bottomLabel=bottomLabel;
-    
-    
-    
-    
-    
-    UIImageView *cartImage =[[UIImageView alloc]initWithFrame:(CGRect){10,5,40,40}];
-    cartImage.image=[UIImage imageNamed:@"Home_Cart.jpg"];
-    [bottomView addSubview:cartImage];
-    _cartImage=cartImage;
-    _quantityInt=0;
-    
-    UILabel *totalPrice =[[UILabel alloc]initWithFrame:(CGRect){CGRectGetMaxX(cartImage.frame)+20,50/2-16/2,200,16}];
-    
-    totalPrice.text=@"￥0";
-    totalPrice.textColor=[UIColor whiteColor];
-    totalPrice.font=Font(16);
-    [bottomView addSubview:totalPrice];
-    _totalPrice=totalPrice;
-    
-    UILabel *totalSingular =[[UILabel alloc]initWithFrame:(CGRect){35,5,15,15}];
-    totalSingular.text=@"0";
-    totalSingular.hidden=YES;
-    totalSingular.layer.masksToBounds=YES;
-    totalSingular.layer.cornerRadius=7.5;
-    totalSingular.textAlignment=NSTextAlignmentCenter;
-    totalSingular.backgroundColor=[UIColor redColor];
-    totalSingular.textColor=[UIColor whiteColor];
-    totalSingular.font=Font(13);
-    [bottomView addSubview:totalSingular];
-    _totalSingular=totalSingular;
     
     _dic=[NSMutableDictionary dictionary];
     _key=[NSMutableArray array];
