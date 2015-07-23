@@ -8,12 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegisterViewController : UIViewController
+@interface RegisterViewController : UIViewController<HTTPControllerProtocol>
 
-@property (weak, nonatomic) IBOutlet UITextField *username;
+@property (weak, nonatomic) IBOutlet UITextField *mobile;
 
 @property (weak, nonatomic) IBOutlet UITextField *captcha;
 
 @property (weak, nonatomic) IBOutlet UITextField *password;
-- (IBAction)register:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *btn_captcha;
+
+@property(strong,nonatomic) NSTimer *timer;
+
+@property(assign,nonatomic) int step;
+
+- (IBAction)getCaptcha:(id)sender;
+
+- (IBAction)registerAccount:(id)sender;
+
 @end

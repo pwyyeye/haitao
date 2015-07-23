@@ -533,6 +533,7 @@
 		ADB5AC9D1B53CB5F0022B2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADB5AC9E1B53CB5F0022B2C2 /* haitaoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = haitaoTests.m; sourceTree = "<group>"; };
 		ADB5ACA81B5404140022B2C2 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		ADCFB0251B60852A001B3324 /* RrequesURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RrequesURL.h; sourceTree = "<group>"; };
 		ADD1717D1B5E1C9900E451D5 /* AddAddressStep2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAddressStep2.h; sourceTree = "<group>"; };
 		ADD1717E1B5E1C9900E451D5 /* AddAddressStep2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressStep2.m; sourceTree = "<group>"; };
 		ADD1717F1B5E1C9900E451D5 /* AddAddressStep2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAddressStep2.xib; sourceTree = "<group>"; };
@@ -1253,6 +1254,7 @@
 				ADD4D4111B5B997B004AFBE2 /* MyUtil.h */,
 				ADD4D4121B5B999B004AFBE2 /* MyUtil.m */,
 				ADD4D4101B5B9923004AFBE2 /* MacroDefinition.h */,
+				ADCFB0251B60852A001B3324 /* RrequesURL.h */,
 				AD8AA59F1B59435C00E324AD /* Toolkit */,
 				A21814221B5605D100D64E70 /* 水平菜单 */,
 			);
