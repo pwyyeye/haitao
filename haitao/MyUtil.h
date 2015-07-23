@@ -21,4 +21,6 @@
 //颜色值转化 ＃ffffff 转化成10进制
 +(int)colorStringToInt:(NSString *)colorStrig colorNo:(int)colorNo;
 
+//验证手机号码格式
++ (BOOL)checkTelephone:(NSString *)str;
 @end

@@ -48,7 +48,7 @@
     
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
 //     [self showToast:@"查询中....."];
-    [manager GET:urlPam parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:urlPam parameters:pamDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([urlName isEqual:@"login"]) {
             NSLog(@"JSON: %@", responseObject);
 
