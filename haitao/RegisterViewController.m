@@ -48,6 +48,28 @@
         NSLog(@"----pass-getCaptcha%@---",dictemp);
     }else if ([urlname isEqualToString:@"registerAccount"]) {
         NSLog(@"----pass-registerAccount%@---",dictemp);
+        if ([[dictemp objectForKey:@"status"] integerValue]== 1) {
+            //[USER_DEFAULT setObject:[dictemp objectForKey:@"s_app_id"] forKey:@"s_app_id"];
+            NSDictionary *dic=[dictemp objectForKey:@"data"];
+            [USER_DEFAULT setObject:[dic objectForKey:@"user_name"] forKey:@"user_name"];
+            [USER_DEFAULT setObject:[dic objectForKey:@"user_nick"]  forKey:@"user_nick"];
+            //返回原来界面
+            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            app.s_app_id=[dictemp objectForKey:@"s_app_id"];
+            [app stopLoading];
+            
+            //判断是否有注册通知
+            [USER_DEFAULT setObject:_password forKey:@"user_pass"];
+            
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            
+            
+            
+        }else{
+            NSArray *array=[dictemp objectForKey:@"msg"];
+            ShowMessage([array objectAtIndex:0]);
+        }
+        
     }
 
 }
@@ -63,15 +85,13 @@
 
 
     NSLog(@"----pass-captcha%@---",requestUrl_captcha);
-
-    NSString *url=[NSString stringWithFormat:@"%@&f=sendVerifyCode&m=user",requestUrl];
     
     NSDictionary *dic=@{@"mobile":_mobile.text};
-//    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:GETURL withPam:dic withUrlName:@"getCaptcha"];
-//    
-//    
-//    httpController.delegate = self;
-//    [httpController onSearch];
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_captcha withType:GETURL withPam:dic withUrlName:@"getCaptcha"];
+    
+    
+    httpController.delegate = self;
+    [httpController onSearch];
 }
 
 //定时器更新验证码按钮
@@ -99,15 +119,28 @@
 }
 
 - (IBAction)registerAccount:(id)sender {
-    if ([MyUtil checkTelephone:_mobile.text]) {
+    if (![MyUtil checkTelephone:_mobile.text]) {
         ShowMessage(@"请输入正确的手机号码！");
+        return;
     }
     if ([MyUtil isEmptyString:_captcha.text]) {
         ShowMessage(@"请输入验证码！");
+        return;
     }
     if ([MyUtil isEmptyString:_password.text]) {
         ShowMessage(@"密码不能为空！");
+        return;
     }
+    NSDictionary *dic=@{@"mobile":_mobile.text,@"mobile_code":_captcha.text,@"user_pass":_password.text,@"gotologin":@"1"};
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_doMobileRegist withType:POSTURL withPam:dic withUrlName:@"registerAccount"];
     
+    
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
+
+}
+
+- (IBAction)didEndOnExit:(id)sender {
+    [sender resignFirstResponder];
 }
 @end
