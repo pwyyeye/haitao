@@ -8,8 +8,9 @@
 
 #import "LTKViewController.h"
 
-@interface HTSeachViewController : LTKViewController<HTTPControllerProtocol>
+@interface HTSeachViewController : LTKViewController<HTTPControllerProtocol,UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray *menuArr;
+    
 }
 @end
