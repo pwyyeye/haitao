@@ -26,4 +26,6 @@
 
 - (IBAction)registerAccount:(id)sender;
 
+- (IBAction)didEndOnExit:(id)sender;
+
 @end
