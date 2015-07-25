@@ -19,7 +19,7 @@
     // Do any additional setup after loading the view from its nib.
     
     [self.navigationController setNavigationBarHidden:NO];
-    self.navigationController.title=@"注册";
+    self.title=@"注册";
     
     _step=0;
     _timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(captchaWait) userInfo:nil repeats:YES];
@@ -59,15 +59,12 @@
             [app stopLoading];
             
             //判断是否有注册通知
-            [USER_DEFAULT setObject:_password forKey:@"user_pass"];
+            [USER_DEFAULT setObject:_password.text forKey:@"user_pass"];
             
             [self.navigationController popToRootViewControllerAnimated:YES];
             
             
             
-        }else{
-            NSArray *array=[dictemp objectForKey:@"msg"];
-            ShowMessage([array objectAtIndex:0]);
         }
         
     }
@@ -76,7 +73,7 @@
 //获取验证码
 - (IBAction)getCaptcha:(id)sender {
     
-    if (![MyUtil checkTelephone:_mobile.text]) {
+    if (![MyUtil isValidateTelephone:_mobile.text]) {
         ShowMessage(@"请输入正确的手机号码！");
         return;
     }
@@ -119,7 +116,7 @@
 }
 
 - (IBAction)registerAccount:(id)sender {
-    if (![MyUtil checkTelephone:_mobile.text]) {
+    if (![MyUtil isValidateTelephone:_mobile.text]) {
         ShowMessage(@"请输入正确的手机号码！");
         return;
     }

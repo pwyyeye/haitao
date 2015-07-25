@@ -46,7 +46,7 @@
     NSLog(@"----pass-app%@---",app.s_app_id);
     _selfRequestURL=[NSString stringWithFormat:@"%@&f=getAddress&m=user",requestUrl];
 
-    HTTPController *httpController =  [[HTTPController alloc]initWith:[NSString stringWithFormat:@"%@&f=getAddress&m=user",requestUrl] withType:POSTURL withUrlName:@"addressList"];
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_getAddress withType:POSTURL withUrlName:@"addressList"];
     
     
     

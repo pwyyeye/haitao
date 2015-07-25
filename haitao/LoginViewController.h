@@ -20,9 +20,16 @@
 
 @property(strong,nonatomic) NSString *password;
 
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+
 - (IBAction)login:(id)sender;
 
 - (IBAction)didEndOnExit:(id)sender;
 
 - (IBAction)gotoRegister:(id)sender;
+
+- (IBAction)gotoForgetPwd:(id)sender;
+
+
+
 @end

@@ -56,15 +56,26 @@
         //判断是否登录如果未登录 则进入登录页面
         NSNumber *status=[responseObject objectForKey:@"status"];
         NSLog(@"----pass-httprequest header%@---",operation.request);
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+
         if([status integerValue] == -1){
             
             UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             [app stopLoading];
+        
             [app.navigationController pushViewController:vc animated:YES];
 //            [app.navigationController presentViewController:vc animated:YES completion:^{
 //                
 //            }];
+        }else if([status integerValue] == 0){
+            id array=[responseObject objectForKey:@"msg"];
+            if ([array isKindOfClass:[NSString class]]) {
+                ShowMessage(array);
+            }else if([array isKindOfClass:[NSArray class]]){
+                ShowMessage([array objectAtIndex:0]);
+            }
+            
+            [app stopLoading];
         }else{
             [self.delegate didRecieveResults:responseObject withName:urlName];
         }
@@ -104,13 +115,24 @@
         
         //判断是否登录如果未登录 则进入登录页面
         NSNumber *status=[responseObject objectForKey:@"status"];
-        
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+
         if([status integerValue] == -1){
             
             UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             [app stopLoading];
+            
             [app.navigationController pushViewController:vc animated:YES];
+        }else if([status integerValue] == 0){
+            id array=[responseObject objectForKey:@"msg"];
+            if ([array isKindOfClass:[NSString class]]) {
+                 ShowMessage(array);
+            }else if([array isKindOfClass:[NSArray class]]){
+                  ShowMessage([array objectAtIndex:0]);
+            }
+            
+            [app stopLoading];
+           
         }else{
             [self.delegate didRecieveResults:responseObject withName:urlName];
         }

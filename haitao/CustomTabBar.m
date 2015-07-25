@@ -5,6 +5,7 @@
 //#import "FCsetViewController.h"
 #import "AppDelegate.h"
 #import"Toolkit.h"
+#import "LoginViewController.h"
 @implementation CustomTabBar
 
 
@@ -203,8 +204,25 @@
 //            FCLogonViewController*VC=[[FCLogonViewController alloc]init];
 //            [appDelegate.navigationController pushViewController:VC animated:NO];
 //        }else{
-//        
+//
+    /**------------modify by pwy---------2015-7-25------ begin*/
+    if (self.currentSelectedIndex==4) {
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        if ([MyUtil isEmptyString:app.s_app_id]) {
+            self.currentSelectedIndex=self.selectedIndex;
+            UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+            
+            [app.navigationController pushViewController:vc animated:YES];
+            
+        }
+        
+    }else{
+    
             self.selectedIndex = self.currentSelectedIndex;
+    }
+    
+    
+    /**------------modify by pwy---------2015-7-25------ end */
             [self performSelector:@selector(slideTabBg:) withObject:button];
 //        }
 //        
