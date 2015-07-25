@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		70152CF38A173F9DADD78F53 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB8432FE812FC9929501C476 /* libPods.a */; };
+		A20BA77D1B61F33000F73A57 /* LTKSeachResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20BA77C1B61F33000F73A57 /* LTKSeachResultViewController.m */; };
+		A20BA77F1B61F38D00F73A57 /* sskx_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A20BA77E1B61F38D00F73A57 /* sskx_search@2x.png */; };
+		A20BA7821B620EEA00F73A57 /* TitleBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = A20BA7811B620EEA00F73A57 /* TitleBtn.m */; };
 		A21814251B56060100D64E70 /* ZRScrollableTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A21814241B56060100D64E70 /* ZRScrollableTabBar.m */; };
 		A21814281B56063300D64E70 /* arrrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = A21814261B56063300D64E70 /* arrrow_left.png */; };
 		A21814291B56063300D64E70 /* arrrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = A21814271B56063300D64E70 /* arrrow_right.png */; };
@@ -94,6 +97,9 @@
 		A2FFE17E1B608EDF0004B4BC /* pull_loading@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2FFE1771B608EDF0004B4BC /* pull_loading@3x.png */; };
 		A2FFE17F1B608EDF0004B4BC /* pull_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2FFE1781B608EDF0004B4BC /* pull_refresh@2x.png */; };
 		A2FFE1801B608EDF0004B4BC /* pull_refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2FFE1791B608EDF0004B4BC /* pull_refresh@3x.png */; };
+		A2FFE1861B60B4A60004B4BC /* UITableGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FFE1831B60B4A60004B4BC /* UITableGridViewCell.m */; };
+		A2FFE1871B60B4A60004B4BC /* UIImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FFE1851B60B4A60004B4BC /* UIImageButton.m */; };
+		A2FFE1891B60B7C50004B4BC /* macbook_pro.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A2FFE1881B60B7C50004B4BC /* macbook_pro.jpg */; };
 		AD1386921B54D5BF00130E49 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1386901B54D5BF00130E49 /* LoginViewController.m */; };
 		AD1386931B54D5BF00130E49 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1386911B54D5BF00130E49 /* LoginViewController.xib */; };
 		AD8AA5871B59416000E324AD /* CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8AA57C1B59416000E324AD /* CustomTabBar.m */; };
@@ -250,6 +256,11 @@
 /* Begin PBXFileReference section */
 		240B8E23FB42A177712EC5FF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		3C8F0106971265CAA672CF83 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A20BA77B1B61F33000F73A57 /* LTKSeachResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTKSeachResultViewController.h; sourceTree = "<group>"; };
+		A20BA77C1B61F33000F73A57 /* LTKSeachResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTKSeachResultViewController.m; sourceTree = "<group>"; };
+		A20BA77E1B61F38D00F73A57 /* sskx_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sskx_search@2x.png"; sourceTree = "<group>"; };
+		A20BA7801B620EEA00F73A57 /* TitleBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleBtn.h; sourceTree = "<group>"; };
+		A20BA7811B620EEA00F73A57 /* TitleBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleBtn.m; sourceTree = "<group>"; };
 		A21814231B56060100D64E70 /* ZRScrollableTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRScrollableTabBar.h; sourceTree = "<group>"; };
 		A21814241B56060100D64E70 /* ZRScrollableTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRScrollableTabBar.m; sourceTree = "<group>"; };
 		A21814261B56063300D64E70 /* arrrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrrow_left.png; sourceTree = "<group>"; };
@@ -371,6 +382,11 @@
 		A2FFE1771B608EDF0004B4BC /* pull_loading@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pull_loading@3x.png"; sourceTree = "<group>"; };
 		A2FFE1781B608EDF0004B4BC /* pull_refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pull_refresh@2x.png"; sourceTree = "<group>"; };
 		A2FFE1791B608EDF0004B4BC /* pull_refresh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pull_refresh@3x.png"; sourceTree = "<group>"; };
+		A2FFE1821B60B4A60004B4BC /* UITableGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableGridViewCell.h; sourceTree = "<group>"; };
+		A2FFE1831B60B4A60004B4BC /* UITableGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableGridViewCell.m; sourceTree = "<group>"; };
+		A2FFE1841B60B4A60004B4BC /* UIImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageButton.h; sourceTree = "<group>"; };
+		A2FFE1851B60B4A60004B4BC /* UIImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageButton.m; sourceTree = "<group>"; };
+		A2FFE1881B60B7C50004B4BC /* macbook_pro.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = macbook_pro.jpg; sourceTree = "<group>"; };
 		AD13868F1B54D5BF00130E49 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AD1386901B54D5BF00130E49 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		AD1386911B54D5BF00130E49 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -758,6 +774,8 @@
 		A2FC74D51B5A3EFF0094BC59 /* 插件 */ = {
 			isa = PBXGroup;
 			children = (
+				A20BA7801B620EEA00F73A57 /* TitleBtn.h */,
+				A20BA7811B620EEA00F73A57 /* TitleBtn.m */,
 				A2FC74E51B5A405A0094BC59 /* BALabel.h */,
 				A2FC74E61B5A405A0094BC59 /* BALabel.m */,
 				A2FC74E41B5A3F700094BC59 /* Header.h */,
@@ -785,6 +803,11 @@
 				A2FC74DD1B5A3F340094BC59 /* BARightCell.m */,
 				A2FC74DE1B5A3F340094BC59 /* BARightTableView.h */,
 				A2FC74DF1B5A3F340094BC59 /* BARightTableView.m */,
+				A2FFE1881B60B7C50004B4BC /* macbook_pro.jpg */,
+				A2FFE1821B60B4A60004B4BC /* UITableGridViewCell.h */,
+				A2FFE1831B60B4A60004B4BC /* UITableGridViewCell.m */,
+				A2FFE1841B60B4A60004B4BC /* UIImageButton.h */,
+				A2FFE1851B60B4A60004B4BC /* UIImageButton.m */,
 			);
 			path = RightTableView;
 			sourceTree = "<group>";
@@ -1108,6 +1131,9 @@
 			children = (
 				AD8AA5911B59425A00E324AD /* HTSeachViewController.h */,
 				AD8AA5921B59425A00E324AD /* HTSeachViewController.m */,
+				A20BA77B1B61F33000F73A57 /* LTKSeachResultViewController.h */,
+				A20BA77C1B61F33000F73A57 /* LTKSeachResultViewController.m */,
+				A20BA77E1B61F38D00F73A57 /* sskx_search@2x.png */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -1536,6 +1562,7 @@
 				A2FC74C61B5A31340094BC59 /* ic_01_h.png in Resources */,
 				A21815B71B5A0E9A00D64E70 /* df_03_@2x.png in Resources */,
 				A21815AE1B5A0E9A00D64E70 /* bt_05_@2x.png in Resources */,
+				A20BA77F1B61F38D00F73A57 /* sskx_search@2x.png in Resources */,
 				AD8AA6471B59435C00E324AD /* readme.txt in Resources */,
 				A21814281B56063300D64E70 /* arrrow_left.png in Resources */,
 				ADD171811B5E1C9900E451D5 /* AddAddressStep2.xib in Resources */,
@@ -1591,6 +1618,7 @@
 				A21815A51B5A0E9A00D64E70 /* bg_01_@2x.png in Resources */,
 				AD8AA6911B59E14400E324AD /* banner_02_02.png in Resources */,
 				AD8AA6921B59E14400E324AD /* banner_03_02.png in Resources */,
+				A2FFE1891B60B7C50004B4BC /* macbook_pro.jpg in Resources */,
 				AD8AA61E1B59435C00E324AD /* Overlay.png in Resources */,
 				AD8AA6A81B59E14400E324AD /* shop_zy_@2x.png in Resources */,
 				A21815BC1B5A0E9A00D64E70 /* ic_01_@2x.png in Resources */,
@@ -1741,6 +1769,8 @@
 				AD8AA6331B59435C00E324AD /* MJRefreshBaseView.m in Sources */,
 				AD8AA5931B59425A00E324AD /* HTSeachViewController.m in Sources */,
 				AD8AA6151B59435C00E324AD /* AMRatingControl.m in Sources */,
+				A20BA77D1B61F33000F73A57 /* LTKSeachResultViewController.m in Sources */,
+				A20BA7821B620EEA00F73A57 /* TitleBtn.m in Sources */,
 				AD8AA6171B59435C00E324AD /* ELCAsset.m in Sources */,
 				A2F5FB4C1B5FD64100A8205C /* UIScrollView+SVPullToRefresh.m in Sources */,
 				AD8AA6271B59435C00E324AD /* NSURLAdditions.m in Sources */,
@@ -1764,6 +1794,8 @@
 				A2FFE1721B608ED20004B4BC /* DJRefreshView.m in Sources */,
 				AD8AA6311B59435C00E324AD /* UIViewController+MJPopupViewController.m in Sources */,
 				AD8AA61A1B59435C00E324AD /* ELCImagePickerController.m in Sources */,
+				A2FFE1871B60B4A60004B4BC /* UIImageButton.m in Sources */,
+				A2FFE1861B60B4A60004B4BC /* UITableGridViewCell.m in Sources */,
 				AD8AA6241B59435C00E324AD /* HZActivityIndicatorView.m in Sources */,
 				AD8AA6441B59435C00E324AD /* mztools.m in Sources */,
 				AD8AA63F1B59435C00E324AD /* UIImageAdditions.m in Sources */,

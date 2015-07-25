@@ -13,9 +13,14 @@
 #import "Header.h"
 #import "BALabel.h"
 #import "MenuModel.h"
-
+#import "UIImageButton.h"
+#import "UITableGridViewCell.h"
+#import "LTKSeachResultViewController.h"
+#define kImageWidth  75 //UITableViewCell里面图片的宽度
+#define kImageHeight  90 //UITableViewCell里面图片的高度
 @interface HTSeachViewController ()<DockTavleViewDelegate,RightTableViewDelegate>{
     UIView *view_bar1;
+    BARightTableView *rightTableView ;
 }
 @property (nonatomic ,strong) BAWineShoppingDockTavleView *dockTavleView;
 
@@ -58,11 +63,13 @@
     [self.view addSubview:dockTavleView];
     _dockTavleView =dockTavleView;
     
-    BARightTableView *rightTableView =[[BARightTableView alloc]initWithFrame:(CGRect){75,naviView.frame.size.height+1,kWindowWidth-75,kWindowHeight-50}];
+    rightTableView =[[BARightTableView alloc]initWithFrame:(CGRect){75,naviView.frame.size.height+1,kWindowWidth-75,kWindowHeight-50}];
     rightTableView.rowHeight=90;
     rightTableView.rightDelegate=self;
     rightTableView.backgroundColor=UIColorRGBA(238, 238, 238, 1);
     [rightTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    rightTableView.delegate=self;
+    rightTableView.dataSource=self;
     [self.view addSubview:rightTableView];
     _rightTableView=rightTableView;
     
@@ -71,10 +78,7 @@
     
  
     _offsArray =[NSMutableArray array];
-    for ( int i=0; i<[_dockArray count]; i++) {
-        CGPoint point =CGPointMake(0, 0);
-        [_offsArray addObject:NSStringFromCGPoint(point)];
-    }
+    
     
     
     
@@ -144,59 +148,41 @@
         MenuModel *menu=menuArr[i];
         NSMutableDictionary *dic =[NSMutableDictionary dictionary];
         
-        NSMutableArray *array =[NSMutableArray array];
+//        NSMutableArray *array =[NSMutableArray array];
         
-        
-        
-        for (int j=0; j<7; j++) {
-            if (j==0) {
-                NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                dic1=[@{@"image":@"1.jpg",@"name":@"德国OETTINGER奥丁格大麦啤酒500ml*4罐/组",@"money":@"39",@"OriginalPrice":@"56",@"Quantity":@"0",@"ProductID":@"q",@"Discount":@"7折"} mutableCopy];
-                [array addObject:dic1];
+        NSArray *childArr=menu.child;
+        NSMutableArray *pageArr=[[NSMutableArray alloc]initWithCapacity:3];
+        NSMutableArray *rightArr=[[NSMutableArray alloc]initWithCapacity:3];
+        int nowCount=1;
+        for (int j=0; j<childArr.count-1; j++) {
+            MenuModel *menuChild=childArr[j];
+            if(nowCount%3==0){
+                [pageArr addObject:menuChild];
+                [rightArr addObject:pageArr];
+                pageArr=[[NSMutableArray alloc]initWithCapacity:6];
+            }else{
+                [pageArr addObject:menuChild];
+                if(j==childArr.count-1){
+                    
+                    [rightArr addObject:pageArr];
+                }
             }
-            if (j==1) {
-                NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                dic1=[@{@"image":@"2.jpg",@"name":@"德拉克（Durlacher） 黑啤酒 330ml*6听",@"money":@"40",@"OriginalPrice":@"67",@"Quantity":@"0",@"ProductID":@"w",@"Discount":@"6折"} mutableCopy];
-                [array addObject:dic1];
-            }
-            if (j==2) {
-                NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                dic1=[@{@"image":@"3.jpg",@"name":@"奥塔利金爵 啤酒500ml*12 匈牙利原装低度进口啤酒酒水饮品",@"money":@"109",@"OriginalPrice":@"218",@"Quantity":@"0",@"ProductID":@"e",@"Discount":@"5折"} mutableCopy];
-                [array addObject:dic1];
-            }
-            if (j==3) {
-                NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                dic1=[@{@"image":@"4.jpg",@"name":@"德国啤酒 原装进口啤酒 flensburger/弗伦斯堡啤酒 土豪金啤 5L 桶装啤酒",@"money":@"158",@"OriginalPrice":@"226",@"Quantity":@"0",@"ProductID":@"r",@"Discount":@"7折"} mutableCopy];
-                [array addObject:dic1];
-            }
-            if (j==4) {
-                NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                dic1=[@{@"image":@"5.jpg",@"name":@"青岛啤酒 经典 醇厚 啤酒500ml*12听/箱 国产 整箱",@"money":@"66",@"OriginalPrice":@"110",@"Quantity":@"0",@"ProductID":@"t",@"Discount":@"6折"} mutableCopy];
-                [array addObject:dic1];
-            }
-            if (j==5) {
-                NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                dic1=[@{@"image":@"6.jpg",@"name":@"京姿 百威罐装330ml*24 啤酒",@"money":@"140",@"OriginalPrice":@"200",@"Quantity":@"0",@"ProductID":@"y",@"Discount":@"7折"} mutableCopy];
-                [array addObject:dic1];
-            }
-            if (j==6) {
-                NSMutableDictionary *dic1 =[NSMutableDictionary dictionary];
-                dic1=[@{@"image":@"7.jpg",@"name":@"德国OETTINGER奥丁格自然浑浊型小麦啤酒500ml*4罐/组",@"money":@"58",@"OriginalPrice":@"129",@"Quantity":@"0",@"ProductID":@"u",@"Discount":@"4.5折"} mutableCopy];
-                [array addObject:dic1];
-            }
-            
-            
+
+            nowCount++;
         }
-        dic =[@{@"dockName":menu.name,@"right":array} mutableCopy];
-        [_dockArray addObject:dic];
         
-        
-        
-        
+        dic =[@{@"dockName":menu.name,@"right":rightArr} mutableCopy];
+        [_dockArray addObject:dic];    
     }
     _dockTavleView.dockArray=_dockArray;
+    for ( int i=0; i<[_dockArray count]; i++) {
+        CGPoint point =CGPointMake(0, 0);
+        [_offsArray addObject:NSStringFromCGPoint(point)];
+    }
     [_dockTavleView reloadData];
-    
+    NSMutableDictionary *dic =_dockArray[0];
+    rightTableView.rightArray=[dic objectForKey:@"right"];
+    [rightTableView reloadData];
 }
 -(void)bottomLabelClick
 {
@@ -204,47 +190,15 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
--(void)quantity:(NSInteger)quantity money:(NSInteger)money key:(NSString *)key
-{
-    NSInteger addend  =quantity *money;
-    
-    [_dic setObject:[NSString stringWithFormat:@"%ld",addend] forKey:key];
-    //得到词典中所有KEY值
-    NSEnumerator * enumeratorKey = [_dic keyEnumerator];
-    //遍历所有KEY的值
-    NSInteger total=0;
-    NSInteger totalSingularInt=0;
-    for (NSObject *object in enumeratorKey) {
-        total+=[_dic[object] integerValue];
-        if ([_dic[object] integerValue] !=0) {
-            totalSingularInt +=1;
-            _totalSingular.hidden=NO;
-        }
-    }
-    if (totalSingularInt==0) {
-        _totalSingular.hidden=YES;
-        _bottomLabel.backgroundColor=[UIColor lightGrayColor];
-        _bottomLabel.userInteractionEnabled=NO;
-        _bottomLabel.text=@"请选购";
-    }else
-    {
-        _bottomLabel.backgroundColor=[UIColor clearColor];
-        _bottomLabel.userInteractionEnabled=YES;
-        _bottomLabel.text=@"去结算";
-    }
-    _totalSingular.text=[NSString stringWithFormat:@"%ld",totalSingularInt];
-    _totalPrice.text=[NSString stringWithFormat:@"￥%ld",total];
-    
-}
-
 -(void)dockClickindexPathRow:(NSMutableArray *)array index:(NSIndexPath *)index indeXPath:(NSIndexPath *)indexPath
 {
-    [_rightTableView setContentOffset:_rightTableView.contentOffset animated:NO];
-    _offsArray[index.row] =NSStringFromCGPoint(_rightTableView.contentOffset);
-    _rightTableView.rightArray=array;
-    [_rightTableView reloadData];
-    CGPoint point=CGPointFromString([_offsArray objectAtIndex:indexPath.row]);
-    [_rightTableView setContentOffset:point];
+//    [_rightTableView setContentOffset:_rightTableView.contentOffset animated:NO];
+//    _offsArray[index.row] =NSStringFromCGPoint(_rightTableView.contentOffset);
+    rightTableView.rightArray=array;
+    [rightTableView reloadData];
+//    CGPoint point=CGPointFromString([_offsArray objectAtIndex:indexPath.row]);
+//    [_rightTableView setContentOffset:point];
+//    [_rightTableView setNeedsDisplay];
     //    NSLog(@"%@",row);
 }
 -(UIView*)getNavigationBar
@@ -269,6 +223,21 @@
     view_bar1.backgroundColor=[UIColor clearColor];
     
     [self.view addSubview:view_bar1];
+    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar1.frame.size.height-44, self.view.frame.size.width-130, 44)];
+    title_label.text=@"商品快寻";
+    title_label.font=[UIFont boldSystemFontOfSize:20];
+    title_label.backgroundColor=[UIColor clearColor];
+    title_label.textColor =[UIColor whiteColor];
+    title_label.textAlignment=1;
+    [view_bar1 addSubview:title_label];
+    UIButton*btnSeach=[UIButton buttonWithType:0];
+    btnSeach.frame=CGRectMake(view_bar1.frame.size.width-55, view_bar1.frame.size.height-45, 49, 45);
+    
+    [btnSeach setTitle:@"订单" forState:0];
+    [btnSeach setImage:BundleImage(@"sskx_search.png") forState:0];
+    [btnSeach addTarget:self action:@selector(btnSeach:) forControlEvents:UIControlEventTouchUpInside];
+    [view_bar1 addSubview:btnSeach];
+
     //    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar1.frame.size.height-44, self.view.frame.size.width-130, 44)];
     ////        title_label.text=@"商品详情";
     //    title_label.font=[UIFont boldSystemFontOfSize:20];
@@ -283,7 +252,13 @@
     
     return view_bar1;
 }
-
+-(void)btnSeach:(id)sender
+{
+    LTKSeachResultViewController *seachR=[[LTKSeachResultViewController alloc]init];
+    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    [delegate.navigationController pushViewController:seachR animated:YES];
+    
+}
 -(void)cartImageClick
 {
     
@@ -292,6 +267,86 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+    return rightTableView.rightArray.count;
+    
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identifier = @"Cell";
+    //自定义UITableGridViewCell，里面加了个NSArray用于放置里面的3个图片按钮
+    UITableGridViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        cell = [[UITableGridViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell.selectedBackgroundView = [[UIView alloc] init];   
+    }
+    for(UIView *view in [cell subviews])
+    {
+        [view removeFromSuperview];
+        
+    }
+    NSMutableArray *array = [NSMutableArray array];
+    NSArray *arr=rightTableView.rightArray[indexPath.row];
+    for (int i=0; i<arr.count; i++) {
+        MenuModel *menu=arr[i];
+        NSLog(menu.name);
+        //自定义继续UIButton的UIImageButton 里面只是加了2个row和column属性
+        UIImageButton *button = [UIImageButton buttonWithType:UIButtonTypeCustom];
+        button.bounds = CGRectMake(0, 0, kImageWidth, kImageHeight);
+        button.center = CGPointMake((1 + i) * 5 + kImageWidth *( 0.5 + i) , 5 + kImageHeight * 0.5);
+        //button.column = i;
+        [button setValue:[NSNumber numberWithInt:i] forKey:@"column"];
+        button.tag=indexPath.row;
+        UIImage *image = [rightTableView cutCenterImage:[UIImage imageNamed:@"奶粉.jpg"]  size:CGSizeMake(60, 60)];
+        [button addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];             [button setBackgroundImage:image forState:UIControlStateNormal];
+        [cell addSubview:button];
+        [array addObject:button];
+        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(button.frame.origin.x,button.frame.origin.y+button.frame.size.height+5,kImageWidth,40)];
+        _label.text=menu.name;
+        _label.font=[UIFont boldSystemFontOfSize:14];
+        _label.backgroundColor=[UIColor clearColor];
+        _label.textColor =[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0];
+        _label.numberOfLines=1;
+        _label.textAlignment=NSTextAlignmentCenter;
+        _label.tag=indexPath.row;
+        [cell addSubview:_label];
+    }
+    [cell setValue:array forKey:@"buttons"];
+    //获取到里面的cell里面的3个图片按钮引用
+    NSArray *imageButtons =cell.buttons;
+    //设置UIImageButton里面的row属性
+    [imageButtons setValue:[NSNumber numberWithInt:indexPath.row] forKey:@"row"];
+    return cell;
+    /*
+     BARightCell *cell =[BARightCell cellWithTableView:tableView];
+     cell.TapActionBlock=^(NSInteger pageIndex ,NSInteger money,NSString *key){
+     if ([self.rightDelegate respondsToSelector:@selector(quantity:money:key:)]) {
+     [self.rightDelegate quantity:pageIndex money:money key:key];
+     }
+     
+     };
+     
+     cell.backgroundColor=UIColorRGBA(246, 246, 246, 1);
+     cell.rightData=_rightArray[indexPath.row];
+     return cell;
+     */
+    
+}
+-(void)imageItemClick:(UIImageButton *)button{
+    NSString *msg = [NSString stringWithFormat:@"第%i行 第%i列",button.row + 1, button.column + 1];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                    message:msg
+                                                   delegate:nil
+                                          cancelButtonTitle:@"好的，知道了"
+                                          otherButtonTitles:nil, nil];
+    [alert show];
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return kImageHeight + 50;
 }
 
 /*
