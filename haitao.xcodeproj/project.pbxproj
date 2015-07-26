@@ -216,8 +216,6 @@
 		AD8AA6A81B59E14400E324AD /* shop_zy_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8AA68D1B59E14400E324AD /* shop_zy_@2x.png */; };
 		AD8AA6A91B59E14400E324AD /* sy_setup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8AA68E1B59E14400E324AD /* sy_setup@2x.png */; };
 		AD8AA6AA1B59E14400E324AD /* top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8AA68F1B59E14400E324AD /* top@2x.png */; };
-		AD8AA6B71B59F4A300E324AD /* UserCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8AA6B51B59F4A300E324AD /* UserCenterController.m */; };
-		AD8AA6B81B59F4A300E324AD /* UserCenterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD8AA6B61B59F4A300E324AD /* UserCenterController.xib */; };
 		ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC811B53CB5F0022B2C2 /* main.m */; };
 		ADB5AC851B53CB5F0022B2C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC841B53CB5F0022B2C2 /* AppDelegate.m */; };
 		ADB5AC881B53CB5F0022B2C2 /* haitao.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC861B53CB5F0022B2C2 /* haitao.xcdatamodeld */; };
@@ -227,6 +225,19 @@
 		ADB5AC931B53CB5F0022B2C2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADB5AC911B53CB5F0022B2C2 /* LaunchScreen.xib */; };
 		ADB5AC9F1B53CB5F0022B2C2 /* haitaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC9E1B53CB5F0022B2C2 /* haitaoTests.m */; };
 		ADB5ACA91B5404140022B2C2 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB5ACA81B5404140022B2C2 /* libz.dylib */; };
+		ADCFB02A1B60CCFA001B3324 /* ForgetPwdStep1.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCFB0281B60CCFA001B3324 /* ForgetPwdStep1.m */; };
+		ADCFB02B1B60CCFA001B3324 /* ForgetPwdStep1.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADCFB0291B60CCFA001B3324 /* ForgetPwdStep1.xib */; };
+		ADCFB02F1B613E69001B3324 /* ForgetPwdStep2.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCFB02D1B613E69001B3324 /* ForgetPwdStep2.m */; };
+		ADCFB0301B613E69001B3324 /* ForgetPwdStep2.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADCFB02E1B613E69001B3324 /* ForgetPwdStep2.xib */; };
+		ADCFB0341B61C2BA001B3324 /* ForgetPwdStep3.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCFB0321B61C2BA001B3324 /* ForgetPwdStep3.m */; };
+		ADCFB0351B61C2BA001B3324 /* ForgetPwdStep3.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADCFB0331B61C2BA001B3324 /* ForgetPwdStep3.xib */; };
+		ADCFB0391B61DF69001B3324 /* ForgetForEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCFB0371B61DF69001B3324 /* ForgetForEmail.m */; };
+		ADCFB03A1B61DF69001B3324 /* ForgetForEmail.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADCFB0381B61DF69001B3324 /* ForgetForEmail.xib */; };
+		ADCFB0471B61EC4E001B3324 /* UserCenterCollention.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCFB0461B61EC4E001B3324 /* UserCenterCollention.m */; };
+		ADCFB04B1B61F1BC001B3324 /* UserCenterCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCFB0491B61F1BC001B3324 /* UserCenterCollectionCell.m */; };
+		ADCFB04C1B61F1BC001B3324 /* UserCenterCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADCFB04A1B61F1BC001B3324 /* UserCenterCollectionCell.xib */; };
+		ADCFB0501B62104C001B3324 /* UserCenterHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCFB04E1B62104C001B3324 /* UserCenterHeader.m */; };
+		ADCFB0511B62104C001B3324 /* UserCenterHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADCFB04F1B62104C001B3324 /* UserCenterHeader.xib */; };
 		ADD171801B5E1C9900E451D5 /* AddAddressStep2.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1717E1B5E1C9900E451D5 /* AddAddressStep2.m */; };
 		ADD171811B5E1C9900E451D5 /* AddAddressStep2.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD1717F1B5E1C9900E451D5 /* AddAddressStep2.xib */; };
 		ADD171851B5E39B100E451D5 /* UpdateAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD171831B5E39B100E451D5 /* UpdateAddress.m */; };
@@ -580,9 +591,6 @@
 		AD8AA68D1B59E14400E324AD /* shop_zy_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shop_zy_@2x.png"; sourceTree = "<group>"; };
 		AD8AA68E1B59E14400E324AD /* sy_setup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sy_setup@2x.png"; sourceTree = "<group>"; };
 		AD8AA68F1B59E14400E324AD /* top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top@2x.png"; sourceTree = "<group>"; };
-		AD8AA6B41B59F4A300E324AD /* UserCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCenterController.h; sourceTree = "<group>"; };
-		AD8AA6B51B59F4A300E324AD /* UserCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCenterController.m; sourceTree = "<group>"; };
-		AD8AA6B61B59F4A300E324AD /* UserCenterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCenterController.xib; sourceTree = "<group>"; };
 		ADB5AC7C1B53CB5F0022B2C2 /* haitao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = haitao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADB5AC801B53CB5F0022B2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADB5AC811B53CB5F0022B2C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -599,6 +607,26 @@
 		ADB5AC9E1B53CB5F0022B2C2 /* haitaoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = haitaoTests.m; sourceTree = "<group>"; };
 		ADB5ACA81B5404140022B2C2 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		ADCFB0251B60852A001B3324 /* RrequesURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RrequesURL.h; sourceTree = "<group>"; };
+		ADCFB0271B60CCFA001B3324 /* ForgetPwdStep1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdStep1.h; sourceTree = "<group>"; };
+		ADCFB0281B60CCFA001B3324 /* ForgetPwdStep1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdStep1.m; sourceTree = "<group>"; };
+		ADCFB0291B60CCFA001B3324 /* ForgetPwdStep1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgetPwdStep1.xib; sourceTree = "<group>"; };
+		ADCFB02C1B613E69001B3324 /* ForgetPwdStep2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdStep2.h; sourceTree = "<group>"; };
+		ADCFB02D1B613E69001B3324 /* ForgetPwdStep2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdStep2.m; sourceTree = "<group>"; };
+		ADCFB02E1B613E69001B3324 /* ForgetPwdStep2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgetPwdStep2.xib; sourceTree = "<group>"; };
+		ADCFB0311B61C2BA001B3324 /* ForgetPwdStep3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdStep3.h; sourceTree = "<group>"; };
+		ADCFB0321B61C2BA001B3324 /* ForgetPwdStep3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdStep3.m; sourceTree = "<group>"; };
+		ADCFB0331B61C2BA001B3324 /* ForgetPwdStep3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgetPwdStep3.xib; sourceTree = "<group>"; };
+		ADCFB0361B61DF69001B3324 /* ForgetForEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetForEmail.h; sourceTree = "<group>"; };
+		ADCFB0371B61DF69001B3324 /* ForgetForEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetForEmail.m; sourceTree = "<group>"; };
+		ADCFB0381B61DF69001B3324 /* ForgetForEmail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgetForEmail.xib; sourceTree = "<group>"; };
+		ADCFB0451B61EC4E001B3324 /* UserCenterCollention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCenterCollention.h; sourceTree = "<group>"; };
+		ADCFB0461B61EC4E001B3324 /* UserCenterCollention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCenterCollention.m; sourceTree = "<group>"; };
+		ADCFB0481B61F1BC001B3324 /* UserCenterCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCenterCollectionCell.h; sourceTree = "<group>"; };
+		ADCFB0491B61F1BC001B3324 /* UserCenterCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCenterCollectionCell.m; sourceTree = "<group>"; };
+		ADCFB04A1B61F1BC001B3324 /* UserCenterCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCenterCollectionCell.xib; sourceTree = "<group>"; };
+		ADCFB04D1B62104C001B3324 /* UserCenterHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCenterHeader.h; sourceTree = "<group>"; };
+		ADCFB04E1B62104C001B3324 /* UserCenterHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCenterHeader.m; sourceTree = "<group>"; };
+		ADCFB04F1B62104C001B3324 /* UserCenterHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCenterHeader.xib; sourceTree = "<group>"; };
 		ADD1717D1B5E1C9900E451D5 /* AddAddressStep2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAddressStep2.h; sourceTree = "<group>"; };
 		ADD1717E1B5E1C9900E451D5 /* AddAddressStep2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressStep2.m; sourceTree = "<group>"; };
 		ADD1717F1B5E1C9900E451D5 /* AddAddressStep2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAddressStep2.xib; sourceTree = "<group>"; };
@@ -640,11 +668,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD8AA6621B59484A00E324AD /* QuartzCore.framework in Frameworks */,
 				AD8AA6541B59476500E324AD /* CoreData.framework in Frameworks */,
 				AD8AA6691B594E8B00E324AD /* libsqlite3.0.dylib in Frameworks */,
 				AD8AA66A1B594E8B00E324AD /* libsqlite3.dylib in Frameworks */,
 				AD8AA6661B594E5C00E324AD /* MessageUI.framework in Frameworks */,
-				AD8AA6621B59484A00E324AD /* QuartzCore.framework in Frameworks */,
 				AD8AA6601B59482C00E324AD /* libstdc++.dylib in Frameworks */,
 				AD8AA65E1B59480300E324AD /* CoreTelephony.framework in Frameworks */,
 				AD8AA65C1B5947EC00E324AD /* ImageIO.framework in Frameworks */,
@@ -1355,14 +1383,20 @@
 		ADB5ACAB1B54066A0022B2C2 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				ADD171871B5F2E6300E451D5 /* Model */,
+				ADCFB0261B60C5F7001B3324 /* Password */,
 				ADD171991B5FCDA500E451D5 /* Register */,
-				ADD171871B5F2E6300E451D5 /* model */,
 				ADD4D4201B5BAEE0004AFBE2 /* Address */,
 				ADD4D4151B5B9B92004AFBE2 /* UserInfo */,
 				ADD4D4141B5B9B73004AFBE2 /* Login */,
-				AD8AA6B41B59F4A300E324AD /* UserCenterController.h */,
-				AD8AA6B51B59F4A300E324AD /* UserCenterController.m */,
-				AD8AA6B61B59F4A300E324AD /* UserCenterController.xib */,
+				ADCFB0451B61EC4E001B3324 /* UserCenterCollention.h */,
+				ADCFB0461B61EC4E001B3324 /* UserCenterCollention.m */,
+				ADCFB0481B61F1BC001B3324 /* UserCenterCollectionCell.h */,
+				ADCFB0491B61F1BC001B3324 /* UserCenterCollectionCell.m */,
+				ADCFB04A1B61F1BC001B3324 /* UserCenterCollectionCell.xib */,
+				ADCFB04D1B62104C001B3324 /* UserCenterHeader.h */,
+				ADCFB04E1B62104C001B3324 /* UserCenterHeader.m */,
+				ADCFB04F1B62104C001B3324 /* UserCenterHeader.xib */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -1451,7 +1485,26 @@
 			name = Sources;
 			sourceTree = "<group>";
 		};
-		ADD171871B5F2E6300E451D5 /* model */ = {
+		ADCFB0261B60C5F7001B3324 /* Password */ = {
+			isa = PBXGroup;
+			children = (
+				ADCFB0271B60CCFA001B3324 /* ForgetPwdStep1.h */,
+				ADCFB0281B60CCFA001B3324 /* ForgetPwdStep1.m */,
+				ADCFB0291B60CCFA001B3324 /* ForgetPwdStep1.xib */,
+				ADCFB02C1B613E69001B3324 /* ForgetPwdStep2.h */,
+				ADCFB02D1B613E69001B3324 /* ForgetPwdStep2.m */,
+				ADCFB02E1B613E69001B3324 /* ForgetPwdStep2.xib */,
+				ADCFB0311B61C2BA001B3324 /* ForgetPwdStep3.h */,
+				ADCFB0321B61C2BA001B3324 /* ForgetPwdStep3.m */,
+				ADCFB0331B61C2BA001B3324 /* ForgetPwdStep3.xib */,
+				ADCFB0361B61DF69001B3324 /* ForgetForEmail.h */,
+				ADCFB0371B61DF69001B3324 /* ForgetForEmail.m */,
+				ADCFB0381B61DF69001B3324 /* ForgetForEmail.xib */,
+			);
+			name = Password;
+			sourceTree = "<group>";
+		};
+		ADD171871B5F2E6300E451D5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				ADD171881B5F2E8A00E451D5 /* AddressModel.h */,
@@ -1459,7 +1512,7 @@
 				ADD1718B1B5F2F7A00E451D5 /* BaseModel.h */,
 				ADD1718C1B5F2F7A00E451D5 /* BaseModel.m */,
 			);
-			name = model;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		ADD171991B5FCDA500E451D5 /* Register */ = {
@@ -1613,6 +1666,7 @@
 				AD8AA6471B59435C00E324AD /* readme.txt in Resources */,
 				A21814281B56063300D64E70 /* arrrow_left.png in Resources */,
 				ADD171811B5E1C9900E451D5 /* AddAddressStep2.xib in Resources */,
+				ADCFB0351B61C2BA001B3324 /* ForgetPwdStep3.xib in Resources */,
 				A21815B51B5A0E9A00D64E70 /* bt_pj_@2x.png in Resources */,
 				A2FC74C31B5A31340094BC59 /* bg_01_n.png in Resources */,
 				A21815C21B5A0E9A00D64E70 /* shopbt_02_@2x.png in Resources */,
@@ -1668,6 +1722,7 @@
 				AD8AA6921B59E14400E324AD /* banner_03_02.png in Resources */,
 				A2FFE1891B60B7C50004B4BC /* macbook_pro.jpg in Resources */,
 				AD8AA61E1B59435C00E324AD /* Overlay.png in Resources */,
+				ADCFB0511B62104C001B3324 /* UserCenterHeader.xib in Resources */,
 				AD8AA6A81B59E14400E324AD /* shop_zy_@2x.png in Resources */,
 				A21815BC1B5A0E9A00D64E70 /* ic_01_@2x.png in Resources */,
 				AD8AA6901B59E14400E324AD /* banner_01_02.png in Resources */,
@@ -1686,17 +1741,21 @@
 				AD8AA6261B59435C00E324AD /* HZAreaPickerView.xib in Resources */,
 				A2FFE17F1B608EDF0004B4BC /* pull_refresh@2x.png in Resources */,
 				AD8AA6941B59E14400E324AD /* default_02@2x.png in Resources */,
+				ADCFB02B1B60CCFA001B3324 /* ForgetPwdStep1.xib in Resources */,
 				A21815BA1B5A0E9A00D64E70 /* gwc_bg_02_@2x.png in Resources */,
 				AD8AA6A71B59E14400E324AD /* icon_05C@2x.png in Resources */,
 				A21815AD1B5A0E9A00D64E70 /* bt_04_J@2x.png in Resources */,
+				ADCFB04C1B61F1BC001B3324 /* UserCenterCollectionCell.xib in Resources */,
 				A2FC74D21B5A31340094BC59 /* ic_07_h.png in Resources */,
 				A2FC74C41B5A31340094BC59 /* df_01.png in Resources */,
 				ADB5AC931B53CB5F0022B2C2 /* LaunchScreen.xib in Resources */,
+				ADCFB0301B613E69001B3324 /* ForgetPwdStep2.xib in Resources */,
 				A2FC74CA1B5A31340094BC59 /* ic_03_h.png in Resources */,
 				ADB5AC901B53CB5F0022B2C2 /* Images.xcassets in Resources */,
 				AD8AA69D1B59E14400E324AD /* gwc_line_@2x.png in Resources */,
 				A2FFE17E1B608EDF0004B4BC /* pull_loading@3x.png in Resources */,
 				AD8AA69B1B59E14400E324AD /* titlebar@2x.png in Resources */,
+				ADCFB03A1B61DF69001B3324 /* ForgetForEmail.xib in Resources */,
 				A2FFE17D1B608EDF0004B4BC /* pull_loading@2x.png in Resources */,
 				ADD4D42D1B5CBC06004AFBE2 /* AddressListCell.xib in Resources */,
 				A21815BB1B5A0E9A00D64E70 /* gwc_line_@2x.png in Resources */,
@@ -1706,7 +1765,6 @@
 				AD8AA6991B59E14400E324AD /* pic_03@2x.png in Resources */,
 				A2FC74CC1B5A31340094BC59 /* ic_04_h.png in Resources */,
 				AD8AA69E1B59E14400E324AD /* icon_01@2x.png in Resources */,
-				AD8AA6B81B59F4A300E324AD /* UserCenterController.xib in Resources */,
 				AD8AA62D1B59435C00E324AD /* ItemView.xib in Resources */,
 				ADD171861B5E39B100E451D5 /* UpdateAddress.xib in Resources */,
 				A2FC74D01B5A31340094BC59 /* ic_06_h.png in Resources */,
@@ -1767,7 +1825,6 @@
 				A2FFE1711B608ED20004B4BC /* DJRefreshTopView.m in Sources */,
 				ADB5AC851B53CB5F0022B2C2 /* AppDelegate.m in Sources */,
 				AD8AA6721B594EED00E324AD /* HZLocation.m in Sources */,
-				AD8AA6B71B59F4A300E324AD /* UserCenterController.m in Sources */,
 				A2FFE16F1B608ED20004B4BC /* DJRefresh.m in Sources */,
 				ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */,
 				A2FC75051B5D1FFA0094BC59 /* NSString+MJExtension.m in Sources */,
@@ -1811,6 +1868,7 @@
 				A2FC74A51B5A1E580094BC59 /* FCImageTextViewController.m in Sources */,
 				AD8AA6391B59435C00E324AD /* Toolkit.m in Sources */,
 				AD8AA5891B59416000E324AD /* LTKNavigationViewController.m in Sources */,
+				ADCFB0341B61C2BA001B3324 /* ForgetPwdStep3.m in Sources */,
 				AD8AA6191B59435C00E324AD /* ELCAssetTablePicker.m in Sources */,
 				ADD4D41E1B5BA39B004AFBE2 /* UserDetailController.m in Sources */,
 				AD8AA6711B594EED00E324AD /* DejalActivityView.m in Sources */,
@@ -1825,6 +1883,7 @@
 				A20BA7821B620EEA00F73A57 /* TitleBtn.m in Sources */,
 				AD8AA6171B59435C00E324AD /* ELCAsset.m in Sources */,
 				A2F5FB4C1B5FD64100A8205C /* UIScrollView+SVPullToRefresh.m in Sources */,
+				ADCFB0471B61EC4E001B3324 /* UserCenterCollention.m in Sources */,
 				AD8AA6271B59435C00E324AD /* NSURLAdditions.m in Sources */,
 				AD8AA6381B59435C00E324AD /* SwipeView.m in Sources */,
 				ADD171851B5E39B100E451D5 /* UpdateAddress.m in Sources */,
@@ -1832,6 +1891,7 @@
 				ADD171971B5FCD9D00E451D5 /* RegisterViewController.m in Sources */,
 				A2FC75031B5D1FFA0094BC59 /* NSObject+MJKeyValue.m in Sources */,
 				AD8AA6361B59435C00E324AD /* NSData+Base64.m in Sources */,
+				ADCFB04B1B61F1BC001B3324 /* UserCenterCollectionCell.m in Sources */,
 				AD8AA62F1B59435C00E324AD /* JUUserDefaults.m in Sources */,
 				A2D039031B5E902E00EB0FDC /* New_Goods.m in Sources */,
 				AD8AA62B1B59435C00E324AD /* UrlImageButton.m in Sources */,
@@ -1865,9 +1925,12 @@
 				AD8AA62E1B59435C00E324AD /* JUConstantDefined.m in Sources */,
 				AD1386921B54D5BF00130E49 /* LoginViewController.m in Sources */,
 				A2FC75041B5D1FFA0094BC59 /* NSObject+MJProperty.m in Sources */,
+				ADCFB0501B62104C001B3324 /* UserCenterHeader.m in Sources */,
+				ADCFB02F1B613E69001B3324 /* ForgetPwdStep2.m in Sources */,
 				A2FC74E31B5A3F340094BC59 /* BARightTableView.m in Sources */,
 				AD8AA6161B59435C00E324AD /* ELCAlbumPickerController.m in Sources */,
 				A21814351B5652F000D64E70 /* ManitViewController.m in Sources */,
+				ADCFB0391B61DF69001B3324 /* ForgetForEmail.m in Sources */,
 				AD8AA5961B59427000E324AD /* HTBoutiqueViewController.m in Sources */,
 				AD8AA64A1B59435C00E324AD /* ZSYPopoverListView.m in Sources */,
 				AD8AA63B1B59435C00E324AD /* ProfileImagesViewController.m in Sources */,
@@ -1875,6 +1938,7 @@
 				ADD4D42C1B5CBC06004AFBE2 /* AddressListCell.m in Sources */,
 				ADD1718D1B5F2F7A00E451D5 /* BaseModel.m in Sources */,
 				ADD4D4131B5B999B004AFBE2 /* MyUtil.m in Sources */,
+				ADCFB02A1B60CCFA001B3324 /* ForgetPwdStep1.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

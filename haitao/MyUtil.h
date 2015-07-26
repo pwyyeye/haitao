@@ -22,5 +22,10 @@
 +(int)colorStringToInt:(NSString *)colorStrig colorNo:(int)colorNo;
 
 //验证手机号码格式
-+ (BOOL)checkTelephone:(NSString *)str;
++ (BOOL)isValidateTelephone:(NSString *)str;
+
+//利用正则表达式验证邮箱
++(BOOL)isValidateEmail:(NSString *)email;
+
+
 @end

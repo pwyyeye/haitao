@@ -40,6 +40,9 @@
 //登录
 #define requestUrl_doLogin [NSString stringWithFormat:@"%@&f=doLogin&m=user",requestUrl]
 
+//登录
+#define requestUrl_resetPassByMobile [NSString stringWithFormat:@"%@&f=resetPassByMobile&m=user",requestUrl]
+
 //登出
 #define requestUrl_doLoginOut [NSString stringWithFormat:@"%@&f=doLoginOut&m=user",requestUrl]
 

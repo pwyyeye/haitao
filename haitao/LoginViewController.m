@@ -8,6 +8,8 @@
 
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
+#import "ForgetPwdStep1.h"
+
 @interface LoginViewController ()
 
 @end
@@ -29,12 +31,44 @@
     if (![MyUtil isEmptyString:password]) {
         _user_pass.text=password;
     }
-
+    //是否显示navigationBar
     [self.navigationController setNavigationBarHidden:NO];
+    //navigationBar 背景色
+    self.navigationController.navigationBar.barTintColor=RGB(255, 13, 94);
+    //若为yesnavigationBar背景 会有50％的透明
+    self.navigationController.navigationBar.translucent = NO;
     
-    
-}
+    //返回值
 
+    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)]];
+    
+    //返回的颜色
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    //navigationBar的标题
+    //self.navigationItem.title=@"登录";
+    self.title=@"登录";
+  
+    //设置标题颜色
+    
+    UIColor * color = [UIColor whiteColor];
+    
+    NSDictionary * dict=[NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName];
+    
+    self.navigationController.navigationBar.titleTextAttributes = dict;
+    
+    //设置电池状态栏为白色
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
+    
+    
+    
+    
+    _loginBtn.layer.shadowColor=[UIColor blackColor].CGColor;
+    
+
+    [_loginBtn.layer setShadowOffset: CGSizeMake(0.1, 2.1)];
+    [_loginBtn.layer setShadowRadius: 4];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -49,13 +83,18 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)gotoBack{
+  
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+}
 #pragma mark - login
 - (IBAction)login:(id)sender {
     
     _loginRequestURL=[NSString stringWithFormat:@"%@&f=doLogin&m=user",requestUrl];
 
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [app startLoading];
+    
    
     NSUserDefaults *userdefault=[NSUserDefaults standardUserDefaults];
     _username=_user_name.text;
@@ -64,9 +103,19 @@
     if (sender==nil) {
         _username=[userdefault objectForKey:@"user_name"];
         _password=[userdefault objectForKey:@"user_pass"];
+    }else{
+        if (![MyUtil isValidateTelephone:_user_name.text]) {
+            ShowMessage(@"请输入正确的手机号码！");
+            return;
+        }
+        if ([MyUtil isEmptyString:_user_pass.text]) {
+            ShowMessage(@"密码不能为空！");
+            return;
+        }
     }
     
-    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
 
      NSDictionary *parameters = @{@"user_name":_username,@"user_pass":_password};
     
@@ -83,7 +132,15 @@
 - (IBAction)gotoRegister:(id)sender {
     RegisterViewController * vc=[[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
    // AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    
+}
 
+- (IBAction)gotoForgetPwd:(id)sender {
+    ForgetPwdStep1 * vc=[[ForgetPwdStep1 alloc] initWithNibName:@"ForgetPwdStep1" bundle:nil];
+    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil  action:nil]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -105,6 +162,9 @@
         [USER_DEFAULT setObject:_password forKey:@"user_pass"];
         
         [self.navigationController popViewControllerAnimated:YES];
+        if (_customTabBar!=nil) {
+            _customTabBar.currentSelectedIndex=_currentSelectedIndex;
+        }
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeToReload" object:nil];
         

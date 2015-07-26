@@ -10,4 +10,6 @@
 
 @interface AddAddressStep2 : UIViewController
 
+@property(strong,nonatomic) NSString *id;
+
 @end

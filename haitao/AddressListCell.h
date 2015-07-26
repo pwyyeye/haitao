@@ -12,4 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *username;
 
+@property (weak, nonatomic) IBOutlet UILabel *address;
+
+@property (weak, nonatomic) IBOutlet UILabel *telephone;
+
 @end

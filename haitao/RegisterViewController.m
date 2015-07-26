@@ -19,9 +19,9 @@
     // Do any additional setup after loading the view from its nib.
     
     [self.navigationController setNavigationBarHidden:NO];
-    self.navigationController.title=@"注册";
+    self.title=@"注册";
     
-    _step=0;
+    _step=60;
     _timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(captchaWait) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];//暂停
 
@@ -59,15 +59,12 @@
             [app stopLoading];
             
             //判断是否有注册通知
-            [USER_DEFAULT setObject:_password forKey:@"user_pass"];
+            [USER_DEFAULT setObject:_password.text forKey:@"user_pass"];
             
             [self.navigationController popToRootViewControllerAnimated:YES];
             
             
             
-        }else{
-            NSArray *array=[dictemp objectForKey:@"msg"];
-            ShowMessage([array objectAtIndex:0]);
         }
         
     }
@@ -76,7 +73,7 @@
 //获取验证码
 - (IBAction)getCaptcha:(id)sender {
     
-    if (![MyUtil checkTelephone:_mobile.text]) {
+    if (![MyUtil isValidateTelephone:_mobile.text]) {
         ShowMessage(@"请输入正确的手机号码！");
         return;
     }
@@ -98,9 +95,9 @@
 
 -(void)captchaWait{
 
-    if (_step==60) {
+    if (_step==0) {
         _btn_captcha.enabled=YES;
-        _step=0;
+        _step=60;
         
         [_timer setFireDate:[NSDate distantFuture]];//暂停
         [_btn_captcha setTitle:@"获取验证码" forState:UIControlStateNormal];
@@ -108,7 +105,7 @@
         
     }else{
         _btn_captcha.enabled=NO;
-        _step++;
+        _step--;
         _btn_captcha.titleLabel.text=[NSString stringWithFormat:@"重新发送(%d)秒",_step];
         [_btn_captcha setTitle:[NSString stringWithFormat:@"重新发送(%d)秒",_step] forState:UIControlStateDisabled];
         [_btn_captcha setTitle:[NSString stringWithFormat:@"重新发送(%d)秒",_step] forState:UIControlStateNormal];
@@ -119,7 +116,7 @@
 }
 
 - (IBAction)registerAccount:(id)sender {
-    if (![MyUtil checkTelephone:_mobile.text]) {
+    if (![MyUtil isValidateTelephone:_mobile.text]) {
         ShowMessage(@"请输入正确的手机号码！");
         return;
     }
@@ -142,5 +139,9 @@
 
 - (IBAction)didEndOnExit:(id)sender {
     [sender resignFirstResponder];
+}
+
+-(void)dealloc{
+    [_timer invalidate];
 }
 @end
