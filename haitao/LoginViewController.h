@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LTKViewController.h"
+#import "CustomTabBar.h"
 @interface LoginViewController : UIViewController<HTTPControllerProtocol>
 
 @property (weak, nonatomic) IBOutlet UITextField *user_name;
@@ -19,6 +20,10 @@
 @property(strong,nonatomic) NSString *username;
 
 @property(strong,nonatomic) NSString *password;
+
+@property(assign,nonatomic) int currentSelectedIndex;
+
+@property(strong,nonatomic) CustomTabBar *customTabBar;
 
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 

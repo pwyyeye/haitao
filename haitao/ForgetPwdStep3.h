@@ -18,5 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *comfirm_TextField;
 
+- (IBAction)EditingDidEnd:(id)sender;
+
 - (IBAction)resetPwd:(id)sender;
 @end

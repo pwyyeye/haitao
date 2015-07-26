@@ -19,14 +19,17 @@
     // Do any additional setup after loading the view from its nib.
     //self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"arrrow_right.png"] style:UIBarButtonItemStylePlain target:self action:@selector(editAddress)];
     
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(editAddress)];
+//    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(editAddress)];
    
+    self.title=@"添加收货地址";
+    _province.enabled=NO;
     _picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH, 150)];
-   
+    
     [self initArea];
     
     _picker.dataSource = self;
     _picker.delegate = self;
+    
     
 }
 
@@ -53,7 +56,7 @@
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *plistPath = [bundle pathForResource:@"area" ofType:@"plist"];
     _areaDic = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
-    NSLog(@"----pass-areaDic%@---",_areaDic);
+//    NSLog(@"----pass-areaDic%@---",_areaDic);
     NSArray *components = [_areaDic allKeys];
     NSArray *sortedArray = [components sortedArrayUsingComparator: ^(id obj1, id obj2) {
         
@@ -92,12 +95,55 @@
 
 }
 - (IBAction)gotoStep2:(id)sender {
-    UIViewController *detailViewController =[[AddAddressStep1 alloc] initWithNibName:@"AddAddressStep2" bundle:nil];
     
     // Pass the selected object to the new view controller.
+    if ([MyUtil isEmptyString:_consignee.text]) {
+        ShowMessage(@"请填写收件人！");
+        return;
+    }
+    if (![MyUtil isValidateTelephone:_mobile.text]) {
+        ShowMessage(@"请输入正确的手机号码！");
+        return;
+    }
+    if ([MyUtil isEmptyString:_idcard.text]) {
+        ShowMessage(@"请填写身份证号码！");
+        return;
+    }
+    if ([MyUtil isEmptyString:_province.text]) {
+        ShowMessage(@"请选择省市区！");
+        return;
+    }
+    if ([MyUtil isEmptyString:_address.text]) {
+        ShowMessage(@"请输入详细地址！");
+        return;
+    }
+    if ([MyUtil isEmptyString:_zipcode.text]) {
+        ShowMessage(@"请输入邮编！");
+        return;
+    }
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    NSDictionary *parameters = @{@"consignee":_consignee.text,@"mobile":_mobile.text,@"idcard":_idcard.text,@"province":_province.text,@"address":_address.text,@"zipcode":_zipcode.text,@"is_default":@"1",@"idcard_1":@"",@"idcard_2":@""};
     
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_addAddress withType:POSTURL withPam:parameters withUrlName:@"addAddress"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
+    
+}
+-(void)didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
+    if ([[dictemp objectForKey:@"status"] integerValue]== 1) {
+        UIViewController *detailViewController =[[AddAddressStep2 alloc] initWithNibName:@"AddAddressStep2" bundle:nil];
+        
+        self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        [self.navigationController pushViewController:detailViewController animated:YES];
+        //通知刷新
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeToReload" object:nil];
+        
+        
+        
+        
+    }
+
 }
 
 - (IBAction)areaPick:(id)sender {
@@ -122,8 +168,8 @@
         }
         
         NSString *showMsg = [NSString stringWithFormat: @"%@ %@ %@", provinceStr, cityStr, districtStr];
-        _address.font=[UIFont systemFontOfSize:12.0];
-        _address.text=showMsg;
+        _province.font=[UIFont systemFontOfSize:12.0];
+        _province.text=showMsg;
     }];
     UIAlertAction* no=[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleDefault) handler:nil];
     [alertVc.view addSubview:_picker];
@@ -133,10 +179,8 @@
 
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    NSLog(@"----pass %@%d---",@"action",buttonIndex);
-
+- (IBAction)didEndOnExit:(id)sender {
+    [sender resignFirstResponder];
 }
 
 #pragma mark- Picker Data Source Methods
@@ -163,7 +207,7 @@
 {
     if (component == PROVINCE_COMPONENT) {
         _selectedProvince = [_provinces objectAtIndex: row];
-        NSDictionary *tmp = [NSDictionary dictionaryWithDictionary: [_areaDic objectForKey: [NSString stringWithFormat:@"%d", row]]];
+        NSDictionary *tmp = [NSDictionary dictionaryWithDictionary: [_areaDic objectForKey: [NSString stringWithFormat:@"%ld", (long)row]]];
         NSDictionary *dic = [NSDictionary dictionaryWithDictionary: [tmp objectForKey: _selectedProvince]];
         NSArray *cityArray = [dic allKeys];
         NSArray *sortedArray = [cityArray sortedArrayUsingComparator: ^(id obj1, id obj2) {

@@ -61,10 +61,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     
     
-    NSShadow* shadow = [[NSShadow alloc] init];
-    [shadow setShadowColor: UIColor.blackColor];
-    [shadow setShadowOffset: CGSizeMake(0.1, 2.1)];
-    [shadow setShadowBlurRadius: 4];
+    
     
     _loginBtn.layer.shadowColor=[UIColor blackColor].CGColor;
     
@@ -165,6 +162,9 @@
         [USER_DEFAULT setObject:_password forKey:@"user_pass"];
         
         [self.navigationController popViewControllerAnimated:YES];
+        if (_customTabBar!=nil) {
+            _customTabBar.currentSelectedIndex=_currentSelectedIndex;
+        }
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeToReload" object:nil];
         

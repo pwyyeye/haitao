@@ -23,7 +23,10 @@
                         <constraint firstAttribute="height" constant="40" id="k0Q-CE-ulG"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                    <connections>
+                        <action selector="EditingDidEnd:" destination="-1" eventType="editingDidEnd" id="Rht-m4-Ea3"/>
+                    </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="确认密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JXQ-b6-Tv5">
                     <rect key="frame" x="13" y="70" width="574" height="40"/>
@@ -31,7 +34,7 @@
                         <constraint firstAttribute="height" constant="40" id="wbM-Xj-bcn"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RE6-sP-dw6">
                     <rect key="frame" x="13" y="120" width="574" height="40"/>

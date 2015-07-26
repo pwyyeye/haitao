@@ -38,7 +38,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     self.collectionView.backgroundColor=[UIColor whiteColor];
     //self.collectionView.frame=CGRectMake(10, 0, SCREEN_WIDTH-20, SCREEN_HEIGHT);
 //    self.title=@"用户中心";
-    [self.navigationController setNavigationBarHidden:YES];
+    
     
     //设置电池状态栏前景色为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
@@ -63,7 +63,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    [self.navigationController setNavigationBarHidden:YES];
 }
 /*
 #pragma mark - Navigation
@@ -183,7 +183,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     UIViewController *detailViewController;
     if (indexPath.item==0) {
         //detailViewController  = [[UserDetailController alloc] init];
-    }else if(indexPath.item==5){
+    }else if(indexPath.item==4){
         detailViewController  = [[AddressListController alloc] init];
     }
     
@@ -191,9 +191,14 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     // Pass the selected object to the new view controller.
     
     // Push the view controller.
-    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
-    [self.navigationController pushViewController:detailViewController animated:YES];
-
+    
+//    [self.navigationController pushViewController:detailViewController animated:YES];
+    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+//    delegate.navigationController.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:nil];
+    
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
+    delegate.navigationController.navigationItem.backBarButtonItem=item;
+    [delegate.navigationController pushViewController:detailViewController animated:YES];
 
 }
 //定义每个UICollectionView 的大小

@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ForgetPwdStep1">
             <connections>
+                <outlet property="btn_stepNext" destination="9g1-lz-tCa" id="0da-kY-WPD"/>
                 <outlet property="userame" destination="ffi-lq-3vF" id="vOi-1e-kd3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -22,7 +23,7 @@
                         <constraint firstAttribute="height" constant="40" id="U8s-Nm-GxD"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9g1-lz-tCa">
                     <rect key="frame" x="13" y="70" width="574" height="40"/>

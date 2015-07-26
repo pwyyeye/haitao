@@ -21,7 +21,7 @@
     [self.navigationController setNavigationBarHidden:NO];
     self.title=@"注册";
     
-    _step=0;
+    _step=60;
     _timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(captchaWait) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];//暂停
 
@@ -95,9 +95,9 @@
 
 -(void)captchaWait{
 
-    if (_step==60) {
+    if (_step==0) {
         _btn_captcha.enabled=YES;
-        _step=0;
+        _step=60;
         
         [_timer setFireDate:[NSDate distantFuture]];//暂停
         [_btn_captcha setTitle:@"获取验证码" forState:UIControlStateNormal];
@@ -105,7 +105,7 @@
         
     }else{
         _btn_captcha.enabled=NO;
-        _step++;
+        _step--;
         _btn_captcha.titleLabel.text=[NSString stringWithFormat:@"重新发送(%d)秒",_step];
         [_btn_captcha setTitle:[NSString stringWithFormat:@"重新发送(%d)秒",_step] forState:UIControlStateDisabled];
         [_btn_captcha setTitle:[NSString stringWithFormat:@"重新发送(%d)秒",_step] forState:UIControlStateNormal];
@@ -139,5 +139,9 @@
 
 - (IBAction)didEndOnExit:(id)sender {
     [sender resignFirstResponder];
+}
+
+-(void)dealloc{
+    [_timer invalidate];
 }
 @end

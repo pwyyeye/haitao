@@ -12,7 +12,7 @@
 #define CITY_COMPONENT      1
 #define DISTRICT_COMPONENT  2
 
-@interface AddAddressStep1 : UIViewController<UIActionSheetDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+@interface AddAddressStep1 : UIViewController<UIActionSheetDelegate,UIPickerViewDataSource,UIPickerViewDelegate,HTTPControllerProtocol>
 
 @property (weak, nonatomic) IBOutlet UITextField *consignee;//收货人
 
@@ -39,4 +39,6 @@
 - (IBAction)gotoStep2:(id)sender;
 
 - (IBAction)areaPick:(id)sender;
+
+- (IBAction)didEndOnExit:(id)sender;
 @end

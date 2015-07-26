@@ -35,6 +35,10 @@
 }
 */
 
+- (IBAction)EditingDidEnd:(id)sender {
+    [sender resignFirstResponder];
+}
+
 - (IBAction)resetPwd:(id)sender {
     
     if ([MyUtil isEmptyString:_password_TextField.text]) {
@@ -50,16 +54,20 @@
         ShowMessage(@"两次输入密码不一样！");
         return;
     }
-    NSDictionary *parameters = @{@"user_name":_username,@"user_pass":_password_TextField.text,@"mobile_code":_captcha};
+    NSDictionary *parameters = @{@"mobile":_username,@"new_pass":_password_TextField.text,@"mobile_code":_captcha};
     
-//    HTTPController *httpController =  [[HTTPController alloc]initWith:req withType:POSTURL withPam:parameters withUrlName:@"login"];
-//    httpController.delegate = self;
-//    [httpController onSearchForPostJson];
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_resetPassByMobile withType:POSTURL withPam:parameters withUrlName:@"forgetPassword"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
     
 
 }
 
 -(void)didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
-
+    if ([[dictemp objectForKey:@"status"] integerValue]== 1) {
+        ShowMessage(@"密码重置成功！");
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+    }
 }
 @end

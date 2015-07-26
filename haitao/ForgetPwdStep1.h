@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ForgetPwdStep1 : UIViewController
+@interface ForgetPwdStep1 : UIViewController<HTTPControllerProtocol>
 
 @property (weak, nonatomic) IBOutlet UITextField *userame;
+
+@property(strong,nonatomic) NSTimer *timer;
+@property(assign,nonatomic) int step;
+@property (weak, nonatomic) IBOutlet UIButton *btn_stepNext;
 
 - (IBAction)gotoStep2:(id)sender;
 

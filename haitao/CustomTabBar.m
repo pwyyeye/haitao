@@ -209,10 +209,15 @@
     if (self.currentSelectedIndex==4) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         if ([MyUtil isEmptyString:app.s_app_id]) {
-            self.currentSelectedIndex=self.selectedIndex;
-            UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
             
+            LoginViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+            vc.currentSelectedIndex=self.currentSelectedIndex;
+            vc.customTabBar=self;
             [app.navigationController pushViewController:vc animated:YES];
+            self.currentSelectedIndex=self.selectedIndex;
+        }else{
+            
+            self.selectedIndex = self.currentSelectedIndex;
             
         }
         

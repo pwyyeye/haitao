@@ -22,8 +22,45 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    //是否显示navigationBar
+    [self.navigationController setNavigationBarHidden:NO];
+    //navigationBar 背景色
+    self.navigationController.navigationBar.barTintColor=RGB(255, 13, 94);
+    //若为yesnavigationBar背景 会有50％的透明
+    self.navigationController.navigationBar.translucent = NO;
+    
+    //返回值
+    
+    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"<" style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)]];
+    
+    //返回的颜色
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    //navigationBar的标题
+    //self.navigationItem.title=@"登录";
+    self.title=@"个人信息";
+    
+    //设置标题颜色
+    
+    UIColor * color = [UIColor whiteColor];
+    
+    NSDictionary * dict=[NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName];
+    
+    self.navigationController.navigationBar.titleTextAttributes = dict;
+    
+    //设置电池状态栏为白色
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
+    
+    
+//    self.view.backgroundColor=RGB(<#r#>, <#g#>, <#b#>);
 }
-
+-(void)gotoBack
+{
+    AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    [app.navigationController popViewControllerAnimated:YES];
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -62,11 +99,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 20.0;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
+
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 5, 60, 30)];
-    label.font=[UIFont systemFontOfSize:12.0];
+    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 10, 60, 30)];
+    label.font=[UIFont systemFontOfSize:11.0];
     
     if (indexPath.item==0) {
         label.text=@"修改头像";
