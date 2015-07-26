@@ -233,7 +233,7 @@
     UIButton*btnSeach=[UIButton buttonWithType:0];
     btnSeach.frame=CGRectMake(view_bar1.frame.size.width-55, view_bar1.frame.size.height-45, 49, 45);
     
-    [btnSeach setTitle:@"订单" forState:0];
+//    [btnSeach setTitle:@"订单" forState:0];
     [btnSeach setImage:BundleImage(@"sskx_search.png") forState:0];
     [btnSeach addTarget:self action:@selector(btnSeach:) forControlEvents:UIControlEventTouchUpInside];
     [view_bar1 addSubview:btnSeach];
