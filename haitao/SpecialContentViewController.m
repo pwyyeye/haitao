@@ -9,7 +9,7 @@
 #import "SpecialContentViewController.h"
 #import "SpecialModel.h"
 #import "New_Goods.h"
-
+#import "ScreenViewController.h"
 @interface SpecialContentViewController ()
 {
     UITableView                 *_tableView;
@@ -37,7 +37,6 @@
     _tableView.separatorColor=[UIColor clearColor];
     _refresh=[[DJRefresh alloc] initWithScrollView:_tableView delegate:self];
     _refresh.topEnabled=YES;
-    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:YES];
     //    _tableView.backgroundColor=[UIColor blueColor];
     [self.view addSubview:_tableView];
     NSArray *goodArr=[self.spcDic objectForKey:@"goods"];
@@ -75,27 +74,19 @@
     title_label.textColor =[UIColor whiteColor];
     title_label.textAlignment=1;
     [view_bar1 addSubview:title_label];
-//    UIButton*btnSeach=[UIButton buttonWithType:0];
-//    btnSeach.frame=CGRectMake(view_bar1.frame.size.width-55, view_bar1.frame.size.height-45, 49, 45);
-//    
-//    //    [btnSeach setTitle:@"订单" forState:0];
-//    [btnSeach setImage:BundleImage(@"sskx_search.png") forState:0];
-//    [btnSeach addTarget:self action:@selector(btnSeach:) forControlEvents:UIControlEventTouchUpInside];
-//    [view_bar1 addSubview:btnSeach];
-    
-    //    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar1.frame.size.height-44, self.view.frame.size.width-130, 44)];
-    ////        title_label.text=@"商品详情";
-    //    title_label.font=[UIFont boldSystemFontOfSize:20];
-    //    title_label.backgroundColor=[UIColor clearColor];
-    //    title_label.textColor =[UIColor whiteColor];
-    //    title_label.textAlignment=1;
-    //    [view_bar1 addSubview:title_label];
-    
-    
-    
-    
-    
+    UIButton*btnBack=[UIButton buttonWithType:0];
+    btnBack.frame=CGRectMake(0, view_bar1.frame.size.height-34, 47, 34);
+    [btnBack setImage:BundleImage(@"left_grey") forState:0];
+    [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
+    [view_bar1 addSubview:btnBack];
     return view_bar1;
+}
+#pragma mark退出
+-(void)btnBack:(id)sender
+{
+    AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    [app.navigationController popViewControllerAnimated:YES];
+    
 }
 #pragma mark置顶按钮栏
 -(UIView*)getToolBar
@@ -248,16 +239,22 @@
     }
     else if(btn.tag==104)
     {
-        [btnItem5 setTitleColor:[UIColor colorWithRed:1.0 green:.23 blue:.49 alpha:1.0] forState:0]   ;
-        btnItem5.backgroundColor=[UIColor whiteColor];
-        [btnItem1 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem1.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        [btnItem2 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem2.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        [btnItem4 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem4.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        [btnItem3 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem3.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
+        ScreenViewController *screenViewController=[[ScreenViewController alloc]init];
+        NSArray *arr=@[@"内容",@"价格",@"配送",@"商城",@"品牌"];
+        screenViewController.showArr=arr;
+        AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [delegate.navigationController pushViewController:screenViewController animated:YES];
+//        [btnItem5 setTitleColor:[UIColor colorWithRed:1.0 green:.23 blue:.49 alpha:1.0] forState:0]   ;
+//        btnItem5.backgroundColor=[UIColor whiteColor];
+//        [btnItem1 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
+//        btnItem1.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
+//        [btnItem2 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
+//        btnItem2.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
+//        [btnItem4 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
+//        btnItem4.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
+//        [btnItem3 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
+//        btnItem3.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
+        
     }
     
 }

@@ -11,7 +11,7 @@
 #import "DJRefreshProgressView.h"
 @interface SpecialContentViewController : LTKViewController<UITableViewDelegate,UITableViewDataSource,HTTPControllerProtocol,DJRefreshDelegate>
 {
-NSMutableArray *listArr;
+    NSMutableArray *listArr;
 }
 @property (nonatomic,retain)NSDictionary *spcDic;
 @property (nonatomic,strong)DJRefresh *refresh;
