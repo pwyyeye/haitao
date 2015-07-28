@@ -10,7 +10,7 @@
 #import "HomeViewController.h"
 #import "Toolkit.h"
 #import "AFNetworking.h"
-
+#import "SpecialViewController.h"
 @interface ManitViewController ()
 
 @end
@@ -63,8 +63,11 @@
     [self drawViewRect];
     HomeViewController *homeViewController=[[HomeViewController alloc]init];
     homeViewController.mainFrame=mainFrame;
+    SpecialViewController *specialViewController=[[SpecialViewController alloc]init];
+    specialViewController.mainFrame=mainFrame;
+    
     NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:5];
-    NSArray *views = @[homeViewController];
+    NSArray *views = @[homeViewController,specialViewController];
     for (UIViewController *viewController in views) {
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
         [viewControllers addObject:nav];
@@ -137,6 +140,7 @@
 
 - (void)scrollableTabBar:(ZRScrollableTabBar *)tabBar didSelectItemWithTag:(int)tag
 {
+    self.selectedIndex = tag-1;
 }
 
 - (void)didReceiveMemoryWarning {
