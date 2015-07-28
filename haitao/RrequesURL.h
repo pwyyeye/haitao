@@ -61,6 +61,10 @@
 //设置默认地址
 #define requestUrl_setDefaultAddress [NSString stringWithFormat:@"%@&f=setDefaultAddress&m=user",requestUrl]
 
+//上传身份证
+#define requestUrl_modifyIdCard [NSString stringWithFormat:@"%@&f=modifyIdCard&m=user",requestUrl]
+
+
 //添加购物车
 #define requestUrl_addCart [NSString stringWithFormat:@"%@&f=addCart&m=cart",requestUrl]
 
@@ -75,6 +79,8 @@
 
 //删除
 #define requestUrl_delCart [NSString stringWithFormat:@"%@&f=delCart&m=cart",requestUrl]
+
+
 
 
 #endif

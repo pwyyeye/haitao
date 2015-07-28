@@ -112,7 +112,7 @@
         //[timer invalidate];
         //[indicator stopAnimating];
         //[alertView dismissWithClickedButtonIndex:0 animated:YES];
-        
+        NSLog(@"----pass-httprequest header%@---",operation.request);
         //判断是否登录如果未登录 则进入登录页面
         NSNumber *status=[responseObject objectForKey:@"status"];
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -148,6 +148,55 @@
         NSLog(@"Error: %@", error);
         NSLog ( @"operation: %@" , operation. responseString );
     }];
+}
+
+//上传文件 参数 mutableUrlRequest 示例：
+//    NSMutableURLRequest *mulRequest=[[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlPam parameters:pamDic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        [formData appendPartWithFileData:imageDate name:@"file" fileName:@"temp.png" mimeType:@"image/png"];
+//        [formData appendPartWithFileData:imageDate name:@"file" fileName:@"temp.png" mimeType:@"image/png"];
+//
+//    } error:nil];
+
+-(void)onFileForPostJson:(NSMutableURLRequest *) mutableUrlRequest{
+    NSURLSessionConfiguration *config=[NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    AFURLSessionManager *manager=[[AFURLSessionManager alloc] initWithSessionConfiguration:config];
+    AFJSONResponseSerializer *jsonResphone=[AFJSONResponseSerializer serializer];
+    jsonResphone.acceptableContentTypes=[NSSet setWithObject:@"text/html"];
+    manager.responseSerializer =jsonResphone;
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+
+
+    
+    NSDictionary *dic =[mutableUrlRequest allHTTPHeaderFields];
+    
+    NSLog(@"dic=================%@",dic);
+     NSLog(@"mutableUrlRequest=================%@",mutableUrlRequest);
+    
+    NSData *data= [mutableUrlRequest HTTPBody];
+    
+    NSLog(@"-----%@",data);
+    
+    
+    NSProgress * progress=nil;
+    NSURLSessionUploadTask *uploadTask=[manager uploadTaskWithStreamedRequest:mutableUrlRequest progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            NSLog(@"%@",error);
+        }else{
+            
+            NSLog(@"%@",@"success!");
+            [self.delegate didRecieveResults:responseObject withName:urlName];
+            //获取本地缓冲图片
+//            NSString *fullPath=[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"temp.png"];
+//            UIImage *tempImage=[[UIImage alloc] initWithContentsOfFile:fullPath];
+            
+        }
+    }];
+    
+    
+    
+    [uploadTask resume];
+
 }
 
 @end

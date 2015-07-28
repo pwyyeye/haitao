@@ -37,4 +37,5 @@ typedef enum {
 -(instancetype)initWith:(NSString *)urlStr withType:(int)type withPam:(NSDictionary *)pam  withUrlName:(NSString *)name;
 -(void)onSearch;
 -(void)onSearchForPostJson;
+-(void)onFileForPostJson:(NSMutableURLRequest *) mutableUrlRequest;
 @end

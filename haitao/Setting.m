@@ -1,18 +1,18 @@
 //
-//  UserDetailController.m
+//  Setting.m
 //  haitao
 //
-//  Created by pwy on 15/7/19.
+//  Created by pwy on 15/7/28.
 //  Copyright (c) 2015年 上海市配夸网络科技有限公司. All rights reserved.
 //
 
-#import "UserDetailController.h"
+#import "Setting.h"
 
-@interface UserDetailController ()
+@interface Setting ()
 
 @end
 
-@implementation UserDetailController
+@implementation Setting
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,6 +22,8 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    _data=@[@"给个评价",@"清除缓存",@"联系配夸网",@"关于配夸网",@"服务条款",@"意见反馈"];
+    
     
     //是否显示navigationBar
     [self.navigationController setNavigationBarHidden:NO];
@@ -40,7 +42,7 @@
     
     //navigationBar的标题
     //self.navigationItem.title=@"登录";
-    self.title=@"个人信息";
+    self.title=@"个人设置";
     
     //设置标题颜色
     
@@ -53,16 +55,18 @@
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     
-    
     self.tableView.backgroundColor=RGB(237, 237, 237);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//无分割线
+    
 }
+
 -(void)gotoBack
 {
     AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
     [app.navigationController popViewControllerAnimated:YES];
     
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -71,63 +75,48 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-//    UIView *view = [UIView new];
-//    
-//    view.backgroundColor = [UIColor clearColor];
-//    
-//    [tableView setTableFooterView:view];
-//    [tableView setTableHeaderView:view];
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    NSLog(@"%d",section);
-//    if (section==0) {
-//        tableView.separatorStyle=UITableViewCellSeparatorStyleSingleLine ;
-//    }else{
-//        tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-//    }
-    
-    return 2;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 16.0;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.0;
+    return _data.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 50;
-
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 10, 60, 30)];
-    label.font=[UIFont systemFontOfSize:11.0];
     
-    if (indexPath.item==0) {
-        label.text=@"修改头像";
-        cell.imageView.image=[UIImage imageNamed:@"default_04.png"];
-        CALayer *layerShadow=[[CALayer alloc]init];
-        layerShadow.frame=CGRectMake(120,cell.frame.size.height+5,cell.frame.size.width,1);
-        layerShadow.borderColor=[RGB(237, 223, 223) CGColor];
-        layerShadow.borderWidth=1;
-        [cell.layer addSublayer:layerShadow];
-        
-    }else{
-        cell.textLabel.text=@"xxxxx";
-        label.text=@"修改昵称";
-    }
-    [cell.contentView addSubview:label];
-    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-    return cell;
+    
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Configure the cell...
+    UITableViewCell *cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+   
+    
+//    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, cell.frame.size.height-10)];
+//    label.backgroundColor=[UIColor whiteColor];
+//    //清除cell背景颜色 在底部添加白色背景label 高度小于cell 使之看起来有间隔
+//    cell.backgroundColor=[UIColor clearColor];
+//    cell.contentView.backgroundColor=[UIColor clearColor];
+//    
+//    [cell.contentView insertSubview:label atIndex:0];
+//    
+//    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(20, 3, SCREEN_WIDTH, 30)];
+//    titleLabel.font=[UIFont systemFontOfSize:13.0];
+//    titleLabel.text=_data[indexPath.item];
+//    [cell.contentView addSubview:titleLabel];
+    
+    cell.textLabel.text=_data[indexPath.item];
+    cell.imageView.image=[UIImage imageNamed:@"ic_03_h.png"];
+    
+    CALayer *layerShadow=[[CALayer alloc]init];
+    layerShadow.frame=CGRectMake(cell.frame.origin.x, cell.frame.origin.y-3, cell.frame.size.width, 3);
+//    layerShadow.borderColor=[RGB(237, 223, 223) CGColor];
+//    layerShadow.borderWidth=1;
+    layerShadow.backgroundColor=[RGB(237, 237, 237) CGColor];
+    [cell.layer addSublayer:layerShadow];
 
+    return cell;
 }
 
 
@@ -162,22 +151,6 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
-}
-*/
-
-/*
-#pragma mark - Table view delegate
-
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
-    
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 */
 

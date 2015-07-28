@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface AddAddressStep2 : UIViewController
+@interface AddAddressStep2 : UIViewController<HTTPControllerProtocol,UIActionSheetDelegate,UIImagePickerControllerDelegate,UIGestureRecognizerDelegate>
 
 @property(strong,nonatomic) NSString *id;
 
+@property (weak, nonatomic) IBOutlet UIImageView *idcard_zhengmian;
+@property (weak, nonatomic) IBOutlet UIImageView *idcard_fanmian;
+
+@property(assign,nonatomic) int targetIdex;//纪录哪个UIImageView被触发
+
+@property(assign,nonatomic) int uploadStatus_zhengmian;//0、用户并未上传，1、上传正面
+
+@property(assign,nonatomic) int uploadStatus_fanmian;//0、用户并未上场 1、上传反面
+- (IBAction)save:(id)sender;
 @end
