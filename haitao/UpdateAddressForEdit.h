@@ -50,5 +50,6 @@
 
 
 - (IBAction)areaPick:(id)sender;
+- (IBAction)DidEndOnExit:(id)sender;
 
 @end

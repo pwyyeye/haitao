@@ -76,6 +76,10 @@
     [httpController onSearchForPostJson];
 }
 
+- (IBAction)DidEndOnExit:(id)sender {
+    [sender resignFirstResponder];
+}
+
 -(void)didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app stopLoading];

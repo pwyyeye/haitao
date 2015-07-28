@@ -40,7 +40,15 @@
 //登录
 #define requestUrl_doLogin [NSString stringWithFormat:@"%@&f=doLogin&m=user",requestUrl]
 
-//登录
+
+//修改用户昵称
+#define requestUrl_modifyUserNick [NSString stringWithFormat:@"%@&f=modifyUserNick&m=user",requestUrl]
+
+//修改用户头像
+#define requestUrl_modifyUserAvatar [NSString stringWithFormat:@"%@&f=modifyUserAvatar&m=user",requestUrl]
+
+
+//重置密码
 #define requestUrl_resetPassByMobile [NSString stringWithFormat:@"%@&f=resetPassByMobile&m=user",requestUrl]
 
 //登出
@@ -81,6 +89,7 @@
 #define requestUrl_delCart [NSString stringWithFormat:@"%@&f=delCart&m=cart",requestUrl]
 
 
-
+//获取意见反馈选项
+#define requestUrl_getSuggestTypeList [NSString stringWithFormat:@"%@&f=getSuggestTypeList&m=home",requestUrl]
 
 #endif

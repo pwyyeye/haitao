@@ -64,39 +64,35 @@
     [app startLoading];
     NSDictionary *parameters = @{@"id":_id};
     
-    NSMutableURLRequest *mulRequest;
+    
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_modifyIdCard withType:POSTURL withPam:parameters withUrlName:@"modifyAddress"];
+    httpController.delegate = self;
+    
     if (_uploadStatus_zhengmian==1&&_uploadStatus_fanmian==1) {
-        mulRequest=[[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:requestUrl_modifyIdCard parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-            
-            [formData appendPartWithFileData:UIImagePNGRepresentation(_idcard_zhengmian.image) name:@"idcard_01" fileName:@"idcard_01.png" mimeType:@"image/png"];
-            [formData appendPartWithFileData:UIImagePNGRepresentation(_idcard_fanmian.image) name:@"idcard_02" fileName:@"idcard_02.png" mimeType:@"image/png"];
-            
-            
+        
+        [httpController onFileForPostJson:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            [formData appendPartWithFileData:UIImagePNGRepresentation(_idcard_zhengmian.image) name:@"idcard_1" fileName:@"idcard_1.png" mimeType:@"image/png"];
+            [formData appendPartWithFileData:UIImagePNGRepresentation(_idcard_fanmian.image) name:@"idcard_2" fileName:@"idcard_2.png" mimeType:@"image/png"];
         } error:nil];
+        
+        
     }else if (_uploadStatus_zhengmian==1) {//正面上传了
-        mulRequest=[[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:requestUrl_modifyIdCard parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-            
-            [formData appendPartWithFileData:UIImagePNGRepresentation(_idcard_zhengmian.image) name:@"idcard_01" fileName:@"idcard_01.png" mimeType:@"image/png"];
-            
-            
+        [httpController onFileForPostJson:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            [formData appendPartWithFileData:UIImagePNGRepresentation(_idcard_zhengmian.image) name:@"idcard_1" fileName:@"idcard_1.png" mimeType:@"image/png"];
         } error:nil];
         
     }else if (_uploadStatus_fanmian==1){//反面上传了
-        mulRequest=[[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:requestUrl_modifyIdCard parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-            [formData appendPartWithFileData:UIImagePNGRepresentation(_idcard_fanmian.image) name:@"idcard_02" fileName:@"idcard_02.png" mimeType:@"image/png"];
-            
-            
+        [httpController onFileForPostJson:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            [formData appendPartWithFileData:UIImagePNGRepresentation(_idcard_fanmian.image) name:@"idcard_2" fileName:@"idcard_2.png" mimeType:@"image/png"];
         } error:nil];
         
     }else{
-        mulRequest=[[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:requestUrl_modifyIdCard parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [httpController onFileForPostJson:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         } error:nil];
         
     }
     
-    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_modifyAddress withType:POSTURL withPam:parameters withUrlName:@"modifyAddress"];
-    httpController.delegate = self;
-    [httpController onFileForPostJson:mulRequest];
     
     
 }

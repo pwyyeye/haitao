@@ -7,7 +7,9 @@
 //
 
 #import "Setting.h"
-
+#import "AboutPeiKua.h"
+#import "ServiceTerms.h"
+#import "ConnetPeiKua.h"
 @interface Setting ()
 
 @end
@@ -119,6 +121,27 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Navigation logic may go here, for example:
+    // Create the next view controller.
+    UIViewController *detailViewController;
+    
+
+    
+    if (indexPath.item==2) {
+        detailViewController=[[ConnetPeiKua alloc] initWithNibName:@"ConnetPeiKua" bundle:nil];
+    }else if (indexPath.item==3){
+        detailViewController=[[AboutPeiKua alloc] initWithNibName:@"AboutPeiKua" bundle:nil];
+    }else if (indexPath.item==4){
+    
+        detailViewController=[[ServiceTerms alloc] initWithNibName:@"ServiceTerms" bundle:nil];
+    }
+    
+    
+    // Push the view controller.
+    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+    [self.navigationController pushViewController:detailViewController animated:YES];
+}
 
 /*
 // Override to support conditional editing of the table view.

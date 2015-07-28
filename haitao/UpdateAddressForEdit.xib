@@ -97,7 +97,10 @@
                             </constraints>
                             <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
+                            <connections>
+                                <action selector="DidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="nwD-Ev-qsb"/>
+                            </connections>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="必填" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FCh-24-izE">
                             <rect key="frame" x="63" y="94.5" width="527" height="30"/>
@@ -106,7 +109,10 @@
                             </constraints>
                             <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
+                            <connections>
+                                <action selector="DidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="SQW-e8-fMc"/>
+                            </connections>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="必填" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ajs-e3-JQm">
                             <rect key="frame" x="63" y="204.5" width="497" height="30"/>
@@ -115,7 +121,10 @@
                             </constraints>
                             <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            <connections>
+                                <action selector="DidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="fkc-xz-Tzj"/>
+                            </connections>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="必填" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lpN-hH-jKM">
                             <rect key="frame" x="63" y="282.5" width="527" height="30"/>
@@ -124,7 +133,10 @@
                             </constraints>
                             <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
+                            <connections>
+                                <action selector="DidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="EVA-Cj-8UN"/>
+                            </connections>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入中文名字" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="az9-nW-PjL">
                             <rect key="frame" x="10" y="8" width="582" height="13.5"/>
@@ -150,6 +162,9 @@
                             <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="DidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="39A-fd-nJG"/>
+                            </connections>
                         </textField>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="banner_01_02.png" translatesAutoresizingMaskIntoConstraints="NO" id="jks-pr-18U">
                             <rect key="frame" x="10" y="328" width="285" height="180.5"/>
@@ -222,7 +237,10 @@
                             </constraints>
                             <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            <connections>
+                                <action selector="DidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="VGE-9A-doq"/>
+                            </connections>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名务必和身份证一致，否则将影响清关" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xih-NX-FOt">
                             <rect key="frame" x="0.0" y="66" width="600" height="20"/>

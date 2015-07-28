@@ -266,6 +266,14 @@
 		ADECDC101B65CE4F009EA286 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADECDC0F1B65CE4F009EA286 /* View.xib */; };
 		ADECDC131B65DE17009EA286 /* AreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADECDC121B65DE17009EA286 /* AreaPickerView.m */; };
 		ADECDC171B670C91009EA286 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = ADECDC161B670C91009EA286 /* Setting.m */; };
+		ADECDC1B1B672C47009EA286 /* ConnetPeiKua.m in Sources */ = {isa = PBXBuildFile; fileRef = ADECDC191B672C47009EA286 /* ConnetPeiKua.m */; };
+		ADECDC1C1B672C47009EA286 /* ConnetPeiKua.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADECDC1A1B672C47009EA286 /* ConnetPeiKua.xib */; };
+		ADECDC201B672C62009EA286 /* AboutPeiKua.m in Sources */ = {isa = PBXBuildFile; fileRef = ADECDC1E1B672C62009EA286 /* AboutPeiKua.m */; };
+		ADECDC211B672C62009EA286 /* AboutPeiKua.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADECDC1F1B672C62009EA286 /* AboutPeiKua.xib */; };
+		ADECDC251B672CB3009EA286 /* Feedback.m in Sources */ = {isa = PBXBuildFile; fileRef = ADECDC231B672CB3009EA286 /* Feedback.m */; };
+		ADECDC261B672CB3009EA286 /* Feedback.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADECDC241B672CB3009EA286 /* Feedback.xib */; };
+		ADECDC2A1B672CF2009EA286 /* ServiceTerms.m in Sources */ = {isa = PBXBuildFile; fileRef = ADECDC281B672CF2009EA286 /* ServiceTerms.m */; };
+		ADECDC2B1B672CF2009EA286 /* ServiceTerms.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADECDC291B672CF2009EA286 /* ServiceTerms.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -682,6 +690,18 @@
 		ADECDC121B65DE17009EA286 /* AreaPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaPickerView.m; sourceTree = "<group>"; };
 		ADECDC151B670C91009EA286 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
 		ADECDC161B670C91009EA286 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setting.m; sourceTree = "<group>"; };
+		ADECDC181B672C47009EA286 /* ConnetPeiKua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnetPeiKua.h; sourceTree = "<group>"; };
+		ADECDC191B672C47009EA286 /* ConnetPeiKua.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnetPeiKua.m; sourceTree = "<group>"; };
+		ADECDC1A1B672C47009EA286 /* ConnetPeiKua.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnetPeiKua.xib; sourceTree = "<group>"; };
+		ADECDC1D1B672C62009EA286 /* AboutPeiKua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutPeiKua.h; sourceTree = "<group>"; };
+		ADECDC1E1B672C62009EA286 /* AboutPeiKua.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutPeiKua.m; sourceTree = "<group>"; };
+		ADECDC1F1B672C62009EA286 /* AboutPeiKua.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutPeiKua.xib; sourceTree = "<group>"; };
+		ADECDC221B672CB3009EA286 /* Feedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feedback.h; sourceTree = "<group>"; };
+		ADECDC231B672CB3009EA286 /* Feedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feedback.m; sourceTree = "<group>"; };
+		ADECDC241B672CB3009EA286 /* Feedback.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Feedback.xib; sourceTree = "<group>"; };
+		ADECDC271B672CF2009EA286 /* ServiceTerms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceTerms.h; sourceTree = "<group>"; };
+		ADECDC281B672CF2009EA286 /* ServiceTerms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceTerms.m; sourceTree = "<group>"; };
+		ADECDC291B672CF2009EA286 /* ServiceTerms.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServiceTerms.xib; sourceTree = "<group>"; };
 		DB8432FE812FC9929501C476 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1411,7 +1431,6 @@
 				AD8AA5971B59428E00E324AD /* 精品推荐 */,
 				ADB5ACAF1B5406AC0022B2C2 /* Cart */,
 				ADB5ACAB1B54066A0022B2C2 /* User */,
-				ADB5ACAD1B5406890022B2C2 /* Setting */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1419,6 +1438,7 @@
 		ADB5ACAB1B54066A0022B2C2 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				ADB5ACAD1B5406890022B2C2 /* Setting */,
 				ADECDC141B65DE22009EA286 /* Utils */,
 				ADD171871B5F2E6300E451D5 /* Model */,
 				ADCFB0261B60C5F7001B3324 /* Password */,
@@ -1457,6 +1477,20 @@
 		ADB5ACAD1B5406890022B2C2 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				ADECDC151B670C91009EA286 /* Setting.h */,
+				ADECDC161B670C91009EA286 /* Setting.m */,
+				ADECDC1D1B672C62009EA286 /* AboutPeiKua.h */,
+				ADECDC1E1B672C62009EA286 /* AboutPeiKua.m */,
+				ADECDC1F1B672C62009EA286 /* AboutPeiKua.xib */,
+				ADECDC181B672C47009EA286 /* ConnetPeiKua.h */,
+				ADECDC191B672C47009EA286 /* ConnetPeiKua.m */,
+				ADECDC1A1B672C47009EA286 /* ConnetPeiKua.xib */,
+				ADECDC221B672CB3009EA286 /* Feedback.h */,
+				ADECDC231B672CB3009EA286 /* Feedback.m */,
+				ADECDC241B672CB3009EA286 /* Feedback.xib */,
+				ADECDC271B672CF2009EA286 /* ServiceTerms.h */,
+				ADECDC281B672CF2009EA286 /* ServiceTerms.m */,
+				ADECDC291B672CF2009EA286 /* ServiceTerms.xib */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -1579,8 +1613,6 @@
 				ADD4D41B1B5BA39B004AFBE2 /* UserDetailController.h */,
 				ADD4D41C1B5BA39B004AFBE2 /* UserDetailController.m */,
 				ADD4D41D1B5BA39B004AFBE2 /* UserDetailController.xib */,
-				ADECDC151B670C91009EA286 /* Setting.h */,
-				ADECDC161B670C91009EA286 /* Setting.m */,
 			);
 			name = UserInfo;
 			sourceTree = "<group>";
@@ -1712,6 +1744,7 @@
 			files = (
 				A2FDE0EC1B65B7C300B374AA /* left_grey.png in Resources */,
 				A2FC74E91B5B5DD00094BC59 /* 奶粉.jpg in Resources */,
+				ADECDC261B672CB3009EA286 /* Feedback.xib in Resources */,
 				AD8AA6A61B59E14400E324AD /* icon_05@2x.png in Resources */,
 				A2FC74C61B5A31340094BC59 /* ic_01_h.png in Resources */,
 				A21815B71B5A0E9A00D64E70 /* df_03_@2x.png in Resources */,
@@ -1763,6 +1796,7 @@
 				A21815AB1B5A0E9A00D64E70 /* bt_04_01_@2x.png in Resources */,
 				AD8AA6A21B59E14400E324AD /* icon_03@2x.png in Resources */,
 				AD8AA6951B59E14400E324AD /* default_03@2x.png in Resources */,
+				ADECDC2B1B672CF2009EA286 /* ServiceTerms.xib in Resources */,
 				A2FC74D11B5A31340094BC59 /* ic_06_n.png in Resources */,
 				A2FC74C51B5A31340094BC59 /* df_02_@2x.png in Resources */,
 				AD8AA61B1B59435C00E324AD /* ELCAlbumPickerController.xib in Resources */,
@@ -1773,6 +1807,7 @@
 				AD8AA61C1B59435C00E324AD /* ELCAssetPicker.xib in Resources */,
 				A2FC74CF1B5A31340094BC59 /* ic_05_n.png in Resources */,
 				A21815A51B5A0E9A00D64E70 /* bg_01_@2x.png in Resources */,
+				ADECDC211B672C62009EA286 /* AboutPeiKua.xib in Resources */,
 				AD8AA6911B59E14400E324AD /* banner_02_02.png in Resources */,
 				AD8AA6921B59E14400E324AD /* banner_03_02.png in Resources */,
 				A2FFE1891B60B7C50004B4BC /* macbook_pro.jpg in Resources */,
@@ -1805,6 +1840,7 @@
 				A2FC74D21B5A31340094BC59 /* ic_07_h.png in Resources */,
 				A2FC74C41B5A31340094BC59 /* df_01.png in Resources */,
 				ADB5AC931B53CB5F0022B2C2 /* LaunchScreen.xib in Resources */,
+				ADECDC1C1B672C47009EA286 /* ConnetPeiKua.xib in Resources */,
 				ADCFB0301B613E69001B3324 /* ForgetPwdStep2.xib in Resources */,
 				A2FC74CA1B5A31340094BC59 /* ic_03_h.png in Resources */,
 				ADB5AC901B53CB5F0022B2C2 /* Images.xcassets in Resources */,
@@ -1910,6 +1946,7 @@
 				A2FFE1701B608ED20004B4BC /* DJRefreshBottomView.m in Sources */,
 				AD8AA6481B59435C00E324AD /* ZipArchive.m in Sources */,
 				A2FC75101B5E1F640094BC59 /* App_Home_Bigegg.m in Sources */,
+				ADECDC2A1B672CF2009EA286 /* ServiceTerms.m in Sources */,
 				A2FC74FF1B5D1FFA0094BC59 /* MJFoundation.m in Sources */,
 				A2FC74E11B5A3F340094BC59 /* BAWineShoppingDockTavleView.m in Sources */,
 				AD8AA6201B59435C00E324AD /* EScrollerView.m in Sources */,
@@ -1925,6 +1962,7 @@
 				A2FBAA351B63886900B752CA /* SpeciaButton.m in Sources */,
 				A2FC74A51B5A1E580094BC59 /* FCImageTextViewController.m in Sources */,
 				AD8AA6391B59435C00E324AD /* Toolkit.m in Sources */,
+				ADECDC1B1B672C47009EA286 /* ConnetPeiKua.m in Sources */,
 				AD8AA5891B59416000E324AD /* LTKNavigationViewController.m in Sources */,
 				ADCFB0341B61C2BA001B3324 /* ForgetPwdStep3.m in Sources */,
 				AD8AA6191B59435C00E324AD /* ELCAssetTablePicker.m in Sources */,
@@ -1932,6 +1970,7 @@
 				AD8AA6711B594EED00E324AD /* DejalActivityView.m in Sources */,
 				A2FC74E01B5A3F340094BC59 /* BADockCell.m in Sources */,
 				A2FC74E21B5A3F340094BC59 /* BARightCell.m in Sources */,
+				ADECDC251B672CB3009EA286 /* Feedback.m in Sources */,
 				AD8AA58B1B59416000E324AD /* TMNavigationController.m in Sources */,
 				A2FC74A81B5A1EE00094BC59 /* FCImageTextView.m in Sources */,
 				AD8AA6331B59435C00E324AD /* MJRefreshBaseView.m in Sources */,
@@ -1974,6 +2013,7 @@
 				AD8AA6181B59435C00E324AD /* ELCAssetCell.m in Sources */,
 				AD8AA6291B59435C00E324AD /* SDWebImageDownloader.m in Sources */,
 				AD8AA59C1B5942F800E324AD /* HTCartViewController.m in Sources */,
+				ADECDC201B672C62009EA286 /* AboutPeiKua.m in Sources */,
 				AD8AA63E1B59435C00E324AD /* UIColor-Expanded.m in Sources */,
 				AD8AA6231B59435C00E324AD /* HZActivityIndicatorSubclassExample.m in Sources */,
 				A2FC75001B5D1FFA0094BC59 /* MJProperty.m in Sources */,

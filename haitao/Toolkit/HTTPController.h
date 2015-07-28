@@ -37,5 +37,5 @@ typedef enum {
 -(instancetype)initWith:(NSString *)urlStr withType:(int)type withPam:(NSDictionary *)pam  withUrlName:(NSString *)name;
 -(void)onSearch;
 -(void)onSearchForPostJson;
--(void)onFileForPostJson:(NSMutableURLRequest *) mutableUrlRequest;
+-(void)onFileForPostJson:(NSString *)acceptableContentTypes constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block error:(NSError *__autoreleasing *)error;
 @end

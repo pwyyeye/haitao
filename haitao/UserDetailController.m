@@ -55,7 +55,10 @@
     
     
     self.tableView.backgroundColor=RGB(237, 237, 237);
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//无分割线
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//无分割线
+    
+    self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
+
 }
 -(void)gotoBack
 {
@@ -95,49 +98,61 @@
     return 2;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 16.0;
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.item==0) {
+        return 80;
+    }
     return 50;
 
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 10, 60, 30)];
-    label.font=[UIFont systemFontOfSize:11.0];
+    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-85, indexPath.item==0?25:10, 60, 30)];
+    label.font=[UIFont systemFontOfSize:13.0];
     
     if (indexPath.item==0) {
         label.text=@"修改头像";
+        
         cell.imageView.image=[UIImage imageNamed:@"default_04.png"];
-        CALayer *layerShadow=[[CALayer alloc]init];
-        layerShadow.frame=CGRectMake(120,cell.frame.size.height+5,cell.frame.size.width,1);
-        layerShadow.borderColor=[RGB(237, 223, 223) CGColor];
-        layerShadow.borderWidth=1;
-        [cell.layer addSublayer:layerShadow];
+        
+        if (![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"avatar_img"]]) {
+            [cell.imageView setImageWithURL:[USER_DEFAULT objectForKey:@"avatar_img"] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
+        }
+//        CALayer *layerShadow=[[CALayer alloc]init];
+//        layerShadow.frame=CGRectMake(120,cell.frame.size.height+5,cell.frame.size.width,1);
+//        layerShadow.borderColor=[RGB(237, 223, 223) CGColor];
+//        layerShadow.borderWidth=1;
+//        [cell.layer addSublayer:layerShadow];
+        
+        cell.tag=100+indexPath.item;
         
     }else{
-        cell.textLabel.text=@"xxxxx";
+        cell.textLabel.text=[USER_DEFAULT objectForKey:@"user_nick"];
         label.text=@"修改昵称";
     }
     [cell.contentView addSubview:label];
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
 
 }
 
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
-*/
+
 
 /*
 // Override to support editing the table view.
@@ -165,22 +180,63 @@
 }
 */
 
-/*
+
 #pragma mark - Table view delegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
+    if (indexPath.item==0) {
+        UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择", nil];
+        
+        actionSheet.tag=255;
+        
+        [actionSheet showInView:self.view];
+        
+        
+        
+        _selectcedCell=[tableView viewWithTag:100+indexPath.item];
+        
+    }else{
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"修改昵称"
+                               
+                                                        message:@""
+                               
+                                                       delegate:self
+                               
+                                              cancelButtonTitle:@"取消"
+                               
+                                              otherButtonTitles:@"确定",nil];
+        [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+        
+        UITextField * text1 = [alert textFieldAtIndex:0];
+        
+        text1.text=[USER_DEFAULT objectForKey:@"user_nick"];
+        text1.keyboardType = UIKeyboardTypeDefault;
+        
+        [alert show];
+    }
     
-    // Pass the selected object to the new view controller.
     
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    
 }
-*/
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+    UITextField *tf=[alertView textFieldAtIndex:0];
+    
+    if ([MyUtil isEmptyString:tf.text] || [tf.text isEqualToString:[USER_DEFAULT objectForKey:@"user_nick"]]) {
+        return;
+    }
+    
+    NSLog(@"----pass-pass%@---",tf.text);
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_modifyUserNick withType:POSTURL withPam:@{@"user_nick":tf.text} withUrlName:@"modifyNick"];
+    httpController.delegate = self;
+    
+    [httpController onSearchForPostJson];
+
+
+}
 /*
 #pragma mark - Navigation
 
@@ -190,5 +246,105 @@
     // Pass the selected object to the new view controller.
 }
 */
+#pragma mark - UIImagePickerControllerDelegate
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    
+    // UIImage *image=[info objectForKey:UIImagePickerControllerOriginalImage];//原始图
+    UIImage *image=[info objectForKey:UIImagePickerControllerEditedImage];
+    
+    UIGraphicsBeginImageContext(CGSizeMake(60, 60));  //size 为CGSize类型，即你所需要的图片尺寸
+    
+    [image drawInRect:CGRectMake(0, 0, 60, 60)];
+    
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    _selectcedCell.imageView.image=scaledImage ;
 
+
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_modifyUserAvatar withType:POSTURL withPam:nil withUrlName:@"modifyAvata"];
+    httpController.delegate = self;
+    
+    [httpController onFileForPostJson:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:UIImagePNGRepresentation(scaledImage) name:@"avatar_img" fileName:@"avatar_img.png" mimeType:@"image/png"];
+    } error:nil];
+
+
+}
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+
+}
+
+-(void)didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app stopLoading];
+    if ([[dictemp objectForKey:@"status"] integerValue]== 1) {
+        
+        if ([urlname isEqualToString:@"modifyAvata"]) {
+            //更新上个页面值
+            ShowMessage(@"修改成功！");
+            
+        }else if([urlname isEqualToString:@"modifyNick"]){
+            ShowMessage(@"修改成功！");
+        
+        }
+        //发送通知
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeToReload" object:nil];
+//        [self.navigationController popViewControllerAnimated:YES];
+        
+    }
+}
+
+#pragma mark - UIActionSheetDelegate
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (actionSheet.tag==255) {
+        NSInteger sourceType=0;
+        
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            switch (buttonIndex) {
+                case 1:
+                    //取消
+                    return;
+                    break;
+                case 0:
+                    //相册
+                    sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+                    
+                default:
+                    break;
+            }
+        }else{
+            if (buttonIndex==1) {
+                return;
+            }else{
+                sourceType=UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            }
+        }
+        UIImagePickerController *imagePicker=[[UIImagePickerController alloc] init];
+        
+        imagePicker.delegate=self;
+        
+        imagePicker.allowsEditing=YES;
+        
+        imagePicker.sourceType=sourceType;
+        
+        [self presentViewController:imagePicker animated:YES completion:^{
+            
+        }];
+        
+        
+    }
+    
+}
 @end

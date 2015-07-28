@@ -150,22 +150,29 @@
     }];
 }
 
-//上传文件 参数 mutableUrlRequest 示例：
-//    NSMutableURLRequest *mulRequest=[[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlPam parameters:pamDic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//        [formData appendPartWithFileData:imageDate name:@"file" fileName:@"temp.png" mimeType:@"image/png"];
-//        [formData appendPartWithFileData:imageDate name:@"file" fileName:@"temp.png" mimeType:@"image/png"];
-//
-//    } error:nil];
+//上传文件 示例：
+//   [httpController onFileForPostJson:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//   [formData appendPartWithFileData:UIImagePNGRepresentation(_idcard_zhengmian.image) name:@"idcard_1" fileName:@"idcard_1.png" mimeType:@"image/png"];
+//   [formData appendPartWithFileData:UIImagePNGRepresentation(_idcard_fanmian.image) name:@"idcard_2" fileName:@"idcard_2.png" mimeType:@"image/png"];
+//   } error:nil];
 
--(void)onFileForPostJson:(NSMutableURLRequest *) mutableUrlRequest{
+//默认acceptableContentTypes 添加@"text/html"
+-(void)onFileForPostJson:(NSString *)acceptableContentTypes constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
+                   error:(NSError *__autoreleasing *)error
+{
     NSURLSessionConfiguration *config=[NSURLSessionConfiguration defaultSessionConfiguration];
     
     AFURLSessionManager *manager=[[AFURLSessionManager alloc] initWithSessionConfiguration:config];
     AFJSONResponseSerializer *jsonResphone=[AFJSONResponseSerializer serializer];
-    jsonResphone.acceptableContentTypes=[NSSet setWithObject:@"text/html"];
+    if (acceptableContentTypes==nil) {
+        jsonResphone.acceptableContentTypes=[NSSet setWithObject:@"text/html"];
+    }else{
+        jsonResphone.acceptableContentTypes=[NSSet setWithObject:acceptableContentTypes];
+    }
+    
     manager.responseSerializer =jsonResphone;
 //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-
+    NSMutableURLRequest *mutableUrlRequest=[[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlPam parameters:pamDic constructingBodyWithBlock:block error:error];
 
     
     NSDictionary *dic =[mutableUrlRequest allHTTPHeaderFields];
@@ -176,10 +183,11 @@
     NSData *data= [mutableUrlRequest HTTPBody];
     
     NSLog(@"-----%@",data);
-    
+//    NSMutableURLRequest *mulRequest=[[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlPam parameters:pamDic constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block error:nil];
     
     NSProgress * progress=nil;
     NSURLSessionUploadTask *uploadTask=[manager uploadTaskWithStreamedRequest:mutableUrlRequest progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        NSLog(@"----pass-pass%@---",responseObject);
         if (error) {
             NSLog(@"%@",error);
         }else{

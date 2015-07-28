@@ -32,4 +32,6 @@
 
 - (IBAction)deleteAddress:(id)sender;
 
+- (IBAction)DidEndOnExit:(id)sender;
+
 @end
