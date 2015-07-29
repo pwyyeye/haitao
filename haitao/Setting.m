@@ -10,6 +10,7 @@
 #import "AboutPeiKua.h"
 #import "ServiceTerms.h"
 #import "ConnetPeiKua.h"
+#import "Feedback.h"
 @interface Setting ()
 
 @end
@@ -60,6 +61,18 @@
     self.tableView.backgroundColor=RGB(237, 237, 237);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//无分割线
     
+    
+    self.tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-40-64);
+
+    UIButton *logoutButton=[[UIButton alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40-64, SCREEN_WIDTH, 40)];
+    logoutButton.backgroundColor=RGB(255, 13, 94);
+    
+    [logoutButton setTitle:@"退出登录" forState:UIControlStateNormal];
+    logoutButton.titleLabel.font=[UIFont systemFontOfSize:13];
+    [logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:logoutButton];
+
+    
 }
 
 -(void)gotoBack
@@ -68,6 +81,27 @@
     [app.navigationController popViewControllerAnimated:YES];
     
 }
+-(void)logout{
+
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_doLoginOut withType:POSTURL withPam:nil withUrlName:@"logout"];
+    httpController.delegate = self;
+    [httpController onSearch];
+}
+-(void)didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
+
+    NSLog(@"----pass-logout%@---",dictemp);
+    
+    if ([[dictemp objectForKey:@"status"] integerValue]== 1) {
+                //返回原来界面
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        app.s_app_id=nil;
+        [app stopLoading];
+        
+        [NSUserDefaults resetStandardUserDefaults];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+        
+    }}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -109,13 +143,13 @@
 //    [cell.contentView addSubview:titleLabel];
     
     cell.textLabel.text=_data[indexPath.item];
+    cell.textLabel.font=[UIFont systemFontOfSize:15];
     cell.imageView.image=[UIImage imageNamed:@"ic_03_h.png"];
     
     CALayer *layerShadow=[[CALayer alloc]init];
-    layerShadow.frame=CGRectMake(cell.frame.origin.x, cell.frame.origin.y-3, cell.frame.size.width, 3);
-//    layerShadow.borderColor=[RGB(237, 223, 223) CGColor];
-//    layerShadow.borderWidth=1;
-    layerShadow.backgroundColor=[RGB(237, 237, 237) CGColor];
+    layerShadow.frame=CGRectMake(0, cell.frame.origin.y, cell.frame.size.width, 5);
+    layerShadow.borderColor=[RGB(237, 237, 237) CGColor];
+    layerShadow.borderWidth=5;
     [cell.layer addSublayer:layerShadow];
 
     return cell;
@@ -126,15 +160,20 @@
     // Create the next view controller.
     UIViewController *detailViewController;
     
-
-    
-    if (indexPath.item==2) {
+    if (indexPath.item==0) {
+//        [self gotoAppStorePageRaisal:@""];//app评价地址
+    }else if (indexPath.item==1) {
+        ShowMessage(@"清除成功！");
+        
+    }else if (indexPath.item==2) {
         detailViewController=[[ConnetPeiKua alloc] initWithNibName:@"ConnetPeiKua" bundle:nil];
     }else if (indexPath.item==3){
         detailViewController=[[AboutPeiKua alloc] initWithNibName:@"AboutPeiKua" bundle:nil];
     }else if (indexPath.item==4){
     
         detailViewController=[[ServiceTerms alloc] initWithNibName:@"ServiceTerms" bundle:nil];
+    }else{
+        detailViewController=[[Feedback alloc] initWithNibName:@"Feedback" bundle:nil];
     }
     
     
@@ -186,5 +225,13 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+//去app页面评价
+-(void) gotoAppStorePageRaisal:(NSString *) nsAppId
+{
+    NSString  * nsStringToOpen = [NSString  stringWithFormat: @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@",nsAppId  ];
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:nsStringToOpen]];
+}
 
 @end

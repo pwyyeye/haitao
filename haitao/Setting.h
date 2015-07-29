@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Setting : UITableViewController
+@interface Setting : UITableViewController<HTTPControllerProtocol>
 @property(strong,nonatomic) NSArray *data;
 
 @end

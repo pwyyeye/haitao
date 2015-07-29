@@ -24,6 +24,7 @@
     
  //   获得build号：
 //    [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
+    self.title=@"关于配夸网";
     _version.text=[NSString stringWithFormat:@"版本号 V%@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
     
     

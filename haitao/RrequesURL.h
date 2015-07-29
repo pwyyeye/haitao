@@ -92,4 +92,7 @@
 //获取意见反馈选项
 #define requestUrl_getSuggestTypeList [NSString stringWithFormat:@"%@&f=getSuggestTypeList&m=home",requestUrl]
 
+//获取意见反馈选项
+#define requestUrl_addSuggest [NSString stringWithFormat:@"%@&f=addSuggest&m=home",requestUrl]
+
 #endif

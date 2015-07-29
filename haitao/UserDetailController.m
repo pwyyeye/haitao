@@ -117,13 +117,16 @@
     UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-85, indexPath.item==0?25:10, 60, 30)];
     label.font=[UIFont systemFontOfSize:13.0];
     
+    label.tag=200+indexPath.item;
+    
     if (indexPath.item==0) {
         label.text=@"修改头像";
-        
+        cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
         cell.imageView.image=[UIImage imageNamed:@"default_04.png"];
         
         if (![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"avatar_img"]]) {
-            [cell.imageView setImageWithURL:[USER_DEFAULT objectForKey:@"avatar_img"] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
+            NSURL *url=[NSURL URLWithString:[USER_DEFAULT objectForKey:@"avatar_img"]];
+            [cell.imageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"default_04.png"]];
         }
 //        CALayer *layerShadow=[[CALayer alloc]init];
 //        layerShadow.frame=CGRectMake(120,cell.frame.size.height+5,cell.frame.size.width,1);
@@ -195,6 +198,7 @@
         
         
         _selectcedCell=[tableView viewWithTag:100+indexPath.item];
+        _selectedLabel=[_selectcedCell viewWithTag:200+indexPath.item];
         
     }else{
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"修改昵称"
@@ -229,6 +233,7 @@
     }
     
     NSLog(@"----pass-pass%@---",tf.text);
+    _modifyNick=tf.text;
     
     HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_modifyUserNick withType:POSTURL withPam:@{@"user_nick":tf.text} withUrlName:@"modifyNick"];
     httpController.delegate = self;
@@ -256,9 +261,9 @@
     // UIImage *image=[info objectForKey:UIImagePickerControllerOriginalImage];//原始图
     UIImage *image=[info objectForKey:UIImagePickerControllerEditedImage];
     
-    UIGraphicsBeginImageContext(CGSizeMake(60, 60));  //size 为CGSize类型，即你所需要的图片尺寸
+    UIGraphicsBeginImageContext(CGSizeMake(120, 120));  //size 为CGSize类型，即你所需要的图片尺寸
     
-    [image drawInRect:CGRectMake(0, 0, 60, 60)];
+    [image drawInRect:CGRectMake(0, 0, 120, 120)];
     
     UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
     
@@ -289,18 +294,24 @@
 -(void)didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app stopLoading];
+    
+    NSLog(@"----pass-userdetail%@---",dictemp);
     if ([[dictemp objectForKey:@"status"] integerValue]== 1) {
         
         if ([urlname isEqualToString:@"modifyAvata"]) {
             //更新上个页面值
             ShowMessage(@"修改成功！");
-            
+            [USER_DEFAULT setObject:[dictemp objectForKey:@"data"] forKey:@"avatar_img"];
         }else if([urlname isEqualToString:@"modifyNick"]){
             ShowMessage(@"修改成功！");
+            _selectedLabel.text=_modifyNick;
+            [USER_DEFAULT setObject:_modifyNick  forKey:@"user_nick"];
+
+            
         
         }
         //发送通知
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeToReload" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeToReload" object:nil];
 //        [self.navigationController popViewControllerAnimated:YES];
         
     }

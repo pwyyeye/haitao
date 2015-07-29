@@ -46,15 +46,17 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
     view.backgroundColor=RGB(255, 13, 94);
     [self.view addSubview:view];
-    //判断是否登录
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    if([MyUtil isEmptyString:app.s_app_id]){
-        UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-        [app.navigationController pushViewController:vc animated:YES];
-    }
+    
     // Do any additional setup after loading the view.
-}
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:@"noticeToReload" object:nil];
 
+}
+-(void)reloadData{
+    [self.collectionView reloadData];
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -64,6 +66,12 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
+    //判断是否登录
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if([MyUtil isEmptyString:app.s_app_id]){
+        UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        [app.navigationController pushViewController:vc animated:YES];
+    }
 }
 /*
 #pragma mark - Navigation
@@ -91,6 +99,10 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 
     cell.content.text=_tableList[indexPath.item];
     cell.layer.borderColor=[[UIColor clearColor] CGColor];
+    
+    //重置之前的layer
+    CALayer *restLayer=cell.layer.sublayers.lastObject;
+    restLayer.frame=CGRectZero;
 
     if (indexPath.item==0||indexPath.item==1||indexPath.item==3||indexPath.item==4) {//9宫格 1 2 4 5格子 右、下边线
         CALayer *layerShadow=[[CALayer alloc]init];
@@ -99,6 +111,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         layerShadow.borderWidth=1;
         [cell.layer addSublayer:layerShadow];
     }if (indexPath.item==2||indexPath.item==5) {//9宫格 3 6格子下边线
+        
         CALayer *layerShadow=[[CALayer alloc]init];
         layerShadow.frame=CGRectMake(0, cell.frame.size.height-1,  cell.frame.size.width,1);
         layerShadow.borderColor=[RGB(237, 223, 223) CGColor];
@@ -122,7 +135,20 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     if (kind==UICollectionElementKindSectionHeader) {
         headerView=[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"userCenterHeader" forIndexPath:indexPath];
         //header.user_img.image=[UIImage imageNamed:@""];
-        headerView.user_name.text=@"潘潘潘";
+        
+        
+        if ([MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"user_nick"]]) {
+            headerView.user_name.text=[USER_DEFAULT objectForKey:@"user_name"];
+        }else{
+            headerView.user_name.text=[USER_DEFAULT objectForKey:@"user_nick"];
+        
+        }
+        headerView.user_img.image=[UIImage imageNamed:@"default_04.png"];
+        
+        if (![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"avatar_img"]]) {
+            NSURL *url=[NSURL URLWithString:[USER_DEFAULT objectForKey:@"avatar_img"]];
+            [headerView.user_img setImageWithURL:url placeholderImage:[UIImage imageNamed:@"default_04.png"]];
+        }
         
         
     }else if(kind==UICollectionElementKindSectionFooter){

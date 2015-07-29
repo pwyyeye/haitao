@@ -12,4 +12,9 @@
 
 @property(strong,nonatomic) UITableViewCell *selectcedCell;
 
+@property(strong,nonatomic) NSString *modifyNick;
+
+@property(strong,nonatomic) UILabel *selectedLabel;
+
+
 @end

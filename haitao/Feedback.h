@@ -8,6 +8,28 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Feedback : UIViewController
+@interface Feedback : UIViewController<HTTPControllerProtocol>
 
+@property (weak, nonatomic) IBOutlet UIView *buttonView;
+
+@property (weak, nonatomic) IBOutlet UITextView *content;
+
+@property (weak, nonatomic) IBOutlet UITextField *contact;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewHeight;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewWidth;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonsViewHeight;
+
+
+@property(strong,nonatomic) NSArray *data;
+
+@property(strong,nonatomic) NSMutableArray *btn_array;
+
+@property(assign,nonatomic) float buttonHeight;
+
+@property(assign,nonatomic) int selectedId;
+
+- (IBAction)submit:(id)sender;
 @end
