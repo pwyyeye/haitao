@@ -7,7 +7,8 @@
 //
 
 #import "LTKViewController.h"
-
+#import "New_Goods.h"
+#import "Goods_Ext.h"
 @interface HTGoodDetailsViewController : LTKViewController
 {
     UIScrollView *_scrollView;
@@ -21,5 +22,8 @@
     
     UrlImageButton *btnNine;
 }
-
+@property(nonatomic,retain)New_Goods *goods ;
+@property(nonatomic,retain)NSArray *goods_parity;
+@property(nonatomic,retain)Goods_Ext *goodsExt;
+@property(nonatomic,retain)NSArray *goods_image;
 @end

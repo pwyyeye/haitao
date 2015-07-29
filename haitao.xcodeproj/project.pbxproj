@@ -94,6 +94,11 @@
 		A2FC75101B5E1F640094BC59 /* App_Home_Bigegg.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC750F1B5E1F640094BC59 /* App_Home_Bigegg.m */; };
 		A2FDE0EA1B651A7000B374AA /* ScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FDE0E91B651A7000B374AA /* ScreenViewController.m */; };
 		A2FDE0EC1B65B7C300B374AA /* left_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = A2FDE0EB1B65B7C300B374AA /* left_grey.png */; };
+		A2FDE0F01B675CEB00B374AA /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FDE0EF1B675CEB00B374AA /* CustomViewController.m */; };
+		A2FDE0F31B68689A00B374AA /* CFImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FDE0F21B68689A00B374AA /* CFImageButton.m */; };
+		A2FDE0F61B686A3600B374AA /* CFContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FDE0F51B686A3600B374AA /* CFContentViewController.m */; };
+		A2FDE0F91B687C2200B374AA /* GoodImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FDE0F81B687C2200B374AA /* GoodImageButton.m */; };
+		A2FDE0FD1B6886BE00B374AA /* Goods_Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FDE0FC1B6886BE00B374AA /* Goods_Ext.m */; };
 		A2FFE16E1B608ED20004B4BC /* DJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A2FFE1631B608ED20004B4BC /* DJRefresh.bundle */; };
 		A2FFE16F1B608ED20004B4BC /* DJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FFE1651B608ED20004B4BC /* DJRefresh.m */; };
 		A2FFE1701B608ED20004B4BC /* DJRefreshBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FFE1681B608ED20004B4BC /* DJRefreshBottomView.m */; };
@@ -396,6 +401,16 @@
 		A2FDE0E81B651A7000B374AA /* ScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenViewController.h; sourceTree = "<group>"; };
 		A2FDE0E91B651A7000B374AA /* ScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenViewController.m; sourceTree = "<group>"; };
 		A2FDE0EB1B65B7C300B374AA /* left_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_grey.png; sourceTree = "<group>"; };
+		A2FDE0EE1B675CEB00B374AA /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
+		A2FDE0EF1B675CEB00B374AA /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
+		A2FDE0F11B68689A00B374AA /* CFImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFImageButton.h; sourceTree = "<group>"; };
+		A2FDE0F21B68689A00B374AA /* CFImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFImageButton.m; sourceTree = "<group>"; };
+		A2FDE0F41B686A3600B374AA /* CFContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFContentViewController.h; sourceTree = "<group>"; };
+		A2FDE0F51B686A3600B374AA /* CFContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFContentViewController.m; sourceTree = "<group>"; };
+		A2FDE0F71B687C2200B374AA /* GoodImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodImageButton.h; sourceTree = "<group>"; };
+		A2FDE0F81B687C2200B374AA /* GoodImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodImageButton.m; sourceTree = "<group>"; };
+		A2FDE0FB1B6886BE00B374AA /* Goods_Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goods_Ext.h; sourceTree = "<group>"; };
+		A2FDE0FC1B6886BE00B374AA /* Goods_Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goods_Ext.m; sourceTree = "<group>"; };
 		A2FFE1631B608ED20004B4BC /* DJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DJRefresh.bundle; sourceTree = "<group>"; };
 		A2FFE1641B608ED20004B4BC /* DJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJRefresh.h; sourceTree = "<group>"; };
 		A2FFE1651B608ED20004B4BC /* DJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJRefresh.m; sourceTree = "<group>"; };
@@ -920,6 +935,8 @@
 			children = (
 				A2FC750B1B5DDF090094BC59 /* MenuModel.h */,
 				A2FC750C1B5DDF090094BC59 /* MenuModel.m */,
+				A2FDE0FB1B6886BE00B374AA /* Goods_Ext.h */,
+				A2FDE0FC1B6886BE00B374AA /* Goods_Ext.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -931,6 +948,21 @@
 				A2FDE0E91B651A7000B374AA /* ScreenViewController.m */,
 			);
 			name = "筛选";
+			sourceTree = "<group>";
+		};
+		A2FDE0ED1B675BDA00B374AA /* 分类 */ = {
+			isa = PBXGroup;
+			children = (
+				A2FDE0EE1B675CEB00B374AA /* CustomViewController.h */,
+				A2FDE0EF1B675CEB00B374AA /* CustomViewController.m */,
+				A2FDE0F11B68689A00B374AA /* CFImageButton.h */,
+				A2FDE0F21B68689A00B374AA /* CFImageButton.m */,
+				A2FDE0F41B686A3600B374AA /* CFContentViewController.h */,
+				A2FDE0F51B686A3600B374AA /* CFContentViewController.m */,
+				A2FDE0F71B687C2200B374AA /* GoodImageButton.h */,
+				A2FDE0F81B687C2200B374AA /* GoodImageButton.m */,
+			);
+			name = "分类";
 			sourceTree = "<group>";
 		};
 		A2FFE1621B608ED20004B4BC /* DJRefresh */ = {
@@ -1382,6 +1414,7 @@
 		ADB5ACAA1B54065B0022B2C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A2FDE0ED1B675BDA00B374AA /* 分类 */,
 				A2FDE0E71B65191800B374AA /* 筛选 */,
 				A2FBAA281B6323CC00B752CA /* 专题 */,
 				AD8AA6B31B59E79B00E324AD /* Base */,
@@ -1856,6 +1889,7 @@
 				AD8AA5881B59416000E324AD /* FCTabBarController.m in Sources */,
 				AD8AA6251B59435C00E324AD /* HZAreaPickerView.m in Sources */,
 				AD8AA58F1B59423200E324AD /* HomeViewController.m in Sources */,
+				A2FDE0FD1B6886BE00B374AA /* Goods_Ext.m in Sources */,
 				AD8AA6281B59435C00E324AD /* SDImageCache.m in Sources */,
 				AD8AA6221B59435C00E324AD /* GlobalTool.m in Sources */,
 				A2FBAA311B633D9500B752CA /* SpecialModel.m in Sources */,
@@ -1884,6 +1918,7 @@
 				A2FBAA351B63886900B752CA /* SpeciaButton.m in Sources */,
 				A2FC74A51B5A1E580094BC59 /* FCImageTextViewController.m in Sources */,
 				AD8AA6391B59435C00E324AD /* Toolkit.m in Sources */,
+				A2FDE0F91B687C2200B374AA /* GoodImageButton.m in Sources */,
 				AD8AA5891B59416000E324AD /* LTKNavigationViewController.m in Sources */,
 				ADCFB0341B61C2BA001B3324 /* ForgetPwdStep3.m in Sources */,
 				AD8AA6191B59435C00E324AD /* ELCAssetTablePicker.m in Sources */,
@@ -1899,6 +1934,7 @@
 				A20BA77D1B61F33000F73A57 /* LTKSeachResultViewController.m in Sources */,
 				A20BA7821B620EEA00F73A57 /* TitleBtn.m in Sources */,
 				AD8AA6171B59435C00E324AD /* ELCAsset.m in Sources */,
+				A2FDE0F31B68689A00B374AA /* CFImageButton.m in Sources */,
 				A2F5FB4C1B5FD64100A8205C /* UIScrollView+SVPullToRefresh.m in Sources */,
 				ADCFB0471B61EC4E001B3324 /* UserCenterCollention.m in Sources */,
 				AD8AA6271B59435C00E324AD /* NSURLAdditions.m in Sources */,
@@ -1929,6 +1965,7 @@
 				AD8AA6441B59435C00E324AD /* mztools.m in Sources */,
 				AD8AA63F1B59435C00E324AD /* UIImageAdditions.m in Sources */,
 				AD8AA6351B59435C00E324AD /* MJRefreshHeaderView.m in Sources */,
+				A2FDE0F01B675CEB00B374AA /* CustomViewController.m in Sources */,
 				A2FC750D1B5DDF090094BC59 /* MenuModel.m in Sources */,
 				AD8AA6181B59435C00E324AD /* ELCAssetCell.m in Sources */,
 				AD8AA6291B59435C00E324AD /* SDWebImageDownloader.m in Sources */,
@@ -1957,6 +1994,7 @@
 				A2FDE0EA1B651A7000B374AA /* ScreenViewController.m in Sources */,
 				ADD4D4131B5B999B004AFBE2 /* MyUtil.m in Sources */,
 				ADCFB02A1B60CCFA001B3324 /* ForgetPwdStep1.m in Sources */,
+				A2FDE0F61B686A3600B374AA /* CFContentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

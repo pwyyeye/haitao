@@ -10,7 +10,10 @@
 
 
 #import "HaiTaoBase.h"
-
+#import "MenuModel.h"
 @interface LTKViewController : UIViewController
 @property(nonatomic,assign)CGRect mainFrame;
+@property(nonatomic,retain)MenuModel *menuModel;
+- (CGFloat) horizontalLocationFor:(NSUInteger)tabIndex;
+
 @end

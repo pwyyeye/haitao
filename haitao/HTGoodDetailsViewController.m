@@ -8,7 +8,7 @@
 
 #import "HTGoodDetailsViewController.h"
 
-
+#import "EScrollerView.h"
 #import "TMRulerColor.h"
 
 #import "FCImageTextViewController.h"
@@ -17,10 +17,12 @@ static CGFloat kImageOriginHight = 400;
 @interface HTGoodDetailsViewController ()
 {
     UIView*navigationBar;
-    UrlImageButton* threeButtonImg;//三个按钮背影图
+    UrlImageButton* threeButtonImg;
+    UrlImageButton* yansechicunImg;
     TMRulerColor *rulerView;
     UIView *_bgView;
     UIView *view_bar1;
+    UIWebView *webView;
 }
 @end
 
@@ -28,37 +30,40 @@ static CGFloat kImageOriginHight = 400;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIView *naviView=(UIView*) [self getNavigationBar];
+    
+    UIButton*btnBack=[UIButton buttonWithType:UIButtonTypeCustom];
+    
+    btnBack.frame=CGRectMake(0, view_bar1.frame.size.height-34, 47, 34);
+    [btnBack setImage:BundleImage(@"ret_01.png") forState:0];
+    [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
+//    [view_bar1 addSubview:btnBack];
+//    UIView *naviView=(UIView*) [self getNavigationBar];
     
     
     
-    _scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, kImageOriginHight-100, 320, self.view.frame.size.height)];
+    _scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     _scrollView.delegate = self;
     _scrollView.userInteractionEnabled=YES;
-    _scrollView.contentSize=CGSizeMake(320, self.view.frame.size.height);
+    _scrollView.contentSize=CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.backgroundColor=[UIColor colorWithRed:.98 green:.98 blue:.98 alpha:1.0];
-    _scrollView.contentInset=UIEdgeInsetsMake(kImageOriginHight-100, 0, 50, 0);
+//    _scrollView.contentInset=UIEdgeInsetsMake(kImageOriginHight-100, 0, 50, 0);
     [self.view addSubview:_scrollView];
-    _bigImg=[[UrlImageButton alloc]initWithFrame:CGRectMake(0, -kImageOriginHight, 320, kImageOriginHight)];
-    [_bigImg addTarget:self action:@selector(btnImageText:) forControlEvents:UIControlEventTouchUpInside];
-    [_bigImg setImage:BundleImage(@"shop_df_big_.png") forState:0];
-    _bigImg.backgroundColor=[UIColor clearColor];
-    [_scrollView addSubview:_bigImg ];
+    
     [self getScrollView];
     
     
     [self getToolBar];
     
     UIButton*btnShare=[UIButton buttonWithType:0];
-    btnShare.frame=CGRectMake(self.view.frame.size.width-50, naviView.frame.size.height+10, 42, 42);
+    btnShare.frame=CGRectMake(self.view.frame.size.width-50, 10, 42, 42);
     //    btnShare.backgroundColor=[UIColor clearColor];
     [btnShare addTarget:self action:@selector(btnShare:) forControlEvents:UIControlEventTouchUpInside];
     [btnShare setImage:BundleImage(@"shop_fx_.png") forState:0];
     [self.view insertSubview:btnShare aboveSubview:_scrollView];
     
     UIButton*btnGoShop=[UIButton buttonWithType:0];
-    btnGoShop.frame=CGRectMake(self.view.frame.size.width-50*2, naviView.frame.size.height+10, 42, 42);
+    btnGoShop.frame=CGRectMake(self.view.frame.size.width-50*2,10, 42, 42);
     btnGoShop.backgroundColor=[UIColor clearColor];
     [btnGoShop addTarget:self action:@selector(btnGoCar:) forControlEvents:UIControlEventTouchUpInside];
     [btnGoShop setImage:BundleImage(@"shop_gwc_.png") forState:0];
@@ -68,104 +73,116 @@ static CGFloat kImageOriginHight = 400;
 -(void)viewWillAppear:(BOOL)animated
 {
     _bigImg.frame=CGRectMake(0, -kImageOriginHight, _scrollView.frame.size.width, kImageOriginHight);
-    _scrollView.contentOffset=CGPointMake(0, -kImageOriginHight+100);
+//    _scrollView.contentOffset=CGPointMake(0, -kImageOriginHight+100);
 }
 -(void)getScrollView
 {
     
     
-    UIView *_bigView=[[UIView alloc]initWithFrame:CGRectMake(0, _bigImg.frame.size.height+_bigImg.frame.origin.y-30, 320, 30)];
-    _bigView.layer.borderWidth=1;
-    _bigView.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
+    NSMutableArray *bigArr=[[NSMutableArray alloc]init];
+    if(self.goods_image.count<1){
+        
+    }else{
+        for (NSString *imgUrl in self.goods_image) {
+            NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
+            [dicTemp setObject:imgUrl forKey:@"ititle"];
+            //        [dicTemp setObject:bigTemp.content forKey:@"mainHeading"];
+            [bigArr addObject:dicTemp];
+        }
+
+    }
+    EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, self.view.frame.size.width, 200)
+                                                          scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
     
-    _bigView.backgroundColor=[UIColor whiteColor];
-    [_scrollView addSubview:_bigView];
-    
-    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(10, 0, 250, 30)];
-    title_label.text=@"西西机器人";
-    title_label.font=[UIFont boldSystemFontOfSize:10];
+    scroller.delegate=self;
+    scroller.backgroundColor=[UIColor clearColor];
+    [_scrollView addSubview:scroller];
+    UIView  *nameView=[[UIView alloc]initWithFrame:CGRectMake(0, scroller.frame.size.height+scroller.frame.origin.y, self.view.frame.size.width,90 )];
+    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, self.view.frame.size.width-20, 15)];
+    title_label.text=self.goods.title;
+    title_label.font=[UIFont boldSystemFontOfSize:15];
     title_label.backgroundColor=[UIColor clearColor];
     title_label.textColor =[UIColor colorWithRed:.3 green:.3 blue:.3 alpha:1.0];
-    title_label.textAlignment=0;
-    [_bigView insertSubview:title_label atIndex:0];
+    title_label.textAlignment=NSTextAlignmentCenter;
+    [nameView insertSubview:title_label atIndex:0];
     
     
     
-    UILabel *title_money=[[UILabel alloc]initWithFrame:CGRectMake(title_label.frame.size.width+title_label.frame.origin.x,0, 65, 30)];
-    title_money.text=@"$700";
-    title_money.font=[UIFont systemFontOfSize:14];
+    UILabel *title_money=[[UILabel alloc]initWithFrame:CGRectMake(10, title_label.frame.origin.y+title_label.frame.size.height+10+3, self.view.frame.size.width-20, 15)];
+    NSString *ss=[NSString stringWithFormat:@"%.f",self.goods.price];
+    title_money.text=[NSString stringWithFormat:@"%@%@",ss,@""];
+    
+    title_money.font=[UIFont systemFontOfSize:18];
     title_money.backgroundColor=[UIColor clearColor];
     title_money.textColor =hongShe;
-    title_money.textAlignment=0;
-    [_bigView insertSubview:title_money atIndex:0];
+    title_money.textAlignment=1;
+    [nameView insertSubview:title_money atIndex:0];
     
+    UIButton *bijiaBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    bijiaBtn.frame =CGRectMake(self.view.frame.size.width/2-50, title_money.frame.origin.y+title_money.frame.size.height+3, 100, 25);
+    [bijiaBtn setTitle:@"全球比价" forState:UIControlStateNormal];
+    [bijiaBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [nameView insertSubview:bijiaBtn atIndex:0];
     
-    //邮费销量库存
-    UIView *_bigView1=[[UIView alloc]initWithFrame:CGRectMake(0, _bigView.frame.size.height+_bigView.frame.origin.y+10, 320, 50)];
+    [_scrollView addSubview:nameView];
+    //邮费重量
+    UIView *_bigView1=[[UIView alloc]initWithFrame:CGRectMake(0, nameView.frame.size.height+nameView.frame.origin.y+10, self.view.frame.size.width, 50)];
     _bigView1.layer.borderWidth=1;
     _bigView1.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
     _bigView1.backgroundColor=[UIColor whiteColor];
     [_scrollView addSubview:_bigView1];
     
-    UILabel *title1=[[UILabel alloc]initWithFrame:CGRectMake(0, 10, 320/3, 15)];
-    title1.text=@"邮费";
-    title1.font=[UIFont systemFontOfSize:10];
+    UILabel *title1=[[UILabel alloc]initWithFrame:CGRectMake(0,5, self.view.frame.size.width/2, 20)];
+    title1.text=@"1.5KG";
+    title1.font=[UIFont systemFontOfSize:15];
     title1.backgroundColor=[UIColor clearColor];
     title1.textColor =[UIColor grayColor];
     title1.textAlignment=1;
     [_bigView1 addSubview:title1];
     
-    UILabel *title2=[[UILabel alloc]initWithFrame:CGRectMake(0, title1.frame.size.height+10, 320/3, 15)];
-    title2.text=@"包邮";
-    title2.font=[UIFont systemFontOfSize:10];
+    UILabel *title2=[[UILabel alloc]initWithFrame:CGRectMake(0, title1.frame.size.height+5, 320/2, 20)];
+    title2.text=@"发货重量";
+    title2.font=[UIFont systemFontOfSize:15];
     title2.backgroundColor=[UIColor clearColor];
-    title2.textColor =hongShe;
+    title2.textColor =hui2;
     title2.textAlignment=1;
     [_bigView1 addSubview:title2];
     
-    UIImageView*line1=[[UIImageView alloc]initWithFrame:CGRectMake(320/3,( _bigView1.frame.size.height-30)/2, 1, 30)];
+    UIImageView*line1=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2,( _bigView1.frame.size.height-30)/2, 1, 30)];
     line1.image=BundleImage(@"line_01_.png");
     [_bigView1 addSubview:line1];
     
-    UIImageView*line2=[[UIImageView alloc]initWithFrame:CGRectMake(320/3*2,( _bigView1.frame.size.height-30)/2, 1, 30)];
-    line2.image=BundleImage(@"line_01_.png");
-    [_bigView1 addSubview:line2];
     
-    UILabel *title11=[[UILabel alloc]initWithFrame:CGRectMake(320/3, 10, 320/3, 15)];
-    title11.text=@"销量";
-    title11.font=[UIFont systemFontOfSize:10];
+    
+    UILabel *title11=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, 5, self.view.frame.size.width/2, 20)];
+    title11.text=@"80";
+    title11.font=[UIFont systemFontOfSize:15];
     title11.backgroundColor=[UIColor clearColor];
     title11.textColor =[UIColor grayColor];
     title11.textAlignment=1;
     [_bigView1 addSubview:title11];
     
-    UILabel *title12=[[UILabel alloc]initWithFrame:CGRectMake(320/3, title1.frame.size.height+10, 320/3, 15)];
-    title12.text=@"41件";
-    title12.font=[UIFont systemFontOfSize:10];
+    UILabel *title12=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, title1.frame.size.height+5, self.view.frame.size.width/2, 20)];
+    title12.text=@"转运运费";
+    title12.font=[UIFont systemFontOfSize:15];
     title12.backgroundColor=[UIColor clearColor];
-    title12.textColor =hongShe;
+    title12.textColor =hui2;
     title12.textAlignment=1;
     [_bigView1 addSubview:title12];
     
-    UILabel *title21=[[UILabel alloc]initWithFrame:CGRectMake(320/3*2, 10, 320/3, 15)];
-    title21.text=@"库存";
-    title21.font=[UIFont systemFontOfSize:10];
-    title21.backgroundColor=[UIColor clearColor];
-    title21.textColor =[UIColor grayColor];
-    title21.textAlignment=1;
-    [_bigView1 addSubview:title21];
-    
-    UILabel *title22=[[UILabel alloc]initWithFrame:CGRectMake(320/3*2, title1.frame.size.height+10, 320/3, 15)];
-    title22.text=@"11件";
-    title22.font=[UIFont systemFontOfSize:10];
-    title22.backgroundColor=[UIColor clearColor];
-    title22.textColor =hongShe;
-    title22.textAlignment=1;
-    [_bigView1 addSubview:title22];
-    
-    
-    //头像，清新部落
-    _bigView2=[[UrlImageButton alloc]initWithFrame:CGRectMake(0, _bigView1.frame.size.height+_bigView1.frame.origin.y+10, 320, 80)];
+    //邮费重量
+    UIView *yunfeiView=[[UIView alloc]initWithFrame:CGRectMake(0, _bigView1.frame.size.height+_bigView1.frame.origin.y, self.view.frame.size.width, 30)];
+    yunfeiView.backgroundColor=hui2;
+    UILabel *yunfeititle=[[UILabel alloc]initWithFrame:CGRectMake(20, 5, self.view.frame.size.width-40, 20)];
+    yunfeititle.text=@"￥40/受500g,￥5续100g,每个订单仅收一次首重。";
+    yunfeititle.font=[UIFont systemFontOfSize:12];
+    yunfeititle.backgroundColor=[UIColor clearColor];
+    yunfeititle.textColor =[UIColor blackColor];
+    yunfeititle.textAlignment=1;
+    [yunfeiView addSubview:yunfeititle];
+    [_scrollView addSubview:yunfeiView];
+    //支付方式
+    _bigView2=[[UrlImageButton alloc]initWithFrame:CGRectMake(0, yunfeiView.frame.size.height+yunfeiView.frame.origin.y+10, 320, 80)];
     _bigView2.userInteractionEnabled=YES;
     _bigView2.backgroundColor=[UIColor whiteColor];
     _bigView2.layer.borderWidth=1;
@@ -186,7 +203,7 @@ static CGFloat kImageOriginHight = 400;
     
     
     UILabel *title3=[[UILabel alloc]initWithFrame:CGRectMake(headImg.frame.size.width+headImg.frame.origin.x+10, 15,190, 20)];
-    title3.text=@"西西里科技";
+    title3.text=@"支持支付宝等支付方式";
     title3.font=[UIFont systemFontOfSize:12];
     title3.backgroundColor=[UIColor clearColor];
     title3.textColor =[UIColor colorWithRed:.2 green:.2 blue:.2 alpha:1.0];
@@ -194,7 +211,7 @@ static CGFloat kImageOriginHight = 400;
     [_bigView2 addSubview:title3];
     
     UILabel *title4=[[UILabel alloc]initWithFrame:CGRectMake(headImg.frame.size.width+headImg.frame.origin.x+10, 15+title3.frame.size.height,50, 20)];
-    title4.text=@"店铺介绍：";
+    title4.text=@"美国";
     title4.font=[UIFont systemFontOfSize:10];
     title4.backgroundColor=[UIColor clearColor];
     title4.textColor =[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0];
@@ -202,7 +219,7 @@ static CGFloat kImageOriginHight = 400;
     [_bigView2 addSubview:title4];
     
     UILabel *title5=[[UILabel alloc]initWithFrame:CGRectMake(title4.frame.size.width+title4.frame.origin.x, 15+title3.frame.size.height,130, 30)];
-    title5.text=@"创业板上市的互联网科技龙头公司";
+    title5.text=@"下单后6-10个工作日到手";
     
     title5.font=[UIFont systemFontOfSize:10];
     title5.numberOfLines=2;
@@ -216,7 +233,33 @@ static CGFloat kImageOriginHight = 400;
     imageJ.image=BundleImage(@"bt_04_J.png");
     [_bigView2 addSubview:imageJ];
     
-    threeButtonImg=[[UrlImageButton alloc]initWithFrame:CGRectMake(0, _bigView2.frame.size.height+_bigView2.frame.origin.y+10, self.view.frame.size.width,35 )];
+    //选择颜色和尺寸
+    yansechicunImg=[[UrlImageButton alloc]initWithFrame:CGRectMake(0, _bigView2.frame.size.height+_bigView2.frame.origin.y+10, self.view.frame.size.width,35 )];
+    yansechicunImg.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
+    yansechicunImg.layer.borderWidth=1;
+    [yansechicunImg addTarget:self action:@selector(yansechicunBtn:) forControlEvents:UIControlEventTouchUpInside];
+    yansechicunImg.backgroundColor=[UIColor whiteColor];
+    yansechicunImg.userInteractionEnabled=YES;
+    [_scrollView addSubview:yansechicunImg];
+    
+    UILabel *yansechicunLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, yansechicunImg.frame.size.height/2-20/2, 150, 20)];
+    yansechicunLbl.text=@"选择颜色和尺寸";
+    yansechicunLbl.font=[UIFont systemFontOfSize:12];
+    yansechicunLbl.backgroundColor=[UIColor clearColor];
+    yansechicunLbl.textColor =hui5;
+    yansechicunLbl.textAlignment=0;
+    [yansechicunImg addSubview:yansechicunLbl];
+
+    UIImageView *yansechicunimageP=[[UIImageView alloc]initWithFrame:CGRectMake(yansechicunImg.frame.size.width-44, (yansechicunImg.frame.size.height-70)/2, 44, 70)];
+    yansechicunimageP.image=BundleImage(@"bt_04_J.png");
+    [yansechicunImg addSubview:yansechicunimageP];
+    
+    //加载html商品信息
+    webView=[[UIWebView alloc]initWithFrame:CGRectMake(0, yansechicunImg.frame.size.height+yansechicunImg.frame.origin.y, self.view.frame.size.width, 500)];
+    NSString *webStr=self.goodsExt.content;
+    [webView loadHTMLString:webStr baseURL:nil];
+    //评论
+    threeButtonImg=[[UrlImageButton alloc]initWithFrame:CGRectMake(0, webView.frame.size.height+webView.frame.origin.y+10, self.view.frame.size.width,35 )];
     threeButtonImg.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
     threeButtonImg.layer.borderWidth=1;
     [threeButtonImg addTarget:self action:@selector(btnComment:) forControlEvents:UIControlEventTouchUpInside];
@@ -268,7 +311,7 @@ static CGFloat kImageOriginHight = 400;
     view.backgroundColor=[UIColor whiteColor];
     view.layer.borderColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0].CGColor;
     [_scrollView addSubview:view];
-    
+    [_scrollView setContentSize:CGSizeMake(320, view.frame.size.height+view.frame.origin.y+10)];
     UILabel *labelDetail=[[UILabel alloc]initWithFrame:CGRectMake(10, 5, 290, 70)];
     
     labelDetail.backgroundColor=[UIColor redColor];
@@ -315,12 +358,7 @@ static CGFloat kImageOriginHight = 400;
     title_label.textAlignment=1;
     [view_bar1 addSubview:title_label];
     
-    UIButton*btnBack=[UIButton buttonWithType:UIButtonTypeCustom];
-
-    btnBack.frame=CGRectMake(0, view_bar1.frame.size.height-34, 47, 34);
-    [btnBack setImage:BundleImage(@"ret_01.png") forState:0];
-    [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
-    [view_bar1 addSubview:btnBack];
+  
     
     
     
@@ -508,7 +546,10 @@ static CGFloat kImageOriginHight = 400;
     //    }
     
 }
+#pragma mark - 选择颜色尺寸
+-(void)yansechicunBtn:(UrlImageButton *)sendid{
 
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

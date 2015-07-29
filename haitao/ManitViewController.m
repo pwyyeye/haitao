@@ -11,6 +11,7 @@
 #import "Toolkit.h"
 #import "AFNetworking.h"
 #import "SpecialViewController.h"
+#import "CustomViewController.h"
 @interface ManitViewController ()
 
 @end
@@ -42,16 +43,24 @@
     UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:nil image:BundleImage(@"ic_01_h.png") selectedImage:BundleImage(@"ic_01_h.png")];
     
     item1.tag=1;
-    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemContacts tag:2];
-    UITabBarItem *item3 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemDownloads tag:3];
-    UITabBarItem *item4 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:4];
-    UITabBarItem *item5 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemRecents tag:5];
-    UITabBarItem *item6 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemTopRated tag:6];
-    UITabBarItem *item7 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemRecents tag:7];
-    UITabBarItem *item8 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemContacts tag:8];
-    UITabBarItem *item9 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:9];
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSArray *menuArrNew=app.menuArr;
+    NSMutableArray *barArr=[[NSMutableArray alloc]initWithCapacity:12];
+    int j=1;
+    [barArr addObject:item1];
+    for (int i=0; i<=menuArrNew.count-1; i++) {
+        MenuModel *me=menuArrNew[i];
+        UITabBarItem *itemTemp = [[UITabBarItem alloc] initWithTitle:me.name image:BundleImage(@"ic_01_h.png") selectedImage:BundleImage(@"ic_01_h.png")];
+        j++;
+        itemTemp.tag=j;
+        [barArr addObject:itemTemp];
+    }
+    j++;
+    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:nil image:BundleImage(@"ic_01_h.png") selectedImage:BundleImage(@"ic_01_h.png")];
     
-    tabBar = [[ZRScrollableTabBar alloc] initWithItems:[NSArray arrayWithObjects: item1, item2,item3,item4,item5,item6,item7,item8,item9,nil]withFrame:view_bar.frame];
+    item2.tag=j;
+    [barArr addObject:item2];
+    tabBar = [[ZRScrollableTabBar alloc] initWithItems:barArr withFrame:view_bar.frame];
     tabBar.scrollableTabBarDelegate = self;
     [view_bar addSubview:tabBar];
     [self.view addSubview: view_bar];
@@ -66,8 +75,20 @@
     SpecialViewController *specialViewController=[[SpecialViewController alloc]init];
     specialViewController.mainFrame=mainFrame;
     
-    NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:5];
-    NSArray *views = @[homeViewController,specialViewController];
+    NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:12];
+    NSMutableArray *views =[NSMutableArray arrayWithCapacity:12];
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSArray *menuArrNew=app.menuArr;
+    [views addObject:homeViewController];
+   
+    for (int i=0; i<=menuArrNew.count-1; i++) {
+        MenuModel *menuModel=menuArrNew[i];
+        CustomViewController *custome=[[CustomViewController alloc]init];
+        custome.menuModel=menuModel;
+        custome.mainFrame=mainFrame;
+        [views addObject:custome];
+    }
+    [views addObject:specialViewController];
     for (UIViewController *viewController in views) {
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
         [viewControllers addObject:nav];
@@ -140,6 +161,7 @@
 
 - (void)scrollableTabBar:(ZRScrollableTabBar *)tabBar didSelectItemWithTag:(int)tag
 {
+    int j=self.selectedIndex ;
     self.selectedIndex = tag-1;
 }
 

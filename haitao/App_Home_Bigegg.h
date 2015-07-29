@@ -30,6 +30,7 @@
 @property (copy, nonatomic) NSString *mt;
 @property (copy, nonatomic) NSString *img_url;
 @property (copy, nonatomic) NSString *img_detail;
+@property (copy, nonatomic) NSString *ad_cat_id;
 @property (assign, nonatomic) double price;
 @property (assign, nonatomic) double mk_price;
 
