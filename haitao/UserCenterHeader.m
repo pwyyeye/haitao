@@ -8,6 +8,7 @@
 
 #import "UserCenterHeader.h"
 #import "UserDetailController.h"
+#import "Setting.h"
 @implementation UserCenterHeader
 
 - (void)awakeFromNib {
@@ -44,5 +45,13 @@
     app.navigationController.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     [app.navigationController pushViewController:detailViewController animated:YES];
     
+}
+
+- (IBAction)gotoSetting:(id)sender {
+    Setting *detailViewController=[[Setting alloc] init];
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    app.navigationController.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [app.navigationController pushViewController:detailViewController animated:YES];
 }
 @end

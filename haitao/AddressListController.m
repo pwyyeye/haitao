@@ -46,7 +46,7 @@
     
     //navigationBar的标题
     //self.navigationItem.title=@"登录";
-    self.title=@"管理收获地址";
+    self.title=@"管理收货地址";
     
     //设置标题颜色
     
@@ -197,19 +197,95 @@
     return _data.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.item==0){
+        return 70;
+    }else{
+        return 60;
+    }
+    
+    
+}
+/**
+ 自定义UITableViewCell的accessory样式
+ 默认的accessoryType属性有四种取值：UITableViewCellAccessoryNone、 UITableViewCellAccessoryDisclosureIndicator、 UITableViewCellAccessoryDetailDisclosureButton、 UITableViewCellAccessoryCheckmark。
+ 
+ 如果想使用自定义附件按钮的其他样式，则需使用UITableView的accessoryView属性来指定
+ 
+ UIButton*button;
+ 
+ if(isEditableOrNot){
+ 
+ UIImage*image =[UIImage imageNamed:@"delete.png"];
+ 
+ button =[UIButton buttonWithType:UIButtonTypeCustom];
+ 
+ CGRect frame =CGRectMake(0.0,0.0,image.size.width,image.size.height);
+ 
+ button.frame = frame;
+ 
+ [button setBackgroundImage:image forState:UIControlStateNormal];
+ 
+ button.backgroundColor =[UIColor clearColor];
+ 
+ cell.accessoryView = button;
+ 
+ }else{
+ 
+ button =[UIButton buttonWithType:UIButtonTypeCustom];
+ 
+ button.backgroundColor =[UIColor clearColor];
+ 
+ cell.accessoryView = button;
+ 
+ }
+ 
+ 
+ */
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AddressListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"addressListCell" forIndexPath:indexPath];
     AddressModel *model=_data[indexPath.item];
     cell.username.text=model.consignee;
-//    cell.textLabel.text=@"12312312312312321313";
-//    cell.detailTextLabel.text=@"sdfasdfadsfasdfasfasdfsadfasfasdfasd";
     
     NSString *address=[NSString stringWithFormat:@"%@%@",model.province,model.address];
+    if([model.is_default integerValue]==1){
+        address=[NSString stringWithFormat:@"%@%@%@",@"［默认］",model.province,model.address];
+    
+    }
     cell.address.text=address;
     cell.telephone.text=model.mobile;
+    
+    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, indexPath.item==0?cell.frame.size.height-20:cell.frame.size.height-10)];
+    label.backgroundColor=[UIColor whiteColor];
+    //清除cell背景颜色 在底部添加白色背景label 高度小于cell 使之看起来有间隔
+    cell.backgroundColor=[UIColor clearColor];
+    cell.contentView.backgroundColor=[UIColor clearColor];
+    
+    [cell.contentView insertSubview:label atIndex:0];
+    
     if([model.is_default integerValue]==1){
+        
+        UIButton*button;//自定义选中
+        
+        UIImage*image =[UIImage imageNamed:@"btn_back.png"];
+        
+        button =[UIButton buttonWithType:UIButtonTypeCustom];
+        
+        CGRect frame =CGRectMake(0,0,20,20);
+        
+        button.frame = frame;
+        
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+        
+        button.backgroundColor =[UIColor redColor];
+        
+        cell.accessoryView = button;
+        
         cell.accessoryType=UITableViewCellAccessoryCheckmark;
+        
+    }else{
+        cell.accessoryType=UITableViewCellAccessoryNone;
     }
 
     // Configure the cell...
@@ -223,6 +299,7 @@
     UpdateAddress *detailViewController=[[UpdateAddress alloc] initWithNibName:@"UpdateAddress" bundle:nil];
     detailViewController.addressModel=_data[indexPath.item];
     // Push the view controller.
+    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 /*
@@ -276,11 +353,17 @@
     
     NSLog(@"----pass gotoAddAddress%@---",@"test");
     
-    UIViewController *detailViewController =[[AddAddressStep1 alloc] initWithNibName:@"AddAddressStep1" bundle:nil];
+    AddAddressStep1 *detailViewController =[[AddAddressStep1 alloc] initWithNibName:@"AddAddressStep1" bundle:nil];
     
     // Pass the selected object to the new view controller.
     
     // Push the view controller.
+    
+    if (_data.count==0) {
+        detailViewController.isFirstAddress=YES;
+    }else{
+        detailViewController.isFirstAddress=NO;
+    }
     
     [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
 //    self.hidesBottomBarWhenPushed = YES;

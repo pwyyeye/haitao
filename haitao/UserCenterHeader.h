@@ -16,4 +16,6 @@
 
 - (IBAction)gotoUserDetail:(id)sender;
 
+- (IBAction)gotoSetting:(id)sender;
+
 @end

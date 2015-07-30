@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "AddressModel.h"
 
-@interface UpdateAddress : UIViewController<UIScrollViewDelegate,UIScrollViewAccessibilityDelegate>
+@interface UpdateAddress : UIViewController<HTTPControllerProtocol>
 
 @property(strong,nonatomic) AddressModel *addressModel;
 
+@property(strong,nonatomic) NSString *id;//地址ID
 
 @property (weak, nonatomic) IBOutlet UITextField *consignee;//收货人
 
@@ -25,4 +26,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *address;
 
 @property (weak, nonatomic) IBOutlet UITextField *zipcode;
+
+- (IBAction)setToDefault:(id)sender;
+
+
+- (IBAction)deleteAddress:(id)sender;
+
+- (IBAction)DidEndOnExit:(id)sender;
+
 @end

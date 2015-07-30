@@ -7,10 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-#define PROVINCE_COMPONENT  0
-#define CITY_COMPONENT      1
-#define DISTRICT_COMPONENT  2
+#import "AreaPickerView.h"
 
 @interface AddAddressStep1 : UIViewController<UIActionSheetDelegate,UIPickerViewDataSource,UIPickerViewDelegate,HTTPControllerProtocol>
 
@@ -26,15 +23,10 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *zipcode;
 
-@property(strong,nonatomic) UIPickerView *picker;
+@property(assign,nonatomic) BOOL isFirstAddress;
 
+@property(strong,nonatomic) AreaPickerView *picker;
 
-@property (strong, nonatomic)  NSDictionary *areaDic;
-@property (strong, nonatomic)  NSArray *provinces;
-@property (strong, nonatomic)  NSArray *city;
-@property (strong, nonatomic)  NSArray *district;
-
-@property (strong, nonatomic)  NSString *selectedProvince;
 
 - (IBAction)gotoStep2:(id)sender;
 

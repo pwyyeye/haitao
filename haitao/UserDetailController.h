@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
+@interface UserDetailController : UITableViewController<HTTPControllerProtocol,UIActionSheetDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate>
 
-@interface UserDetailController : UITableViewController
+@property(strong,nonatomic) UITableViewCell *selectcedCell;
+
+@property(strong,nonatomic) NSString *modifyNick;
+
+@property(strong,nonatomic) UILabel *selectedLabel;
+
 
 @end

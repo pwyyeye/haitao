@@ -40,7 +40,15 @@
 //登录
 #define requestUrl_doLogin [NSString stringWithFormat:@"%@&f=doLogin&m=user",requestUrl]
 
-//登录
+
+//修改用户昵称
+#define requestUrl_modifyUserNick [NSString stringWithFormat:@"%@&f=modifyUserNick&m=user",requestUrl]
+
+//修改用户头像
+#define requestUrl_modifyUserAvatar [NSString stringWithFormat:@"%@&f=modifyUserAvatar&m=user",requestUrl]
+
+
+//重置密码
 #define requestUrl_resetPassByMobile [NSString stringWithFormat:@"%@&f=resetPassByMobile&m=user",requestUrl]
 
 //登出
@@ -61,6 +69,10 @@
 //设置默认地址
 #define requestUrl_setDefaultAddress [NSString stringWithFormat:@"%@&f=setDefaultAddress&m=user",requestUrl]
 
+//上传身份证
+#define requestUrl_modifyIdCard [NSString stringWithFormat:@"%@&f=modifyIdCard&m=user",requestUrl]
+
+
 //添加购物车
 #define requestUrl_addCart [NSString stringWithFormat:@"%@&f=addCart&m=cart",requestUrl]
 
@@ -76,5 +88,11 @@
 //删除
 #define requestUrl_delCart [NSString stringWithFormat:@"%@&f=delCart&m=cart",requestUrl]
 
+
+//获取意见反馈选项
+#define requestUrl_getSuggestTypeList [NSString stringWithFormat:@"%@&f=getSuggestTypeList&m=home",requestUrl]
+
+//获取意见反馈选项
+#define requestUrl_addSuggest [NSString stringWithFormat:@"%@&f=addSuggest&m=home",requestUrl]
 
 #endif

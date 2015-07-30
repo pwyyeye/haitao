@@ -256,6 +256,10 @@
 		ADD1718D1B5F2F7A00E451D5 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1718C1B5F2F7A00E451D5 /* BaseModel.m */; };
 		ADD171971B5FCD9D00E451D5 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD171951B5FCD9D00E451D5 /* RegisterViewController.m */; };
 		ADD171981B5FCD9D00E451D5 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD171961B5FCD9D00E451D5 /* RegisterViewController.xib */; };
+		ADD33A111B65BB5700558372 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD33A101B65BB5700558372 /* MobileCoreServices.framework */; };
+		ADD33A131B65BB7100558372 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD33A121B65BB7100558372 /* SystemConfiguration.framework */; };
+		ADD33A171B65BFA600558372 /* UpdateAddressForEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD33A151B65BFA600558372 /* UpdateAddressForEdit.m */; };
+		ADD33A181B65BFA600558372 /* UpdateAddressForEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD33A161B65BFA600558372 /* UpdateAddressForEdit.xib */; };
 		ADD4D40B1B5B298F004AFBE2 /* HTGoodDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D40A1B5B298F004AFBE2 /* HTGoodDetailsViewController.m */; };
 		ADD4D40E1B5B29AF004AFBE2 /* TMRulerColor.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D40D1B5B29AF004AFBE2 /* TMRulerColor.m */; };
 		ADD4D4131B5B999B004AFBE2 /* MyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D4121B5B999B004AFBE2 /* MyUtil.m */; };
@@ -267,6 +271,17 @@
 		ADD4D42C1B5CBC06004AFBE2 /* AddressListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D42A1B5CBC06004AFBE2 /* AddressListCell.m */; };
 		ADD4D42D1B5CBC06004AFBE2 /* AddressListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD4D42B1B5CBC06004AFBE2 /* AddressListCell.xib */; };
 		ADD4D42F1B5CDCB0004AFBE2 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADD4D42E1B5CDCB0004AFBE2 /* area.plist */; };
+		ADECDC101B65CE4F009EA286 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADECDC0F1B65CE4F009EA286 /* View.xib */; };
+		ADECDC131B65DE17009EA286 /* AreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADECDC121B65DE17009EA286 /* AreaPickerView.m */; };
+		ADECDC171B670C91009EA286 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = ADECDC161B670C91009EA286 /* Setting.m */; };
+		ADECDC1B1B672C47009EA286 /* ConnetPeiKua.m in Sources */ = {isa = PBXBuildFile; fileRef = ADECDC191B672C47009EA286 /* ConnetPeiKua.m */; };
+		ADECDC1C1B672C47009EA286 /* ConnetPeiKua.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADECDC1A1B672C47009EA286 /* ConnetPeiKua.xib */; };
+		ADECDC201B672C62009EA286 /* AboutPeiKua.m in Sources */ = {isa = PBXBuildFile; fileRef = ADECDC1E1B672C62009EA286 /* AboutPeiKua.m */; };
+		ADECDC211B672C62009EA286 /* AboutPeiKua.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADECDC1F1B672C62009EA286 /* AboutPeiKua.xib */; };
+		ADECDC251B672CB3009EA286 /* Feedback.m in Sources */ = {isa = PBXBuildFile; fileRef = ADECDC231B672CB3009EA286 /* Feedback.m */; };
+		ADECDC261B672CB3009EA286 /* Feedback.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADECDC241B672CB3009EA286 /* Feedback.xib */; };
+		ADECDC2A1B672CF2009EA286 /* ServiceTerms.m in Sources */ = {isa = PBXBuildFile; fileRef = ADECDC281B672CF2009EA286 /* ServiceTerms.m */; };
+		ADECDC2B1B672CF2009EA286 /* ServiceTerms.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADECDC291B672CF2009EA286 /* ServiceTerms.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -669,6 +684,11 @@
 		ADD171941B5FCD9D00E451D5 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		ADD171951B5FCD9D00E451D5 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		ADD171961B5FCD9D00E451D5 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
+		ADD33A101B65BB5700558372 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		ADD33A121B65BB7100558372 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		ADD33A141B65BFA600558372 /* UpdateAddressForEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateAddressForEdit.h; sourceTree = "<group>"; };
+		ADD33A151B65BFA600558372 /* UpdateAddressForEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateAddressForEdit.m; sourceTree = "<group>"; };
+		ADD33A161B65BFA600558372 /* UpdateAddressForEdit.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateAddressForEdit.xib; sourceTree = "<group>"; };
 		ADD4D4091B5B298F004AFBE2 /* HTGoodDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTGoodDetailsViewController.h; sourceTree = "<group>"; };
 		ADD4D40A1B5B298F004AFBE2 /* HTGoodDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTGoodDetailsViewController.m; sourceTree = "<group>"; };
 		ADD4D40C1B5B29AF004AFBE2 /* TMRulerColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMRulerColor.h; sourceTree = "<group>"; };
@@ -689,6 +709,23 @@
 		ADD4D42A1B5CBC06004AFBE2 /* AddressListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressListCell.m; sourceTree = "<group>"; };
 		ADD4D42B1B5CBC06004AFBE2 /* AddressListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressListCell.xib; sourceTree = "<group>"; };
 		ADD4D42E1B5CDCB0004AFBE2 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		ADECDC0F1B65CE4F009EA286 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		ADECDC111B65DE17009EA286 /* AreaPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaPickerView.h; sourceTree = "<group>"; };
+		ADECDC121B65DE17009EA286 /* AreaPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaPickerView.m; sourceTree = "<group>"; };
+		ADECDC151B670C91009EA286 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
+		ADECDC161B670C91009EA286 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setting.m; sourceTree = "<group>"; };
+		ADECDC181B672C47009EA286 /* ConnetPeiKua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnetPeiKua.h; sourceTree = "<group>"; };
+		ADECDC191B672C47009EA286 /* ConnetPeiKua.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnetPeiKua.m; sourceTree = "<group>"; };
+		ADECDC1A1B672C47009EA286 /* ConnetPeiKua.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnetPeiKua.xib; sourceTree = "<group>"; };
+		ADECDC1D1B672C62009EA286 /* AboutPeiKua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutPeiKua.h; sourceTree = "<group>"; };
+		ADECDC1E1B672C62009EA286 /* AboutPeiKua.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutPeiKua.m; sourceTree = "<group>"; };
+		ADECDC1F1B672C62009EA286 /* AboutPeiKua.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutPeiKua.xib; sourceTree = "<group>"; };
+		ADECDC221B672CB3009EA286 /* Feedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feedback.h; sourceTree = "<group>"; };
+		ADECDC231B672CB3009EA286 /* Feedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feedback.m; sourceTree = "<group>"; };
+		ADECDC241B672CB3009EA286 /* Feedback.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Feedback.xib; sourceTree = "<group>"; };
+		ADECDC271B672CF2009EA286 /* ServiceTerms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceTerms.h; sourceTree = "<group>"; };
+		ADECDC281B672CF2009EA286 /* ServiceTerms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceTerms.m; sourceTree = "<group>"; };
+		ADECDC291B672CF2009EA286 /* ServiceTerms.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServiceTerms.xib; sourceTree = "<group>"; };
 		DB8432FE812FC9929501C476 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -697,6 +734,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADD33A131B65BB7100558372 /* SystemConfiguration.framework in Frameworks */,
+				ADD33A111B65BB5700558372 /* MobileCoreServices.framework in Frameworks */,
 				AD8AA6621B59484A00E324AD /* QuartzCore.framework in Frameworks */,
 				AD8AA6541B59476500E324AD /* CoreData.framework in Frameworks */,
 				AD8AA6691B594E8B00E324AD /* libsqlite3.0.dylib in Frameworks */,
@@ -730,6 +769,8 @@
 		206417A9CDC7122819AA2138 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ADD33A121B65BB7100558372 /* SystemConfiguration.framework */,
+				ADD33A101B65BB5700558372 /* MobileCoreServices.framework */,
 				AD8AA6671B594E8B00E324AD /* libsqlite3.0.dylib */,
 				AD8AA6681B594E8B00E324AD /* libsqlite3.dylib */,
 				AD8AA6651B594E5C00E324AD /* MessageUI.framework */,
@@ -1454,7 +1495,6 @@
 				AD8AA5971B59428E00E324AD /* 精品推荐 */,
 				ADB5ACAF1B5406AC0022B2C2 /* Cart */,
 				ADB5ACAB1B54066A0022B2C2 /* User */,
-				ADB5ACAD1B5406890022B2C2 /* Setting */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1462,7 +1502,9 @@
 		ADB5ACAB1B54066A0022B2C2 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				ADECDC141B65DE22009EA286 /* Utils */,
 				ADD171871B5F2E6300E451D5 /* Model */,
+				ADB5ACAD1B5406890022B2C2 /* Setting */,
 				ADCFB0261B60C5F7001B3324 /* Password */,
 				ADD171991B5FCDA500E451D5 /* Register */,
 				ADD4D4201B5BAEE0004AFBE2 /* Address */,
@@ -1499,6 +1541,20 @@
 		ADB5ACAD1B5406890022B2C2 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				ADECDC151B670C91009EA286 /* Setting.h */,
+				ADECDC161B670C91009EA286 /* Setting.m */,
+				ADECDC1D1B672C62009EA286 /* AboutPeiKua.h */,
+				ADECDC1E1B672C62009EA286 /* AboutPeiKua.m */,
+				ADECDC1F1B672C62009EA286 /* AboutPeiKua.xib */,
+				ADECDC181B672C47009EA286 /* ConnetPeiKua.h */,
+				ADECDC191B672C47009EA286 /* ConnetPeiKua.m */,
+				ADECDC1A1B672C47009EA286 /* ConnetPeiKua.xib */,
+				ADECDC221B672CB3009EA286 /* Feedback.h */,
+				ADECDC231B672CB3009EA286 /* Feedback.m */,
+				ADECDC241B672CB3009EA286 /* Feedback.xib */,
+				ADECDC271B672CF2009EA286 /* ServiceTerms.h */,
+				ADECDC281B672CF2009EA286 /* ServiceTerms.m */,
+				ADECDC291B672CF2009EA286 /* ServiceTerms.xib */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -1636,14 +1692,27 @@
 				ADD1717F1B5E1C9900E451D5 /* AddAddressStep2.xib */,
 				ADD4D4211B5BB0D7004AFBE2 /* AddressListController.h */,
 				ADD4D4221B5BB0D7004AFBE2 /* AddressListController.m */,
-				ADD171821B5E39B100E451D5 /* UpdateAddress.h */,
-				ADD171831B5E39B100E451D5 /* UpdateAddress.m */,
-				ADD171841B5E39B100E451D5 /* UpdateAddress.xib */,
 				ADD4D4291B5CBC06004AFBE2 /* AddressListCell.h */,
 				ADD4D42A1B5CBC06004AFBE2 /* AddressListCell.m */,
 				ADD4D42B1B5CBC06004AFBE2 /* AddressListCell.xib */,
+				ADD171821B5E39B100E451D5 /* UpdateAddress.h */,
+				ADD171831B5E39B100E451D5 /* UpdateAddress.m */,
+				ADD171841B5E39B100E451D5 /* UpdateAddress.xib */,
+				ADD33A141B65BFA600558372 /* UpdateAddressForEdit.h */,
+				ADD33A151B65BFA600558372 /* UpdateAddressForEdit.m */,
+				ADD33A161B65BFA600558372 /* UpdateAddressForEdit.xib */,
+				ADECDC0F1B65CE4F009EA286 /* View.xib */,
 			);
 			name = Address;
+			sourceTree = "<group>";
+		};
+		ADECDC141B65DE22009EA286 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				ADECDC111B65DE17009EA286 /* AreaPickerView.h */,
+				ADECDC121B65DE17009EA286 /* AreaPickerView.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		EE4E5575F3F92981227C96AC /* Pods */ = {
@@ -1739,6 +1808,7 @@
 			files = (
 				A2FDE0EC1B65B7C300B374AA /* left_grey.png in Resources */,
 				A2FC74E91B5B5DD00094BC59 /* 奶粉.jpg in Resources */,
+				ADECDC261B672CB3009EA286 /* Feedback.xib in Resources */,
 				AD8AA6A61B59E14400E324AD /* icon_05@2x.png in Resources */,
 				A2FC74C61B5A31340094BC59 /* ic_01_h.png in Resources */,
 				A21815B71B5A0E9A00D64E70 /* df_03_@2x.png in Resources */,
@@ -1755,6 +1825,7 @@
 				A21815B91B5A0E9A00D64E70 /* fbt_01_@2x.png in Resources */,
 				AD8AA6961B59E14400E324AD /* default_04@2x.png in Resources */,
 				A21815BE1B5A0E9A00D64E70 /* shop_fx_@2x.png in Resources */,
+				ADD33A181B65BFA600558372 /* UpdateAddressForEdit.xib in Resources */,
 				AD1386931B54D5BF00130E49 /* LoginViewController.xib in Resources */,
 				A21815AF1B5A0E9A00D64E70 /* bt_06_@2x.png in Resources */,
 				A2FC74D31B5A31340094BC59 /* ic_07_n.png in Resources */,
@@ -1789,6 +1860,7 @@
 				A21815AB1B5A0E9A00D64E70 /* bt_04_01_@2x.png in Resources */,
 				AD8AA6A21B59E14400E324AD /* icon_03@2x.png in Resources */,
 				AD8AA6951B59E14400E324AD /* default_03@2x.png in Resources */,
+				ADECDC2B1B672CF2009EA286 /* ServiceTerms.xib in Resources */,
 				A2FC74D11B5A31340094BC59 /* ic_06_n.png in Resources */,
 				A2FC74C51B5A31340094BC59 /* df_02_@2x.png in Resources */,
 				AD8AA61B1B59435C00E324AD /* ELCAlbumPickerController.xib in Resources */,
@@ -1799,6 +1871,7 @@
 				AD8AA61C1B59435C00E324AD /* ELCAssetPicker.xib in Resources */,
 				A2FC74CF1B5A31340094BC59 /* ic_05_n.png in Resources */,
 				A21815A51B5A0E9A00D64E70 /* bg_01_@2x.png in Resources */,
+				ADECDC211B672C62009EA286 /* AboutPeiKua.xib in Resources */,
 				AD8AA6911B59E14400E324AD /* banner_02_02.png in Resources */,
 				AD8AA6921B59E14400E324AD /* banner_03_02.png in Resources */,
 				A2FFE1891B60B7C50004B4BC /* macbook_pro.jpg in Resources */,
@@ -1814,6 +1887,7 @@
 				A21815B21B5A0E9A00D64E70 /* bt_09_n_@2x.png in Resources */,
 				AD8AA61D1B59435C00E324AD /* ELCAssetTablePicker.xib in Resources */,
 				A21815B41B5A0E9A00D64E70 /* bt_clo_@2x.png in Resources */,
+				ADECDC101B65CE4F009EA286 /* View.xib in Resources */,
 				A21815A91B5A0E9A00D64E70 /* bt_02_@2x.png in Resources */,
 				AD8AA6931B59E14400E324AD /* default_01@2x.png in Resources */,
 				A2FC74C91B5A31340094BC59 /* ic_02_n.png in Resources */,
@@ -1830,6 +1904,7 @@
 				A2FC74D21B5A31340094BC59 /* ic_07_h.png in Resources */,
 				A2FC74C41B5A31340094BC59 /* df_01.png in Resources */,
 				ADB5AC931B53CB5F0022B2C2 /* LaunchScreen.xib in Resources */,
+				ADECDC1C1B672C47009EA286 /* ConnetPeiKua.xib in Resources */,
 				ADCFB0301B613E69001B3324 /* ForgetPwdStep2.xib in Resources */,
 				A2FC74CA1B5A31340094BC59 /* ic_03_h.png in Resources */,
 				ADB5AC901B53CB5F0022B2C2 /* Images.xcassets in Resources */,
@@ -1907,6 +1982,7 @@
 				ADB5AC851B53CB5F0022B2C2 /* AppDelegate.m in Sources */,
 				AD8AA6721B594EED00E324AD /* HZLocation.m in Sources */,
 				A2FFE16F1B608ED20004B4BC /* DJRefresh.m in Sources */,
+				ADECDC131B65DE17009EA286 /* AreaPickerView.m in Sources */,
 				ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */,
 				A2FC75051B5D1FFA0094BC59 /* NSString+MJExtension.m in Sources */,
 				A2FC74FE1B5D1FFA0094BC59 /* MJConst.m in Sources */,
@@ -1932,10 +2008,12 @@
 				A2FC75081B5D22E20094BC59 /* HTTPController.m in Sources */,
 				A2FC75011B5D1FFA0094BC59 /* MJType.m in Sources */,
 				AD8AA6401B59435C00E324AD /* URBAlertView.m in Sources */,
+				ADECDC171B670C91009EA286 /* Setting.m in Sources */,
 				AD8AA58C1B59416000E324AD /* HaiTaoBase.m in Sources */,
 				A2FFE1701B608ED20004B4BC /* DJRefreshBottomView.m in Sources */,
 				AD8AA6481B59435C00E324AD /* ZipArchive.m in Sources */,
 				A2FC75101B5E1F640094BC59 /* App_Home_Bigegg.m in Sources */,
+				ADECDC2A1B672CF2009EA286 /* ServiceTerms.m in Sources */,
 				A2FC74FF1B5D1FFA0094BC59 /* MJFoundation.m in Sources */,
 				A2FC74E11B5A3F340094BC59 /* BAWineShoppingDockTavleView.m in Sources */,
 				AD8AA6201B59435C00E324AD /* EScrollerView.m in Sources */,
@@ -1959,6 +2037,7 @@
 				AD8AA6711B594EED00E324AD /* DejalActivityView.m in Sources */,
 				A2FC74E01B5A3F340094BC59 /* BADockCell.m in Sources */,
 				A2FC74E21B5A3F340094BC59 /* BARightCell.m in Sources */,
+				ADECDC251B672CB3009EA286 /* Feedback.m in Sources */,
 				AD8AA58B1B59416000E324AD /* TMNavigationController.m in Sources */,
 				A2FC74A81B5A1EE00094BC59 /* FCImageTextView.m in Sources */,
 				AD8AA6331B59435C00E324AD /* MJRefreshBaseView.m in Sources */,
@@ -2004,6 +2083,7 @@
 				AD8AA6181B59435C00E324AD /* ELCAssetCell.m in Sources */,
 				AD8AA6291B59435C00E324AD /* SDWebImageDownloader.m in Sources */,
 				AD8AA59C1B5942F800E324AD /* HTCartViewController.m in Sources */,
+				ADECDC201B672C62009EA286 /* AboutPeiKua.m in Sources */,
 				AD8AA63E1B59435C00E324AD /* UIColor-Expanded.m in Sources */,
 				AD8AA6231B59435C00E324AD /* HZActivityIndicatorSubclassExample.m in Sources */,
 				A2FC75001B5D1FFA0094BC59 /* MJProperty.m in Sources */,
@@ -2024,6 +2104,7 @@
 				AD8AA63B1B59435C00E324AD /* ProfileImagesViewController.m in Sources */,
 				AD8AA5871B59416000E324AD /* CustomTabBar.m in Sources */,
 				ADD4D42C1B5CBC06004AFBE2 /* AddressListCell.m in Sources */,
+				ADD33A171B65BFA600558372 /* UpdateAddressForEdit.m in Sources */,
 				ADD1718D1B5F2F7A00E451D5 /* BaseModel.m in Sources */,
 				A2FDE0EA1B651A7000B374AA /* ScreenViewController.m in Sources */,
 				ADD4D4131B5B999B004AFBE2 /* MyUtil.m in Sources */,

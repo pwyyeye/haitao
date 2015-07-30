@@ -104,8 +104,8 @@
         _username=[userdefault objectForKey:@"user_name"];
         _password=[userdefault objectForKey:@"user_pass"];
     }else{
-        if (![MyUtil isValidateTelephone:_user_name.text]) {
-            ShowMessage(@"请输入正确的手机号码！");
+        if (![MyUtil isValidateTelephone:_user_name.text]&&![MyUtil isValidateEmail:_user_name.text]) {
+            ShowMessage(@"请输入正确的登录账户！");
             return;
         }
         if ([MyUtil isEmptyString:_user_pass.text]) {
@@ -153,19 +153,22 @@
         NSDictionary *dic=[dictemp objectForKey:@"data"];
         [USER_DEFAULT setObject:[dic objectForKey:@"user_name"] forKey:@"user_name"];
         [USER_DEFAULT setObject:[dic objectForKey:@"user_nick"]  forKey:@"user_nick"];
+        [USER_DEFAULT setObject:_password forKey:@"user_pass"];
+        [USER_DEFAULT setObject:[dic objectForKey:@"avatar_img"] forKey:@"avatar_img"];
         //返回原来界面
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         app.s_app_id=[dictemp objectForKey:@"s_app_id"];
         [app stopLoading];
         
-        //判断是否有注册通知
-        [USER_DEFAULT setObject:_password forKey:@"user_pass"];
+        
+        
         
         [self.navigationController popViewControllerAnimated:YES];
         if (_customTabBar!=nil) {
             _customTabBar.currentSelectedIndex=_currentSelectedIndex;
         }
-        
+        //判断是否有注册通知
+
         [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeToReload" object:nil];
         
 

@@ -112,7 +112,7 @@
         //[timer invalidate];
         //[indicator stopAnimating];
         //[alertView dismissWithClickedButtonIndex:0 animated:YES];
-        
+        NSLog(@"----pass-httprequest header%@---",operation.request);
         //判断是否登录如果未登录 则进入登录页面
         NSNumber *status=[responseObject objectForKey:@"status"];
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -148,6 +148,63 @@
         NSLog(@"Error: %@", error);
         NSLog ( @"operation: %@" , operation. responseString );
     }];
+}
+
+//上传文件 示例：
+//   [httpController onFileForPostJson:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//   [formData appendPartWithFileData:UIImagePNGRepresentation(_idcard_zhengmian.image) name:@"idcard_1" fileName:@"idcard_1.png" mimeType:@"image/png"];
+//   [formData appendPartWithFileData:UIImagePNGRepresentation(_idcard_fanmian.image) name:@"idcard_2" fileName:@"idcard_2.png" mimeType:@"image/png"];
+//   } error:nil];
+
+//默认acceptableContentTypes 添加@"text/html"
+-(void)onFileForPostJson:(NSString *)acceptableContentTypes constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
+                   error:(NSError *__autoreleasing *)error
+{
+    NSURLSessionConfiguration *config=[NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    AFURLSessionManager *manager=[[AFURLSessionManager alloc] initWithSessionConfiguration:config];
+    AFJSONResponseSerializer *jsonResphone=[AFJSONResponseSerializer serializer];
+    if (acceptableContentTypes==nil) {
+        jsonResphone.acceptableContentTypes=[NSSet setWithObject:@"text/html"];
+    }else{
+        jsonResphone.acceptableContentTypes=[NSSet setWithObject:acceptableContentTypes];
+    }
+    
+    manager.responseSerializer =jsonResphone;
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    NSMutableURLRequest *mutableUrlRequest=[[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlPam parameters:pamDic constructingBodyWithBlock:block error:error];
+
+    
+    NSDictionary *dic =[mutableUrlRequest allHTTPHeaderFields];
+    
+    NSLog(@"dic=================%@",dic);
+     NSLog(@"mutableUrlRequest=================%@",mutableUrlRequest);
+    
+    NSData *data= [mutableUrlRequest HTTPBody];
+    
+    NSLog(@"-----%@",data);
+//    NSMutableURLRequest *mulRequest=[[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlPam parameters:pamDic constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block error:nil];
+    
+    NSProgress * progress=nil;
+    NSURLSessionUploadTask *uploadTask=[manager uploadTaskWithStreamedRequest:mutableUrlRequest progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        NSLog(@"----pass-pass%@---",responseObject);
+        if (error) {
+            NSLog(@"%@",error);
+        }else{
+            
+            NSLog(@"%@",@"success!");
+            [self.delegate didRecieveResults:responseObject withName:urlName];
+            //获取本地缓冲图片
+//            NSString *fullPath=[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"temp.png"];
+//            UIImage *tempImage=[[UIImage alloc] initWithContentsOfFile:fullPath];
+            
+        }
+    }];
+    
+    
+    
+    [uploadTask resume];
+
 }
 
 @end
