@@ -13,6 +13,7 @@
 #import "UserCenterHeader.h"
 #import "LoginViewController.h"
 #import "FCTabBarController.h"
+#import "FavoriteViewController.h"
 @interface UserCenterCollention ()
 
 @end
@@ -211,6 +212,8 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         //detailViewController  = [[UserDetailController alloc] init];
     }else if(indexPath.item==4){
         detailViewController  = [[AddressListController alloc] init];
+    }else if(indexPath.item==5){
+        detailViewController  = [[FavoriteViewController alloc] init];
     }
     
     

@@ -95,4 +95,14 @@
 //获取意见反馈选项
 #define requestUrl_addSuggest [NSString stringWithFormat:@"%@&f=addSuggest&m=home",requestUrl]
 
+//我的收藏列表
+#define requestUrl_getFav [NSString stringWithFormat:@"%@&f=getFav&m=user",requestUrl]
+
+//添加收藏
+#define requestUrl_addFav [NSString stringWithFormat:@"%@&f=addFav&m=user",requestUrl]
+
+//删除收藏
+#define requestUrl_delFav [NSString stringWithFormat:@"%@&f=delFav&m=user",requestUrl]
+
+
 #endif

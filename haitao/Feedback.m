@@ -83,6 +83,8 @@
             [self initFeedBackType];
         }else if([urlname isEqualToString:@"addSuggest"]) {
             ShowMessage(@"提交成功！");
+            [self.navigationController popViewControllerAnimated:YES];
+
         }
         
     }
