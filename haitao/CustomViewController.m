@@ -123,7 +123,7 @@
         CFContentViewController *cfContentViewController=[[CFContentViewController alloc]init];
         cfContentViewController.menuIndexDic=menuIndexDic;
         cfContentViewController.dataList=goodsModelArr;
-        cfContentViewController.title=title;
+        cfContentViewController.topTitle=title;
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
          [delegate.navigationController pushViewController:cfContentViewController animated:YES];
 
@@ -133,7 +133,7 @@
         NSDictionary *goods_detail=[dataDic objectForKey:@"goods_detail"];
         NSDictionary *goods_ext=[dataDic objectForKey:@"goods_ext"];
         NSArray *goods_image=[dataDic objectForKey:@"goods_image"];
-//        NSDictionary *goods_attr=[dataDic objectForKey:@"goods_attr"];
+        NSDictionary *goods_attr=[dataDic objectForKey:@"goods_attr"];
 //        NSArray *priceArr=[goods_attr objectForKey:@"price"];
 //        NSArray *attr_infoArr=[goods_attr objectForKey:@"attr_info"];
         NSArray *goods_parity=[dataDic objectForKey:@"goods_parity"];
@@ -143,6 +143,7 @@
         HTGoodDetailsViewController *htGoodDetailsViewController=[[HTGoodDetailsViewController alloc]init];
         htGoodDetailsViewController.goods_parity=goods_parity;
         htGoodDetailsViewController.goods=newGoods;
+        htGoodDetailsViewController.goods_attr=goods_parity;
         htGoodDetailsViewController.goodsExt=goodsExt;
         htGoodDetailsViewController.goods_image=goods_image;
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -515,7 +516,7 @@
 #pragma mark 商品详细信息
 -(void)goodContentTouch:(GoodImageButton *)sender{
     New_Goods *goods=sender.goods;
-    NSDictionary *parameters = @{@"id":goods.id};
+    NSDictionary *parameters = @{@"id":@"626"};
     
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
     ;

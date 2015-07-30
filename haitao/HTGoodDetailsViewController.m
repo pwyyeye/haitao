@@ -10,11 +10,12 @@
 
 #import "EScrollerView.h"
 #import "TMRulerColor.h"
-
+#import "ChooseSizeViewController.h"
 #import "FCImageTextViewController.h"
+#import "AppDelegate.h"
 static CGFloat kImageOriginHight = 400;
 
-@interface HTGoodDetailsViewController ()
+@interface HTGoodDetailsViewController ()<UIWebViewDelegate>
 {
     UIView*navigationBar;
     UrlImageButton* threeButtonImg;
@@ -33,9 +34,10 @@ static CGFloat kImageOriginHight = 400;
     
     UIButton*btnBack=[UIButton buttonWithType:UIButtonTypeCustom];
     
-    btnBack.frame=CGRectMake(0, view_bar1.frame.size.height-34, 47, 34);
-    [btnBack setImage:BundleImage(@"ret_01.png") forState:0];
+    btnBack.frame=CGRectMake(10, 10, 42, 42);
+    [btnBack setImage:BundleImage(@"left_grey") forState:0];
     [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
+    
 //    [view_bar1 addSubview:btnBack];
 //    UIView *naviView=(UIView*) [self getNavigationBar];
     
@@ -49,7 +51,7 @@ static CGFloat kImageOriginHight = 400;
     _scrollView.backgroundColor=[UIColor colorWithRed:.98 green:.98 blue:.98 alpha:1.0];
 //    _scrollView.contentInset=UIEdgeInsetsMake(kImageOriginHight-100, 0, 50, 0);
     [self.view addSubview:_scrollView];
-    
+    [self.view insertSubview:btnBack aboveSubview:_scrollView];
     [self getScrollView];
     
     
@@ -86,12 +88,12 @@ static CGFloat kImageOriginHight = 400;
         for (NSString *imgUrl in self.goods_image) {
             NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
             [dicTemp setObject:imgUrl forKey:@"ititle"];
-            //        [dicTemp setObject:bigTemp.content forKey:@"mainHeading"];
+            [dicTemp setObject:@"" forKey:@"mainHeading"];
             [bigArr addObject:dicTemp];
         }
 
     }
-    EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, self.view.frame.size.width, 200)
+    EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, self.view.frame.size.width, 250)
                                                           scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
     
     scroller.delegate=self;
@@ -253,76 +255,31 @@ static CGFloat kImageOriginHight = 400;
     UIImageView *yansechicunimageP=[[UIImageView alloc]initWithFrame:CGRectMake(yansechicunImg.frame.size.width-44, (yansechicunImg.frame.size.height-70)/2, 44, 70)];
     yansechicunimageP.image=BundleImage(@"bt_04_J.png");
     [yansechicunImg addSubview:yansechicunimageP];
+    //商品信息
     
+    UILabel *shopInfolbl=[[UILabel alloc]initWithFrame:CGRectMake(0, yansechicunImg.frame.size.height+yansechicunImg.frame.origin.y+10, self.view.frame.size.width,15)];
+    shopInfolbl.text=@"商品详情";
+    shopInfolbl.font=[UIFont systemFontOfSize:12];
+    shopInfolbl.backgroundColor=[UIColor clearColor];
+    shopInfolbl.textColor =hui5;
+    shopInfolbl.textAlignment=0;
+    [_scrollView addSubview:shopInfolbl];
     //加载html商品信息
-    webView=[[UIWebView alloc]initWithFrame:CGRectMake(0, yansechicunImg.frame.size.height+yansechicunImg.frame.origin.y, self.view.frame.size.width, 500)];
-    NSString *webStr=self.goodsExt.content;
+    webView=[[UIWebView alloc]initWithFrame:CGRectMake(0, shopInfolbl.frame.size.height+shopInfolbl.frame.origin.y, self.view.frame.size.width,200)];
+    
+    
+    NSString *webStr=[NSString stringWithFormat:@"<body>%@</body>",self.goodsExt.content];
+    
     [webView loadHTMLString:webStr baseURL:nil];
-    //评论
-    threeButtonImg=[[UrlImageButton alloc]initWithFrame:CGRectMake(0, webView.frame.size.height+webView.frame.origin.y+10, self.view.frame.size.width,35 )];
-    threeButtonImg.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
-    threeButtonImg.layer.borderWidth=1;
-    [threeButtonImg addTarget:self action:@selector(btnComment:) forControlEvents:UIControlEventTouchUpInside];
-    threeButtonImg.backgroundColor=[UIColor whiteColor];
-    threeButtonImg.userInteractionEnabled=YES;
-    [_scrollView addSubview:threeButtonImg];
+    [webView setScalesPageToFit:YES];
+    [webView setBackgroundColor:[UIColor clearColor]];
+    webView.delegate=self;
+    webView.opaque = NO;
     
-    UILabel *title_label1=[[UILabel alloc]initWithFrame:CGRectMake(10, threeButtonImg.frame.size.height/2-20/2, 50, 20)];
-    title_label1.text=@"评论";
-    title_label1.font=[UIFont systemFontOfSize:12];
-    title_label1.backgroundColor=[UIColor clearColor];
-    title_label1.textColor =hui5;
-    title_label1.textAlignment=0;
-    [threeButtonImg addSubview:title_label1];
+//    webView.scrollView.bounces = NO; //__IPHONE_5_0
+//    [self webViewDidFinishLoad:webView];
+    [_scrollView addSubview:webView];
     
-    
-    UILabel *title_labelCount=[[UILabel alloc]initWithFrame:CGRectMake(title_label1.frame.size.width+title_label1.frame.origin.y, threeButtonImg.frame.size.height/2-20/2, 200, 20)];
-    title_labelCount.text=@"123条";
-    title_labelCount.font=[UIFont systemFontOfSize:12];
-    title_labelCount.backgroundColor=[UIColor clearColor];
-    title_labelCount.textColor =hongShe;
-    title_labelCount.textAlignment=0;
-    
-    [threeButtonImg addSubview:title_labelCount];
-    
-    UIImageView *imageP=[[UIImageView alloc]initWithFrame:CGRectMake(threeButtonImg.frame.size.width-44, (threeButtonImg.frame.size.height-70)/2, 44, 70)];
-    imageP.image=BundleImage(@"bt_04_J.png");
-    [threeButtonImg addSubview:imageP];
-    
-    
-    for (int i=0; i<8; i++)
-    {
-        btnNine=[[UrlImageButton alloc]initWithFrame:CGRectMake((i%4)*(320-10)/4+10, floor(i/4)*(320-10)/4+10+threeButtonImg.frame.size.height+threeButtonImg.frame.origin.y, (320-30-10)/4, (320-30-10)/4)];
-        btnNine.backgroundColor=[UIColor whiteColor];
-        [btnNine setImage:[UIImage imageNamed:@"df_01.png"] forState:0];
-        btnNine.tag=i+1000;
-        [btnNine addTarget:self action:@selector(btnImageText:) forControlEvents:UIControlEventTouchUpInside];
-        [_scrollView addSubview:btnNine];
-        
-    }
-    if (IS_IPHONE_5)
-    {
-        _scrollView.contentSize=CGSizeMake(320, self.view.frame.size.height);
-    }else{
-        _scrollView.contentSize=CGSizeMake(320, self.view.frame.size.height+100);
-    }
-    UIView *view=[[UILabel alloc]initWithFrame:CGRectMake(10, btnNine.frame.size.height+btnNine.frame.origin.y+10, 300, 80)];
-    view.layer.borderWidth=1;
-    view.backgroundColor=[UIColor whiteColor];
-    view.layer.borderColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0].CGColor;
-    [_scrollView addSubview:view];
-    [_scrollView setContentSize:CGSizeMake(320, view.frame.size.height+view.frame.origin.y+10)];
-    UILabel *labelDetail=[[UILabel alloc]initWithFrame:CGRectMake(10, 5, 290, 70)];
-    
-    labelDetail.backgroundColor=[UIColor redColor];
-    labelDetail.font=[UIFont systemFontOfSize:10];
-    labelDetail.textColor=[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0];
-    labelDetail.text=@"e2e1e12e21e21e21e1fdfdffsdfdsfdsfdsfdsfdfsdfdsfdsfdsf";
-    labelDetail.numberOfLines=0;
-    [labelDetail sizeToFit];
-    [view addSubview :labelDetail ];
-    
-    _scrollView.frame=CGRectMake(0, view_bar1.frame.size.height, 320, self.view.frame.size.height+140-view.frame.size.height-10);
     
     
     
@@ -402,21 +359,29 @@ static CGFloat kImageOriginHight = 400;
     [self.view addSubview:view_bar];
     
     UIButton*btnCall=[UIButton buttonWithType:0];
-    btnCall.frame=CGRectMake(20, 0, 80, 50);
+    btnCall.frame=CGRectMake(10, 0, 70, 50);
     btnCall.backgroundColor=[UIColor clearColor];
     [btnCall addTarget:self action:@selector(call:) forControlEvents:UIControlEventTouchUpInside];
     [btnCall setImage:BundleImage(@"shopbt_02_.png") forState:0];
     [view_bar addSubview:btnCall];
     
-    UIButton*btnAdd=[UIButton buttonWithType:0];
-    btnAdd.frame=CGRectMake(20+80+10, 0, 80, 50);
-    btnAdd.backgroundColor=[UIColor clearColor];
-    [btnAdd addTarget:self action:@selector(shopping:) forControlEvents:UIControlEventTouchUpInside];
-    [btnAdd setImage:BundleImage(@"shopbt_03_.png") forState:0];
-    [view_bar addSubview:btnAdd];
+    UIButton*shoucangBtn=[UIButton buttonWithType:0];
+    shoucangBtn.frame=CGRectMake(10+70+5, 0, 70, 50);
+    shoucangBtn.backgroundColor=[UIColor clearColor];
+    [shoucangBtn addTarget:self action:@selector(shopping:) forControlEvents:UIControlEventTouchUpInside];
+    [shoucangBtn setImage:BundleImage(@"shopbt_02_.png") forState:0];
+    [view_bar addSubview:shoucangBtn];
+    
+    UIButton *carBtn=[UIButton buttonWithType:0];
+    carBtn.frame=CGRectMake(10+70+5+70+5, 0,70, 50);
+    carBtn.backgroundColor=[UIColor clearColor];
+    [carBtn addTarget:self action:@selector(shopping:) forControlEvents:UIControlEventTouchUpInside];
+    [carBtn setImage:BundleImage(@"shopbt_02_.png") forState:0];
+    [view_bar addSubview:carBtn];
+
     
     UIButton*btnShop=[UIButton buttonWithType:0];
-    btnShop.frame=CGRectMake(20+80+20+80, 49/2-28/2, 100, 28);
+    btnShop.frame=CGRectMake(10+70+5+70+5+70, 49/2-28/2, 100, 28);
     btnShop.backgroundColor=[UIColor clearColor];
     [btnShop addTarget:self action:@selector(shopping:) forControlEvents:UIControlEventTouchUpInside];
     [btnShop setImage:BundleImage(@"shopbt_01_n_.png") forState:0];
@@ -548,8 +513,89 @@ static CGFloat kImageOriginHight = 400;
 }
 #pragma mark - 选择颜色尺寸
 -(void)yansechicunBtn:(UrlImageButton *)sendid{
-
+    ChooseSizeViewController *chooseSizeViewController=[[ChooseSizeViewController alloc]init];
+//    chooseSizeViewController
+    chooseSizeViewController.goods_attr=self.goods_attr;
+    chooseSizeViewController.goods=self.goods;
+    AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    [app.navigationController pushViewController:chooseSizeViewController animated:YES];
 }
+#pragma mark - UIWebViewDelegate
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    NSLog(@"************");
+    UIScrollView *scrollView = (UIScrollView *)[[webView subviews] objectAtIndex:0];
+    CGFloat webViewHeight = [scrollView contentSize].height;
+    CGRect newFrame = webView.frame;
+    newFrame.size.height = webViewHeight;
+    webView.frame = newFrame;
+    //评论
+    threeButtonImg=[[UrlImageButton alloc]initWithFrame:CGRectMake(0, webView.frame.size.height+webView.frame.origin.y+10, self.view.frame.size.width,35 )];
+    threeButtonImg.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
+    threeButtonImg.layer.borderWidth=1;
+    [threeButtonImg addTarget:self action:@selector(btnComment:) forControlEvents:UIControlEventTouchUpInside];
+    threeButtonImg.backgroundColor=[UIColor whiteColor];
+    threeButtonImg.userInteractionEnabled=YES;
+    [_scrollView addSubview:threeButtonImg];
+    
+    UILabel *title_label1=[[UILabel alloc]initWithFrame:CGRectMake(10, threeButtonImg.frame.size.height/2-20/2, 50, 20)];
+    title_label1.text=@"评论";
+    title_label1.font=[UIFont systemFontOfSize:12];
+    title_label1.backgroundColor=[UIColor clearColor];
+    title_label1.textColor =hui5;
+    title_label1.textAlignment=0;
+    [threeButtonImg addSubview:title_label1];
+    
+    
+    UILabel *title_labelCount=[[UILabel alloc]initWithFrame:CGRectMake(title_label1.frame.size.width+title_label1.frame.origin.y, threeButtonImg.frame.size.height/2-20/2, 200, 20)];
+    title_labelCount.text=@"123条";
+    title_labelCount.font=[UIFont systemFontOfSize:12];
+    title_labelCount.backgroundColor=[UIColor clearColor];
+    title_labelCount.textColor =hongShe;
+    title_labelCount.textAlignment=0;
+    
+    [threeButtonImg addSubview:title_labelCount];
+    
+    UIImageView *imageP=[[UIImageView alloc]initWithFrame:CGRectMake(threeButtonImg.frame.size.width-44, (threeButtonImg.frame.size.height-70)/2, 44, 70)];
+    imageP.image=BundleImage(@"bt_04_J.png");
+    [threeButtonImg addSubview:imageP];
+    
+    
+    for (int i=0; i<8; i++)
+    {
+        btnNine=[[UrlImageButton alloc]initWithFrame:CGRectMake((i%4)*(320-10)/4+10, floor(i/4)*(320-10)/4+10+threeButtonImg.frame.size.height+threeButtonImg.frame.origin.y, (320-30-10)/4, (320-30-10)/4)];
+        btnNine.backgroundColor=[UIColor whiteColor];
+        [btnNine setImage:[UIImage imageNamed:@"df_01.png"] forState:0];
+        btnNine.tag=i+1000;
+        [btnNine addTarget:self action:@selector(btnImageText:) forControlEvents:UIControlEventTouchUpInside];
+        [_scrollView addSubview:btnNine];
+        
+    }
+    if (IS_IPHONE_5)
+    {
+        _scrollView.contentSize=CGSizeMake(320, self.view.frame.size.height);
+    }else{
+        _scrollView.contentSize=CGSizeMake(320, self.view.frame.size.height+100);
+    }
+    UIView *view=[[UILabel alloc]initWithFrame:CGRectMake(10, btnNine.frame.size.height+btnNine.frame.origin.y+10, 300, 80)];
+    view.layer.borderWidth=1;
+    view.backgroundColor=[UIColor whiteColor];
+    view.layer.borderColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0].CGColor;
+    [_scrollView addSubview:view];
+    [_scrollView setContentSize:CGSizeMake(320, view.frame.size.height+view.frame.origin.y+10)];
+    UILabel *labelDetail=[[UILabel alloc]initWithFrame:CGRectMake(10, 5, 290, 70)];
+    
+    labelDetail.backgroundColor=[UIColor redColor];
+    labelDetail.font=[UIFont systemFontOfSize:10];
+    labelDetail.textColor=[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0];
+    labelDetail.text=@"e2e1e12e21e21e21e1fdfdffsdfdsfdsfdsfdsfdfsdfdsfdsfdsf";
+    labelDetail.numberOfLines=0;
+    [labelDetail sizeToFit];
+    [view addSubview :labelDetail ];
+    
+    _scrollView.frame=CGRectMake(0, view_bar1.frame.size.height, 320, self.view.frame.size.height+140-view.frame.size.height-10);
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

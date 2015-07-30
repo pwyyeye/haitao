@@ -17,5 +17,5 @@
 @property (nonatomic,retain)NSDictionary *menuIndexDic;
 @property (nonatomic,strong)NSMutableArray *dataList;
 @property (nonatomic,strong)DJRefresh *refresh;
-@property (nonatomic,copy)NSString *title;
+@property (nonatomic,copy)NSString *topTitle;
 @end

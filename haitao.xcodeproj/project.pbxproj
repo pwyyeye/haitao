@@ -99,6 +99,9 @@
 		A2FDE0F61B686A3600B374AA /* CFContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FDE0F51B686A3600B374AA /* CFContentViewController.m */; };
 		A2FDE0F91B687C2200B374AA /* GoodImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FDE0F81B687C2200B374AA /* GoodImageButton.m */; };
 		A2FDE0FD1B6886BE00B374AA /* Goods_Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FDE0FC1B6886BE00B374AA /* Goods_Ext.m */; };
+		A2FDE1291B69DBA700B374AA /* ChooseSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FDE1281B69DBA700B374AA /* ChooseSizeViewController.m */; };
+		A2FDE12C1B6A15F200B374AA /* AttrInfoBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FDE12B1B6A15F200B374AA /* AttrInfoBtn.m */; };
+		A2FDE1301B6A186F00B374AA /* SizeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FDE12F1B6A186F00B374AA /* SizeModel.m */; };
 		A2FFE16E1B608ED20004B4BC /* DJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A2FFE1631B608ED20004B4BC /* DJRefresh.bundle */; };
 		A2FFE16F1B608ED20004B4BC /* DJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FFE1651B608ED20004B4BC /* DJRefresh.m */; };
 		A2FFE1701B608ED20004B4BC /* DJRefreshBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FFE1681B608ED20004B4BC /* DJRefreshBottomView.m */; };
@@ -411,6 +414,12 @@
 		A2FDE0F81B687C2200B374AA /* GoodImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodImageButton.m; sourceTree = "<group>"; };
 		A2FDE0FB1B6886BE00B374AA /* Goods_Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goods_Ext.h; sourceTree = "<group>"; };
 		A2FDE0FC1B6886BE00B374AA /* Goods_Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goods_Ext.m; sourceTree = "<group>"; };
+		A2FDE1271B69DBA700B374AA /* ChooseSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSizeViewController.h; sourceTree = "<group>"; };
+		A2FDE1281B69DBA700B374AA /* ChooseSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseSizeViewController.m; sourceTree = "<group>"; };
+		A2FDE12A1B6A15F200B374AA /* AttrInfoBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttrInfoBtn.h; sourceTree = "<group>"; };
+		A2FDE12B1B6A15F200B374AA /* AttrInfoBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttrInfoBtn.m; sourceTree = "<group>"; };
+		A2FDE12E1B6A186F00B374AA /* SizeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SizeModel.h; sourceTree = "<group>"; };
+		A2FDE12F1B6A186F00B374AA /* SizeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SizeModel.m; sourceTree = "<group>"; };
 		A2FFE1631B608ED20004B4BC /* DJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DJRefresh.bundle; sourceTree = "<group>"; };
 		A2FFE1641B608ED20004B4BC /* DJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJRefresh.h; sourceTree = "<group>"; };
 		A2FFE1651B608ED20004B4BC /* DJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJRefresh.m; sourceTree = "<group>"; };
@@ -965,6 +974,27 @@
 			name = "分类";
 			sourceTree = "<group>";
 		};
+		A2FDE1261B69DA4000B374AA /* 选择尺寸和颜色 */ = {
+			isa = PBXGroup;
+			children = (
+				A2FDE12D1B6A182B00B374AA /* model */,
+				A2FDE1271B69DBA700B374AA /* ChooseSizeViewController.h */,
+				A2FDE1281B69DBA700B374AA /* ChooseSizeViewController.m */,
+				A2FDE12A1B6A15F200B374AA /* AttrInfoBtn.h */,
+				A2FDE12B1B6A15F200B374AA /* AttrInfoBtn.m */,
+			);
+			name = "选择尺寸和颜色";
+			sourceTree = "<group>";
+		};
+		A2FDE12D1B6A182B00B374AA /* model */ = {
+			isa = PBXGroup;
+			children = (
+				A2FDE12E1B6A186F00B374AA /* SizeModel.h */,
+				A2FDE12F1B6A186F00B374AA /* SizeModel.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
 		A2FFE1621B608ED20004B4BC /* DJRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -1414,6 +1444,7 @@
 		ADB5ACAA1B54065B0022B2C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A2FDE1261B69DA4000B374AA /* 选择尺寸和颜色 */,
 				A2FDE0ED1B675BDA00B374AA /* 分类 */,
 				A2FDE0E71B65191800B374AA /* 筛选 */,
 				A2FBAA281B6323CC00B752CA /* 专题 */,
@@ -1879,6 +1910,7 @@
 				ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */,
 				A2FC75051B5D1FFA0094BC59 /* NSString+MJExtension.m in Sources */,
 				A2FC74FE1B5D1FFA0094BC59 /* MJConst.m in Sources */,
+				A2FDE1291B69DBA700B374AA /* ChooseSizeViewController.m in Sources */,
 				A2FBAA2C1B6330F700B752CA /* SpecialViewController.m in Sources */,
 				AD8AA58A1B59416000E324AD /* LTKViewController.m in Sources */,
 				ADD171801B5E1C9900E451D5 /* AddAddressStep2.m in Sources */,
@@ -1893,6 +1925,7 @@
 				AD8AA6281B59435C00E324AD /* SDImageCache.m in Sources */,
 				AD8AA6221B59435C00E324AD /* GlobalTool.m in Sources */,
 				A2FBAA311B633D9500B752CA /* SpecialModel.m in Sources */,
+				A2FDE1301B6A186F00B374AA /* SizeModel.m in Sources */,
 				A2FFE17C1B608EDF0004B4BC /* DJRefreshProgressView.m in Sources */,
 				AD8AA63A1B59435C00E324AD /* ProfileImagesScrollViewController.m in Sources */,
 				A21814251B56060100D64E70 /* ZRScrollableTabBar.m in Sources */,
@@ -1957,6 +1990,7 @@
 				AD8AA6431B59435C00E324AD /* ioapi.m in Sources */,
 				AD8AA6411B59435C00E324AD /* WCAlertView.m in Sources */,
 				A2FFE1721B608ED20004B4BC /* DJRefreshView.m in Sources */,
+				A2FDE12C1B6A15F200B374AA /* AttrInfoBtn.m in Sources */,
 				AD8AA6311B59435C00E324AD /* UIViewController+MJPopupViewController.m in Sources */,
 				AD8AA61A1B59435C00E324AD /* ELCImagePickerController.m in Sources */,
 				A2FFE1871B60B4A60004B4BC /* UIImageButton.m in Sources */,
