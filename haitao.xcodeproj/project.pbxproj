@@ -263,6 +263,9 @@
 		ADD4D42C1B5CBC06004AFBE2 /* AddressListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D42A1B5CBC06004AFBE2 /* AddressListCell.m */; };
 		ADD4D42D1B5CBC06004AFBE2 /* AddressListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD4D42B1B5CBC06004AFBE2 /* AddressListCell.xib */; };
 		ADD4D42F1B5CDCB0004AFBE2 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADD4D42E1B5CDCB0004AFBE2 /* area.plist */; };
+		ADD7D8EF1B69E99B00304019 /* DOPDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD7D8EE1B69E99B00304019 /* DOPDropDownMenu.m */; };
+		ADD7D8F41B69EA5600304019 /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD7D8F21B69EA5600304019 /* FavoriteViewController.m */; };
+		ADD7D8F51B69EA5600304019 /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD7D8F31B69EA5600304019 /* FavoriteViewController.xib */; };
 		ADECDC101B65CE4F009EA286 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADECDC0F1B65CE4F009EA286 /* View.xib */; };
 		ADECDC131B65DE17009EA286 /* AreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADECDC121B65DE17009EA286 /* AreaPickerView.m */; };
 		ADECDC171B670C91009EA286 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = ADECDC161B670C91009EA286 /* Setting.m */; };
@@ -685,6 +688,11 @@
 		ADD4D42A1B5CBC06004AFBE2 /* AddressListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressListCell.m; sourceTree = "<group>"; };
 		ADD4D42B1B5CBC06004AFBE2 /* AddressListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressListCell.xib; sourceTree = "<group>"; };
 		ADD4D42E1B5CDCB0004AFBE2 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		ADD7D8ED1B69E99B00304019 /* DOPDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOPDropDownMenu.h; sourceTree = "<group>"; };
+		ADD7D8EE1B69E99B00304019 /* DOPDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOPDropDownMenu.m; sourceTree = "<group>"; };
+		ADD7D8F11B69EA5600304019 /* FavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteViewController.h; sourceTree = "<group>"; };
+		ADD7D8F21B69EA5600304019 /* FavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteViewController.m; sourceTree = "<group>"; };
+		ADD7D8F31B69EA5600304019 /* FavoriteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoriteViewController.xib; sourceTree = "<group>"; };
 		ADECDC0F1B65CE4F009EA286 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		ADECDC111B65DE17009EA286 /* AreaPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaPickerView.h; sourceTree = "<group>"; };
 		ADECDC121B65DE17009EA286 /* AreaPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaPickerView.m; sourceTree = "<group>"; };
@@ -1438,6 +1446,7 @@
 		ADB5ACAB1B54066A0022B2C2 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				ADD7D8F01B69EA2C00304019 /* Favorite */,
 				ADECDC141B65DE22009EA286 /* Utils */,
 				ADD171871B5F2E6300E451D5 /* Model */,
 				ADB5ACAD1B5406890022B2C2 /* Setting */,
@@ -1531,6 +1540,7 @@
 		ADB5ACB11B5406D60022B2C2 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				ADD7D8EC1B69E99B00304019 /* DOPDropDownMenu */,
 			);
 			name = Vendors;
 			sourceTree = "<group>";
@@ -1640,6 +1650,25 @@
 				ADECDC0F1B65CE4F009EA286 /* View.xib */,
 			);
 			name = Address;
+			sourceTree = "<group>";
+		};
+		ADD7D8EC1B69E99B00304019 /* DOPDropDownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				ADD7D8ED1B69E99B00304019 /* DOPDropDownMenu.h */,
+				ADD7D8EE1B69E99B00304019 /* DOPDropDownMenu.m */,
+			);
+			path = DOPDropDownMenu;
+			sourceTree = "<group>";
+		};
+		ADD7D8F01B69EA2C00304019 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				ADD7D8F11B69EA5600304019 /* FavoriteViewController.h */,
+				ADD7D8F21B69EA5600304019 /* FavoriteViewController.m */,
+				ADD7D8F31B69EA5600304019 /* FavoriteViewController.xib */,
+			);
+			name = Favorite;
 			sourceTree = "<group>";
 		};
 		ADECDC141B65DE22009EA286 /* Utils */ = {
@@ -1756,6 +1785,7 @@
 				ADCFB0351B61C2BA001B3324 /* ForgetPwdStep3.xib in Resources */,
 				A21815B51B5A0E9A00D64E70 /* bt_pj_@2x.png in Resources */,
 				A2FC74C31B5A31340094BC59 /* bg_01_n.png in Resources */,
+				ADD7D8F51B69EA5600304019 /* FavoriteViewController.xib in Resources */,
 				A21815C21B5A0E9A00D64E70 /* shopbt_02_@2x.png in Resources */,
 				A2F5FB4F1B5FD64A00A8205C /* SVPullToRefresh.podspec in Resources */,
 				A21815B91B5A0E9A00D64E70 /* fbt_01_@2x.png in Resources */,
@@ -1963,6 +1993,7 @@
 				A2FC74A51B5A1E580094BC59 /* FCImageTextViewController.m in Sources */,
 				AD8AA6391B59435C00E324AD /* Toolkit.m in Sources */,
 				ADECDC1B1B672C47009EA286 /* ConnetPeiKua.m in Sources */,
+				ADD7D8F41B69EA5600304019 /* FavoriteViewController.m in Sources */,
 				AD8AA5891B59416000E324AD /* LTKNavigationViewController.m in Sources */,
 				ADCFB0341B61C2BA001B3324 /* ForgetPwdStep3.m in Sources */,
 				AD8AA6191B59435C00E324AD /* ELCAssetTablePicker.m in Sources */,
@@ -1990,6 +2021,7 @@
 				AD8AA6361B59435C00E324AD /* NSData+Base64.m in Sources */,
 				ADCFB04B1B61F1BC001B3324 /* UserCenterCollectionCell.m in Sources */,
 				AD8AA62F1B59435C00E324AD /* JUUserDefaults.m in Sources */,
+				ADD7D8EF1B69E99B00304019 /* DOPDropDownMenu.m in Sources */,
 				A2D039031B5E902E00EB0FDC /* New_Goods.m in Sources */,
 				AD8AA62B1B59435C00E324AD /* UrlImageButton.m in Sources */,
 				ADD4D4231B5BB0D7004AFBE2 /* AddressListController.m in Sources */,

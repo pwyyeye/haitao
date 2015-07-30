@@ -151,6 +151,9 @@
     layerShadow.borderColor=[RGB(237, 237, 237) CGColor];
     layerShadow.borderWidth=5;
     [cell.layer addSublayer:layerShadow];
+    
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
+
 
     return cell;
 }

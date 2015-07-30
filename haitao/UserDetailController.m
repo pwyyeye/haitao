@@ -143,7 +143,8 @@
     [cell.contentView addSubview:label];
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
+    
     return cell;
 
 }
