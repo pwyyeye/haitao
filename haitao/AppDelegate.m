@@ -10,6 +10,7 @@
 #import "FCTabBarController.h"
 #import "DejalActivityView.h"
 #import "LoginViewController.h"
+#import "MenuModel.h"
 @interface AppDelegate ()
 
 @end
@@ -19,20 +20,69 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    UIViewController *rootViewController= [[FCTabBarController alloc] init];
     
-    
-    self.navigationController=[[LTKNavigationViewController alloc]initWithRootViewController:rootViewController];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController=self.navigationController;
-    self.window.backgroundColor = [UIColor whiteColor];
+    
     [self.window makeKeyAndVisible];
     //    [self isConnectionAvailable];
-    
-    
+    self.menuArr=[[NSMutableArray alloc]init];
+    [self getMenuData];
     return YES;
     
 }
+-(void)getMenuData{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    //    http://www.peikua.com/app.php?app.php?m=home&a=app&f=getHomeData
+    NSString* url =[NSString stringWithFormat:@"%@&m=home&f=getHomeNav",requestUrl]
+    ;
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:GETURL withUrlName:@"getHomeNav"];
+    httpController.delegate = self;
+    [httpController onSearch];
+}
+
+//获取数据
+-(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app stopLoading];
+    NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
+    NSString *status=[dictemp objectForKey:@"status"];
+    //    if(![status isEqualToString:@"1"]){
+    ////        [self showMessage:message];
+    ////        return ;
+    //    }
+    if([urlname isEqualToString:@"getHomeNav"]){
+        NSArray *arrtemp=[dictemp objectForKey:@"data"];
+        if ((NSNull *)arrtemp == [NSNull null]) {
+            showMessage(@"暂无数据!");
+            //            [self showMessage:@"暂无数据!"];
+            return;
+            
+        }
+        for (NSDictionary *employeeDic in arrtemp) {
+            MenuModel *menuModel= [MenuModel objectWithKeyValues:employeeDic] ;
+            NSArray *arr=menuModel.child;
+            NSMutableArray *childList=[[NSMutableArray alloc]init];
+            for (NSDictionary *childDic in arr) {
+                MenuModel *menuTepm= [MenuModel objectWithKeyValues:childDic] ;
+                [childList addObject:menuTepm];
+            }
+            menuModel.child = childList;
+            [self.menuArr addObject:menuModel];
+            
+        }
+        FCTabBarController *rootViewController= [[FCTabBarController alloc] init];
+        
+//        rootViewController.menuArray=menuArr;
+        self.navigationController=[[LTKNavigationViewController alloc]initWithRootViewController:rootViewController];
+        self.window.rootViewController=self.navigationController;
+        self.window.backgroundColor = [UIColor whiteColor];
+        [self.window makeKeyAndVisible];
+    }
+    
+    
+}
+
 - (void)startLoading
 {
         [DejalBezelActivityView activityViewForView:self.window];

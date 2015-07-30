@@ -66,5 +66,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (CGFloat) horizontalLocationFor:(NSUInteger)tabIndex
+{
+    CGFloat tabItemWidth = self.view.frame.size.width/5;
+    return (tabIndex * tabItemWidth+ tabItemWidth/5-4);
+}
 
 @end

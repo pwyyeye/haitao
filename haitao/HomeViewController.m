@@ -202,6 +202,7 @@
     }
     EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 160)
                                                           scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
+    
     scroller.delegate=self;
     scroller.backgroundColor=[UIColor clearColor];
     [self._scrollView addSubview:scroller];
