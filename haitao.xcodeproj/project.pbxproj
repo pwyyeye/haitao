@@ -271,6 +271,8 @@
 		ADD7D8F41B69EA5600304019 /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD7D8F21B69EA5600304019 /* FavoriteViewController.m */; };
 		ADD7D8F51B69EA5600304019 /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD7D8F31B69EA5600304019 /* FavoriteViewController.xib */; };
 		ADD7D8F81B6A6F2C00304019 /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD7D8F71B6A6F2C00304019 /* CustomViewController.m */; };
+		ADD7D8FA1B6A729800304019 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD7D8F91B6A729800304019 /* CoreGraphics.framework */; };
+		ADD7D8FB1B6A748F00304019 /* GoodImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FDE0F81B687C2200B374AA /* GoodImageButton.m */; };
 		ADECDC101B65CE4F009EA286 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADECDC0F1B65CE4F009EA286 /* View.xib */; };
 		ADECDC131B65DE17009EA286 /* AreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADECDC121B65DE17009EA286 /* AreaPickerView.m */; };
 		ADECDC171B670C91009EA286 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = ADECDC161B670C91009EA286 /* Setting.m */; };
@@ -712,6 +714,7 @@
 		ADD7D8F31B69EA5600304019 /* FavoriteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoriteViewController.xib; sourceTree = "<group>"; };
 		ADD7D8F61B6A6F2C00304019 /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
 		ADD7D8F71B6A6F2C00304019 /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
+		ADD7D8F91B6A729800304019 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		ADECDC0F1B65CE4F009EA286 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		ADECDC111B65DE17009EA286 /* AreaPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaPickerView.h; sourceTree = "<group>"; };
 		ADECDC121B65DE17009EA286 /* AreaPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaPickerView.m; sourceTree = "<group>"; };
@@ -737,6 +740,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADD7D8FA1B6A729800304019 /* CoreGraphics.framework in Frameworks */,
+				AD8AA65C1B5947EC00E324AD /* ImageIO.framework in Frameworks */,
 				AD8AA6621B59484A00E324AD /* QuartzCore.framework in Frameworks */,
 				AD8AA6541B59476500E324AD /* CoreData.framework in Frameworks */,
 				AD8AA6691B594E8B00E324AD /* libsqlite3.0.dylib in Frameworks */,
@@ -744,7 +749,6 @@
 				AD8AA6661B594E5C00E324AD /* MessageUI.framework in Frameworks */,
 				AD8AA6601B59482C00E324AD /* libstdc++.dylib in Frameworks */,
 				AD8AA65E1B59480300E324AD /* CoreTelephony.framework in Frameworks */,
-				AD8AA65C1B5947EC00E324AD /* ImageIO.framework in Frameworks */,
 				AD8AA65A1B5947C400E324AD /* OpenGLES.framework in Frameworks */,
 				AD8AA6581B5947A000E324AD /* libz.1.2.5.dylib in Frameworks */,
 				AD8AA6561B59478B00E324AD /* libicucore.dylib in Frameworks */,
@@ -770,6 +774,7 @@
 		206417A9CDC7122819AA2138 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ADD7D8F91B6A729800304019 /* CoreGraphics.framework */,
 				AD8AA6671B594E8B00E324AD /* libsqlite3.0.dylib */,
 				AD8AA6681B594E8B00E324AD /* libsqlite3.dylib */,
 				AD8AA6651B594E5C00E324AD /* MessageUI.framework */,
@@ -1998,6 +2003,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADD7D8FB1B6A748F00304019 /* GoodImageButton.m in Sources */,
 				AD8AA6301B59435C00E324AD /* MJPopupBackgroundView.m in Sources */,
 				A2FFE1711B608ED20004B4BC /* DJRefreshTopView.m in Sources */,
 				ADB5AC851B53CB5F0022B2C2 /* AppDelegate.m in Sources */,
