@@ -135,7 +135,55 @@
             
         }
     }
-    [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width, lastFrame.size.height+lastFrame.origin.y+10)];
+    
+    UILabel *sl_label=[[UILabel alloc]initWithFrame:CGRectMake(0, lastFrame.size.height+lastFrame.origin.y, self.view.frame.size.width, 20)];
+    sl_label.text=@"数量";
+    sl_label.font=[UIFont systemFontOfSize:18];
+    sl_label.textColor =hui2;
+    sl_label.backgroundColor=[UIColor clearColor];
+    sl_label.textAlignment=1;
+    
+    [_scrollView addSubview:sl_label];
+    //按钮
+    //减
+    UIButton *btnCut=[UIButton buttonWithType:0];
+    btnCut.frame=CGRectMake(10, sl_label.frame.size.height+sl_label.frame.origin.y, 35, 35);
+    btnCut.tag=-99;
+    [btnCut setImage:BundleImage(@"bt_01_.png") forState:0];
+    [btnCut addTarget:self action:@selector(btnCut:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_scrollView addSubview:btnCut];
+    
+    UITextField*  numTextField=[[UITextField alloc]initWithFrame:CGRectMake(btnCut.frame.size.width+btnCut.frame.origin.x+1, btnCut.frame.origin.y+3,59,28)];
+    numTextField.contentVerticalAlignment=UIControlContentVerticalAlignmentCenter;
+    numTextField.textAlignment=1;
+    numTextField.delegate=self;
+    numTextField.returnKeyType=UIReturnKeyDone;
+    numTextField.text=@"1";
+    numTextField.textColor=[UIColor colorWithRed:.2 green:.2 blue:.2 alpha:1.0];
+    numTextField.tag=-100;
+    numTextField.keyboardType=UIKeyboardTypeDefault;
+    numTextField.userInteractionEnabled=YES;
+    //        numTextField.background=BundleImage(@"number_frame.png");
+    numTextField.layer.borderColor=[UIColor colorWithRed:.8 green:.8 blue:.8 alpha:1.0].CGColor;
+    numTextField.layer.borderWidth=1;
+    numTextField.backgroundColor=[UIColor whiteColor];
+    [numTextField addTarget:self action:@selector(textFieldBegin:) forControlEvents:UIControlEventEditingDidBegin];
+    [numTextField addTarget:self action:@selector(textFieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    [_scrollView addSubview:numTextField];
+    
+    
+    //加
+    UIButton *btnAdd=[UIButton buttonWithType:0];
+    btnAdd.frame=CGRectMake(numTextField.frame.origin.x+numTextField.frame.size.width+3,btnCut.frame.origin.y+3, 30, 28);
+    [btnAdd setBackgroundImage:BundleImage(@"bt_02_.png") forState:0];
+    [btnAdd addTarget:self action:@selector(btnAdd:) forControlEvents:UIControlEventTouchUpInside];
+    if (btnAdd.highlighted) {
+        [btnAdd setBackgroundImage:BundleImage(@"number_up_click.png") forState:0];
+    }
+    btnAdd.tag=-101;
+    [_scrollView addSubview:btnAdd];
+    [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width, btnAdd.frame.size.height+btnAdd.frame.origin.y+10)];
     
     
     
