@@ -14,6 +14,10 @@
 #import "LoginViewController.h"
 #import "FCTabBarController.h"
 #import "FavoriteViewController.h"
+#import "HelpViewController.h"
+#import "MessageViewController.h"
+#import "CouponListController.h"
+#import "TariffViewController.h"
 @interface UserCenterCollention ()
 
 @end
@@ -102,8 +106,13 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     cell.layer.borderColor=[[UIColor clearColor] CGColor];
     
     //重置之前的layer
-    CALayer *restLayer=cell.layer.sublayers.lastObject;
-    restLayer.frame=CGRectZero;
+    if (cell.layer.sublayers.count>1) {
+        CALayer *restLayer=cell.layer.sublayers.lastObject;
+        //        restLayer.frame=CGRectZero;
+        
+        [restLayer removeFromSuperlayer];
+    }
+
 
     if (indexPath.item==0||indexPath.item==1||indexPath.item==3||indexPath.item==4) {//9宫格 1 2 4 5格子 右、下边线
         CALayer *layerShadow=[[CALayer alloc]init];
@@ -210,10 +219,18 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     UIViewController *detailViewController;
     if (indexPath.item==0) {
         //detailViewController  = [[UserDetailController alloc] init];
+    }else if (indexPath.item==1) {
+        detailViewController  = [[MessageViewController alloc] init];
+    }else if (indexPath.item==2) {
+        detailViewController  = [[CouponListController alloc] init];
+    }else if (indexPath.item==3) {
+        detailViewController  = [[TariffViewController alloc] init];
     }else if(indexPath.item==4){
         detailViewController  = [[AddressListController alloc] init];
     }else if(indexPath.item==5){
         detailViewController  = [[FavoriteViewController alloc] init];
+    }else if(indexPath.item==7){
+        detailViewController  = [[HelpViewController alloc] initWithNibName:@"HelpViewController" bundle:nil];
     }
     
     

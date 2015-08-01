@@ -38,4 +38,6 @@ typedef enum {
 -(void)onSearch;
 -(void)onSearchForPostJson;
 -(void)onFileForPostJson:(NSString *)acceptableContentTypes constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block error:(NSError *__autoreleasing *)error;
+-(void)onSyncPostJson;
+
 @end

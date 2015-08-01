@@ -104,5 +104,10 @@
 //删除收藏
 #define requestUrl_delFav [NSString stringWithFormat:@"%@&f=delFav&m=user",requestUrl]
 
+//站内信列表
+#define requestUrl_getMsg [NSString stringWithFormat:@"%@&f=getMsg&m=user",requestUrl]
+
+//站内信详情
+#define requestUrl_getMsgById [NSString stringWithFormat:@"%@&f=getMsgById&m=user",requestUrl]
 
 #endif
