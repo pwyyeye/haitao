@@ -29,17 +29,6 @@
                         <action selector="didEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="OMQ-Kv-Icm"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="登录邮箱或手机" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jge-zo-0lg">
-                    <rect key="frame" x="13" y="133" width="574" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="pke-IY-IDr"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                    <connections>
-                        <action selector="didEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="78I-ur-U40"/>
-                    </connections>
-                </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUm-Bd-qdY">
                     <rect key="frame" x="540" y="238" width="40" height="25"/>
                     <constraints>
@@ -107,6 +96,17 @@
                         <action selector="login:" destination="-1" eventType="touchUpInside" id="Urg-cr-YFn"/>
                     </connections>
                 </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="登录邮箱或手机" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jge-zo-0lg">
+                    <rect key="frame" x="13" y="135" width="574" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="pke-IY-IDr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                    <connections>
+                        <action selector="didEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="78I-ur-U40"/>
+                    </connections>
+                </textField>
             </subviews>
             <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
