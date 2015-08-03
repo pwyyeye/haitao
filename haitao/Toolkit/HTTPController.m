@@ -207,4 +207,53 @@
 
 }
 
+//同步请求 无法100％同步 相对同步
+-(void)onSyncPostJson{
+    
+    AFHTTPRequestSerializer *requestSerializer=[AFHTTPRequestSerializer serializer];
+//    AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
+    NSMutableURLRequest *request = [requestSerializer requestWithMethod:@"POST" URLString:urlPam parameters:pamDic error:nil];
+    
+    AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    AFHTTPResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
+    responseSerializer.acceptableContentTypes=[NSSet setWithObject:@"text/html"];
+    @try {
+        [requestOperation setResponseSerializer:responseSerializer];
+        [requestOperation start];
+        [requestOperation waitUntilFinished];
+        NSDictionary *responseObject=[requestOperation responseObject];
+        NSNumber *status=[responseObject objectForKey:@"status"];
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        
+        if([status integerValue] == -1){
+            
+            UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+            [app stopLoading];
+            
+            [app.navigationController pushViewController:vc animated:YES];
+        }else if([status integerValue] == 0){
+            id array=[responseObject objectForKey:@"msg"];
+            if ([array isKindOfClass:[NSString class]]) {
+                ShowMessage(array);
+            }else if([array isKindOfClass:[NSArray class]]){
+                ShowMessage([array objectAtIndex:0]);
+            }
+            
+            [app stopLoading];
+            
+        }else{
+            [self.delegate didRecieveResults:responseObject withName:urlName];
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"----pass-onSyncPostJson%@---",exception);
+    }
+    @finally {
+        
+    }
+    
+   
+}
+
+
 @end

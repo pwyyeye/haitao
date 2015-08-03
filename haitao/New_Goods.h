@@ -43,7 +43,9 @@
 @property (copy, nonatomic) NSString *country_name;
 @property (copy, nonatomic) NSString *shop_name;
 @property (copy, nonatomic) NSString *ship_name;
+@property (copy, nonatomic) NSString *cat_name;
 @property (assign, nonatomic) double price_cn;
 @property (copy, nonatomic) NSString *price_ut_flag;
 @property (copy, nonatomic) NSString *brand_name;
+@property(strong,nonatomic) NSString *fav_id;
 @end

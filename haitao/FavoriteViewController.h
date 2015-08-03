@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DOPDropDownMenu.h"
-@interface FavoriteViewController : UIViewController<HTTPControllerProtocol,DOPDropDownMenuDataSource, DOPDropDownMenuDelegate, UITableViewDataSource>
+@interface FavoriteViewController : UIViewController<HTTPControllerProtocol,DOPDropDownMenuDataSource, DOPDropDownMenuDelegate, UITableViewDataSource,UITableViewDelegate>
 
 @property(strong,nonatomic) NSArray *allData;//所有收藏
 
@@ -23,6 +23,13 @@
 @property(strong,nonatomic) UITableView *tableView;
 
 @property (nonatomic, copy) NSArray *results;//搜索结果集
+
+@property(strong,nonatomic) NSIndexPath *del_indexPath;
+
+@property(strong,nonatomic) DOPDropDownMenu *menu;
+
+@property(strong,nonatomic) UIView *empty_view;
+
 
 
 @end

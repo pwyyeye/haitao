@@ -134,12 +134,13 @@
 //        layerShadow.borderWidth=1;
 //        [cell.layer addSublayer:layerShadow];
         
-        cell.tag=100+indexPath.item;
+        
         
     }else{
         cell.textLabel.text=[USER_DEFAULT objectForKey:@"user_nick"];
         label.text=@"修改昵称";
     }
+    cell.tag=100+indexPath.item;
     [cell.contentView addSubview:label];
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     
@@ -199,7 +200,7 @@
         
         
         _selectcedCell=[tableView viewWithTag:100+indexPath.item];
-        _selectedLabel=[_selectcedCell viewWithTag:200+indexPath.item];
+//        _selectedLabel=_selectcedCell.textLabel;//[_selectcedCell.contentView viewWithTag:200+indexPath.item];
         
     }else{
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"修改昵称"
@@ -305,8 +306,10 @@
             [USER_DEFAULT setObject:[dictemp objectForKey:@"data"] forKey:@"avatar_img"];
         }else if([urlname isEqualToString:@"modifyNick"]){
             ShowMessage(@"修改成功！");
-            _selectedLabel.text=_modifyNick;
+//            _selectedLabel.text=_modifyNick;
+            
             [USER_DEFAULT setObject:_modifyNick  forKey:@"user_nick"];
+            [self.tableView reloadData];
 
             
         

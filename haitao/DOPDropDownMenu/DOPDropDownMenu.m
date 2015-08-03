@@ -180,9 +180,9 @@
         [_backGroundView addGestureRecognizer:gesture];
         
         //add bottom shadow
-        UIView *bottomShadow = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-0.5, screenSize.width, 0.5)];
-        bottomShadow.backgroundColor = [UIColor lightGrayColor];
-        [self addSubview:bottomShadow];
+//        UIView *bottomShadow = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-0.5, screenSize.width, 0.5)];
+//        bottomShadow.backgroundColor = [UIColor lightGrayColor];
+//        [self addSubview:bottomShadow];
     }
     return self;
 }
@@ -249,7 +249,7 @@
     CGFloat sizeWidth = (size.width < (self.frame.size.width / _numOfMenu) - 25) ? size.width : self.frame.size.width / _numOfMenu - 25;
     layer.bounds = CGRectMake(0, 0, sizeWidth, size.height);
     layer.string = string;
-    layer.fontSize = 14.0;
+    layer.fontSize = 13.0;
     layer.alignmentMode = kCAAlignmentCenter;
     layer.foregroundColor = color.CGColor;
     
@@ -321,6 +321,7 @@
     [self animateIdicator:_indicators[_currentSelectedMenudIndex] background:_backGroundView tableView:_tableView title:_titles[_currentSelectedMenudIndex] forward:NO complecte:^{
         _show = NO;
     }];
+    
     [(CALayer *)self.bgLayers[_currentSelectedMenudIndex] setBackgroundColor:[UIColor whiteColor].CGColor];
     
     //pwy modify
@@ -437,7 +438,7 @@
     cell.textLabel.font = [UIFont systemFontOfSize:14.0];
     cell.separatorInset = UIEdgeInsetsZero;
     
-    //选中背景色的cell
+    //选中背景色
     if (cell.textLabel.text == [(CATextLayer *)[_titles objectAtIndex:_currentSelectedMenudIndex] string]) {
         cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
     }
@@ -447,6 +448,7 @@
 
 #pragma mark - tableview delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (self.delegate || [self.delegate respondsToSelector:@selector(menu:didSelectRowAtIndexPath:)]) {
         [self confiMenuWithSelectRow:indexPath.row];
         [self.delegate menu:self didSelectRowAtIndexPath:[DOPIndexPath indexPathWithCol:self.currentSelectedMenudIndex row:indexPath.row]];

@@ -18,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="banner_01_02.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gnk-U0-Sl8">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="Address_img_shenfenzheng.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gnk-U0-Sl8">
                     <rect key="frame" x="10" y="54.5" width="285" height="180.5"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份证照片（务必为收件人身份证）" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCY-iu-t3f">
@@ -41,7 +41,7 @@
                         <action selector="save:" destination="-1" eventType="touchUpInside" id="u5x-SW-mJ9"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner_02_02.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rzj-vy-22F">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Address_img_shenfenzheng.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rzj-vy-22F">
                     <rect key="frame" x="305" y="54.5" width="285" height="180.5"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="仅清关用" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BuQ-vB-Ipe">
@@ -167,7 +167,6 @@
         </view>
     </objects>
     <resources>
-        <image name="banner_01_02.png" width="640" height="322"/>
-        <image name="banner_02_02.png" width="640" height="322"/>
+        <image name="Address_img_shenfenzheng.png" width="145" height="91"/>
     </resources>
 </document>

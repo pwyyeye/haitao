@@ -15,29 +15,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="156" height="158"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnH-pd-aoo">
-                        <rect key="frame" x="0.0" y="140" width="156" height="18"/>
+                        <rect key="frame" x="0.0" y="134" width="156" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_03_h.png" translatesAutoresizingMaskIntoConstraints="NO" id="WUD-Fl-WFn">
-                        <rect key="frame" x="20" y="20" width="116" height="120"/>
+                        <rect key="frame" x="38" y="28" width="80" height="80"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="WUD-Fl-WFn" secondAttribute="height" multiplier="29:30" id="U59-x9-Lp3"/>
+                            <constraint firstAttribute="width" secondItem="WUD-Fl-WFn" secondAttribute="height" multiplier="1:1" id="9Ji-TN-ITW"/>
+                            <constraint firstAttribute="height" constant="80" id="AO5-2A-8s0"/>
+                            <constraint firstAttribute="width" constant="80" id="LzW-UQ-i2I"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstItem="WUD-Fl-WFn" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="50K-cv-Dtz"/>
-                <constraint firstAttribute="trailing" secondItem="mnH-pd-aoo" secondAttribute="trailing" id="Bol-3C-s2M"/>
-                <constraint firstItem="mnH-pd-aoo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="FPv-cC-Yit"/>
+                <constraint firstItem="WUD-Fl-WFn" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="28" id="6HF-7c-PwD"/>
+                <constraint firstAttribute="trailing" secondItem="WUD-Fl-WFn" secondAttribute="trailing" constant="38" id="LAl-s6-WV5"/>
                 <constraint firstItem="mnH-pd-aoo" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="P82-bq-JPp"/>
-                <constraint firstAttribute="bottom" secondItem="mnH-pd-aoo" secondAttribute="bottom" id="UWc-3P-B8Z"/>
-                <constraint firstItem="mnH-pd-aoo" firstAttribute="top" secondItem="WUD-Fl-WFn" secondAttribute="bottom" id="Xos-iy-ZVW"/>
-                <constraint firstAttribute="trailing" secondItem="WUD-Fl-WFn" secondAttribute="trailing" constant="20" id="f6j-DX-IQ1"/>
-                <constraint firstItem="WUD-Fl-WFn" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="txj-kT-wSq"/>
+                <constraint firstItem="mnH-pd-aoo" firstAttribute="top" secondItem="WUD-Fl-WFn" secondAttribute="bottom" constant="26" id="TvT-YS-Ypm"/>
+                <constraint firstItem="mnH-pd-aoo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="dG3-Hm-dVo"/>
+                <constraint firstAttribute="trailing" secondItem="mnH-pd-aoo" secondAttribute="trailing" id="kma-hy-a9e"/>
+                <constraint firstItem="WUD-Fl-WFn" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="38" id="n2k-Fc-2ow"/>
             </constraints>
             <size key="customSize" width="156" height="158"/>
             <variation key="default">

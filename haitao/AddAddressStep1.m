@@ -25,6 +25,14 @@
     self.title=@"添加收货地址";
     _picker = [[AreaPickerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-20, 200)];
     
+    //填充左边 文字边距
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 30)];
+    
+    _consignee.leftView = paddingView;
+    
+    _consignee.leftViewMode = UITextFieldViewModeAlways;
+    
+    _province.enabled=NO;
     
 }
 
@@ -107,7 +115,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeToReload" object:nil];
         
         
-        
+    
         
     }
 

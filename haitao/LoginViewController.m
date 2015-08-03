@@ -40,7 +40,10 @@
     
     //返回值
 
-    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)]];
+//    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)]];
+//    
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+    [self.navigationItem setLeftBarButtonItem:item];
     
     //返回的颜色
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
@@ -92,8 +95,6 @@
 #pragma mark - login
 - (IBAction)login:(id)sender {
     
-    _loginRequestURL=[NSString stringWithFormat:@"%@&f=doLogin&m=user",requestUrl];
-
     
    
     NSUserDefaults *userdefault=[NSUserDefaults standardUserDefaults];
@@ -119,7 +120,7 @@
 
      NSDictionary *parameters = @{@"user_name":_username,@"user_pass":_password};
     
-    HTTPController *httpController =  [[HTTPController alloc]initWith:_loginRequestURL withType:POSTURL withPam:parameters withUrlName:@"login"];
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_doLogin withType:POSTURL withPam:parameters withUrlName:@"login"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
     
