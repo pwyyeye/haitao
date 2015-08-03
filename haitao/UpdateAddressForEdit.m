@@ -51,6 +51,13 @@
     [_idcard_zhengmian addGestureRecognizer:click];
     [_idcard_fanmian addGestureRecognizer:click2];
     
+    //填充左边
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 30)];
+    
+    _consignee.leftView = paddingView;
+    
+    _consignee.leftViewMode = UITextFieldViewModeAlways;
+    _province.enabled=NO;
 }
 
 - (void)didReceiveMemoryWarning {

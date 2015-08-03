@@ -18,6 +18,7 @@
 #import "MessageViewController.h"
 #import "CouponListController.h"
 #import "TariffViewController.h"
+#import "OrderListController.h"
 @interface UserCenterCollention ()
 
 @end
@@ -103,7 +104,41 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     UserCenterCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
 
     cell.content.text=_tableList[indexPath.item];
+    
+    cell.content.textColor=RGB(51, 51, 51);
     cell.layer.borderColor=[[UIColor clearColor] CGColor];
+    switch (indexPath.item) {
+        case 0:
+            cell.imageView.image=[UIImage imageNamed:@"userCenter_inco_order"];
+            break;
+        case 1:
+            cell.imageView.image=[UIImage imageNamed:@"userCenter_inco_bell"];
+            break;
+        case 2:
+            cell.imageView.image=[UIImage imageNamed:@"userCenter_inco_youhuiquan"];
+            break;
+        case 3:
+            cell.imageView.image=[UIImage imageNamed:@"userCenter_inco_Offer"];
+            break;
+        case 4:
+            cell.imageView.image=[UIImage imageNamed:@"userCenter_inco_Location"];
+            break;
+        case 5:
+            cell.imageView.image=[UIImage imageNamed:@"userCenter_inco_Love"];
+            break;
+        case 6:
+            cell.imageView.image=[UIImage imageNamed:@"userCenter_inco_Share"];
+            break;
+        case 7:
+            cell.imageView.image=[UIImage imageNamed:@"userCenter_inco_help"];
+            break;
+        case 8:
+            cell.imageView.image=[UIImage imageNamed:@"userCenter_inco_connect"];
+            break;
+            
+        default:
+            break;
+    }
     
     //重置之前的layer
     if (cell.layer.sublayers.count>1) {
@@ -218,7 +253,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     UIViewController *detailViewController;
     if (indexPath.item==0) {
-        //detailViewController  = [[UserDetailController alloc] init];
+        detailViewController  = [[OrderListController alloc] init];
     }else if (indexPath.item==1) {
         detailViewController  = [[MessageViewController alloc] init];
     }else if (indexPath.item==2) {

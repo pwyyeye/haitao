@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MessageModel.h"
-@interface MessageDetail : UIViewController
+@interface MessageDetail : UIViewController<HTTPControllerProtocol>
 
 @property (weak, nonatomic) IBOutlet UILabel *from_user;
 

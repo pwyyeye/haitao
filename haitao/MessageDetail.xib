@@ -25,10 +25,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="myQ-Rl-NmN">
-                    <rect key="frame" x="10" y="49" width="80" height="80"/>
+                    <rect key="frame" x="10" y="49" width="40" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="80" id="3XP-oj-w1d"/>
-                        <constraint firstAttribute="height" constant="80" id="yfE-E8-ffm"/>
+                        <constraint firstAttribute="width" constant="40" id="3XP-oj-w1d"/>
+                        <constraint firstAttribute="height" constant="40" id="yfE-E8-ffm"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cl7-V4-MUA">
@@ -48,7 +48,7 @@
                     </variation>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMw-dE-N7y">
-                    <rect key="frame" x="110" y="49" width="480" height="16"/>
+                    <rect key="frame" x="70" y="49" width="520" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>

@@ -95,8 +95,6 @@
 #pragma mark - login
 - (IBAction)login:(id)sender {
     
-    _loginRequestURL=[NSString stringWithFormat:@"%@&f=doLogin&m=user",requestUrl];
-
     
    
     NSUserDefaults *userdefault=[NSUserDefaults standardUserDefaults];
@@ -122,7 +120,7 @@
 
      NSDictionary *parameters = @{@"user_name":_username,@"user_pass":_password};
     
-    HTTPController *httpController =  [[HTTPController alloc]initWith:_loginRequestURL withType:POSTURL withPam:parameters withUrlName:@"login"];
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_doLogin withType:POSTURL withPam:parameters withUrlName:@"login"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
     

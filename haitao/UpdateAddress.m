@@ -35,6 +35,13 @@
     _idcard.enabled=NO;
     _zipcode.enabled=NO;
     
+    //填充左边
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 30)];
+    
+    _consignee.leftView = paddingView;
+    
+    _consignee.leftViewMode = UITextFieldViewModeAlways;
+    
     self.title=@"编辑收货人地址";
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(gotoEdit)];
 }

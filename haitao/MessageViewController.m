@@ -98,6 +98,17 @@
     
     [self initData];
     
+    //添加通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initData) name:@"noticeToReload" object:nil];
+    self.tableView = ({
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, SCREEN_HEIGHT - 98)];
+        tableView.dataSource = self;
+        tableView.delegate=self;
+        [self.view addSubview:tableView];
+        tableView;
+    });
+    
+    self.tableView.tableFooterView=[[UIView alloc]init];
 }
 
 
@@ -160,23 +171,15 @@
                 
                 _message_array=[MessageModel objectArrayWithKeyValuesArray:[dic objectForKey:@"list"]];
                 _result_array=_message_array;
-                self.tableView = ({
-                    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
-                    tableView.dataSource = self;
-                    tableView.delegate=self;
-                    [self.view addSubview:tableView];
-                    tableView;
-                });
-                
-                self.tableView.tableFooterView=[[UIView alloc]init];
-                self.tableView.tableHeaderView=[[UIView alloc]init];
+               
+                [self.tableView reloadData];
+//                self.tableView.tableHeaderView=[[UIView alloc]init];
                 
             }
             
             
-        }else if([urlname isEqualToString:@"delMsg"]){
+        }else if([urlname isEqualToString:@"delMsgBat"]){
             
-            //            [self initData];
             NSLog(@"----pass-delFav%@---",dictemp);
             [self showEmptyView];
             ShowMessage(@"删除成功");
@@ -268,7 +271,7 @@
     cell.detailTextLabel.text=[NSString stringWithFormat:@"%@", message.content];
     cell.detailTextLabel.textColor=[UIColor colorWithWhite:0.7 alpha:1];
     cell.detailTextLabel.font= [UIFont fontWithName:@"Helvetica" size:11];
-    [cell.imageView setImageWithURL:[NSURL URLWithString:message.img] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
+    [cell.imageView setImageWithURL:[NSURL URLWithString:message.img] placeholderImage:[UIImage imageNamed:@"message_admin"]];
     
     UILabel *from_user=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-30, cell.frame.origin.y+10, 30, 20)];
     from_user.text=message.from_user;
@@ -279,11 +282,11 @@
     
     //红色小角标
     if ([message.status integerValue]==0) {
-        UILabel *label_red=[[UILabel alloc] initWithFrame:CGRectMake(cell.textLabel.frame.origin.x+82, cell.textLabel.frame.origin.y+12, 6, 6)];
-        label_red.backgroundColor=RGB(255, 13, 94);
-        label_red.layer.cornerRadius=3;
-        label_red.layer.masksToBounds=YES;
-        [cell addSubview:label_red];
+        cell.isRead=[[UILabel alloc] init];
+        cell.isRead.backgroundColor=RGB(255, 13, 94);
+        cell.isRead.layer.cornerRadius=3;
+        cell.isRead.layer.masksToBounds=YES;
+        [cell addSubview:cell.isRead];
     }
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
@@ -314,29 +317,26 @@
 //删除行
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
-//    New_Goods *good=_results[indexPath.item];
-//    NSString *fav_id=[NSString stringWithFormat:@"%@",good.fav_id];
-//    [self deleteFav:fav_id];
-//    
-//    NSLog(@"----pass-before----%lu---",(unsigned long)_results.count);
-//    NSMutableArray *mut=[_results mutableCopy];
-//    [mut removeObjectAtIndex:indexPath.item];
-//    _results=[mut copy];
-//    
-//    NSLog(@"----pass-after----%lu---",(unsigned long)_results.count);
-//    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
-//    
-    //无法同步 执行出错 只好记录 行
-    //    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
+    MessageModel *message=_result_array[indexPath.item];
+    NSString *message_id=[NSString stringWithFormat:@"%@",message.id];
+    [self deleteMsg:message_id];
+    
+    NSLog(@"----pass-before----%lu---",(unsigned long)_result_array.count);
+    NSMutableArray *mut=[_result_array mutableCopy];
+    [mut removeObjectAtIndex:indexPath.item];
+    _result_array=[mut copy];
+    
+    NSLog(@"----pass-after----%lu---",(unsigned long)_result_array.count);
+    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
     
     
 }
--(void)deleteFav:(NSString *)favid{
+-(void)deleteMsg:(NSString *)message_id{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
-    NSDictionary *parameters = @{@"id":favid};
+    NSDictionary *parameters = @{@"ids":@[message_id]};
     
-    HTTPController *httpController =[[HTTPController alloc] initWith:requestUrl_delFav withType:POSTURL withPam:parameters withUrlName:@"delFav"];
+    HTTPController *httpController =[[HTTPController alloc] initWith:requestUrl_delMsgBat withType:POSTURL withPam:parameters withUrlName:@"delMsgBat"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
     

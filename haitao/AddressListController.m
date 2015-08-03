@@ -251,9 +251,20 @@
     NSString *address=[NSString stringWithFormat:@"%@%@",model.province,model.address];
     if([model.is_default integerValue]==1){
         address=[NSString stringWithFormat:@"%@%@%@",@"［默认］",model.province,model.address];
-    
+        NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:address];
+        [AttributedStr addAttribute:NSForegroundColorAttributeName
+         
+                              value:RGB(255, 13, 94)
+         
+                              range:NSMakeRange(0, 4)];
+        cell.address.attributedText=AttributedStr;
+    }else{
+        cell.address.text=address;
     }
-    cell.address.text=address;
+    
+
+    
+    
     cell.telephone.text=model.mobile;
     
     UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, indexPath.item==0?cell.frame.size.height-20:cell.frame.size.height-10)];
@@ -264,29 +275,36 @@
     
     [cell.contentView insertSubview:label atIndex:0];
     
+    
+    UIButton*button;//自定义选中
+    
+    UIImage *image;
     if([model.is_default integerValue]==1){
         
-        UIButton*button;//自定义选中
-        
-        UIImage*image =[UIImage imageNamed:@"btn_back.png"];
-        
-        button =[UIButton buttonWithType:UIButtonTypeCustom];
-        
-        CGRect frame =CGRectMake(0,0,20,20);
-        
-        button.frame = frame;
-        
-        [button setBackgroundImage:image forState:UIControlStateNormal];
-        
-        button.backgroundColor =[UIColor redColor];
-        
-        cell.accessoryView = button;
-        
-        cell.accessoryType=UITableViewCellAccessoryCheckmark;
+        image =[UIImage imageNamed:@"Address_btn_selected"];
         
     }else{
-        cell.accessoryType=UITableViewCellAccessoryNone;
+        image =[UIImage imageNamed:@"Address_btn_select"];
+        //        cell.accessoryType=UITableViewCellAccessoryNone;
     }
+    
+    button =[UIButton buttonWithType:UIButtonTypeCustom];
+    
+    CGRect frame =CGRectMake(0,0,20,20);
+    
+    button.frame = frame;
+    
+    [button setBackgroundImage:image forState:UIControlStateNormal];
+    
+//    button.backgroundColor =[UIColor redColor];
+    
+    cell.accessoryView = button;
+    
+    
+    
+    cell.accessoryType=UITableViewCellAccessoryCheckmark;
+    
+    
 
     // Configure the cell...
     

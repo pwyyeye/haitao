@@ -1,14 +1,14 @@
 //
-//  MessageCell.m
+//  OrderListCell.m
 //  haitao
 //
-//  Created by pwy on 15/8/1.
+//  Created by pwy on 15/8/2.
 //  Copyright (c) 2015年 上海市配夸网络科技有限公司. All rights reserved.
 //
 
-#import "MessageCell.h"
+#import "OrderListCell.h"
 
-@implementation MessageCell
+@implementation OrderListCell
 
 - (void)awakeFromNib {
     // Initialization code
@@ -19,7 +19,6 @@
 
     // Configure the view for the selected state
 }
-
 -(void)layoutSubviews{
     [super layoutSubviews];
     CGRect rect=self.textLabel.frame;
@@ -27,11 +26,8 @@
     rect=self.detailTextLabel.frame;
     self.detailTextLabel.frame=CGRectMake(rect.origin.x, rect.origin.y+5, rect.size.width, rect.size.height);
     rect=self.imageView.frame;
-    self.imageView.frame=CGRectMake(rect.origin.x, rect.origin.y, 40, 40);
-    if (self.isRead!=nil) {
-        self.isRead.frame=CGRectMake(rect.origin.x+43, rect.origin.y, 6, 6);
-
-    }
+    
+    self.imageView.frame=CGRectMake(rect.origin.x, rect.origin.y, 50, 50);
+    
 }
-
 @end

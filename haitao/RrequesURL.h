@@ -110,4 +110,18 @@
 //站内信详情
 #define requestUrl_getMsgById [NSString stringWithFormat:@"%@&f=getMsgById&m=user",requestUrl]
 
+//更新站内信已读
+#define requestUrl_setReadBat [NSString stringWithFormat:@"%@&f=setReadBat&m=user",requestUrl]
+
+//删除
+#define requestUrl_delMsgBat [NSString stringWithFormat:@"%@&f=delMsgBat&m=user",requestUrl]
+
+
+//我的订单列表
+#define requestUrl_getOrderList [NSString stringWithFormat:@"%@&f=getOrderList&m=user",requestUrl]
+
+//站内信详情
+//#define requestUrl_getMsgById [NSString stringWithFormat:@"%@&f=getMsgById&m=user",requestUrl]
+
+
 #endif

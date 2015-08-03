@@ -21,7 +21,12 @@
     if (![_message isEqual:[NSNull null]]) {
         _from_user.text=_message.from_user;
         _content.text=_message.content;
-        [_user_imageView setImageWithURL:[NSURL URLWithString:_message.img] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
+
+        [_user_imageView setImageWithURL:[NSURL URLWithString:_message.img] placeholderImage:[UIImage imageNamed:@"message_admin"]];
+        if ([_message.status integerValue]==0) {
+            [self updateIsRead];
+        }
+        
     }
 }
 
@@ -30,6 +35,36 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)updateIsRead{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    NSDictionary *parameters = @{@"ids":@[_message.id]};
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_setReadBat withType:POSTURL withPam:parameters withUrlName:@"setReadBat"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
+}
+
+-(void)didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    app.s_app_id=[dictemp objectForKey:@"s_app_id"];
+    [app stopLoading];
+    if ([[dictemp objectForKey:@"status"] integerValue]== 1) {
+        NSDictionary *dic=[dictemp objectForKey:@"data"];
+        NSLog(@"----pass-dic%@---",dic);
+        //判断是否有注册通知
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeToReload" object:nil];
+        
+    }
+
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"noticeToReload" object:nil];
+    
+    
+}
 /*
 #pragma mark - Navigation
 
