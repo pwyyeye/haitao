@@ -174,6 +174,7 @@
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"noticeToReload" object:nil];
+    self.addressListDelegate=nil;
 
 
 }
@@ -314,11 +315,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here, for example:
     // Create the next view controller.
-    UpdateAddress *detailViewController=[[UpdateAddress alloc] initWithNibName:@"UpdateAddress" bundle:nil];
-    detailViewController.addressModel=_data[indexPath.item];
-    // Push the view controller.
-    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    if ([self.addressListDelegate respondsToSelector:@selector(selectedAddress:)]) {
+        [self.addressListDelegate selectedAddress:_data[indexPath.item]];
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        UpdateAddress *detailViewController=[[UpdateAddress alloc] initWithNibName:@"UpdateAddress" bundle:nil];
+        detailViewController.addressModel=_data[indexPath.item];
+        // Push the view controller.
+        [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+        [self.navigationController pushViewController:detailViewController animated:YES];
+    }
+    
 }
 /*
 // Override to support conditional editing of the table view.
@@ -387,5 +394,6 @@
 //    self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
+
 
 @end
