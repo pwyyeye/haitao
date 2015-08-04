@@ -44,7 +44,7 @@
     _refresh=[[DJRefresh alloc] initWithScrollView:_tableView delegate:self];
     _refresh.topEnabled=YES;
     [self.view addSubview:_tableView];
-
+    
     listArr=[[NSMutableArray alloc]init];
     
     [self getCatBanner];
@@ -125,8 +125,8 @@
         cfContentViewController.dataList=goodsModelArr;
         cfContentViewController.topTitle=title;
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
-         [delegate.navigationController pushViewController:cfContentViewController animated:YES];
-
+        [delegate.navigationController pushViewController:cfContentViewController animated:YES];
+        
     }
     if([urlname isEqualToString:@"getGoodsDetail"]){
         NSDictionary *dataDic=[dictemp objectForKey:@"data"];
@@ -134,16 +134,16 @@
         NSDictionary *goods_ext=[dataDic objectForKey:@"goods_ext"];
         NSArray *goods_image=[dataDic objectForKey:@"goods_image"];
         NSDictionary *goods_attr=[dataDic objectForKey:@"goods_attr"];
-//        NSArray *priceArr=[goods_attr objectForKey:@"price"];
-//        NSArray *attr_infoArr=[goods_attr objectForKey:@"attr_info"];
+        //        NSArray *priceArr=[goods_attr objectForKey:@"price"];
+        //        NSArray *attr_infoArr=[goods_attr objectForKey:@"attr_info"];
         NSArray *goods_parity=[dataDic objectForKey:@"goods_parity"];
         New_Goods *newGoods = [New_Goods objectWithKeyValues:goods_detail] ;
         Goods_Ext *goodsExt=[Goods_Ext objectWithKeyValues:goods_ext];
-//        NSDictionary *menuIndexDic=[dataDic objectForKey:@"cat_index"];
+        //        NSDictionary *menuIndexDic=[dataDic objectForKey:@"cat_index"];
         HTGoodDetailsViewController *htGoodDetailsViewController=[[HTGoodDetailsViewController alloc]init];
         htGoodDetailsViewController.goods_parity=goods_parity;
         htGoodDetailsViewController.goods=newGoods;
-        htGoodDetailsViewController.goods_attr=goods_parity;
+        htGoodDetailsViewController.goods_attr=goods_attr;
         htGoodDetailsViewController.goodsExt=goodsExt;
         htGoodDetailsViewController.goods_image=goods_image;
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -369,7 +369,7 @@
             [label setFrame:CGRectMake((70-size.width)/2, 52, size.width+4, 15)];
             label.text = str;
             lastFram=btnNine.frame;
-
+            
             [btnNine addSubview:label];
         }
         CGRect cellFrame = [cell frame];
@@ -378,114 +378,114 @@
         cellFrame.size.height=lastFram.origin.y+lastFram.size.height+10;
         [cell setFrame:cellFrame];
         return cell;
-
+        
     }
     
-        static NSString *CellIdentifier = @"cate_cell";
+    static NSString *CellIdentifier = @"cate_cell";
+    
+    UITableViewCell *cell =nil;
+    
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] ;
+        cell.accessoryType=UITableViewCellAccessoryNone;
+        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame] ;
+        cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:0.88 green:0.94 blue:0.99 alpha:1.0];
         
-        UITableViewCell *cell =nil;
+    }
+    CGRect lastFrame;
+    NSArray *arrTemp=listArr[indexPath.row];
+    for (int i =0; i<arrTemp.count; i++)
+    {
+        New_Goods *new_Goods=arrTemp[i];
+        imageV=[[UrlImageView alloc]initWithFrame:CGRectMake((i%2)*153+13, floor(i/2)*200+10, 140, 140)];
+        imageV.backgroundColor=[UIColor redColor];
+        imageV.userInteractionEnabled=YES;
+        //            btn.layer.shadowOffset = CGSizeMake(1,1);
+        //            btn.layer.shadowOpacity = 0.2f;
+        //            btn.layer.shadowRadius = 3.0;
+        imageV.layer.borderWidth=1;//描边
+        imageV.layer.cornerRadius=4;//圆角
+        imageV.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
+        imageV.backgroundColor=[UIColor whiteColor];
         
-        if (cell == nil)
-        {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] ;
-            cell.accessoryType=UITableViewCellAccessoryNone;
-            cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame] ;
-            cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:0.88 green:0.94 blue:0.99 alpha:1.0];
-            
+        [cell addSubview:imageV];
+        
+        GoodImageButton*btn=[[GoodImageButton alloc]initWithFrame:CGRectMake(2, 2, 140-4, 140-4)];
+        btn.userInteractionEnabled=YES;
+        btn.layer.borderWidth=1;//描边
+        btn.layer.cornerRadius=4;//圆角
+        btn.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
+        btn.backgroundColor=[UIColor whiteColor];
+        btn.goods=new_Goods;
+        NSString *urlStr=new_Goods.img;
+        if((urlStr==nil)||[urlStr isEqualToString:@""]){
+            [btn setBackgroundImage:BundleImage(@"df_04_.png") forState:0];
+        }else{
+            NSURL *imgUrl=[NSURL URLWithString:urlStr];
+            [btn setImageWithURL:imgUrl];
         }
-        CGRect lastFrame;
-        NSArray *arrTemp=listArr[indexPath.row];
-        for (int i =0; i<arrTemp.count; i++)
-        {
-            New_Goods *new_Goods=arrTemp[i];
-            imageV=[[UrlImageView alloc]initWithFrame:CGRectMake((i%2)*153+13, floor(i/2)*200+10, 140, 140)];
-            imageV.backgroundColor=[UIColor redColor];
-            imageV.userInteractionEnabled=YES;
-            //            btn.layer.shadowOffset = CGSizeMake(1,1);
-            //            btn.layer.shadowOpacity = 0.2f;
-            //            btn.layer.shadowRadius = 3.0;
-            imageV.layer.borderWidth=1;//描边
-            imageV.layer.cornerRadius=4;//圆角
-            imageV.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
-            imageV.backgroundColor=[UIColor whiteColor];
-            
-            [cell addSubview:imageV];
-            
-            GoodImageButton*btn=[[GoodImageButton alloc]initWithFrame:CGRectMake(2, 2, 140-4, 140-4)];
-            btn.userInteractionEnabled=YES;
-            btn.layer.borderWidth=1;//描边
-            btn.layer.cornerRadius=4;//圆角
-            btn.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
-            btn.backgroundColor=[UIColor whiteColor];
-            btn.goods=new_Goods;
-            NSString *urlStr=new_Goods.img;
-            if((urlStr==nil)||[urlStr isEqualToString:@""]){
-                [btn setBackgroundImage:BundleImage(@"df_04_.png") forState:0];
-            }else{
-                NSURL *imgUrl=[NSURL URLWithString:urlStr];
-                [btn setImageWithURL:imgUrl];
-            }
-            
-            [btn addTarget:self action:@selector(goodContentTouch:) forControlEvents:UIControlEventTouchUpInside];
-            //            [imageV addSubview:btn];
-            [imageV insertSubview:btn aboveSubview:imageV];
-            
-            UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake((i%2)*153+13, floor(i/2)*200+10+140, 140, 40)];
-            _label.text=new_Goods.title;
-            _label.font=[UIFont boldSystemFontOfSize:14];
-            _label.backgroundColor=[UIColor clearColor];
-            _label.textColor =[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0];
-            _label.numberOfLines=2;
-            _label.textAlignment=0;
-            
-            [cell addSubview:_label];
-            
-            
-            
-            
-            
-            UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake((i%2)*153+13, floor(i/2)*200+140+10+_label.frame.size.height, 65, 20)];
-            title_label.text=[NSString stringWithFormat:@"%f",new_Goods.price];
-            
-            title_label.font=[UIFont systemFontOfSize:12];
-            title_label.backgroundColor=[UIColor clearColor];
-            title_label.textColor =hongShe;
-            title_label.textAlignment=0;
-            lastFrame=title_label.frame;
-            //
-            [cell addSubview:title_label];
-            
-            UILabel *title_label1=[[UILabel alloc]initWithFrame:CGRectMake((i%2)*153+13+title_label.frame.size.width, floor(i/2)*200+140+10+_label.frame.size.height, 65, 20)];
-            title_label1.text=@"199.70";
-            title_label1.font=[UIFont systemFontOfSize:10];
-            title_label1.backgroundColor=[UIColor clearColor];
-            title_label1.textColor =[UIColor colorWithRed:.7 green:.7 blue:.7 alpha:1.0];
-            title_label1.textAlignment=0;
-            
-            [cell addSubview:title_label1];
-            
-            //高度固定不折行，根据字的多少计算label的宽度
-            NSString *str = title_label1.text;
-            CGSize size = [str sizeWithFont:title_label.font constrainedToSize:CGSizeMake(MAXFLOAT, title_label.frame.size.height)];
-            //                     NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
-            //根据计算结果重新设置UILabel的尺寸
-            
-            
-            UIImageView *line=[[UIImageView alloc]initWithFrame:CGRectMake(0, title_label1.frame.size.height/2, size.width, 1)];
-            line.image=BundleImage(@"line_01_.png");
-            [title_label1 addSubview:line];
-            
-        }
-        CGRect cellFrame = [cell frame];
-        cellFrame.origin=CGPointMake(0, 0);
-        cellFrame.size.width=320;
-        cellFrame.size.height=140+40+10+20+10;
-        [cell setFrame:cellFrame];
+        
+        [btn addTarget:self action:@selector(goodContentTouch:) forControlEvents:UIControlEventTouchUpInside];
+        //            [imageV addSubview:btn];
+        [imageV insertSubview:btn aboveSubview:imageV];
+        
+        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake((i%2)*153+13, floor(i/2)*200+10+140, 140, 40)];
+        _label.text=new_Goods.title;
+        _label.font=[UIFont boldSystemFontOfSize:14];
+        _label.backgroundColor=[UIColor clearColor];
+        _label.textColor =[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0];
+        _label.numberOfLines=2;
+        _label.textAlignment=0;
+        
+        [cell addSubview:_label];
         
         
         
-        return cell;
         
+        
+        UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake((i%2)*153+13, floor(i/2)*200+140+10+_label.frame.size.height, 65, 20)];
+        title_label.text=[NSString stringWithFormat:@"%f",new_Goods.price];
+        
+        title_label.font=[UIFont systemFontOfSize:12];
+        title_label.backgroundColor=[UIColor clearColor];
+        title_label.textColor =hongShe;
+        title_label.textAlignment=0;
+        lastFrame=title_label.frame;
+        //
+        [cell addSubview:title_label];
+        
+        UILabel *title_label1=[[UILabel alloc]initWithFrame:CGRectMake((i%2)*153+13+title_label.frame.size.width, floor(i/2)*200+140+10+_label.frame.size.height, 65, 20)];
+        title_label1.text=@"199.70";
+        title_label1.font=[UIFont systemFontOfSize:10];
+        title_label1.backgroundColor=[UIColor clearColor];
+        title_label1.textColor =[UIColor colorWithRed:.7 green:.7 blue:.7 alpha:1.0];
+        title_label1.textAlignment=0;
+        
+        [cell addSubview:title_label1];
+        
+        //高度固定不折行，根据字的多少计算label的宽度
+        NSString *str = title_label1.text;
+        CGSize size = [str sizeWithFont:title_label.font constrainedToSize:CGSizeMake(MAXFLOAT, title_label.frame.size.height)];
+        //                     NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
+        //根据计算结果重新设置UILabel的尺寸
+        
+        
+        UIImageView *line=[[UIImageView alloc]initWithFrame:CGRectMake(0, title_label1.frame.size.height/2, size.width, 1)];
+        line.image=BundleImage(@"line_01_.png");
+        [title_label1 addSubview:line];
+        
+    }
+    CGRect cellFrame = [cell frame];
+    cellFrame.origin=CGPointMake(0, 0);
+    cellFrame.size.width=320;
+    cellFrame.size.height=140+40+10+20+10;
+    [cell setFrame:cellFrame];
+    
+    
+    
+    return cell;
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -510,24 +510,24 @@
     MenuModel *menuModel=sender.menuModel;
     title=menuModel.name;
     [self getMenuGoodsList:menuModel.id];
-
+    
     
 }
 #pragma mark 商品详细信息
 -(void)goodContentTouch:(GoodImageButton *)sender{
     New_Goods *goods=sender.goods;
-    NSDictionary *parameters = @{@"id":@"626"};
-    
+    //    NSDictionary *parameters = @{@"id":@"626"};
+    NSDictionary *parameters = @{@"id":goods.id};
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
     ;
     
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsDetail"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
-
-
+    
+    
 }
- #pragma mark -获取分类下的商品信息
+#pragma mark -获取分类下的商品信息
 -(void)getMenuGoodsList:(NSString *)s_cat{
     NSDictionary *parameters = @{@"s_cat":s_cat,@"need_cat_index":@1};
     
@@ -537,7 +537,7 @@
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getMenuGoodsList"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
-
+    
 }
 /*
  #pragma mark - Navigation
@@ -666,13 +666,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

@@ -4,7 +4,7 @@
 //
 //  Created by SEM on 15/7/18.
 //  Copyright (c) 2015年 上海市配夸网络科技有限公司. All rights reserved.
-//
+//商品详细信息
 
 #import "LTKViewController.h"
 #import "New_Goods.h"

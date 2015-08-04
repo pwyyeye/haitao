@@ -10,5 +10,4 @@
 #import "SizeModel.h"
 @interface AttrInfoBtn : UrlImageButton
 @property (retain, nonatomic) SizeModel *sizeModel;
-@property (assign, nonatomic) BOOL isflag;//是否选中
 @end

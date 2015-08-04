@@ -13,9 +13,10 @@
 #import "ChooseSizeViewController.h"
 #import "FCImageTextViewController.h"
 #import "AppDelegate.h"
+#import "HTShopStoreCarViewController.h"
 static CGFloat kImageOriginHight = 400;
 
-@interface HTGoodDetailsViewController ()<UIWebViewDelegate>
+@interface HTGoodDetailsViewController ()<UIWebViewDelegate,ChooseSizeDelegate>
 {
     UIView*navigationBar;
     UrlImageButton* threeButtonImg;
@@ -64,12 +65,7 @@ static CGFloat kImageOriginHight = 400;
     [btnShare setImage:BundleImage(@"shop_fx_.png") forState:0];
     [self.view insertSubview:btnShare aboveSubview:_scrollView];
     
-    UIButton*btnGoShop=[UIButton buttonWithType:0];
-    btnGoShop.frame=CGRectMake(self.view.frame.size.width-50*2,10, 42, 42);
-    btnGoShop.backgroundColor=[UIColor clearColor];
-    [btnGoShop addTarget:self action:@selector(btnGoCar:) forControlEvents:UIControlEventTouchUpInside];
-    [btnGoShop setImage:BundleImage(@"shop_gwc_.png") forState:0];
-    [self.view insertSubview:btnGoShop aboveSubview:_scrollView];
+    
     // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -368,14 +364,14 @@ static CGFloat kImageOriginHight = 400;
     UIButton*shoucangBtn=[UIButton buttonWithType:0];
     shoucangBtn.frame=CGRectMake(10+70+5, 0, 70, 50);
     shoucangBtn.backgroundColor=[UIColor clearColor];
-    [shoucangBtn addTarget:self action:@selector(shopping:) forControlEvents:UIControlEventTouchUpInside];
+    [shoucangBtn addTarget:self action:@selector(myShopCar:) forControlEvents:UIControlEventTouchUpInside];
     [shoucangBtn setImage:BundleImage(@"shopbt_02_.png") forState:0];
     [view_bar addSubview:shoucangBtn];
     
     UIButton *carBtn=[UIButton buttonWithType:0];
     carBtn.frame=CGRectMake(10+70+5+70+5, 0,70, 50);
     carBtn.backgroundColor=[UIColor clearColor];
-    [carBtn addTarget:self action:@selector(shopping:) forControlEvents:UIControlEventTouchUpInside];
+    [carBtn addTarget:self action:@selector(myShopCar:) forControlEvents:UIControlEventTouchUpInside];
     [carBtn setImage:BundleImage(@"shopbt_02_.png") forState:0];
     [view_bar addSubview:carBtn];
 
@@ -383,7 +379,7 @@ static CGFloat kImageOriginHight = 400;
     UIButton*btnShop=[UIButton buttonWithType:0];
     btnShop.frame=CGRectMake(10+70+5+70+5+70, 49/2-28/2, 100, 28);
     btnShop.backgroundColor=[UIColor clearColor];
-    [btnShop addTarget:self action:@selector(shopping:) forControlEvents:UIControlEventTouchUpInside];
+    [btnShop addTarget:self action:@selector(addShopCar:) forControlEvents:UIControlEventTouchUpInside];
     [btnShop setImage:BundleImage(@"shopbt_01_n_.png") forState:0];
     [view_bar addSubview:btnShop];
     
@@ -391,46 +387,25 @@ static CGFloat kImageOriginHight = 400;
     
     return view_bar;
 }
-//分享
+#pragma mark分享
 -(void)btnShare:(id)sender
 {
     
     
 }
-//添加购物车
+#pragma mark添加购物车
 -(void)addShopCar:(id)sender
 {
-    
-    
-    //    UIView* bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0, 320,self.view.frame.size.height-49)];
-    //    [bgView setTag:99999];
-    //    [bgView setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.5]];
-    //    [bgView setAlpha:0.8];
-    //
-    //    [self.view addSubview:bgView];
-    //    UIView* firstLevelMenuView = [[UIView alloc]initWithFrame:CGRectMake(0, 100, 320,0)];
-    //    UIImageView*_imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
-    //    _imageView.image=BundleImage(@"bg_w_.png");
-    //    [firstLevelMenuView insertSubview:_imageView aboveSubview:firstLevelMenuView];
-    //
-    //    firstLevelMenuView.tag = 100000;
-    ////    firstLevelMenuView.menuDelegate = self;
-    //    firstLevelMenuView.backgroundColor=[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
-    //    [bgView addSubview:firstLevelMenuView];
-    //    [UIView beginAnimations:@"animationID" context:nil];
-    //    [UIView setAnimationDuration:0.5];
-    //    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-    //    [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:firstLevelMenuView cache:NO];
-    //    firstLevelMenuView.frame= CGRectMake(0, 150, 320, self.view.frame.size.height-200);
-    //
-    ////    [_imageView release];
-    //    [UIView commitAnimations];
-    
-    
-    
-    showShareMessage(@"商品成功添加购物车！");
+    ChooseSizeViewController *chooseSizeViewController=[[ChooseSizeViewController alloc]init];
+    //    chooseSizeViewController
+    chooseSizeViewController.goods_attr=self.goods_attr;
+    chooseSizeViewController.goods=self.goods;
+    chooseSizeViewController.delegate=self;
+    AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    [app.navigationController pushViewController:chooseSizeViewController animated:YES];
+
 }
-//联系卖家
+#pragma mark 联系卖家
 -(void)call:(id)sender
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"10086" message:@"确认要拨打电话吗？" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
@@ -438,47 +413,14 @@ static CGFloat kImageOriginHight = 400;
     [alert show];
     
 }
-//去购物车
--(void)btnGoCar:(id)sender
+
+#pragma mark 我的购物车
+-(void)myShopCar:(id)sender
 {
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"加入购物车" message:@"商品己成功加入购物车！" delegate:self cancelButtonTitle:@"继续购物" otherButtonTitles:@"去购物车", nil];
-    alert.tag = 1000;
-    [alert show];
-    
-}
-//立即购买
--(void)shopping:(id)sender
-{
-    _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0, 320,self.view.frame.size.height)];
-    [_bgView setTag:99999];
-    [_bgView setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.4]];
-    [_bgView setAlpha:1.0];
-    
-    [self.view addSubview:_bgView];
-    rulerView = [[TMRulerColor alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height, 320,0) ];
-    rulerView.tag = 100000;
-    //    rulerView.menuDelegate = self;
-    rulerView.backgroundColor=[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
-    [_bgView addSubview:rulerView];
-    [UIView beginAnimations:@"animationID" context:nil];
-    [UIView setAnimationDuration:0.5];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:rulerView cache:NO];
-    rulerView.frame= CGRectMake(0, self.view.frame.size.height-420, 320, 420);
-    UIImageView*_imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, 6)];
-    _imageView.image=BundleImage(@"ic_pull_shadow.png");
-    [_bgView addSubview:_imageView];
-    
-    [UIView commitAnimations];
-    
-    UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame=CGRectMake(_bgView.frame.size.width-36,0 , 36, 32);
-    [button setImage:BundleImage(@"bt_clo_.png") forState:0];
-    [button addTarget:self action:@selector(SetViewDisappear:) forControlEvents:UIControlEventTouchDown];
-    [rulerView insertSubview:button aboveSubview:_bgView];
-    button.backgroundColor=[UIColor clearColor];
-    
+    HTShopStoreCarViewController *shopStoreCarViewController=[[HTShopStoreCarViewController alloc]initWithTabbar:false];
+    AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    [app.navigationController pushViewController:shopStoreCarViewController animated:YES];
 }
 
 //立即购买消失按钮
@@ -517,6 +459,7 @@ static CGFloat kImageOriginHight = 400;
 //    chooseSizeViewController
     chooseSizeViewController.goods_attr=self.goods_attr;
     chooseSizeViewController.goods=self.goods;
+    chooseSizeViewController.delegate=self;
     AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
     [app.navigationController pushViewController:chooseSizeViewController animated:YES];
 }
@@ -595,7 +538,9 @@ static CGFloat kImageOriginHight = 400;
     
     _scrollView.frame=CGRectMake(0, view_bar1.frame.size.height, 320, self.view.frame.size.height+140-view.frame.size.height-10);
 }
-
+- (void)addShopCarFinsh:(NSDictionary *)dic{
+    ShowMessage(@"添加成功");
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
