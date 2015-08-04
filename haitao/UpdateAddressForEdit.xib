@@ -136,6 +136,8 @@
                             <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                             <connections>
                                 <action selector="DidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="EVA-Cj-8UN"/>
+                                <action selector="textFieldBeginEdit:" destination="-1" eventType="editingDidBegin" id="Ejj-aB-qas"/>
+                                <action selector="textFieldEndEdit:" destination="-1" eventType="editingDidEnd" id="6HA-H9-l48"/>
                             </connections>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入中文名字" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="az9-nW-PjL">
@@ -161,9 +163,11 @@
                             </constraints>
                             <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             <connections>
                                 <action selector="DidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="39A-fd-nJG"/>
+                                <action selector="textFieldBeginEdit:" destination="-1" eventType="editingDidBegin" id="M1U-Uk-E7y"/>
+                                <action selector="textFieldEndEdit:" destination="-1" eventType="editingDidEnd" id="q4f-ej-bOH"/>
                             </connections>
                         </textField>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="Address_img_shenfenzheng.png" translatesAutoresizingMaskIntoConstraints="NO" id="jks-pr-18U">
