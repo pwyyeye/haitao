@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "LTKNavigationViewController.h"
-@interface LTKNavigationViewController : UINavigationController
+#import "EAIntroView.h"
+@interface LTKNavigationViewController : UINavigationController<EAIntroDelegate>
 
 
 

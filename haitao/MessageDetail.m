@@ -39,7 +39,7 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     
-    NSDictionary *parameters = @{@"ids":@[_message.id]};
+    NSDictionary *parameters = @{@"ids":_message.id};
     
     HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_setReadBat withType:POSTURL withPam:parameters withUrlName:@"setReadBat"];
     httpController.delegate = self;

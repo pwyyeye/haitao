@@ -25,5 +25,5 @@
 @property(strong,nonatomic) NSString *mt;
 @property(strong,nonatomic) NSString *img_url;
 
-
+@property(strong,nonatomic) NSArray *goods_attr;
 @end

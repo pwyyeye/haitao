@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Order_package.h"
 @interface OrderListController : UIViewController<HTTPControllerProtocol, UITableViewDataSource,UITableViewDelegate>
 
 @property(strong,nonatomic) UIView *empty_view;
@@ -19,6 +19,8 @@
 @property(strong,nonatomic) NSArray *order_array;
 
 @property(strong,nonatomic) NSArray *result_array;
+
+@property(strong,nonatomic) Order_package *package;
 
 @property(strong,nonatomic) NSArray *goods_arrayForSubView;
 

@@ -9,5 +9,11 @@
 #import "Order_goods.h"
 
 @implementation Order_goods
++ (NSDictionary *)objectClassInArray
+{
+    return @{
+             @"goods_attr" : @"Order_goodsAttr",
+             };
+}
 
 @end

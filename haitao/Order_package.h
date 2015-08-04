@@ -16,6 +16,10 @@
 @property(strong,nonatomic) NSString *ship_type;
 @property(strong,nonatomic) NSString *logistic_id;
 @property(strong,nonatomic) NSString *package_status;
+@property(strong,nonatomic) NSString *shop_name;
+@property(strong,nonatomic) NSString *ship_name;
+@property(strong,nonatomic) NSString *country_flag_url;
+
 
 @property(assign,nonatomic) double goods_amount;
 
@@ -30,6 +34,8 @@
 @property(strong,nonatomic) NSString *ct;
 
 @property(strong,nonatomic) NSString *mt;
+
+@property(assign,nonatomic) int buy_num;
 
 @property(strong,nonatomic) NSArray *goods;
 
