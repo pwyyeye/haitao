@@ -34,6 +34,30 @@
     
     _province.enabled=NO;
     
+
+}
+//当键盘出现或改变时调用
+- (void)keyboardWillChangeFrame:(NSNotification *)notification
+{
+    //获取键盘的高度
+    NSDictionary *info = [notification userInfo];
+    CGFloat duration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    CGRect beginKeyboardRect = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    CGRect endKeyboardRect = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    CGFloat yOffset = endKeyboardRect.origin.y - beginKeyboardRect.origin.y;
+    if (yOffset<0) {
+        yOffset+=30;
+    }else{
+        yOffset-=30;
+    }
+    CGRect inputFieldRect = self.view.frame;
+    
+    inputFieldRect.origin.y += yOffset;
+    
+    [UIView animateWithDuration:duration animations:^{
+        self.view.frame = inputFieldRect;
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,6 +79,26 @@
     NSLog(@"----pass editAddress%@---",@"test");
 }
 
+
+- (IBAction)textFieldBeginEdit:(id)sender {
+    //
+    //增加监听，当键盘出现或改变时收出消息
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillChangeFrame:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    //增加监听，当键退出时收出消息
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillChangeFrame:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+
+- (IBAction)textFieldEndEdit:(id)sender {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
 
 - (IBAction)gotoStep2:(id)sender {
     
@@ -85,9 +129,9 @@
     }
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
-    NSDictionary *parameters = @{@"consignee":_consignee.text,@"mobile":_mobile.text,@"idcard":_idcard.text,@"province":_province.text,@"address":_address.text,@"zipcode":_zipcode.text,@"is_default":@"1"};
+    NSDictionary *parameters = @{@"consignee":_consignee.text,@"mobile":_mobile.text,@"idcard":_idcard.text,@"province":_province.text,@"address":_address.text,@"zipcode":_zipcode.text,@"is_default":@"1",@"idcard_1":@"",@"idcard_2":@""};
     if (_isFirstAddress==NO) {
-        parameters = @{@"consignee":_consignee.text,@"mobile":_mobile.text,@"idcard":_idcard.text,@"province":_province.text,@"address":_address.text,@"zipcode":_zipcode.text};
+        parameters = @{@"consignee":_consignee.text,@"mobile":_mobile.text,@"idcard":_idcard.text,@"province":_province.text,@"address":_address.text,@"zipcode":_zipcode.text,@"idcard_1":@"",@"idcard_2":@""};
     }
     
     HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_addAddress withType:POSTURL withPam:parameters withUrlName:@"addAddress"];

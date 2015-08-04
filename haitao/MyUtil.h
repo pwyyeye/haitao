@@ -27,5 +27,6 @@
 //利用正则表达式验证邮箱
 +(BOOL)isValidateEmail:(NSString *)email;
 
++(NSString *)getFormatDate:(NSDate *)date;
 
 @end

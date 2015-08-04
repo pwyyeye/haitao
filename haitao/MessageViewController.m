@@ -334,7 +334,7 @@
 -(void)deleteMsg:(NSString *)message_id{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
-    NSDictionary *parameters = @{@"ids":@[message_id]};
+    NSDictionary *parameters = @{@"ids":message_id};
     
     HTTPController *httpController =[[HTTPController alloc] initWith:requestUrl_delMsgBat withType:POSTURL withPam:parameters withUrlName:@"delMsgBat"];
     httpController.delegate = self;

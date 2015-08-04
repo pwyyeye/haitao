@@ -88,6 +88,12 @@
 //删除
 #define requestUrl_delCart [NSString stringWithFormat:@"%@&f=delCart&m=cart",requestUrl]
 
+//购物车列表转到订单确认
+#define requestUrl_getOrderInfo [NSString stringWithFormat:@"%@&f=getOrderInfo&m=order",requestUrl]
+
+//订单录入
+#define requestUrl_addOrder [NSString stringWithFormat:@"%@&f=addOrder&m=order",requestUrl]
+
 
 //获取意见反馈选项
 #define requestUrl_getSuggestTypeList [NSString stringWithFormat:@"%@&f=getSuggestTypeList&m=home",requestUrl]
@@ -120,8 +126,8 @@
 //我的订单列表
 #define requestUrl_getOrderList [NSString stringWithFormat:@"%@&f=getOrderList&m=user",requestUrl]
 
-//站内信详情
-//#define requestUrl_getMsgById [NSString stringWithFormat:@"%@&f=getMsgById&m=user",requestUrl]
+//取消订单
+#define requestUrl_cancelOrder [NSString stringWithFormat:@"%@&f=cancelOrder&m=user",requestUrl]
 
 
 #endif

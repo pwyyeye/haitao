@@ -92,23 +92,6 @@
                         <action selector="didEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="5TN-9B-T4j"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="必填" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rKO-of-8xk">
-                    <rect key="frame" x="63" y="213" width="482" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="1wM-6k-1VB"/>
-                        <constraint firstAttribute="width" constant="220" id="XVo-m5-xLR"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <textInputTraits key="textInputTraits"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="XVo-m5-xLR"/>
-                        </mask>
-                    </variation>
-                    <connections>
-                        <action selector="areaPick:" destination="-1" eventType="touchUpInside" id="F55-Uh-3Dq"/>
-                    </connections>
-                </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="必填" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DQz-ep-R3t">
                     <rect key="frame" x="63" y="293" width="527" height="30"/>
                     <constraints>
@@ -124,6 +107,8 @@
                     </variation>
                     <connections>
                         <action selector="didEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="As2-RH-GMr"/>
+                        <action selector="textFieldBeginEdit:" destination="-1" eventType="editingDidBegin" id="9RO-zF-SW1"/>
+                        <action selector="textFieldEndEdit:" destination="-1" eventType="editingDidEnd" id="zOu-jA-HND"/>
                     </connections>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名务必和身份证一致，否则将影响清关" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAO-eK-sVW">
@@ -181,6 +166,8 @@
                     </variation>
                     <connections>
                         <action selector="didEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="ELj-7S-Q20"/>
+                        <action selector="textFieldBeginEdit:" destination="-1" eventType="editingDidBegin" id="7cn-wy-sfI"/>
+                        <action selector="textFieldEndEdit:" destination="-1" eventType="editingDidEnd" id="MSO-cL-ead"/>
                     </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HLl-2u-VMO">
@@ -217,6 +204,24 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="必填" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rKO-of-8xk">
+                    <rect key="frame" x="63" y="213" width="482" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="1wM-6k-1VB"/>
+                        <constraint firstAttribute="width" constant="220" id="XVo-m5-xLR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="XVo-m5-xLR"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="areaPick:" destination="-1" eventType="touchUpInside" id="F55-Uh-3Dq"/>
+                        <action selector="didEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="qAk-3q-hvK"/>
+                    </connections>
+                </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>

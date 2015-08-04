@@ -51,5 +51,7 @@
 
 - (IBAction)areaPick:(id)sender;
 - (IBAction)DidEndOnExit:(id)sender;
+- (IBAction)textFieldBeginEdit:(id)sender;
+- (IBAction)textFieldEndEdit:(id)sender;
 
 @end

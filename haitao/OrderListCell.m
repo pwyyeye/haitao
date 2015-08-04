@@ -22,7 +22,7 @@
 -(void)layoutSubviews{
     [super layoutSubviews];
     CGRect rect=self.textLabel.frame;
-    self.textLabel.frame=CGRectMake(rect.origin.x, rect.origin.y-10, 180, rect.size.height);
+    self.textLabel.frame=CGRectMake(rect.origin.x, rect.origin.y-20, 150, rect.size.height);
     rect=self.detailTextLabel.frame;
     self.detailTextLabel.frame=CGRectMake(rect.origin.x, rect.origin.y+5, rect.size.width, rect.size.height);
     rect=self.imageView.frame;

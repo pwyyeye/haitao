@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddressModel.h"
+@protocol AddressListDelegate <NSObject>
 
+-(void)selectedAddress:(AddressModel *)addressModel;
+
+@end
 
 @interface AddressListController : UITableViewController<HTTPControllerProtocol>
+
+@property(strong,nonatomic) id<AddressListDelegate> addressListDelegate;
 
 @property(strong,nonatomic) NSArray *data;
 

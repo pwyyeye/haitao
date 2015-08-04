@@ -52,4 +52,6 @@
 
 @property(strong,nonatomic) NSArray *package;
 
+@property(assign,nonatomic) int buy_num;
+
 @end

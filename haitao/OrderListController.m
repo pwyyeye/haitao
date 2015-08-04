@@ -11,6 +11,7 @@
 #import "Order_package.h"
 #import "Order_goods.h"
 #import "OrderListCell.h"
+#import "Order_goodsAttr.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 @interface OrderListController ()
 
@@ -253,18 +254,21 @@
 #pragma mark - tableView delegate
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (_tableView==tableView) {
-        UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 25)];
+    if (_tableView==tableView) {//最外层 header
         
+        OrderModel *order=_result_array[section];
+        
+        UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 25)];
         UILabel *head=[[UILabel alloc] initWithFrame:CGRectMake(10, 3.5, SCREEN_WIDTH/2, 17)];
         head.font =[UIFont systemFontOfSize:10];
-        head.text=@"订单编号：";
+        head.text=[NSString stringWithFormat:@"订单编号：%@",order.id] ;
         head.textColor=RGB(128, 128, 128);
         [view addSubview:head];
         
-        UILabel *head_right=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+10, 3.5, SCREEN_WIDTH/2-10, 17)];
+        UILabel *head_right=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2, 3.5, SCREEN_WIDTH/2-10, 17)];
         head_right.font =[UIFont systemFontOfSize:10];
-        head_right.text=@"下单时间：";
+        NSDate *date=[NSDate dateWithTimeIntervalSince1970:[order.ct longLongValue]];
+        head_right.text=[NSString stringWithFormat:@"下单时间：%@",[MyUtil getFormatDate:date]];
         head_right.textColor=RGB(128, 128, 128);
         [view addSubview:head_right];
         
@@ -276,7 +280,9 @@
         view.backgroundColor=[UIColor whiteColor];
       
         return view;
-    }else{
+    }else{//内层header
+//        OrderModel *order=_result_array[section];
+        
         UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 38)];
         
         //包裹
@@ -288,19 +294,19 @@
         
         //国家icon
         UIImageView *country=[[UIImageView alloc] initWithFrame:CGRectMake(70, 9, 20, 20)];
-        [country setImageWithURL:[NSURL URLWithString:@"url"] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
+        [country setImageWithURL:[NSURL URLWithString:_package.country_flag_url] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
         [view addSubview:country];
         
         //商城名称
         UILabel *shopname=[[UILabel alloc] initWithFrame:CGRectMake(105, 0, 70, 38)];
-        shopname.text=@"美国亚马逊";
+        shopname.text=_package.shop_name;
         shopname.font =[UIFont  systemFontOfSize:10];
         shopname.textColor=RGB(179, 179, 179);
         [view addSubview:shopname];
         
         //直邮转运
         UILabel *ship=[[UILabel alloc] initWithFrame:CGRectMake(170, 0, 30, 38)];
-        ship.text=@"直邮";
+        ship.text=_package.ship_name;
         ship.font =[UIFont  boldSystemFontOfSize:11];
         ship.textColor=RGB(51, 51, 51);
         [view addSubview:ship];
@@ -330,12 +336,9 @@
         UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 71)];
         OrderModel *orderModel= _result_array[section];
         NSArray *packages=orderModel.package;
-        int i=0;
-        for (Order_package *package in packages) {
-            i+=package.goods.count;
-        }
+  
         UILabel *head=[[UILabel alloc] initWithFrame:CGRectMake(10, 3, SCREEN_WIDTH/2, 18)];
-        head.text=[NSString stringWithFormat:@"共 %lu个包裹,%d件商品",(unsigned long)packages.count,i];
+        head.text=[NSString stringWithFormat:@"共 %lu个包裹,%d件商品",(unsigned long)packages.count,orderModel.buy_num];
         head.font=[UIFont boldSystemFontOfSize:11];
         head.textColor=RGB(128, 128, 128);
         [view addSubview:head];
@@ -343,7 +346,7 @@
         
         //总计金额
         UILabel *total_amout=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 3, 70, 18)];
-        total_amout.text=@"¥220";
+        total_amout.text=[NSString stringWithFormat:@"%.2f",orderModel.order_amount];
         total_amout.textAlignment=NSTextAlignmentRight;
         total_amout.font =[UIFont  boldSystemFontOfSize:11];
         total_amout.textColor=RGB(255, 13, 94);
@@ -391,11 +394,12 @@
         UILabel *head=[[UILabel alloc] initWithFrame:CGRectMake(10, 5, SCREEN_WIDTH/2, 20)];
         head.text=@"运费:";
         head.font=[UIFont boldSystemFontOfSize:11];
+        head.textColor=RGB(51, 51, 51);
         [view addSubview:head];
         
         //运费金额
         UILabel *ship=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 5, 70, 20)];
-        ship.text=@"¥100";
+        ship.text=[NSString stringWithFormat:@"%.2f",_package.shipping_amount];
         ship.textAlignment=NSTextAlignmentRight;
         ship.font =[UIFont  boldSystemFontOfSize:11];
         ship.textColor=RGB(255, 13, 94);
@@ -404,12 +408,13 @@
         //预付税费 transport_amount
         UILabel *transport=[[UILabel alloc] initWithFrame:CGRectMake(10, 28, SCREEN_WIDTH/2, 20)];
         transport.text=@"预估税费:";
+        transport.textColor=RGB(51, 51, 51);
         transport.font=[UIFont boldSystemFontOfSize:11];
         [view addSubview:transport];
         
         //预付税费金额
         UILabel *transport_amout=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 28, 70, 20)];
-        transport_amout.text=@"¥120";
+        transport_amout.text=[NSString stringWithFormat:@"%.2f",_package.transport_amount];
         transport_amout.textAlignment=NSTextAlignmentRight;
         transport_amout.font =[UIFont  boldSystemFontOfSize:11];
         transport_amout.textColor=RGB(255, 13, 94);
@@ -418,14 +423,14 @@
         //小计
         UILabel *subTotal=[[UILabel alloc] initWithFrame:CGRectMake(10, 50, SCREEN_WIDTH/2, 20)];
 //        subTotal.text=@"小计:";
-        subTotal.text=[NSString stringWithFormat:@"共 %lu 件商品",(unsigned long)_goods_arrayForSubView.count];
+        subTotal.text=[NSString stringWithFormat:@"共 %d 件商品",_package.buy_num];
         subTotal.font=[UIFont systemFontOfSize:11];
         subTotal.textColor=RGB(128, 128, 128);
         [view addSubview:subTotal];
         
         //小计金额
         UILabel *subTotal_amout=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 50, 70, 20)];
-        subTotal_amout.text=@"¥220";
+        subTotal_amout.text=[NSString stringWithFormat:@"%.2f",_package.package_amount];
         subTotal_amout.textAlignment=NSTextAlignmentRight;
         subTotal_amout.font =[UIFont  boldSystemFontOfSize:11];
         subTotal_amout.textColor=RGB(255, 13, 94);
@@ -498,9 +503,9 @@
     {
         OrderModel *orderModel=_result_array[indexPath.section];
 
-        Order_package *orderPackage=orderModel.package[indexPath.row];
+        _package=orderModel.package[indexPath.row];
         
-        _goods_arrayForSubView=orderPackage.goods;
+        _goods_arrayForSubView=_package.goods;
         
         _subTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, _goods_arrayForSubView.count*80+112)];
         _subTableView.delegate = self;
@@ -516,26 +521,51 @@
     {
         Order_goods *goods=[_goods_arrayForSubView objectAtIndex:indexPath.row];
         cell.textLabel.text = goods.goods_name;
-        cell.textLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:13];
+        cell.textLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:11];
+        cell.textLabel.textColor=RGB(51, 51, 51);
+        cell.textLabel.numberOfLines=2;
+        //如果有规格 展示规格 只展示2条
+        if (goods.goods_attr.count>0) {
+            for (int i=0; i<goods.goods_attr.count; i++) {
+                if (i>1) {
+                    break;
+                }
+                Order_goodsAttr *attr =goods.goods_attr[i];
+                UILabel *head=[[UILabel alloc] initWithFrame:CGRectMake(cell.frame.origin.x+94,i==0?cell.frame.origin.y+30:cell.frame.origin.y+50, 150, 20)];
+                head.text=[NSString stringWithFormat:@"%@: %@",attr.attr_name,attr.attr_val_name];
+                head.font=[UIFont boldSystemFontOfSize:11];
+                head.textColor=RGB(128, 128, 128);
+                [cell.contentView addSubview:head];
+
+            }
+            
+        }
         
-        cell.detailTextLabel.text=[NSString stringWithFormat:@"¥%.2f", goods.goods_price];
-        cell.detailTextLabel.textColor=RGB(255, 13, 94);
-        cell.detailTextLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:13];
+        //商品价格
+        UILabel *goodPrice=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, cell.frame.origin.y+10, 70, 20)];
+        goodPrice.text=[NSString stringWithFormat:@"%.2f",goods.goods_price];
+        goodPrice.textAlignment=NSTextAlignmentRight;
+        goodPrice.font =[UIFont  boldSystemFontOfSize:11];
+        goodPrice.textColor=RGB(255, 13, 94);
+        [cell.contentView addSubview:goodPrice];
+        
+        //商品价格
+        UILabel *goodnum=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, cell.frame.origin.y+60, 70, 20)];
+        goodnum.text=[NSString stringWithFormat:@"x %d",goods.buy_num];
+        goodnum.textAlignment=NSTextAlignmentRight;
+        goodnum.font =[UIFont  boldSystemFontOfSize:11];
+        goodnum.textColor=RGB(128, 128, 128);
+        [cell.contentView addSubview:goodnum];
+        
+//        cell.detailTextLabel.text=[NSString stringWithFormat:@"¥%.2f", goods.goods_price];
+//        cell.detailTextLabel.textColor=RGB(255, 13, 94);
+//        cell.detailTextLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:13];
+        
         [cell.imageView setImageWithURL:[NSURL URLWithString:goods.img_url] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
         cell.backgroundColor = [UIColor whiteColor];
         return cell;
     }
 
-//    
-//    UILabel *shop_name=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-65, cell.frame.origin.y+45, 60, 20)];
-//    shop_name.text=goods.shop_name;
-//    shop_name.font=[UIFont systemFontOfSize:11.0];
-//    shop_name.textColor=[UIColor colorWithWhite:0.6 alpha:0.9];
-//    [cell.contentView addSubview:shop_name];
-//    
-//    UIImageView *shop_img=[[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, cell.frame.origin.y+45, 20, 20)];
-//    [shop_img setImageWithURL:[NSURL URLWithString:goods.country_flag_url] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
-//    [cell.contentView addSubview:shop_img];
     
     
 }

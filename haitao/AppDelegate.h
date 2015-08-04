@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "LTKNavigationViewController.h"
-@interface AppDelegate : UIResponder <UIApplicationDelegate,HTTPControllerProtocol>
+#import "EAIntroView.h"
+@interface AppDelegate : UIResponder <UIApplicationDelegate,HTTPControllerProtocol,EAIntroDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 //@property (strong,nonatomic)TMNavigationController *navigationController;

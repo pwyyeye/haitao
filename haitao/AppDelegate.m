@@ -26,7 +26,14 @@
     [self.window makeKeyAndVisible];
     //    [self isConnectionAvailable];
     self.menuArr=[[NSMutableArray alloc]init];
-    [self getMenuData];
+    
+    if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
+        [self showIntroWithCrossDissolve];
+    }else{
+        [self doInit];
+    }
+    
+   
     return YES;
     
 }
@@ -45,12 +52,7 @@
 -(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app stopLoading];
-    NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
-    NSString *status=[dictemp objectForKey:@"status"];
-    //    if(![status isEqualToString:@"1"]){
-    ////        [self showMessage:message];
-    ////        return ;
-    //    }
+   
     if([urlname isEqualToString:@"getHomeNav"]){
         NSArray *arrtemp=[dictemp objectForKey:@"data"];
         if ((NSNull *)arrtemp == [NSNull null]) {
@@ -82,7 +84,63 @@
     
     
 }
+#pragma mark--引导页
+- (void)showIntroWithCrossDissolve {
+//    EAIntroPage *page1 = [EAIntroPage page];
+    //    page1.title = @"Hello world";
+    //    page1.desc = @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+//    page1.bgImage = [UIImage imageNamed:@"1.jpg"];
+    
+    EAIntroPage *page2 = [EAIntroPage page];
+    page2.bgImage = [UIImage imageNamed:@"2.jpg"];
+    
+    EAIntroPage *page3 = [EAIntroPage page];
+    
+    page3.bgImage = [UIImage imageNamed:@"3.jpg"];
+    
+    EAIntroPage *page4 = [EAIntroPage page];
+    
+    page4.bgImage = [UIImage imageNamed:@"4.jpg"];
+    
+//    page4.titleImage = [UIImage imageNamed:@"skip-btn"];
+//    
+//    page4.imgPositionY = SCREEN_HEIGHT-100;
 
+    page4.customView=[[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-100, SCREEN_WIDTH, 30)];
+    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:self.window.bounds andPages:@[page2,page3,page4]];
+    
+    UIButton *button=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-55, 0, 110, 28)];
+    [button setBackgroundImage:[UIImage imageNamed:@"skip-btn"] forState:UIControlStateNormal];
+    [button addTarget:intro action:@selector(skipIntroduction) forControlEvents:UIControlEventTouchUpInside];
+    [page4.customView addSubview:button];
+    [page4.customView bringSubviewToFront:button];//显示到最前面
+    
+    
+    
+    
+    intro.skipButton = [[UIButton alloc] initWithFrame:CGRectZero];
+    
+    [intro setDelegate:self];
+    [intro showInView:self.window animateDuration:1.0];
+}
+- (void)introDidFinish{
+    NSLog(@"----pass-introDidFinish%@---",@"introDidFinish");
+    [USER_DEFAULT setObject:@"NO" forKey:@"firstUseApp"];
+
+    [self doInit];
+    
+}
+-(void)doInit{
+    NSUserDefaults *userdefault=[NSUserDefaults standardUserDefaults];
+    NSString *username=[userdefault objectForKey:@"user_name"];
+    NSString *password=[userdefault objectForKey:@"user_pass"];
+    
+    if (![MyUtil isEmptyString:username]&&![MyUtil isEmptyString:password]) {
+        LoginViewController *login=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        [login login:nil];
+    }
+    [self getMenuData];
+}
 - (void)startLoading
 {
         [DejalBezelActivityView activityViewForView:self.window];
@@ -108,14 +166,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    NSUserDefaults *userdefault=[NSUserDefaults standardUserDefaults];
-    NSString *username=[userdefault objectForKey:@"user_name"];
-    NSString *password=[userdefault objectForKey:@"user_pass"];
-    
-    if (![MyUtil isEmptyString:username]&&![MyUtil isEmptyString:password]) {
-        LoginViewController *login=[[LoginViewController alloc] initWithNibName:@"" bundle:nil];
-        [login login:nil];
-    }
+   
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
