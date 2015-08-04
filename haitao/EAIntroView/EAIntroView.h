@@ -39,5 +39,7 @@
 
 - (void)showInView:(UIView *)view animateDuration:(CGFloat)duration;
 - (void)hideWithFadeOutDuration:(CGFloat)duration;
+- (void)skipIntroduction;
+
 
 @end

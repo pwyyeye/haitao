@@ -86,10 +86,10 @@
 }
 #pragma mark--引导页
 - (void)showIntroWithCrossDissolve {
-    EAIntroPage *page1 = [EAIntroPage page];
+//    EAIntroPage *page1 = [EAIntroPage page];
     //    page1.title = @"Hello world";
     //    page1.desc = @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-    page1.bgImage = [UIImage imageNamed:@"1.jpg"];
+//    page1.bgImage = [UIImage imageNamed:@"1.jpg"];
     
     EAIntroPage *page2 = [EAIntroPage page];
     page2.bgImage = [UIImage imageNamed:@"2.jpg"];
@@ -102,14 +102,23 @@
     
     page4.bgImage = [UIImage imageNamed:@"4.jpg"];
     
-    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:self.window.bounds andPages:@[page1,page2,page3,page4]];
+//    page4.titleImage = [UIImage imageNamed:@"skip-btn"];
+//    
+//    page4.imgPositionY = SCREEN_HEIGHT-100;
+
+    page4.customView=[[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-100, SCREEN_WIDTH, 30)];
+    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:self.window.bounds andPages:@[page2,page3,page4]];
     
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [btn setBackgroundImage:[UIImage imageNamed:@"skip-btn.jpg"] forState:UIControlStateNormal];
-    [btn setFrame:CGRectMake((SCREEN_WIDTH-230)/2, [UIScreen mainScreen].bounds.size.height - 60, 230, 40)];
-    //    [btn setTitle:@"SKIP NOW" forState:UIControlStateNormal];
-    //    [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    intro.skipButton = btn;
+    UIButton *button=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-55, 0, 110, 28)];
+    [button setBackgroundImage:[UIImage imageNamed:@"skip-btn"] forState:UIControlStateNormal];
+    [button addTarget:intro action:@selector(skipIntroduction) forControlEvents:UIControlEventTouchUpInside];
+    [page4.customView addSubview:button];
+    [page4.customView bringSubviewToFront:button];//显示到最前面
+    
+    
+    
+    
+    intro.skipButton = [[UIButton alloc] initWithFrame:CGRectZero];
     
     [intro setDelegate:self];
     [intro showInView:self.window animateDuration:1.0];
