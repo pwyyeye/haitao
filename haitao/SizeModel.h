@@ -12,4 +12,6 @@
 @property (copy, nonatomic) NSString *id;
 @property (copy, nonatomic) NSString *name;
 @property (assign, nonatomic) BOOL isflag;
+@property (copy, nonatomic) NSString *attr_name;
+@property (copy, nonatomic) NSString *attr_id;
 @end

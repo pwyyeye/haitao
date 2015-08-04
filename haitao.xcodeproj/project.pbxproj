@@ -47,6 +47,7 @@
 		A21815C11B5A0E9A00D64E70 /* shopbt_01_n_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A21815A01B5A0E9A00D64E70 /* shopbt_01_n_@2x.png */; };
 		A21815C21B5A0E9A00D64E70 /* shopbt_02_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A21815A11B5A0E9A00D64E70 /* shopbt_02_@2x.png */; };
 		A21815C41B5A0E9A00D64E70 /* tbt_02_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A21815A31B5A0E9A00D64E70 /* tbt_02_@2x.png */; };
+		A2813F3B1B70B50A00EEEB5A /* ClassificationBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = A2813F3A1B70B50A00EEEB5A /* ClassificationBtn.m */; };
 		A2D039031B5E902E00EB0FDC /* New_Goods.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D039021B5E902E00EB0FDC /* New_Goods.m */; };
 		A2F5FB4C1B5FD64100A8205C /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F5FB491B5FD64100A8205C /* UIScrollView+SVPullToRefresh.m */; };
 		A2F5FB4D1B5FD64100A8205C /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F5FB4B1B5FD64100A8205C /* UIScrollView+SVInfiniteScrolling.m */; };
@@ -399,6 +400,8 @@
 		A21815A11B5A0E9A00D64E70 /* shopbt_02_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopbt_02_@2x.png"; sourceTree = "<group>"; };
 		A21815A21B5A0E9A00D64E70 /* shopbt_03_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopbt_03_@2x.png"; sourceTree = "<group>"; };
 		A21815A31B5A0E9A00D64E70 /* tbt_02_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tbt_02_@2x.png"; sourceTree = "<group>"; };
+		A2813F391B70B50A00EEEB5A /* ClassificationBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassificationBtn.h; sourceTree = "<group>"; };
+		A2813F3A1B70B50A00EEEB5A /* ClassificationBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationBtn.m; sourceTree = "<group>"; };
 		A2D039011B5E902E00EB0FDC /* New_Goods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = New_Goods.h; sourceTree = "<group>"; };
 		A2D039021B5E902E00EB0FDC /* New_Goods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = New_Goods.m; sourceTree = "<group>"; };
 		A2F5FB471B5FD64100A8205C /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
@@ -1516,6 +1519,8 @@
 				A20BA77B1B61F33000F73A57 /* LTKSeachResultViewController.h */,
 				A20BA77C1B61F33000F73A57 /* LTKSeachResultViewController.m */,
 				A20BA77E1B61F38D00F73A57 /* sskx_search@2x.png */,
+				A2813F391B70B50A00EEEB5A /* ClassificationBtn.h */,
+				A2813F3A1B70B50A00EEEB5A /* ClassificationBtn.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -2353,6 +2358,7 @@
 				A2FFE16F1B608ED20004B4BC /* DJRefresh.m in Sources */,
 				ADECDC131B65DE17009EA286 /* AreaPickerView.m in Sources */,
 				ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */,
+				A2813F3B1B70B50A00EEEB5A /* ClassificationBtn.m in Sources */,
 				A2FC75051B5D1FFA0094BC59 /* NSString+MJExtension.m in Sources */,
 				A2FC74FE1B5D1FFA0094BC59 /* MJConst.m in Sources */,
 				A2FDE1291B69DBA700B374AA /* ChooseSizeViewController.m in Sources */,
