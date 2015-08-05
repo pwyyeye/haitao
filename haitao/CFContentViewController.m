@@ -420,7 +420,8 @@
     {
         ScreenViewController *screenViewController=[[ScreenViewController alloc]init];
         NSArray *arr=@[@"内容",@"价格",@"配送",@"商城",@"品牌"];
-        screenViewController.showArr=arr;
+        
+        screenViewController.indexDic=self.menuIndexDic;
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
         [delegate.navigationController pushViewController:screenViewController animated:YES];
         //        [btnItem5 setTitleColor:[UIColor colorWithRed:1.0 green:.23 blue:.49 alpha:1.0] forState:0]   ;

@@ -49,6 +49,12 @@
 		A21815C41B5A0E9A00D64E70 /* tbt_02_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A21815A31B5A0E9A00D64E70 /* tbt_02_@2x.png */; };
 		A2813F3B1B70B50A00EEEB5A /* ClassificationBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = A2813F3A1B70B50A00EEEB5A /* ClassificationBtn.m */; };
 		A2D039031B5E902E00EB0FDC /* New_Goods.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D039021B5E902E00EB0FDC /* New_Goods.m */; };
+		A2E8CFFE1B71BAA70004ADB9 /* ShangChengBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E8CFFD1B71BAA70004ADB9 /* ShangChengBtn.m */; };
+		A2E8D0021B71BB550004ADB9 /* IndexModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E8D0011B71BB550004ADB9 /* IndexModel.m */; };
+		A2E8D0061B71F68B0004ADB9 /* LetterBrandDockTavleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E8D0051B71F68B0004ADB9 /* LetterBrandDockTavleView.m */; };
+		A2E8D0091B71F7430004ADB9 /* LBDockCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E8D0081B71F7430004ADB9 /* LBDockCell.m */; };
+		A2E8D00C1B71F8B30004ADB9 /* LBRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E8D00B1B71F8B30004ADB9 /* LBRightCell.m */; };
+		A2E8D00F1B71F9340004ADB9 /* LBRightTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E8D00E1B71F9340004ADB9 /* LBRightTableView.m */; };
 		A2F5FB4C1B5FD64100A8205C /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F5FB491B5FD64100A8205C /* UIScrollView+SVPullToRefresh.m */; };
 		A2F5FB4D1B5FD64100A8205C /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F5FB4B1B5FD64100A8205C /* UIScrollView+SVInfiniteScrolling.m */; };
 		A2F5FB4F1B5FD64A00A8205C /* SVPullToRefresh.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A2F5FB4E1B5FD64A00A8205C /* SVPullToRefresh.podspec */; };
@@ -135,7 +141,6 @@
 		A2FFE1801B608EDF0004B4BC /* pull_refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2FFE1791B608EDF0004B4BC /* pull_refresh@3x.png */; };
 		A2FFE1861B60B4A60004B4BC /* UITableGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FFE1831B60B4A60004B4BC /* UITableGridViewCell.m */; };
 		A2FFE1871B60B4A60004B4BC /* UIImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FFE1851B60B4A60004B4BC /* UIImageButton.m */; };
-		A2FFE1891B60B7C50004B4BC /* macbook_pro.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A2FFE1881B60B7C50004B4BC /* macbook_pro.jpg */; };
 		AD1386921B54D5BF00130E49 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1386901B54D5BF00130E49 /* LoginViewController.m */; };
 		AD1386931B54D5BF00130E49 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1386911B54D5BF00130E49 /* LoginViewController.xib */; };
 		AD8AA5871B59416000E324AD /* CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8AA57C1B59416000E324AD /* CustomTabBar.m */; };
@@ -472,6 +477,18 @@
 		A2813F3A1B70B50A00EEEB5A /* ClassificationBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationBtn.m; sourceTree = "<group>"; };
 		A2D039011B5E902E00EB0FDC /* New_Goods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = New_Goods.h; sourceTree = "<group>"; };
 		A2D039021B5E902E00EB0FDC /* New_Goods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = New_Goods.m; sourceTree = "<group>"; };
+		A2E8CFFC1B71BAA70004ADB9 /* ShangChengBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangChengBtn.h; sourceTree = "<group>"; };
+		A2E8CFFD1B71BAA70004ADB9 /* ShangChengBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangChengBtn.m; sourceTree = "<group>"; };
+		A2E8D0001B71BB550004ADB9 /* IndexModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexModel.h; sourceTree = "<group>"; };
+		A2E8D0011B71BB550004ADB9 /* IndexModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexModel.m; sourceTree = "<group>"; };
+		A2E8D0041B71F68B0004ADB9 /* LetterBrandDockTavleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LetterBrandDockTavleView.h; sourceTree = "<group>"; };
+		A2E8D0051B71F68B0004ADB9 /* LetterBrandDockTavleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetterBrandDockTavleView.m; sourceTree = "<group>"; };
+		A2E8D0071B71F7430004ADB9 /* LBDockCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBDockCell.h; sourceTree = "<group>"; };
+		A2E8D0081B71F7430004ADB9 /* LBDockCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBDockCell.m; sourceTree = "<group>"; };
+		A2E8D00A1B71F8B30004ADB9 /* LBRightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBRightCell.h; sourceTree = "<group>"; };
+		A2E8D00B1B71F8B30004ADB9 /* LBRightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBRightCell.m; sourceTree = "<group>"; };
+		A2E8D00D1B71F9340004ADB9 /* LBRightTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBRightTableView.h; sourceTree = "<group>"; };
+		A2E8D00E1B71F9340004ADB9 /* LBRightTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBRightTableView.m; sourceTree = "<group>"; };
 		A2F5FB471B5FD64100A8205C /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
 		A2F5FB481B5FD64100A8205C /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		A2F5FB491B5FD64100A8205C /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
@@ -611,7 +628,6 @@
 		A2FFE1831B60B4A60004B4BC /* UITableGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableGridViewCell.m; sourceTree = "<group>"; };
 		A2FFE1841B60B4A60004B4BC /* UIImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageButton.h; sourceTree = "<group>"; };
 		A2FFE1851B60B4A60004B4BC /* UIImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageButton.m; sourceTree = "<group>"; };
-		A2FFE1881B60B7C50004B4BC /* macbook_pro.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = macbook_pro.jpg; sourceTree = "<group>"; };
 		AD13868F1B54D5BF00130E49 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AD1386901B54D5BF00130E49 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		AD1386911B54D5BF00130E49 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -1128,6 +1144,30 @@
 			path = "商品详情";
 			sourceTree = "<group>";
 		};
+		A2E8CFFF1B71BB0F0004ADB9 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				A2E8D0001B71BB550004ADB9 /* IndexModel.h */,
+				A2E8D0011B71BB550004ADB9 /* IndexModel.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		A2E8D0031B71F6050004ADB9 /* 筛选品牌页面 */ = {
+			isa = PBXGroup;
+			children = (
+				A2E8D0041B71F68B0004ADB9 /* LetterBrandDockTavleView.h */,
+				A2E8D0051B71F68B0004ADB9 /* LetterBrandDockTavleView.m */,
+				A2E8D0071B71F7430004ADB9 /* LBDockCell.h */,
+				A2E8D0081B71F7430004ADB9 /* LBDockCell.m */,
+				A2E8D00A1B71F8B30004ADB9 /* LBRightCell.h */,
+				A2E8D00B1B71F8B30004ADB9 /* LBRightCell.m */,
+				A2E8D00D1B71F9340004ADB9 /* LBRightTableView.h */,
+				A2E8D00E1B71F9340004ADB9 /* LBRightTableView.m */,
+			);
+			name = "筛选品牌页面";
+			sourceTree = "<group>";
+		};
 		A2F5FB461B5FD61800A8205C /* 上下加载刷新 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1269,7 +1309,6 @@
 				A2FC74DD1B5A3F340094BC59 /* BARightCell.m */,
 				A2FC74DE1B5A3F340094BC59 /* BARightTableView.h */,
 				A2FC74DF1B5A3F340094BC59 /* BARightTableView.m */,
-				A2FFE1881B60B7C50004B4BC /* macbook_pro.jpg */,
 				A2FFE1821B60B4A60004B4BC /* UITableGridViewCell.h */,
 				A2FFE1831B60B4A60004B4BC /* UITableGridViewCell.m */,
 				A2FFE1841B60B4A60004B4BC /* UIImageButton.h */,
@@ -1316,8 +1355,12 @@
 		A2FDE0E71B65191800B374AA /* 筛选 */ = {
 			isa = PBXGroup;
 			children = (
+				A2E8D0031B71F6050004ADB9 /* 筛选品牌页面 */,
+				A2E8CFFF1B71BB0F0004ADB9 /* model */,
 				A2FDE0E81B651A7000B374AA /* ScreenViewController.h */,
 				A2FDE0E91B651A7000B374AA /* ScreenViewController.m */,
+				A2E8CFFC1B71BAA70004ADB9 /* ShangChengBtn.h */,
+				A2E8CFFD1B71BAA70004ADB9 /* ShangChengBtn.m */,
 			);
 			name = "筛选";
 			sourceTree = "<group>";
@@ -2584,7 +2627,6 @@
 				AD8E35901B70CA4300C9D5BA /* search_icon_pinpai_@2x.png in Resources */,
 				AD8E35881B70CA4300C9D5BA /* shuma_shaixuan_btn_dou_@2x.png in Resources */,
 				AD8AA6921B59E14400E324AD /* banner_03_02.png in Resources */,
-				A2FFE1891B60B7C50004B4BC /* macbook_pro.jpg in Resources */,
 				AD8AA61E1B59435C00E324AD /* Overlay.png in Resources */,
 				AD8E35971B70CA4300C9D5BA /* DetailsPage_img_zhifufangshi_left.png in Resources */,
 				AD8E356E1B70CA4300C9D5BA /* jingpintuijian_icon_topbar_xsfm_@2x.png in Resources */,
@@ -2794,6 +2836,7 @@
 				AD8AA6711B594EED00E324AD /* DejalActivityView.m in Sources */,
 				A2FC74E01B5A3F340094BC59 /* BADockCell.m in Sources */,
 				A2FC74E21B5A3F340094BC59 /* BARightCell.m in Sources */,
+				A2E8CFFE1B71BAA70004ADB9 /* ShangChengBtn.m in Sources */,
 				ADECDC251B672CB3009EA286 /* Feedback.m in Sources */,
 				AD8AA58B1B59416000E324AD /* TMNavigationController.m in Sources */,
 				A2FC74A81B5A1EE00094BC59 /* FCImageTextView.m in Sources */,
@@ -2807,6 +2850,7 @@
 				A20BA7821B620EEA00F73A57 /* TitleBtn.m in Sources */,
 				AD8AA6171B59435C00E324AD /* ELCAsset.m in Sources */,
 				ADCF99311B6CE7DB00EA5592 /* TariffViewController.m in Sources */,
+				A2E8D0091B71F7430004ADB9 /* LBDockCell.m in Sources */,
 				A2FDE0F31B68689A00B374AA /* CFImageButton.m in Sources */,
 				A2F5FB4C1B5FD64100A8205C /* UIScrollView+SVPullToRefresh.m in Sources */,
 				ADCFB0471B61EC4E001B3324 /* UserCenterCollention.m in Sources */,
@@ -2829,6 +2873,7 @@
 				ADCF99371B6DA62700EA5592 /* OrderListController.m in Sources */,
 				AD8AA62C1B59435C00E324AD /* UrlImageView.m in Sources */,
 				ADD4D40E1B5B29AF004AFBE2 /* TMRulerColor.m in Sources */,
+				A2E8D0061B71F68B0004ADB9 /* LetterBrandDockTavleView.m in Sources */,
 				ADD4D40B1B5B298F004AFBE2 /* HTGoodDetailsViewController.m in Sources */,
 				A2F7FCCA1B6E0D7700657575 /* CarShopInfoModel.m in Sources */,
 				AD8AA6211B59435C00E324AD /* FCLoadingVIew.m in Sources */,
@@ -2841,6 +2886,8 @@
 				A2FDE12C1B6A15F200B374AA /* AttrInfoBtn.m in Sources */,
 				AD8AA6311B59435C00E324AD /* UIViewController+MJPopupViewController.m in Sources */,
 				AD8AA61A1B59435C00E324AD /* ELCImagePickerController.m in Sources */,
+				A2E8D00F1B71F9340004ADB9 /* LBRightTableView.m in Sources */,
+				A2E8D0021B71BB550004ADB9 /* IndexModel.m in Sources */,
 				A2FFE1871B60B4A60004B4BC /* UIImageButton.m in Sources */,
 				A2FFE1861B60B4A60004B4BC /* UITableGridViewCell.m in Sources */,
 				AD8AA6241B59435C00E324AD /* HZActivityIndicatorView.m in Sources */,
@@ -2850,6 +2897,7 @@
 				AD8AA6351B59435C00E324AD /* MJRefreshHeaderView.m in Sources */,
 				A2FC750D1B5DDF090094BC59 /* MenuModel.m in Sources */,
 				AD8AA6181B59435C00E324AD /* ELCAssetCell.m in Sources */,
+				A2E8D00C1B71F8B30004ADB9 /* LBRightCell.m in Sources */,
 				AD8AA6291B59435C00E324AD /* SDWebImageDownloader.m in Sources */,
 				AD8AA59C1B5942F800E324AD /* HTCartViewController.m in Sources */,
 				ADECDC201B672C62009EA286 /* AboutPeiKua.m in Sources */,

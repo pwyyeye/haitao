@@ -9,5 +9,5 @@
 #import "LTKViewController.h"
 
 @interface ScreenViewController : LTKViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
-@property (nonatomic,retain)NSArray *showArr;//显示的条件
+@property (nonatomic,retain)NSDictionary *indexDic;//显示的条件
 @end

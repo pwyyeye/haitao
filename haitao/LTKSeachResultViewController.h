@@ -10,7 +10,7 @@
 
 
 
-@interface LTKSeachResultViewController : LTKViewController<UISearchBarDelegate, UISearchDisplayDelegate,UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,UINavigationBarDelegate>
+@interface LTKSeachResultViewController : LTKViewController<UISearchBarDelegate, UISearchDisplayDelegate,UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,UINavigationBarDelegate,HTTPControllerProtocol>
 
 {
 
