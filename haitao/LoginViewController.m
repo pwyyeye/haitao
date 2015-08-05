@@ -133,7 +133,7 @@
 - (IBAction)gotoRegister:(id)sender {
     RegisterViewController * vc=[[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
    // AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
     [self.navigationController pushViewController:vc animated:YES];
     
     
@@ -141,7 +141,7 @@
 
 - (IBAction)gotoForgetPwd:(id)sender {
     ForgetPwdStep1 * vc=[[ForgetPwdStep1 alloc] initWithNibName:@"ForgetPwdStep1" bundle:nil];
-    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

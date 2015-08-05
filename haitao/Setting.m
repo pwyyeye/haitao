@@ -144,7 +144,29 @@
     
     cell.textLabel.text=_data[indexPath.item];
     cell.textLabel.font=[UIFont systemFontOfSize:15];
-    cell.imageView.image=[UIImage imageNamed:@"ic_03_h.png"];
+    
+    switch (indexPath.item) {
+        case 0:
+            cell.imageView.image=[UIImage imageNamed:@"icon_PingJia"];
+            break;
+        case 1:
+            cell.imageView.image=[UIImage imageNamed:@"icon_QingChuHuanCun"];
+            break;
+        case 2:
+            cell.imageView.image=[UIImage imageNamed:@"icon_LianXiPeiKua"];
+            break;
+        case 3:
+            cell.imageView.image=[UIImage imageNamed:@"Icon_About"];
+            break;
+        case 4:
+            cell.imageView.image=[UIImage imageNamed:@"icon_FuWuTiaoKuang"];
+            break;
+        case 5:
+            cell.imageView.image=[UIImage imageNamed:@"icon_YiJianFanKui"];
+            break;
+        default:
+            break;
+    }
     
     CALayer *layerShadow=[[CALayer alloc]init];
     layerShadow.frame=CGRectMake(0, cell.frame.origin.y, cell.frame.size.width, 5);
