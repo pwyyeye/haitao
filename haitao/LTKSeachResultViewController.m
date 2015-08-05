@@ -8,7 +8,8 @@
 
 #import "LTKSeachResultViewController.h"
 #import "TitleBtn.h"
-
+#import "CFContentViewController.h"
+#import "New_Goods.h"
 
 
 @interface LTKSeachResultViewController ()
@@ -150,7 +151,7 @@
     self.searchDisplayController.searchResultsDataSource = self;
     self.searchDisplayController.searchResultsDelegate = self;
     self.searchDisplayController.delegate = self;
-
+    [self.searchDisplayController.searchResultsTableView setHidden:YES];
 //    imageViewToolBar=[[UIImageView alloc]initWithFrame:CGRectMake(0, self.searchBar.frame.size.height+self.searchBar.frame.origin.y, self.view.frame.size.width,35 )];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, self.searchBar.frame.size.height+self.searchBar.frame.origin.y+20, 80, 15)];
     label.font = [UIFont boldSystemFontOfSize:10.0f];  //UILabel的字体大小
@@ -187,7 +188,7 @@
     {
         
         editBtn =[[TitleBtn alloc]initWithFrame:CGRectMake((i%4)*75+12, floor(i/4)*25+10+label1.frame.size.height+label1.frame.origin.y, 70, 20)];
-        [editBtn setTitle:@"play" forState:UIControlStateNormal];
+        [editBtn setTitle:@"olay" forState:UIControlStateNormal];
         editBtn.backgroundColor=[UIColor blackColor];
         [editBtn addTarget:self action:@selector(goSerchTwo:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -228,11 +229,52 @@
 
 
 }
-
+#pragma mark 搜索按钮
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-
+    NSString *searchTex=searchBar.text;
+    if(searchTex.length>0)
+    {
+        NSDictionary *parameters = @{@"keyword":searchTex};
+        
+        NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
+        ;
+        
+        HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getMenuGoodsList"];
+        httpController.delegate = self;
+        [httpController onSearchForPostJson];
+    }
     [searchBar resignFirstResponder];
+}
+
+//获取数据
+-(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app stopLoading];
+    NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
+    NSString *status=[dictemp objectForKey:@"status"];
+    if([urlname isEqualToString:@"getMenuGoodsList"]){
+        NSDictionary *dataDic=[dictemp objectForKey:@"data"];
+        NSArray *goodsArr=[dataDic objectForKey:@"list"];
+        NSMutableArray *goodsModelArr=[[NSMutableArray alloc]init];
+        for (NSDictionary *dic in goodsArr) {
+            New_Goods *goodsModel = [New_Goods objectWithKeyValues:dic] ;
+            [goodsModelArr addObject:goodsModel];
+        }
+        if(goodsModelArr.count<1){
+            ShowMessage(@"无数据");
+            return;
+        }
+        NSDictionary *menuIndexDic=[dataDic objectForKey:@"cat_index"];
+        CFContentViewController *cfContentViewController=[[CFContentViewController alloc]init];
+        cfContentViewController.menuIndexDic=menuIndexDic;
+        cfContentViewController.dataList=goodsModelArr;
+        cfContentViewController.topTitle=_searchBar.text;
+        AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [delegate.navigationController pushViewController:cfContentViewController animated:YES];
+        
+    }
+    
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {

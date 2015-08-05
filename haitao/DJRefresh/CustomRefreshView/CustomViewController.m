@@ -32,7 +32,9 @@
 @end
 
 @implementation CustomViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    NSLog(@"");
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     title=@"";
@@ -298,7 +300,12 @@
         for (App_Home_Bigegg *bigTemp in bannerArr) {
             NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
             [dicTemp setObject:bigTemp.img_url forKey:@"ititle"];
-            [dicTemp setObject:bigTemp.content forKey:@"mainHeading"];
+            if(bigTemp.content){
+                [dicTemp setObject:bigTemp.content forKey:@"mainHeading"];
+            }else{
+                [dicTemp setObject:@"" forKey:@"mainHeading"];
+            }
+            
             [bigArr addObject:dicTemp];
         }
         EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 160)
@@ -642,8 +649,7 @@
     else if(btn.tag==104)
     {
         ScreenViewController *screenViewController=[[ScreenViewController alloc]init];
-        NSArray *arr=@[@"内容",@"价格",@"配送",@"商城",@"品牌"];
-        screenViewController.showArr=arr;
+        screenViewController.indexDic=indexDic;
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
         [delegate.navigationController pushViewController:screenViewController animated:YES];
         //        [btnItem5 setTitleColor:[UIColor colorWithRed:1.0 green:.23 blue:.49 alpha:1.0] forState:0]   ;

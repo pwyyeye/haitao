@@ -9,6 +9,7 @@
 #import "ChooseSizeViewController.h"
 #import "AttrInfoBtn.h"
 #import "SizeModel.h"
+#import "GoodsAttrModel.h"
 @interface ChooseSizeViewController ()<UITextFieldDelegate>
 {
     UIScrollView              *_scrollView;
@@ -33,6 +34,8 @@
     CGRect fFrame;
     UIButton*btnCall;//加入购物车
     UITextField*  numTextField;//数量
+    NSMutableDictionary *parameters;
+    NSMutableArray *chooseArr;
 }
 @end
 
@@ -41,6 +44,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getToolBar];
+    chooseArr=[[NSMutableArray alloc]init];
+    parameters = [[NSMutableDictionary alloc]init];
     btnArr =[[NSMutableArray alloc]init];
     attrDic=[[NSMutableDictionary alloc]init];
     UIView *naviView=(UIView*) [self getNavigationBar];
@@ -117,6 +122,7 @@
     for (int i=0; i<attr_info.count; i++){
         NSDictionary *dic=attr_info[i];
         NSString *name =[dic objectForKey:@"name"];
+        NSString *attr_id =[dic objectForKey:@"id"];
         NSArray *childArr=[dic objectForKey:@"child"];
         UILabel *ys_label=[[UILabel alloc]initWithFrame:lastFrame];
         ys_label.text=name;
@@ -131,7 +137,8 @@
         {
             NSDictionary *childDic=childArr[j];
             SizeModel *sizeModel=[SizeModel objectWithKeyValues:childDic];
-            
+            sizeModel.attr_name=name;
+            sizeModel.attr_id=attr_id;
             AttrInfoBtn *aiBtn=[[AttrInfoBtn alloc]initWithFrame:CGRectMake((j%4)*(320-15)/4+10, floor(j/4)*(320)/10+5+ys_label.frame.size.height+ys_label.frame.origin.y+5, (320-30-15)/4, (320-30-15)/10)];
             sizeModel.isflag=false;
             aiBtn.sizeModel=sizeModel;
@@ -176,7 +183,7 @@
     numTextField.textAlignment=1;
     numTextField.delegate=self;
     numTextField.returnKeyType=UIReturnKeyDone;
-    numTextField.text=@"1";
+    numTextField.text=self.numCount;
     numTextField.textColor=[UIColor colorWithRed:.2 green:.2 blue:.2 alpha:1.0];
     numTextField.tag=-100;
     numTextField.keyboardType=UIKeyboardTypeDefault;
@@ -260,7 +267,7 @@
     //判断条件是否都选上了
     NSArray *keyArr = [attrDic allKeys];
     bool isChoose=false;
-    NSMutableArray *chooseArr=[[NSMutableArray alloc]init];
+    [chooseArr removeAllObjects];
     for (int i=0; i<keyArr.count; i++) {
         NSString *keyStr=keyArr[i];
         NSArray *vluArr=[attrDic objectForKey:keyStr];
@@ -386,23 +393,41 @@
 }
 #pragma mark - 加入购物车
 -(void)addCar:(id)sender{
+    [parameters removeAllObjects];
     NSMutableDictionary *dic=[[NSMutableDictionary alloc]initWithDictionary:chooseDic];
     [dic setObject:numTextField.text forKey:@"buy_num"];
     
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
+    
     [parameters setObject:self.goods.id forKey:@"goods_id"];
     [parameters setObject:[dic objectForKey:@"buy_num"] forKey:@"buy_num"];
     if([dic objectForKey:@"id"]){
         [parameters setObject:[dic objectForKey:@"id"] forKey:@"attr_price_id"];
     }
 
-
-    NSString* url =[NSString stringWithFormat:@"%@&f=addCart&m=cart",requestUrl]
-    ;
+    if(self.ischange){
+         NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]initWithDictionary:parameters];
+        NSMutableArray *childListTemp=[[NSMutableArray alloc]init];
+        for (SizeModel *sizeModel in chooseArr) {
+            NSMutableDictionary *dicChiledtemp=[[NSMutableDictionary alloc]init];
+            [dicChiledtemp setObject:sizeModel.attr_name forKey:@"attr_name"];
+            [dicChiledtemp setObject:sizeModel.attr_id forKey:@"attr_id"];
+            [dicChiledtemp setObject:sizeModel.name forKey:@"attr_val_name"];
+            [childListTemp addObject:dicChiledtemp];
+        }
+        [dicTemp setObject:childListTemp forKey:@"goods_attr"];
+        [self.delegate addShopCarFinsh:dicTemp];
+       
+        AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [app.navigationController popViewControllerAnimated:YES];
+    }else{
+        NSString* url =[NSString stringWithFormat:@"%@&f=addCart&m=cart",requestUrl]
+        ;
+        
+        HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"addCart"];
+        httpController.delegate = self;
+        [httpController onSearchForPostJson];
+    }
     
-    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"addCart"];
-    httpController.delegate = self;
-    [httpController onSearchForPostJson];
 }
 
 #pragma mark - 数字文本框处理

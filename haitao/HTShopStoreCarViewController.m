@@ -7,11 +7,13 @@
 //
 
 #import "HTShopStoreCarViewController.h"
+
 #import "FCShoppingCell.h"
 #import "WCAlertView.h"
 #import "CarShopInfoModel.h"
 #import "New_Goods.h"
-@interface HTShopStoreCarViewController ()
+#import "ChooseSizeViewController.h"
+@interface HTShopStoreCarViewController ()<ChooseSizeDelegate>
 {
     float _price;
     NSMutableArray *carShopList;
@@ -23,6 +25,9 @@
     UILabel *heji_label;//合计
     UIButton *jiesuanBtn;//结算
     UIButton *shanchuBtn;//删除
+    CarShopInfoModel *carShopInfoRow;
+    NSIndexPath *indexRow;
+    int shuaxinCount;
 }
 
 @end
@@ -82,6 +87,7 @@
     //    }else{
     
     //    }
+    [self getCarInfo];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -89,9 +95,9 @@
     [delShopList removeAllObjects];
     [self addViews];
     [self getToolBar];
-    [self getCarInfo];//获取购物车数据
+    //获取购物车数据
 }
-#pragma 获取购物车数据
+#pragma mark获取购物车数据
 -(void)getCarInfo{
     [carShopList removeAllObjects];
     [modifyList removeAllObjects];
@@ -105,7 +111,7 @@
 }
 #pragma mark 接受数据
 -(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
-    NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
+//    NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
     NSNumber *status=[dictemp objectForKey:@"status"];
     if([urlname isEqualToString:@"getCart"]){
         if(status.intValue==1){
@@ -144,10 +150,50 @@
             ShowMessage(@"获取购物车数据失败!");
         }
     }
-    
+    if([urlname isEqualToString:@"getGoodsAttrValueById"]){
+        if(status.intValue==1){
+            NSDictionary *goods_attr=[dictemp objectForKey:@"data"];
+            ChooseSizeViewController *chooseSizeViewController=[[ChooseSizeViewController alloc]init];
+            chooseSizeViewController.goods_attr=goods_attr;
+            chooseSizeViewController.goods=carShopInfoRow.goods_detail;
+            chooseSizeViewController.delegate=self;
+            chooseSizeViewController.ischange=true;
+            chooseSizeViewController.numCount=carShopInfoRow.change_buy_num;
+            AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+            [app.navigationController pushViewController:chooseSizeViewController animated:YES];
+        }else{
+            ShowMessage(@"获取商品规格失败!");
+        }
+    }
+    if([urlname isEqualToString:@"delCart"]){
+        shuaxinCount--;
+        if(shuaxinCount==0){
+            AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+            [app stopLoading];
+            [self getCarInfo];
+        }
+        
+    }
+    if([urlname isEqualToString:@"modifyCart"]){
+        shuaxinCount--;
+        if(shuaxinCount==0){
+            AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+            [app stopLoading];
+            [self getCarInfo];
+        }
+        
+    }
+    if([urlname isEqualToString:@"getOrderInfo"]){
+        if(status.intValue==1){
+            NSDictionary *dataArr=[dictemp objectForKey:@"data"];
+            
+        }else{
+            ShowMessage(@"提交订单!");
+        }
+    }
     
 }
-#pragma 添加tableView
+#pragma mark添加tableView
 -(void)addViews
 {
     
@@ -170,7 +216,7 @@
     //    self.view.backgroundColor=[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0];
     [self.view addSubview:_tableView];
 }
-#pragma 添加导航栏
+#pragma mark添加导航栏
 -(UIView*)getNavigationBar
 {
     view_bar =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
@@ -228,7 +274,7 @@
     
     return view_bar;
 }
-#pragma 编辑按钮
+#pragma mark编辑按钮
 -(void)editCell:(UIButton*)sender
 {
     [sender setSelected:!sender.isSelected];
@@ -245,18 +291,21 @@
         [self changeToolBar:true];
         [_tableView reloadData];
     }else{
+        [self editSave];
         [self changeToolBar:false];
-
-        [_tableView reloadData];
+        
+//        [_tableView reloadData];
     }
 }
 
+
+#pragma mark暂留
 -(void)btnHome:(id)sender
 {
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"backHome" object:nil];
 }
-#pragma 后退
+#pragma mark后退
 -(void)btnBack:(id)sender
 {
     AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -269,7 +318,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"backHome" object:nil];
     
 }
-#pragma 结算菜单栏
+#pragma mark结算菜单栏
 -(UIView *)getToolBar
 {
     if (_isTabbar==YES)
@@ -351,7 +400,7 @@
     
     return view_toolBar;
 }
-#pragma 变化底部工具栏
+#pragma mark变化底部工具栏
 -(void)changeToolBar:(BOOL)isflag{
     if(isflag){
         shanchuBtn.hidden=false;
@@ -578,8 +627,8 @@
             shopTypeBtn.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
             shopTypeBtn.titleLabel.font = [UIFont systemFontOfSize: 10.0];
             [shopTypeBtn setTitle: ssAddStr forState: UIControlStateNormal];
-            //        shopTypeBtn.titleLabel.textColor=[UIColor whiteColor];
-            [shopTypeBtn addTarget:self action:@selector(editCell:) forControlEvents:UIControlEventTouchUpInside];
+            //        shopTypeBtn.titleLabel.textColor=[UIColor whiteColor];- (void)checkButtonTapped:(UIButton *)sender event:(id)event
+            [shopTypeBtn addTarget:self action:@selector(changeAttrId:event:) forControlEvents:UIControlEventTouchUpInside];
             [shopTypeBtn.layer setMasksToBounds:YES];
             [shopTypeBtn.layer setCornerRadius:8.0]; //设置矩圆角半径
             [shopTypeBtn.layer setBorderWidth:1.0];   //边框宽度
@@ -588,59 +637,7 @@
             [shopTypeBtn.layer setBorderColor:colorref];//边框颜色
             [cell.editView addSubview:shopTypeBtn];
         }
-       
-        
-
     }
-    
-    
-        /*
-    //checkbox@2x
-    //按钮
-    //减
-    UIButton *btnCut=[UIButton buttonWithType:0];
-    btnCut.frame=CGRectMake(150, 7, 35, 35);
-    btnCut.tag=indexPath.row;
-    [btnCut setImage:BundleImage(@"bt_01_.png") forState:0];
-    [btnCut addTarget:self action:@selector(btnCut:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [_view1 addSubview:btnCut];
-    
-    UITextField*  numTextField=[[UITextField alloc]initWithFrame:CGRectMake(btnCut.frame.size.width+btnCut.frame.origin.x+1, btnCut.frame.origin.y+3,59,28)];
-    numTextField.contentVerticalAlignment=UIControlContentVerticalAlignmentCenter;
-    numTextField.textAlignment=1;
-    numTextField.delegate=self;
-    numTextField.returnKeyType=UIReturnKeyDone;
-    numTextField.text=@"1";
-    numTextField.contentVerticalAlignment=0;
-    numTextField.textColor=[UIColor colorWithRed:.2 green:.2 blue:.2 alpha:1.0];
-    numTextField.tag=100000+indexPath.row;
-    numTextField.keyboardType=UIKeyboardTypeDefault;
-    numTextField.userInteractionEnabled=YES;
-    //        numTextField.background=BundleImage(@"number_frame.png");
-    numTextField.layer.borderColor=[UIColor colorWithRed:.8 green:.8 blue:.8 alpha:1.0].CGColor;
-    numTextField.layer.borderWidth=1;
-    numTextField.backgroundColor=[UIColor whiteColor];
-    [numTextField addTarget:self action:@selector(textFieldBegin:) forControlEvents:UIControlEventEditingDidBegin];
-    [numTextField addTarget:self action:@selector(textFieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
-    [_view1 addSubview:numTextField];
-  
-    
-    //加
-    UIButton *btnAdd=[UIButton buttonWithType:0];
-    btnAdd.frame=CGRectMake(numTextField.frame.origin.x+numTextField.frame.size.width+3,btnCut.frame.origin.y+3, 30, 28);
-    [btnAdd setBackgroundImage:BundleImage(@"bt_02_.png") forState:0];
-    [btnAdd addTarget:self action:@selector(btnAdd:) forControlEvents:UIControlEventTouchUpInside];
-    if (btnAdd.highlighted) {
-        [btnAdd setBackgroundImage:BundleImage(@"number_up_click.png") forState:0];
-    }
-    btnAdd.tag=indexPath.row;
-    [_view1 addSubview:btnAdd];
-    
-    */
-   
-  
-    
     return cell;
     
 }
@@ -659,115 +656,47 @@
     return UITableViewCellEditingStyleNone;
 }
 
-#pragma mark 按钮事件
--(void)showAlertView
-{
-    
-    [WCAlertView showAlertWithTitle:@"提示" message:@"您没有选中任何商品！" customizationBlock:^(WCAlertView *alertView) {
-        alertView.style = WCAlertViewStyleWhiteHatched;
-        
-    } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
-        if (buttonIndex == 0) {
-            NSLog(@"继续购物");
-        } else {
-            NSLog(@"去购物车");
-            
-            
-        }
-    } cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    
-    
-}
+#pragma mark 结算按钮
 -(void)accountBtn:(id)sender
 {
-    if ([delShopList count]<=0)
+    NSMutableArray *jiesuanCarArr=[[NSMutableArray alloc]init];
+    for (NSDictionary *dicTemp in carShopList) {
+        NSArray *listContent=[dicTemp objectForKey:@"list"];
+        for (CarShopInfoModel *carShopInfoModel in listContent) {
+            if(carShopInfoModel.ischoose){
+                [jiesuanCarArr addObject:carShopInfoModel];
+            }
+        }
+        
+    }
+
+    if ([jiesuanCarArr count]<=0)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您没有选中任何商品！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alert show];
 
     }
     else {
-        /*
-        [arrayTextFeild removeAllObjects];
-        [arrayLabel removeAllObjects];
-        [_marrayProductid removeAllObjects];
-        for (NSIndexPath *path in deleteArray)
-        {
-            UITextField *textField = (UITextField *)[self.view viewWithTag:100000+path.row];
-            [arrayTextFeild addObject:textField.text];
-            
-            UILabel *label = (UILabel *)[self.view viewWithTag:10000000+path.row];
-            [arrayLabel addObject:[label.text substringFromIndex:1]];
-            
-            [_marrayProductid addObject:[[[_marrayAll objectAtIndex:path.row]productList]objectAtIndex:0]];
-            
+        NSMutableString *ss=[[NSMutableString alloc]init];
+        for (int i=0; i<jiesuanCarArr.count; i++) {
+            CarShopInfoModel *carShopInfoModel=jiesuanCarArr[i];
+            NSString *sid=carShopInfoModel.id;
+            [ss appendString:sid];
+            if(i!=jiesuanCarArr.count-1){
+                [ss appendString:@","];
+            }
         }
+        NSDictionary *parameters = @{@"id":ss};
+        NSString* url =[NSString stringWithFormat:@"%@&f=getOrderInfo&m=order",requestUrl]
+        ;
         
-        dic=[NSDictionary dictionaryWithObjectsAndKeys:arrayTextFeild,@"salesNum",arrayLabel,@"countPrice", nil];
-        
-        FCAccountViewController *VC=[[FCAccountViewController alloc]initWithProduct:[NSArray arrayWithArray:[_marrayProductid retain]]withSalesNumAndPrices:dic];
-        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        
-        [appDelegate.navigationController pushViewController:VC animated:YES];
-         */
+        HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getOrderInfo"];
+        httpController.delegate = self;
+        [httpController onSearchForPostJson];
     }
     
 }
 
--(void)deleteBtn:(id)sender
-{
-    //删除前首先要初始化一个临时数组用来接收要删除数组对应下标的各个元素（用nsmutableindexset添加下标，最后指量删除），删除cell时cell要处于可编辑状态。最后roloadData;
-    //    UIButton *btn=(UIButton*)sender;
-    //    if (btn.selected==YES)
-    //    {
-    //        [btn setImage:BundleImage(@"ic_01_n_.png") forState:0];
-    //    }else{
-    //
-    //        [btn setImage:BundleImage(@"ic_01_h_.png") forState:0];
-    //    }
-    
-    if ([delShopList count]<=0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您没有选中任何商品！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alert show];
-    }
-    else {
-        
-    }
-    
-    
-    
-}
-
-
--(void)deleteColection
-{
-//    _strings=[[NSString alloc] init];
-//    
-//    for(NSIndexPath *path in deleteArray)
-//    {
-////        NSString *productids=[NSString stringWithFormat:@"%@,",[[[[_marrayAll objectAtIndex:[path row]] productList] objectAtIndex:0] id]];
-////        _strings=[_strings stringByAppendingString:productids];
-//    }
-    
-    //    [[GlobalTool sharedGlobalTool] getAppData];
-    //    NSArray *array=[[NSArray alloc] initWithObjects:
-    //                    [NSString stringWithFormat:@"deviceid=%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"deviceid"]],
-    //                    [NSString stringWithFormat:@"bussnessid=%@",[GlobalTool sharedGlobalTool].bussesid],
-    //                    [NSString stringWithFormat:@"verify=%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"verify"]],
-    //                    [NSString stringWithFormat:@"appid=%@",[GlobalTool sharedGlobalTool].apkid],
-    //                    [NSString stringWithFormat:@"productid=%@",_strings],
-    //                    [NSString stringWithFormat:@"userid=%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"userid"]],nil];
-    //    UpdateOne*upda=[[UpdateOne alloc]init:@"FWShopCartDelete" :array delegate:self];
-    //    [DataManager loadData:[[NSArray alloc]initWithObjects:upda, nil] delegate:self];
-}
-//全选
--(void)btnSelecdAll:(id)sender
-{
-    
-    
-    
-    
-}
 #pragma mark数量减
 
 //两个按钮 是同时对一个textfiled操作，所以把tag设为同样的。
@@ -790,7 +719,7 @@
     carShopInfoModel.change_buy_num=field.text;
 }
 
-//加
+#pragma mark数量加
 -(void)btnAdd:(UIButton *)sender event:(id)event
 {
     
@@ -827,7 +756,7 @@
         scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
     }
 }
-#pragma 选择按钮事件row
+#pragma mark 选择按钮事件row
 - (void)checkButtonTapped:(UIButton *)sender event:(id)event
 {
     sender.selected=!sender.selected;
@@ -877,7 +806,7 @@
     [_tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
     [self changePrice];
 }
-#pragma 选择按钮事件section
+#pragma mark 选择按钮事件section
 - (void)checkButtonSection:(UIButton *)sender event:(id)event
 {
     
@@ -917,7 +846,8 @@
     [_tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
     [self changePrice];
 }
-#pragma 全选
+
+#pragma mark全选
 - (void)checkButtonALL:(UIButton *)sender event:(id)event
 {
     [sender setSelected:!sender.selected];
@@ -945,7 +875,7 @@
     [_tableView reloadData];
     [self changePrice];
 }
-#pragma 计算金额
+#pragma mark 计算金额
 -(void)changePrice{
     _price=0;
     for (NSDictionary *dicTemp in carShopList) {
@@ -961,9 +891,108 @@
     price_count_label.text=[NSString stringWithFormat:@"￥%.2f",_price];
 
 }
-#pragma 删除按钮
+#pragma mark删除按钮
 -(void)shanchu:(UIButton *)sender{
+    NSMutableArray *delCarArr=[[NSMutableArray alloc]init];
+    for (NSDictionary *dicTemp in carShopList) {
+        NSArray *listContent=[dicTemp objectForKey:@"list"];
+        for (CarShopInfoModel *carShopInfoModel in listContent) {
+            if(carShopInfoModel.ischoose){
+                [delCarArr addObject:carShopInfoModel];
+            }
+        }
+        
+    }
+    shuaxinCount=0;
+    if(delCarArr.count>0){
+        AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [app startLoading];
+        shuaxinCount=(int)delCarArr.count;
+        for (CarShopInfoModel *carShopInfoModel in delCarArr) {
+            NSDictionary *parameters = @{@"id":carShopInfoModel.id};
+            NSString* url =[NSString stringWithFormat:@"%@&f=delCart&m=cart",requestUrl]
+            ;
+            
+            HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"delCart"];
+            httpController.delegate = self;
+            [httpController onSearchForPostJson];
+        }
+    }
+}
+#pragma mark查看修改的东西
+-(void)editSave{
+    NSMutableArray *modifyCarArr=[[NSMutableArray alloc]init];
+    for (NSDictionary *dicTemp in carShopList) {
+        NSArray *listContent=[dicTemp objectForKey:@"list"];
+        for (CarShopInfoModel *carShopInfoModel in listContent) {
+            NSString *change_attr_price_id=carShopInfoModel.change_attr_price_id;
+            NSString *change_buy_num=carShopInfoModel.change_buy_num;
+            NSString *attr_price_id=carShopInfoModel.attr_price_id;
+            NSString *buy_num=carShopInfoModel.buy_num;
+            BOOL isModidy=false;
+            if(![change_attr_price_id isEqualToString:attr_price_id]||![change_buy_num isEqualToString:buy_num]){
+                isModidy=true;
+            }
+            if(isModidy){
+                [modifyCarArr addObject:carShopInfoModel];
+            }
+        }
+        
+    }
+    shuaxinCount=0;
+    if(modifyCarArr.count>0){
+        AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [app startLoading];
+        shuaxinCount=(int)modifyCarArr.count;
+        for (CarShopInfoModel *carShopInfoModel in modifyCarArr) {
+            NSDictionary *parameters = @{@"id":carShopInfoModel.id,@"buy_num":carShopInfoModel.change_buy_num,@"attr_price_id":carShopInfoModel.change_attr_price_id};
+            NSString* url =[NSString stringWithFormat:@"%@&f=modifyCart&m=cart",requestUrl]
+            ;
+            
+            HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"modifyCart"];
+            httpController.delegate = self;
+            [httpController onSearchForPostJson];
+        }
+    }else{
+        [_tableView reloadData];
+    }
+
+}
+
+#pragma mark 改变颜色尺寸等参数
+- (void)changeAttrId:(UIButton *)sender event:(id)event{
+    NSSet *touches = [event allTouches];
+    UITouch *touch = [touches anyObject];
+    CGPoint currentTouchPosition = [touch locationInView:_tableView];
+    NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint: currentTouchPosition];
+    NSDictionary *dicTemp= [carShopList objectAtIndex:indexPath.section];
+    NSArray *listContent=[dicTemp objectForKey:@"list"];
+
+    carShopInfoRow= [listContent objectAtIndex:indexPath.row] ;
+    indexRow=indexPath;
+    [self getGoodsAttrValueById];
+}
+#pragma mark查找规格
+-(void)getGoodsAttrValueById{
+    New_Goods *goodsTemp=carShopInfoRow.goods_detail;
+    NSDictionary *parameters = @{@"id":goodsTemp.id};
+    NSString* url =[NSString stringWithFormat:@"%@&f=getGoodsAttrValueById&m=goods",requestUrl]
+    ;
     
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsAttrValueById"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
+}
+#pragma mark改变尺寸代理
+- (void)addShopCarFinsh:(NSDictionary *)dic{
+    NSDictionary *dicTemp= [carShopList objectAtIndex:indexRow.section];
+    NSArray *listContent=[dicTemp objectForKey:@"list"];
+    
+    CarShopInfoModel *carShopInfoModel= [listContent objectAtIndex:indexRow.row] ;
+    carShopInfoModel.change_buy_num=[dic objectForKey:@"buy_num"];
+    carShopInfoModel.change_attr_price_id=[dic objectForKey:@"attr_price_id"];
+    carShopInfoModel.goods_attr=[dic objectForKey:@"goods_attr"];
+    [_tableView reloadRowsAtIndexPaths:@[indexRow] withRowAnimation:UITableViewRowAnimationNone];
 }
 /*
 #pragma mark - Navigation

@@ -401,6 +401,7 @@ static CGFloat kImageOriginHight = 400;
     chooseSizeViewController.goods_attr=self.goods_attr;
     chooseSizeViewController.goods=self.goods;
     chooseSizeViewController.delegate=self;
+    chooseSizeViewController.numCount=@"1";
     AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
     [app.navigationController pushViewController:chooseSizeViewController animated:YES];
 
@@ -460,6 +461,8 @@ static CGFloat kImageOriginHight = 400;
     chooseSizeViewController.goods_attr=self.goods_attr;
     chooseSizeViewController.goods=self.goods;
     chooseSizeViewController.delegate=self;
+    chooseSizeViewController.ischange=false;
+    chooseSizeViewController.numCount=@"1";
     AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
     [app.navigationController pushViewController:chooseSizeViewController animated:YES];
 }

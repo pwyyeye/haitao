@@ -29,5 +29,6 @@
 @property(nonatomic,retain)New_Goods *goods;
 /**代理回调对象*/
 @property (nonatomic,weak)id<ChooseSizeDelegate>delegate;
-
+@property (nonatomic,assign)bool ischange;
+@property (nonatomic,copy)NSString *numCount;
 @end

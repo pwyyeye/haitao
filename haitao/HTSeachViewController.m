@@ -16,11 +16,15 @@
 #import "UIImageButton.h"
 #import "UITableGridViewCell.h"
 #import "LTKSeachResultViewController.h"
+#import "ClassificationBtn.h"
+#import "CFContentViewController.h"
+#import "New_Goods.h"
 #define kImageWidth  75 //UITableViewCell里面图片的宽度
 #define kImageHeight  90 //UITableViewCell里面图片的高度
 @interface HTSeachViewController ()<DockTavleViewDelegate,RightTableViewDelegate>{
     UIView *view_bar1;
     BARightTableView *rightTableView ;
+    NSString *typeTitle;
 }
 @property (nonatomic ,strong) BAWineShoppingDockTavleView *dockTavleView;
 
@@ -140,7 +144,27 @@
         //保存数据
         
     }
-    
+    if([urlname isEqualToString:@"getMenuGoodsList"]){
+        NSDictionary *dataDic=[dictemp objectForKey:@"data"];
+        NSArray *goodsArr=[dataDic objectForKey:@"list"];
+        NSMutableArray *goodsModelArr=[[NSMutableArray alloc]init];
+        for (NSDictionary *dic in goodsArr) {
+            New_Goods *goodsModel = [New_Goods objectWithKeyValues:dic] ;
+            [goodsModelArr addObject:goodsModel];
+        }
+        if(goodsModelArr.count<1){
+            ShowMessage(@"无数据");
+            return;
+        }
+        NSDictionary *menuIndexDic=[dataDic objectForKey:@"cat_index"];
+        CFContentViewController *cfContentViewController=[[CFContentViewController alloc]init];
+        cfContentViewController.menuIndexDic=menuIndexDic;
+        cfContentViewController.dataList=goodsModelArr;
+        cfContentViewController.topTitle=typeTitle;
+        AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [delegate.navigationController pushViewController:cfContentViewController animated:YES];
+        
+    }
     
 }
 -(void)initTable{
@@ -293,13 +317,14 @@
     NSArray *arr=rightTableView.rightArray[indexPath.row];
     for (int i=0; i<arr.count; i++) {
         MenuModel *menu=arr[i];
-        NSLog(menu.name);
+//        NSLog(menu.name);
         //自定义继续UIButton的UIImageButton 里面只是加了2个row和column属性
-        UIImageButton *button = [UIImageButton buttonWithType:UIButtonTypeCustom];
+        ClassificationBtn *button = [ClassificationBtn buttonWithType:UIButtonTypeCustom];
         button.bounds = CGRectMake(0, 0, kImageWidth, kImageHeight);
         button.center = CGPointMake((1 + i) * 5 + kImageWidth *( 0.5 + i) , 5 + kImageHeight * 0.5);
         //button.column = i;
         [button setValue:[NSNumber numberWithInt:i] forKey:@"column"];
+        button.menuModel=menu;
         button.tag=indexPath.row;
         UIImage *image = [rightTableView cutCenterImage:[UIImage imageNamed:@"奶粉.jpg"]  size:CGSizeMake(60, 60)];
         [button addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];             [button setBackgroundImage:image forState:UIControlStateNormal];
@@ -336,7 +361,12 @@
      */
     
 }
--(void)imageItemClick:(UIImageButton *)button{
+-(void)imageItemClick:(ClassificationBtn *)button{
+
+    MenuModel *menuChild=button.menuModel;
+    typeTitle=menuChild.name;
+    [self getMenuGoodsList:menuChild.id];
+    /*
     NSString *msg = [NSString stringWithFormat:@"第%i行 第%i列",button.row + 1, button.column + 1];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                     message:msg
@@ -344,6 +374,20 @@
                                           cancelButtonTitle:@"好的，知道了"
                                           otherButtonTitles:nil, nil];
     [alert show];
+     */
+    
+}
+#pragma mark -获取分类下的商品信息
+-(void)getMenuGoodsList:(NSString *)s_cat{
+    NSDictionary *parameters = @{@"s_cat":s_cat,@"need_cat_index":@1};
+    
+    NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
+    ;
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getMenuGoodsList"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
+    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return kImageHeight + 50;
