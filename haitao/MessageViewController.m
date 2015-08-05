@@ -157,7 +157,7 @@
 
 -(void)didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
     
-    NSLog(@"----pass-login%@---",dictemp);
+    NSLog(@"----pass-getMsg%@---",dictemp);
     //返回原来界面
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app stopLoading];

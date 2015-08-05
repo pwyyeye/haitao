@@ -20,6 +20,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    //设置电池状态栏为白色
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -92,15 +94,28 @@
 //    page1.bgImage = [UIImage imageNamed:@"1.jpg"];
     
     EAIntroPage *page2 = [EAIntroPage page];
-    page2.bgImage = [UIImage imageNamed:@"2.jpg"];
+    if (isRetina) {
+        page2.bgImage = [UIImage imageNamed:@"2_retina.jpg"];
+    }else{
+        page2.bgImage = [UIImage imageNamed:@"2.jpg"];
+    }
+    
     
     EAIntroPage *page3 = [EAIntroPage page];
     
-    page3.bgImage = [UIImage imageNamed:@"3.jpg"];
+    if (isRetina) {
+        page3.bgImage = [UIImage imageNamed:@"3_retina.jpg"];
+    }else{
+        page3.bgImage = [UIImage imageNamed:@"3.jpg"];
+    }
     
     EAIntroPage *page4 = [EAIntroPage page];
     
-    page4.bgImage = [UIImage imageNamed:@"4.jpg"];
+    if (isRetina) {
+        page4.bgImage = [UIImage imageNamed:@"4_retina.jpg"];
+    }else{
+        page4.bgImage = [UIImage imageNamed:@"4.jpg"];
+    }
     
 //    page4.titleImage = [UIImage imageNamed:@"skip-btn"];
 //    

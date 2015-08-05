@@ -346,7 +346,7 @@
         
         //总计金额
         UILabel *total_amout=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 3, 70, 18)];
-        total_amout.text=[NSString stringWithFormat:@"%.2f",orderModel.order_amount];
+        total_amout.text=[NSString stringWithFormat:@"¥%.2f",orderModel.order_amount];
         total_amout.textAlignment=NSTextAlignmentRight;
         total_amout.font =[UIFont  boldSystemFontOfSize:11];
         total_amout.textColor=RGB(255, 13, 94);
@@ -399,7 +399,7 @@
         
         //运费金额
         UILabel *ship=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 5, 70, 20)];
-        ship.text=[NSString stringWithFormat:@"%.2f",_package.shipping_amount];
+        ship.text=[NSString stringWithFormat:@"¥%.2f",_package.shipping_amount];
         ship.textAlignment=NSTextAlignmentRight;
         ship.font =[UIFont  boldSystemFontOfSize:11];
         ship.textColor=RGB(255, 13, 94);
@@ -414,7 +414,7 @@
         
         //预付税费金额
         UILabel *transport_amout=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 28, 70, 20)];
-        transport_amout.text=[NSString stringWithFormat:@"%.2f",_package.transport_amount];
+        transport_amout.text=[NSString stringWithFormat:@"¥%.2f",_package.transport_amount];
         transport_amout.textAlignment=NSTextAlignmentRight;
         transport_amout.font =[UIFont  boldSystemFontOfSize:11];
         transport_amout.textColor=RGB(255, 13, 94);
@@ -430,7 +430,7 @@
         
         //小计金额
         UILabel *subTotal_amout=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 50, 70, 20)];
-        subTotal_amout.text=[NSString stringWithFormat:@"%.2f",_package.package_amount];
+        subTotal_amout.text=[NSString stringWithFormat:@"¥%.2f",_package.package_amount];
         subTotal_amout.textAlignment=NSTextAlignmentRight;
         subTotal_amout.font =[UIFont  boldSystemFontOfSize:11];
         subTotal_amout.textColor=RGB(255, 13, 94);
@@ -543,7 +543,7 @@
         
         //商品价格
         UILabel *goodPrice=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, cell.frame.origin.y+10, 70, 20)];
-        goodPrice.text=[NSString stringWithFormat:@"%.2f",goods.goods_price];
+        goodPrice.text=[NSString stringWithFormat:@"¥%.2f",goods.goods_price];
         goodPrice.textAlignment=NSTextAlignmentRight;
         goodPrice.font =[UIFont  boldSystemFontOfSize:11];
         goodPrice.textColor=RGB(255, 13, 94);

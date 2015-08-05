@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CZv-6C-M5d">
-                    <rect key="frame" x="13" y="183" width="574" height="40"/>
+                    <rect key="frame" x="10" y="183" width="580" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="ynj-eO-mw1"/>
                     </constraints>
@@ -96,8 +96,8 @@
                         <action selector="login:" destination="-1" eventType="touchUpInside" id="Urg-cr-YFn"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="登录邮箱或手机" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jge-zo-0lg">
-                    <rect key="frame" x="13" y="135" width="574" height="40"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="登录邮箱或手机" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jge-zo-0lg">
+                    <rect key="frame" x="10" y="133" width="580" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="pke-IY-IDr"/>
                     </constraints>
@@ -112,13 +112,13 @@
             <constraints>
                 <constraint firstItem="Q4b-ce-dhC" firstAttribute="top" secondItem="CZv-6C-M5d" secondAttribute="bottom" constant="15" id="21W-Ju-3nr"/>
                 <constraint firstAttribute="trailing" secondItem="G9A-Nx-Hs4" secondAttribute="trailing" constant="13" id="32p-Dm-lyL"/>
-                <constraint firstAttribute="trailing" secondItem="CZv-6C-M5d" secondAttribute="trailing" constant="13" id="6PR-qA-zGW"/>
-                <constraint firstItem="jge-zo-0lg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="13" id="GdU-aN-JtL"/>
+                <constraint firstAttribute="trailing" secondItem="CZv-6C-M5d" secondAttribute="trailing" constant="10" id="6PR-qA-zGW"/>
+                <constraint firstItem="jge-zo-0lg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="GdU-aN-JtL"/>
                 <constraint firstItem="jge-zo-0lg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="IhZ-rb-t7k"/>
                 <constraint firstItem="Q4b-ce-dhC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="Mba-Js-O8g"/>
-                <constraint firstItem="CZv-6C-M5d" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="13" id="OYq-he-O6I"/>
+                <constraint firstItem="CZv-6C-M5d" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="OYq-he-O6I"/>
                 <constraint firstItem="jge-zo-0lg" firstAttribute="top" secondItem="XHm-7R-pal" secondAttribute="bottom" constant="15" id="RD1-kK-aay"/>
-                <constraint firstAttribute="trailing" secondItem="jge-zo-0lg" secondAttribute="trailing" constant="13" id="Yvu-ax-lxn"/>
+                <constraint firstAttribute="trailing" secondItem="jge-zo-0lg" secondAttribute="trailing" constant="10" id="Yvu-ax-lxn"/>
                 <constraint firstItem="XHm-7R-pal" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="18" id="bwv-0p-GQI"/>
                 <constraint firstAttribute="trailing" secondItem="cUm-Bd-qdY" secondAttribute="trailing" constant="20" id="i5i-d4-28J"/>
                 <constraint firstItem="G9A-Nx-Hs4" firstAttribute="top" secondItem="Q4b-ce-dhC" secondAttribute="bottom" constant="15" id="lKd-ZI-uz7"/>

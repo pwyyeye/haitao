@@ -44,7 +44,7 @@
     ForgetPwdStep3 * vc=[[ForgetPwdStep3 alloc] initWithNibName:@"ForgetPwdStep3" bundle:nil];
     vc.username=_username;
     vc.captcha=_captcha.text;
-    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
     [self.navigationController pushViewController:vc animated:YES];
     
 }

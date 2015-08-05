@@ -46,7 +46,7 @@
         ShowMessage(@"请输入手机号或者登录邮箱！");
         return;
     }
-    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
     if ([MyUtil isValidateTelephone:_userame.text]) {//判断是否手机
         ForgetPwdStep2 * vc=[[ForgetPwdStep2 alloc] initWithNibName:@"ForgetPwdStep2" bundle:nil];
         vc.username=_userame.text;
