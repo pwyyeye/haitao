@@ -577,6 +577,8 @@
 		AD8E37AE1B721A1500C9D5BA /* WuLiu_icon_ZhouDian.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E36AF1B721A1500C9D5BA /* WuLiu_icon_ZhouDian.png */; };
 		AD8E37AF1B721A1500C9D5BA /* WuLiu_icon_ZhouDian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E36B01B721A1500C9D5BA /* WuLiu_icon_ZhouDian@2x.png */; };
 		AD8E37B01B721A1500C9D5BA /* WuLiu_icon_ZhouDian@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E36B11B721A1500C9D5BA /* WuLiu_icon_ZhouDian@3x.png */; };
+		AD8E37B31B7232F400C9D5BA /* PackageDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8E37B21B7232F400C9D5BA /* PackageDetail.m */; };
+		AD8E37B71B723AF900C9D5BA /* OrderModelForPackageDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8E37B61B723AF900C9D5BA /* OrderModelForPackageDetail.m */; };
 		ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC811B53CB5F0022B2C2 /* main.m */; };
 		ADB5AC851B53CB5F0022B2C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC841B53CB5F0022B2C2 /* AppDelegate.m */; };
 		ADB5AC881B53CB5F0022B2C2 /* haitao.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC861B53CB5F0022B2C2 /* haitao.xcdatamodeld */; };
@@ -1384,6 +1386,10 @@
 		AD8E36AF1B721A1500C9D5BA /* WuLiu_icon_ZhouDian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WuLiu_icon_ZhouDian.png; sourceTree = "<group>"; };
 		AD8E36B01B721A1500C9D5BA /* WuLiu_icon_ZhouDian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WuLiu_icon_ZhouDian@2x.png"; sourceTree = "<group>"; };
 		AD8E36B11B721A1500C9D5BA /* WuLiu_icon_ZhouDian@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WuLiu_icon_ZhouDian@3x.png"; sourceTree = "<group>"; };
+		AD8E37B11B7232F400C9D5BA /* PackageDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageDetail.h; sourceTree = "<group>"; };
+		AD8E37B21B7232F400C9D5BA /* PackageDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageDetail.m; sourceTree = "<group>"; };
+		AD8E37B51B723AF900C9D5BA /* OrderModelForPackageDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModelForPackageDetail.h; sourceTree = "<group>"; };
+		AD8E37B61B723AF900C9D5BA /* OrderModelForPackageDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModelForPackageDetail.m; sourceTree = "<group>"; };
 		ADB5AC7C1B53CB5F0022B2C2 /* haitao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = haitao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADB5AC801B53CB5F0022B2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADB5AC811B53CB5F0022B2C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -3027,6 +3033,10 @@
 				ADCF99401B6DAE7A00EA5592 /* Order_goods.m */,
 				AD8E35041B70589400C9D5BA /* Order_goodsAttr.h */,
 				AD8E35051B70589400C9D5BA /* Order_goodsAttr.m */,
+				AD8E37B11B7232F400C9D5BA /* PackageDetail.h */,
+				AD8E37B21B7232F400C9D5BA /* PackageDetail.m */,
+				AD8E37B51B723AF900C9D5BA /* OrderModelForPackageDetail.h */,
+				AD8E37B61B723AF900C9D5BA /* OrderModelForPackageDetail.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -3799,6 +3809,7 @@
 				AD8AA63D1B59435C00E324AD /* ProfileViewController.m in Sources */,
 				ADB5AC8B1B53CB5F0022B2C2 /* ViewController.m in Sources */,
 				A2FC75021B5D1FFA0094BC59 /* NSObject+MJCoding.m in Sources */,
+				AD8E37B31B7232F400C9D5BA /* PackageDetail.m in Sources */,
 				AD8AA6461B59435C00E324AD /* zip.m in Sources */,
 				AD8AA5881B59416000E324AD /* FCTabBarController.m in Sources */,
 				AD8AA6251B59435C00E324AD /* HZAreaPickerView.m in Sources */,
@@ -3823,6 +3834,7 @@
 				AD8E35121B709D7D00C9D5BA /* EAIntroView.m in Sources */,
 				AD8AA6481B59435C00E324AD /* ZipArchive.m in Sources */,
 				A2FC75101B5E1F640094BC59 /* App_Home_Bigegg.m in Sources */,
+				AD8E37B71B723AF900C9D5BA /* OrderModelForPackageDetail.m in Sources */,
 				ADECDC2A1B672CF2009EA286 /* ServiceTerms.m in Sources */,
 				A2FC74FF1B5D1FFA0094BC59 /* MJFoundation.m in Sources */,
 				A2FC74E11B5A3F340094BC59 /* BAWineShoppingDockTavleView.m in Sources */,

@@ -45,7 +45,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yum-pa-MWD">
-                    <rect key="frame" x="296" y="10" width="30" height="28"/>
+                    <rect key="frame" x="291" y="5" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="BiU-X6-aOI"/>
+                        <constraint firstAttribute="height" constant="40" id="mod-Hr-sUv"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <state key="normal" title="设置">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -62,8 +66,8 @@
                 <constraint firstItem="cC4-6t-dhb" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="20" id="NES-Lh-rSS"/>
                 <constraint firstItem="cC4-6t-dhb" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="10" id="Om2-mr-IV2"/>
                 <constraint firstAttribute="bottom" secondItem="JD2-GB-fNJ" secondAttribute="bottom" constant="15" id="PSh-cC-aYR"/>
-                <constraint firstItem="yum-pa-MWD" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="10" id="Wrz-0E-RyR"/>
-                <constraint firstAttribute="trailing" secondItem="yum-pa-MWD" secondAttribute="trailing" constant="15" id="XL3-bB-ZCz"/>
+                <constraint firstItem="yum-pa-MWD" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="5" id="Wrz-0E-RyR"/>
+                <constraint firstAttribute="trailing" secondItem="yum-pa-MWD" secondAttribute="trailing" constant="10" id="XL3-bB-ZCz"/>
                 <constraint firstAttribute="bottom" secondItem="cC4-6t-dhb" secondAttribute="bottom" constant="15" id="aCY-hk-vie"/>
                 <constraint firstItem="cC4-6t-dhb" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="17" id="e5p-AP-bDf"/>
                 <constraint firstAttribute="centerX" secondItem="JD2-GB-fNJ" secondAttribute="centerX" id="kKV-SG-xIF"/>

@@ -12,6 +12,7 @@
 #import "Order_goods.h"
 #import "OrderListCell.h"
 #import "Order_goodsAttr.h"
+#import "PackageDetailController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 @interface OrderListController ()
 
@@ -316,7 +317,7 @@
         [packageDetail setTitle:@"包裹详情" forState:UIControlStateNormal];
         [packageDetail setTitleColor:RGB(24, 177, 18) forState:UIControlStateNormal];
         packageDetail.titleLabel.font =[UIFont  systemFontOfSize:11];//加粗字体
-
+        packageDetail.tag=[_package.id integerValue];
         [packageDetail addTarget:self action:@selector(gotoPackageDetail:) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:packageDetail];
         
@@ -573,5 +574,13 @@
 
 -(void)gotoPackageDetail:(UIButton *)sender{
     NSLog(@"----pass-gotoPackageDetail %@---",@"test");
+    if (sender.tag==0) {
+        return;
+    }
+    PackageDetailController *detailViewController =[[PackageDetailController alloc] init];
+    
+    detailViewController.package_id=[NSString stringWithFormat:@"%d", sender.tag];
+    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 @end

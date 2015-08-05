@@ -27,6 +27,12 @@
                             <constraint firstAttribute="height" constant="80" id="AO5-2A-8s0"/>
                             <constraint firstAttribute="width" constant="80" id="LzW-UQ-i2I"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="AO5-2A-8s0"/>
+                                <exclude reference="LzW-UQ-i2I"/>
+                            </mask>
+                        </variation>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
