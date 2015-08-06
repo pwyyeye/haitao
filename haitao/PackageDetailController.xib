@@ -10,11 +10,14 @@
                 <outlet property="consignee" destination="cfO-TQ-hcw" id="1cg-gw-Ra7"/>
                 <outlet property="footView" destination="TFr-5j-K3K" id="G8k-H5-BLL"/>
                 <outlet property="mobile" destination="f4I-eg-wgw" id="Uog-CZ-6kK"/>
+                <outlet property="myScollView" destination="nCB-6O-znb" id="m1G-HW-UvW"/>
+                <outlet property="myView" destination="38Z-HI-cXS" id="OJ3-0k-fH5"/>
                 <outlet property="orderStatus" destination="DTG-PX-dVh" id="ZRe-de-drc"/>
                 <outlet property="packAmount" destination="fSp-ID-7Gk" id="bsV-Hk-exu"/>
                 <outlet property="payAmount" destination="gxS-FJ-UwL" id="MmI-Zn-C6U"/>
                 <outlet property="shipAmount" destination="W3t-0C-Ne8" id="0N5-vU-Prk"/>
                 <outlet property="tableView" destination="H0x-gH-j69" id="36n-3L-4jG"/>
+                <outlet property="tableViewHeight" destination="oV4-Ad-5rc" id="96z-Hf-eSb"/>
                 <outlet property="taxAmount" destination="Jsg-ht-oRc" id="JN7-cX-r4L"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewHeight" destination="s18-a5-b4h" id="BsM-gP-h9Q"/>
@@ -97,15 +100,15 @@
                                     </constraints>
                                 </view>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="H0x-gH-j69">
-                                    <rect key="frame" x="0.0" y="142" width="600" height="401"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </tableView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TFr-5j-K3K">
-                                    <rect key="frame" x="0.0" y="553" width="600" height="47"/>
+                                    <rect key="frame" x="0.0" y="142" width="600" height="248"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="47" id="4D9-oS-PK2"/>
+                                        <constraint firstAttribute="height" constant="248" id="oV4-Ad-5rc"/>
                                     </constraints>
+                                </tableView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TFr-5j-K3K">
+                                    <rect key="frame" x="0.0" y="390" width="600" height="210"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.93000000000000005" alpha="1" colorSpace="calibratedWhite"/>
@@ -121,7 +124,7 @@
                                 <constraint firstItem="H0x-gH-j69" firstAttribute="top" secondItem="Ik2-df-Y6W" secondAttribute="bottom" constant="10" id="TiP-OG-VKU"/>
                                 <constraint firstItem="TFr-5j-K3K" firstAttribute="leading" secondItem="38Z-HI-cXS" secondAttribute="leading" id="UmA-Un-WVZ"/>
                                 <constraint firstItem="Jsg-ht-oRc" firstAttribute="top" secondItem="W3t-0C-Ne8" secondAttribute="bottom" constant="5" id="Xpe-iU-eKb"/>
-                                <constraint firstItem="TFr-5j-K3K" firstAttribute="top" secondItem="H0x-gH-j69" secondAttribute="bottom" constant="10" id="YJh-bJ-Zrc"/>
+                                <constraint firstItem="TFr-5j-K3K" firstAttribute="top" secondItem="H0x-gH-j69" secondAttribute="bottom" id="YJh-bJ-Zrc"/>
                                 <constraint firstAttribute="trailing" secondItem="Jsg-ht-oRc" secondAttribute="trailing" constant="10" id="ZLz-aG-LwG"/>
                                 <constraint firstAttribute="trailing" secondItem="W3t-0C-Ne8" secondAttribute="trailing" constant="10" id="evA-Ld-rPv"/>
                                 <constraint firstItem="H0x-gH-j69" firstAttribute="leading" secondItem="38Z-HI-cXS" secondAttribute="leading" id="l9f-dx-Evk"/>

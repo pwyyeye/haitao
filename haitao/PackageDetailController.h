@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "PackageDetail.h"
-@interface PackageDetailController : UIViewController<HTTPControllerProtocol, UITableViewDataSource,UITableViewDelegate>
+#import "CollapseClick.h"
+@interface PackageDetailController : UIViewController<HTTPControllerProtocol, UITableViewDataSource,UITableViewDelegate,CollapseClickDelegate,UIScrollViewDelegate>
 
 @property(strong,nonatomic) NSString *package_id;
 
@@ -32,8 +33,24 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+//整个底部view
 @property (weak, nonatomic) IBOutlet UIView *footView;
+//控制整个view宽度
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewWidth;
-
+//控制tableView高度
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
+//控制整个view高度
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewHeight;
+//下来伸缩
+@property(strong,nonatomic) CollapseClick *coll;
+//运费详情view
+@property(strong,nonatomic) UIView *shipDetailView;
+//订单截图view
+@property(strong,nonatomic) UIView *orderImageView;
+
+@property(strong,nonatomic) UIView *footerBar;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *myScollView;
+
+@property (weak, nonatomic) IBOutlet UIView *myView;
 @end

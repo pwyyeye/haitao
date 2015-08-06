@@ -48,8 +48,8 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     _tableView.dataSource = self;
     _tableView.delegate=self;
-    _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    
+//    _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+//    self.tableView.tableFooterView=[[UIView alloc]init];
     [self initData];
 }
 
@@ -60,6 +60,11 @@
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     self.viewWidth.constant=SCREEN_WIDTH;
+    //tableView的高度时header＋footer＋cell高度*cell个数
+    self.tableViewHeight.constant=110+80*_packageModel.package.goods.count;
+    //自身高度＝tableview的y坐标＋tableView的高度＋coll的高度*个数＋coll展开view的最大高度
+    self.viewHeight.constant=self.tableView.frame.origin.y+self.tableViewHeight.constant+_coll.cellHeight*3+180;
+    
     
 }
 
@@ -96,7 +101,74 @@
             
             [_tableView reloadData];
             
+            _coll=[[CollapseClick alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 300)];
+            _coll.CollapseClickDelegate = self;
+            _coll.cellSpace=0;
+            _coll.cellHeight=40;
+            _coll.scrollEnabled=NO;
+            [_coll reloadCollapseClick];
+            //    // If you want a cell open on load, run this method:
+            //    [coll openCollapseClickCellAtIndex:1 animated:NO];
             
+            [self.footView addSubview:_coll];
+            
+            self.footView.backgroundColor=[UIColor yellowColor];
+            
+
+            
+            //设置底部按钮
+            _footerBar=[[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-47-64, SCREEN_WIDTH, 47)];
+            self.footerBar.backgroundColor=[UIColor whiteColor];
+
+            //1、刚录入订单 2、订单已支付  8、订单完成 用户已确认 9、取消订单
+            if ([_packageModel.order.order_status intValue]==1) {
+                //联系客服
+                UIButton *kefu=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/5, 30)];
+                [kefu setImage:[UIImage imageNamed:@"icon_LianXiKeFu"]  forState:UIControlStateNormal];
+                [kefu.imageView setContentMode:UIViewContentModeScaleAspectFill];
+                
+                //联系客服文字
+                UILabel *kefu_label=[[UILabel alloc] initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH/5, 15)];
+                kefu_label.text=@"在线客服";
+                kefu_label.font=[UIFont boldSystemFontOfSize:11];
+                kefu_label.textAlignment=NSTextAlignmentCenter;
+                
+                
+                //联系电话
+                UIButton *telephone=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/5, 0, SCREEN_WIDTH/5*2, 30)];
+                [telephone setImage:[UIImage imageNamed:@"icon_LianXiKeFu"]  forState:UIControlStateNormal];
+                [telephone.imageView setContentMode:UIViewContentModeScaleAspectFill];
+                
+                //联系电话文字
+                UILabel *telephone_label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/5, 30, SCREEN_WIDTH/5*2, 15)];
+                telephone_label.text=@"拨打电话";
+                telephone_label.font=[UIFont boldSystemFontOfSize:11];
+                telephone_label.textAlignment=NSTextAlignmentCenter;
+                
+                //付款
+                UIButton *pay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/5*3, 0, SCREEN_WIDTH/5*2, 47)];
+                [pay setImage:[UIImage imageNamed:@"tariff_btn_payment"]  forState:UIControlStateNormal];
+                [pay.imageView setContentMode:UIViewContentModeScaleAspectFill];
+                
+                //添加进入 footerBar
+                [self.footerBar addSubview:kefu];
+                [self.footerBar addSubview:kefu_label];
+                
+                [self.footerBar addSubview:telephone];
+                [self.footerBar addSubview:telephone_label];
+                
+                [self.footerBar addSubview:pay];
+                
+                
+                [self.myView addSubview:_footerBar];
+                
+            }
+            
+
+            
+            self.myScollView.delegate=self;
+            self.myScollView.bounces=NO;//遇到边框不反弹
+
             
         }
     }
@@ -141,7 +213,7 @@
         [view addSubview:shopname];
         
         //直邮转运
-        UILabel *ship=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-40, 0, 30, 38)];
+        UILabel *ship=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-50, 0, 40, 38)];
         ship.text=package.ship_name;
         ship.font =[UIFont  boldSystemFontOfSize:11];
         ship.textColor=RGB(51, 51, 51);
@@ -197,9 +269,9 @@
     //小计
     UILabel *subTotal=[[UILabel alloc] initWithFrame:CGRectMake(10, 50, SCREEN_WIDTH/2, 20)];
     //        subTotal.text=@"小计:";
-    subTotal.text=[NSString stringWithFormat:@"共 %d 件商品",package.buy_num];
-    subTotal.font=[UIFont systemFontOfSize:11];
-    subTotal.textColor=RGB(128, 128, 128);
+    subTotal.text=[NSString stringWithFormat:@"实付款"];
+    subTotal.font=[UIFont boldSystemFontOfSize:11];
+    subTotal.textColor=RGB(51, 51, 51);
     [view addSubview:subTotal];
     
     //小计金额
@@ -219,6 +291,7 @@
     jianju_footer.backgroundColor=RGB(237, 237, 237);
     [view addSubview:jianju_footer];
     
+    
     view.backgroundColor=[UIColor whiteColor];
     return view;
  
@@ -230,7 +303,7 @@
         return 38;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-        return 71;//本身距离加间距
+        return 72;//本身距离加间距
 
 }
 
@@ -298,6 +371,91 @@
    
     return cell;
     
+    
 }
 
+#pragma mark - Collapse Click Delegate
+
+// Required Methods
+-(int)numberOfCellsForCollapseClick {
+    return 3;
+}
+
+-(NSString *)titleForCollapseClickAtIndex:(int)index {
+    switch (index) {
+        case 0:
+            return @"查看运费详情";
+            break;
+        case 1:
+            return @"查看税费详情";
+            break;
+        case 2:
+            return @"查看订单截图";
+            break;
+        default:
+            return @"";
+            break;
+    }
+}
+
+-(UIView *)viewForCollapseClickContentViewAtIndex:(int)index {
+
+    switch (index) {
+        case 0:
+        {
+            _shipDetailView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
+            _shipDetailView.backgroundColor=[UIColor redColor];
+            return _shipDetailView;
+            break;
+        }
+        case 2:
+        {
+            _orderImageView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
+            _orderImageView.backgroundColor=[UIColor greenColor];
+            return _orderImageView;
+            break;
+        }
+            
+    }
+
+    return nil;
+}
+
+
+// Optional Methods
+
+-(UIColor *)colorForCollapseClickTitleViewAtIndex:(int)index {
+    return [UIColor whiteColor];
+}
+
+
+-(UIColor *)colorForTitleLabelAtIndex:(int)index {
+    return RGB(128, 128, 128);
+}
+
+-(UIColor *)colorForTitleArrowAtIndex:(int)index {
+    return RGB(255, 13, 94);
+}
+
+-(void)didClickCollapseClickCellAtIndex:(int)index isNowOpen:(BOOL)open {
+    NSLog(@"%d and it's open:%@", index, (open ? @"YES" : @"NO"));
+    
+}
+
+#pragma mark - scrollView Delegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    NSLog(@"scrollViewDidScroll");
+    CGPoint point=scrollView.contentOffset;
+    NSLog(@"%f,%f",point.x,point.y);
+    // 从中可以读取contentOffset属性以确定其滚动到的位置。
+    
+    // 注意：当ContentSize属性小于Frame时，将不会出发滚动
+    
+    CGRect rect= self.footerBar.frame;
+    self.footerBar.frame=CGRectMake(rect.origin.x, SCREEN_HEIGHT-64-47+point.y, rect.size.width, rect.size.height);
+    
+    
+}
 @end
