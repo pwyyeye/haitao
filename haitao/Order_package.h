@@ -19,6 +19,7 @@
 @property(strong,nonatomic) NSString *shop_name;
 @property(strong,nonatomic) NSString *ship_name;
 @property(strong,nonatomic) NSString *country_flag_url;
+@property(strong,nonatomic) NSString *logistic_number;
 
 
 @property(assign,nonatomic) double goods_amount;
@@ -38,6 +39,8 @@
 @property(assign,nonatomic) int buy_num;
 
 @property(strong,nonatomic) NSArray *goods;
+
+@property(strong,nonatomic) NSArray *logistic_info;
 
 
 

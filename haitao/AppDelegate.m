@@ -146,14 +146,6 @@
     
 }
 -(void)doInit{
-    NSUserDefaults *userdefault=[NSUserDefaults standardUserDefaults];
-    NSString *username=[userdefault objectForKey:@"user_name"];
-    NSString *password=[userdefault objectForKey:@"user_pass"];
-    
-    if (![MyUtil isEmptyString:username]&&![MyUtil isEmptyString:password]) {
-        LoginViewController *login=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-        [login login:nil];
-    }
     [self getMenuData];
 }
 - (void)startLoading
@@ -181,6 +173,16 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    if ([[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
+        NSUserDefaults *userdefault=[NSUserDefaults standardUserDefaults];
+        NSString *username=[userdefault objectForKey:@"user_name"];
+        NSString *password=[userdefault objectForKey:@"user_pass"];
+        
+        if (![MyUtil isEmptyString:username]&&![MyUtil isEmptyString:password]) {
+            LoginViewController *login=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+            [login login:nil];
+        }
+    }
    
 }
 

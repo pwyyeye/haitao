@@ -266,6 +266,10 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         detailViewController  = [[FavoriteViewController alloc] init];
     }else if(indexPath.item==7){
         detailViewController  = [[HelpViewController alloc] initWithNibName:@"HelpViewController" bundle:nil];
+    }else if(indexPath.item==8){
+        
+        ShowMessage(@"即将上线");
+        return;
     }
     
     
