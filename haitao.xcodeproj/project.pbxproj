@@ -55,6 +55,9 @@
 		A2E8D0091B71F7430004ADB9 /* LBDockCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E8D0081B71F7430004ADB9 /* LBDockCell.m */; };
 		A2E8D00C1B71F8B30004ADB9 /* LBRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E8D00B1B71F8B30004ADB9 /* LBRightCell.m */; };
 		A2E8D00F1B71F9340004ADB9 /* LBRightTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E8D00E1B71F9340004ADB9 /* LBRightTableView.m */; };
+		A2E8D0111B7352380004ADB9 /* FeaturedPages_img_banner@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E8D0101B7352380004ADB9 /* FeaturedPages_img_banner@3x.png */; };
+		A2E8D0131B73524A0004ADB9 /* FeaturedPages_img_banner_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E8D0121B73524A0004ADB9 /* FeaturedPages_img_banner_6@2x.png */; };
+		A2E8D0161B7447B30004ADB9 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E8D0151B7447B30004ADB9 /* UIViewExt.m */; };
 		A2F5FB4C1B5FD64100A8205C /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F5FB491B5FD64100A8205C /* UIScrollView+SVPullToRefresh.m */; };
 		A2F5FB4D1B5FD64100A8205C /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F5FB4B1B5FD64100A8205C /* UIScrollView+SVInfiniteScrolling.m */; };
 		A2F5FB4F1B5FD64A00A8205C /* SVPullToRefresh.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A2F5FB4E1B5FD64A00A8205C /* SVPullToRefresh.podspec */; };
@@ -774,6 +777,10 @@
 		A2E8D00B1B71F8B30004ADB9 /* LBRightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBRightCell.m; sourceTree = "<group>"; };
 		A2E8D00D1B71F9340004ADB9 /* LBRightTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBRightTableView.h; sourceTree = "<group>"; };
 		A2E8D00E1B71F9340004ADB9 /* LBRightTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBRightTableView.m; sourceTree = "<group>"; };
+		A2E8D0101B7352380004ADB9 /* FeaturedPages_img_banner@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FeaturedPages_img_banner@3x.png"; sourceTree = "<group>"; };
+		A2E8D0121B73524A0004ADB9 /* FeaturedPages_img_banner_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FeaturedPages_img_banner_6@2x.png"; sourceTree = "<group>"; };
+		A2E8D0141B7447B30004ADB9 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
+		A2E8D0151B7447B30004ADB9 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
 		A2F5FB471B5FD64100A8205C /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
 		A2F5FB481B5FD64100A8205C /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		A2F5FB491B5FD64100A8205C /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
@@ -2155,6 +2162,8 @@
 		AD8AA5991B5942B400E324AD /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A2E8D0121B73524A0004ADB9 /* FeaturedPages_img_banner_6@2x.png */,
+				A2E8D0101B7352380004ADB9 /* FeaturedPages_img_banner@3x.png */,
 				AD8AA5941B59427000E324AD /* HTBoutiqueViewController.h */,
 				AD8AA5951B59427000E324AD /* HTBoutiqueViewController.m */,
 			);
@@ -2180,6 +2189,8 @@
 		AD8AA59F1B59435C00E324AD /* Toolkit */ = {
 			isa = PBXGroup;
 			children = (
+				A2E8D0141B7447B30004ADB9 /* UIViewExt.h */,
+				A2E8D0151B7447B30004ADB9 /* UIViewExt.m */,
 				AD8AA5A01B59435C00E324AD /* AMRatingControl.h */,
 				AD8AA5A11B59435C00E324AD /* AMRatingControl.m */,
 				A2FC75061B5D22E20094BC59 /* HTTPController.h */,
@@ -3832,7 +3843,9 @@
 				A2FBAA2D1B6330F700B752CA /* SpecialViewController.xib in Resources */,
 				A21815A41B5A0E9A00D64E70 /* bg@2x.png in Resources */,
 				A21815A71B5A0E9A00D64E70 /* bt_01_n.png in Resources */,
+				A2E8D0111B7352380004ADB9 /* FeaturedPages_img_banner@3x.png in Resources */,
 				ADD655351B6F3700006F4127 /* userCenter_inco_Location@2x.png in Resources */,
+				A2E8D0131B73524A0004ADB9 /* FeaturedPages_img_banner_6@2x.png in Resources */,
 				AD8E35981B70CA4300C9D5BA /* DetailsPage_bg_img_@2x.png in Resources */,
 				AD8E36C31B721A1500C9D5BA /* icon_Add@3x.png in Resources */,
 				A21814291B56063300D64E70 /* arrrow_right.png in Resources */,
@@ -4168,6 +4181,7 @@
 				A2FFE16F1B608ED20004B4BC /* DJRefresh.m in Sources */,
 				ADECDC131B65DE17009EA286 /* AreaPickerView.m in Sources */,
 				ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */,
+				A2E8D0161B7447B30004ADB9 /* UIViewExt.m in Sources */,
 				A2813F3B1B70B50A00EEEB5A /* ClassificationBtn.m in Sources */,
 				A2FC75051B5D1FFA0094BC59 /* NSString+MJExtension.m in Sources */,
 				A2FC74FE1B5D1FFA0094BC59 /* MJConst.m in Sources */,

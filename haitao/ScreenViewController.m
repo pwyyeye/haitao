@@ -155,6 +155,9 @@
     _label.numberOfLines=2;
     _label.textAlignment=0;
     [uiview addSubview:_label];
+    if([titel isEqualToString:@"商城"]){
+        
+    }
     return uiview;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -539,32 +542,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-//要实现的Delegate方法,关闭键盘
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
-}
-- (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)string
-{
-    NSCharacterSet*cs;
-    cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS] invertedSet];
-    NSString*filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-    BOOL basicTest = [string isEqualToString:filtered];
-    if(!basicTest) {
-        
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                       message:@"请输入数字"
-                                                      delegate:nil
-                                             cancelButtonTitle:@"确定"
-                                             otherButtonTitles:nil];
-        
-        [alert show];
-        return NO;
-        
-    }
-    return YES;
-}
 /*
 #pragma mark - Navigation
 

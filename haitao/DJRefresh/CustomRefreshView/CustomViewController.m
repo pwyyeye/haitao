@@ -283,6 +283,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"sec:%ld row:%ld",indexPath.section,indexPath.row);
     if(indexPath.section==0){
         static NSString *contet_cell = @"contet_cell";
         
