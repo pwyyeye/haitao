@@ -10,6 +10,9 @@
 #import <UIKit/UIKit.h>
 
 @interface MyUtil : NSObject
+
++(MyUtil *)shareUtil;
+
 //判断字符串是否为空
 + (BOOL) isEmptyString:(NSString *)string;
 //对象转换成utf8json
@@ -28,5 +31,6 @@
 +(BOOL)isValidateEmail:(NSString *)email;
 
 +(NSString *)getFormatDate:(NSDate *)date;
+
 
 @end

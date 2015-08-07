@@ -61,9 +61,9 @@
     [super updateViewConstraints];
     self.viewWidth.constant=SCREEN_WIDTH;
     //tableView的高度时header＋footer＋cell高度*cell个数
-    self.tableViewHeight.constant=110+80*_packageModel.package.goods.count;
+    self.tableViewHeight.constant=110+80*_packageModel.package_info.goods.count;
     //自身高度＝tableview的y坐标＋tableView的高度＋coll的高度*个数＋coll展开view的最大高度
-    self.viewHeight.constant=self.tableView.frame.origin.y+self.tableViewHeight.constant+_coll.cellHeight*3+180;
+    self.viewHeight.constant=self.tableView.frame.origin.y+self.tableViewHeight.constant+_coll.cellHeight*3+200;
     
     
 }
@@ -108,11 +108,12 @@
             _coll.scrollEnabled=NO;
             [_coll reloadCollapseClick];
             //    // If you want a cell open on load, run this method:
-            //    [coll openCollapseClickCellAtIndex:1 animated:NO];
+            //展开第一个
+//            [_coll openCollapseClickCellAtIndex:0 animated:NO];
             
             [self.footView addSubview:_coll];
             
-            self.footView.backgroundColor=[UIColor yellowColor];
+            self.footView.backgroundColor=[UIColor whiteColor];
             
 
             
@@ -122,6 +123,8 @@
 
             //1、刚录入订单 2、订单已支付  8、订单完成 用户已确认 9、取消订单
             if ([_packageModel.order.order_status intValue]==1) {
+                _orderStatus.text=[NSString stringWithFormat:@"还未付款"];
+                
                 //联系客服
                 UIButton *kefu=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/5, 30)];
                 [kefu setImage:[UIImage imageNamed:@"icon_LianXiKeFu"]  forState:UIControlStateNormal];
@@ -162,10 +165,27 @@
                 
                 [self.myView addSubview:_footerBar];
                 
+            }else if([_packageModel.order.order_status intValue]==2){
+                _orderStatus.text=[NSString stringWithFormat:@"等待卖家发货"];
+            }else if([_packageModel.order.order_status intValue]==8){
+                _orderStatus.text=[NSString stringWithFormat:@"订单已完成"];
+            }else if([_packageModel.order.order_status intValue]==9){
+                _orderStatus.text=[NSString stringWithFormat:@"订单已取消"];
             }
             
-
+            _payAmount.text=[NSString stringWithFormat:@"包裹应付金额（包含运费税费）: %.2f",_packageModel.package_info.package_amount];
             
+            _shipAmount.text=[NSString stringWithFormat:@"运费: %.2f",_packageModel.package_info.shipping_amount];
+            
+            _taxAmount.text=[NSString stringWithFormat:@"税费: %.2f",_packageModel.package_info.transport_amount];
+            
+            _consignee.text=[NSString stringWithFormat:@"收件人: %@",_packageModel.order.consignee];
+            
+            _mobile.text=[NSString stringWithFormat:@"%@",_packageModel.order.mobile];
+            
+            _consignee.text=[NSString stringWithFormat:@"收件人: %@",_packageModel.order.consignee];
+            
+            _address.text= [NSString stringWithFormat:@"%@%@",_packageModel.order.province,_packageModel.order.address];;
             self.myScollView.delegate=self;
             self.myScollView.bounces=NO;//遇到边框不反弹
 
@@ -189,7 +209,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
    //内层header
-         Order_package *package=_packageModel.package;
+         Order_package *package=_packageModel.package_info;
         
         UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 38)];
         
@@ -213,7 +233,7 @@
         [view addSubview:shopname];
         
         //直邮转运
-        UILabel *ship=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-50, 0, 40, 38)];
+        UILabel *ship=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 0, 80, 38)];
         ship.text=package.ship_name;
         ship.font =[UIFont  boldSystemFontOfSize:11];
         ship.textColor=RGB(51, 51, 51);
@@ -232,7 +252,7 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
 
-    Order_package *package=_packageModel.package;
+    Order_package *package=_packageModel.package_info;
     //内层footer
     UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 72)];
     
@@ -314,7 +334,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return _packageModel.package.goods.count;
+    return _packageModel.package_info.goods.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -327,7 +347,7 @@
 
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
 
-        Order_goods *goods=[_packageModel.package.goods objectAtIndex:indexPath.row];
+        Order_goods *goods=[_packageModel.package_info.goods objectAtIndex:indexPath.row];
         cell.textLabel.text = goods.goods_name;
         cell.textLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:11];
         cell.textLabel.textColor=RGB(51, 51, 51);

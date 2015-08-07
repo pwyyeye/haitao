@@ -199,7 +199,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.item==0){
+    if(indexPath.row==0){
         return 70;
     }else{
         return 60;
@@ -246,7 +246,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AddressListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"addressListCell" forIndexPath:indexPath];
-    AddressModel *model=_data[indexPath.item];
+    AddressModel *model=_data[indexPath.row];
     cell.username.text=model.consignee;
     
     NSString *address=[NSString stringWithFormat:@"%@%@",model.province,model.address];
@@ -268,7 +268,7 @@
     
     cell.telephone.text=model.mobile;
     
-    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, indexPath.item==0?cell.frame.size.height-20:cell.frame.size.height-10)];
+    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, indexPath.row==0?cell.frame.size.height-20:cell.frame.size.height-10)];
     label.backgroundColor=[UIColor whiteColor];
     //清除cell背景颜色 在底部添加白色背景label 高度小于cell 使之看起来有间隔
     cell.backgroundColor=[UIColor clearColor];
@@ -316,11 +316,11 @@
     // Navigation logic may go here, for example:
     // Create the next view controller.
     if ([self.addressListDelegate respondsToSelector:@selector(selectedAddress:)]) {
-        [self.addressListDelegate selectedAddress:_data[indexPath.item]];
+        [self.addressListDelegate selectedAddress:_data[indexPath.row]];
         [self.navigationController popViewControllerAnimated:YES];
     }else{
         UpdateAddress *detailViewController=[[UpdateAddress alloc] initWithNibName:@"UpdateAddress" bundle:nil];
-        detailViewController.addressModel=_data[indexPath.item];
+        detailViewController.addressModel=_data[indexPath.row];
         // Push the view controller.
         [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
         [self.navigationController pushViewController:detailViewController animated:YES];

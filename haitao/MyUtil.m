@@ -10,6 +10,16 @@
 
 @implementation MyUtil
 
++(MyUtil *)shareUtil{
+    static dispatch_once_t onceToken;
+    static MyUtil *singleton;
+    dispatch_once(&onceToken, ^{
+        singleton=[[MyUtil alloc] init];
+    });
+    NSLog(@"-------singletonAlipay---------%@",singleton);
+    return singleton;
+}
+
 + (BOOL) isEmptyString:(NSString *)string {
     if (string == nil || string == NULL) {
         return YES;
@@ -116,4 +126,6 @@
     return currentDateStr;
     
 }
+
+
 @end

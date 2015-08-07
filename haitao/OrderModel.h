@@ -50,7 +50,7 @@
 
 @property(strong,nonatomic) NSString *mt;
 
-@property(strong,nonatomic) NSArray *package;
+@property(strong,nonatomic) NSArray *package_info;
 
 @property(assign,nonatomic) int buy_num;
 

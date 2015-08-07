@@ -142,10 +142,10 @@
 //    titleLabel.text=_data[indexPath.item];
 //    [cell.contentView addSubview:titleLabel];
     
-    cell.textLabel.text=_data[indexPath.item];
+    cell.textLabel.text=_data[indexPath.row];
     cell.textLabel.font=[UIFont systemFontOfSize:15];
     
-    switch (indexPath.item) {
+    switch (indexPath.row) {
         case 0:
             cell.imageView.image=[UIImage imageNamed:@"icon_PingJia"];
             break;
@@ -185,16 +185,16 @@
     // Create the next view controller.
     UIViewController *detailViewController;
     
-    if (indexPath.item==0) {
+    if (indexPath.row==0) {
 //        [self gotoAppStorePageRaisal:@""];//app评价地址
-    }else if (indexPath.item==1) {
+    }else if (indexPath.row==1) {
         ShowMessage(@"清除成功！");
         
-    }else if (indexPath.item==2) {
+    }else if (indexPath.row==2) {
         detailViewController=[[ConnetPeiKua alloc] initWithNibName:@"ConnetPeiKua" bundle:nil];
-    }else if (indexPath.item==3){
+    }else if (indexPath.row==3){
         detailViewController=[[AboutPeiKua alloc] initWithNibName:@"AboutPeiKua" bundle:nil];
-    }else if (indexPath.item==4){
+    }else if (indexPath.row==4){
     
         detailViewController=[[ServiceTerms alloc] initWithNibName:@"ServiceTerms" bundle:nil];
     }else{

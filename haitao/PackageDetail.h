@@ -12,7 +12,7 @@
 @interface PackageDetail : NSObject
 
 
-@property(strong,nonatomic) Order_package *package;
+@property(strong,nonatomic) Order_package *package_info;
 @property(strong,nonatomic) OrderModelForPackageDetail *order;
 
 @end

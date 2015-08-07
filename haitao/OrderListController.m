@@ -14,6 +14,8 @@
 #import "Order_goodsAttr.h"
 #import "PackageDetailController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "SingletonAlipay.h"
+#import "AlipayOrder.h"
 @interface OrderListController ()
 
 @end
@@ -112,7 +114,7 @@
         tableView;
     });
     self.tableView.tableFooterView=[[UIView alloc]init];
-    
+    [self.tableView setBackgroundColor:RGB(237, 237, 237)];
 //    self.tableView.tableHeaderView=[[UIView alloc]init];
     
 }
@@ -205,43 +207,56 @@
     
     NSLog(@"Index %i", Index);
     
-    //    static NSString *prediStr1 = @"cat_name LIKE '*'";
-    //
-    //    //    1）.等于查询
-    //    //    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", "Ansel"];
-    //    //    NSArray *filteredArray = [array filteredArrayUsingPredicate:predicate];
-    //    //
-    //    //    2）.模糊查询
-    //    //    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name CONTAINS %@", @"A"]; //predicate只能是对象
-    //    //    NSArray *filteredArray = [array filteredArrayUsingPredicate:predicate];
-    //
-    //    switch (Index) {
-    //        case 0:{
-    //
-    //            prediStr1 = @"status LIKE '*'";
-    //
-    //        }
-    //            break;
-    //        case 1:{
-    //
-    //            prediStr1 = [NSString stringWithFormat:@"status=='%d'", 1];
-    //        }
-    //            break;
-    //        case 2:{
-    //
-    //            prediStr1 = [NSString stringWithFormat:@"status=='%d'", 0];
-    //
-    //        }
-    //            break;
-    //
-    //        default:
-    //            break;
-    //    }
-    //
-    //    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@",prediStr1]];
-    //
-    //    self.result_array = [self.Coupons_array filteredArrayUsingPredicate:predicate];
-    //    [self.tableView reloadData];
+        static NSString *prediStr1 = @"order_status LIKE '*'";
+    
+        //    1）.等于查询
+        //    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", "Ansel"];
+        //    NSArray *filteredArray = [array filteredArrayUsingPredicate:predicate];
+        //
+        //    2）.模糊查询
+        //    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name CONTAINS %@", @"A"]; //predicate只能是对象
+        //    NSArray *filteredArray = [array filteredArrayUsingPredicate:predicate];
+    
+        switch (Index) {
+            case 0:{
+    
+                prediStr1 = @"order_status LIKE '*'";
+    
+            }
+                break;
+            case 1:{
+    
+                prediStr1 = [NSString stringWithFormat:@"order_status=='%d'", 1];//未付款
+            }
+                break;
+            case 2:{
+    
+                prediStr1 = [NSString stringWithFormat:@"order_status=='%d'", 2];//已付款
+    
+            }
+                break;
+            case 3:{
+                
+                prediStr1 = [NSString stringWithFormat:@"order_status=='%d'", 8];//订单已完成
+                
+            }
+                break;
+            case 4:{
+                
+                prediStr1 = [NSString stringWithFormat:@"order_status=='%d'", 9];//取消订单到时候改成待评价
+                
+            }
+                break;
+        
+            default:
+                break;
+        }
+    
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@",prediStr1]];
+    
+        self.result_array = [self.order_array filteredArrayUsingPredicate:predicate];
+        [self.tableView reloadData];
+    [self showEmptyView];
 }
 /*
 #pragma mark - Navigation
@@ -336,7 +351,7 @@
         //最外层 footer
         UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 71)];
         OrderModel *orderModel= _result_array[section];
-        NSArray *packages=orderModel.package;
+        NSArray *packages=orderModel.package_info;
   
         UILabel *head=[[UILabel alloc] initWithFrame:CGRectMake(10, 3, SCREEN_WIDTH/2, 18)];
         head.text=[NSString stringWithFormat:@"共 %lu个包裹,%d件商品",(unsigned long)packages.count,orderModel.buy_num];
@@ -357,28 +372,60 @@
         UILabel *total_jianju=[[UILabel alloc] initWithFrame:CGRectMake(0, 24, SCREEN_WIDTH, 0.5)];
         total_jianju.backgroundColor=RGB(237, 237, 237);
         [view addSubview:total_jianju];
+        //1、刚录入订单 2、订单已支付  8、订单完成 用户已确认 9、取消订单
+        if ([orderModel.order_status integerValue]==1) {
+            //付款按钮
+            UIButton *btnPay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 29, 80, 24)];
+            [btnPay setTitle:@"付款" forState:UIControlStateNormal];
+            [btnPay setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            btnPay.titleLabel.font =[UIFont  systemFontOfSize:11];
+            btnPay.backgroundColor=RGB(255, 13, 94);
+            btnPay.layer.masksToBounds=YES;
+            btnPay.layer.cornerRadius=3;
+            
+            btnPay.tag=[orderModel.id integerValue];
+            [btnPay addTarget:self action:@selector(gotoPay:) forControlEvents:UIControlEventTouchUpInside];
+            [view addSubview:btnPay];
+            
+            //取消订单按钮
+            UIButton *btnCancel=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-180, 29, 80, 24)];
+            [btnCancel setTitle:@"取消订单" forState:UIControlStateNormal];
+            [btnCancel setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
+            btnCancel.titleLabel.font =[UIFont  systemFontOfSize:11];
+            btnCancel.backgroundColor=[UIColor whiteColor];
+            btnCancel.layer.masksToBounds=YES;
+            btnCancel.layer.borderWidth=0.5;
+            btnCancel.layer.borderColor=RGB(179, 179, 179).CGColor;
+            btnCancel.layer.cornerRadius=3;
+            [view addSubview:btnCancel];
+        }else if(([orderModel.order_status integerValue]==2)){//已付款
+            //付款按钮
+            UIButton *btnPay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 29, 80, 24)];
+            [btnPay setTitle:@"确认收货" forState:UIControlStateNormal];
+            [btnPay setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            btnPay.titleLabel.font =[UIFont  systemFontOfSize:11];
+            btnPay.backgroundColor=RGB(255, 13, 94);
+            btnPay.layer.masksToBounds=YES;
+            btnPay.layer.cornerRadius=3;
+            [view addSubview:btnPay];
+            
+            
+        }else if(([orderModel.order_status integerValue]==8)||([orderModel.order_status integerValue]==9)){//订单完成和取消状态
+            
+            //删除订单按钮
+            UIButton *btnCancel=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 29, 80, 24)];
+            [btnCancel setTitle:@"删除订单" forState:UIControlStateNormal];
+            [btnCancel setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
+            btnCancel.titleLabel.font =[UIFont  systemFontOfSize:11];
+            btnCancel.backgroundColor=[UIColor whiteColor];
+            btnCancel.layer.masksToBounds=YES;
+            btnCancel.layer.borderWidth=0.5;
+            btnCancel.layer.borderColor=RGB(179, 179, 179).CGColor;
+            btnCancel.layer.cornerRadius=3;
+            [view addSubview:btnCancel];
+            
+        }
         
-        //付款按钮
-        UIButton *btnPay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 29, 80, 24)];
-        [btnPay setTitle:@"付款" forState:UIControlStateNormal];
-        [btnPay setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        btnPay.titleLabel.font =[UIFont  systemFontOfSize:11];
-        btnPay.backgroundColor=RGB(255, 13, 94);
-        btnPay.layer.masksToBounds=YES;
-        btnPay.layer.cornerRadius=3;
-        [view addSubview:btnPay];
-        
-        //取消订单按钮
-        UIButton *btnCancel=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-180, 29, 80, 24)];
-        [btnCancel setTitle:@"取消订单" forState:UIControlStateNormal];
-        [btnCancel setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
-        btnCancel.titleLabel.font =[UIFont  systemFontOfSize:11];
-        btnCancel.backgroundColor=[UIColor whiteColor];
-        btnCancel.layer.masksToBounds=YES;
-        btnCancel.layer.borderWidth=0.5;
-        btnCancel.layer.borderColor=RGB(179, 179, 179).CGColor;
-        btnCancel.layer.cornerRadius=3;
-        [view addSubview:btnCancel];
         
         //给底部footer 加6.5个像素间距
         UILabel *jianju=[[UILabel alloc] initWithFrame:CGRectMake(0, 58, SCREEN_WIDTH, 13)];
@@ -479,7 +526,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView==_tableView) {
         OrderModel *orderModel=_result_array[section];
-        return orderModel.package.count;
+        return orderModel.package_info.count;
     }else{
         return _goods_arrayForSubView.count;
     }
@@ -497,6 +544,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OrderListCell *cell = [[OrderListCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     //    cell.textLabel.text = self.results[indexPath.row];
+    NSLog(@"----pass-indexPath item%d---",indexPath.item);
+    NSLog(@"----pass-indexPath row%d---",indexPath.row);
+    
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
 
@@ -504,7 +554,7 @@
     {
         OrderModel *orderModel=_result_array[indexPath.section];
 
-        _package=orderModel.package[indexPath.row];
+        _package=orderModel.package_info[indexPath.row];
         
         _goods_arrayForSubView=_package.goods;
         
@@ -583,4 +633,29 @@
     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
+
+-(void)gotoPay:(UIButton *)sender{
+    //订单号
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"id=='%d'",sender.tag]];
+    
+    OrderModel *orderModel = [self.order_array filteredArrayUsingPredicate:predicate][0];
+    
+    AlipayOrder *order=[[AlipayOrder alloc] init];
+    
+    order.tradeNO = orderModel.id; //订单ID（由商家自行制定）
+    order.productName = @"海淘商品标题"; //商品标题
+    order.productDescription = @"商品描述"; //商品描述
+    order.amount = [NSString stringWithFormat:@"%.2f",0.01];
+    
+    SingletonAlipay *alipay=[SingletonAlipay singletonAlipay];
+    [alipay payOrder:order];
+    
+}
+
+
+
+
+
+
+
 @end

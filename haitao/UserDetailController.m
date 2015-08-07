@@ -105,7 +105,7 @@
     return 0.0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.item==0) {
+    if (indexPath.row==0) {
         return 80;
     }
     return 50;
@@ -114,12 +114,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-85, indexPath.item==0?25:10, 60, 30)];
+    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-85, indexPath.row==0?25:10, 60, 30)];
     label.font=[UIFont systemFontOfSize:13.0];
     
-    label.tag=200+indexPath.item;
+    label.tag=200+indexPath.row;
     
-    if (indexPath.item==0) {
+    if (indexPath.row==0) {
         label.text=@"修改头像";
         cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
         cell.imageView.image=[UIImage imageNamed:@"default_04.png"];
@@ -140,7 +140,7 @@
         cell.textLabel.text=[USER_DEFAULT objectForKey:@"user_nick"];
         label.text=@"修改昵称";
     }
-    cell.tag=100+indexPath.item;
+    cell.tag=100+indexPath.row;
     [cell.contentView addSubview:label];
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     
@@ -190,7 +190,7 @@
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.item==0) {
+    if (indexPath.row==0) {
         UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择", nil];
         
         actionSheet.tag=255;
@@ -199,7 +199,7 @@
         
         
         
-        _selectcedCell=[tableView viewWithTag:100+indexPath.item];
+        _selectcedCell=[tableView viewWithTag:100+indexPath.row];
 //        _selectedLabel=_selectcedCell.textLabel;//[_selectcedCell.contentView viewWithTag:200+indexPath.item];
         
     }else{

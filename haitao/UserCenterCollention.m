@@ -103,11 +103,11 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UserCenterCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
 
-    cell.content.text=_tableList[indexPath.item];
+    cell.content.text=_tableList[indexPath.row];
     
     cell.content.textColor=RGB(51, 51, 51);
     cell.layer.borderColor=[[UIColor clearColor] CGColor];
-    switch (indexPath.item) {
+    switch (indexPath.row) {
         case 0:
             cell.imageView.image=[UIImage imageNamed:@"userCenter_inco_order"];
             break;
@@ -149,13 +149,13 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     }
 
 
-    if (indexPath.item==0||indexPath.item==1||indexPath.item==3||indexPath.item==4) {//9宫格 1 2 4 5格子 右、下边线
+    if (indexPath.row==0||indexPath.row==1||indexPath.row==3||indexPath.row==4) {//9宫格 1 2 4 5格子 右、下边线
         CALayer *layerShadow=[[CALayer alloc]init];
         layerShadow.frame=CGRectMake(-1, -1, cell.frame.size.width+1, cell.frame.size.height+1);
         layerShadow.borderColor=[RGB(237, 223, 223) CGColor];
         layerShadow.borderWidth=1;
         [cell.layer addSublayer:layerShadow];
-    }if (indexPath.item==2||indexPath.item==5) {//9宫格 3 6格子下边线
+    }if (indexPath.row==2||indexPath.row==5) {//9宫格 3 6格子下边线
         
         CALayer *layerShadow=[[CALayer alloc]init];
         layerShadow.frame=CGRectMake(0, cell.frame.size.height-1,  cell.frame.size.width,1);
@@ -163,7 +163,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         layerShadow.borderWidth=1;
         [cell.layer addSublayer:layerShadow];
         
-    }else if (indexPath.item==6||indexPath.item==7){//9宫格 3 6格子右边线
+    }else if (indexPath.row==6||indexPath.row==7){//9宫格 3 6格子右边线
         
         CALayer *layerShadow=[[CALayer alloc]init];
         layerShadow.frame=CGRectMake(cell.frame.size.width-1,0,1,cell.frame.size.height);

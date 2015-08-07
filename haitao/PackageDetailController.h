@@ -29,7 +29,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *mobile;
 
-@property (weak, nonatomic) IBOutlet UILabel *packAmount;
+@property (weak, nonatomic) IBOutlet UILabel *address;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
