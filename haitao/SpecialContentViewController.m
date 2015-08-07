@@ -260,7 +260,7 @@
 
 #pragma mark获取商品数据
 -(void)getGoodlist:(NSArray *)arr{
-    int nowCount;
+    int nowCount=1;
     [listArr removeAllObjects];
     NSMutableArray *pageArr=[[NSMutableArray alloc]initWithCapacity:2];
     for (int i=0; i<arr.count; i++) {

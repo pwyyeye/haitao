@@ -8,6 +8,7 @@
 
 #import "LBRightCell.h"
 #import "Header.h"
+
 @interface LBRightCell ()
 
 @property (weak ,nonatomic) UIImageView *wineImage;
@@ -44,7 +45,7 @@
 
 
 
--(void)setRightData:(NSMutableDictionary *)rightData
+-(void)setRightData:(IndexModel *)rightData
 {
     
     _rightData=rightData;
@@ -56,7 +57,7 @@
     
     
     
-    NSString *wineNameText =_rightData[@"name"];
+    NSString *wineNameText =rightData.name;
     CGRect wineNameRect =[wineNameText boundingRectWithSize:CGSizeMake(kWindowWidth-75-CGRectGetMaxX(_wineImage.frame)-10, 35) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingTruncatesLastVisibleLine attributes:[NSDictionary dictionaryWithObjectsAndKeys:Font(14),NSFontAttributeName, nil] context:nil];
     _wineName.text=wineNameText;
     _wineName.font=Font(14);
@@ -68,13 +69,13 @@
 -(void)wineRightClick
 {
 
-    _TapActionBlock([ _rightData[@"Quantity"] integerValue],[_rightData[@"money"] integerValue] ,_rightData[@"ProductID"]);
+//    _TapActionBlock([ _rightData[@"Quantity"] integerValue],[_rightData[@"money"] integerValue] ,_rightData[@"ProductID"]);
 }
 
 -(void)wineLeftClick
 {
     
-    _TapActionBlock([ _rightData[@"Quantity"] integerValue],[_rightData[@"money"] integerValue],_rightData[@"ProductID"]);
+//    _TapActionBlock([ _rightData[@"Quantity"] integerValue],[_rightData[@"money"] integerValue],_rightData[@"ProductID"]);
 
     
 }

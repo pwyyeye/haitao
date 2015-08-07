@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "IndexModel.h"
 @interface LBRightCell : UITableViewCell
-@property (nonatomic ,strong) NSMutableDictionary *rightData;
+@property (nonatomic ,strong) IndexModel *rightData;
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 

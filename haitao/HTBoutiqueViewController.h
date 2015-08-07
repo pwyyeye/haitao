@@ -7,7 +7,12 @@
 //
 
 #import "LTKViewController.h"
-
+#import "DJRefresh.h"
+#import "DJRefreshProgressView.h"
+#import "CFImageButton.h"
 @interface HTBoutiqueViewController : LTKViewController
-
+<UITableViewDelegate,UITableViewDataSource,HTTPControllerProtocol,DJRefreshDelegate>{
+    NSMutableArray *listArr;
+}
+@property (nonatomic,strong)DJRefresh *refresh;
 @end
