@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Order_package.h"
-@interface OrderListController : UIViewController<HTTPControllerProtocol, UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
+#import "SingletonAlipay.h"
+@interface OrderListController : UIViewController<HTTPControllerProtocol, UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,SingletonAlipayProtocol>
 
 @property(strong,nonatomic) UIView *empty_view;
 
