@@ -146,6 +146,9 @@
 		A2FFE1871B60B4A60004B4BC /* UIImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FFE1851B60B4A60004B4BC /* UIImageButton.m */; };
 		AD1386921B54D5BF00130E49 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1386901B54D5BF00130E49 /* LoginViewController.m */; };
 		AD1386931B54D5BF00130E49 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1386911B54D5BF00130E49 /* LoginViewController.xib */; };
+		AD7BE4961B7612AF003D29F0 /* OrderSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7BE4941B7612AF003D29F0 /* OrderSuccessController.m */; };
+		AD7BE4971B7612AF003D29F0 /* OrderSuccessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD7BE4951B7612AF003D29F0 /* OrderSuccessController.xib */; };
+		AD7BE49B1B762512003D29F0 /* Sherch_icon_Sherch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD7BE49A1B762512003D29F0 /* Sherch_icon_Sherch@2x.png */; };
 		AD8AA5871B59416000E324AD /* CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8AA57C1B59416000E324AD /* CustomTabBar.m */; };
 		AD8AA5881B59416000E324AD /* FCTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8AA57E1B59416000E324AD /* FCTabBarController.m */; };
 		AD8AA5891B59416000E324AD /* LTKNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8AA5801B59416000E324AD /* LTKNavigationViewController.m */; };
@@ -517,7 +520,6 @@
 		AD8E37731B721A1500C9D5BA /* Sherch_icon_EXit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E36741B721A1400C9D5BA /* Sherch_icon_EXit@2x.png */; };
 		AD8E37741B721A1500C9D5BA /* Sherch_icon_EXit@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E36751B721A1400C9D5BA /* Sherch_icon_EXit@3x.png */; };
 		AD8E37751B721A1500C9D5BA /* Sherch_icon_Sherch.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E36761B721A1400C9D5BA /* Sherch_icon_Sherch.png */; };
-		AD8E37761B721A1500C9D5BA /* Sherch_icon_Sherch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E36771B721A1400C9D5BA /* Sherch_icon_Sherch@2x.png */; };
 		AD8E37771B721A1500C9D5BA /* Sherch_icon_Sherch@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E36781B721A1400C9D5BA /* Sherch_icon_Sherch@3x.png */; };
 		AD8E37781B721A1500C9D5BA /* ShuMa_icon_DianQi.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E36791B721A1400C9D5BA /* ShuMa_icon_DianQi.png */; };
 		AD8E37791B721A1500C9D5BA /* ShuMa_icon_DianQi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E367A1B721A1400C9D5BA /* ShuMa_icon_DianQi@2x.png */; };
@@ -919,6 +921,10 @@
 		AD13868F1B54D5BF00130E49 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AD1386901B54D5BF00130E49 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		AD1386911B54D5BF00130E49 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		AD7BE4931B7612AF003D29F0 /* OrderSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderSuccessController.h; sourceTree = "<group>"; };
+		AD7BE4941B7612AF003D29F0 /* OrderSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderSuccessController.m; sourceTree = "<group>"; };
+		AD7BE4951B7612AF003D29F0 /* OrderSuccessController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderSuccessController.xib; sourceTree = "<group>"; };
+		AD7BE49A1B762512003D29F0 /* Sherch_icon_Sherch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sherch_icon_Sherch@2x.png"; sourceTree = "<group>"; };
 		AD8AA57B1B59416000E324AD /* CustomTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBar.h; sourceTree = "<group>"; };
 		AD8AA57C1B59416000E324AD /* CustomTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBar.m; sourceTree = "<group>"; };
 		AD8AA57D1B59416000E324AD /* FCTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCTabBarController.h; sourceTree = "<group>"; };
@@ -1365,7 +1371,6 @@
 		AD8E36741B721A1400C9D5BA /* Sherch_icon_EXit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sherch_icon_EXit@2x.png"; sourceTree = "<group>"; };
 		AD8E36751B721A1400C9D5BA /* Sherch_icon_EXit@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sherch_icon_EXit@3x.png"; sourceTree = "<group>"; };
 		AD8E36761B721A1400C9D5BA /* Sherch_icon_Sherch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sherch_icon_Sherch.png; sourceTree = "<group>"; };
-		AD8E36771B721A1400C9D5BA /* Sherch_icon_Sherch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sherch_icon_Sherch@2x.png"; sourceTree = "<group>"; };
 		AD8E36781B721A1400C9D5BA /* Sherch_icon_Sherch@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sherch_icon_Sherch@3x.png"; sourceTree = "<group>"; };
 		AD8E36791B721A1400C9D5BA /* ShuMa_icon_DianQi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShuMa_icon_DianQi.png; sourceTree = "<group>"; };
 		AD8E367A1B721A1400C9D5BA /* ShuMa_icon_DianQi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShuMa_icon_DianQi@2x.png"; sourceTree = "<group>"; };
@@ -2841,7 +2846,7 @@
 				AD8E36741B721A1400C9D5BA /* Sherch_icon_EXit@2x.png */,
 				AD8E36751B721A1400C9D5BA /* Sherch_icon_EXit@3x.png */,
 				AD8E36761B721A1400C9D5BA /* Sherch_icon_Sherch.png */,
-				AD8E36771B721A1400C9D5BA /* Sherch_icon_Sherch@2x.png */,
+				AD7BE49A1B762512003D29F0 /* Sherch_icon_Sherch@2x.png */,
 				AD8E36781B721A1400C9D5BA /* Sherch_icon_Sherch@3x.png */,
 				AD8E36791B721A1400C9D5BA /* ShuMa_icon_DianQi.png */,
 				AD8E367A1B721A1400C9D5BA /* ShuMa_icon_DianQi@2x.png */,
@@ -3356,6 +3361,9 @@
 				AD8E38A41B75AB9000C9D5BA /* LogisticsCell.h */,
 				AD8E38A51B75AB9000C9D5BA /* LogisticsCell.m */,
 				AD8E38A61B75AB9000C9D5BA /* LogisticsCell.xib */,
+				AD7BE4931B7612AF003D29F0 /* OrderSuccessController.h */,
+				AD7BE4941B7612AF003D29F0 /* OrderSuccessController.m */,
+				AD7BE4951B7612AF003D29F0 /* OrderSuccessController.xib */,
 			);
 			name = MyOrder;
 			sourceTree = "<group>";
@@ -3685,7 +3693,6 @@
 				AD8E377D1B721A1500C9D5BA /* ShuMa_icon_GeRenHuLi@3x.png in Resources */,
 				AD8E36C41B721A1500C9D5BA /* icon_add_ShenFengZheng.png in Resources */,
 				ADCF99261B6CD4B400EA5592 /* MessageDetail.xib in Resources */,
-				AD8E37761B721A1500C9D5BA /* Sherch_icon_Sherch@2x.png in Resources */,
 				AD8E374C1B721A1500C9D5BA /* icon_ShuMa@2x.png in Resources */,
 				ADD171811B5E1C9900E451D5 /* AddAddressStep2.xib in Resources */,
 				AD8E37C81B7392E100C9D5BA /* order_btn_definite@2x.png in Resources */,
@@ -4017,6 +4024,7 @@
 				AD8E379E1B721A1500C9D5BA /* UserCenter_icon_info@3x.png in Resources */,
 				AD8E36C21B721A1500C9D5BA /* icon_Add@2x.png in Resources */,
 				ADECDC1C1B672C47009EA286 /* ConnetPeiKua.xib in Resources */,
+				AD7BE4971B7612AF003D29F0 /* OrderSuccessController.xib in Resources */,
 				ADCF99211B6CC50C00EA5592 /* MessageCell.xib in Resources */,
 				AD8E358E1B70CA4300C9D5BA /* search_icon_meizhuang_@2x.png in Resources */,
 				AD8E36FB1B721A1500C9D5BA /* icon_Guan_AnZhuo@2x.png in Resources */,
@@ -4042,6 +4050,7 @@
 				AD8E36BF1B721A1500C9D5BA /* Icon_About@2x.png in Resources */,
 				AD8E37CA1B7392E100C9D5BA /* tariff_btn_payment_6@2x.png in Resources */,
 				AD8E37391B721A1500C9D5BA /* icon_Return.png in Resources */,
+				AD7BE49B1B762512003D29F0 /* Sherch_icon_Sherch@2x.png in Resources */,
 				AD8E372F1B721A1500C9D5BA /* icon_PingJia@3x.png in Resources */,
 				AD8E36FC1B721A1500C9D5BA /* icon_Guan_AnZhuo@3x.png in Resources */,
 				AD8E37811B721A1500C9D5BA /* ShuMa_icon_pc.png in Resources */,
@@ -4213,6 +4222,7 @@
 				ADECDC2A1B672CF2009EA286 /* ServiceTerms.m in Sources */,
 				A2FC74FF1B5D1FFA0094BC59 /* MJFoundation.m in Sources */,
 				A2FC74E11B5A3F340094BC59 /* BAWineShoppingDockTavleView.m in Sources */,
+				AD7BE4961B7612AF003D29F0 /* OrderSuccessController.m in Sources */,
 				AD8AA6201B59435C00E324AD /* EScrollerView.m in Sources */,
 				AD8AA6451B59435C00E324AD /* unzip.m in Sources */,
 				A2FBAA3E1B6393F200B752CA /* SpecialContentViewController.m in Sources */,

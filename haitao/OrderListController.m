@@ -14,7 +14,8 @@
 #import "Order_goodsAttr.h"
 #import "PackageDetailController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
-#import "SingletonAlipay.h"
+#import "OrderSuccessController.h"
+
 #import "AlipayOrder.h"
 @interface OrderListController ()
 
@@ -675,6 +676,7 @@
     
 }
 
+#pragma mark - button Action
 
 -(void)gotoPackageDetail:(UIButton *)sender{
     NSLog(@"----pass-gotoPackageDetail %@---",@"test");
@@ -702,6 +704,7 @@
     order.amount = [NSString stringWithFormat:@"%.2f",0.01];
     
     SingletonAlipay *alipay=[SingletonAlipay singletonAlipay];
+    alipay.delegate=self;
     [alipay payOrder:order];
     
 }
@@ -746,5 +749,13 @@
     
 }
 
+#pragma mark - alipay delegate
+-(void)callBack:(NSDictionary *)resultDic{
+    OrderSuccessController *detailViewController =[[OrderSuccessController alloc] initWithNibName:@"OrderSuccessController" bundle:nil];
+    
+    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    [self.navigationController pushViewController:detailViewController animated:YES];
 
+}
 @end
