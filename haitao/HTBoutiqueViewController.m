@@ -146,6 +146,7 @@
     }
     
 }
+
 #pragma mark获取商品数据
 -(void)getGoodlist:(NSArray *)arr{
     int nowCount=1;
@@ -328,7 +329,7 @@
         for (int i =0; i<arrTemp.count; i++)
         {
             New_Goods *new_Goods=arrTemp[i];
-            GoodImageButton *gbBtn=[[GoodImageButton alloc]initWithFrame:CGRectMake((i%2)*((SCREEN_WIDTH-20)/2-5+10)+10, floor(i/2)*200+10, (SCREEN_WIDTH-20)/2-5, 200)];
+            GoodImageButton *gbBtn=[[GoodImageButton alloc]initWithFrame:CGRectMake((i%2)*((SCREEN_WIDTH-20)/2-5+10)+10, floor(i/2)*210+10, (SCREEN_WIDTH-20)/2-5, 210)];
             gbBtn.userInteractionEnabled=YES;
             gbBtn.backgroundColor=[UIColor whiteColor];
 //            imageV.userInteractionEnabled=YES;
@@ -390,35 +391,14 @@
             UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(0, _label1.frame.size.height+_label1.frame.origin.y+1 ,btn.frame.size.width, 20)];
             title_label.text=[NSString stringWithFormat:@"%.1f",new_Goods.price];
             
-            title_label.font=[UIFont fontWithName:@"Helvetica-Bold" size:14];;
+            title_label.font=[UIFont fontWithName:@"Helvetica-Bold" size:14];
             title_label.backgroundColor=[UIColor clearColor];
             title_label.textColor =hexColor(@"#ff0d5e");
             title_label.textAlignment=NSTextAlignmentCenter;
             lastFrame=title_label.frame;
             //
             [gbBtn addSubview:title_label];
-            gbBtn.height=title_label.frame.size.height+title_label.frame.origin.y+5;
             lastFrame =gbBtn.frame;
-//            UILabel *title_label1=[[UILabel alloc]initWithFrame:CGRectMake((i%2)*153+13+title_label.frame.size.width, floor(i/2)*200+140+10+_label.frame.size.height, 65, 20)];
-//            title_label1.text=@"199.70";
-//            title_label1.font=[UIFont systemFontOfSize:10];
-//            title_label1.backgroundColor=[UIColor clearColor];
-//            title_label1.textColor =[UIColor colorWithRed:.7 green:.7 blue:.7 alpha:1.0];
-//            title_label1.textAlignment=0;
-//            
-//            [cell addSubview:title_label1];
-//            
-//            //高度固定不折行，根据字的多少计算label的宽度
-//            NSString *str = title_label1.text;
-//            CGSize size = [str sizeWithFont:title_label.font constrainedToSize:CGSizeMake(MAXFLOAT, title_label.frame.size.height)];
-//            //                     NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
-//            //根据计算结果重新设置UILabel的尺寸
-//            
-//            
-//            UIImageView *line=[[UIImageView alloc]initWithFrame:CGRectMake(0, title_label1.frame.size.height/2, size.width, 1)];
-//            line.image=BundleImage(@"line_01_.png");
-//            [title_label1 addSubview:line];
-            
         }
         CGRect cellFrame = [cell frame];
         cellFrame.origin=CGPointMake(0, 0);

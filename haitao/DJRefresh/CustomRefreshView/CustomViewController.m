@@ -11,9 +11,9 @@
 #import "App_Home_Bigegg.h"
 #import "EScrollerView.h"
 #import "screenViewController.h"
-#import "CFContentViewController.h"
+
 #import "GoodImageButton.h"
-#import "HTGoodDetailsViewController.h"
+
 @interface CustomViewController ()<EScrollerViewDelegate>
 {
     UITableView                 *_tableView;
@@ -27,29 +27,64 @@
     UIImageView*  tabBarArrow;//上部桔红线条
     NSDictionary *indexDic;
     NSMutableArray *bannerArr;
+    NSArray *tupianArr;
+    CGRect tbFrame;
+    BOOL isshuaxin;
 }
 
 @end
 
 @implementation CustomViewController
 -(void)viewWillAppear:(BOOL)animated{
-    NSLog(@"");
+    
+}
+-(void)changeFrame{
+    isshuaxin=true;
+    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
+}
+-(void)changeGoodFrame{
+    isshuaxin=true;
+    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
+
 }
 - (void)viewDidLoad {
+    isshuaxin=false;
     [super viewDidLoad];
     title=@"";
     bannerArr =[[NSMutableArray alloc]initWithCapacity:8];
     _tableView =[[UITableView alloc]initWithFrame:self.mainFrame style:UITableViewStylePlain];
+    tbFrame=_tableView.frame;
     _tableView.delegate=self;
     _tableView.dataSource=self;
     _tableView.separatorColor=[UIColor clearColor];
     _refresh=[[DJRefresh alloc] initWithScrollView:_tableView delegate:self];
     _refresh.topEnabled=YES;
     [self.view addSubview:_tableView];
-    
+    tupianArr=@[@"shuma_icon_diannao_top_",@"shuma_icon_gehudaqi_top",@"shuma_icon_iphone_top_",@"shuma_icon_shenghuodiaqi_top_",@"shuma_icon_shouji_top_",@"shuma_icon_shoujipeishi_top_",@"shuma_icon_xiangji_top_",@"shuma_icon_yingyin_top_"];
     listArr=[[NSMutableArray alloc]init];
+
     
+    
+    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:YES];
     [self getCatBanner];
+}
+#pragma mark 下啦刷新
+- (void)refresh:(DJRefresh *)refresh didEngageRefreshDirection:(DJRefreshDirection)direction{
+    if(isshuaxin){
+        [_refresh finishRefreshingDirection:direction animation:false];
+        isshuaxin=false;
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * USEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self addDataWithDirection:direction];
+    });
+    
+}
+- (void)addDataWithDirection:(DJRefreshDirection)direction{
+    
+    if (direction==DJRefreshDirectionTop) {
+        [self getCatBanner];
+    }
+    [_refresh finishRefreshingDirection:direction animation:YES];
 }
 -(void)getCatBanner{
     //NSDictionary *parameters = @{@"cat_id":self.menuModel.id};
@@ -126,6 +161,7 @@
         cfContentViewController.menuIndexDic=menuIndexDic;
         cfContentViewController.dataList=goodsModelArr;
         cfContentViewController.topTitle=title;
+        cfContentViewController.delegate=self;
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
         [delegate.navigationController pushViewController:cfContentViewController animated:YES];
         
@@ -148,6 +184,7 @@
         htGoodDetailsViewController.goods_attr=goods_attr;
         htGoodDetailsViewController.goodsExt=goodsExt;
         htGoodDetailsViewController.goods_image=goods_image;
+        htGoodDetailsViewController.delegate=self;
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
         [delegate.navigationController pushViewController:htGoodDetailsViewController animated:YES];
         
@@ -283,7 +320,6 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"sec:%ld row:%ld",indexPath.section,indexPath.row);
     if(indexPath.section==0){
         static NSString *contet_cell = @"contet_cell";
         
@@ -309,7 +345,7 @@
             
             [bigArr addObject:dicTemp];
         }
-        EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 160)
+        EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 140)
                                                               scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
         
         scroller.delegate=self;
@@ -335,46 +371,47 @@
         for (int i =0; i<menuModelarr.count; i++)
         {
             MenuModel *menuTemp=menuModelarr[i];
-            CFImageButton *btnNine=[[CFImageButton alloc]initWithFrame:CGRectMake((i%4)*75+12, floor(i/4)*75+10, 70, 70)];
+            //i*SCREEN_WIDTH/4, 0, SCREEN_WIDTH/4, SCREEN_WIDTH/4)
+            CFImageButton *btnNine=[[CFImageButton alloc]initWithFrame:CGRectMake((i%4)*SCREEN_WIDTH/4, floor(i/4)*SCREEN_WIDTH/4, SCREEN_WIDTH/4, SCREEN_WIDTH/4)];
             btnNine.menuModel=menuTemp;
             NSString *img=menuTemp.img;
-            if([img isEqualToString:@""]){
-                [btnNine setImage:[UIImage imageNamed:@"pic_02.png"] forState:0];
-            }else{
-                NSURL *imgUrl=[NSURL URLWithString:img];
-                [btnNine setImageWithURL:imgUrl];
-            }
+//            if([img isEqualToString:@""]){
+//                [btnNine setImage:[UIImage imageNamed:@"pic_02.png"] forState:0];
+//            }else{
+//                NSURL *imgUrl=[NSURL URLWithString:img];
+//                [btnNine setImageWithURL:imgUrl];
+//            }
             
             btnNine.backgroundColor=[UIColor clearColor];
             [btnNine addTarget:self action:@selector(btnFenlei:) forControlEvents:UIControlEventTouchUpInside];
             [cell addSubview:btnNine];
             
-            UrlImageView*image=[[UrlImageView alloc]initWithFrame:CGRectMake(2, 1, 70-5, 50)];
+            UrlImageView*image=[[UrlImageView alloc]initWithFrame:CGRectMake(0.225*btnNine.frame.size.width,0.125*btnNine.frame.size.height, 0.55*btnNine.frame.size.width,0.55*btnNine.frame.size.height)];
             [btnNine addSubview:image];
-            [image setImage:[UIImage imageNamed:@"default_04.png"]];
+            [image setImage:[UIImage imageNamed:tupianArr[i]]];
             image.layer.borderWidth=1;
             image.layer.cornerRadius = 4;
             image.layer.borderColor = [[UIColor clearColor] CGColor];
             image.backgroundColor=[UIColor clearColor];
             
-            UILabel *labelLine=[[UILabel alloc]initWithFrame:CGRectMake(2, 50+10, 70-4, 1)];
-            labelLine.backgroundColor=[UIColor grayColor];
-            [btnNine addSubview:labelLine];
+//            UILabel *labelLine=[[UILabel alloc]initWithFrame:CGRectMake(2, 50+10, 70-4, 1)];
+//            labelLine.backgroundColor=[UIColor grayColor];
+//            [btnNine addSubview:labelLine];
             
             
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 20, 15)];
-            label.font = [UIFont boldSystemFontOfSize:10.0f];  //UILabel的字体大小
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, image.frame.size.height+image.frame.origin.y+5, btnNine.frame.size.width, 15)];
+            label.font = [UIFont boldSystemFontOfSize:11.0f];  //UILabel的字体大小
             label.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
-            label.textColor = [UIColor grayColor];
+//            label.textColor = [UIColor grayColor];
             label.textAlignment = NSTextAlignmentCenter;  //文本对齐方式
-            [label setBackgroundColor:[UIColor whiteColor]];
-            
+            [label setBackgroundColor:[UIColor clearColor]];
+            label.textColor =hexColor(@"#333333");
             //高度固定不折行，根据字的多少计算label的宽度
             NSString *str = menuTemp.name;
-            CGSize size = [str sizeWithFont:label.font constrainedToSize:CGSizeMake(MAXFLOAT, label.frame.size.height)];
-            //        NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
-            //根据计算结果重新设置UILabel的尺寸
-            [label setFrame:CGRectMake((70-size.width)/2, 52, size.width+4, 15)];
+//            CGSize size = [str sizeWithFont:label.font constrainedToSize:CGSizeMake(MAXFLOAT, label.frame.size.height)];
+//            //        NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
+//            //根据计算结果重新设置UILabel的尺寸
+//            [label setFrame:CGRectMake((70-size.width)/2, 52, size.width+4, 15)];
             label.text = str;
             lastFram=btnNine.frame;
             
@@ -406,88 +443,81 @@
     for (int i =0; i<arrTemp.count; i++)
     {
         New_Goods *new_Goods=arrTemp[i];
-        imageV=[[UrlImageView alloc]initWithFrame:CGRectMake((i%2)*153+13, floor(i/2)*200+10, 140, 140)];
-        imageV.backgroundColor=[UIColor redColor];
-        imageV.userInteractionEnabled=YES;
+        GoodImageButton *gbBtn=[[GoodImageButton alloc]initWithFrame:CGRectMake((i%2)*((SCREEN_WIDTH-20)/2-5+10)+10, floor(i/2)*210+10, (SCREEN_WIDTH-20)/2-5, 210)];
+        gbBtn.userInteractionEnabled=YES;
+        gbBtn.backgroundColor=[UIColor whiteColor];
+        //            imageV.userInteractionEnabled=YES;
         //            btn.layer.shadowOffset = CGSizeMake(1,1);
         //            btn.layer.shadowOpacity = 0.2f;
         //            btn.layer.shadowRadius = 3.0;
-        imageV.layer.borderWidth=1;//描边
-        imageV.layer.cornerRadius=4;//圆角
-        imageV.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
-        imageV.backgroundColor=[UIColor whiteColor];
+        gbBtn.layer.borderWidth=1;//描边
+        gbBtn.layer.cornerRadius=4;//圆角
+        gbBtn.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
+        gbBtn.goods=new_Goods;
+        gbBtn.backgroundColor=[UIColor whiteColor];
+        [gbBtn addTarget:self action:@selector(goodContentTouch:) forControlEvents:UIControlEventTouchUpInside];
+        [cell addSubview:gbBtn];
         
-        [cell addSubview:imageV];
+        UrlImageView*btn=[[UrlImageView alloc]initWithFrame:CGRectMake(0, 0, gbBtn.frame.size.width, gbBtn.frame.size.width)];
+        //            btn.userInteractionEnabled=YES;
+        //            btn.layer.borderWidth=1;//描边
+        //            btn.layer.cornerRadius=4;//圆角
+        //            btn.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
+        btn.backgroundColor=RGBA(237, 237, 237, 1);
         
-        GoodImageButton*btn=[[GoodImageButton alloc]initWithFrame:CGRectMake(2, 2, 140-4, 140-4)];
-        btn.userInteractionEnabled=YES;
-        btn.layer.borderWidth=1;//描边
-        btn.layer.cornerRadius=4;//圆角
-        btn.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
-        btn.backgroundColor=[UIColor whiteColor];
-        btn.goods=new_Goods;
-        NSString *urlStr=new_Goods.img;
+        NSString *urlStr=new_Goods.img_260;
         if((urlStr==nil)||[urlStr isEqualToString:@""]){
-            [btn setBackgroundImage:BundleImage(@"df_04_.png") forState:0];
+            btn.image=BundleImage(@"df_04_.png");
+            
         }else{
             NSURL *imgUrl=[NSURL URLWithString:urlStr];
             [btn setImageWithURL:imgUrl];
         }
         
-        [btn addTarget:self action:@selector(goodContentTouch:) forControlEvents:UIControlEventTouchUpInside];
+        //            [btn addTarget:self action:@selector(goodContentTouch:) forControlEvents:UIControlEventTouchUpInside];
         //            [imageV addSubview:btn];
-        [imageV insertSubview:btn aboveSubview:imageV];
-        
-        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake((i%2)*153+13, floor(i/2)*200+10+140, 140, 40)];
-        _label.text=new_Goods.title;
-        _label.font=[UIFont boldSystemFontOfSize:14];
+        //商店名
+        [gbBtn addSubview:btn];
+        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(0, btn.frame.size.width, btn.frame.size.height+btn.frame.origin.y+5, 10)];
+        _label.text=new_Goods.shop_name;
+        _label.font=[UIFont boldSystemFontOfSize:10];
         _label.backgroundColor=[UIColor clearColor];
-        _label.textColor =[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0];
-        _label.numberOfLines=2;
-        _label.textAlignment=0;
+        _label.textColor =hexColor(@"#b3b3b3");
+        _label.numberOfLines=1;
+        _label.textAlignment=NSTextAlignmentCenter;
         
-        [cell addSubview:_label];
+        [gbBtn addSubview:_label];
+        //商品名
+        UILabel *_label1=[[UILabel alloc]initWithFrame:CGRectMake(0, _label.frame.size.height+_label.frame.origin.y+1, btn.frame.size.width, 30)];
+        _label1.text=new_Goods.title;
+        _label1.font=[UIFont fontWithName:@"Helvetica-Bold" size:11];
+        _label1.backgroundColor=[UIColor clearColor];
+        _label1.textColor =hexColor(@"#333333");
+        _label1.lineBreakMode = UILineBreakModeWordWrap;
+        _label1.numberOfLines=2;
+        _label1.textAlignment=NSTextAlignmentCenter;
+        
+        [gbBtn addSubview:_label1];
         
         
         
         
+        UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(0, _label1.frame.size.height+_label1.frame.origin.y+1 ,btn.frame.size.width, 20)];
+        title_label.text=[NSString stringWithFormat:@"￥%.1f",new_Goods.price];
         
-        UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake((i%2)*153+13, floor(i/2)*200+140+10+_label.frame.size.height, 65, 20)];
-        title_label.text=[NSString stringWithFormat:@"%f",new_Goods.price];
-        
-        title_label.font=[UIFont systemFontOfSize:12];
+        title_label.font=[UIFont fontWithName:@"Helvetica-Bold" size:14];;
         title_label.backgroundColor=[UIColor clearColor];
-        title_label.textColor =hongShe;
-        title_label.textAlignment=0;
+        title_label.textColor =hexColor(@"#ff0d5e");
+        title_label.textAlignment=NSTextAlignmentCenter;
         lastFrame=title_label.frame;
         //
-        [cell addSubview:title_label];
-        
-        UILabel *title_label1=[[UILabel alloc]initWithFrame:CGRectMake((i%2)*153+13+title_label.frame.size.width, floor(i/2)*200+140+10+_label.frame.size.height, 65, 20)];
-        title_label1.text=@"199.70";
-        title_label1.font=[UIFont systemFontOfSize:10];
-        title_label1.backgroundColor=[UIColor clearColor];
-        title_label1.textColor =[UIColor colorWithRed:.7 green:.7 blue:.7 alpha:1.0];
-        title_label1.textAlignment=0;
-        
-        [cell addSubview:title_label1];
-        
-        //高度固定不折行，根据字的多少计算label的宽度
-        NSString *str = title_label1.text;
-        CGSize size = [str sizeWithFont:title_label.font constrainedToSize:CGSizeMake(MAXFLOAT, title_label.frame.size.height)];
-        //                     NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
-        //根据计算结果重新设置UILabel的尺寸
-        
-        
-        UIImageView *line=[[UIImageView alloc]initWithFrame:CGRectMake(0, title_label1.frame.size.height/2, size.width, 1)];
-        line.image=BundleImage(@"line_01_.png");
-        [title_label1 addSubview:line];
-        
+        [gbBtn addSubview:title_label];
+        lastFrame =gbBtn.frame;
     }
     CGRect cellFrame = [cell frame];
     cellFrame.origin=CGPointMake(0, 0);
-    cellFrame.size.width=320;
-    cellFrame.size.height=140+40+10+20+10;
+    cellFrame.size.width=SCREEN_WIDTH;
+    cellFrame.size.height=lastFrame.size.height+10;
     [cell setFrame:cellFrame];
     
     
@@ -499,7 +529,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section==0){
-        return 160;
+        return 140;
     }
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     return cell.frame.size.height;
@@ -556,25 +586,7 @@
  // Pass the selected object to the new view controller.
  }
  */
-#pragma mark  下拉刷新
-- (void)addDataWithDirection:(DJRefreshDirection)direction{
-    
-    if (direction==DJRefreshDirectionTop) {
-        //        [self getSpecialData];
-    }
-    [_refresh finishRefreshingDirection:direction animation:YES];
-    
-    
-    
-}
-#pragma mark  下拉刷新
-- (void)refresh:(DJRefresh *)refresh didEngageRefreshDirection:(DJRefreshDirection)direction{
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self addDataWithDirection:direction];
-    });
-    
-}
+
 #pragma mark  通告栏
 -(void)EScrollerViewDidClicked:(NSUInteger)index{
     NSLog(@"第几个广告%ld",index);
