@@ -339,8 +339,8 @@
     //(8, 10, 40, 30);
     allCheckBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [allCheckBtn setFrame:CGRectMake(1.0, view_toolBar.frame.size.height/2-20, 40, 40)];
-    [allCheckBtn setBackgroundImage:[UIImage imageNamed:@"ic_01_n_.png"] forState:UIControlStateNormal];
-    [allCheckBtn setBackgroundImage:[UIImage imageNamed:@"ic_01_h_.png"] forState:UIControlStateSelected];
+    [allCheckBtn setBackgroundImage:[UIImage imageNamed:@"icon_NotSelected"] forState:UIControlStateNormal];
+    [allCheckBtn setBackgroundImage:[UIImage imageNamed:@"icon_Selected"] forState:UIControlStateSelected];
     [allCheckBtn addTarget:self action:@selector(checkButtonALL:event:) forControlEvents:UIControlEventTouchUpInside];
     [allCheckBtn setSelected:false];
     
@@ -441,8 +441,8 @@
     UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,35 )];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:CGRectMake(1.0, 0.0, 40, 40)];
-    [button setBackgroundImage:[UIImage imageNamed:@"ic_01_n_.png"] forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"ic_01_h_.png"] forState:UIControlStateSelected];
+    [button setBackgroundImage:[UIImage imageNamed:@"icon_NotSelected"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"icon_Selected"] forState:UIControlStateSelected];
     [button addTarget:self action:@selector(checkButtonSection:event:) forControlEvents:UIControlEventTouchUpInside];
     [button setSelected:shopInfoModel.ischoose];
     button.tag=section;
@@ -499,8 +499,8 @@
     //左侧按钮
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:CGRectMake(0.0, 20.0, 40, 40)];
-    [button setBackgroundImage:[UIImage imageNamed:@"ic_01_n_.png"] forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"ic_01_h_.png"] forState:UIControlStateSelected];
+    [button setBackgroundImage:[UIImage imageNamed:@"icon_NotSelected"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"icon_Selected"] forState:UIControlStateSelected];
     [button addTarget:self action:@selector(checkButtonTapped:event:) forControlEvents:UIControlEventTouchUpInside];
     [button setSelected:carShopInfoModel.ischoose];
     [cell addSubview:button];
