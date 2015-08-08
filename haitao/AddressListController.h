@@ -14,7 +14,7 @@
 
 @end
 
-@interface AddressListController : UITableViewController<HTTPControllerProtocol>
+@interface AddressListController : UITableViewController<HTTPControllerProtocol,UIScrollViewDelegate>
 
 @property(strong,nonatomic) id<AddressListDelegate> addressListDelegate;
 
@@ -23,6 +23,8 @@
 @property(strong,nonatomic) UIView *emptyView;
 
 @property(strong,nonatomic) NSString *selfRequestURL;
+
+@property(strong,nonatomic) UIButton *addAddressBtn;
 
 -(void)initData;
 

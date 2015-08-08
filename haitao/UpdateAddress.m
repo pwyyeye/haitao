@@ -74,13 +74,23 @@
 
 - (IBAction)deleteAddress:(id)sender {
     NSLog(@"----pass-deleteAddress  %@---",@"test");
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [app startLoading];
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:nil message:@"是否确认删除？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     
-    NSDictionary *parameters = @{@"id":_id};
-    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_delAddress withType:POSTURL withPam:parameters withUrlName:@"deleteAddress"];
-    httpController.delegate = self;
-    [httpController onSearchForPostJson];
+    [alert show];
+
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+    NSLog(@"----pass-alert%d---",buttonIndex);
+    if (buttonIndex==1) {
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [app startLoading];
+        
+        NSDictionary *parameters = @{@"id":_id};
+        HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_delAddress withType:POSTURL withPam:parameters withUrlName:@"deleteAddress"];
+        httpController.delegate = self;
+        [httpController onSearchForPostJson];
+    }
 }
 
 - (IBAction)DidEndOnExit:(id)sender {

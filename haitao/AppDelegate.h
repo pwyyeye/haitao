@@ -10,6 +10,8 @@
 #import <CoreData/CoreData.h>
 #import "LTKNavigationViewController.h"
 #import "EAIntroView.h"
+#import "Reachability.h"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate,HTTPControllerProtocol,EAIntroDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -19,7 +21,7 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (retain, nonatomic) NSMutableArray *menuArr;
 @property(strong,nonatomic) NSString *s_app_id;
-
+@property(strong,nonatomic) Reachability *reach;
 
 - (void)startLoading;
 - (void)stopLoading;

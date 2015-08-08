@@ -11,6 +11,7 @@
 #import "DejalActivityView.h"
 #import "LoginViewController.h"
 #import "MenuModel.h"
+#import <AlipaySDK/AlipaySDK.h>
 @interface AppDelegate ()
 
 @end
@@ -35,9 +36,54 @@
         [self doInit];
     }
     
+    //一定要设置为全局变量 否则不可用
+    _reach = [Reachability reachabilityWithHostName:@"www.apple.com"];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+
+    [_reach startNotifier];
+    
+//    [self isConnectionAvailable:_reach];
+
    
     return YES;
     
+}
+- (void) reachabilityChanged:(NSNotification *)note
+{
+    Reachability* curReach = [note object];
+    NSParameterAssert([curReach isKindOfClass:[Reachability class]]);
+    [self isConnectionAvailable:curReach];
+}
+-(BOOL) isConnectionAvailable:(Reachability *)reach {
+    
+    BOOL isExistenceNetwork = YES;
+    switch ([reach currentReachabilityStatus]) {
+        case NotReachable:
+            isExistenceNetwork = NO;
+            //NSLog(@"notReachable");
+            break;
+        case ReachableViaWiFi:
+            isExistenceNetwork = YES;
+            //NSLog(@"WIFI");
+            break;
+        case ReachableViaWWAN:
+            isExistenceNetwork = YES;
+            //NSLog(@"3G");
+            break;
+    }
+    
+    if (!isExistenceNetwork) {
+        ShowMessage(@"您的网络状况好像不太好！");
+        return NO;
+    }
+    
+    return isExistenceNetwork;
+}
+
+-(void)dealloc{
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 -(void)getMenuData{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -192,6 +238,18 @@
     [self saveContext];
 }
 
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    //跳转支付宝钱包进行支付，处理支付结果
+    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+        NSLog(@"result = %@",resultDic);
+    }];
+    
+    return YES;
+}
 #pragma mark - Core Data stack
 
 @synthesize managedObjectContext = _managedObjectContext;
