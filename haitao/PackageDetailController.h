@@ -45,6 +45,10 @@
 @property(strong,nonatomic) CollapseClick *coll;
 //运费详情view
 @property(strong,nonatomic) UIView *shipDetailView;
+
+//税费详情view
+@property(strong,nonatomic) UIView *taxDetailView;
+
 //订单截图view
 @property(strong,nonatomic) UIView *orderImageView;
 
@@ -53,4 +57,6 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *myScollView;
 
 @property (weak, nonatomic) IBOutlet UIView *myView;
+
+@property(strong,nonatomic) UIWebView *phoneCallWebView;
 @end

@@ -59,23 +59,23 @@
     
     NSArray *segmentedArray = @[@"全部",@"待付款",@"待发货",@"待收货",@"待评价"];
     
-    UISegmentedControl *seg=[[UISegmentedControl alloc] initWithItems:segmentedArray];
+    _seg=[[UISegmentedControl alloc] initWithItems:segmentedArray];
     
-    seg.frame=CGRectMake(0, 0, (SCREEN_WIDTH/4)*4, 34);
-    seg.selectedSegmentIndex = 0;//设置默认选择项索引
+    _seg.frame=CGRectMake(0, 0, (SCREEN_WIDTH/4)*4, 34);
+    _seg.selectedSegmentIndex = 0;//设置默认选择项索引
     
     //清除原有格式颜色
-    seg.tintColor=[UIColor clearColor];
+    _seg.tintColor=[UIColor clearColor];
     //设置背景色
-    [seg setBackgroundColor:RGB(237, 237, 237)];
+    [_seg setBackgroundColor:RGB(237, 237, 237)];
     //设置字体样式
     NSDictionary* selectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:13],
                                              NSForegroundColorAttributeName: RGB(255, 13, 94)};
-    [seg setTitleTextAttributes:selectedTextAttributes forState:UIControlStateSelected];//设置文字属性
+    [_seg setTitleTextAttributes:selectedTextAttributes forState:UIControlStateSelected];//设置文字属性
     
     NSDictionary* unselectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:13],
                                                NSForegroundColorAttributeName: [UIColor colorWithWhite:0.6 alpha:1]};
-    [seg setTitleTextAttributes:unselectedTextAttributes forState:UIControlStateNormal];
+    [_seg setTitleTextAttributes:unselectedTextAttributes forState:UIControlStateNormal];
     
     // 使用颜色创建UIImage//未选中颜色
     CGSize imageSize = CGSizeMake((SCREEN_WIDTH/4), 34);
@@ -85,7 +85,7 @@
     UIImage *normalImg = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     //设置未选中背景色
-    [seg setBackgroundImage:normalImg forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [_seg setBackgroundImage:normalImg forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     
     // 使用颜色创建UIImage //选中颜色
     UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
@@ -94,12 +94,12 @@
     UIImage *selectedImg = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     //设置选中背景色
-    [seg setBackgroundImage:selectedImg forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    [_seg setBackgroundImage:selectedImg forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
     
     
-    [self.view addSubview:seg];
+    [self.view addSubview:_seg];
     
-    [seg addTarget:self action:@selector(segmentAction:)forControlEvents:UIControlEventValueChanged];  //添加委托方法
+    [_seg addTarget:self action:@selector(segmentAction:)forControlEvents:UIControlEventValueChanged];  //添加委托方法
     
     [self initData];
     
@@ -115,6 +115,8 @@
     });
     self.tableView.tableFooterView=[[UIView alloc]init];
     [self.tableView setBackgroundColor:RGB(237, 237, 237)];
+    
+    self.tableView.bounces=NO;//遇到边框不反弹
 //    self.tableView.tableHeaderView=[[UIView alloc]init];
     
 }
@@ -155,16 +157,25 @@
             
             
             
-            [_tableView reloadData];
+//            [_tableView reloadData];
+            [self segmentAction:_seg];
             
             
             
-        }else if([urlname isEqualToString:@"delFav"]){
+        }else if([urlname isEqualToString:@"cancelOrder"]){
             
-            //            [self initData];
-            NSLog(@"----pass-delFav%@---",dictemp);
+            [self initData];
+            NSLog(@"----pass-cancelOrder%@---",dictemp);
             
-            ShowMessage(@"删除成功");
+            ShowMessage(@"取消成功！");
+            
+        }else if([urlname isEqualToString:@"delOrder"]){
+            
+            [self initData];
+            NSLog(@"----pass-cancelOrder%@---",dictemp);
+            
+            ShowMessage(@"删除成功！");
+            _selectedOrderNo=nil;
             
         }
         [self showEmptyView];
@@ -189,12 +200,12 @@
         [_empty_view removeFromSuperview];
         
     }else if(_result_array.count==0){
-        _empty_view=[[UIView alloc] initWithFrame:CGRectMake(0, 104, SCREEN_WIDTH, SCREEN_HEIGHT - 104)];
-        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-100, SCREEN_HEIGHT/2-164, 200, 20)];
+        _empty_view=[[UIView alloc] initWithFrame:CGRectMake(0, 34, SCREEN_WIDTH, SCREEN_HEIGHT - 34)];
+        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-100, SCREEN_HEIGHT/2-100, 200, 20)];
         label.text=@"暂无订单信息";
         [_empty_view addSubview:label];
         label.textAlignment = UITextAlignmentCenter;
-        
+        self.empty_view.backgroundColor=[UIColor whiteColor];
         [self.view addSubview:_empty_view];
     }
     
@@ -397,32 +408,73 @@
             btnCancel.layer.borderWidth=0.5;
             btnCancel.layer.borderColor=RGB(179, 179, 179).CGColor;
             btnCancel.layer.cornerRadius=3;
+            btnCancel.tag=[orderModel.id integerValue];
+            [btnCancel addTarget:self action:@selector(gotoCancelOrder:) forControlEvents:UIControlEventTouchUpInside];
+
+            
             [view addSubview:btnCancel];
         }else if(([orderModel.order_status integerValue]==2)){//已付款
             //付款按钮
+//            UIButton *btnPay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 29, 80, 24)];
+//            [btnPay setTitle:@"确认收货" forState:UIControlStateNormal];
+//            [btnPay setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//            btnPay.titleLabel.font =[UIFont  systemFontOfSize:11];
+//            btnPay.backgroundColor=RGB(255, 13, 94);
+//            btnPay.layer.masksToBounds=YES;
+//            btnPay.layer.cornerRadius=3;
+//            [view addSubview:btnPay];
             UIButton *btnPay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 29, 80, 24)];
-            [btnPay setTitle:@"确认收货" forState:UIControlStateNormal];
-            [btnPay setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [btnPay setTitle:@"已付款" forState:UIControlStateNormal];
+            [btnPay setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
             btnPay.titleLabel.font =[UIFont  systemFontOfSize:11];
-            btnPay.backgroundColor=RGB(255, 13, 94);
-            btnPay.layer.masksToBounds=YES;
-            btnPay.layer.cornerRadius=3;
-            [view addSubview:btnPay];
+            btnPay.backgroundColor=[UIColor whiteColor];
             
             
-        }else if(([orderModel.order_status integerValue]==8)||([orderModel.order_status integerValue]==9)){//订单完成和取消状态
+        }else if([orderModel.order_status integerValue]==8){//订单完成和取消状态
+            
+            //付款按钮
+//            UIButton *btnPay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 29, 80, 24)];
+//            [btnPay setTitle:@"确认收货" forState:UIControlStateNormal];
+//            [btnPay setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//            btnPay.titleLabel.font =[UIFont  systemFontOfSize:11];
+//            btnPay.backgroundColor=RGB(255, 13, 94);
+//            btnPay.layer.masksToBounds=YES;
+//            btnPay.layer.cornerRadius=3;
+//            [view addSubview:btnPay];;
+            //删除订单按钮
+            UIButton *btnDel=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 29, 80, 24)];
+            [btnDel setTitle:@"删除订单" forState:UIControlStateNormal];
+            [btnDel setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
+            btnDel.titleLabel.font =[UIFont  systemFontOfSize:11];
+            btnDel.backgroundColor=[UIColor whiteColor];
+            btnDel.layer.masksToBounds=YES;
+            btnDel.layer.borderWidth=0.5;
+            btnDel.layer.borderColor=RGB(179, 179, 179).CGColor;
+            btnDel.layer.cornerRadius=3;
+            btnDel.tag=[orderModel.id integerValue];
+            [btnDel addTarget:self action:@selector(gotoDelOrder:) forControlEvents:UIControlEventTouchUpInside];
+            
+
+            [view addSubview:btnDel];
+
+            
+        }else if([orderModel.order_status integerValue]==9){//订单完成和取消状态
             
             //删除订单按钮
-            UIButton *btnCancel=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 29, 80, 24)];
-            [btnCancel setTitle:@"删除订单" forState:UIControlStateNormal];
-            [btnCancel setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
-            btnCancel.titleLabel.font =[UIFont  systemFontOfSize:11];
-            btnCancel.backgroundColor=[UIColor whiteColor];
-            btnCancel.layer.masksToBounds=YES;
-            btnCancel.layer.borderWidth=0.5;
-            btnCancel.layer.borderColor=RGB(179, 179, 179).CGColor;
-            btnCancel.layer.cornerRadius=3;
-            [view addSubview:btnCancel];
+            UIButton *btnDel=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 29, 80, 24)];
+            [btnDel setTitle:@"删除订单" forState:UIControlStateNormal];
+            [btnDel setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
+            btnDel.titleLabel.font =[UIFont  systemFontOfSize:11];
+            btnDel.backgroundColor=[UIColor whiteColor];
+            btnDel.layer.masksToBounds=YES;
+            btnDel.layer.borderWidth=0.5;
+            btnDel.layer.borderColor=RGB(179, 179, 179).CGColor;
+            btnDel.layer.cornerRadius=3;
+            btnDel.tag=[orderModel.id integerValue];
+            [btnDel addTarget:self action:@selector(gotoDelOrder:) forControlEvents:UIControlEventTouchUpInside];
+            
+            
+            [view addSubview:btnDel];
             
         }
         
@@ -582,7 +634,7 @@
                     break;
                 }
                 Order_goodsAttr *attr =goods.goods_attr[i];
-                UILabel *head=[[UILabel alloc] initWithFrame:CGRectMake(cell.frame.origin.x+94,i==0?cell.frame.origin.y+30:cell.frame.origin.y+50, 150, 20)];
+                UILabel *head=[[UILabel alloc] initWithFrame:CGRectMake(cell.frame.origin.x+70,i==0?cell.frame.origin.y+30:cell.frame.origin.y+50, 150, 20)];
                 head.text=[NSString stringWithFormat:@"%@: %@",attr.attr_name,attr.attr_val_name];
                 head.font=[UIFont boldSystemFontOfSize:11];
                 head.textColor=RGB(128, 128, 128);
@@ -613,6 +665,8 @@
 //        cell.detailTextLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:13];
         
         [cell.imageView setImageWithURL:[NSURL URLWithString:goods.img_url] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
+        [cell.imageView setContentMode:UIViewContentModeScaleAspectFill];
+
         cell.backgroundColor = [UIColor whiteColor];
         return cell;
     }
@@ -653,9 +707,44 @@
 }
 
 
+-(void)gotoCancelOrder:(UIButton *)sender{
+    //订单号
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_cancelOrder withType:POSTURL withPam:@{@"order_id":[NSString stringWithFormat:@"%d",sender.tag]} withUrlName:@"cancelOrder"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
+    
+}
+
+-(void)gotoDelOrder:(UIButton *)sender{
+    
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:nil message:@"是否确认删除？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    
+    [alert show];
+    
+    _selectedOrderNo=[NSString stringWithFormat:@"%d",sender.tag] ;
+    
+}
 
 
-
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    NSLog(@"----pass-alert%d---",buttonIndex);
+    if (buttonIndex==1) {
+        //订单号
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [app startLoading];
+        
+        HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_delOrder withType:POSTURL withPam:@{@"order_id":_selectedOrderNo} withUrlName:@"delOrder"];
+        httpController.delegate = self;
+        [httpController onSearchForPostJson];
+    }else{
+        _selectedOrderNo=nil;
+    }
+    
+}
 
 
 @end

@@ -129,9 +129,13 @@
 //取消订单
 #define requestUrl_cancelOrder [NSString stringWithFormat:@"%@&f=cancelOrder&m=user",requestUrl]
 
+//删除订单
+#define requestUrl_delOrder [NSString stringWithFormat:@"%@&f=delOrder&m=user",requestUrl]
+
 //获取包裹详情
 #define requestUrl_getPackageDetail [NSString stringWithFormat:@"%@&f=getPackageDetail&m=user",requestUrl]
 
-
+//获取包裹详情
+#define requestUrl_confirmPackage [NSString stringWithFormat:@"%@&f=confirmPackage&m=user",requestUrl]
 
 #endif

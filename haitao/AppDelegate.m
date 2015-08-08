@@ -43,7 +43,7 @@
 
     [_reach startNotifier];
     
-    [self isConnectionAvailable:_reach];
+//    [self isConnectionAvailable:_reach];
 
    
     return YES;

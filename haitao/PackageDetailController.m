@@ -13,6 +13,7 @@
 #import "OrderListCell.h"
 #import "Order_goods.h"
 #import "Order_goodsAttr.h"
+#import "LogisticsViewController.h"
 @interface PackageDetailController ()
 
 @end
@@ -115,43 +116,51 @@
             
             self.footView.backgroundColor=[UIColor whiteColor];
             
+            if (_footerBar!=nil) {
+                [_footerBar removeFromSuperview];
+            }
 
             
             //设置底部按钮
             _footerBar=[[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-47-64, SCREEN_WIDTH, 47)];
             self.footerBar.backgroundColor=[UIColor whiteColor];
-
-            //1、刚录入订单 2、订单已支付  8、订单完成 用户已确认 9、取消订单
-            if ([_packageModel.order.order_status intValue]==1) {
-                _orderStatus.text=[NSString stringWithFormat:@"还未付款"];
+            //分割线
+            UILabel *jianju=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
+            jianju.backgroundColor=RGB(237, 237, 237);
+            [self.footerBar addSubview:jianju];
+            
+            //order_status 1、刚录入订单 2、订单已支付  8、订单完成 用户已确认 9、取消订单
+            //package_status 1、待发货 2、已发货 8、已确认
+            if ([_packageModel.package_info.package_status intValue]==1) {
+                _orderStatus.text=[NSString stringWithFormat:@"等待卖家发货"];
                 
                 //联系客服
-                UIButton *kefu=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/5, 30)];
+                UIButton *kefu=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2, 30)];
                 [kefu setImage:[UIImage imageNamed:@"icon_LianXiKeFu"]  forState:UIControlStateNormal];
                 [kefu.imageView setContentMode:UIViewContentModeScaleAspectFill];
                 
                 //联系客服文字
-                UILabel *kefu_label=[[UILabel alloc] initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH/5, 15)];
+                UILabel *kefu_label=[[UILabel alloc] initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH/2, 15)];
                 kefu_label.text=@"在线客服";
+                kefu_label.textColor=RGB(128, 128, 128);
                 kefu_label.font=[UIFont boldSystemFontOfSize:11];
                 kefu_label.textAlignment=NSTextAlignmentCenter;
                 
                 
                 //联系电话
-                UIButton *telephone=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/5, 0, SCREEN_WIDTH/5*2, 30)];
-                [telephone setImage:[UIImage imageNamed:@"icon_LianXiKeFu"]  forState:UIControlStateNormal];
+                UIButton *telephone=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2, 0, SCREEN_WIDTH/2, 30)];
+                [telephone setImage:[UIImage imageNamed:@"icon_BoDaDianHua"]  forState:UIControlStateNormal];
                 [telephone.imageView setContentMode:UIViewContentModeScaleAspectFill];
                 
+                [telephone addTarget:self action:@selector(callTelephone) forControlEvents:UIControlEventTouchUpInside];
+                
                 //联系电话文字
-                UILabel *telephone_label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/5, 30, SCREEN_WIDTH/5*2, 15)];
+                UILabel *telephone_label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2, 30, SCREEN_WIDTH/2, 15)];
                 telephone_label.text=@"拨打电话";
+                telephone_label.textColor=RGB(128, 128, 128);
                 telephone_label.font=[UIFont boldSystemFontOfSize:11];
                 telephone_label.textAlignment=NSTextAlignmentCenter;
                 
-                //付款
-                UIButton *pay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/5*3, 0, SCREEN_WIDTH/5*2, 47)];
-                [pay setImage:[UIImage imageNamed:@"tariff_btn_payment"]  forState:UIControlStateNormal];
-                [pay.imageView setContentMode:UIViewContentModeScaleAspectFill];
                 
                 //添加进入 footerBar
                 [self.footerBar addSubview:kefu];
@@ -160,17 +169,116 @@
                 [self.footerBar addSubview:telephone];
                 [self.footerBar addSubview:telephone_label];
                 
-                [self.footerBar addSubview:pay];
+                
+                [self.myView addSubview:_footerBar];
+                
+            }else if([_packageModel.package_info.package_status intValue]==2){
+                _orderStatus.text=[NSString stringWithFormat:@"卖家已发货"];
+                //联系客服
+                UIButton *kefu=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/5*1.5, 30)];
+                [kefu setImage:[UIImage imageNamed:@"icon_LianXiKeFu"]  forState:UIControlStateNormal];
+                [kefu.imageView setContentMode:UIViewContentModeScaleAspectFill];
+                
+                //联系客服文字
+                UILabel *kefu_label=[[UILabel alloc] initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH/5*1.5, 15)];
+                kefu_label.text=@"在线客服";
+                kefu_label.font=[UIFont boldSystemFontOfSize:11];
+                kefu_label.textColor=RGB(128, 128, 128);
+                kefu_label.textAlignment=NSTextAlignmentCenter;
+                
+                
+                //联系电话
+                UIButton *telephone=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/5*1.5, 0, SCREEN_WIDTH/5*1.5, 30)];
+                [telephone setImage:[UIImage imageNamed:@"icon_BoDaDianHua"]  forState:UIControlStateNormal];
+                [telephone.imageView setContentMode:UIViewContentModeScaleAspectFill];
+                [telephone addTarget:self action:@selector(callTelephone) forControlEvents:UIControlEventTouchUpInside];
+
+                //联系电话文字
+                UILabel *telephone_label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/5*1.5, 30, SCREEN_WIDTH/5*1.5, 15)];
+                telephone_label.text=@"拨打电话";
+                telephone_label.textColor=RGB(128, 128, 128);
+                telephone_label.font=[UIFont boldSystemFontOfSize:11];
+                telephone_label.textAlignment=NSTextAlignmentCenter;
+                
+                //确认收货
+                UIButton *confirm=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/5*3, 8, SCREEN_WIDTH/5*2,35)];
+                [confirm setBackgroundImage:[UIImage imageNamed:@"order_btn_definite"]  forState:UIControlStateNormal];
+                [confirm addTarget:self action:@selector(confirmPackage:) forControlEvents:UIControlEventTouchUpInside];
+                [confirm.imageView setContentMode:UIViewContentModeScaleAspectFill];
+                
+                //添加进入 footerBar
+                [self.footerBar addSubview:kefu];
+                [self.footerBar addSubview:kefu_label];
+                
+                [self.footerBar addSubview:telephone];
+                [self.footerBar addSubview:telephone_label];
+                
+                [self.footerBar addSubview:confirm];
+                
+                
+                [self.myView addSubview:_footerBar];
+
+                
+            }else if([_packageModel.package_info.package_status intValue]==8){
+                _orderStatus.text=[NSString stringWithFormat:@"订单已完成"];
+                //联系客服
+                UIButton *kefu=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/3, 30)];
+                [kefu setImage:[UIImage imageNamed:@"icon_LianXiKeFu"]  forState:UIControlStateNormal];
+                [kefu.imageView setContentMode:UIViewContentModeScaleAspectFill];
+                
+                //联系客服文字
+                UILabel *kefu_label=[[UILabel alloc] initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH/3, 15)];
+                kefu_label.text=@"在线客服";
+                kefu_label.textColor=RGB(128, 128, 128);
+                kefu_label.font=[UIFont boldSystemFontOfSize:11];
+                kefu_label.textAlignment=NSTextAlignmentCenter;
+                
+                
+                //联系电话
+                UIButton *telephone=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/3, 0, SCREEN_WIDTH/3, 30)];
+                [telephone setImage:[UIImage imageNamed:@"icon_BoDaDianHua"]  forState:UIControlStateNormal];
+                [telephone.imageView setContentMode:UIViewContentModeScaleAspectFill];
+                [telephone addTarget:self action:@selector(callTelephone) forControlEvents:UIControlEventTouchUpInside];
+
+                //联系电话文字
+                UILabel *telephone_label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/3, 30, SCREEN_WIDTH/3, 15)];
+                telephone_label.text=@"拨打电话";
+                telephone_label.textColor=RGB(128, 128, 128);
+                telephone_label.font=[UIFont boldSystemFontOfSize:11];
+                telephone_label.textAlignment=NSTextAlignmentCenter;
+                
+                //查看物流
+                UIButton *logistics=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/3*2, 0, SCREEN_WIDTH/3,30)];
+                [logistics setImage:[UIImage imageNamed:@"icon_WuLIuChaKan"]  forState:UIControlStateNormal];
+                
+                [logistics addTarget:self action:@selector(gotoLogistics:) forControlEvents:UIControlEventTouchUpInside];
+                [logistics.imageView setContentMode:UIViewContentModeScaleAspectFill];
+
+                //查看物流文字
+                UILabel *logistics_label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/3*2, 30, SCREEN_WIDTH/3, 15)];
+                logistics_label.text=@"物流查询";
+                logistics_label.textColor=RGB(128, 128, 128);
+
+                logistics_label.font=[UIFont boldSystemFontOfSize:11];
+                logistics_label.textAlignment=NSTextAlignmentCenter;
+                //添加进入 footerBar
+                [self.footerBar addSubview:kefu];
+                [self.footerBar addSubview:kefu_label];
+                
+                [self.footerBar addSubview:telephone];
+                [self.footerBar addSubview:telephone_label];
+                
+                [self.footerBar addSubview:logistics];
+                [self.footerBar addSubview:logistics_label];
                 
                 
                 [self.myView addSubview:_footerBar];
                 
-            }else if([_packageModel.order.order_status intValue]==2){
-                _orderStatus.text=[NSString stringWithFormat:@"等待卖家发货"];
-            }else if([_packageModel.order.order_status intValue]==8){
-                _orderStatus.text=[NSString stringWithFormat:@"订单已完成"];
-            }else if([_packageModel.order.order_status intValue]==9){
+                
+            }else if([_packageModel.package_info.package_status intValue]==9){
                 _orderStatus.text=[NSString stringWithFormat:@"订单已取消"];
+                
+
             }
             
             _payAmount.text=[NSString stringWithFormat:@"包裹应付金额（包含运费税费）: %.2f",_packageModel.package_info.package_amount];
@@ -188,13 +296,51 @@
             _address.text= [NSString stringWithFormat:@"%@%@",_packageModel.order.province,_packageModel.order.address];;
             self.myScollView.delegate=self;
             self.myScollView.bounces=NO;//遇到边框不反弹
+            
+            [_tableView reloadData];
 
             
+        }
+        else if([urlname isEqualToString:@"confirmPackage"]){
+            ShowMessage(@"已确认收货！");
+            [self initData];
         }
     }
     
 }
 
+-(void)gotoLogistics:(UIButton *)sender{
+
+    LogisticsViewController *vc=[[LogisticsViewController alloc] initWithNibName:@"LogisticsViewController" bundle:nil];
+    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    vc.packageModel=_packageModel;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)confirmPackage:(UIButton *)sender{
+    //订单号
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_confirmPackage withType:POSTURL withPam:@{@"package_id":[NSString stringWithFormat:@"%@",_packageModel.package_info.id]} withUrlName:@"confirmPackage"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
+    
+}
+
+-(void)callTelephone{
+    NSString *phoneNum = @"400-892-8080";// 电话号码
+    
+    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNum]];
+    
+    if ( !_phoneCallWebView ) {
+        
+        _phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];// 这个webView只是一个后台的容易 不需要add到页面上来  效果跟方法二一样 但是这个方法是合法的
+        
+    }
+    
+    [_phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+}
 /*
 #pragma mark - Navigation
 
@@ -343,7 +489,7 @@
     
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    OrderListCell *cell = [[OrderListCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    OrderListCell *cell = [[OrderListCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"packagecell"];
 
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
 
@@ -359,7 +505,7 @@
                     break;
                 }
                 Order_goodsAttr *attr =goods.goods_attr[i];
-                UILabel *head=[[UILabel alloc] initWithFrame:CGRectMake(cell.frame.origin.x+94,i==0?cell.frame.origin.y+30:cell.frame.origin.y+50, 150, 20)];
+                UILabel *head=[[UILabel alloc] initWithFrame:CGRectMake(cell.frame.origin.x+70,i==0?cell.frame.origin.y+30:cell.frame.origin.y+50, 150, 20)];
                 head.text=[NSString stringWithFormat:@"%@: %@",attr.attr_name,attr.attr_val_name];
                 head.font=[UIFont boldSystemFontOfSize:11];
                 head.textColor=RGB(128, 128, 128);
@@ -424,14 +570,35 @@
         case 0:
         {
             _shipDetailView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
-            _shipDetailView.backgroundColor=[UIColor redColor];
+            _shipDetailView.backgroundColor=[UIColor whiteColor];
+            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 70, 100, 20)];
+            label.textColor=RGB(128, 128, 128);
+            label.text=@"暂无相关消息";
+            label.font=[UIFont systemFontOfSize:11];
+            [_shipDetailView addSubview:label];
             return _shipDetailView;
+            break;
+        }case 1:
+        {
+            _taxDetailView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
+            _taxDetailView.backgroundColor=[UIColor whiteColor];
+            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 70, 100, 20)];
+            label.textColor=RGB(128, 128, 128);
+            label.text=@"暂无相关消息";
+            label.font=[UIFont systemFontOfSize:11];
+            [_taxDetailView addSubview:label];
+            return _taxDetailView;
             break;
         }
         case 2:
         {
             _orderImageView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
-            _orderImageView.backgroundColor=[UIColor greenColor];
+            _orderImageView.backgroundColor=[UIColor whiteColor];
+            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 70, 100, 20)];
+            label.textColor=RGB(128, 128, 128);
+            label.text=@"暂无相关消息";
+            label.font=[UIFont systemFontOfSize:11];
+            [_orderImageView addSubview:label];
             return _orderImageView;
             break;
         }

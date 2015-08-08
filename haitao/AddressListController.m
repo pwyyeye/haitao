@@ -74,7 +74,7 @@
     [self initData];
     self.tableView.backgroundColor=RGB(237, 237, 237);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//无分割线
-    self.tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-40-64);
+    self.tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-40-64-40);
 
 }
 -(void)gotoBack
@@ -130,7 +130,9 @@
 }
 
 -(void)reloadData{
+    [_addAddressBtn removeFromSuperview];
     if (_data.count==0) {
+        
         if (_emptyView==nil) {
             _emptyView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
             UILabel *emptyLabel=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-80, SCREEN_HEIGHT/2-45, 160, 30)];
@@ -159,13 +161,13 @@
         [_emptyView removeFromSuperview];
         //添加新增地址按钮
         
-        UIButton *nextButton=[[UIButton alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40-64, SCREEN_WIDTH, 40)];
-        nextButton.backgroundColor=RGB(255, 13, 94);
+        _addAddressBtn=[[UIButton alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40-64, SCREEN_WIDTH, 40)];
+        _addAddressBtn.backgroundColor=RGB(255, 13, 94);
         
-        [nextButton setTitle:@"+添加收货人地址" forState:UIControlStateNormal];
-        nextButton.titleLabel.font=[UIFont systemFontOfSize:13];
-        [nextButton addTarget:self action:@selector(gotoAddAddress) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:nextButton];
+        [_addAddressBtn setTitle:@"+添加收货人地址" forState:UIControlStateNormal];
+        _addAddressBtn.titleLabel.font=[UIFont systemFontOfSize:13];
+        [_addAddressBtn addTarget:self action:@selector(gotoAddAddress) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_addAddressBtn];
         [self.tableView reloadData];
         
     }
@@ -268,7 +270,7 @@
     
     cell.telephone.text=model.mobile;
     
-    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, indexPath.row==0?cell.frame.size.height-20:cell.frame.size.height-10)];
+    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, indexPath.row==0?cell.frame.size.height-10:cell.frame.size.height-5)];
     label.backgroundColor=[UIColor whiteColor];
     //清除cell背景颜色 在底部添加白色背景label 高度小于cell 使之看起来有间隔
     cell.backgroundColor=[UIColor clearColor];
@@ -395,5 +397,20 @@
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
+#pragma mark - scrollView Delegate
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    NSLog(@"scrollViewDidScroll");
+    CGPoint point=scrollView.contentOffset;
+    NSLog(@"%f,%f",point.x,point.y);
+    // 从中可以读取contentOffset属性以确定其滚动到的位置。
+    
+    // 注意：当ContentSize属性小于Frame时，将不会出发滚动
+    
+    CGRect rect= self.addAddressBtn.frame;
+    self.addAddressBtn.frame=CGRectMake(rect.origin.x, SCREEN_HEIGHT-64-40+point.y, rect.size.width, rect.size.height);
+    
+    
+}
 @end

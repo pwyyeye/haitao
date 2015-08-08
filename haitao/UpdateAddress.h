@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AddressModel.h"
 
-@interface UpdateAddress : UIViewController<HTTPControllerProtocol>
+@interface UpdateAddress : UIViewController<HTTPControllerProtocol,UIAlertViewDelegate>
 
 @property(strong,nonatomic) AddressModel *addressModel;
 

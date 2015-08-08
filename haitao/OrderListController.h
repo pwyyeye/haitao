@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Order_package.h"
-@interface OrderListController : UIViewController<HTTPControllerProtocol, UITableViewDataSource,UITableViewDelegate>
+@interface OrderListController : UIViewController<HTTPControllerProtocol, UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 
 @property(strong,nonatomic) UIView *empty_view;
 
@@ -24,4 +24,7 @@
 
 @property(strong,nonatomic) NSArray *goods_arrayForSubView;
 
+@property(strong,nonatomic) UISegmentedControl *seg;
+
+@property(strong,nonatomic) NSString *selectedOrderNo;
 @end

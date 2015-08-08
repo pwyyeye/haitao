@@ -42,6 +42,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     _tableList=@[@"我的订单",@"消息中心",@"优惠券",@"关税缴纳",@"地址管理",@"收藏",@"分享app",@"帮助说明",@"在线客服"];
     
     self.collectionView.backgroundColor=[UIColor whiteColor];
+    self.collectionView.bounces=NO;//遇到边框不反弹
     //self.collectionView.frame=CGRectMake(10, 0, SCREEN_WIDTH-20, SCREEN_HEIGHT);
 //    self.title=@"用户中心";
     
@@ -109,7 +110,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     cell.layer.borderColor=[[UIColor clearColor] CGColor];
     switch (indexPath.row) {
         case 0:
-            cell.imageView.image=[UIImage imageNamed:@"userCenter_inco_order"];
+            cell.imageView.image=[UIImage imageNamed:@"UserCenter_icon_MyOrder"];
             break;
         case 1:
             cell.imageView.image=[UIImage imageNamed:@"userCenter_inco_bell"];
