@@ -9,7 +9,9 @@
 #import "LTKViewController.h"
 #import "DJRefresh.h"
 #import "DJRefreshProgressView.h"
-
+@protocol ChangeTableDelegate
+- (void)changeFrame;
+@end
 @interface CFContentViewController : LTKViewController<UITableViewDelegate,UITableViewDataSource,HTTPControllerProtocol,DJRefreshDelegate>
 {
    NSMutableArray *listArr;
@@ -18,4 +20,5 @@
 @property (nonatomic,strong)NSMutableArray *dataList;
 @property (nonatomic,strong)DJRefresh *refresh;
 @property (nonatomic,copy)NSString *topTitle;
+@property (nonatomic,weak)id<ChangeTableDelegate>delegate;
 @end

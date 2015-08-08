@@ -9,11 +9,13 @@
 #import "HTGoodDetailsViewController.h"
 
 #import "EScrollerView.h"
-#import "TMRulerColor.h"
+#import "BiJiaView.h"
 #import "ChooseSizeViewController.h"
 #import "FCImageTextViewController.h"
 #import "AppDelegate.h"
 #import "HTShopStoreCarViewController.h"
+#import "BiJiaModel.h"
+
 static CGFloat kImageOriginHight = 400;
 
 @interface HTGoodDetailsViewController ()<UIWebViewDelegate,ChooseSizeDelegate>
@@ -21,10 +23,11 @@ static CGFloat kImageOriginHight = 400;
     UIView*navigationBar;
     UrlImageButton* threeButtonImg;
     UrlImageButton* yansechicunImg;
-    TMRulerColor *rulerView;
+    BiJiaView *rulerView;
     UIView *_bgView;
     UIView *view_bar1;
-    UIWebView *webView;
+    UIWebView *webView1;
+    NSMutableArray *bijiaArr;
 }
 @end
 
@@ -36,7 +39,7 @@ static CGFloat kImageOriginHight = 400;
     UIButton*btnBack=[UIButton buttonWithType:UIButtonTypeCustom];
     
     btnBack.frame=CGRectMake(10, 10, 42, 42);
-    [btnBack setImage:BundleImage(@"left_grey") forState:0];
+    [btnBack setImage:BundleImage(@"DetailsPage_btn_banner_share_") forState:0];
     [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
     
 //    [view_bar1 addSubview:btnBack];
@@ -45,6 +48,7 @@ static CGFloat kImageOriginHight = 400;
     
     
     _scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    _scrollView.backgroundColor=hexColor(@"#ededed");
     _scrollView.delegate = self;
     _scrollView.userInteractionEnabled=YES;
     _scrollView.contentSize=CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
@@ -62,7 +66,7 @@ static CGFloat kImageOriginHight = 400;
     btnShare.frame=CGRectMake(self.view.frame.size.width-50, 10, 42, 42);
     //    btnShare.backgroundColor=[UIColor clearColor];
     [btnShare addTarget:self action:@selector(btnShare:) forControlEvents:UIControlEventTouchUpInside];
-    [btnShare setImage:BundleImage(@"shop_fx_.png") forState:0];
+    [btnShare setImage:BundleImage(@"DetailsPage_btn_banner_return_") forState:0];
     [self.view insertSubview:btnShare aboveSubview:_scrollView];
     
     
@@ -93,9 +97,10 @@ static CGFloat kImageOriginHight = 400;
                                                           scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
     
     scroller.delegate=self;
-    scroller.backgroundColor=[UIColor clearColor];
+    scroller.backgroundColor=[UIColor whiteColor];
     [_scrollView addSubview:scroller];
     UIView  *nameView=[[UIView alloc]initWithFrame:CGRectMake(0, scroller.frame.size.height+scroller.frame.origin.y, self.view.frame.size.width,90 )];
+    nameView.backgroundColor=[UIColor whiteColor];
     UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, self.view.frame.size.width-20, 15)];
     title_label.text=self.goods.title;
     title_label.font=[UIFont boldSystemFontOfSize:15];
@@ -117,12 +122,18 @@ static CGFloat kImageOriginHight = 400;
     [nameView insertSubview:title_money atIndex:0];
     
     UIButton *bijiaBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    bijiaBtn.frame =CGRectMake(self.view.frame.size.width/2-50, title_money.frame.origin.y+title_money.frame.size.height+3, 100, 25);
+    bijiaBtn.userInteractionEnabled=true;
+    bijiaBtn.backgroundColor=[UIColor clearColor];
+    bijiaBtn.frame =CGRectMake(self.view.frame.size.width/2-50, title_money.frame.origin.y+title_money.frame.size.height+3, 100, 30);
     [bijiaBtn setTitle:@"全球比价" forState:UIControlStateNormal];
+    bijiaBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [bijiaBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [bijiaBtn addTarget:self action:@selector(quanqiubijia:) forControlEvents:UIControlEventTouchUpInside];
+    UIImageView *rightimg=[[UIImageView alloc]initWithFrame:CGRectMake(bijiaBtn.width-20, 12, 7, 7)];
+    rightimg.image=[UIImage  imageNamed:@"icon_Drop-rightList"];
+    [bijiaBtn addSubview:rightimg];
     [nameView insertSubview:bijiaBtn atIndex:0];
-    
-    [_scrollView addSubview:nameView];
+        [_scrollView addSubview:nameView];
     //邮费重量
     UIView *_bigView1=[[UIView alloc]initWithFrame:CGRectMake(0, nameView.frame.size.height+nameView.frame.origin.y+10, self.view.frame.size.width, 50)];
     _bigView1.layer.borderWidth=1;
@@ -170,12 +181,12 @@ static CGFloat kImageOriginHight = 400;
     
     //邮费重量
     UIView *yunfeiView=[[UIView alloc]initWithFrame:CGRectMake(0, _bigView1.frame.size.height+_bigView1.frame.origin.y, self.view.frame.size.width, 30)];
-    yunfeiView.backgroundColor=hui2;
+    yunfeiView.backgroundColor=hexColor(@"#ffe0eb");
     UILabel *yunfeititle=[[UILabel alloc]initWithFrame:CGRectMake(20, 5, self.view.frame.size.width-40, 20)];
     yunfeititle.text=@"￥40/受500g,￥5续100g,每个订单仅收一次首重。";
     yunfeititle.font=[UIFont systemFontOfSize:12];
     yunfeititle.backgroundColor=[UIColor clearColor];
-    yunfeititle.textColor =[UIColor blackColor];
+    yunfeititle.textColor =hexColor(@"#af687a");
     yunfeititle.textAlignment=1;
     [yunfeiView addSubview:yunfeititle];
     [_scrollView addSubview:yunfeiView];
@@ -261,20 +272,20 @@ static CGFloat kImageOriginHight = 400;
     shopInfolbl.textAlignment=0;
     [_scrollView addSubview:shopInfolbl];
     //加载html商品信息
-    webView=[[UIWebView alloc]initWithFrame:CGRectMake(0, shopInfolbl.frame.size.height+shopInfolbl.frame.origin.y, self.view.frame.size.width,200)];
+    webView1=[[UIWebView alloc]initWithFrame:CGRectMake(0, shopInfolbl.frame.size.height+shopInfolbl.frame.origin.y, self.view.frame.size.width,200)];
     
     
     NSString *webStr=[NSString stringWithFormat:@"<body>%@</body>",self.goodsExt.content];
     
-    [webView loadHTMLString:webStr baseURL:nil];
-    [webView setScalesPageToFit:YES];
-    [webView setBackgroundColor:[UIColor clearColor]];
-    webView.delegate=self;
-    webView.opaque = NO;
+    [webView1 loadHTMLString:webStr baseURL:nil];
+    [webView1 setScalesPageToFit:YES];
+    [webView1 setBackgroundColor:[UIColor whiteColor]];
+    webView1.delegate=self;
+    webView1.opaque = NO;
     
 //    webView.scrollView.bounces = NO; //__IPHONE_5_0
 //    [self webViewDidFinishLoad:webView];
-    [_scrollView addSubview:webView];
+    [_scrollView addSubview:webView1];
     
     
     
@@ -323,6 +334,10 @@ static CGFloat kImageOriginHight = 400;
 {
     AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
     [app.navigationController popViewControllerAnimated:YES];
+    if(self.delegate){
+
+        [self.delegate changeGoodFrame];
+    }
     
 }
 -(void)btnGo:(id)sender
@@ -355,32 +370,76 @@ static CGFloat kImageOriginHight = 400;
     [self.view addSubview:view_bar];
     
     UIButton*btnCall=[UIButton buttonWithType:0];
-    btnCall.frame=CGRectMake(10, 0, 70, 50);
+    btnCall.frame=CGRectMake(0, 0, view_bar.frame.size.width/5,  view_bar.frame.size.height);
     btnCall.backgroundColor=[UIColor clearColor];
+    btnCall.userInteractionEnabled=YES;
     [btnCall addTarget:self action:@selector(call:) forControlEvents:UIControlEventTouchUpInside];
-    [btnCall setImage:BundleImage(@"shopbt_02_.png") forState:0];
+//    [btnCall setImage:BundleImage(@"shopbt_02_.png") forState:0];
     [view_bar addSubview:btnCall];
     
-    UIButton*shoucangBtn=[UIButton buttonWithType:0];
-    shoucangBtn.frame=CGRectMake(10+70+5, 0, 70, 50);
-    shoucangBtn.backgroundColor=[UIColor clearColor];
-    [shoucangBtn addTarget:self action:@selector(myShopCar:) forControlEvents:UIControlEventTouchUpInside];
-    [shoucangBtn setImage:BundleImage(@"shopbt_02_.png") forState:0];
-    [view_bar addSubview:shoucangBtn];
+    UIImageView *callImg=[[UrlImageView alloc]initWithFrame:CGRectMake(20, 8, 24, 22)];
+    callImg.image=[UIImage imageNamed:@"icon_LianXiKeFu"];
+    [btnCall addSubview:callImg];
+    UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(callImg.frame.origin.x, callImg.frame.size.height+callImg.frame.origin.y+5,callImg.frame.size.width, 10)];
+    _label.text=@"客服";
+    _label.font=[UIFont boldSystemFontOfSize:10];
+    _label.backgroundColor=[UIColor clearColor];
+    _label.textColor =hexColor(@"#b3b3b3");
+    _label.numberOfLines=1;
+    _label.textAlignment=NSTextAlignmentCenter;
     
-    UIButton *carBtn=[UIButton buttonWithType:0];
-    carBtn.frame=CGRectMake(10+70+5+70+5, 0,70, 50);
-    carBtn.backgroundColor=[UIColor clearColor];
-    [carBtn addTarget:self action:@selector(myShopCar:) forControlEvents:UIControlEventTouchUpInside];
-    [carBtn setImage:BundleImage(@"shopbt_02_.png") forState:0];
-    [view_bar addSubview:carBtn];
+    [btnCall addSubview:_label];
 
     
+    //收藏
+    UIButton*shoucangBtn=[UIButton buttonWithType:0];
+    shoucangBtn.frame=CGRectMake(btnCall.frame.size.width+btnCall.frame.origin.x, 0, btnCall.width, view_bar.height);
+    shoucangBtn.userInteractionEnabled=YES;
+    shoucangBtn.backgroundColor=[UIColor clearColor];
+    [shoucangBtn addTarget:self action:@selector(shoucang:) forControlEvents:UIControlEventTouchUpInside];
+//    [shoucangBtn setImage:BundleImage(@"shopbt_02_.png") forState:0];
+    [view_bar addSubview:shoucangBtn];
+    UIImageView *scImg=[[UrlImageView alloc]initWithFrame:CGRectMake(20, 8, 24, 22)];
+    scImg.image=[UIImage imageNamed:@"DetailsPage_icon_love_"];
+    [shoucangBtn addSubview:scImg];
+    UILabel *scLbl=[[UILabel alloc]initWithFrame:CGRectMake(scImg.frame.origin.x, scImg.frame.size.height+scImg.frame.origin.y+5,scImg.frame.size.width, 10)];
+    scLbl.text=@"收藏";
+    scLbl.font=[UIFont boldSystemFontOfSize:10];
+    scLbl.backgroundColor=[UIColor clearColor];
+    scLbl.textColor =hexColor(@"#b3b3b3");
+    scLbl.numberOfLines=1;
+    scLbl.textAlignment=NSTextAlignmentCenter;
+    
+    [shoucangBtn addSubview:scLbl];
+    
+    //购物车
+    UIButton *carBtn=[UIButton buttonWithType:0];
+    carBtn.frame=CGRectMake(shoucangBtn.width+shoucangBtn.left, 0,shoucangBtn.width, shoucangBtn.height);
+    carBtn.backgroundColor=[UIColor clearColor];
+    carBtn.userInteractionEnabled=YES;
+    [carBtn addTarget:self action:@selector(myShopCar:) forControlEvents:UIControlEventTouchUpInside];
+//    [carBtn setImage:BundleImage(@"icon_Order") forState:0];
+    [view_bar addSubview:carBtn];
+    UIImageView *gwcImg=[[UrlImageView alloc]initWithFrame:CGRectMake(20, 8, 24, 22)];
+    gwcImg.image=[UIImage imageNamed:@"icon_Order"];
+    [carBtn addSubview:gwcImg];
+    UILabel *gwcLbl=[[UILabel alloc]initWithFrame:CGRectMake(gwcImg.frame.origin.x-4, gwcImg.frame.size.height+gwcImg.frame.origin.y+6,gwcImg.frame.size.width+10, 10)];
+    gwcLbl.text=@"购物车";
+    gwcLbl.font=[UIFont boldSystemFontOfSize:10];
+    gwcLbl.backgroundColor=[UIColor clearColor];
+    gwcLbl.textColor =hexColor(@"#b3b3b3");
+    gwcLbl.numberOfLines=1;
+    gwcLbl.textAlignment=NSTextAlignmentCenter;
+    
+    [carBtn addSubview:gwcLbl];
+
+    //加入购物车
     UIButton*btnShop=[UIButton buttonWithType:0];
-    btnShop.frame=CGRectMake(10+70+5+70+5+70, 49/2-28/2, 100, 28);
+    btnShop.frame=CGRectMake(carBtn.width+carBtn.left, 0,view_bar.width-carBtn.width-carBtn.left, shoucangBtn.height);
+    btnShop.userInteractionEnabled=YES;
     btnShop.backgroundColor=[UIColor clearColor];
     [btnShop addTarget:self action:@selector(addShopCar:) forControlEvents:UIControlEventTouchUpInside];
-    [btnShop setImage:BundleImage(@"shopbt_01_n_.png") forState:0];
+    [btnShop setImage:BundleImage(@"加入购物车_") forState:0];
     [view_bar addSubview:btnShop];
     
     
@@ -414,28 +473,85 @@ static CGFloat kImageOriginHight = 400;
     [alert show];
     
 }
-
-#pragma mark 我的购物车
--(void)myShopCar:(id)sender
-{
+#pragma mark 收藏
+-(void)shoucang:(id)sender{
+    NSDictionary *parameters = @{@"goods_id":self.goods.id};
+    NSString* url =[NSString stringWithFormat:@"%@&f=addFav&m=user",requestUrl]
+    ;
     
-    HTShopStoreCarViewController *shopStoreCarViewController=[[HTShopStoreCarViewController alloc]initWithTabbar:false];
-    AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
-    [app.navigationController pushViewController:shopStoreCarViewController animated:YES];
-}
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"addFav"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
 
+}
+#pragma mark 接受数据
+-(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
+    //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    //    [app stopLoading];
+    NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
+    NSString *status=[dictemp objectForKey:@"status"];
+    //    if(![status isEqualToString:@"1"]){
+    ////        [self showMessage:message];
+    ////        return ;
+    //    }
+    if([urlname isEqualToString:@"addFav"]){
+        ShowMessage(@"收藏成功");
+    }
+    if([urlname isEqualToString:@"getGoodsParityList"]){
+        NSArray *dataArr=[dictemp objectForKey:@"data"];
+        bijiaArr=[[NSMutableArray alloc]initWithCapacity:dataArr.count];
+        for (NSDictionary *dic in dataArr) {
+            BiJiaModel *biJiaModel= [BiJiaModel objectWithKeyValues:dic] ;
+            [bijiaArr addObject:biJiaModel];
+        }
+        if(bijiaArr.count>0){
+            [self showBijia];
+        }else{
+            ShowMessage(@"暂无此类商品数据");
+        }
+    }
+    
+}
+#pragma mark 比价
+-(void)showBijia{
+    _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,SCREEN_HEIGHT)];
+    [_bgView setTag:99999];
+    [_bgView setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.4]];
+    [_bgView setAlpha:1.0];
+    
+    [self.view addSubview:_bgView];
+    rulerView = [[BiJiaView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH-50,SCREEN_HEIGHT)withBiJia:bijiaArr withGoods:self.goods];
+    rulerView.tag = 100000;
+    //    rulerView.menuDelegate = self;
+    rulerView.backgroundColor=[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
+    [_bgView addSubview:rulerView];
+    [UIView beginAnimations:@"animationID" context:nil];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:rulerView cache:NO];
+    rulerView.frame= CGRectMake(50, 0, SCREEN_WIDTH-50, SCREEN_HEIGHT);
+    UIImageView*_imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, 6)];
+    _imageView.image=BundleImage(@"ic_pull_shadow.png");
+    [_bgView addSubview:_imageView];
+    [UIView commitAnimations];
+    
+    UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame=CGRectMake(0 ,0, 50, SCREEN_HEIGHT);
+    [button setImage:BundleImage(@"bt_clo_.png") forState:0];
+    [button addTarget:self action:@selector(SetViewDisappear:) forControlEvents:UIControlEventTouchDown];
+    [_bgView insertSubview:button aboveSubview:_bgView];
+    button.backgroundColor=[UIColor clearColor];
+}
 //立即购买消失按钮
 -(void)SetViewDisappear:(id)sender
 {
-    UIButton*btn=(UIButton*)sender;
-    
     if (_bgView)
     {
         [UIView animateWithDuration:.5
                          animations:^{
                              
-                             //                             rulerView.frame=CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
-                             //                            _bgView.frame=CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
+                             rulerView.frame=CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height);
+                             _bgView.frame=CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height);
                              _bgView.alpha=0.0;
                          }];
         [_bgView performSelector:@selector(removeFromSuperview)
@@ -454,6 +570,16 @@ static CGFloat kImageOriginHight = 400;
     //    }
     
 }
+#pragma mark 我的购物车
+-(void)myShopCar:(id)sender
+{
+    
+    HTShopStoreCarViewController *shopStoreCarViewController=[[HTShopStoreCarViewController alloc]initWithTabbar:false];
+    AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    [app.navigationController pushViewController:shopStoreCarViewController animated:YES];
+}
+
+
 #pragma mark - 选择颜色尺寸
 -(void)yansechicunBtn:(UrlImageButton *)sendid{
     ChooseSizeViewController *chooseSizeViewController=[[ChooseSizeViewController alloc]init];
@@ -506,10 +632,14 @@ static CGFloat kImageOriginHight = 400;
     imageP.image=BundleImage(@"bt_04_J.png");
     [threeButtonImg addSubview:imageP];
     
+    //购物流程
+    UIImageView *gouwuliuchengImg=[[UIImageView alloc]initWithFrame:CGRectMake(0,threeButtonImg.frame.size.height+threeButtonImg.frame.origin.y+10,SCREEN_WIDTH,158)];
+    gouwuliuchengImg.image=BundleImage(@"DetailsPage_img_gouwuliucheng");
+    [_scrollView addSubview:gouwuliuchengImg];
     
     for (int i=0; i<8; i++)
     {
-        btnNine=[[UrlImageButton alloc]initWithFrame:CGRectMake((i%4)*(320-10)/4+10, floor(i/4)*(320-10)/4+10+threeButtonImg.frame.size.height+threeButtonImg.frame.origin.y, (320-30-10)/4, (320-30-10)/4)];
+        btnNine=[[UrlImageButton alloc]initWithFrame:CGRectMake((i%4)*(320-10)/4+10, floor(i/4)*(320-10)/4+10+gouwuliuchengImg.frame.size.height+gouwuliuchengImg.frame.origin.y, (320-30-10)/4, (320-30-10)/4)];
         btnNine.backgroundColor=[UIColor whiteColor];
         [btnNine setImage:[UIImage imageNamed:@"df_01.png"] forState:0];
         btnNine.tag=i+1000;
@@ -541,9 +671,28 @@ static CGFloat kImageOriginHight = 400;
     
     _scrollView.frame=CGRectMake(0, view_bar1.frame.size.height, 320, self.view.frame.size.height+140-view.frame.size.height-10);
 }
+
+#pragma mark 全球比价
+- (void)quanqiubijia:(id)sender{
+    //    NSDictionary *parameters = @{@"id":@"626"};
+    if(bijiaArr.count>0){
+        [self showBijia];
+    }else{
+        NSDictionary *parameters = @{@"id":self.goods.id};
+        NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsParityList",requestUrl]
+        ;
+        
+        HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsParityList"];
+        httpController.delegate = self;
+        [httpController onSearchForPostJson];
+    }
+    
+}
 - (void)addShopCarFinsh:(NSDictionary *)dic{
     ShowMessage(@"添加成功");
 }
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

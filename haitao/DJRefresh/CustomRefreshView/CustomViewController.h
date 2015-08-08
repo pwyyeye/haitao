@@ -11,7 +11,9 @@
 #import "DJRefreshProgressView.h"
 #import "CFImageButton.h"
 #import "Goods_Ext.h"
-@interface CustomViewController : LTKViewController<UITableViewDelegate,UITableViewDataSource,HTTPControllerProtocol,DJRefreshDelegate>
+#import "CFContentViewController.h"
+#import "HTGoodDetailsViewController.h"
+@interface CustomViewController : LTKViewController<UITableViewDelegate,UITableViewDataSource,HTTPControllerProtocol,DJRefreshDelegate,ChangeTableDelegate,GoodChangeTableDelegate>
 {
     NSMutableArray *listArr;
     NSString *title;

@@ -9,6 +9,9 @@
 #import "CFContentViewController.h"
 #import "New_Goods.h"
 #import "ScreenViewController.h"
+#import "GoodImageButton.h"
+#import "Goods_Ext.h"
+#import "HTGoodDetailsViewController.h"
 @interface CFContentViewController ()
 {
     UITableView                 *_tableView;
@@ -32,6 +35,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+  
+
     UIView *naviView=(UIView*) [self getNavigationBar];
     _tableView =[[UITableView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height+1,self.view.frame.size.width,kWindowHeight-naviView.frame.size.height} style:UITableViewStylePlain];
     _tableView.delegate=self;
@@ -147,82 +152,76 @@
     for (int i =0; i<arrTemp.count; i++)
     {
         New_Goods *new_Goods=arrTemp[i];
-        imageV=[[UrlImageView alloc]initWithFrame:CGRectMake((i%2)*153+13, floor(i/2)*200+10, 140, 140)];
-        imageV.backgroundColor=[UIColor redColor];
-        imageV.userInteractionEnabled=YES;
+        GoodImageButton *gbBtn=[[GoodImageButton alloc]initWithFrame:CGRectMake((i%2)*((SCREEN_WIDTH-20)/2-5+10)+10, floor(i/2)*210+10, (SCREEN_WIDTH-20)/2-5, 210)];
+        gbBtn.userInteractionEnabled=YES;
+        gbBtn.backgroundColor=[UIColor whiteColor];
+        //            imageV.userInteractionEnabled=YES;
         //            btn.layer.shadowOffset = CGSizeMake(1,1);
         //            btn.layer.shadowOpacity = 0.2f;
         //            btn.layer.shadowRadius = 3.0;
-        imageV.layer.borderWidth=1;//描边
-        imageV.layer.cornerRadius=4;//圆角
-        imageV.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
-        imageV.backgroundColor=[UIColor whiteColor];
+        gbBtn.layer.borderWidth=1;//描边
+        gbBtn.layer.cornerRadius=4;//圆角
+        gbBtn.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
+        gbBtn.goods=new_Goods;
+        gbBtn.backgroundColor=[UIColor whiteColor];
+        [gbBtn addTarget:self action:@selector(goodContentTouch:) forControlEvents:UIControlEventTouchUpInside];
+        [cell addSubview:gbBtn];
         
-        [cell addSubview:imageV];
+        UrlImageView*btn=[[UrlImageView alloc]initWithFrame:CGRectMake(0, 0, gbBtn.frame.size.width, gbBtn.frame.size.width)];
+        //            btn.userInteractionEnabled=YES;
+        //            btn.layer.borderWidth=1;//描边
+        //            btn.layer.cornerRadius=4;//圆角
+        //            btn.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
+        btn.backgroundColor=RGBA(237, 237, 237, 1);
         
-        UrlImageButton*btn=[[UrlImageButton alloc]initWithFrame:CGRectMake(2, 2, 140-4, 140-4)];
-        btn.userInteractionEnabled=YES;
-        btn.layer.borderWidth=1;//描边
-        btn.layer.cornerRadius=4;//圆角
-        btn.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
-        btn.backgroundColor=[UIColor whiteColor];
-        
-        NSString *urlStr=new_Goods.img;
+        NSString *urlStr=new_Goods.img_260;
         if((urlStr==nil)||[urlStr isEqualToString:@""]){
-            [btn setBackgroundImage:BundleImage(@"df_04_.png") forState:0];
+            btn.image=BundleImage(@"df_04_.png");
+            
         }else{
             NSURL *imgUrl=[NSURL URLWithString:urlStr];
             [btn setImageWithURL:imgUrl];
         }
         
-        [btn addTarget:self action:@selector(goodContentTouch:) forControlEvents:UIControlEventTouchUpInside];
+        //            [btn addTarget:self action:@selector(goodContentTouch:) forControlEvents:UIControlEventTouchUpInside];
         //            [imageV addSubview:btn];
-        [imageV insertSubview:btn aboveSubview:imageV];
-        
-        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake((i%2)*153+13, floor(i/2)*200+10+140, 140, 40)];
-        _label.text=new_Goods.title;
-        _label.font=[UIFont boldSystemFontOfSize:14];
+        //商店名
+        [gbBtn addSubview:btn];
+        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(0, btn.frame.size.width, btn.frame.size.height+btn.frame.origin.y+5, 10)];
+        _label.text=new_Goods.shop_name;
+        _label.font=[UIFont boldSystemFontOfSize:10];
         _label.backgroundColor=[UIColor clearColor];
-        _label.textColor =[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0];
-        _label.numberOfLines=2;
-        _label.textAlignment=0;
+        _label.textColor =hexColor(@"#b3b3b3");
+        _label.numberOfLines=1;
+        _label.textAlignment=NSTextAlignmentCenter;
         
-        [cell addSubview:_label];
+        [gbBtn addSubview:_label];
+        //商品名
+        UILabel *_label1=[[UILabel alloc]initWithFrame:CGRectMake(0, _label.frame.size.height+_label.frame.origin.y+1, btn.frame.size.width, 30)];
+        _label1.text=new_Goods.title;
+        _label1.font=[UIFont fontWithName:@"Helvetica-Bold" size:11];
+        _label1.backgroundColor=[UIColor clearColor];
+        _label1.textColor =hexColor(@"#333333");
+        _label1.lineBreakMode = UILineBreakModeWordWrap;
+        _label1.numberOfLines=2;
+        _label1.textAlignment=NSTextAlignmentCenter;
+        
+        [gbBtn addSubview:_label1];
         
         
         
         
+        UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(0, _label1.frame.size.height+_label1.frame.origin.y+1 ,btn.frame.size.width, 20)];
+        title_label.text=[NSString stringWithFormat:@"￥%.1f",new_Goods.price];
         
-        UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake((i%2)*153+13, floor(i/2)*200+140+10+_label.frame.size.height, 65, 20)];
-        title_label.text=[NSString stringWithFormat:@"%f",new_Goods.price];
-        
-        title_label.font=[UIFont systemFontOfSize:12];
+        title_label.font=[UIFont fontWithName:@"Helvetica-Bold" size:14];;
         title_label.backgroundColor=[UIColor clearColor];
-        title_label.textColor =hongShe;
-        title_label.textAlignment=0;
+        title_label.textColor =hexColor(@"#ff0d5e");
+        title_label.textAlignment=NSTextAlignmentCenter;
         lastFrame=title_label.frame;
         //
-        [cell addSubview:title_label];
-        
-        UILabel *title_label1=[[UILabel alloc]initWithFrame:CGRectMake((i%2)*153+13+title_label.frame.size.width, floor(i/2)*200+140+10+_label.frame.size.height, 65, 20)];
-        title_label1.text=@"199.70";
-        title_label1.font=[UIFont systemFontOfSize:10];
-        title_label1.backgroundColor=[UIColor clearColor];
-        title_label1.textColor =[UIColor colorWithRed:.7 green:.7 blue:.7 alpha:1.0];
-        title_label1.textAlignment=0;
-        
-        [cell addSubview:title_label1];
-        
-        //高度固定不折行，根据字的多少计算label的宽度
-        NSString *str = title_label1.text;
-        CGSize size = [str sizeWithFont:title_label.font constrainedToSize:CGSizeMake(MAXFLOAT, title_label.frame.size.height)];
-        //                     NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
-        //根据计算结果重新设置UILabel的尺寸
-        
-        
-        UIImageView *line=[[UIImageView alloc]initWithFrame:CGRectMake(0, title_label1.frame.size.height/2, size.width, 1)];
-        line.image=BundleImage(@"line_01_.png");
-        [title_label1 addSubview:line];
+        [gbBtn addSubview:title_label];
+        lastFrame =gbBtn.frame;
         
     }
     CGRect cellFrame = [cell frame];
@@ -443,8 +442,59 @@
 {
     AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
     [app.navigationController popViewControllerAnimated:YES];
+    [self.delegate changeFrame];
+}
+#pragma mark 商品详细信息
+-(void)goodContentTouch:(GoodImageButton *)sender{
+    New_Goods *goods=sender.goods;
+    //    NSDictionary *parameters = @{@"id":@"626"};
+    NSDictionary *parameters = @{@"id":@"626"};//goods.id
+    NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
+    ;
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsDetail"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
+    
     
 }
+#pragma mark 接受数据
+-(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
+    //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    //    [app stopLoading];
+    NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
+    NSString *status=[dictemp objectForKey:@"status"];
+    //    if(![status isEqualToString:@"1"]){
+    ////        [self showMessage:message];
+    ////        return ;
+    //    }
+   
+    if([urlname isEqualToString:@"getGoodsDetail"]){
+        NSDictionary *dataDic=[dictemp objectForKey:@"data"];
+        NSDictionary *goods_detail=[dataDic objectForKey:@"goods_detail"];
+        NSDictionary *goods_ext=[dataDic objectForKey:@"goods_ext"];
+        NSArray *goods_image=[dataDic objectForKey:@"goods_image"];
+        NSDictionary *goods_attr=[dataDic objectForKey:@"goods_attr"];
+        //        NSArray *priceArr=[goods_attr objectForKey:@"price"];
+        //        NSArray *attr_infoArr=[goods_attr objectForKey:@"attr_info"];
+        NSArray *goods_parity=[dataDic objectForKey:@"goods_parity"];
+        New_Goods *newGoods = [New_Goods objectWithKeyValues:goods_detail] ;
+        Goods_Ext *goodsExt=[Goods_Ext objectWithKeyValues:goods_ext];
+        //        NSDictionary *menuIndexDic=[dataDic objectForKey:@"cat_index"];
+        HTGoodDetailsViewController *htGoodDetailsViewController=[[HTGoodDetailsViewController alloc]init];
+        htGoodDetailsViewController.goods_parity=goods_parity;
+        htGoodDetailsViewController.goods=newGoods;
+        htGoodDetailsViewController.goods_attr=goods_attr;
+        htGoodDetailsViewController.goodsExt=goodsExt;
+        htGoodDetailsViewController.goods_image=goods_image;
+//        htGoodDetailsViewController.delegate=self;
+        AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [delegate.navigationController pushViewController:htGoodDetailsViewController animated:YES];
+        
+    }
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

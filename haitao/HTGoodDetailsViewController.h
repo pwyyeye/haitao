@@ -10,7 +10,11 @@
 #import "New_Goods.h"
 #import "Goods_Ext.h"
 
-@interface HTGoodDetailsViewController : LTKViewController
+@protocol GoodChangeTableDelegate
+@optional
+- (void)changeGoodFrame;
+@end
+@interface HTGoodDetailsViewController : LTKViewController<HTTPControllerProtocol>
 {
     UIScrollView *_scrollView;
     UIImageView*  tabBarArrow;//上部桔红线条
@@ -28,4 +32,5 @@
 @property(nonatomic,retain)Goods_Ext *goodsExt;
 @property(nonatomic,retain)NSArray *goods_image;
 @property(nonatomic,retain)NSDictionary *goods_attr;
+@property (nonatomic,weak)id<GoodChangeTableDelegate>delegate;
 @end
