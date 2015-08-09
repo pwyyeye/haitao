@@ -74,9 +74,17 @@
     if (signedString != nil) {
         orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
                        orderSpec, signedString, @"RSA"];
+        /***
+         9000 订单支付成功
+         8000 正在处理中
+         4000 订单支付失败
+         6001 用户中途取消
+         6002 网络连接出错
+         */
         
         [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
             NSLog(@"reslut = %@",resultDic);
+            
             if ([self.delegate respondsToSelector:@selector(callBack:)]) {
                 [self.delegate callBack:resultDic];
             }else{

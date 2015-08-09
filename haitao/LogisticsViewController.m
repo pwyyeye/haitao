@@ -232,11 +232,22 @@
                     break;
                 }
                 Order_goodsAttr *attr =goods.goods_attr[i];
-                UILabel *head=[[UILabel alloc] initWithFrame:CGRectMake(cell.frame.origin.x+70,i==0?cell.frame.origin.y+30:cell.frame.origin.y+50, 150, 20)];
-                head.text=[NSString stringWithFormat:@"%@: %@",attr.attr_name,attr.attr_val_name];
-                head.font=[UIFont boldSystemFontOfSize:11];
-                head.textColor=RGB(128, 128, 128);
-                [cell.contentView addSubview:head];
+                if (i==0) {
+                    cell.option1=[[UILabel alloc] initWithFrame:CGRectMake(0,0, 150, 20)];
+                    
+                    cell.option1.text=[NSString stringWithFormat:@"%@: %@",attr.attr_name,attr.attr_val_name];
+                    cell.option1.font=[UIFont boldSystemFontOfSize:11];
+                    cell.option1.textColor=RGB(128, 128, 128);
+                    [cell.contentView addSubview:cell.option1];
+                }else{
+                    
+                    cell.option2=[[UILabel alloc] initWithFrame:CGRectMake(0,0, 150, 20)];
+                    
+                    cell.option2.text=[NSString stringWithFormat:@"%@: %@",attr.attr_name,attr.attr_val_name];
+                    cell.option2.font=[UIFont boldSystemFontOfSize:11];
+                    cell.option2.textColor=RGB(128, 128, 128);
+                    [cell.contentView addSubview:cell.option2];
+                }
                 
             }
             

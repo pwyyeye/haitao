@@ -13,6 +13,7 @@
 #import "CarShopInfoModel.h"
 #import "New_Goods.h"
 #import "ChooseSizeViewController.h"
+#import "ConfirmOrderController.h"
 @interface HTShopStoreCarViewController ()<ChooseSizeDelegate>
 {
     float _price;
@@ -182,14 +183,6 @@
             [self getCarInfo];
         }
         
-    }
-    if([urlname isEqualToString:@"getOrderInfo"]){
-        if(status.intValue==1){
-            NSDictionary *dataArr=[dictemp objectForKey:@"data"];
-            
-        }else{
-            ShowMessage(@"提交订单!");
-        }
     }
     
 }
@@ -686,13 +679,14 @@
                 [ss appendString:@","];
             }
         }
-        NSDictionary *parameters = @{@"id":ss};
-        NSString* url =[NSString stringWithFormat:@"%@&f=getOrderInfo&m=order",requestUrl]
-        ;
         
-        HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getOrderInfo"];
-        httpController.delegate = self;
-        [httpController onSearchForPostJson];
+        ConfirmOrderController *detailViewController =[[ConfirmOrderController alloc] initWithNibName:@"ConfirmOrderController" bundle:nil];
+        detailViewController.ids=ss;
+        
+        self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        
+        [self.navigationController pushViewController:detailViewController animated:YES];
+        
     }
     
 }

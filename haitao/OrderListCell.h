@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface OrderListCell : UITableViewCell
-
+@property(strong,nonatomic) UILabel *option1;
+@property(strong,nonatomic) UILabel *option2;
 @end

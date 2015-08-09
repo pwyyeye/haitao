@@ -45,6 +45,10 @@
 
 @property(strong,nonatomic) NSString *zipcode;
 
+@property(strong,nonatomic) NSString *idcard_1;
+
+@property(strong,nonatomic) NSString *idcard_2;
+
 @property(strong,nonatomic) NSString *is_default;
 
 @property(strong,nonatomic) NSString *ct;

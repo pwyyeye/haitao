@@ -15,7 +15,7 @@
 #import "PackageDetailController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "OrderSuccessController.h"
-
+#import "ChoosePayController.h"
 #import "AlipayOrder.h"
 @interface OrderListController ()
 
@@ -197,8 +197,9 @@
 }
 
 -(void)showEmptyView{
-    if (_result_array.count>0 && ![_empty_view isEqual:[NSNull null]]) {
-        [_empty_view removeFromSuperview];
+    [_empty_view removeFromSuperview];
+    if (_result_array.count>0) {
+        _empty_view=nil;
         
     }else if(_result_array.count==0){
         _empty_view=[[UIView alloc] initWithFrame:CGRectMake(0, 34, SCREEN_WIDTH, SCREEN_HEIGHT - 34)];
@@ -264,9 +265,11 @@
                 break;
         }
     
+        NSLog(@"----pass-prediStr1%@---",[NSString stringWithFormat:@"%@",prediStr1]);
         NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@",prediStr1]];
+        NSArray *orderlist=self.order_array;
+        self.result_array = [orderlist filteredArrayUsingPredicate:predicate];
     
-        self.result_array = [self.order_array filteredArrayUsingPredicate:predicate];
         [self.tableView reloadData];
     [self showEmptyView];
 }
@@ -597,9 +600,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OrderListCell *cell = [[OrderListCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     //    cell.textLabel.text = self.results[indexPath.row];
-    NSLog(@"----pass-indexPath item%d---",indexPath.item);
-    NSLog(@"----pass-indexPath row%d---",indexPath.row);
-    
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
 
@@ -635,11 +635,22 @@
                     break;
                 }
                 Order_goodsAttr *attr =goods.goods_attr[i];
-                UILabel *head=[[UILabel alloc] initWithFrame:CGRectMake(cell.frame.origin.x+70,i==0?cell.frame.origin.y+30:cell.frame.origin.y+50, 150, 20)];
-                head.text=[NSString stringWithFormat:@"%@: %@",attr.attr_name,attr.attr_val_name];
-                head.font=[UIFont boldSystemFontOfSize:11];
-                head.textColor=RGB(128, 128, 128);
-                [cell.contentView addSubview:head];
+                if (i==0) {
+                    cell.option1=[[UILabel alloc] initWithFrame:CGRectMake(0,0, 150, 20)];
+                    
+                    cell.option1.text=[NSString stringWithFormat:@"%@: %@",attr.attr_name,attr.attr_val_name];
+                    cell.option1.font=[UIFont boldSystemFontOfSize:11];
+                    cell.option1.textColor=RGB(128, 128, 128);
+                    [cell.contentView addSubview:cell.option1];
+                }else{
+                    
+                    cell.option2=[[UILabel alloc] initWithFrame:CGRectMake(0,0, 150, 20)];
+                    
+                    cell.option2.text=[NSString stringWithFormat:@"%@: %@",attr.attr_name,attr.attr_val_name];
+                    cell.option2.font=[UIFont boldSystemFontOfSize:11];
+                    cell.option2.textColor=RGB(128, 128, 128);
+                    [cell.contentView addSubview:cell.option2];
+                }
 
             }
             
@@ -696,28 +707,52 @@
     
     OrderModel *orderModel = [self.order_array filteredArrayUsingPredicate:predicate][0];
     
-    AlipayOrder *order=[[AlipayOrder alloc] init];
+//    AlipayOrder *order=[[AlipayOrder alloc] init];
+//    
+//    order.tradeNO = orderModel.id; //订单ID（由商家自行制定）
+//    _selectedOrderNo=orderModel.id;
+//    order.productName = @"海淘商品标题"; //商品标题
+//    order.productDescription = @"商品描述"; //商品描述
+//    order.amount = [NSString stringWithFormat:@"%.2f",0.01];
+//    _selectAmount=orderModel.pay_amount;
+//    
+//    SingletonAlipay *alipay=[SingletonAlipay singletonAlipay];
+//    alipay.delegate=self;
+//    [alipay payOrder:order];
     
-    order.tradeNO = orderModel.id; //订单ID（由商家自行制定）
-    order.productName = @"海淘商品标题"; //商品标题
-    order.productDescription = @"商品描述"; //商品描述
-    order.amount = [NSString stringWithFormat:@"%.2f",0.01];
+    ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
+    detailViewController.orderNo=orderModel.id;
+    detailViewController.payAmount=orderModel.pay_amount;
+    Order_package *package=orderModel.package_info[0];
+    Order_goods *shop = package.goods[0];
+    detailViewController.productName=shop.goods_name;
+    detailViewController.productDescription=@"暂无";
+    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     
-    SingletonAlipay *alipay=[SingletonAlipay singletonAlipay];
-    alipay.delegate=self;
-    [alipay payOrder:order];
+    [self.navigationController pushViewController:detailViewController animated:YES];
+
     
 }
 
 
 -(void)gotoCancelOrder:(UIButton *)sender{
     //订单号
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [app startLoading];
+//    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//    [app startLoading];
+//    
+//    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_cancelOrder withType:POSTURL withPam:@{@"order_id":[NSString stringWithFormat:@"%d",sender.tag]} withUrlName:@"cancelOrder"];
+//    httpController.delegate = self;
+//    [httpController onSearchForPostJson];
+    OrderSuccessController *detailViewController =[[OrderSuccessController alloc] initWithNibName:@"OrderSuccessController" bundle:nil];
+    detailViewController.orderNoString=_selectedOrderNo;
+    detailViewController.payAmountString=[NSString stringWithFormat:@"%.2f",_selectAmount];
     
-    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_cancelOrder withType:POSTURL withPam:@{@"order_id":[NSString stringWithFormat:@"%d",sender.tag]} withUrlName:@"cancelOrder"];
-    httpController.delegate = self;
-    [httpController onSearchForPostJson];
+    _selectAmount=0;
+    _selectedOrderNo=nil;
+    
+    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    [self.navigationController pushViewController:detailViewController animated:YES];
     
 }
 
@@ -750,12 +785,34 @@
 }
 
 #pragma mark - alipay delegate
--(void)callBack:(NSDictionary *)resultDic{
-    OrderSuccessController *detailViewController =[[OrderSuccessController alloc] initWithNibName:@"OrderSuccessController" bundle:nil];
-    
-    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    
-    [self.navigationController pushViewController:detailViewController animated:YES];
-
-}
+//-(void)callBack:(NSDictionary *)resultDic{
+//    if (resultDic.count==0) {
+//        ShowMessage(@"支付订单失败，如果您确定已经付款成功，请及时联系客服！");
+//        return;
+//        
+//    }
+//    //9000订单支付成功 且 success＝＝true
+//    if ([[resultDic objectForKey:@"partner"] rangeOfString:@"success=\"true\""].location == NSNotFound) {
+//        ShowMessage(@"支付订单失败，如果您确定已经付款成功，请及时联系客服！");
+//        return;
+//    }
+//    if ([[resultDic objectForKey:@"resultStatus"] longLongValue]==9000) {
+//        OrderSuccessController *detailViewController =[[OrderSuccessController alloc] initWithNibName:@"OrderSuccessController" bundle:nil];
+//        detailViewController.orderNoString=_selectedOrderNo;
+//        detailViewController.payAmountString=[NSString stringWithFormat:@"%.2f",_selectAmount];
+//        
+//        _selectAmount=0;
+//        _selectedOrderNo=nil;
+//        
+//        self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+//        
+//        [self.navigationController pushViewController:detailViewController animated:YES];
+//    }else{
+//    
+////        ShowMessage(@"支付订单出现异常，如果您确定已经付款成功，请及时联系客服！");
+////        return;
+//    }
+//    
+//
+//}
 @end

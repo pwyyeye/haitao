@@ -14,6 +14,10 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *payAmount;
 
+@property(strong,nonatomic) NSString *orderNoString;
+
+@property(strong,nonatomic) NSString *payAmountString;
+
 - (IBAction)gotoOrder:(id)sender;
 
 - (IBAction)gotoSearch:(id)sender;

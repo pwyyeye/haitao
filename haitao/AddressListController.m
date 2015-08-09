@@ -106,12 +106,6 @@
         if ([[dictemp objectForKey:@"status"] integerValue] ==1) {
             NSArray *list=[dictemp objectForKey:@"data"];
             
-//            NSMutableArray *marray=[[NSMutableArray alloc] init];
-//            for (NSDictionary *obj in list) {
-//                AddressModel *model=[AddressModel objectWithKeyValues:obj];
-//                [marray addObject:model];
-//            }
-//            _data=[marray copy];
             _data=[[AddressModel objectArrayWithKeyValuesArray:list] copy];
             [self reloadData];
         }else{

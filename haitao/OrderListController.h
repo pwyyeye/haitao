@@ -28,4 +28,6 @@
 @property(strong,nonatomic) UISegmentedControl *seg;
 
 @property(strong,nonatomic) NSString *selectedOrderNo;
+
+@property(assign,nonatomic) float selectAmount;
 @end
