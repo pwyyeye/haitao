@@ -14,6 +14,7 @@
 #import "App_Home_Bigegg.h"
 #import "New_Goods.h"
 #import "SVPullToRefresh.h"
+#import "CFImageButton.h"
 @interface HomeViewController ()
 {
     UrlImageButton *btn;
@@ -23,6 +24,14 @@
     UIView *_view;
     UILabel *label2;
     UILabel *label3;
+    UIView *qiangouContentView;
+    UIView *jingpinContentView;
+    UIView *guojimingpinContentView;
+    UIView *xinpinContentView;
+    EScrollerView *scroller;
+    NSArray *topMenuArr;
+    NSMutableArray *jingpinPageArr;
+    NSMutableArray *jingpinArr;
 }
 @property (nonatomic,strong)DJRefresh *refresh;
 @end
@@ -41,6 +50,13 @@
     app_home_command=[[NSMutableArray alloc]init];//手机端精品推荐
     app_home_brand=[[NSMutableArray alloc]init];//手机端国际名品
     new_goods=[[NSMutableArray alloc]init];//手机端国际名品
+    NSDictionary *dic1=@{@"img":@"jingpintuijian_icon_topbar_xsfm_",@"title":@"孝敬父母"};
+    NSDictionary *dic2=@{@"img":@"jingpintuijian_icon_topbar_dsxn_",@"title":@"都市型男"};
+    NSDictionary *dic3=@{@"img":@"jingpintuijian_icon_topbar_cxz_",@"title":@"尝鲜者"};
+    NSDictionary *dic4=@{@"img":@"jingpintuijian_icon_topbar_scmp_",@"title":@"奢侈名牌"};
+    topMenuArr=@[dic1,dic2,dic3,dic4];
+    jingpinPageArr=[[NSMutableArray alloc]initWithArray:@[@"home_img_jingpintuijian_leftup",@"home_img_jingpintuijian_rightup",@"home_img_jingpintuijian_leftdown",@"home_img_jingpintuijian_rightdown"]];
+    
     nowpage = @"0";
     new_goods_pageDic=[[NSMutableDictionary alloc]init];
     self._scrollView=[[UIScrollView alloc]initWithFrame:self.mainFrame];
@@ -51,7 +67,7 @@
         [self._scrollView setContentSize:CGSizeMake(320, self.view.frame.size.height+120)];
     }
     self._scrollView.showsVerticalScrollIndicator=NO;
-   self. _scrollView.backgroundColor=[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+   self._scrollView.backgroundColor=RGB(237,237,237);
     [self.view addSubview:self._scrollView];
     self.automaticallyAdjustsScrollViewInsets=NO;
     _refresh=[[DJRefresh alloc] initWithScrollView:self._scrollView delegate:self];
@@ -131,7 +147,7 @@
     if (direction==DJRefreshDirectionTop) {
         [self reloadAll];
     }else{
-        int pageCount= [new_goods_pageDic allKeys].count;
+        int pageCount= (int)[new_goods_pageDic allKeys].count;
         int nowPageCount=nowpage.intValue;
         if(nowPageCount>=pageCount){
             
@@ -200,87 +216,184 @@
         [dicTemp setObject:bigTemp.content forKey:@"mainHeading"];
         [bigArr addObject:dicTemp];
     }
-    EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 160)
+    scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 160)
                                                           scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
     
     scroller.delegate=self;
     scroller.backgroundColor=[UIColor clearColor];
     [self._scrollView addSubview:scroller];
-    //手机端抢购
-    UIImageView*img=[[UIImageView alloc]initWithFrame:CGRectMake(0,scroller.frame.size.height+scroller.frame.origin.y, self.view.frame.size.width, 33)];
-    img.image=BundleImage(@"titlebar.png");
-    img.backgroundColor=[UIColor clearColor];
-    [self._scrollView addSubview:img];
-//    CGRect maxFrame = {0,0,0,0};
+    //手机端抢购title
+    UIView *qiangouTitleView=[[UIView alloc]initWithFrame:CGRectMake(0,scroller.frame.size.height+scroller.frame.origin.y+10, self.view.frame.size.width, 43)];
+    qiangouTitleView.backgroundColor=[UIColor whiteColor];
+    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"QiangGuoView" owner:nil options:nil];
+    UIView *qianggouView= [nibView objectAtIndex:0];
+    qianggouView.clipsToBounds = YES;
+    qianggouView.frame = CGRectMake(55, 7, 127, 29);
+    [qiangouTitleView addSubview:qianggouView];
+    //色条
+    UIImageView *hongLine=[[UIImageView alloc]initWithFrame:CGRectMake(0,0, 3, qiangouTitleView.height)];
+    hongLine.backgroundColor=RGB(255, 13, 94);
+    [qiangouTitleView addSubview:hongLine];
     
+    //标题
+    UILabel *qiangouLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, 23/2, 40, 20)];
+    qiangouLbl.text=@"抢购";
+    qiangouLbl.textColor=RGB(128, 128, 128);
+    qiangouLbl.font=[UIFont boldSystemFontOfSize:14];
+    qiangouLbl.textAlignment=0;
+    qiangouLbl.backgroundColor=[UIColor clearColor];
+    [qiangouTitleView addSubview:qiangouLbl];
+    
+    //更多
+    UIButton *moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
+     [moreButton setFrame:CGRectMake(qiangouTitleView.width-15-50, 10, 40, 20)];
+    moreButton.userInteractionEnabled=YES;
+
+    
+    [moreButton setBackgroundImage:[UIImage imageNamed:@"home_icon_qianggou_more_"] forState:UIControlStateNormal];
+    [moreButton addTarget:self action:@selector(moreButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+   
+    [qiangouTitleView addSubview:moreButton];
+    
+    [self._scrollView addSubview:qiangouTitleView];
+//    CGRect maxFrame = {0,0,0,0};
+    //具体内容
+    qiangouContentView=[[UIView alloc]initWithFrame:CGRectMake(0,qiangouTitleView.frame.size.height+qiangouTitleView.frame.origin.y,self._scrollView.width , 43)];
+    qiangouContentView.backgroundColor=[UIColor whiteColor];
+    [self._scrollView addSubview:qiangouContentView];
     for (int i =0; i<app_home_grab.count; i++)
     {
         App_Home_Bigegg *grabModel=app_home_grab[i];
-        btn=[[UrlImageButton alloc]initWithFrame:CGRectMake(12+i*100, img.frame.size.height+img.frame.origin.y+10, 95, 70)];
+        btn=[[UrlImageButton alloc]initWithFrame:CGRectMake(20+i*(self._scrollView.width-80)/3+i*20, 10, (self._scrollView.width-80)/3, (self._scrollView.width-80)/3)];
         NSURL *imgUrl=[NSURL URLWithString:grabModel.img_url];
         [btn setImageWithURL:imgUrl placeholderImage:[UIImage imageNamed:@"default_02.png"]];
 //        [btn setImage:[UIImage imageNamed:@"default_02.png"] forState:0];
 //        - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder;
-        [self._scrollView addSubview:btn];
+        [qiangouContentView addSubview:btn];
         [btn addTarget:self action:@selector(btnGoodsList:) forControlEvents:UIControlEventTouchUpInside];
         btn.backgroundColor=[UIColor clearColor];
         
-        label1=[[UILabel alloc]initWithFrame:CGRectMake(12+i*100, btn.frame.size.height+btn.frame.origin.y+5, 95, 20)];
+        label1=[[UILabel alloc]initWithFrame:CGRectMake(btn.left, btn.frame.size.height+btn.frame.origin.y+3, btn.width, 20)];
         label1.text=grabModel.content;
-        label1.textColor=[UIColor colorWithRed:.2 green:.2 blue:.2 alpha:1.0];
-        label1.font=[UIFont systemFontOfSize:12];
+        label1.textColor =hexColor(@"#333333");
+        label1.font=[UIFont systemFontOfSize:11];
         label1.textAlignment=1;
         label1.backgroundColor=[UIColor clearColor];
 //        label1.lineBreakMode = UILineBreakModeWordWrap;
         label1.numberOfLines = 1;
-        CGRect txtFrame = label1.frame;
-        /*
-        label1.frame = CGRectMake(txtFrame.origin.x, txtFrame.origin.y, txtFrame.size.width,
-                                 txtFrame.size.height =[label1.text boundingRectWithSize:
-                                                        CGSizeMake(txtFrame.size.width, CGFLOAT_MAX)
-                                                                                options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                                                                             attributes:[NSDictionary dictionaryWithObjectsAndKeys:label1.font,NSFontAttributeName, nil] context:nil].size.height);
-//        label.frame = CGRectMake(10, 100, 300, txtFrame.size.height);
-         */
-        [self._scrollView addSubview:label1];
+//        CGRect txtFrame = label1.frame;
+        [qiangouContentView addSubview:label1];
         
-        label2=[[UILabel alloc]initWithFrame:CGRectMake(12+i*100, label1.frame.size.height+label1.frame.origin.y+15, 95, 20)];
-        label2.text=[NSString stringWithFormat:@"￥%f",grabModel.price];
-        label2.textColor=[UIColor colorWithRed:.2 green:.2 blue:.2 alpha:1.0];
-        label2.font=[UIFont systemFontOfSize:12];
+        label2=[[UILabel alloc]initWithFrame:CGRectMake(label1.left, label1.frame.size.height+label1.frame.origin.y+3, label1.width, 20)];
+        label2.text=[NSString stringWithFormat:@"￥%.f",grabModel.price];
+        label2.font=[UIFont boldSystemFontOfSize:14];
+        label2.backgroundColor=[UIColor clearColor];
+        label2.textColor =hexColor(@"#ff0d5e");
         label2.textAlignment=1;
         label2.backgroundColor=[UIColor clearColor];
 //        if(maxFrame.origin.y<label2.frame.origin.y){
 //            maxFrame=label2.frame;
 //        }
-        [self._scrollView addSubview:label2];
+        [qiangouContentView addSubview:label2];
         
     }
+    qiangouContentView.height=label2.height+label2.origin.y+10;
     //手机端精品推荐
-    UIImageView *img1=[[UIImageView alloc]initWithFrame:CGRectMake(0,label2.frame.size.height+label2.frame.origin.y+6 , self.view.frame.size.width, 33)];
-    img1.image=BundleImage(@"titlebar.png");
-    img1.backgroundColor=[UIColor clearColor];
-    [self._scrollView addSubview:img1];
-    for (int i =0; i<app_home_command.count; i++)
+    //手机端抢购title
+    UIView *jingpintuijianTitleView=[[UIView alloc]initWithFrame:CGRectMake(0,qiangouContentView.height+qiangouContentView.frame.origin.y+10, self.view.frame.size.width, 43)];
+    jingpintuijianTitleView.backgroundColor=[UIColor whiteColor];
+    //色条
+    UIImageView *huangLine=[[UIImageView alloc]initWithFrame:CGRectMake(0,0, 3, qiangouTitleView.height)];
+    huangLine.backgroundColor=RGB(255, 228, 157);
+    [jingpintuijianTitleView addSubview:huangLine];
+
+    
+    //标题
+    UILabel *jingpintuijianLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, 23/2, 140, 20)];
+    jingpintuijianLbl.text=@"精品推荐";
+    jingpintuijianLbl.textColor=RGB(128, 128, 128);
+    jingpintuijianLbl.font=[UIFont boldSystemFontOfSize:14];
+    jingpintuijianLbl.textAlignment=0;
+    jingpintuijianLbl.backgroundColor=[UIColor clearColor];
+    [jingpintuijianTitleView addSubview:jingpintuijianLbl];
+    
+    [self._scrollView addSubview:jingpintuijianTitleView];
+    
+    jingpinContentView=[[UIView alloc]initWithFrame:CGRectMake(0,jingpintuijianTitleView.height+jingpintuijianTitleView.frame.origin.y, jingpintuijianTitleView.width, 100)];
+    jingpinContentView.backgroundColor=[UIColor whiteColor];
+    [self._scrollView addSubview:jingpinContentView];
+    CGRect lastFram1;
+    for (int i =0; i<topMenuArr.count; i++)
     {
-        App_Home_Bigegg *grabModel=app_home_command[i];
-        fourBtn=[[UrlImageButton alloc]initWithFrame:CGRectMake(12+i*75, img1.frame.size.height+img1.frame.origin.y+8, 70, 70)];
-        [fourBtn addTarget:self action:@selector(btnShopStore:) forControlEvents:UIControlEventTouchUpInside];
-        [self._scrollView addSubview:fourBtn];
-        [fourBtn setBackgroundImage: [UIImage imageNamed:@"default_02.png"] forState:0];
-         NSURL *imgUrl=[NSURL URLWithString:grabModel.img_url];
-        [fourBtn setImageWithURL:imgUrl];
-        fourLab=[[UILabel alloc]initWithFrame:CGRectMake(12+i*75, fourBtn.frame.size.height+fourBtn.frame.origin.y+8, 70, 20)];
-        fourLab.text=grabModel.content;
-        fourLab.textColor=[UIColor grayColor];
-        fourLab.font=[UIFont boldSystemFontOfSize:10];
-        fourLab.textAlignment=1;
-        fourLab.backgroundColor=[UIColor clearColor];
-        [self._scrollView addSubview:fourLab];
+        NSDictionary *menuTemp=topMenuArr[i];
+        NSString *imgname=[menuTemp objectForKey:@"img"];
+        NSString *menutitle=[menuTemp objectForKey:@"title"];
+        CFImageButton *btnNine=[[CFImageButton alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH/4, 0, SCREEN_WIDTH/4, SCREEN_WIDTH/4)];
+        //            [btnNine setImage:[UIImage imageNamed:topMenuArr[i]] forState:0];
         
+        btnNine.backgroundColor=[UIColor clearColor];
+        [btnNine addTarget:self action:@selector(btnFenlei:) forControlEvents:UIControlEventTouchUpInside];
+        btnNine.tag=i;
+        [jingpinContentView addSubview:btnNine];
+        
+        UrlImageView*image=[[UrlImageView alloc]initWithFrame:CGRectMake(btnNine.frame.size.width*0.3125, btnNine.frame.size.height*0.2125, btnNine.frame.size.width*0.375, btnNine.frame.size.width*0.375)];
+        [btnNine addSubview:image];
+        
+        [image setImage:[UIImage imageNamed:imgname]];
+        image.layer.borderWidth=1;
+        image.layer.cornerRadius = 4;
+        image.layer.borderColor = [[UIColor clearColor] CGColor];
+        image.backgroundColor=[UIColor clearColor];
+        
+        //            UILabel *labelLine=[[UILabel alloc]initWithFrame:CGRectMake(2, 50+10, 70-4, 1)];
+        //            labelLine.backgroundColor=[UIColor grayColor];
+        //            [btnNine addSubview:labelLine];
+        
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, image.frame.size.height+image.frame.origin.y+btnNine.frame.size.height/10, btnNine.frame.size.width, 10)];
+        label.font = [UIFont boldSystemFontOfSize:10.0f];  //UILabel的字体大小
+        label.numberOfLines = 1;  //必须定义这个属性，否则UILabel不会换行
+        label.textColor = [UIColor grayColor];
+        label.textAlignment = NSTextAlignmentCenter;  //文本对齐方式
+        [label setBackgroundColor:[UIColor whiteColor]];
+        label.text=menutitle;
+        lastFram1=btnNine.frame;
+        [btnNine addSubview:label];
     }
+    CGRect lastFram;
+    for (int i=0; i<jingpinPageArr.count; i++) {
+        CFImageButton *btnNine=[[CFImageButton alloc]initWithFrame:CGRectMake(20+(jingpinContentView.width-40-123)*(i%2), floor(i/2)*123+10+lastFram1.origin.y+lastFram1.size.height, 123, 123)];
+//        (i%2)*123+20+(jingpinContentView.width-40-123*2)*(i%2)
+        btnNine.backgroundColor=[UIColor clearColor];
+        [btnNine addTarget:self action:@selector(btnFenlei:) forControlEvents:UIControlEventTouchUpInside];
+        btnNine.tag=i;
+        [btnNine setImage:[UIImage imageNamed:jingpinPageArr[i]] forState:0];
+        lastFram=btnNine.frame;
+        [jingpinContentView addSubview:btnNine];
+    }
+    jingpinContentView.height=lastFram.size.height+2+lastFram.origin.y;
+//    for (int i =0; i<app_home_command.count; i++)
+//    {
+//        App_Home_Bigegg *grabModel=app_home_command[i];
+//        fourBtn=[[UrlImageButton alloc]initWithFrame:CGRectMake(12+i*75, jingpintuijianTitleView.frame.size.height+jingpintuijianTitleView.frame.origin.y+8, 70, 70)];
+//        [fourBtn addTarget:self action:@selector(btnShopStore:) forControlEvents:UIControlEventTouchUpInside];
+//        [self._scrollView addSubview:fourBtn];
+//        [fourBtn setBackgroundImage: [UIImage imageNamed:@"default_02.png"] forState:0];
+//         NSURL *imgUrl=[NSURL URLWithString:grabModel.img_url];
+//        [fourBtn setImageWithURL:imgUrl];
+//        fourLab=[[UILabel alloc]initWithFrame:CGRectMake(12+i*75, fourBtn.frame.size.height+fourBtn.frame.origin.y+8, 70, 20)];
+//        fourLab.text=grabModel.content;
+//        fourLab.textColor=[UIColor grayColor];
+//        fourLab.font=[UIFont boldSystemFontOfSize:10];
+//        fourLab.textAlignment=1;
+//        fourLab.backgroundColor=[UIColor clearColor];
+//        [self._scrollView addSubview:fourLab];
+//        
+//    }
+    
+    
     //手机端国际名品
-    UIImageView *img2=[[UIImageView alloc]initWithFrame:CGRectMake(0,fourLab.frame.size.height+fourLab.frame.origin.y+6 , self.view.frame.size.width, 33)];
+    UIImageView *img2=[[UIImageView alloc]initWithFrame:CGRectMake(0,jingpinContentView.frame.size.height+jingpinContentView.frame.origin.y+10 , self.view.frame.size.width, 33)];
     img2.image=BundleImage(@"titlebar.png");
     img2.backgroundColor=[UIColor clearColor];
     [self._scrollView addSubview:img2];
@@ -606,6 +719,10 @@
     AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
     [delegate.navigationController pushViewController:shop animated:YES];
     //HTGoodsDetailsViewController
+}
+#pragma mark 更多
+-(void)moreButtonClicked:(id)button{
+    
 }
 /*
 #pragma mark - Navigation

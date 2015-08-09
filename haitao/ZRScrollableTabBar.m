@@ -41,7 +41,7 @@
         tabScrollView = [[UIScrollView alloc]initWithFrame:frame];
         tabScrollView.showsVerticalScrollIndicator=false;
         tabScrollView.showsHorizontalScrollIndicator=false;
-        tabScrollView.backgroundColor=[UIColor redColor];
+        tabScrollView.backgroundColor=RGB(255, 13, 94);
         /*
          previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
          [previousButton setFrame:CGRectMake(2, 14, 10, 21)];
@@ -64,12 +64,14 @@
         self.tabBars = [[NSMutableArray alloc] init];
         
         float x = 0.0;
+        CGRect rect;
         
+        rect = [[UIApplication sharedApplication] statusBarFrame];
         for (double d = 0; d < ceil(items.count / ButtonNoPerTab); d ++)
         {
-            UITabBar *tabBar = [[UITabBar alloc] initWithFrame:CGRectMake(x, 30.0, frame.size.width, frame.size.height-30)];
+            UITabBar *tabBar = [[UITabBar alloc] initWithFrame:CGRectMake(x, rect.size.height, frame.size.width, frame.size.height-rect.size.height)];
             UIView *bgView = [[UIView alloc] initWithFrame:tabBar.bounds];
-            bgView.backgroundColor = [UIColor redColor];
+            bgView.backgroundColor = RGB(255, 13, 94);
             [tabBar insertSubview:bgView atIndex:0];
             tabBar.opaque = YES;
             tabBar.delegate = self;
