@@ -52,25 +52,25 @@
 
     //首页
    ManitViewController  *manitViewController= [[ManitViewController alloc] init];
-    UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"gre icon_01.png"]tag:-300];
+    UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"icon_Home"]tag:-300];
     manitViewController.tabBarItem =item1;
     //搜索页
     HTSeachViewController *seachViewController= [[HTSeachViewController alloc] init];
-    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"gre icon_04.png"]tag:-301];
+    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"icon_Sherch"]tag:-301];
     seachViewController.tabBarItem=item2;
     //精品推荐
     
     HTBoutiqueViewController *boutiqueViewController= [[HTBoutiqueViewController alloc] init];
-    UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"gre icon_02.png"]tag:-302];
+    UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"icon_LIqin"]tag:-302];
     boutiqueViewController.tabBarItem=item3;
     //购物车
     HTCartViewController *cartViewController= [[HTCartViewController alloc] init];
-    UITabBarItem *item4 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"gre icon_02.png"]tag:-303];
+    UITabBarItem *item4 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"icon_Order"]tag:-303];
     cartViewController.tabBarItem=item4;
     //个人中心
     UserCenterCollention  *userCenter= [[UserCenterCollention alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
     
-    UITabBarItem *item5 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"gre icon_05.png"]tag:-304];
+    UITabBarItem *item5 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"icon_UserConte"]tag:-304];
     userCenter.tabBarItem=item5;
     //
     LTKNavigationViewController*navigationController1= [[LTKNavigationViewController alloc] initWithRootViewController:manitViewController] ;

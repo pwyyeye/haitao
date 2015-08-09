@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "ZRScrollableTabBar.h"
 #import "HaiTaoBase.h"
-@interface ManitViewController : UITabBarController<HTTPControllerProtocol>
+#import "MenuHrizontal.h"
+@interface ManitViewController : UITabBarController<HTTPControllerProtocol,MenuHrizontalDelegate>
 {
     ZRScrollableTabBar *tabBar;
     CGRect mainFrame;
     UIView *navTopView;
+     MenuHrizontal *mMenuHriZontal;
 }
 
 @end

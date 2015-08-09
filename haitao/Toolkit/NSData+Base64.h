@@ -2,8 +2,7 @@
 //  NSData+Base64.h
 //  MClient
 //
-//  Created by  史正烨 on 09-11-10.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+
 //
 
 #import <Foundation/Foundation.h>

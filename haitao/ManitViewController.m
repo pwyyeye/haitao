@@ -28,19 +28,20 @@
     UIView *view_bar =[[UIView alloc]init];
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>6.1)
     {
-        view_bar .frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
+        view_bar .frame=CGRectMake(0, 0, self.view.frame.size.width, 49+20);
 //        UIImageView *imageV = [[UIImageView alloc]initWithImage:BundleImage(@"top.png")];
 //        [view_bar addSubview:imageV];
         
         
     }else{
-        view_bar .frame=CGRectMake(0, 0, self.view.frame.size.width, 44);
+        view_bar .frame=CGRectMake(0, 0, self.view.frame.size.width, 49);
 //        UIImageView *imageV = [[UIImageView alloc]initWithImage:BundleImage(@"top.png")];
 //        [view_bar addSubview:imageV];
         
     }
-    view_bar.backgroundColor=[UIColor clearColor];
-    UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:nil image:BundleImage(@"ic_01_h.png") selectedImage:BundleImage(@"ic_01_h.png")];
+    view_bar.backgroundColor=RGB(255, 13, 94);
+    /*
+    UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:@"首页" image:BundleImage(@"ic_01_h.png") selectedImage:BundleImage(@"ic_01_h.png")];
     
     item1.tag=1;
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -56,14 +57,50 @@
         [barArr addObject:itemTemp];
     }
     j++;
-    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:nil image:BundleImage(@"ic_01_h.png") selectedImage:BundleImage(@"ic_01_h.png")];
+    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:@"专题" image:BundleImage(@"ic_01_h.png") selectedImage:BundleImage(@"ic_01_h.png")];
     
     item2.tag=j;
     [barArr addObject:item2];
     tabBar = [[ZRScrollableTabBar alloc] initWithItems:barArr withFrame:view_bar.frame];
     tabBar.scrollableTabBarDelegate = self;
     [view_bar addSubview:tabBar];
+     */
+    CGRect rect;
+    
+    rect = [[UIApplication sharedApplication] statusBarFrame];
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSArray *menuArrNew=app.menuArr;
+    NSMutableArray *barArr=[[NSMutableArray alloc]initWithCapacity:12];
+    NSMutableDictionary *itme1 =[[NSMutableDictionary alloc]init] ;
+    [itme1 setObject: @"NavigationBar_icon_home" forKey:NOMALKEY];
+    [itme1 setObject: @"NavigationBar_icon_home" forKey:HEIGHTKEY];
+    [itme1 setObject: @"首页" forKey:TITLEKEY];
+    [itme1 setObject:[NSNumber numberWithFloat:view_bar.width/5]  forKey:TITLEWIDTH];
+    [barArr addObject:itme1];
+    for (int i=0; i<=menuArrNew.count-1; i++) {
+        MenuModel *me=menuArrNew[i];
+        NSMutableDictionary *itemTemp =[[NSMutableDictionary alloc]init] ;
+        [itemTemp setObject:me.img forKey:NOMALKEY];
+        [itemTemp setObject: @"NavBar_icon_XiangBao" forKey:HEIGHTKEY];
+        [itemTemp setObject: me.name forKey:TITLEKEY];
+        [itemTemp setObject:[NSNumber numberWithFloat:view_bar.width/5]  forKey:TITLEWIDTH];
+
+        [barArr addObject:itemTemp];
+    }
+    NSMutableDictionary *itme2 =[[NSMutableDictionary alloc]init] ;
+    [itme2 setObject: @"NavBar_icon_ZhuangTi" forKey:NOMALKEY];
+    [itme2 setObject: @"NavBar_icon_ZhuangTi" forKey:HEIGHTKEY];
+    [itme2 setObject: @"专题" forKey:TITLEKEY];
+    [itme2 setObject:[NSNumber numberWithFloat:view_bar.width/5]  forKey:TITLEWIDTH];
+    [barArr addObject:itme2];
+
+    if (mMenuHriZontal == nil) {
+        mMenuHriZontal = [[MenuHrizontal alloc] initWithFrame:CGRectMake(0, rect.size.height, view_bar.width, view_bar.height-rect.size.height) ButtonItems:barArr];
+        mMenuHriZontal.delegate = self;
+    }
+    [view_bar addSubview:mMenuHriZontal];
     [self.view addSubview: view_bar];
+    
     return view_bar;
 }
 - (void)viewDidLoad {
@@ -163,6 +200,11 @@
 {
     int j=self.selectedIndex ;
     self.selectedIndex = tag-1;
+}
+#pragma mark MenuHrizontalDelegate
+-(void)didMenuHrizontalClickedButtonAtIndex:(NSInteger)aIndex{
+    self.selectedIndex = aIndex;
+    
 }
 
 - (void)didReceiveMemoryWarning {

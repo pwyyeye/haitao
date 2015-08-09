@@ -87,25 +87,25 @@
     for (int i = 0; i < viewCount; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(i*_width ,self.tabBar.frame.origin.y, _width , _height );
-        btn.backgroundColor=[UIColor clearColor];
+        btn.backgroundColor=[UIColor whiteColor];
         [btn addTarget:self action:@selector(selectedTab:) forControlEvents:UIControlEventTouchUpInside];
         if (i==0)
         {
-            [btn setBackgroundImage:[UIImage imageNamed:@"icon_01.png"] forState:UIControlStateNormal];
+            [btn setImage:[UIImage imageNamed:@"icon_Home"] forState:UIControlStateNormal];
         
         }else if (i==1)
         {
-            [btn setBackgroundImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+            [btn setImage:[UIImage imageNamed:@"icon_Sherch"] forState:UIControlStateNormal];
         }else if (i==2)
         {
-            [btn setBackgroundImage:[UIImage imageNamed:@"icon_02.png"] forState:UIControlStateNormal];
+            [btn setImage:[UIImage imageNamed:@"icon_LIqin"] forState:UIControlStateNormal];
         }else if (i==3)
         {
-            [btn setBackgroundImage:[UIImage imageNamed:@"icon_02.png"] forState:UIControlStateNormal];
+            [btn setImage:[UIImage imageNamed:@"icon_Order"] forState:UIControlStateNormal];
         }
         else if(i==4)
         {
-            [btn setBackgroundImage:[UIImage imageNamed:@"icon_05.png"] forState:UIControlStateNormal];
+            [btn setImage:[UIImage imageNamed:@"icon_UserConter"] forState:UIControlStateNormal];
         }
         btn.tag = 200 + i;
         [self.buttons addObject:btn];
@@ -123,25 +123,25 @@
     if ([selectAtIndex integerValue] == 200)
     {
       
-        [selectedBtn setBackgroundImage:[UIImage imageNamed:@"icon_01.png"] forState:UIControlStateNormal];
+        [selectedBtn setImage:[UIImage imageNamed:@"icon_Home"] forState:UIControlStateNormal];
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         [app stopLoading];
     }else if ([selectAtIndex integerValue] == 201)
     {
-        [selectedBtn setBackgroundImage:[UIImage imageNamed:@"icon_04.png"] forState:UIControlStateNormal];
+        [selectedBtn setImage:[UIImage imageNamed:@"icon_Sherch"] forState:UIControlStateNormal];
     }else if ([selectAtIndex integerValue] == 202)
     {
 
-        [selectedBtn setBackgroundImage:[UIImage imageNamed:@"icon_02.png"] forState:UIControlStateNormal];
+        [selectedBtn setImage:[UIImage imageNamed:@"icon_LIqin"] forState:UIControlStateNormal];
     }else if ([selectAtIndex integerValue] == 203)
     {
 
-        [selectedBtn setBackgroundImage:[UIImage imageNamed:@"icon_02.png"] forState:UIControlStateNormal];
+        [selectedBtn setImage:[UIImage imageNamed:@"icon_Order"] forState:UIControlStateNormal];
     }
     else if([selectAtIndex integerValue]==204)
     {
         
-        [selectedBtn setBackgroundImage:[UIImage imageNamed:@"icon_05.png"] forState:UIControlStateNormal];
+        [selectedBtn setImage:[UIImage imageNamed:@"icon_UserConter"] forState:UIControlStateNormal];
 
     }
     
@@ -151,28 +151,28 @@
     if (self.currentSelectedIndex==0)
     {
         [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];
-        [btn setBackgroundImage:[UIImage imageNamed:@"icon_01C.png"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"icon_Home_selected"] forState:UIControlStateNormal];
         
     }else if (self.currentSelectedIndex==1)
     {
         [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];
 
-        [btn setBackgroundImage:[UIImage imageNamed:@"icon_02C.png"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"icon_Sherch_selected"] forState:UIControlStateNormal];
     }else if (self.currentSelectedIndex==2)
     {
         [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];
 
-        [btn setBackgroundImage:[UIImage imageNamed:@"icon_03C.png"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"icon_LIqin_selected"] forState:UIControlStateNormal];
     }else if (self.currentSelectedIndex==3)
     {
         [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];
 
-        [btn setBackgroundImage:[UIImage imageNamed:@"icon_04C.png"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"icon_Order_selected"] forState:UIControlStateNormal];
     }
     else if(self.currentSelectedIndex==4)
         {
         [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];;
-        [btn setBackgroundImage:[UIImage imageNamed:@"icon_05C.png"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"icon_UserConter_selected"] forState:UIControlStateNormal];
         }
     
     
