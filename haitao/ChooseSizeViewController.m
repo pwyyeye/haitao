@@ -421,7 +421,7 @@
     [view_bar1 addSubview:title_label];
     UIButton*btnBack=[UIButton buttonWithType:0];
     btnBack.frame=CGRectMake(0, view_bar1.frame.size.height-34, 47, 34);
-    [btnBack setImage:BundleImage(@"left_grey") forState:0];
+    [btnBack setImage:BundleImage(@"btn_back") forState:0];
     [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
     [view_bar1 addSubview:btnBack];
     return view_bar1;

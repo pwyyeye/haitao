@@ -112,7 +112,7 @@ static CGFloat kImageOriginHight = 400;
     
     
     UILabel *title_money=[[UILabel alloc]initWithFrame:CGRectMake(10, title_label.frame.origin.y+title_label.frame.size.height+10+3, self.view.frame.size.width-20, 15)];
-    NSString *ss=[NSString stringWithFormat:@"￥%.2f",self.goods.price];
+    NSString *ss=[NSString stringWithFormat:@"￥%.2f",self.goods.price_cn];
     title_money.text=[NSString stringWithFormat:@"%@%@",ss,@""];
     
     title_money.font=[UIFont systemFontOfSize:18];
@@ -191,54 +191,68 @@ static CGFloat kImageOriginHight = 400;
     [yunfeiView addSubview:yunfeititle];
     [_scrollView addSubview:yunfeiView];
     //支付方式
-    _bigView2=[[UrlImageButton alloc]initWithFrame:CGRectMake(0, yunfeiView.frame.size.height+yunfeiView.frame.origin.y+10, _scrollView.width, 100)];
-    _bigView2.userInteractionEnabled=YES;
+    _bigView2=[[UIView alloc]initWithFrame:CGRectMake(0, yunfeiView.frame.size.height+yunfeiView.frame.origin.y+10, _scrollView.width, 100)];
     _bigView2.backgroundColor=[UIColor whiteColor];
-    _bigView2.layer.borderWidth=1;
-    [_bigView2 addTarget:self action:@selector(btnGo:) forControlEvents:UIControlEventTouchUpInside];
-    _bigView2.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
+//    _bigView2.layer.borderWidth=0.5;
+//    _bigView2.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
     [_scrollView addSubview:_bigView2];
     
     //商城专区
-    UrlImageView *headImg=[[UrlImageView alloc]initWithFrame:CGRectMake(15, 10, 60, 60)];
-    headImg.image=BundleImage(@"df_03_.png");
-    [_bigView2 addSubview:headImg];
-    headImg.backgroundColor=[UIColor clearColor];
+    
     
     //titel
     UILabel *title3=[[UILabel alloc]initWithFrame:CGRectMake(10, 10,190, 10)];
     title3.text=@"支持支付宝等支付方式";
-    title3.font=[UIFont systemFontOfSize:14];
+    title3.font=[UIFont boldSystemFontOfSize:14];
     title3.backgroundColor=[UIColor clearColor];
     title3.textColor =RGB(51, 51, 51);
     title3.textAlignment=0;
     [_bigView2 addSubview:title3];
     
-    UILabel *title4=[[UILabel alloc]initWithFrame:CGRectMake(headImg.frame.size.width+headImg.frame.origin.x+10, 15+title3.frame.size.height,50, 20)];
-    title4.text=@"美国";
-    title4.font=[UIFont systemFontOfSize:10];
-    title4.backgroundColor=[UIColor clearColor];
-    title4.textColor =[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0];
-    title4.textAlignment=0;
-    [_bigView2 addSubview:title4];
+    UrlImageView *headImg=[[UrlImageView alloc]initWithFrame:CGRectMake(10, title3.height+title3.top+10, 60, 60)];
+    [headImg setImageWithURL:[NSURL URLWithString:self.goods.country_flag_url] placeholderImage:[UIImage imageNamed:@"df_04_"]];
+    [_bigView2 addSubview:headImg];
+    headImg.backgroundColor=[UIColor clearColor];
+    //国家
+    //国家icon
+    UIImageView *country=[[UIImageView alloc] initWithFrame:CGRectMake(_bigView2.width-45-90, headImg.top-14, 20, 20)];
+    [country setImageWithURL:[NSURL URLWithString:self.goods.country_flag_url] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
+    [_bigView2 addSubview:country];
     
-    UILabel *title5=[[UILabel alloc]initWithFrame:CGRectMake(title4.frame.size.width+title4.frame.origin.x, 15+title3.frame.size.height,130, 30)];
+    //商城名称
+    UILabel *shopname=[[UILabel alloc] initWithFrame:CGRectMake(country.left+country.width+5, country.top-8, 70, 38)];
+    shopname.text=self.goods.country_name;
+    shopname.font =[UIFont  systemFontOfSize:10];
+    shopname.textColor=RGB(179, 179, 179);
+    [_bigView2 addSubview:shopname];
+
+    
+    UILabel *title5=[[UILabel alloc]initWithFrame:CGRectMake(headImg.width+headImg.left+5, headImg.top+headImg.height-20,160, 20)];
     title5.text=@"下单后6-10个工作日到手";
     
-    title5.font=[UIFont systemFontOfSize:10];
+    title5.font=[UIFont systemFontOfSize:12];
     title5.numberOfLines=2;
     title5.backgroundColor=[UIColor clearColor];
-    title5.textColor =[UIColor colorWithRed:.8 green:.8 blue:.8 alpha:1.0];
+    title5.textColor =RGB(179, 179, 179);
     title5.textAlignment=0;
     [_bigView2 addSubview:title5];
-    
-    
-    UIImageView *imageJ=[[UIImageView alloc]initWithFrame:CGRectMake(_bigView2.frame.size.width-20, (_bigView2.frame.size.height-7)/2, 7, 7)];
-    imageJ.image=BundleImage(@"icon_Drop-rightList");
-    [_bigView2 addSubview:imageJ];
+  //商品专区
+    UIButton *spzqBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    spzqBtn.userInteractionEnabled=true;
+    spzqBtn.backgroundColor=[UIColor clearColor];
+    spzqBtn.frame =CGRectMake(_bigView2.width-10-80, title5.top-6, 80, 30);
+    [spzqBtn setTitle:@"商品专区" forState:UIControlStateNormal];
+    spzqBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [spzqBtn setTitleColor:RGB(128, 128, 128)  forState:UIControlStateNormal];
+    [spzqBtn addTarget:self action:@selector(quanqiubijia:) forControlEvents:UIControlEventTouchUpInside];
+    UIImageView *rightspimg=[[UIImageView alloc]initWithFrame:CGRectMake(spzqBtn.width-8, 12, 7, 7)];
+    rightspimg.image=[UIImage  imageNamed:@"icon_Drop-rightList"];
+    [spzqBtn addSubview:rightspimg];
+    [_bigView2 insertSubview:spzqBtn atIndex:0];
+
     
     //选择颜色和尺寸
-    yansechicunImg=[[UrlImageButton alloc]initWithFrame:CGRectMake(0, _bigView2.frame.size.height+_bigView2.frame.origin.y+10, self.view.frame.size.width,35 )];
+    yansechicunImg=[[UrlImageButton alloc]initWithFrame:CGRectMake(0, _bigView2.frame.size.height+_bigView2.frame.origin.y+10, self.view.frame.size.width,52 )];
     yansechicunImg.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
     yansechicunImg.layer.borderWidth=1;
     [yansechicunImg addTarget:self action:@selector(yansechicunBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -248,9 +262,9 @@ static CGFloat kImageOriginHight = 400;
     
     UILabel *yansechicunLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, yansechicunImg.frame.size.height/2-20/2, 150, 20)];
     yansechicunLbl.text=@"选择颜色和尺寸";
-    yansechicunLbl.font=[UIFont systemFontOfSize:12];
+    yansechicunLbl.font=[UIFont boldSystemFontOfSize:14];
     yansechicunLbl.backgroundColor=[UIColor clearColor];
-    yansechicunLbl.textColor =hui5;
+    yansechicunLbl.textColor =RGB(51, 51, 51);
     yansechicunLbl.textAlignment=0;
     [yansechicunImg addSubview:yansechicunLbl];
 
