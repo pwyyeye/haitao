@@ -241,7 +241,7 @@
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"QiangGuoView" owner:nil options:nil];
     UIView *qianggouView= [nibView objectAtIndex:0];
     qianggouView.clipsToBounds = YES;
-    qianggouView.frame = CGRectMake(55, 7, 127, 29);
+    qianggouView.frame = CGRectMake(55, 7, 127, 25);
     [qiangouTitleView addSubview:qianggouView];
     //色条
     UIImageView *hongLine=[[UIImageView alloc]initWithFrame:CGRectMake(0,0, 3, qiangouTitleView.height)];
@@ -251,7 +251,7 @@
     //标题
     UILabel *qiangouLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, 23/2, 40, 20)];
     qiangouLbl.text=@"抢购";
-    qiangouLbl.textColor=RGB(128, 128, 128);
+    qiangouLbl.textColor=RGB(51, 51, 51);
     qiangouLbl.font=[UIFont boldSystemFontOfSize:14];
     qiangouLbl.textAlignment=0;
     qiangouLbl.backgroundColor=[UIColor clearColor];
@@ -259,7 +259,7 @@
     
     //更多
     UIButton *moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
-     [moreButton setFrame:CGRectMake(qiangouTitleView.width-15-50, 10, 40, 20)];
+     [moreButton setFrame:CGRectMake(qiangouTitleView.width-15-50, 13, 40, 15)];
     moreButton.userInteractionEnabled=YES;
 
     
@@ -287,7 +287,7 @@
         [btn addTarget:self action:@selector(qianggouAct:) forControlEvents:UIControlEventTouchUpInside];
         btn.backgroundColor=[UIColor clearColor];
         
-        label1=[[UILabel alloc]initWithFrame:CGRectMake(btn.left, btn.frame.size.height+btn.frame.origin.y+3, btn.width, 20)];
+        label1=[[UILabel alloc]initWithFrame:CGRectMake(btn.left, btn.frame.size.height+btn.frame.origin.y+3, btn.width, 15)];
         label1.text=grabModel.content;
         label1.textColor =hexColor(@"#333333");
         label1.font=[UIFont systemFontOfSize:11];
@@ -298,8 +298,8 @@
 //        CGRect txtFrame = label1.frame;
         [qiangouContentView addSubview:label1];
         
-        label2=[[UILabel alloc]initWithFrame:CGRectMake(label1.left, label1.frame.size.height+label1.frame.origin.y+3, label1.width, 20)];
-        label2.text=[NSString stringWithFormat:@"￥%.f",grabModel.price];
+        label2=[[UILabel alloc]initWithFrame:CGRectMake(label1.left, label1.frame.size.height+label1.frame.origin.y, label1.width, 20)];
+        label2.text=[NSString stringWithFormat:@"￥%.2f",grabModel.price];
         label2.font=[UIFont boldSystemFontOfSize:14];
         label2.backgroundColor=[UIColor clearColor];
         label2.textColor =hexColor(@"#ff0d5e");
@@ -325,7 +325,7 @@
     //标题
     UILabel *jingpintuijianLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, 23/2, 140, 20)];
     jingpintuijianLbl.text=@"精品推荐";
-    jingpintuijianLbl.textColor=RGB(128, 128, 128);
+    jingpintuijianLbl.textColor=RGB(51, 51, 51);
     jingpintuijianLbl.font=[UIFont boldSystemFontOfSize:14];
     jingpintuijianLbl.textAlignment=0;
     jingpintuijianLbl.backgroundColor=[UIColor clearColor];
@@ -346,13 +346,13 @@
         //            [btnNine setImage:[UIImage imageNamed:topMenuArr[i]] forState:0];
         
         btnNine.backgroundColor=[UIColor clearColor];
-        [btnNine addTarget:self action:@selector(btnFenlei:) forControlEvents:UIControlEventTouchUpInside];
+        [btnNine addTarget:self action:@selector(jingpinMenu:) forControlEvents:UIControlEventTouchUpInside];
         btnNine.tag=i;
         [jingpinContentView addSubview:btnNine];
         
         UrlImageView*image=[[UrlImageView alloc]initWithFrame:CGRectMake(btnNine.frame.size.width*0.3125, btnNine.frame.size.height*0.2125, btnNine.frame.size.width*0.375, btnNine.frame.size.width*0.375)];
         [btnNine addSubview:image];
-        
+        [image setContentMode:UIViewContentModeScaleAspectFill];
         [image setImage:[UIImage imageNamed:imgname]];
         image.layer.borderWidth=1;
         image.layer.cornerRadius = 4;
@@ -418,7 +418,7 @@
     //标题
     UILabel *guojiLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, 23/2, 140, 20)];
     guojiLbl.text=@"国际名品";
-    guojiLbl.textColor=RGB(128, 128, 128);
+    guojiLbl.textColor=RGB(51, 51, 51);
     guojiLbl.font=[UIFont boldSystemFontOfSize:14];
     guojiLbl.textAlignment=0;
     guojiLbl.backgroundColor=[UIColor clearColor];
@@ -475,7 +475,7 @@
     //标题
     UILabel *xinpinLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, 23/2, 140, 20)];
     xinpinLbl.text=@"新品推荐";
-    xinpinLbl.textColor=RGB(128, 128, 128);
+    xinpinLbl.textColor=RGB(51, 51, 51);
     xinpinLbl.font=[UIFont boldSystemFontOfSize:14];
     xinpinLbl.textAlignment=0;
     xinpinLbl.backgroundColor=[UIColor clearColor];
@@ -492,14 +492,14 @@
     for (int i =0; i<goodsPageArr.count; i++)
     {
         New_Goods *new_Goods=goodsPageArr[i];
-        gbBtn=[[GoodImageButton alloc]initWithFrame:CGRectMake((i%2)*((xinpinContentView.width-20)/2-5+10)+10, floor(i/2)*220+10, (xinpinContentView.width-20)/2-5, 210)];
+        gbBtn=[[GoodImageButton alloc]initWithFrame:CGRectMake((i%2)*((xinpinContentView.width-20)/2-5+10)+10, floor(i/2)*190+10, (xinpinContentView.width-20)/2-5, 180)];
         gbBtn.userInteractionEnabled=YES;
         gbBtn.backgroundColor=[UIColor whiteColor];
         //            imageV.userInteractionEnabled=YES;
         //            btn.layer.shadowOffset = CGSizeMake(1,1);
         //            btn.layer.shadowOpacity = 0.2f;
         //            btn.layer.shadowRadius = 3.0;
-        gbBtn.layer.borderWidth=1;//描边
+        gbBtn.layer.borderWidth=0.5;//描边
         gbBtn.layer.cornerRadius=4;//圆角
         gbBtn.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
         gbBtn.goods=new_Goods;
@@ -507,7 +507,8 @@
         [gbBtn addTarget:self action:@selector(goodContentTouch:) forControlEvents:UIControlEventTouchUpInside];
         [xinpinContentView addSubview:gbBtn];
         
-        UrlImageView*btn1=[[UrlImageView alloc]initWithFrame:CGRectMake(0, 0, gbBtn.frame.size.width, gbBtn.frame.size.width)];
+        UrlImageView*btn1=[[UrlImageView alloc]initWithFrame:CGRectMake((gbBtn.width/3/2), 10, gbBtn.frame.size.width*2/3, gbBtn.frame.size.width*2/3)];
+        [btn1 setContentMode:UIViewContentModeScaleAspectFill];
         //            btn.userInteractionEnabled=YES;
         //            btn.layer.borderWidth=1;//描边
         //            btn.layer.cornerRadius=4;//圆角
@@ -527,7 +528,7 @@
         //            [imageV addSubview:btn];
         //商店名
         [gbBtn addSubview:btn1];
-        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(0, btn1.frame.size.width, btn1.frame.size.height+btn1.frame.origin.y+5, 10)];
+        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(0, btn1.frame.size.width+10, gbBtn.width, 10)];
         _label.text=new_Goods.shop_name;
         _label.font=[UIFont boldSystemFontOfSize:10];
         _label.backgroundColor=[UIColor clearColor];
@@ -537,7 +538,7 @@
         
         [gbBtn addSubview:_label];
         //商品名
-        UILabel *_label1=[[UILabel alloc]initWithFrame:CGRectMake(0, _label.frame.size.height+_label.frame.origin.y+1, btn1.frame.size.width, 30)];
+        UILabel *_label1=[[UILabel alloc]initWithFrame:CGRectMake(10, _label.frame.size.height+_label.frame.origin.y+1, gbBtn.frame.size.width-10-10, 30)];
         _label1.text=new_Goods.title;
         _label1.font=[UIFont boldSystemFontOfSize:11];
         _label1.backgroundColor=[UIColor clearColor];
@@ -551,8 +552,8 @@
         
         
         
-        UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(0, _label1.frame.size.height+_label1.frame.origin.y+1 ,btn1.frame.size.width, 20)];
-        title_label.text=[NSString stringWithFormat:@"%.1f",new_Goods.price];
+        UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(0, _label1.frame.size.height+_label1.frame.origin.y+1 ,gbBtn.frame.size.width, 20)];
+        title_label.text=[NSString stringWithFormat:@"￥%.2f",new_Goods.price];
         
         title_label.font=[UIFont boldSystemFontOfSize:14];
         title_label.backgroundColor=[UIColor clearColor];
@@ -578,7 +579,7 @@
     for (int i =0; i<goodsPageArr.count; i++)
     {
         New_Goods *new_Goods=goodsPageArr[i];
-        gbBtn=[[GoodImageButton alloc]initWithFrame:CGRectMake((i%2)*((xinpinContentView.width-20)/2-5+10)+10, floor(i/2)*220+lastFrameForPage.origin.y+lastFrameForPage.size.height+10, (xinpinContentView.width-20)/2-5, 210)];
+        gbBtn=[[GoodImageButton alloc]initWithFrame:CGRectMake((i%2)*((xinpinContentView.width-20)/2-5+10)+10, floor(i/2)*190+lastFrameForPage.origin.y+lastFrameForPage.size.height+10, (xinpinContentView.width-20)/2-5, 180)];
         gbBtn.userInteractionEnabled=YES;
         gbBtn.backgroundColor=[UIColor whiteColor];
         //            imageV.userInteractionEnabled=YES;
@@ -593,7 +594,8 @@
         [gbBtn addTarget:self action:@selector(goodContentTouch:) forControlEvents:UIControlEventTouchUpInside];
         [xinpinContentView addSubview:gbBtn];
         
-        UrlImageView*btn1=[[UrlImageView alloc]initWithFrame:CGRectMake(0, 0, gbBtn.frame.size.width, gbBtn.frame.size.width)];
+        UrlImageView*btn1=[[UrlImageView alloc]initWithFrame:CGRectMake((gbBtn.width/3/2), 10, gbBtn.frame.size.width*2/3, gbBtn.frame.size.width*2/3)];
+        [btn1 setContentMode:UIViewContentModeScaleAspectFill];
         //            btn.userInteractionEnabled=YES;
         //            btn.layer.borderWidth=1;//描边
         //            btn.layer.cornerRadius=4;//圆角
@@ -613,7 +615,7 @@
         //            [imageV addSubview:btn];
         //商店名
         [gbBtn addSubview:btn1];
-        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(0, btn1.frame.size.width, btn1.frame.size.height+btn1.frame.origin.y+5, 10)];
+        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(0, btn1.frame.size.width+10, gbBtn.width, 10)];
         _label.text=new_Goods.shop_name;
         _label.font=[UIFont boldSystemFontOfSize:10];
         _label.backgroundColor=[UIColor clearColor];
@@ -623,7 +625,7 @@
         
         [gbBtn addSubview:_label];
         //商品名
-        UILabel *_label1=[[UILabel alloc]initWithFrame:CGRectMake(0, _label.frame.size.height+_label.frame.origin.y+1, btn1.frame.size.width, 30)];
+        UILabel *_label1=[[UILabel alloc]initWithFrame:CGRectMake(10, _label.frame.size.height+_label.frame.origin.y+1, gbBtn.frame.size.width-10-10, 30)];
         _label1.text=new_Goods.title;
         _label1.font=[UIFont boldSystemFontOfSize:11];
         _label1.backgroundColor=[UIColor clearColor];
@@ -637,8 +639,8 @@
         
         
         
-        UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(0, _label1.frame.size.height+_label1.frame.origin.y+1 ,btn1.frame.size.width, 20)];
-        title_label.text=[NSString stringWithFormat:@"%.1f",new_Goods.price];
+        UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(0, _label1.frame.size.height+_label1.frame.origin.y+1 ,gbBtn.frame.size.width, 20)];
+        title_label.text=[NSString stringWithFormat:@"￥%.2f",new_Goods.price];
         
         title_label.font=[UIFont boldSystemFontOfSize:14];
         title_label.backgroundColor=[UIColor clearColor];
@@ -835,6 +837,9 @@
     [httpController onSearchForPostJson];
 
 }
+-(void)btnFenlei:(id)sender{
+
+}
 -(void)btnShopStore:(id)sender
 {
     
@@ -849,6 +854,10 @@
 #pragma mark 回到顶部
 -(void)topButtonClicked:(id)button{
     [self._scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+}
+#pragma mark 精品菜单
+-(void)jingpinMenu:(id)button{
+    
 }
 
 /*
