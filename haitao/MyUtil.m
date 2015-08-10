@@ -126,6 +126,10 @@
     return currentDateStr;
     
 }
++(NSString *)trim:(NSString *)string{
+    NSString *result = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    return result;
 
+}
 
 @end
