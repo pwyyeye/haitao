@@ -14,7 +14,7 @@
 @property (copy, nonatomic) NSString *start_time;
 @property (copy, nonatomic) NSString *end_time;
 @property (copy, nonatomic) NSString *sortby;
-@property (copy, nonatomic) NSString *ad_type;
+@property (assign, nonatomic) int ad_type;
 @property (copy, nonatomic) NSString *goods_id;
 @property (copy, nonatomic) NSString *subject_id;
 @property (copy, nonatomic) NSString *cat_id;
