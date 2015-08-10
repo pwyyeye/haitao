@@ -376,7 +376,7 @@
             //商品名
             UILabel *_label1=[[UILabel alloc]initWithFrame:CGRectMake(0, _label.frame.size.height+_label.frame.origin.y+1, btn.frame.size.width, 30)];
             _label1.text=new_Goods.title;
-            _label1.font=[UIFont fontWithName:@"Helvetica-Bold" size:11];
+            _label1.font=[UIFont boldSystemFontOfSize:11];
             _label1.backgroundColor=[UIColor clearColor];
             _label1.textColor =hexColor(@"#333333");
             _label1.lineBreakMode = UILineBreakModeWordWrap;
@@ -391,7 +391,7 @@
             UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(0, _label1.frame.size.height+_label1.frame.origin.y+1 ,btn.frame.size.width, 20)];
             title_label.text=[NSString stringWithFormat:@"%.1f",new_Goods.price];
             
-            title_label.font=[UIFont fontWithName:@"Helvetica-Bold" size:14];
+            title_label.font=[UIFont boldSystemFontOfSize:14];
             title_label.backgroundColor=[UIColor clearColor];
             title_label.textColor =hexColor(@"#ff0d5e");
             title_label.textAlignment=NSTextAlignmentCenter;
