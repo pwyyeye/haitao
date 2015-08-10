@@ -1856,8 +1856,8 @@
 		ADD2C41C1B78400100A2E638 /* WuLiu_hm@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WuLiu_hm@3x.png"; sourceTree = "<group>"; };
 		ADD2C41D1B78400100A2E638 /* WuLiu_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WuLiu_line@2x.png"; sourceTree = "<group>"; };
 		ADD2C41E1B78400100A2E638 /* WuLiu_line@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WuLiu_line@3x.png"; sourceTree = "<group>"; };
-		ADD2C4251B78A0AC00A2E638 /* icon_right2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_right2@2x.png"; sourceTree = "<group>"; };
-		ADD2C4261B78A0AC00A2E638 /* icon_right2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_right2@3x.png"; sourceTree = "<group>"; };
+		ADD2C4251B78A0AC00A2E638 /* icon_right2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_right2@2x.png"; path = "购物车/icon_right2@2x.png"; sourceTree = "<group>"; };
+		ADD2C4261B78A0AC00A2E638 /* icon_right2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_right2@3x.png"; path = "购物车/icon_right2@3x.png"; sourceTree = "<group>"; };
 		ADD33A141B65BFA600558372 /* UpdateAddressForEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateAddressForEdit.h; sourceTree = "<group>"; };
 		ADD33A151B65BFA600558372 /* UpdateAddressForEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateAddressForEdit.m; sourceTree = "<group>"; };
 		ADD33A161B65BFA600558372 /* UpdateAddressForEdit.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateAddressForEdit.xib; sourceTree = "<group>"; };
@@ -2190,8 +2190,6 @@
 		A2F7FD1F1B6FB18400657575 /* 购物车 */ = {
 			isa = PBXGroup;
 			children = (
-				ADD2C4251B78A0AC00A2E638 /* icon_right2@2x.png */,
-				ADD2C4261B78A0AC00A2E638 /* icon_right2@3x.png */,
 				A2F7FD201B6FB18400657575 /* bg@2x.png */,
 				A2F7FD211B6FB18400657575 /* bg_01_l@2x.png */,
 				A2F7FD221B6FB18400657575 /* dd_address@2x.png */,
@@ -3666,6 +3664,7 @@
 		ADB5ACB21B5406FA0022B2C2 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				ADD2C4291B78A87100A2E638 /* pwy购物车 */,
 				AD8E37C41B7392B800C9D5BA /* 订单 */,
 				AD8E35B21B721A1400C9D5BA /* icons */,
 				AD8E35AA1B7216C300C9D5BA /* 登录 */,
@@ -3828,6 +3827,15 @@
 				ADD2C41E1B78400100A2E638 /* WuLiu_line@3x.png */,
 			);
 			name = "物流详情";
+			sourceTree = "<group>";
+		};
+		ADD2C4291B78A87100A2E638 /* pwy购物车 */ = {
+			isa = PBXGroup;
+			children = (
+				ADD2C4251B78A0AC00A2E638 /* icon_right2@2x.png */,
+				ADD2C4261B78A0AC00A2E638 /* icon_right2@3x.png */,
+			);
+			name = "pwy购物车";
 			sourceTree = "<group>";
 		};
 		ADD4D4141B5B9B73004AFBE2 /* Login */ = {
