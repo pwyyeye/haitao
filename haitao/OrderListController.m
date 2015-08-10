@@ -598,7 +598,14 @@
     
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    OrderListCell *cell = [[OrderListCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    
+    static NSString *CellIdentifier = @"OrderListCell";
+    OrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier]; //出列可重用的cell
+    if (cell == nil) {
+        cell = [[OrderListCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"OrderListCell"];
+    }
+//    
+//    OrderListCell *cell = [[OrderListCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"OrderListCell"];
     //    cell.textLabel.text = self.results[indexPath.row];
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
@@ -737,22 +744,23 @@
 
 -(void)gotoCancelOrder:(UIButton *)sender{
     //订单号
-//    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-//    [app startLoading];
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_cancelOrder withType:POSTURL withPam:@{@"order_id":[NSString stringWithFormat:@"%d",sender.tag]} withUrlName:@"cancelOrder"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
+    
+//    OrderSuccessController *detailViewController =[[OrderSuccessController alloc] initWithNibName:@"OrderSuccessController" bundle:nil];
+//    detailViewController.orderNoString=_selectedOrderNo;
+//    detailViewController.payAmountString=[NSString stringWithFormat:@"%.2f",_selectAmount];
 //    
-//    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_cancelOrder withType:POSTURL withPam:@{@"order_id":[NSString stringWithFormat:@"%d",sender.tag]} withUrlName:@"cancelOrder"];
-//    httpController.delegate = self;
-//    [httpController onSearchForPostJson];
-    OrderSuccessController *detailViewController =[[OrderSuccessController alloc] initWithNibName:@"OrderSuccessController" bundle:nil];
-    detailViewController.orderNoString=_selectedOrderNo;
-    detailViewController.payAmountString=[NSString stringWithFormat:@"%.2f",_selectAmount];
-    
-    _selectAmount=0;
-    _selectedOrderNo=nil;
-    
-    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    
-    [self.navigationController pushViewController:detailViewController animated:YES];
+//    _selectAmount=0;
+//    _selectedOrderNo=nil;
+//    
+//    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+//    
+//    [self.navigationController pushViewController:detailViewController animated:YES];
     
 }
 

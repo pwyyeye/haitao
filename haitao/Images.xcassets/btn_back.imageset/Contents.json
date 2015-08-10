@@ -7,12 +7,12 @@
     {
       "idiom" : "iphone",
       "scale" : "2x",
-      "filename" : "btn_back@2x.png"
+      "filename" : "icon_Return@2x.png"
     },
     {
       "idiom" : "iphone",
       "scale" : "3x",
-      "filename" : "btn_back@3x.png"
+      "filename" : "icon_Return@3x.png"
     }
   ],
   "info" : {

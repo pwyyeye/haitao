@@ -130,10 +130,8 @@
 }
 
 -(void)showEmptyView{
-    if (_result_array.count>0 && ![_empty_view isEqual:[NSNull null]]) {
-        [_empty_view removeFromSuperview];
-        
-    }else if(_result_array.count==0){
+    [_empty_view removeFromSuperview];
+    if(_result_array.count==0){
         _empty_view=[[UIView alloc] initWithFrame:CGRectMake(0, 104, SCREEN_WIDTH, SCREEN_HEIGHT - 104)];
         UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-100, SCREEN_HEIGHT/2-164, 200, 20)];
         label.text=@"暂无消息";
@@ -258,9 +256,16 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MessageCell *cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-    //    cell.textLabel.text = self.results[indexPath.row];
-    MessageModel *message=_result_array[indexPath.item];
+    static NSString *CellIdentifier = @"MessageCell";
+    MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier]; //出列可重用的cell
+    if (cell == nil) {
+        cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"MessageCell"];
+    }
+    
+//    MessageCell *cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    
+    
+    MessageModel *message=_result_array[indexPath.row];
     cell.textLabel.text=message.title;
     
     cell.textLabel.numberOfLines=2;

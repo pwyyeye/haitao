@@ -363,7 +363,7 @@ static CGFloat kImageOriginHight = 400;
 //工具栏
 -(UIView *)getToolBar
 {
-    UIView *view_bar =[[UIView alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height-49, self.view.frame.size.width, 49)];
+    UIView *view_bar =[[UIView alloc]initWithFrame:CGRectMake(0,  self.view.frame.size.height-49, self.view.frame.size.width, 49)];
     view_bar.backgroundColor=[UIColor whiteColor];
     view_bar.layer.borderColor=[UIColor colorWithRed:.9 green:.9  blue:.9  alpha:1.0].CGColor;
     view_bar.layer.borderWidth=1;

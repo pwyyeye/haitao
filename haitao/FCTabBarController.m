@@ -11,7 +11,7 @@
 #import "ManitViewController.h"
 #import "HTSeachViewController.h"
 #import "HTBoutiqueViewController.h"
-#import "HTCartViewController.h"
+#import "HTShopStoreCarViewController.h"
 #import "UserCenterCollention.h"
 //#import "TMClassicViewController.h"
 //#import "TMShopStoreViewController.h"
@@ -64,7 +64,8 @@
     UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"icon_LIqin"]tag:-302];
     boutiqueViewController.tabBarItem=item3;
     //购物车
-    HTCartViewController *cartViewController= [[HTCartViewController alloc] init];
+    HTShopStoreCarViewController *cartViewController= [[HTShopStoreCarViewController alloc] init];
+    cartViewController.isTabbar=YES;
     UITabBarItem *item4 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"icon_Order"]tag:-303];
     cartViewController.tabBarItem=item4;
     //个人中心

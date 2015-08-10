@@ -89,13 +89,15 @@
     
     //    }
     [self getCarInfo];
+     [self getToolBar];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self.navigationController setNavigationBarHidden:YES];
     
     [delShopList removeAllObjects];
     [self addViews];
-    [self getToolBar];
+   
     //获取购物车数据
 }
 #pragma mark获取购物车数据
@@ -212,20 +214,22 @@
 #pragma mark添加导航栏
 -(UIView*)getNavigationBar
 {
-    view_bar =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
-    if ([[[UIDevice currentDevice]systemVersion]floatValue]>6.1)
-    {
-        view_bar .frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
-        UIImageView *imageV = [[UIImageView alloc]initWithImage:BundleImage(@"top.png")];
-        [view_bar addSubview:imageV];
-
-        
-    }else{
-        view_bar .frame=CGRectMake(0, 0, self.view.frame.size.width, 44);
-        UIImageView *imageV = [[UIImageView alloc]initWithImage:BundleImage(@"top.png")];
-        [view_bar addSubview:imageV];
+    view_bar =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
+//    if ([[[UIDevice currentDevice]systemVersion]floatValue]>6.1)
+//    {
+//        view_bar.frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
+////        UIImageView *imageV = [[UIImageView alloc]initWithImage:BundleImage(@"top.png")];
+////        [view_bar addSubview:imageV];
+//
+//        
+//    }else{
+//        view_bar.frame=CGRectMake(0, 0, self.view.frame.size.width, 44);
+//        UIImageView *imageV = [[UIImageView alloc]initWithImage:BundleImage(@"top.png")];
+//        [view_bar addSubview:imageV];
+//    
+//    }
     
-    }
+    view_bar.backgroundColor=RGB(255, 13, 94);
     UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar.frame.size.height-44, self.view.frame.size.width-130, 44)];
     title_label.text=@"购物车";
     title_label.font=[UIFont boldSystemFontOfSize:20];
@@ -253,8 +257,8 @@
     [btnDD addTarget:self action:@selector(editCell:) forControlEvents:UIControlEventTouchUpInside];
     [view_bar addSubview:btnDD];
     UIButton*btnBack=[UIButton buttonWithType:0];
-    btnBack.frame=CGRectMake(0, view_bar.frame.size.height-34, 47, 34);
-    [btnBack setImage:BundleImage(@"left_grey.png") forState:0];
+    btnBack.frame=CGRectMake(0, 25, 47, 34);
+    [btnBack setImage:BundleImage(@"btn_back") forState:0];
     [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
     [view_bar addSubview:btnBack];
 
@@ -332,8 +336,8 @@
     //(8, 10, 40, 30);
     allCheckBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [allCheckBtn setFrame:CGRectMake(1.0, view_toolBar.frame.size.height/2-20, 40, 40)];
-    [allCheckBtn setBackgroundImage:[UIImage imageNamed:@"icon_NotSelected"] forState:UIControlStateNormal];
-    [allCheckBtn setBackgroundImage:[UIImage imageNamed:@"icon_Selected"] forState:UIControlStateSelected];
+    [allCheckBtn setImage:[UIImage imageNamed:@"icon_NotSelected"] forState:UIControlStateNormal];
+    [allCheckBtn setImage:[UIImage imageNamed:@"icon_Selected"] forState:UIControlStateSelected];
     [allCheckBtn addTarget:self action:@selector(checkButtonALL:event:) forControlEvents:UIControlEventTouchUpInside];
     [allCheckBtn setSelected:false];
     
@@ -365,12 +369,15 @@
     
     jiesuanBtn=[UIButton buttonWithType:0];
     jiesuanBtn.frame=CGRectMake(view_toolBar.frame.size.width-95, 10, 85, 30);
-    //    acountBtn1.layer.borderWidth=1;
-    //    acountBtn1.layer.borderColor=hui8Cg;
-    //    acountBtn1.layer.cornerRadius = 4;
+
     jiesuanBtn.titleLabel.font=[UIFont systemFontOfSize:10];
-    [jiesuanBtn setImage:BundleImage(@"ic_02_n_.png") forState:0];
-    [jiesuanBtn setTitleColor:[UIColor grayColor] forState:0];
+    jiesuanBtn.backgroundColor=RGB(255, 13, 94);
+    jiesuanBtn.layer.masksToBounds=YES;
+    jiesuanBtn.layer.cornerRadius=3;
+    [jiesuanBtn setTitle:@"去结算" forState:UIControlStateNormal];
+    jiesuanBtn.titleLabel.font=[UIFont systemFontOfSize:13];
+    jiesuanBtn.titleLabel.textColor=[UIColor whiteColor];
+    
     [jiesuanBtn addTarget:self action:@selector(accountBtn:) forControlEvents:UIControlEventTouchUpInside];
     [view_toolBar addSubview:jiesuanBtn];
     
@@ -434,8 +441,8 @@
     UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,35 )];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:CGRectMake(1.0, 0.0, 40, 40)];
-    [button setBackgroundImage:[UIImage imageNamed:@"icon_NotSelected"] forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"icon_Selected"] forState:UIControlStateSelected];
+    [button setImage:[UIImage imageNamed:@"icon_NotSelected"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"icon_Selected"] forState:UIControlStateSelected];
     [button addTarget:self action:@selector(checkButtonSection:event:) forControlEvents:UIControlEventTouchUpInside];
     [button setSelected:shopInfoModel.ischoose];
     button.tag=section;
@@ -492,8 +499,8 @@
     //左侧按钮
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:CGRectMake(0.0, 20.0, 40, 40)];
-    [button setBackgroundImage:[UIImage imageNamed:@"icon_NotSelected"] forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"icon_Selected"] forState:UIControlStateSelected];
+    [button setImage:[UIImage imageNamed:@"icon_NotSelected"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"icon_Selected"] forState:UIControlStateSelected];
     [button addTarget:self action:@selector(checkButtonTapped:event:) forControlEvents:UIControlEventTouchUpInside];
     [button setSelected:carShopInfoModel.ischoose];
     [cell addSubview:button];
@@ -681,11 +688,17 @@
         }
         
         ConfirmOrderController *detailViewController =[[ConfirmOrderController alloc] initWithNibName:@"ConfirmOrderController" bundle:nil];
+
+        AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        //    delegate.navigationController.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:nil];
+        
+        UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
+        delegate.navigationController.navigationItem.backBarButtonItem=item;
+        
         detailViewController.ids=ss;
         
-        self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-        
-        [self.navigationController pushViewController:detailViewController animated:YES];
+        [delegate.navigationController pushViewController:detailViewController animated:YES];
+
         
     }
     

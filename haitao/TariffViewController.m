@@ -117,15 +117,13 @@
 }
 
 -(void)showEmptyView{
-    if (_result_array.count>0 && ![_empty_view isEqual:[NSNull null]]) {
-        [_empty_view removeFromSuperview];
-        
-    }else if(_result_array.count==0){
+     [_empty_view removeFromSuperview];
+    if(_result_array.count==0){
         _empty_view=[[UIView alloc] initWithFrame:CGRectMake(0, 104, SCREEN_WIDTH, SCREEN_HEIGHT - 104)];
         UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-100, SCREEN_HEIGHT/2-164, 200, 20)];
         label.text=@"暂无关税信息";
         [_empty_view addSubview:label];
-        label.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentCenter;
         
         [self.view addSubview:_empty_view];
     }
