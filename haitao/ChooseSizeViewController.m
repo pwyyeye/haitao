@@ -44,7 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getToolBar];
-    [self.view setBackgroundColor:[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0]];
+    [self.view setBackgroundColor:RGB(237,237,237)];
     chooseArr=[[NSMutableArray alloc]init];
     parameters = [[NSMutableDictionary alloc]init];
     btnArr =[[NSMutableArray alloc]init];
@@ -54,7 +54,7 @@
     _scrollView.userInteractionEnabled=YES;
     _scrollView.showsVerticalScrollIndicator = NO;
     fFrame=_scrollView.frame;
-    _scrollView.backgroundColor=hexColor(@"#ededed");
+    _scrollView.backgroundColor=RGB(237,237,237);
     priceArr=[self.goods_attr objectForKey:@"price_cn"];
     attr_info=[self.goods_attr objectForKey:@"attr_info"];
 //    [_scrollView setBackgroundColor:[UIColor grayColor]];
@@ -86,7 +86,7 @@
     title_label.backgroundColor=[UIColor clearColor];
     title_label.textColor =[UIColor colorWithRed:.3 green:.3 blue:.3 alpha:1.0];
     title_label.textAlignment=NSTextAlignmentCenter;
-    title_label.numberOfLines = 0;
+    title_label.numberOfLines = 2;
     CGRect txtFrame = title_label.frame;
     
      title_label.frame = CGRectMake(txtFrame.origin.x, txtFrame.origin.y, txtFrame.size.width,
@@ -121,7 +121,7 @@
     yunfeititle.text=@"温馨提示:商品尺寸参数均来自国外,仅供参考。";
     yunfeititle.font=[UIFont systemFontOfSize:12];
     yunfeititle.backgroundColor=[UIColor clearColor];
-    yunfeititle.textColor =hexColor(@"#af687a");
+    yunfeititle.textColor =RGB(175, 104, 122);
     yunfeititle.textAlignment=1;
     [yunfeiView addSubview:yunfeititle];
     [topView addSubview:yunfeiView];
@@ -360,7 +360,7 @@
     
     btnCall=[UIButton buttonWithType:0];
     btnCall.frame=CGRectMake(0, 0, self.view.frame.size.width, 49);
-    btnCall.backgroundColor=[UIColor redColor];
+    btnCall.backgroundColor=hexColor(@"#ff0d5e");
 //    [btnCall setTitle:@"加入购物车" forState:UIControlStateNormal];
     [btnCall addTarget:self action:@selector(addCar:) forControlEvents:UIControlEventTouchUpInside];
     btnCall.enabled=false;
@@ -371,10 +371,15 @@
     shoushiView.image=[UIImage imageNamed:@"icon_AddOrder"];
     [btnCall addSubview:shoushiView];
     UILabel *zanLabel=[[UILabel alloc]initWithFrame:CGRectMake(shoushiView.width+shoushiView.left+5, (btnCall.height-30)/2,btnCall.width-(shoushiView.width+shoushiView.left+5) , 30)];
-    zanLabel.text=@"加入购物车";
+    if(self.ischange){
+        zanLabel.text=@"确定";
+    }else{
+        zanLabel.text=@"加入购物车";
+    }
+    
     zanLabel.font=[UIFont boldSystemFontOfSize:17];
     zanLabel.backgroundColor=[UIColor clearColor];
-    zanLabel.textColor =hexColor(@"#cccccc");
+    zanLabel.textColor =[UIColor whiteColor];
     zanLabel.textAlignment=NSTextAlignmentLeft;
     zanLabel.numberOfLines=0;
     [btnCall addSubview:zanLabel];

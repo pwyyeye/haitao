@@ -58,7 +58,7 @@
         for (int i=0; i<pageCount; i++)
         {
             UrlImageView *imgView=[[UrlImageView alloc] init];
-
+            [imgView setContentMode:UIViewContentModeScaleAspectFill];
             [imgView setFrame:CGRectMake(viewSize.size.width*i, 0,viewSize.size.width, viewSize.size.height)];
             imgView.tag= i;
             imgView.backgroundColor=[UIColor grayColor];

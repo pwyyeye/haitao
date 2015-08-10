@@ -79,7 +79,7 @@
     [view_bar1 addSubview:title_label];
     UIButton*btnBack=[UIButton buttonWithType:0];
     btnBack.frame=CGRectMake(0, view_bar1.frame.size.height-34, 47, 34);
-    [btnBack setImage:BundleImage(@"left_grey") forState:0];
+    [btnBack setImage:BundleImage(@"btn_back") forState:0];
     [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
     [view_bar1 addSubview:btnBack];
     return view_bar1;
@@ -328,7 +328,7 @@
             cell.accessoryType=UITableViewCellAccessoryNone;
             cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame] ;
             cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:0.88 green:0.94 blue:0.99 alpha:1.0];
-            cell.backgroundColor=[UIColor redColor];
+            cell.backgroundColor=[UIColor whiteColor];
         }
         UrlImageButton *urlImageView=[[UrlImageButton alloc]initWithFrame:CGRectMake(0, 0, 320, 120)];
         NSURL *url =[NSURL URLWithString:specialModel.img];
@@ -355,14 +355,14 @@
         for (int i =0; i<arrTemp.count; i++)
         {
             New_Goods *new_Goods=arrTemp[i];
-            GoodImageButton *gbBtn=[[GoodImageButton alloc]initWithFrame:CGRectMake((i%2)*((SCREEN_WIDTH-20)/2-5+10)+10, floor(i/2)*210+10, (SCREEN_WIDTH-20)/2-5, 210)];
+            GoodImageButton *gbBtn=[[GoodImageButton alloc]initWithFrame:CGRectMake((i%2)*((SCREEN_WIDTH-20)/2-5+10)+10, floor(i/2)*190+10, (SCREEN_WIDTH-20)/2-5, 180)];
             gbBtn.userInteractionEnabled=YES;
             gbBtn.backgroundColor=[UIColor whiteColor];
             //            imageV.userInteractionEnabled=YES;
             //            btn.layer.shadowOffset = CGSizeMake(1,1);
             //            btn.layer.shadowOpacity = 0.2f;
             //            btn.layer.shadowRadius = 3.0;
-            gbBtn.layer.borderWidth=1;//描边
+            gbBtn.layer.borderWidth=0.5;//描边
             gbBtn.layer.cornerRadius=4;//圆角
             gbBtn.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
             gbBtn.goods=new_Goods;
@@ -370,27 +370,28 @@
             [gbBtn addTarget:self action:@selector(goodContentTouch:) forControlEvents:UIControlEventTouchUpInside];
             [cell addSubview:gbBtn];
             
-            UrlImageView*btn=[[UrlImageView alloc]initWithFrame:CGRectMake(0, 0, gbBtn.frame.size.width, gbBtn.frame.size.width)];
+            UrlImageView*btn1=[[UrlImageView alloc]initWithFrame:CGRectMake((gbBtn.width/3/2), 10, gbBtn.frame.size.width*2/3, gbBtn.frame.size.width*2/3)];
+            [btn1 setContentMode:UIViewContentModeScaleAspectFill];
             //            btn.userInteractionEnabled=YES;
             //            btn.layer.borderWidth=1;//描边
             //            btn.layer.cornerRadius=4;//圆角
             //            btn.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
-            btn.backgroundColor=RGBA(237, 237, 237, 1);
+            btn1.backgroundColor=RGBA(237, 237, 237, 1);
             
             NSString *urlStr=new_Goods.img_260;
             if((urlStr==nil)||[urlStr isEqualToString:@""]){
-                btn.image=BundleImage(@"df_04_.png");
+                btn1.image=BundleImage(@"df_04_.png");
                 
             }else{
                 NSURL *imgUrl=[NSURL URLWithString:urlStr];
-                [btn setImageWithURL:imgUrl];
+                [btn1 setImageWithURL:imgUrl];
             }
             
             //            [btn addTarget:self action:@selector(goodContentTouch:) forControlEvents:UIControlEventTouchUpInside];
             //            [imageV addSubview:btn];
             //商店名
-            [gbBtn addSubview:btn];
-            UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(0, btn.frame.size.width, btn.frame.size.height+btn.frame.origin.y+5, 10)];
+            [gbBtn addSubview:btn1];
+            UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(0, btn1.frame.size.width+10, gbBtn.width, 10)];
             _label.text=new_Goods.shop_name;
             _label.font=[UIFont boldSystemFontOfSize:10];
             _label.backgroundColor=[UIColor clearColor];
@@ -400,9 +401,9 @@
             
             [gbBtn addSubview:_label];
             //商品名
-            UILabel *_label1=[[UILabel alloc]initWithFrame:CGRectMake(0, _label.frame.size.height+_label.frame.origin.y+1, btn.frame.size.width, 30)];
+            UILabel *_label1=[[UILabel alloc]initWithFrame:CGRectMake(10, _label.frame.size.height+_label.frame.origin.y+1, gbBtn.frame.size.width-10-10, 30)];
             _label1.text=new_Goods.title;
-            _label1.font=[UIFont fontWithName:@"Helvetica-Bold" size:11];
+            _label1.font=[UIFont boldSystemFontOfSize:11];
             _label1.backgroundColor=[UIColor clearColor];
             _label1.textColor =hexColor(@"#333333");
             _label1.lineBreakMode = UILineBreakModeWordWrap;
@@ -414,14 +415,14 @@
             
             
             
-            UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(0, _label1.frame.size.height+_label1.frame.origin.y+1 ,btn.frame.size.width, 20)];
-            title_label.text=[NSString stringWithFormat:@"%.1f",new_Goods.price];
+            UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(0, _label1.frame.size.height+_label1.frame.origin.y+1 ,gbBtn.frame.size.width, 20)];
+            title_label.text=[NSString stringWithFormat:@"￥%.2f",new_Goods.price];
             
-            title_label.font=[UIFont fontWithName:@"Helvetica-Bold" size:14];;
+            title_label.font=[UIFont boldSystemFontOfSize:14];
             title_label.backgroundColor=[UIColor clearColor];
             title_label.textColor =hexColor(@"#ff0d5e");
             title_label.textAlignment=NSTextAlignmentCenter;
-            lastFrame=title_label.frame;
+            
             //
             [gbBtn addSubview:title_label];
             lastFrame =gbBtn.frame;
