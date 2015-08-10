@@ -16,9 +16,12 @@
     UILabel *amoutLabel;
     
     UIView *view_bar;
-    BOOL _isTabbar;
+    
     UIView *view_toolBar;
 }
+@property(assign,nonatomic) BOOL isTabbar;;
+
+
 -(id)initWithTabbar:(BOOL)isTabbar;
 
 

@@ -32,5 +32,5 @@
 
 +(NSString *)getFormatDate:(NSDate *)date;
 
-
++(NSString *)trim:(NSString *)string;
 @end

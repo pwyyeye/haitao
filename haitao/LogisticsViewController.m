@@ -201,12 +201,24 @@
         NSDictionary *dic=array[indexPath.row];
         LogisticsCell *cell = [[LogisticsCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"logiccell"];
         if (indexPath.row==0) {
-            cell.imageView.image=[UIImage imageNamed:@"WuLiu_icon_DangQianDian"];
+            cell.isFirst=YES;
+            cell.imageView.image=[UIImage imageNamed:@"WuLiu_Qidian"];
         }else{
-            cell.imageView.image=[UIImage imageNamed:@"WuLiu_icon_ZhouDian"];
+            cell.imageView.image=[UIImage imageNamed:@"WuLiu_hm"];
+            if (indexPath.row==array.count-1) {
+                cell.isLast=YES;
+            }
         }
         
         [cell.imageView setContentMode:UIViewContentModeScaleAspectFill];
+        
+        cell.lianjiexian=[[UIImageView alloc] init];
+        cell.lianjiexian.image=[UIImage imageNamed:@"WuLiu_line"];
+        [cell.lianjiexian setContentMode:UIViewContentModeScaleAspectFill];
+        [cell.contentView addSubview:cell.lianjiexian];
+        
+        [cell.contentView bringSubviewToFront:cell.imageView];
+        
         cell.textLabel.text=[dic objectForKey:@"info"];
         cell.textLabel.font= [UIFont boldSystemFontOfSize:11];
         cell.textLabel.textColor=RGB(51, 51, 51);

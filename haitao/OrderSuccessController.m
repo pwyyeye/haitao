@@ -50,7 +50,7 @@
 
 }
 - (IBAction)gotoSearch:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"backHome" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"backSearch" object:nil];
 }
 
 - (IBAction)gotoHome:(id)sender {

@@ -47,6 +47,7 @@
 {
     _isLoading=NO;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(backHome:) name:@"backHome" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(backSearch:) name:@"backSearch" object:nil];
 
 
 }
@@ -55,6 +56,14 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
   [self selectedTab:[self.buttons objectAtIndex:0]];
 }
+
+-(void)backSearch:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self selectedTab:[self.buttons objectAtIndex:1]];
+}
+
+
 - (void)hideRealTabBar{
     for(UIView *view in self.view.subviews){
         if([view isKindOfClass:[UITabBar class]]){

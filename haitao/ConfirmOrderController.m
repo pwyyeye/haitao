@@ -33,7 +33,8 @@
     //navigationBar的标题
     //self.navigationItem.title=@"登录";
     self.title=@"确认订单";
-    
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+    [self.navigationItem setLeftBarButtonItem:item];
     //设置标题颜色
     
     UIColor * color = [UIColor whiteColor];
@@ -77,7 +78,11 @@
     
     
 }
-
+-(void)gotoBack{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 -(void)getAddress{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];

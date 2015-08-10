@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LogisticsCell : UITableViewCell
-
+@property(strong,nonatomic) UIImageView *lianjiexian;
+@property(assign,nonatomic) BOOL isFirst;
+@property(assign,nonatomic) BOOL isLast;
 @end

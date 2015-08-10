@@ -30,6 +30,19 @@
     
     self.imageView.frame=CGRectMake(rect.origin.x, rect.origin.y, 15, 15);
     
+    if (_lianjiexian!=nil) {
+        if (self.isFirst==YES) {
+            self.lianjiexian.frame=CGRectMake(rect.origin.x+7, self.frame.size.height/2+8, 1, self.frame.size.height);
+        }else if(self.isLast==YES){
+            self.lianjiexian.frame=CGRectMake(rect.origin.x+7, 0, 1, self.frame.size.height/2-8);
+        }else{
+            self.lianjiexian.frame=CGRectMake(rect.origin.x+7, 0, 1, self.frame.size.height);
+        }
+        
+    }
+    
+    
+    
 }
 
 @end

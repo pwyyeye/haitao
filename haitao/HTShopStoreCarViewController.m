@@ -14,6 +14,7 @@
 #import "New_Goods.h"
 #import "ChooseSizeViewController.h"
 #import "ConfirmOrderController.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 @interface HTShopStoreCarViewController ()<ChooseSizeDelegate>
 {
     float _price;
@@ -24,6 +25,7 @@
     UIButton *allCheckBtn;
     UILabel *price_count_label;//合计数值
     UILabel *heji_label;//合计
+    UILabel *shuoming;//说明
     UIButton *jiesuanBtn;//结算
     UIButton *shanchuBtn;//删除
     CarShopInfoModel *carShopInfoRow;
@@ -54,7 +56,7 @@
     _price=0.0;
     
     self.navigationController.navigationBarHidden=YES;
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithWhite:0.93 alpha:1];
     
 
     [self getNavigationBar];
@@ -89,13 +91,15 @@
     
     //    }
     [self getCarInfo];
+     [self getToolBar];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self.navigationController setNavigationBarHidden:YES];
     
     [delShopList removeAllObjects];
     [self addViews];
-    [self getToolBar];
+   
     //获取购物车数据
 }
 #pragma mark获取购物车数据
@@ -151,6 +155,7 @@
             ShowMessage(@"获取购物车数据失败!");
         }
     }
+    
     if([urlname isEqualToString:@"getGoodsAttrValueById"]){
         if(status.intValue==1){
             NSDictionary *goods_attr=[dictemp objectForKey:@"data"];
@@ -202,7 +207,7 @@
     _tableView.delegate=self;
     _tableView.dataSource=self;
     _tableView.backgroundView=nil;
-    _tableView.backgroundColor=[UIColor colorWithRed:.98 green:.98 blue:.98 alpha:1.0];
+    _tableView.backgroundColor=[UIColor colorWithWhite:0.93 alpha:1];
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
@@ -212,20 +217,22 @@
 #pragma mark添加导航栏
 -(UIView*)getNavigationBar
 {
-    view_bar =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
-    if ([[[UIDevice currentDevice]systemVersion]floatValue]>6.1)
-    {
-        view_bar .frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
-        UIImageView *imageV = [[UIImageView alloc]initWithImage:BundleImage(@"top.png")];
-        [view_bar addSubview:imageV];
-
-        
-    }else{
-        view_bar .frame=CGRectMake(0, 0, self.view.frame.size.width, 44);
-        UIImageView *imageV = [[UIImageView alloc]initWithImage:BundleImage(@"top.png")];
-        [view_bar addSubview:imageV];
+    view_bar =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
+//    if ([[[UIDevice currentDevice]systemVersion]floatValue]>6.1)
+//    {
+//        view_bar.frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
+////        UIImageView *imageV = [[UIImageView alloc]initWithImage:BundleImage(@"top.png")];
+////        [view_bar addSubview:imageV];
+//
+//        
+//    }else{
+//        view_bar.frame=CGRectMake(0, 0, self.view.frame.size.width, 44);
+//        UIImageView *imageV = [[UIImageView alloc]initWithImage:BundleImage(@"top.png")];
+//        [view_bar addSubview:imageV];
+//    
+//    }
     
-    }
+    view_bar.backgroundColor=RGB(255, 13, 94);
     UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar.frame.size.height-44, self.view.frame.size.width-130, 44)];
     title_label.text=@"购物车";
     title_label.font=[UIFont boldSystemFontOfSize:20];
@@ -253,8 +260,8 @@
     [btnDD addTarget:self action:@selector(editCell:) forControlEvents:UIControlEventTouchUpInside];
     [view_bar addSubview:btnDD];
     UIButton*btnBack=[UIButton buttonWithType:0];
-    btnBack.frame=CGRectMake(0, view_bar.frame.size.height-34, 47, 34);
-    [btnBack setImage:BundleImage(@"left_grey.png") forState:0];
+    btnBack.frame=CGRectMake(0, 25, 47, 34);
+    [btnBack setImage:BundleImage(@"btn_back") forState:0];
     [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
     [view_bar addSubview:btnBack];
 
@@ -332,13 +339,13 @@
     //(8, 10, 40, 30);
     allCheckBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [allCheckBtn setFrame:CGRectMake(1.0, view_toolBar.frame.size.height/2-20, 40, 40)];
-    [allCheckBtn setBackgroundImage:[UIImage imageNamed:@"icon_NotSelected"] forState:UIControlStateNormal];
-    [allCheckBtn setBackgroundImage:[UIImage imageNamed:@"icon_Selected"] forState:UIControlStateSelected];
+    [allCheckBtn setImage:[UIImage imageNamed:@"icon_NotSelected"] forState:UIControlStateNormal];
+    [allCheckBtn setImage:[UIImage imageNamed:@"icon_Selected"] forState:UIControlStateSelected];
     [allCheckBtn addTarget:self action:@selector(checkButtonALL:event:) forControlEvents:UIControlEventTouchUpInside];
     [allCheckBtn setSelected:false];
     
     
-    UILabel *all_label=[[UILabel alloc]initWithFrame:CGRectMake(allCheckBtn.frame.size.width+allCheckBtn.frame.origin.x, view_toolBar.frame.size.height/2-7.5, 40, 15)];
+    UILabel *all_label=[[UILabel alloc]initWithFrame:CGRectMake(allCheckBtn.frame.size.width+allCheckBtn.frame.origin.x-10, view_toolBar.frame.size.height/2-7.5, 40, 15)];
     all_label.text=@"全选";
     all_label.font=[UIFont boldSystemFontOfSize:12];
     all_label.backgroundColor=[UIColor clearColor];
@@ -347,46 +354,58 @@
     
     [view_toolBar addSubview:all_label];
     [view_toolBar addSubview:allCheckBtn];
-    heji_label=[[UILabel alloc]initWithFrame:CGRectMake(all_label.frame.size.width+all_label.frame.origin.x+10, 15, 38, 20)];
+    heji_label=[[UILabel alloc]initWithFrame:CGRectMake(view_toolBar.frame.size.width-200, 5, 38, 20)];
     heji_label.text=@"合计:";
-    heji_label.font=[UIFont boldSystemFontOfSize:16];
+    heji_label.font=[UIFont boldSystemFontOfSize:15];
     heji_label.backgroundColor=[UIColor clearColor];
     heji_label.textColor =hongShe;
     heji_label.textAlignment=1;
     [view_toolBar addSubview:heji_label];
     
-    price_count_label=[[UILabel alloc]initWithFrame:CGRectMake(heji_label.frame.size.width+heji_label.frame.origin.x, 15, 75, 20)];
+    price_count_label=[[UILabel alloc]initWithFrame:CGRectMake(heji_label.frame.size.width+heji_label.frame.origin.x, 5, 75, 20)];
     price_count_label.text=[NSString stringWithFormat:@"￥%.2f",_price];
-    price_count_label.font=[UIFont boldSystemFontOfSize:16];
+    price_count_label.font=[UIFont boldSystemFontOfSize:15];
     price_count_label.backgroundColor=[UIColor clearColor];
     price_count_label.textColor =hongShe;
     price_count_label.textAlignment=0;
     [view_toolBar addSubview:price_count_label];
     
+    shuoming=[[UILabel alloc]initWithFrame:CGRectMake(view_toolBar.frame.size.width-200+2, 25, 95, 20)];
+    shuoming.text=@"不含其它费用";
+    shuoming.font=[UIFont boldSystemFontOfSize:11];
+    shuoming.backgroundColor=[UIColor clearColor];
+    shuoming.textColor =RGB(128, 128, 128);
+    shuoming.textAlignment=NSTextAlignmentLeft;
+    [view_toolBar addSubview:shuoming];
+    
+    
     jiesuanBtn=[UIButton buttonWithType:0];
     jiesuanBtn.frame=CGRectMake(view_toolBar.frame.size.width-95, 10, 85, 30);
-    //    acountBtn1.layer.borderWidth=1;
-    //    acountBtn1.layer.borderColor=hui8Cg;
-    //    acountBtn1.layer.cornerRadius = 4;
+
     jiesuanBtn.titleLabel.font=[UIFont systemFontOfSize:10];
-    [jiesuanBtn setImage:BundleImage(@"ic_02_n_.png") forState:0];
-    [jiesuanBtn setTitleColor:[UIColor grayColor] forState:0];
+    jiesuanBtn.backgroundColor=RGB(255, 13, 94);
+    jiesuanBtn.layer.masksToBounds=YES;
+    jiesuanBtn.layer.cornerRadius=3;
+    [jiesuanBtn setTitle:@"去结算" forState:UIControlStateNormal];
+    jiesuanBtn.titleLabel.font=[UIFont systemFontOfSize:13];
+    jiesuanBtn.titleLabel.textColor=[UIColor whiteColor];
+    
     [jiesuanBtn addTarget:self action:@selector(accountBtn:) forControlEvents:UIControlEventTouchUpInside];
     [view_toolBar addSubview:jiesuanBtn];
     
     //删除按钮
     shanchuBtn=[UIButton buttonWithType:0];
-    shanchuBtn.frame=CGRectMake(view_toolBar.frame.size.width-115,7, 85, 30);
-    [shanchuBtn setTitleColor:[UIColor blackColor] forState:0];
+    shanchuBtn.frame=CGRectMake(view_toolBar.frame.size.width-105,9, 85, 30);
+    [shanchuBtn setTitleColor:RGB(128, 128, 128) forState:0];
     [shanchuBtn setTitle:@"删除" forState:UIControlStateNormal];
-    shanchuBtn.titleLabel.textColor=[UIColor whiteColor];
+    shanchuBtn.titleLabel.font=[UIFont boldSystemFontOfSize:13];
+//    shanchuBtn.titleLabel.textColor=[UIColor whiteColor];
     [shanchuBtn addTarget:self action:@selector(shanchu:) forControlEvents:UIControlEventTouchUpInside];
     [shanchuBtn.layer setMasksToBounds:YES];
-    [shanchuBtn.layer setCornerRadius:8.0]; //设置矩圆角半径
-    [shanchuBtn.layer setBorderWidth:1.0];   //边框宽度
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 0.2, 0.2,0.2, 1 });
-    [shanchuBtn.layer setBorderColor:colorref];
+    [shanchuBtn.layer setCornerRadius:3.0]; //设置矩圆角半径
+    [shanchuBtn.layer setBorderWidth:1];   //边框宽度
+    
+    [shanchuBtn.layer setBorderColor:RGB(179, 179, 179).CGColor];
     
     shanchuBtn.hidden=true;
     [view_toolBar addSubview:shanchuBtn];
@@ -401,11 +420,13 @@
         price_count_label.hidden=true;//合计数值
         heji_label.hidden=true;//合计
         jiesuanBtn.hidden=true;//结算
+        shuoming.hidden=true;
     }else{
         shanchuBtn.hidden=true;
         price_count_label.hidden=false;//合计数值
         heji_label.hidden=false;//合计
         jiesuanBtn.hidden=false;//结算
+        shuoming.hidden=false;
     }
 }
 
@@ -425,6 +446,16 @@
 {
     return 35;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 13;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 13)];
+    view.backgroundColor=[UIColor colorWithWhite:0.93 alpha:1];
+//    view.backgroundColor=[UIColor yellowColor];
+    return view;
+}
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -432,10 +463,15 @@
     ShopInfoModel *shopInfoModel=[dicTemp objectForKey:@"all_info"];
 
     UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,35 )];
+    view1.backgroundColor=[UIColor whiteColor];
+    UILabel *jianju=[[UILabel alloc] initWithFrame:CGRectMake(41, 34.5, SCREEN_WIDTH, 0.5)];
+    jianju.backgroundColor=RGB(237, 237, 237);
+    [view1 addSubview:jianju];
+    
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:CGRectMake(1.0, 0.0, 40, 40)];
-    [button setBackgroundImage:[UIImage imageNamed:@"icon_NotSelected"] forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"icon_Selected"] forState:UIControlStateSelected];
+    [button setImage:[UIImage imageNamed:@"icon_NotSelected"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"icon_Selected"] forState:UIControlStateSelected];
     [button addTarget:self action:@selector(checkButtonSection:event:) forControlEvents:UIControlEventTouchUpInside];
     [button setSelected:shopInfoModel.ischoose];
     button.tag=section;
@@ -445,11 +481,11 @@
     
     UILabel *countryLabel=[[UILabel alloc]initWithFrame:CGRectMake(button.frame.origin.x+button.frame.size.height+5,10 , 100, 20)];
     NSString *country_nameStr=shopInfoModel.country_name;
-    countryLabel.font=[UIFont systemFontOfSize:12];
+    countryLabel.font=[UIFont boldSystemFontOfSize:13];
     countryLabel.backgroundColor=[UIColor clearColor];
-    countryLabel.textColor =hui5;
+    countryLabel.textColor =RGB(255, 13, 94);
     countryLabel.textAlignment=0;
-    CGSize theStringSize = [country_nameStr sizeWithFont:[UIFont systemFontOfSize:12]
+    CGSize theStringSize = [country_nameStr sizeWithFont:[UIFont boldSystemFontOfSize:13]
                                constrainedToSize:countryLabel.frame.size
                                    lineBreakMode:NSLineBreakByWordWrapping];
     
@@ -492,72 +528,68 @@
     //左侧按钮
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:CGRectMake(0.0, 20.0, 40, 40)];
-    [button setBackgroundImage:[UIImage imageNamed:@"icon_NotSelected"] forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"icon_Selected"] forState:UIControlStateSelected];
+    [button setImage:[UIImage imageNamed:@"icon_NotSelected"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"icon_Selected"] forState:UIControlStateSelected];
     [button addTarget:self action:@selector(checkButtonTapped:event:) forControlEvents:UIControlEventTouchUpInside];
     [button setSelected:carShopInfoModel.ischoose];
     [cell addSubview:button];
         //图片
     
-    UrlImageView *imgView=[[UrlImageView alloc]initWithFrame:CGRectMake(40, 3, 60,90)];
+    UrlImageView *imgView=[[UrlImageView alloc]initWithFrame:CGRectMake(40, 10, 60,60)];
     
     //        if ([[[[_marrayAll objectAtIndex:indexPath.row]productList]objectAtIndex:0] icon]==nil)
     //        {
     New_Goods *newGoods=carShopInfoModel.goods_detail;
     NSArray *goods_attrList=carShopInfoModel.goods_attr;
-    if(newGoods.img_80){
-        [imgView setImageWithURL:[NSURL URLWithString:newGoods.img_80]];
-    }else{
-        imgView.image=[UIImage imageNamed:@"df_01_.png"];
-    }
+    [imgView setImageWithURL:[NSURL URLWithString:newGoods.img_80] placeholderImage:[UIImage imageNamed:@"df_01_.png"]];
+    [imgView setContentMode:UIViewContentModeScaleAspectFill];
     [cell addSubview:imgView];
     
     
     
     //商品正常显示页面
     if(!btnDD.isSelected){
-        cell.showView=[[UIView alloc] initWithFrame:CGRectMake(imgView.frame.origin.x+imgView.frame.size.width, 3, SCREEN_WIDTH-imgView.frame.origin.x-imgView.frame.size.width, 90)];
+        cell.showView=[[UIView alloc] initWithFrame:CGRectMake(imgView.frame.origin.x+imgView.frame.size.width, 3, SCREEN_WIDTH-imgView.frame.origin.x-imgView.frame.size.width, 80)];
         
         [cell addSubview:cell.showView];
         
         //title
-        UILabel*title=[[UILabel alloc]initWithFrame:CGRectMake(0,15, cell.showView.frame.size.width-55, 30)];
+        UILabel*title=[[UILabel alloc]initWithFrame:CGRectMake(0,0, cell.showView.frame.size.width-55, 30)];
         title.backgroundColor=[UIColor clearColor];
         title.textAlignment=0;
         title.numberOfLines=2;
         title.text=newGoods.title;
-        title.textColor=[UIColor colorWithRed:.2 green:.2 blue:.2 alpha:1.0];
-        title.font=[UIFont systemFontOfSize:12];
+        title.textColor=RGB(51, 51, 51);
+        title.font=[UIFont boldSystemFontOfSize:13];
         [cell.showView addSubview:title];
         //颜色尺寸参数
         
         CGRect lastFrame;
         for (int i=0; i<goods_attrList.count; i++) {
             NSDictionary *carShopDic=goods_attrList[i];
-            UILabel*labelColor=[[UILabel alloc]initWithFrame:CGRectMake((i%2)*(cell.showView.frame.size.width-2-55)/2+2, title.frame.origin.y+title.frame.size.height+20, (cell.showView.frame.size.width-2-55)/2, 20)];
+            UILabel*labelColor=[[UILabel alloc]initWithFrame:CGRectMake((i%2)*(cell.showView.frame.size.width-2-55)/2+2, 35, (cell.showView.frame.size.width-2-55)/2, 20)];
             labelColor.textAlignment=0;
-            labelColor.font=[UIFont systemFontOfSize:10];
+            labelColor.font=[UIFont systemFontOfSize:11];
             labelColor.textColor=[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
             NSString *attr_name=[carShopDic objectForKey:@"attr_name"];
             NSString *attr_val_name=[carShopDic objectForKey:@"attr_val_name"];
-            labelColor.text=[NSString stringWithFormat:@"%@:%@",attr_name,attr_val_name];
+            labelColor.text=[NSString stringWithFormat:@"%@:%@",[MyUtil trim:attr_name] ,[MyUtil trim:attr_val_name]];
             
             labelColor.backgroundColor=[UIColor clearColor];
             lastFrame=labelColor.frame;
             [cell.showView  addSubview:labelColor];
         }
         //价格
-        UILabel*labelPrice=[[UILabel alloc]initWithFrame:CGRectMake((cell.showView.frame.size.width-55), cell.showView.frame.size.height/2-10, 55, 20)];
-        labelPrice.textAlignment=0;
-        labelPrice.font=[UIFont systemFontOfSize:10];
+        UILabel*labelPrice=[[UILabel alloc]initWithFrame:CGRectMake((cell.showView.frame.size.width-55), 25, 55, 20)];
         labelPrice.textColor=[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
-        NSString *priceTemp=[NSString stringWithFormat:@"%.f",newGoods.price_cn];
+        NSString *priceTemp=[NSString stringWithFormat:@"%.2f",newGoods.price_cn];
         labelPrice.text=[NSString stringWithFormat:@"￥%@",priceTemp];
-        
-        labelPrice.backgroundColor=[UIColor clearColor];
+        labelPrice.textAlignment=NSTextAlignmentLeft;
+        labelPrice.font =[UIFont  boldSystemFontOfSize:11];
+        labelPrice.textColor=RGB(255, 13, 94);
         [cell.showView  addSubview:labelPrice];
         //商品数量
-        UILabel*labelCount=[[UILabel alloc]initWithFrame:CGRectMake((cell.showView.frame.size.width-55), title.frame.origin.y+title.frame.size.height+20, 55, 20)];
+        UILabel*labelCount=[[UILabel alloc]initWithFrame:CGRectMake((cell.showView.frame.size.width-55), 45, 55, 20)];
         labelCount.textAlignment=0;
         labelCount.font=[UIFont systemFontOfSize:10];
         labelCount.textColor=[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
@@ -566,6 +598,9 @@
         
         labelCount.backgroundColor=[UIColor clearColor];
         [cell.showView  addSubview:labelCount];
+        
+        
+        
 
     }else{
         cell.editView=[[UIView alloc] initWithFrame:CGRectMake(imgView.frame.origin.x+imgView.frame.size.width, 0, SCREEN_WIDTH-imgView.frame.origin.x-imgView.frame.size.width, 90)];
@@ -573,7 +608,7 @@
         [cell addSubview:cell.editView];
         //减按钮
         UIButton *btnCut=[UIButton buttonWithType:0];
-        btnCut.frame=CGRectMake(0, cell.editView.frame.size.height/2-35/2, 35, 35);
+        btnCut.frame=CGRectMake(0, 25, 30, 30);
         btnCut.tag=indexPath.row;
         [btnCut setImage:BundleImage(@"bt_01_.png") forState:0];
         [btnCut addTarget:self action:@selector(btnCut:event:) forControlEvents:UIControlEventTouchUpInside];
@@ -593,8 +628,8 @@
         
         //加
         UIButton *btnAdd=[UIButton buttonWithType:0];
-        btnAdd.frame=CGRectMake(numTextField.frame.origin.x+numTextField.frame.size.width+3,btnCut.frame.origin.y+3, 30, 28);
-        [btnAdd setBackgroundImage:BundleImage(@"bt_02_.png") forState:0];
+        btnAdd.frame=CGRectMake(numTextField.frame.origin.x+numTextField.frame.size.width+3,25, 30, 30);
+        [btnAdd setImage:BundleImage(@"bt_02_.png") forState:0];
         [btnAdd addTarget:self action:@selector(btnAdd:event:) forControlEvents:UIControlEventTouchUpInside];
         if (btnAdd.highlighted) {
             [btnAdd setBackgroundImage:BundleImage(@"number_up_click.png") forState:0];
@@ -605,32 +640,50 @@
             NSMutableString *ssAddStr=[[NSMutableString alloc]init];
             
             for (int i=0; i<goods_attrList.count; i++) {
+                if(i>0) break;//只要一个规格就够了
                 NSDictionary *carShopDic=goods_attrList[i];
                 NSString *attr_name=[carShopDic objectForKey:@"attr_name"];
                 NSString *attr_val_name=[carShopDic objectForKey:@"attr_val_name"];
-                NSString *attStemp= [NSString stringWithFormat:@"%@:%@",attr_name,attr_val_name];
+                NSString *attStemp= [NSString stringWithFormat:@"%@:%@",[MyUtil trim:attr_name],[MyUtil trim:attr_val_name]];
                 [ssAddStr appendString:attStemp];
-                if(i!=goods_attrList.count-1){
-                    [ssAddStr appendString:@"\n"];
-                }
+//                if(i!=goods_attrList.count-1){
+//                    [ssAddStr appendString:@"\n"];
+//                }
             }
-            UIButton *shopTypeBtn=[UIButton buttonWithType:0];
-            shopTypeBtn.frame=CGRectMake(btnAdd.frame.origin.x+btnAdd.frame.size.width+5,cell.editView.frame.size.height/2-44/2, cell.editView.frame.size.width-(btnAdd.frame.origin.x+btnAdd.frame.size.width+5)-10, 44);
-            [shopTypeBtn setTitleColor:[UIColor blackColor] forState:0];
-            shopTypeBtn.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+            UIButton *shopTypeBtn=[[UIButton alloc] initWithFrame:CGRectMake(btnAdd.frame.origin.x+btnAdd.frame.size.width+10,27.5, cell.editView.frame.size.width-(btnAdd.frame.origin.x+btnAdd.frame.size.width+5)-20, 25)];
+        
+            [shopTypeBtn setTitleColor:RGB(128, 128, 128) forState:0];
+//            shopTypeBtn.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
             shopTypeBtn.titleLabel.font = [UIFont systemFontOfSize: 10.0];
-            [shopTypeBtn setTitle: ssAddStr forState: UIControlStateNormal];
+            NSString *title;
+            if (ssAddStr.length>15) {
+                title=[NSString stringWithFormat:@"%@..",[ssAddStr substringToIndex:12]];
+            }else{
+                title=[ssAddStr copy];
+            }
+            [shopTypeBtn setTitle:title forState: UIControlStateNormal];
             //        shopTypeBtn.titleLabel.textColor=[UIColor whiteColor];- (void)checkButtonTapped:(UIButton *)sender event:(id)event
             [shopTypeBtn addTarget:self action:@selector(changeAttrId:event:) forControlEvents:UIControlEventTouchUpInside];
             [shopTypeBtn.layer setMasksToBounds:YES];
-            [shopTypeBtn.layer setCornerRadius:8.0]; //设置矩圆角半径
-            [shopTypeBtn.layer setBorderWidth:1.0];   //边框宽度
-            CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-            CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 0.2, 0.2,0.2, 1 });
-            [shopTypeBtn.layer setBorderColor:colorref];//边框颜色
+            [shopTypeBtn.layer setCornerRadius:3.0]; //设置矩圆角半径
+            [shopTypeBtn.layer setBorderWidth:1];   //边框宽度
+            [shopTypeBtn.layer setBorderColor:RGB(179, 179, 179).CGColor];//边框颜色
+            
+            shopTypeBtn.titleLabel.textAlignment=NSTextAlignmentLeft;
+            
+            UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(shopTypeBtn.frame.size.width-15, 10, 5, 5)];
+            [imageView setContentMode:UIViewContentModeScaleAspectFill];
+            imageView.image=[UIImage imageNamed:@"icon_right2"];
+            [shopTypeBtn addSubview:imageView];
+            
             [cell.editView addSubview:shopTypeBtn];
         }
     }
+    
+    UILabel *jianju=[[UILabel alloc] initWithFrame:CGRectMake(100, 79.5, SCREEN_WIDTH, 0.5)];
+    jianju.backgroundColor=RGB(237, 237, 237);
+    [cell.contentView addSubview:jianju];
+    
     return cell;
     
 }
@@ -641,8 +694,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    return 96;
+    return 80;
 }
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -681,11 +733,17 @@
         }
         
         ConfirmOrderController *detailViewController =[[ConfirmOrderController alloc] initWithNibName:@"ConfirmOrderController" bundle:nil];
+
+        AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        //    delegate.navigationController.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:nil];
+        
+        UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
+        delegate.navigationController.navigationItem.backBarButtonItem=item;
+        
         detailViewController.ids=ss;
         
-        self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-        
-        [self.navigationController pushViewController:detailViewController animated:YES];
+        [delegate.navigationController pushViewController:detailViewController animated:YES];
+
         
     }
     
