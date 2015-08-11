@@ -19,6 +19,7 @@
 #import "CouponListController.h"
 #import "TariffViewController.h"
 #import "OrderListController.h"
+#import "FilterViewController.h"
 @interface UserCenterCollention ()
 
 @end
@@ -268,9 +269,10 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     }else if(indexPath.item==7){
         detailViewController  = [[HelpViewController alloc] initWithNibName:@"HelpViewController" bundle:nil];
     }else if(indexPath.item==8){
-        
-        ShowMessage(@"即将上线");
-        return;
+        detailViewController  = [[FilterViewController alloc] initWithNibName:@"FilterViewController" bundle:nil];
+
+//        ShowMessage(@"即将上线");
+//        return;
     }
     
     

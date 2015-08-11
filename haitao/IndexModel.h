@@ -14,4 +14,7 @@
 @property (copy, nonatomic) NSString *img;
 @property (assign, nonatomic) BOOL isChoose;
 @property(nonatomic,retain) NSString *letter;
+@property(strong,nonatomic) NSString *logo2;
+@property(strong,nonatomic) NSString *first_name;
+@property(strong,nonatomic) NSString *app_img;//类别用该字段
 @end

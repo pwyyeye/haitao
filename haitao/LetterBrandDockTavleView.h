@@ -16,6 +16,5 @@
 @interface LetterBrandDockTavleView : UITableView
 @property (nonatomic ,strong) NSMutableArray *dockArray;
 
-
 @property (weak ,nonatomic) id <LetterBrandDockDelegate>dockDelegate;
 @end
