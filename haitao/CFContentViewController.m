@@ -12,16 +12,18 @@
 #import "GoodImageButton.h"
 #import "Goods_Ext.h"
 #import "HTGoodDetailsViewController.h"
+#import "ShaiXuanBtn.h"
 @interface CFContentViewController ()
 {
     UITableView                 *_tableView;
     UrlImageView *imageV;
     UIView *view_bar1;
-    UIButton*btnItem1; //上部五个按钮
-    UIButton*btnItem2;
-    UIButton*btnItem3;
-    UIButton*btnItem4;
-    UIButton*btnItem5;
+    ShaiXuanBtn*btnItem1; //上部五个按钮
+    ShaiXuanBtn*btnItem2;
+    ShaiXuanBtn*btnItem3;
+    ShaiXuanBtn*btnItem4;
+    ShaiXuanBtn*btnItem5;
+
     UIImageView*  tabBarArrow;//上部桔红线条
     UITextField *fromPriceText;//价格
     UITextField *toPriceText;
@@ -276,82 +278,78 @@
 #pragma mark置顶按钮栏
 -(UIView*)getToolBar
 {
-    UIImageView*imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,35 )];
-    imageView.backgroundColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0];
+    UIView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,45 )];
+    imageView.backgroundColor=[UIColor clearColor];
     imageView.userInteractionEnabled=YES;
     [self.view addSubview:imageView];
+    if(!btnItem1){
+        btnItem1 = [ShaiXuanBtn buttonWithType:UIButtonTypeCustom];
+        [btnItem1 setFrame:CGRectMake(0, 0, self.view.width/5, 45)];
+        btnItem1.exclusiveTouch=YES;
+        btnItem1.tag = 100;
+        [btnItem1 setImage:[UIImage imageNamed:@"filter_btn_moren_default"] forState:UIControlStateNormal];
+        [btnItem1 setImage:[UIImage imageNamed:@"filter_btn_moren_selected"] forState:UIControlStateSelected];
+        btnItem1.selected=true;
+        btnItem1.backgroundColor=[UIColor whiteColor];
+        [btnItem1 addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
+    }
     
-    
-    btnItem1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnItem1 setFrame:CGRectMake(0, 0, 320/5, 35)];
-    btnItem1.exclusiveTouch=YES;
-    btnItem1.tag = 100;
-    [btnItem1 setTitle:@"默认" forState:0];
-    //    btnItem1.titleLabel.textAlignment=1;
-    //    btnItem1.titleLabel.textColor=   hongShe;
-    
-    [btnItem1 setTitleColor:[UIColor colorWithRed:1.0 green:.23 blue:.49 alpha:1.0] forState:0]   ;
-    btnItem1.backgroundColor=[UIColor whiteColor];
-    [btnItem1 addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
     [imageView addSubview:btnItem1];
+    if(!btnItem2){
+        btnItem2 = [ShaiXuanBtn buttonWithType:UIButtonTypeCustom];
+        [btnItem2 setFrame:CGRectMake(self.view.width/5*1, 0, self.view.width/5, 45)];
+        
+        btnItem2.exclusiveTouch=YES;
+        btnItem2.tag = 101;
+        btnItem2.isup=true;
+        [btnItem2 setImage:[UIImage imageNamed:@"filter_btn_xiaoliang_default"] forState:UIControlStateNormal];
+        [btnItem2 addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
+    }
     
     
-    btnItem2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnItem2 setFrame:CGRectMake(320/5*1+1, 0, 320/5, 35)];
-    
-    btnItem2.exclusiveTouch=YES;
-    btnItem2.tag = 101;
-    btnItem2.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-    [btnItem2 setTitle:@"销量" forState:0];
-    [btnItem2 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0];
-    [btnItem2 addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
     [imageView addSubview:btnItem2];
+    if(!btnItem3){
+        btnItem3 = [ShaiXuanBtn buttonWithType:UIButtonTypeCustom];
+        [btnItem3 setFrame:CGRectMake(self.view.width/5*2, 0, self.view.width/5, 45)];
+        btnItem3.exclusiveTouch=YES;
+        btnItem3.tag = 102;
+        btnItem3.isup=true;
+        [btnItem3 setImage:[UIImage imageNamed:@"filter_btn_zhekou_default"] forState:UIControlStateNormal];
+        [btnItem3 addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
+    }
     
-    btnItem3 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnItem3 setFrame:CGRectMake(320/5*2+2, 0, 320/5, 35)];
-    btnItem3.exclusiveTouch=YES;
-    btnItem3.tag = 102;
-    btnItem3.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-    [btnItem3 setTitle:@"折扣" forState:0];
-    [btnItem3 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0];
-    [btnItem3 addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
     [imageView addSubview:btnItem3];
+    if(!btnItem4){
+        btnItem4 = [ShaiXuanBtn buttonWithType:UIButtonTypeCustom];
+        [btnItem4 setFrame:CGRectMake(self.view.width/5*3, 0, self.view.width/5, 45)];
+        btnItem4.exclusiveTouch=YES;
+        btnItem4.tag = 103;
+        btnItem4.isup=true;
+        [btnItem4 setImage:[UIImage imageNamed:@"filter_btn_jiage_default"] forState:UIControlStateNormal];
+        
+        [btnItem4 addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
+    }
     
-    btnItem4 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnItem4 setFrame:CGRectMake(320/5*3+3, 0, 320/5, 35)];
-    btnItem4.exclusiveTouch=YES;
-    btnItem4.tag = 103;
-    btnItem4.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-    [btnItem4 setTitle:@"价格" forState:0];
-    [btnItem4 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0];
-    [btnItem4 addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
     [imageView addSubview:btnItem4];
+    if(!btnItem5){
+        btnItem5 = [ShaiXuanBtn buttonWithType:UIButtonTypeCustom];
+        [btnItem5 setFrame:CGRectMake(self.view.width/5*4, 0, self.view.width/5,45)];
+        btnItem5.exclusiveTouch=YES;
+        btnItem5.tag = 104;
+        [btnItem5 setImage: [UIImage imageNamed:@"filter_btn_shaixuan_default"] forState:UIControlStateNormal];
+        [btnItem5 setImage:[UIImage imageNamed:@"filter_btn_shaixuan_selected"] forState:UIControlStateSelected];
+        [btnItem5 addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
+    }
     
-    btnItem5 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnItem5 setFrame:CGRectMake(320/5*4+4, 0, 320/5, 35)];
-    btnItem5.exclusiveTouch=YES;
-    btnItem5.tag = 104;
-    btnItem5.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-    [btnItem5 setTitle:@"筛选" forState:0];
-    [btnItem5 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0];
-    [btnItem5 addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
     [imageView addSubview:btnItem5];
     
-    //    UIImageView *line=[[UIImageView alloc]initWithFrame:CGRectMake(0, 34, 320, 1)];
-    //    line.image=BundleImage(@"line_01_.png");
-    //    [imageView addSubview:line];
-    //
-    //    tabBarArrow=[[UIImageView alloc]init];
-    //    tabBarArrow.frame = CGRectMake([self horizontalLocationFor:0], 34, 320/8, 2);
-    //    tabBarArrow.image=BundleImage(@"line_p_.png");
-    //    [imageView addSubview:tabBarArrow];
     
     return  imageView;
 }
 #pragma mark5个按钮事件
 -(void)change:(id)sender
 {
-    UIButton *btn=(UIButton*)sender;
+    ShaiXuanBtn *btn=(ShaiXuanBtn*)sender;
     
     [UIView beginAnimations:Nil context:Nil];
     [UIView setAnimationDuration:0.2];
@@ -359,84 +357,102 @@
     frame.origin.x=[self horizontalLocationFor:btn.tag-100];
     tabBarArrow.frame=frame;
     [UIView commitAnimations];
-    
+    NSString *sortkey=@"";
     if (btn.tag==100)
     {
-        [btnItem1 setTitleColor:[UIColor colorWithRed:1.0 green:.23 blue:.49 alpha:1.0] forState:0]   ;
-        btnItem1.backgroundColor=[UIColor whiteColor];
-        [btnItem2 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem2.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        [btnItem3 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem3.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        [btnItem4 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem4.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        [btnItem5 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem5.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        
-        
+        btnItem1.selected=true;
+        btnItem2.selected=false;
+        btnItem3.selected=false;
+        btnItem4.selected=false;
+        btnItem2.isup=true;
+        btnItem3.isup=true;
+        btnItem4.isup=true;
+        sortkey=@"price_cn-asc";
     }else if(btn.tag==101)
     {
-        [btnItem2 setTitleColor:[UIColor colorWithRed:1.0 green:.23 blue:.49 alpha:1.0] forState:0]   ;
-        [btnItem1 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem1.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        btnItem2.backgroundColor=[UIColor whiteColor];
-        [btnItem3 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem3.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        [btnItem4 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem4.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        [btnItem5 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem5.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
+        btnItem1.selected=false;
+        if(btnItem2.selected){
+            btnItem2.isup=!btnItem2.isup;
+            
+        }
+        if(!btnItem2.isup){
+            [btnItem2 setImage:[UIImage imageNamed:@"filter_btn_xiaoliang_selected_shang"] forState:UIControlStateSelected];
+            sortkey=@"order_num-asc";
+        }else{
+            [btnItem2 setImage:[UIImage imageNamed:@"filter_btn_xiaoliang_selected_shang_xia"] forState:UIControlStateSelected];
+            sortkey=@"order_num-desc";
+        }
+        btnItem2.selected=true;
+        btnItem3.selected=false;
+        btnItem4.selected=false;
+        btnItem3.isup=true;
+        btnItem4.isup=true;
         
     }
     else if(btn.tag==102)
     {
-        [btnItem3 setTitleColor:[UIColor colorWithRed:1.0 green:.23 blue:.49 alpha:1.0] forState:0]   ;
-        btnItem3.backgroundColor=[UIColor whiteColor];
-        [btnItem1 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem1.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        [btnItem2 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem2.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        [btnItem4 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem4.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        [btnItem5 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem5.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
+        btnItem1.selected=false;
+        if(btnItem3.selected){
+            btnItem3.isup=!btnItem3.isup;
+            
+        }
+        if(!btnItem3.isup){
+            [btnItem3 setImage:[UIImage imageNamed:@"filter_btn_zhekou_selected_shang"] forState:UIControlStateSelected];
+            sortkey=@"discount-asc";
+        }else{
+            [btnItem3 setImage:[UIImage imageNamed:@"filter_btn_zhekou_selected_xia"] forState:UIControlStateSelected];
+            sortkey=@"discount-desc";
+        }
+        
+        btnItem3.selected=true;
+        btnItem2.selected=false;
+        btnItem2.isup=true;
+        btnItem4.selected=false;
+        btnItem4.isup=true;
+        
         
     }
     else if(btn.tag==103)
     {
-        [btnItem4 setTitleColor:[UIColor colorWithRed:1.0 green:.23 blue:.49 alpha:1.0] forState:0]   ;
-        btnItem4.backgroundColor=[UIColor whiteColor];
-        [btnItem1 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem1.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        [btnItem2 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem2.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        [btnItem3 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem3.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        [btnItem5 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        btnItem5.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
+        btnItem1.selected=false;
+        if(btnItem4.selected){
+            btnItem4.isup=!btnItem4.isup;
+            
+        }
+        if(!btnItem4.isup){
+            [btnItem4 setImage:[UIImage imageNamed:@"filter_btn_jiage_selected_shang"] forState:UIControlStateSelected];
+            sortkey=@"price_cn-asc";
+        }else{
+            [btnItem4 setImage:[UIImage imageNamed:@"filter_btn_jiage_selected_xia"] forState:UIControlStateSelected];
+            sortkey=@"price_cn-desc";
+        }
+        btnItem4.selected=true;
+        btnItem2.selected=false;
+        btnItem2.isup=true;
+        btnItem3.selected=false;
+        btnItem3.isup=true;
         
     }
     else if(btn.tag==104)
     {
         ScreenViewController *screenViewController=[[ScreenViewController alloc]init];
-        NSArray *arr=@[@"内容",@"价格",@"配送",@"商城",@"品牌"];
-        
-        screenViewController.indexDic=self.menuIndexDic;
+//        screenViewController.indexDic=indexDic;
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
         [delegate.navigationController pushViewController:screenViewController animated:YES];
-        //        [btnItem5 setTitleColor:[UIColor colorWithRed:1.0 green:.23 blue:.49 alpha:1.0] forState:0]   ;
-        //        btnItem5.backgroundColor=[UIColor whiteColor];
-        //        [btnItem1 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        //        btnItem1.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        //        [btnItem2 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        //        btnItem2.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        //        [btnItem4 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        //        btnItem4.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
-        //        [btnItem3 setTitleColor:[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0] forState:0]   ;
-        //        btnItem3.backgroundColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
+        
         
     }
+    [self paixu:sortkey];
+}
+#pragma mark 排序
+-(void)paixu:(NSString *)soryKey{
+    NSDictionary *parameters = @{@"s_cat":self.menuid,@"need_cat_index":@1,@"sort":soryKey};
+    NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
+    ;
     
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getMenuGoodsList"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
 }
 #pragma mark退出
 -(void)btnBack:(id)sender
@@ -469,7 +485,22 @@
     ////        [self showMessage:message];
     ////        return ;
     //    }
-   
+    if([urlname isEqualToString:@"getMenuGoodsList"]){
+        NSDictionary *dataDic=[dictemp objectForKey:@"data"];
+        NSArray *goodsArr=[dataDic objectForKey:@"list"];
+        NSMutableArray *goodsModelArr=[[NSMutableArray alloc]init];
+        for (NSDictionary *dic in goodsArr) {
+            New_Goods *goodsModel = [New_Goods objectWithKeyValues:dic] ;
+            [goodsModelArr addObject:goodsModel];
+        }
+        if(goodsModelArr.count<1){
+            ShowMessage(@"无数据");
+            return;
+        }
+        [self getGoodlist:goodsModelArr];
+        
+    }
+
     if([urlname isEqualToString:@"getGoodsDetail"]){
         NSDictionary *dataDic=[dictemp objectForKey:@"data"];
         NSDictionary *goods_detail=[dataDic objectForKey:@"goods_detail"];
@@ -493,6 +524,18 @@
         [delegate.navigationController pushViewController:htGoodDetailsViewController animated:YES];
         
     }
+    
+}
+#pragma mark -获取分类下的商品信息
+-(void)getMenuGoodsList:(NSString *)s_cat{
+    NSDictionary *parameters = @{@"s_cat":s_cat,@"need_cat_index":@1};
+    
+    NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
+    ;
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getMenuGoodsList"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
     
 }
 

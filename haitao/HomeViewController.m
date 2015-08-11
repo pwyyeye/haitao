@@ -91,8 +91,9 @@
     
     [self.view addSubview:topButton];
     self.view.backgroundColor=[UIColor whiteColor];
-    
-    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:YES];
+    [self reloadAll];
+//    isfirst=true;
+//    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:YES];
 //    __weak HomeViewController *weakSelf = self;
     /*
     [self._scrollView addPullToRefreshWithActionHandler:^{
@@ -150,9 +151,11 @@
 }
 - (void)refresh:(DJRefresh *)refresh didEngageRefreshDirection:(DJRefreshDirection)direction{
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * USEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self addDataWithDirection:direction];
-    });
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * USEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self addDataWithDirection:direction];
+        });
+    
+    
     
 }
 - (void)addDataWithDirection:(DJRefreshDirection)direction{

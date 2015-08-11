@@ -20,5 +20,6 @@
 @property (nonatomic,strong)NSMutableArray *dataList;
 @property (nonatomic,strong)DJRefresh *refresh;
 @property (nonatomic,copy)NSString *topTitle;
+@property (nonatomic,copy)NSString *menuid;
 @property (nonatomic,weak)id<ChangeTableDelegate>delegate;
 @end

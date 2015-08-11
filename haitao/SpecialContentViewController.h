@@ -16,4 +16,5 @@
 }
 @property (nonatomic,retain)NSDictionary *spcDic;
 @property (nonatomic,strong)DJRefresh *refresh;
+@property (nonatomic,copy)NSString *sid;
 @end
