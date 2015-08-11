@@ -528,7 +528,7 @@
         //            [imageV addSubview:btn];
         //商店名
         [gbBtn addSubview:btn1];
-        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(0, btn1.frame.size.width+10, gbBtn.width, 10)];
+        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(0, btn1.frame.size.width+5+btn1.frame.origin.y, gbBtn.width, 10)];
         _label.text=new_Goods.shop_name;
         _label.font=[UIFont boldSystemFontOfSize:10];
         _label.backgroundColor=[UIColor clearColor];
@@ -553,7 +553,7 @@
         
         
         UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(0, _label1.frame.size.height+_label1.frame.origin.y+1 ,gbBtn.frame.size.width, 20)];
-        title_label.text=[NSString stringWithFormat:@"￥%.2f",new_Goods.price];
+        title_label.text=[NSString stringWithFormat:@"￥%.2f",new_Goods.price_cn];
         
         title_label.font=[UIFont boldSystemFontOfSize:14];
         title_label.backgroundColor=[UIColor clearColor];
@@ -615,7 +615,7 @@
         //            [imageV addSubview:btn];
         //商店名
         [gbBtn addSubview:btn1];
-        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(0, btn1.frame.size.width+10, gbBtn.width, 10)];
+        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(0, btn1.frame.size.width+5+btn1.frame.origin.y, gbBtn.width, 10)];
         _label.text=new_Goods.shop_name;
         _label.font=[UIFont boldSystemFontOfSize:10];
         _label.backgroundColor=[UIColor clearColor];
@@ -640,7 +640,7 @@
         
         
         UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(0, _label1.frame.size.height+_label1.frame.origin.y+1 ,gbBtn.frame.size.width, 20)];
-        title_label.text=[NSString stringWithFormat:@"￥%.2f",new_Goods.price];
+        title_label.text=[NSString stringWithFormat:@"￥%.2f",new_Goods.price_cn];
         
         title_label.font=[UIFont boldSystemFontOfSize:14];
         title_label.backgroundColor=[UIColor clearColor];

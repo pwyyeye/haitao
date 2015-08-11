@@ -22,7 +22,7 @@
     UIButton*BtnItem2;
     UIButton*BtnItem3;
     
-    UrlImageButton *_bigView2;
+    UIView *_bigView2;
     UrlImageButton *_bigImg;
     
     UrlImageButton *btnNine;
