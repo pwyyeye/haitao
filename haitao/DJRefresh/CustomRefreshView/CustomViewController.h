@@ -13,6 +13,7 @@
 #import "Goods_Ext.h"
 #import "CFContentViewController.h"
 #import "HTGoodDetailsViewController.h"
+#import "ShaiXuanBtn.h"
 @interface CustomViewController : LTKViewController<UITableViewDelegate,UITableViewDataSource,HTTPControllerProtocol,DJRefreshDelegate,ChangeTableDelegate,GoodChangeTableDelegate>
 {
     NSMutableArray *listArr;

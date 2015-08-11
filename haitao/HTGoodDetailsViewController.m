@@ -15,7 +15,7 @@
 #import "AppDelegate.h"
 #import "HTShopStoreCarViewController.h"
 #import "BiJiaModel.h"
-
+#import "GoodImageButton.h"
 static CGFloat kImageOriginHight = 400;
 
 @interface HTGoodDetailsViewController ()<UIWebViewDelegate,ChooseSizeDelegate>
@@ -36,8 +36,8 @@ static CGFloat kImageOriginHight = 400;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIButton*btnBack=[UIButton buttonWithType:UIButtonTypeCustom];
-    
+    UIButton*btnBack=[UIButton buttonWithType:UIStatusBarStyleDefault];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     btnBack.frame=CGRectMake(10, 20, 42, 42);
     [btnBack setImage:BundleImage(@"DetailsPage_btn_banner_share_") forState:0];
     [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
@@ -47,7 +47,8 @@ static CGFloat kImageOriginHight = 400;
     
     
     self.view.backgroundColor=[UIColor colorWithRed:.98 green:.98 blue:.98 alpha:1.0];
-    _scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    _scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, -20, self.view.frame.size.width, self.view.frame.size.height+20)];
+
     _scrollView.backgroundColor=RGB(237,237,237);
 //    _scrollView.delegate = self;
     _scrollView.userInteractionEnabled=YES;
@@ -252,7 +253,7 @@ static CGFloat kImageOriginHight = 400;
 
     
     //选择颜色和尺寸
-    yansechicunImg=[[UrlImageButton alloc]initWithFrame:CGRectMake(0, _bigView2.frame.size.height+_bigView2.frame.origin.y+10, self.view.frame.size.width,52 )];
+    yansechicunImg=[[UrlImageButton alloc]initWithFrame:CGRectMake(0, _bigView2.frame.size.height+_bigView2.frame.origin.y+10, self.view.frame.size.width,35 )];
     yansechicunImg.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
     yansechicunImg.layer.borderWidth=1;
     [yansechicunImg addTarget:self action:@selector(yansechicunBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -272,20 +273,76 @@ static CGFloat kImageOriginHight = 400;
     yansechicunimageP.image=BundleImage(@"icon_Drop-rightList");
     [yansechicunImg addSubview:yansechicunimageP];
     //商品信息
+    //品牌信息
+    UIView *brandView=[[UIView alloc]initWithFrame:CGRectMake(0, yansechicunImg.frame.size.height+yansechicunImg.frame.origin.y+10, self.view.frame.size.width,200)];
+    brandView.backgroundColor=[UIColor whiteColor];
+    [_scrollView addSubview:brandView];
+    //品牌信息
     
-    UILabel *shopInfolbl=[[UILabel alloc]initWithFrame:CGRectMake(0, yansechicunImg.frame.size.height+yansechicunImg.frame.origin.y+10, self.view.frame.size.width,15)];
-    shopInfolbl.text=@"商品详情";
-    shopInfolbl.font=[UIFont systemFontOfSize:12];
-    shopInfolbl.backgroundColor=[UIColor clearColor];
-    shopInfolbl.textColor =hui5;
-    shopInfolbl.textAlignment=0;
-    [_scrollView addSubview:shopInfolbl];
+    
+    UrlImageView *brandImg=[[UrlImageView alloc]initWithFrame:CGRectMake(10,10, 60, 60)];
+    [brandImg setImageWithURL:[NSURL URLWithString:self.goods.country_flag_url] placeholderImage:[UIImage imageNamed:@"df_04_"]];
+    [brandView addSubview:brandImg];
+    brandImg.backgroundColor=[UIColor clearColor];
+    
+    //titel
+    UILabel *pinpaiLbl=[[UILabel alloc]initWithFrame:CGRectMake(brandImg.width+brandImg.left+10, 10,190, 10)];
+    pinpaiLbl.text=self.goods.brand_name;
+    pinpaiLbl.font=[UIFont boldSystemFontOfSize:12];
+    pinpaiLbl.backgroundColor=[UIColor clearColor];
+    pinpaiLbl.textColor =RGB(179, 179, 179);
+    pinpaiLbl.textAlignment=0;
+    [brandView addSubview:pinpaiLbl];
+    
+    UILabel *barndMiaoshu=[[UILabel alloc]initWithFrame:CGRectMake(brandImg.width+brandImg.left+10, brandImg.top+brandImg.height-20,160, 20)];
+    barndMiaoshu.text=@"国际知名品牌";
+    
+    barndMiaoshu.font=[UIFont systemFontOfSize:12];
+    barndMiaoshu.backgroundColor=[UIColor clearColor];
+    barndMiaoshu.textColor =RGB(179, 179, 179);
+    barndMiaoshu.textAlignment=0;
+    [brandView addSubview:barndMiaoshu];
+    //进入品牌专区
+    UIButton *brandAct=[UIButton buttonWithType:UIButtonTypeCustom];
+    brandAct.userInteractionEnabled=true;
+    brandAct.backgroundColor=[UIColor clearColor];
+    brandAct.frame =CGRectMake(brandView.width-10-100, barndMiaoshu.top-6, 100, 30);
+    [brandAct setTitle:@"进入品牌专区" forState:UIControlStateNormal];
+    brandAct.titleLabel.font = [UIFont systemFontOfSize:13];
+    [brandAct setTitleColor:RGB(128, 128, 128)  forState:UIControlStateNormal];
+//    [brandAct addTarget:self action:@selector(queryBrand:) forControlEvents:UIControlEventTouchUpInside];
+    UIImageView *rightBrandimg=[[UIImageView alloc]initWithFrame:CGRectMake(brandAct.width-8, 12, 7, 7)];
+    rightBrandimg.image=[UIImage  imageNamed:@"icon_Drop-rightList"];
+    [brandAct addSubview:rightBrandimg];
+    [brandView insertSubview:brandAct atIndex:0];
+    //品牌描述
+    UILabel *barndMiaoshuContent=[[UILabel alloc]initWithFrame:CGRectMake(brandImg.left, brandImg.top+brandImg.height+25,brandView.width-brandImg.left-10, 20)];
+    barndMiaoshuContent.text=@"日本花王集团创立于1887年，是日本的家庭用品和化妆品生产企业。我们生产和销售日常生活中所需的高品质生活用品，有乐而雅，妙而舒，洁霸，碧柔，碧柔男士等品牌。花王集团立足于消费者和顾客，竭诚提供性能优异的高品质产品，努力为满足和丰富世界人民的生活作出贡献。";
+    
+    barndMiaoshuContent.font=[UIFont systemFontOfSize:12];
+    barndMiaoshuContent.backgroundColor=[UIColor clearColor];
+    barndMiaoshuContent.textColor =RGB(179, 179, 179);
+    barndMiaoshuContent.textAlignment=NSTextAlignmentCenter;
+    barndMiaoshuContent.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
+    barndMiaoshuContent.lineBreakMode=UILineBreakModeWordWrap;
+    //高度固定不折行，根据字的多少计算label的宽度
+    
+    CGSize size = [barndMiaoshuContent.text sizeWithFont:barndMiaoshuContent.font
+                      constrainedToSize:CGSizeMake(barndMiaoshuContent.width, MAXFLOAT)
+                          lineBreakMode:NSLineBreakByWordWrapping];
+    //        NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
+    //根据计算结果重新设置UILabel的尺寸
+    barndMiaoshuContent.height=size.height;
+    
+    [brandView addSubview:barndMiaoshuContent];
+    brandView.height=barndMiaoshuContent.height+barndMiaoshuContent.top+20;
+    
     //加载html商品信息
-    webView1=[[UIWebView alloc]initWithFrame:CGRectMake(0, shopInfolbl.frame.size.height+shopInfolbl.frame.origin.y, self.view.frame.size.width,200)];
+    webView1=[[UIWebView alloc]initWithFrame:CGRectMake(0, brandView.top+brandView.height, _scrollView.width,200)];
     
     
-    NSString *webStr=[NSString stringWithFormat:@"<body>%@</body>",self.goodsExt.content];
-    
+    NSString *webStr=[NSString stringWithFormat:@"<body><meta name=\"viewport\" content=\"width=device-width, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no\" />%@</body>",self.goodsExt.content];
+    isLoadingFinished = NO;
     [webView1 loadHTMLString:webStr baseURL:nil];
     [webView1 setScalesPageToFit:YES];
     [webView1 setBackgroundColor:[UIColor whiteColor]];
@@ -506,6 +563,7 @@ static CGFloat kImageOriginHight = 400;
     if([urlname isEqualToString:@"addFav"]){
         ShowMessage(@"收藏成功");
     }
+    
     if([urlname isEqualToString:@"getGoodsParityList"]){
         NSArray *dataArr=[dictemp objectForKey:@"data"];
         bijiaArr=[[NSMutableArray alloc]initWithCapacity:dataArr.count];
@@ -519,7 +577,42 @@ static CGFloat kImageOriginHight = 400;
             ShowMessage(@"暂无此类商品数据");
         }
     }
-    
+    if([urlname isEqualToString:@"getOneBrandGoods"]){
+        NSArray *dataArr=[dictemp objectForKey:@"data"];
+        tuijianGoods =[[NSMutableArray alloc]initWithCapacity:4];
+        for (NSDictionary *dic in dataArr) {
+            New_Goods *newsGoods=[New_Goods objectWithKeyValues:dic];
+            [tuijianGoods addObject:newsGoods];
+        }
+        //显示推荐商品
+        if(tuijianGoods.count>0){
+            [self showTuijianShop];
+        }
+        
+    }
+    if([urlname isEqualToString:@"getGoodsDetail"]){
+        NSDictionary *dataDic=[dictemp objectForKey:@"data"];
+        NSDictionary *goods_detail=[dataDic objectForKey:@"goods_detail"];
+        NSDictionary *goods_ext=[dataDic objectForKey:@"goods_ext"];
+        NSArray *goods_image=[dataDic objectForKey:@"goods_image"];
+        NSDictionary *goods_attr=[dataDic objectForKey:@"goods_attr"];
+        //        NSArray *priceArr=[goods_attr objectForKey:@"price"];
+        //        NSArray *attr_infoArr=[goods_attr objectForKey:@"attr_info"];
+        NSArray *goods_parity=[dataDic objectForKey:@"goods_parity"];
+        New_Goods *newGoods = [New_Goods objectWithKeyValues:goods_detail] ;
+        Goods_Ext *goodsExt=[Goods_Ext objectWithKeyValues:goods_ext];
+        //        NSDictionary *menuIndexDic=[dataDic objectForKey:@"cat_index"];
+        HTGoodDetailsViewController *htGoodDetailsViewController=[[HTGoodDetailsViewController alloc]init];
+        htGoodDetailsViewController.goods_parity=goods_parity;
+        htGoodDetailsViewController.goods=newGoods;
+        htGoodDetailsViewController.goods_attr=goods_attr;
+        htGoodDetailsViewController.goodsExt=goodsExt;
+        htGoodDetailsViewController.goods_image=goods_image;
+        AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [delegate.navigationController pushViewController:htGoodDetailsViewController animated:YES];
+        
+    }
+
 }
 #pragma mark 比价
 -(void)showBijia{
@@ -605,83 +698,293 @@ static CGFloat kImageOriginHight = 400;
 #pragma mark - UIWebViewDelegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    NSLog(@"************");
+    //若已经加载完成，则显示webView并return
+//    if(isLoadingFinished)
+//    {
+//        [webView1 setHidden:NO];
+//        
+//        return;
+//    }
+
     UIScrollView *scrollView = (UIScrollView *)[[webView subviews] objectAtIndex:0];
     CGFloat webViewHeight = [scrollView contentSize].height;
     CGRect newFrame = webView.frame;
     newFrame.size.height = webViewHeight;
     webView.frame = newFrame;
+    [_scrollView setContentSize:CGSizeMake(self.view.width, webView.frame.size.height+webView.frame.origin.y+10)];
+    [self getShopEvaluation];
+    
+    
+}
+#pragma mark - 商品评价等
+-(void)getShopEvaluation{
     //评论
-    threeButtonImg=[[UrlImageButton alloc]initWithFrame:CGRectMake(0, webView.frame.size.height+webView.frame.origin.y+10, self.view.frame.size.width,35 )];
-    threeButtonImg.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
-    threeButtonImg.layer.borderWidth=1;
-    [threeButtonImg addTarget:self action:@selector(btnComment:) forControlEvents:UIControlEventTouchUpInside];
-    threeButtonImg.backgroundColor=[UIColor whiteColor];
-    threeButtonImg.userInteractionEnabled=YES;
-    [_scrollView addSubview:threeButtonImg];
+    pingjiaView=[[UIView alloc]initWithFrame:CGRectMake(0, webView1.frame.size.height+webView1.frame.origin.y+10, self.view.frame.size.width,80 )];
+    pingjiaView.backgroundColor=[UIColor whiteColor];
+    [_scrollView addSubview:pingjiaView];
     
-    UILabel *title_label1=[[UILabel alloc]initWithFrame:CGRectMake(10, threeButtonImg.frame.size.height/2-20/2, 50, 20)];
-    title_label1.text=@"评论";
-    title_label1.font=[UIFont systemFontOfSize:12];
-    title_label1.backgroundColor=[UIColor clearColor];
-    title_label1.textColor =hui5;
-    title_label1.textAlignment=0;
-    [threeButtonImg addSubview:title_label1];
+    UILabel *pingjiaLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 80, 20)];
+    pingjiaLbl.text=@"商品评价";
+    pingjiaLbl.font=[UIFont boldSystemFontOfSize:14];
+    pingjiaLbl.backgroundColor=[UIColor clearColor];
+    pingjiaLbl.textColor =RGB(51, 51, 51);
+    pingjiaLbl.textAlignment=0;
+    [pingjiaView addSubview:pingjiaLbl];
+    UILabel *pingjiaCountLbl=[[UILabel alloc]initWithFrame:CGRectMake(pingjiaLbl.left+pingjiaLbl.width, 10, 150, 20)];
+    pingjiaCountLbl.text=[NSString stringWithFormat:@"(%@)",@"1212"];
+    pingjiaCountLbl.font=[UIFont systemFontOfSize:14];
+    pingjiaCountLbl.backgroundColor=[UIColor clearColor];
+    pingjiaCountLbl.textColor =[UIColor redColor];
+    pingjiaCountLbl.textAlignment=0;
+    [pingjiaView addSubview:pingjiaCountLbl];
+    UILabel *pingjiajianju=[[UILabel alloc] initWithFrame:CGRectMake(20, pingjiaCountLbl.top+pingjiaCountLbl.height+10, pingjiaView.width-40, 0.5)];
+    pingjiajianju.backgroundColor=RGB(237, 237, 237);
+    [pingjiaView addSubview:pingjiajianju];
+    
+    //评价方式
+    UILabel *pingjiatypeLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, pingjiajianju.top+pingjiajianju.height+10, 80, 20)];
+    pingjiatypeLbl.text=[NSString stringWithFormat:@"%@评价",@"默默"];
+    pingjiatypeLbl.font=[UIFont systemFontOfSize:12];
+    pingjiatypeLbl.backgroundColor=[UIColor clearColor];
+    pingjiatypeLbl.textColor =  RGB(179, 179, 179);
+    pingjiatypeLbl.textAlignment=0;
+    [pingjiaView addSubview:pingjiatypeLbl];
+    
+    //评价内容
+    UILabel *pingjiaContentLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, pingjiatypeLbl.top+pingjiatypeLbl.height+12, pingjiaView.width-20, 20)];
+    pingjiaContentLbl.text=@"真心不错,好用的，下次再来买！";
+    pingjiaContentLbl.font=[UIFont systemFontOfSize:12];
+    pingjiaContentLbl.backgroundColor=[UIColor clearColor];
+    pingjiaContentLbl.textColor =  RGB(128, 128, 128) ;
+    pingjiaContentLbl.textAlignment=0;
+    [pingjiaView addSubview:pingjiaContentLbl];
     
     
-    UILabel *title_labelCount=[[UILabel alloc]initWithFrame:CGRectMake(title_label1.frame.size.width+title_label1.frame.origin.y, threeButtonImg.frame.size.height/2-20/2, 200, 20)];
-    title_labelCount.text=@"123条";
-    title_labelCount.font=[UIFont systemFontOfSize:12];
-    title_labelCount.backgroundColor=[UIColor clearColor];
-    title_labelCount.textColor =hongShe;
-    title_labelCount.textAlignment=0;
+    //评价时间和评价人
+    UILabel *pingjiatimeLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, pingjiaContentLbl.top+pingjiaContentLbl.height+12, 80, 20)];
+    pingjiatimeLbl.text=@"2015-06-01";
+    pingjiatimeLbl.font=[UIFont systemFontOfSize:12];
+    pingjiatimeLbl.backgroundColor=[UIColor clearColor];
+    pingjiatimeLbl.textColor =  RGB(237,237,237)  ;
+    pingjiatimeLbl.textAlignment=0;
+    [pingjiaView addSubview:pingjiatimeLbl];
     
-    [threeButtonImg addSubview:title_labelCount];
+    UILabel *pingjiarenLbl=[[UILabel alloc]initWithFrame:CGRectMake(pingjiatimeLbl.left+pingjiatimeLbl.width+12, pingjiatimeLbl.top, 80, 20)];
+    pingjiarenLbl.text=@"白色乳霜";
+    pingjiarenLbl.font=[UIFont systemFontOfSize:12];
+    pingjiarenLbl.backgroundColor=[UIColor clearColor];
+    pingjiarenLbl.textColor = RGB(255, 13, 94)  ;
+    pingjiarenLbl.textAlignment=0;
+    [pingjiaView addSubview:pingjiarenLbl];
+    //线
+    UILabel *pingjiajianju1=[[UILabel alloc] initWithFrame:CGRectMake(20, pingjiarenLbl.top+pingjiarenLbl.height+10, pingjiaView.width-40, 0.5)];
+    pingjiajianju1.backgroundColor=RGB(237, 237, 237);
+    [pingjiaView addSubview:pingjiajianju1];
+    //查看更多
+    UIButton *pingjiaMore=[UIButton buttonWithType:UIButtonTypeCustom];
+    pingjiaMore.userInteractionEnabled=true;
+    pingjiaMore.backgroundColor=[UIColor clearColor];
+    pingjiaMore.frame =CGRectMake(pingjiaView.width/2-50, pingjiajianju1.frame.origin.y+pingjiajianju1.frame.size.height+10, 100, 30);
+    [pingjiaMore setTitle:@"查看更多评论" forState:UIControlStateNormal];
+    pingjiaMore.titleLabel.font = [UIFont systemFontOfSize:15];
+    [pingjiaMore setTitleColor:hexColor(@"#18b112") forState:UIControlStateNormal];
+//    [pingjiaMore addTarget:self action:@selector(quanqiubijia:) forControlEvents:UIControlEventTouchUpInside];
+    [pingjiaView addSubview:pingjiaMore];
+    pingjiaView.height=pingjiaMore.height+pingjiaMore.top+10;
     
-    UIImageView *imageP=[[UIImageView alloc]initWithFrame:CGRectMake(threeButtonImg.frame.size.width-20, (threeButtonImg.frame.size.height-7)/2, 7, 7)];
-    imageP.image=BundleImage(@"icon_Drop-rightList");
-    [threeButtonImg addSubview:imageP];
+    //购物流程QA
+    gouwuQAView=[[UIView alloc]initWithFrame:CGRectMake(0, pingjiaView.frame.size.height+pingjiaView.frame.origin.y+10, self.view.frame.size.width,80 )];
+    gouwuQAView.backgroundColor=[UIColor whiteColor];
+    [_scrollView addSubview:gouwuQAView];
     
-    //购物流程
-    UIImageView *gouwuliuchengImg=[[UIImageView alloc]initWithFrame:CGRectMake(0,threeButtonImg.frame.size.height+threeButtonImg.frame.origin.y+10,SCREEN_WIDTH,158)];
+    UILabel *gouwuTitleLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 80, 20)];
+    gouwuTitleLbl.text=@"购物流程";
+    gouwuTitleLbl.font=[UIFont boldSystemFontOfSize:14];
+    gouwuTitleLbl.backgroundColor=[UIColor clearColor];
+    gouwuTitleLbl.textColor =RGB(51, 51, 51);
+    gouwuTitleLbl.textAlignment=0;
+    [gouwuQAView addSubview:gouwuTitleLbl];
+    UIImageView *gouwuliuchengImg=[[UIImageView alloc]initWithFrame:CGRectMake(0,gouwuTitleLbl.frame.size.height+gouwuTitleLbl.frame.origin.y+10,SCREEN_WIDTH,158)];
+    
+    [gouwuliuchengImg setContentMode:UIViewContentModeScaleAspectFill];
     gouwuliuchengImg.image=BundleImage(@"DetailsPage_img_gouwuliucheng");
-    [_scrollView addSubview:gouwuliuchengImg];
+    [gouwuQAView addSubview:gouwuliuchengImg];
+    //QA
+    UILabel *qaTitleLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, gouwuliuchengImg.top+gouwuliuchengImg.height+10, 80, 20)];
+    qaTitleLbl.text=@"常见Q&A";
+    qaTitleLbl.font=[UIFont boldSystemFontOfSize:17];
+    qaTitleLbl.backgroundColor=[UIColor clearColor];
+    qaTitleLbl.textColor =hexColor(@"#18b112");
+    qaTitleLbl.textAlignment=0;
+    [gouwuQAView addSubview:qaTitleLbl];
+    //线
+    CGRect lastQAframe=qaTitleLbl.frame;
+    for (int i=0; i<2; i++) {
+        UIView *qaCounteView=[[UIView alloc]initWithFrame:CGRectMake(0, lastQAframe.origin.y+lastQAframe.size.height+10, gouwuQAView.width, 100)];
+        [gouwuQAView addSubview:qaCounteView];
+        UILabel *qaLine=[[UILabel alloc] initWithFrame:CGRectMake(20, 1, pingjiaView.width-40, 0.5)];
+        qaLine.backgroundColor=RGB(237, 237, 237);
+        [qaCounteView addSubview:qaLine];
+        //问题标题
+        UILabel *titleQA=[[UILabel alloc]initWithFrame:CGRectMake(10, 10,190, 10)];
+        titleQA.text=@"为什么黄金奇异果比较贵?";
+        titleQA.font=[UIFont boldSystemFontOfSize:14];
+        titleQA.backgroundColor=[UIColor clearColor];
+        titleQA.textColor =RGB(51, 51, 51);
+        titleQA.textAlignment=0;
+        [qaCounteView addSubview:titleQA];
+        //具体内容
+        UILabel *countentQA=[[UILabel alloc]initWithFrame:CGRectMake(10, titleQA.top+titleQA.height+10,qaCounteView.width-20, 10)];
+        countentQA.text=@"黄金奇异果是新西兰的新国宝。光滑、古铜色的外皮，金黄色的果肉，香甜多汁。富含维生素及矿物质。也就是我们常说的“猕猴桃”的一种。它的营养价值很高";
+        countentQA.font=[UIFont systemFontOfSize:14];
+        countentQA.backgroundColor=[UIColor clearColor];
+        countentQA.textColor = RGB(179, 179, 179);
+        countentQA.textAlignment=0;
+        countentQA.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
+        countentQA.lineBreakMode=UILineBreakModeWordWrap;
+        //高度固定不折行，根据字的多少计算label的宽度
+        
+        CGSize size = [countentQA.text sizeWithFont:countentQA.font
+                                           constrainedToSize:CGSizeMake(countentQA.width, MAXFLOAT)
+                                               lineBreakMode:NSLineBreakByWordWrapping];
+        //        NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
+        //根据计算结果重新设置UILabel的尺寸
+        countentQA.height=size.height;
+
+        [qaCounteView addSubview:countentQA];
+        qaCounteView.height=countentQA.height+countentQA.top+10;
+        lastQAframe=qaCounteView.frame;
+
+    }
+    gouwuQAView.height=lastQAframe.size.height+lastQAframe.origin.y;
     
-    for (int i=0; i<8; i++)
+   
+    [_scrollView setContentSize:CGSizeMake(320, gouwuQAView.frame.size.height+gouwuQAView.frame.origin.y+70)];
+    //获取商品推荐
+    [self getshopTuijianData];
+    
+}
+#pragma mark 获取商品推荐
+- (void)getshopTuijianData{
+    // "brand_id":"类别ID"
+//    "per":"记录数 单品详情页面一般传4就可以"
+    //    NSDictionary *parameters = @{@"id":@"626"};
+    NSDictionary *parameters = @{@"brand_id":self.goods.brand_id,@"per":@"4"};
+    NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getOneBrandGoods",requestUrl]
+    ;
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getOneBrandGoods"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
+}
+#pragma mark 显示推荐商品
+
+-(void)showTuijianShop{
+    tuijianView=[[UIView alloc]initWithFrame:CGRectMake(0, gouwuQAView.frame.size.height+gouwuQAView.frame.origin.y+10, self.view.frame.size.width,80 )];
+    tuijianView.backgroundColor=[UIColor whiteColor];
+    [_scrollView addSubview:tuijianView];
+    //标题
+    UILabel *tuijianTitleLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 80, 20)];
+    tuijianTitleLbl.text=@"商品推荐";
+    tuijianTitleLbl.font=[UIFont boldSystemFontOfSize:14];
+    tuijianTitleLbl.backgroundColor=[UIColor clearColor];
+    tuijianTitleLbl.textColor =RGB(51, 51, 51);
+    tuijianTitleLbl.textAlignment=0;
+    [tuijianView addSubview:tuijianTitleLbl];
+    
+    CGRect lastFrame;
+    for (int i =0; i<tuijianGoods.count; i++)
     {
-        btnNine=[[UrlImageButton alloc]initWithFrame:CGRectMake((i%4)*(320-10)/4+10, floor(i/4)*(320-10)/4+10+gouwuliuchengImg.frame.size.height+gouwuliuchengImg.frame.origin.y, (320-30-10)/4, (320-30-10)/4)];
-        btnNine.backgroundColor=[UIColor whiteColor];
-        [btnNine setImage:[UIImage imageNamed:@"df_01.png"] forState:0];
-        btnNine.tag=i+1000;
-        [btnNine addTarget:self action:@selector(btnImageText:) forControlEvents:UIControlEventTouchUpInside];
-        [_scrollView addSubview:btnNine];
+        New_Goods *new_Goods=tuijianGoods[i];
+        GoodImageButton *gbBtn=[[GoodImageButton alloc]initWithFrame:CGRectMake((i%2)*((SCREEN_WIDTH-20)/2-5+10)+10, floor(i/2)*190+10+40, (SCREEN_WIDTH-20)/2-5, 180)];
+        gbBtn.userInteractionEnabled=YES;
+        gbBtn.backgroundColor=[UIColor whiteColor];
+        //            imageV.userInteractionEnabled=YES;
+        //            btn.layer.shadowOffset = CGSizeMake(1,1);
+        //            btn.layer.shadowOpacity = 0.2f;
+        //            btn.layer.shadowRadius = 3.0;
+        gbBtn.layer.borderWidth=0.5;//描边
+        gbBtn.layer.cornerRadius=4;//圆角
+        gbBtn.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
+        gbBtn.goods=new_Goods;
+        gbBtn.backgroundColor=[UIColor whiteColor];
+        [gbBtn addTarget:self action:@selector(goodContentTouch:) forControlEvents:UIControlEventTouchUpInside];
+        [tuijianView addSubview:gbBtn];
+        
+        UrlImageView*btn1=[[UrlImageView alloc]initWithFrame:CGRectMake((gbBtn.width/3/2), 10, gbBtn.frame.size.width*2/3, gbBtn.frame.size.width*2/3)];
+        [btn1 setContentMode:UIViewContentModeScaleAspectFill];
+        //            btn.userInteractionEnabled=YES;
+        //            btn.layer.borderWidth=1;//描边
+        //            btn.layer.cornerRadius=4;//圆角
+        //            btn.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
+        btn1.backgroundColor=RGBA(237, 237, 237, 1);
+        
+        NSString *urlStr=new_Goods.img_260;
+        if((urlStr==nil)||[urlStr isEqualToString:@""]){
+            btn1.image=BundleImage(@"df_04_.png");
+            
+        }else{
+            NSURL *imgUrl=[NSURL URLWithString:urlStr];
+            [btn1 setImageWithURL:imgUrl];
+        }
+        
+        //            [btn addTarget:self action:@selector(goodContentTouch:) forControlEvents:UIControlEventTouchUpInside];
+        //            [imageV addSubview:btn];
+        //商店名
+        [gbBtn addSubview:btn1];
+        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(0, btn1.frame.size.width+5+btn1.frame.origin.y, gbBtn.width, 10)];
+        _label.text=new_Goods.shop_name;
+        _label.font=[UIFont boldSystemFontOfSize:10];
+        _label.backgroundColor=[UIColor clearColor];
+        _label.textColor =hexColor(@"#b3b3b3");
+        _label.numberOfLines=1;
+        _label.textAlignment=NSTextAlignmentCenter;
+        
+        [gbBtn addSubview:_label];
+        //商品名
+        UILabel *_label1=[[UILabel alloc]initWithFrame:CGRectMake(10, _label.frame.size.height+_label.frame.origin.y+1, gbBtn.frame.size.width-10-10, 30)];
+        _label1.text=new_Goods.title;
+        _label1.font=[UIFont boldSystemFontOfSize:11];
+        _label1.backgroundColor=[UIColor clearColor];
+        _label1.textColor =hexColor(@"#333333");
+        _label1.lineBreakMode = UILineBreakModeWordWrap;
+        _label1.numberOfLines=2;
+        _label1.textAlignment=NSTextAlignmentCenter;
+        
+        [gbBtn addSubview:_label1];
+        
+        
+        
+        
+        UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(0, _label1.frame.size.height+_label1.frame.origin.y+1 ,gbBtn.frame.size.width, 20)];
+        title_label.text=[NSString stringWithFormat:@"￥%.2f",new_Goods.price_cn];
+        
+        title_label.font=[UIFont boldSystemFontOfSize:14];
+        title_label.backgroundColor=[UIColor clearColor];
+        title_label.textColor =hexColor(@"#ff0d5e");
+        title_label.textAlignment=NSTextAlignmentCenter;
+        
+        //
+        [gbBtn addSubview:title_label];
+        lastFrame =gbBtn.frame;
         
     }
-    if (IS_IPHONE_5)
-    {
-        _scrollView.contentSize=CGSizeMake(320, self.view.frame.size.height);
-    }else{
-        _scrollView.contentSize=CGSizeMake(320, self.view.frame.size.height+100);
-    }
-    UIView *view=[[UILabel alloc]initWithFrame:CGRectMake(10, btnNine.frame.size.height+btnNine.frame.origin.y+10, 300, 80)];
-    view.layer.borderWidth=1;
-    view.backgroundColor=[UIColor whiteColor];
-    view.layer.borderColor=[UIColor colorWithRed:.95 green:.95 blue:.95 alpha:1.0].CGColor;
-    [_scrollView addSubview:view];
-    [_scrollView setContentSize:CGSizeMake(320, view.frame.size.height+view.frame.origin.y+10)];
-    UILabel *labelDetail=[[UILabel alloc]initWithFrame:CGRectMake(10, 5, 290, 70)];
-    
-    labelDetail.backgroundColor=[UIColor redColor];
-    labelDetail.font=[UIFont systemFontOfSize:10];
-    labelDetail.textColor=[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0];
-    labelDetail.text=@"e2e1e12e21e21e21e1fdfdffsdfdsfdsfdsfdsfdfsdfdsfdsfdsf";
-    labelDetail.numberOfLines=0;
-    [labelDetail sizeToFit];
-    [view addSubview :labelDetail ];
-    
-    _scrollView.frame=CGRectMake(0, view_bar1.frame.size.height, 320, self.view.frame.size.height+140-view.frame.size.height-10);
+    tuijianView.height=lastFrame.size.height+lastFrame.origin.y;
+    //    lastFrameForPage=xinpinContentView.frame;
+    [_scrollView setContentSize:CGSizeMake(320, tuijianView.size.height+tuijianView.origin.y+70)];
 }
-
+#pragma mark 获取商品详情
+-(void)goodContentTouch:(GoodImageButton *)sender{
+    New_Goods *goods=sender.goods;
+    //    NSDictionary *parameters = @{@"id":@"626"};
+    NSDictionary *parameters = @{@"id":goods.id};
+    NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
+    ;
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsDetail"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
+}
 #pragma mark 全球比价
 - (void)quanqiubijia:(id)sender{
     //    NSDictionary *parameters = @{@"id":@"626"};
