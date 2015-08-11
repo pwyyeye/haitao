@@ -23,9 +23,13 @@
     UIButton*BtnItem3;
     
     UIView *_bigView2;
+    UIView *pingjiaView;
+    UIView *gouwuQAView;
+    UIView *tuijianView;
     UrlImageButton *_bigImg;
-    
+    bool isLoadingFinished;
     UrlImageButton *btnNine;
+    NSMutableArray *tuijianGoods;
 }
 @property(nonatomic,retain)New_Goods *goods ;
 @property(nonatomic,retain)NSArray *goods_parity;
