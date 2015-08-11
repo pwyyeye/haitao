@@ -90,7 +90,7 @@
     [topButton addTarget:self action:@selector(topButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:topButton];
-
+    self.view.backgroundColor=[UIColor whiteColor];
     
     [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:YES];
 //    __weak HomeViewController *weakSelf = self;

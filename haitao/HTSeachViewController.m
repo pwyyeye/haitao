@@ -19,8 +19,9 @@
 #import "ClassificationBtn.h"
 #import "CFContentViewController.h"
 #import "New_Goods.h"
-#define kImageWidth  75 //UITableViewCell里面图片的宽度
-#define kImageHeight  90 //UITableViewCell里面图片的高度
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#define kImageWidth  65 //UITableViewCell里面图片的宽度
+#define kImageHeight  65 //UITableViewCell里面图片的高度
 @interface HTSeachViewController ()<DockTavleViewDelegate,RightTableViewDelegate>{
     UIView *view_bar1;
     BARightTableView *rightTableView ;
@@ -58,19 +59,22 @@
     UIView *naviView=(UIView*) [self getNavigationBar];
     //CGRectMake(self.view.frame.size.width-50, naviView.frame.size.height+10, 42, 42)
     
-    
+    //左边菜单
     BAWineShoppingDockTavleView *dockTavleView =[[BAWineShoppingDockTavleView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height+1,75,kWindowHeight-50-(naviView.frame.size.height+1)}];
     dockTavleView.rowHeight=50;
     dockTavleView.dockDelegate=self;
-    dockTavleView.backgroundColor=UIColorRGBA(238, 238, 238, 1);
+    dockTavleView.backgroundColor=[UIColor whiteColor ];
     [dockTavleView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.view addSubview:dockTavleView];
     _dockTavleView =dockTavleView;
     
+    
+    
+    //右边列表
     rightTableView =[[BARightTableView alloc]initWithFrame:(CGRect){75,naviView.frame.size.height+1,kWindowWidth-75,kWindowHeight-50-(-(naviView.frame.size.height+1))}];
-    rightTableView.rowHeight=90;
+    rightTableView.rowHeight=65;
     rightTableView.rightDelegate=self;
-    rightTableView.backgroundColor=UIColorRGBA(238, 238, 238, 1);
+    rightTableView.backgroundColor=[UIColor whiteColor];
     [rightTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     rightTableView.delegate=self;
     rightTableView.dataSource=self;
@@ -103,9 +107,9 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     
-    NSString* url =[NSString stringWithFormat:@"%@&m=home&f=getHomeNav",requestUrl]
+//    NSString* url =[NSString stringWithFormat:@"%@&m=home&f=getHomeNav",requestUrl]
     ;
-    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:GETURL withUrlName:@"menu"];
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_getHomeNav withType:GETURL withUrlName:@"menu"];
     httpController.delegate = self;
     [httpController onSearch];
 }
@@ -114,12 +118,7 @@
 -(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app stopLoading];
-    NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
-    NSString *status=[dictemp objectForKey:@"status"];
-    //    if(![status isEqualToString:@"1"]){
-    ////        [self showMessage:message];
-    ////        return ;
-    //    }
+
     if([urlname isEqualToString:@"menu"]){
         NSArray *arrtemp=[dictemp objectForKey:@"data"];
         if ((NSNull *)arrtemp == [NSNull null]) {
@@ -140,6 +139,7 @@
             [menuArr addObject:menuModel];
         }
         [self initTable];
+        ;
         NSLog(@"");
         //保存数据
         
@@ -171,7 +171,7 @@
     for ( int i=0; i<menuArr.count; i++) {
         MenuModel *menu=menuArr[i];
         NSMutableDictionary *dic =[NSMutableDictionary dictionary];
-        
+
 //        NSMutableArray *array =[NSMutableArray array];
         
         NSArray *childArr=menu.child;
@@ -195,7 +195,7 @@
             nowCount++;
         }
         
-        dic =[@{@"dockName":menu.name,@"right":rightArr} mutableCopy];
+        dic =[@{@"dockName":menu.name,@"right":rightArr,@"image":menu.img} mutableCopy];
         [_dockArray addObject:dic];    
     }
     _dockTavleView.dockArray=_dockArray;
@@ -204,6 +204,9 @@
         [_offsArray addObject:NSStringFromCGPoint(point)];
     }
     [_dockTavleView reloadData];
+    
+    
+    
     NSMutableDictionary *dic =_dockArray[0];
     rightTableView.rightArray=[dic objectForKey:@"right"];
     [rightTableView reloadData];
@@ -229,22 +232,23 @@
 {
     self.navigationController.navigationBarHidden = YES;
     view_bar1 =[[UIView alloc]init];
-    if ([[[UIDevice currentDevice]systemVersion]floatValue]>6.1)
-    {
-        view_bar1 .frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
-        UIImageView *imageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, 44+20)];
-        imageV.image = BundleImage(@"top.png");
-        [view_bar1 addSubview:imageV];
-        
-        
-    }else{
-        view_bar1 .frame=CGRectMake(0, 0, self.view.frame.size.width,44);
-        UIImageView *imageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width,44)];
-        imageV.image = BundleImage(@"top.png");
-        [view_bar1 addSubview:imageV];
-        
-    }
-    view_bar1.backgroundColor=[UIColor clearColor];
+    view_bar1 .frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
+//    if ([[[UIDevice currentDevice]systemVersion]floatValue]>6.1)
+//    {
+//        view_bar1 .frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
+//        UIImageView *imageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, 44+20)];
+//        imageV.image = BundleImage(@"top.png");
+//        [view_bar1 addSubview:imageV];
+//        
+//        
+//    }else{
+//        view_bar1 .frame=CGRectMake(0, 0, self.view.frame.size.width,44);
+//        UIImageView *imageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width,44)];
+//        imageV.image = BundleImage(@"top.png");
+//        [view_bar1 addSubview:imageV];
+//        
+//    }
+    view_bar1.backgroundColor=RGB(255, 13, 94);
     
     [self.view addSubview:view_bar1];
     UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar1.frame.size.height-44, self.view.frame.size.width-130, 44)];
@@ -326,15 +330,17 @@
         [button setValue:[NSNumber numberWithInt:i] forKey:@"column"];
         button.menuModel=menu;
         button.tag=indexPath.row;
-        UIImage *image = [rightTableView cutCenterImage:[UIImage imageNamed:@"奶粉.jpg"]  size:CGSizeMake(60, 60)];
-        [button addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];             [button setBackgroundImage:image forState:UIControlStateNormal];
+        UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+        [imageView setImageWithURL:[NSURL URLWithString:menu.img] placeholderImage:[UIImage imageNamed:@"奶粉.jpg"]];
+       // UIImage *image = [rightTableView cutCenterImage:imageView.image  size:CGSizeMake(50, 50)];
+        [button addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];             [button setBackgroundImage:imageView.image forState:UIControlStateNormal];
         [cell addSubview:button];
         [array addObject:button];
-        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(button.frame.origin.x,button.frame.origin.y+button.frame.size.height+5,kImageWidth,40)];
+        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(button.frame.origin.x,button.frame.origin.y+button.frame.size.height,kImageWidth,30)];
         _label.text=menu.name;
-        _label.font=[UIFont boldSystemFontOfSize:14];
+        _label.font=[UIFont boldSystemFontOfSize:13];
         _label.backgroundColor=[UIColor clearColor];
-        _label.textColor =[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1.0];
+        _label.textColor =RGB(51, 51, 51);
         _label.numberOfLines=1;
         _label.textAlignment=NSTextAlignmentCenter;
         _label.tag=indexPath.row;
