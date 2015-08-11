@@ -14,8 +14,7 @@
 @end
 @interface LBRightTableView : UITableView<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic ,strong) NSMutableArray *rightArray;
-
+@property (nonatomic ,strong) NSArray *rightArray;
 
 @property (nonatomic ,weak) id<LBRightTableViewDelegate>rightDelegate;
 

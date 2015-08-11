@@ -171,11 +171,12 @@
         }
         case 2:
         {
-            _brandTableView=[[FilterBrandTabelView alloc] initWithLeftArray:_brand_leftArray andRightArray:_brand_rightArray];
+            
+            _brandTableView=[[FilterBrandTabelView alloc] initWithLeftArray:_brand_leftArray andRightArray: _brand_rightArray];
             _brandTableView.leftTableHeight=30;
             _brandTableView.leftTableWidth=30;
             _brandTableView.rightTableHeight=50;
-            _brandTableView.rightTableWidth=50;
+            _brandTableView.rightTableWidth=SCREEN_WIDTH-30;
             [_brandTableView loadView];
             return _brandTableView;
             break;
@@ -245,6 +246,7 @@
     [self updateViewConstraints];
     
 }
+
 
 
 @end

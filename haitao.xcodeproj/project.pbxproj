@@ -53,7 +53,6 @@
 		A2E8D0021B71BB550004ADB9 /* IndexModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E8D0011B71BB550004ADB9 /* IndexModel.m */; };
 		A2E8D0061B71F68B0004ADB9 /* LetterBrandDockTavleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E8D0051B71F68B0004ADB9 /* LetterBrandDockTavleView.m */; };
 		A2E8D0091B71F7430004ADB9 /* LBDockCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E8D0081B71F7430004ADB9 /* LBDockCell.m */; };
-		A2E8D00C1B71F8B30004ADB9 /* LBRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E8D00B1B71F8B30004ADB9 /* LBRightCell.m */; };
 		A2E8D00F1B71F9340004ADB9 /* LBRightTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E8D00E1B71F9340004ADB9 /* LBRightTableView.m */; };
 		A2E8D0111B7352380004ADB9 /* FeaturedPages_img_banner@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E8D0101B7352380004ADB9 /* FeaturedPages_img_banner@3x.png */; };
 		A2E8D0131B73524A0004ADB9 /* FeaturedPages_img_banner_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E8D0121B73524A0004ADB9 /* FeaturedPages_img_banner_6@2x.png */; };
@@ -143,7 +142,6 @@
 		A2E8D0DB1B788FF70004ADB9 /* DetailsPage_btn_kehu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E8D0D71B788FF70004ADB9 /* DetailsPage_btn_kehu@3x.png */; };
 		A2E8D0DC1B788FF70004ADB9 /* DetailsPage_btn_shouchang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E8D0D81B788FF70004ADB9 /* DetailsPage_btn_shouchang@2x.png */; };
 		A2E8D0DD1B788FF70004ADB9 /* DetailsPage_btn_shouchang@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E8D0D91B788FF70004ADB9 /* DetailsPage_btn_shouchang@3x.png */; };
-		A2E8D0E01B79E66A0004ADB9 /* ShaiXuanBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E8D0DF1B79E66A0004ADB9 /* ShaiXuanBtn.m */; };
 		A2F5FB4C1B5FD64100A8205C /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F5FB491B5FD64100A8205C /* UIScrollView+SVPullToRefresh.m */; };
 		A2F5FB4D1B5FD64100A8205C /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F5FB4B1B5FD64100A8205C /* UIScrollView+SVInfiniteScrolling.m */; };
 		A2F5FB4F1B5FD64A00A8205C /* SVPullToRefresh.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A2F5FB4E1B5FD64A00A8205C /* SVPullToRefresh.podspec */; };
@@ -772,6 +770,7 @@
 		ADD2C4341B79CA4D00A2E638 /* FilterGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD2C4331B79CA4D00A2E638 /* FilterGoodsModel.m */; };
 		ADD2C4371B79CB8600A2E638 /* Cat_indexModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD2C4361B79CB8600A2E638 /* Cat_indexModel.m */; };
 		ADD2C43D1B7A012F00A2E638 /* FilterBrandTabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD2C43C1B7A012F00A2E638 /* FilterBrandTabelView.m */; };
+		ADD2C4401B7A1E1100A2E638 /* ShaiXuanBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD2C43F1B7A1E1100A2E638 /* ShaiXuanBtn.m */; };
 		ADD33A171B65BFA600558372 /* UpdateAddressForEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD33A151B65BFA600558372 /* UpdateAddressForEdit.m */; };
 		ADD33A181B65BFA600558372 /* UpdateAddressForEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD33A161B65BFA600558372 /* UpdateAddressForEdit.xib */; };
 		ADD4D40B1B5B298F004AFBE2 /* HTGoodDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D40A1B5B298F004AFBE2 /* HTGoodDetailsViewController.m */; };
@@ -887,8 +886,6 @@
 		A2E8D0051B71F68B0004ADB9 /* LetterBrandDockTavleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetterBrandDockTavleView.m; sourceTree = "<group>"; };
 		A2E8D0071B71F7430004ADB9 /* LBDockCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBDockCell.h; sourceTree = "<group>"; };
 		A2E8D0081B71F7430004ADB9 /* LBDockCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBDockCell.m; sourceTree = "<group>"; };
-		A2E8D00A1B71F8B30004ADB9 /* LBRightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBRightCell.h; sourceTree = "<group>"; };
-		A2E8D00B1B71F8B30004ADB9 /* LBRightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBRightCell.m; sourceTree = "<group>"; };
 		A2E8D00D1B71F9340004ADB9 /* LBRightTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBRightTableView.h; sourceTree = "<group>"; };
 		A2E8D00E1B71F9340004ADB9 /* LBRightTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBRightTableView.m; sourceTree = "<group>"; };
 		A2E8D0101B7352380004ADB9 /* FeaturedPages_img_banner@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FeaturedPages_img_banner@3x.png"; sourceTree = "<group>"; };
@@ -985,8 +982,6 @@
 		A2E8D0D71B788FF70004ADB9 /* DetailsPage_btn_kehu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailsPage_btn_kehu@3x.png"; sourceTree = "<group>"; };
 		A2E8D0D81B788FF70004ADB9 /* DetailsPage_btn_shouchang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailsPage_btn_shouchang@2x.png"; sourceTree = "<group>"; };
 		A2E8D0D91B788FF70004ADB9 /* DetailsPage_btn_shouchang@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailsPage_btn_shouchang@3x.png"; sourceTree = "<group>"; };
-		A2E8D0DE1B79E6690004ADB9 /* ShaiXuanBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaiXuanBtn.h; sourceTree = "<group>"; };
-		A2E8D0DF1B79E66A0004ADB9 /* ShaiXuanBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShaiXuanBtn.m; sourceTree = "<group>"; };
 		A2F5FB471B5FD64100A8205C /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
 		A2F5FB481B5FD64100A8205C /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		A2F5FB491B5FD64100A8205C /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
@@ -1886,6 +1881,8 @@
 		ADD2C4361B79CB8600A2E638 /* Cat_indexModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cat_indexModel.m; sourceTree = "<group>"; };
 		ADD2C43B1B7A012F00A2E638 /* FilterBrandTabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterBrandTabelView.h; sourceTree = "<group>"; };
 		ADD2C43C1B7A012F00A2E638 /* FilterBrandTabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterBrandTabelView.m; sourceTree = "<group>"; };
+		ADD2C43E1B7A1E1100A2E638 /* ShaiXuanBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaiXuanBtn.h; sourceTree = "<group>"; };
+		ADD2C43F1B7A1E1100A2E638 /* ShaiXuanBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShaiXuanBtn.m; sourceTree = "<group>"; };
 		ADD33A141B65BFA600558372 /* UpdateAddressForEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateAddressForEdit.h; sourceTree = "<group>"; };
 		ADD33A151B65BFA600558372 /* UpdateAddressForEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateAddressForEdit.m; sourceTree = "<group>"; };
 		ADD33A161B65BFA600558372 /* UpdateAddressForEdit.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateAddressForEdit.xib; sourceTree = "<group>"; };
@@ -2090,8 +2087,6 @@
 				A2E8D0051B71F68B0004ADB9 /* LetterBrandDockTavleView.m */,
 				A2E8D0071B71F7430004ADB9 /* LBDockCell.h */,
 				A2E8D0081B71F7430004ADB9 /* LBDockCell.m */,
-				A2E8D00A1B71F8B30004ADB9 /* LBRightCell.h */,
-				A2E8D00B1B71F8B30004ADB9 /* LBRightCell.m */,
 				A2E8D00D1B71F9340004ADB9 /* LBRightTableView.h */,
 				A2E8D00E1B71F9340004ADB9 /* LBRightTableView.m */,
 			);
@@ -2392,6 +2387,8 @@
 		A2FDE0E71B65191800B374AA /* 筛选 */ = {
 			isa = PBXGroup;
 			children = (
+				ADD2C43E1B7A1E1100A2E638 /* ShaiXuanBtn.h */,
+				ADD2C43F1B7A1E1100A2E638 /* ShaiXuanBtn.m */,
 				A2E8D0031B71F6050004ADB9 /* 筛选品牌页面 */,
 				A2FDE0E81B651A7000B374AA /* ScreenViewController.h */,
 				A2FDE0E91B651A7000B374AA /* ScreenViewController.m */,
@@ -4787,7 +4784,6 @@
 				AD8E37B71B723AF900C9D5BA /* OrderModelForPackageDetail.m in Sources */,
 				AD8E38991B74C7D300C9D5BA /* Reachability.m in Sources */,
 				ADECDC2A1B672CF2009EA286 /* ServiceTerms.m in Sources */,
-				A2E8D0E01B79E66A0004ADB9 /* ShaiXuanBtn.m in Sources */,
 				A2FC74FF1B5D1FFA0094BC59 /* MJFoundation.m in Sources */,
 				A2FC74E11B5A3F340094BC59 /* BAWineShoppingDockTavleView.m in Sources */,
 				AD7BE4961B7612AF003D29F0 /* OrderSuccessController.m in Sources */,
@@ -4889,7 +4885,6 @@
 				A2FC750D1B5DDF090094BC59 /* MenuModel.m in Sources */,
 				AD8AA6181B59435C00E324AD /* ELCAssetCell.m in Sources */,
 				AD8E37C01B72F66000C9D5BA /* CollapseClick.m in Sources */,
-				A2E8D00C1B71F8B30004ADB9 /* LBRightCell.m in Sources */,
 				AD8AA6291B59435C00E324AD /* SDWebImageDownloader.m in Sources */,
 				AD8AA59C1B5942F800E324AD /* HTCartViewController.m in Sources */,
 				ADECDC201B672C62009EA286 /* AboutPeiKua.m in Sources */,
@@ -4928,6 +4923,7 @@
 				ADD33A171B65BFA600558372 /* UpdateAddressForEdit.m in Sources */,
 				ADD2C42D1B79A09800A2E638 /* FilterViewController.m in Sources */,
 				A2FDE1371B6DA59E00B374AA /* FCShoppingCell.m in Sources */,
+				ADD2C4401B7A1E1100A2E638 /* ShaiXuanBtn.m in Sources */,
 				ADD1718D1B5F2F7A00E451D5 /* BaseModel.m in Sources */,
 				A2FDE0EA1B651A7000B374AA /* ScreenViewController.m in Sources */,
 				ADD4D4131B5B999B004AFBE2 /* MyUtil.m in Sources */,

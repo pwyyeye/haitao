@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LetterBrandDockTavleView.h"
 #import "LBRightTableView.h"
-@interface FilterBrandTabelView : UIView<LetterBrandDockDelegate,UITableViewDataSource,UITableViewDelegate,LBRightTableViewDelegate>
+@interface FilterBrandTabelView : UIView<LetterBrandDockDelegate>
 
 @property(strong,nonatomic) LetterBrandDockTavleView *leftTable;
 
@@ -18,6 +18,8 @@
 @property(strong,nonatomic) NSArray *leftArray;
 
 @property(strong,nonatomic) NSArray *rightArray;
+
+@property(strong,nonatomic) NSArray *resultArray;
 
 @property(assign,nonatomic) float leftTableHeight;
 
@@ -31,4 +33,7 @@
 - (instancetype)initWithLeftArray:(NSArray *)leftArray andRightArray:(NSArray *)rightArray;
 
 -(void)loadView;
+
+-(NSArray *)loadRightView:(NSArray *)array;
+
 @end
