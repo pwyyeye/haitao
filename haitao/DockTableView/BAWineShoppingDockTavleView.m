@@ -67,7 +67,9 @@
     
     BADockCell *cell =[BADockCell cellWithTableView:tableView];
     cell.categoryText=_dockArray[indexPath.row][@"dockName"];
-    cell.backgroundColor=[UIColor whiteColor];
+    cell.backgroundColor=RGB(237, 237, 237);
+ 
+    
     return cell;
 }
 
@@ -75,8 +77,8 @@
 {
     if (_path!=nil) {
         BADockCell *cell = (BADockCell *)[tableView cellForRowAtIndexPath:_path];
-        cell.backgroundColor=[UIColor whiteColor];
-        cell.category.textColor=[UIColor blackColor];
+        cell.backgroundColor=RGB(237, 237, 237);
+        cell.category.textColor=RGB(51, 51, 51);
         cell.viewShow1.hidden=YES;
     }
     if ([_dockDelegate respondsToSelector:@selector(dockClickindexPathRow:  index: indeXPath:)]) {
@@ -85,8 +87,8 @@
     }
     //取消选中颜色
     BADockCell *cell = (BADockCell *)[tableView cellForRowAtIndexPath:indexPath];
-    cell.category.textColor=UIColorRGBA(255, 127, 0, 1);
-    cell.backgroundColor=UIColorRGBA(246, 246, 246, 1);
+    cell.category.textColor=RGB(255, 13, 94);
+    cell.backgroundColor=[UIColor whiteColor];
     cell.viewShow1.hidden=NO;
     _path=indexPath;
     
