@@ -18,6 +18,7 @@
 {
     NSMutableArray *listArr;
     NSString *title;
+    NSString *menuid;
 }
 @property (nonatomic,retain)NSDictionary *spcDic;
 @property (nonatomic,strong)DJRefresh *refresh;

@@ -11,5 +11,9 @@
 #import "DJRefreshProgressView.h"
 
 @interface SpecialViewController : LTKViewController<UITableViewDelegate,UITableViewDataSource,HTTPControllerProtocol,DJRefreshDelegate>
+{
+    NSString *sidTemp;
+}
 @property (nonatomic,strong)DJRefresh *refresh;
+
 @end

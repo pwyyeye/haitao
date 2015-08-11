@@ -73,6 +73,7 @@
 -(void)getSpecialContentData:(NSString *)sid{
     
     NSDictionary *parameters = @{@"id":sid};
+    sidTemp=sid;
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getSubjectInfo",requestUrl]
     ;
 
@@ -121,6 +122,7 @@
         NSDictionary *spdic=@{@"detail":specialModel,@"goods":goodsModelArr};
         SpecialContentViewController *specialContentViewController=[[SpecialContentViewController alloc]init];
         specialContentViewController.spcDic=spdic;
+        specialContentViewController.sid=sidTemp;
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
         [delegate.navigationController pushViewController:specialContentViewController animated:YES];
     }

@@ -26,6 +26,7 @@ typedef NS_ENUM(NSInteger, eRefreshType){
     NSString *nowpage;
     NSMutableDictionary *new_goods_pageDic;
     CGRect lastFrameForPage;
+    BOOL isfirst;
 //    NSMutableArray *new_goods_add;//新品推荐
 }
 @property (nonatomic,assign)eRefreshType type;
