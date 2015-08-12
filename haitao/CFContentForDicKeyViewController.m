@@ -1,19 +1,19 @@
 //
-//  CFContentViewController.m
+//  CFContentForDicKeyViewController.m
 //  haitao
 //
-//  Created by SEM on 15/7/29.
+//  Created by SEM on 15/8/12.
 //  Copyright (c) 2015年 上海市配夸网络科技有限公司. All rights reserved.
 //
-#define kWindowHeight                       ([[UIScreen mainScreen] bounds].size.height)
-#import "CFContentViewController.h"
+
+#import "CFContentForDicKeyViewController.h"
 #import "New_Goods.h"
 #import "ScreenViewController.h"
 #import "GoodImageButton.h"
 #import "Goods_Ext.h"
 #import "HTGoodDetailsViewController.h"
 #import "ShaiXuanBtn.h"
-@interface CFContentViewController ()
+@interface CFContentForDicKeyViewController ()
 {
     UITableView                 *_tableView;
     UrlImageView *imageV;
@@ -23,36 +23,136 @@
     ShaiXuanBtn*btnItem3;
     ShaiXuanBtn*btnItem4;
     ShaiXuanBtn*btnItem5;
-
+    
     UIImageView*  tabBarArrow;//上部桔红线条
     UITextField *fromPriceText;//价格
     UITextField *toPriceText;
     UIButton*zhiyouBtn;
     UIButton*zhuanyunBtn;
-}
 
+}
 @end
 
-@implementation CFContentViewController
+@implementation CFContentForDicKeyViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
-
     UIView *naviView=(UIView*) [self getNavigationBar];
     _tableView =[[UITableView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height+1,self.view.frame.size.width,kWindowHeight-naviView.frame.size.height} style:UITableViewStylePlain];
     _tableView.delegate=self;
     _tableView.dataSource=self;
     _tableView.separatorColor=[UIColor clearColor];
-    _refresh=[[DJRefresh alloc] initWithScrollView:_tableView delegate:self];
-    _refresh.topEnabled=YES;
+//    _refresh=[[DJRefresh alloc] initWithScrollView:_tableView delegate:self];
+//    _refresh.topEnabled=YES;
     //    _tableView.backgroundColor=[UIColor blueColor];
     [self.view addSubview:_tableView];
     listArr =[[NSMutableArray alloc]init];
-    [self getGoodlist:self.dataList];
-    NSDictionary *parameters = @{@"s_cat":self.menuid,@"need_cat_index":@1};
-    _inParameters=[parameters mutableCopy];
+    
+    _inParameters=[self.keyDic mutableCopy];
+    [self getGoodsList];
+//    [self getGoodlist:self.dataList];
+//    NSDictionary *parameters = @{@"s_cat":self.menuid,@"need_cat_index":@1};
+//    _inParameters=[parameters mutableCopy];
     // Do any additional setup after loading the view.
+}
+#pragma mark - Navigation
+-(UIView*)getNavigationBar
+{
+    self.navigationController.navigationBarHidden = YES;
+    view_bar1 =[[UIView alloc]init];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>6.1)
+    {
+        view_bar1 .frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
+        view_bar1.backgroundColor =RGB(255, 13, 94);
+        
+        
+    }else{
+        view_bar1 .frame=CGRectMake(0, 0, self.view.frame.size.width,44);
+         view_bar1.backgroundColor =RGB(255, 13, 94);
+        
+    }
+   
+    
+    [self.view addSubview:view_bar1];
+    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar1.frame.size.height-44, self.view.frame.size.width-130, 44)];
+    title_label.text=self.topTitle;
+    title_label.font=[UIFont boldSystemFontOfSize:20];
+    title_label.backgroundColor=[UIColor clearColor];
+    title_label.textColor =[UIColor whiteColor];
+    title_label.textAlignment=1;
+    [view_bar1 addSubview:title_label];
+    UIButton*btnBack=[UIButton buttonWithType:0];
+    btnBack.frame=CGRectMake(0, view_bar1.frame.size.height-34, 47, 34);
+    [btnBack setImage:BundleImage(@"btn_back") forState:0];
+    [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
+    [view_bar1 addSubview:btnBack];
+    return view_bar1;
+}
+#pragma mark退出
+-(void)btnBack:(id)sender
+{
+    AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    [app.navigationController popViewControllerAnimated:YES];
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+#pragma mark -根据条件获取商品信息
+-(void)getGoodsList{
+    _inParameters=[self.keyDic mutableCopy];
+    NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
+    ;
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:self.keyDic withUrlName:@"getGoodsListForKey"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
+    
+}
+#pragma mark 接受数据
+-(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
+    if([urlname isEqualToString:@"getGoodsListForKey"]){
+        NSDictionary *dataDic=[dictemp objectForKey:@"data"];
+        NSArray *goodsArr=[dataDic objectForKey:@"list"];
+        NSMutableArray *goodsModelArr=[[NSMutableArray alloc]init];
+        for (NSDictionary *dic in goodsArr) {
+            New_Goods *goodsModel = [New_Goods objectWithKeyValues:dic] ;
+            [goodsModelArr addObject:goodsModel];
+        }
+        if(goodsModelArr.count<1){
+            ShowMessage(@"无数据");
+            return;
+        }
+        [self getGoodlist:goodsModelArr];
+        
+    }
+    if([urlname isEqualToString:@"getGoodsDetail"]){
+        NSDictionary *dataDic=[dictemp objectForKey:@"data"];
+        NSDictionary *goods_detail=[dataDic objectForKey:@"goods_detail"];
+        NSDictionary *goods_ext=[dataDic objectForKey:@"goods_ext"];
+        NSArray *goods_image=[dataDic objectForKey:@"goods_image"];
+        NSDictionary *goods_attr=[dataDic objectForKey:@"goods_attr"];
+        //        NSArray *priceArr=[goods_attr objectForKey:@"price"];
+        //        NSArray *attr_infoArr=[goods_attr objectForKey:@"attr_info"];
+        NSArray *goods_parity=[dataDic objectForKey:@"goods_parity"];
+        New_Goods *newGoods = [New_Goods objectWithKeyValues:goods_detail] ;
+        Goods_Ext *goodsExt=[Goods_Ext objectWithKeyValues:goods_ext];
+        //        NSDictionary *menuIndexDic=[dataDic objectForKey:@"cat_index"];
+        HTGoodDetailsViewController *htGoodDetailsViewController=[[HTGoodDetailsViewController alloc]init];
+        htGoodDetailsViewController.goods_parity=goods_parity;
+        htGoodDetailsViewController.goods=newGoods;
+        htGoodDetailsViewController.goods_attr=goods_attr;
+        htGoodDetailsViewController.goodsExt=goodsExt;
+        htGoodDetailsViewController.goods_image=goods_image;
+        //        htGoodDetailsViewController.delegate=self;
+        AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [delegate.navigationController pushViewController:htGoodDetailsViewController animated:YES];
+        
+    }
+}
+#pragma mark 获取数据刷新
+-(void)getFilterResult:(NSArray *)resultArray{
+    [self getGoodlist:resultArray];
 }
 #pragma mark获取商品数据
 -(void)getGoodlist:(NSArray *)arr{
@@ -77,44 +177,11 @@
     [_tableView reloadData];
 }
 
-#pragma mark - Navigation
--(UIView*)getNavigationBar
-{
-    self.navigationController.navigationBarHidden = YES;
-    view_bar1 =[[UIView alloc]init];
-    if ([[[UIDevice currentDevice]systemVersion]floatValue]>6.1)
-    {
-        view_bar1 .frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
-        
-        
-        
-    }else{
-        view_bar1 .frame=CGRectMake(0, 0, self.view.frame.size.width,44);
-        
-        
-    }
-     view_bar1.backgroundColor =RGB(255, 13, 94); 
-    
-    [self.view addSubview:view_bar1];
-    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar1.frame.size.height-44, self.view.frame.size.width-130, 44)];
-    title_label.text=self.topTitle;
-    title_label.font=[UIFont boldSystemFontOfSize:20];
-    title_label.backgroundColor=[UIColor clearColor];
-    title_label.textColor =[UIColor whiteColor];
-    title_label.textAlignment=1;
-    [view_bar1 addSubview:title_label];
-    UIButton*btnBack=[UIButton buttonWithType:0];
-    btnBack.frame=CGRectMake(0, view_bar1.frame.size.height-34, 47, 34);
-    [btnBack setImage:BundleImage(@"btn_back") forState:0];
-    [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
-    [view_bar1 addSubview:btnBack];
-    return view_bar1;
-}
 #pragma mark tableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return listArr.count;
-
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -130,8 +197,8 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     
-        return  [self getToolBar];
-   
+    return  [self getToolBar];
+    
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -231,13 +298,13 @@
     cellFrame.origin=CGPointMake(0, 0);
     cellFrame.size.width=SCREEN_WIDTH;
     cellFrame.size.height=lastFrame.size.height+10;
-
+    
     [cell setFrame:cellFrame];
     
     
     
     return cell;
-
+    
     
 }
 
@@ -255,27 +322,6 @@
     //
     //    [delegate.navigationController pushViewController:goods animated:YES];
 }
-
-#pragma mark  下拉刷新
-- (void)addDataWithDirection:(DJRefreshDirection)direction{
-    
-    if (direction==DJRefreshDirectionTop) {
-        //        [self getSpecialData];
-    }
-    [_refresh finishRefreshingDirection:direction animation:YES];
-    
-    
-    
-}
-#pragma mark  下拉刷新
-- (void)refresh:(DJRefresh *)refresh didEngageRefreshDirection:(DJRefreshDirection)direction{
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self addDataWithDirection:direction];
-    });
-    
-}
-
 #pragma mark置顶按钮栏
 -(UIView*)getToolBar
 {
@@ -439,7 +485,7 @@
         FilterViewController *filterViewController=[[FilterViewController alloc]initWithNibName:@"FilterViewController" bundle:nil andFilterType:FilterViewControllTypeCategary andParameter:_inParameters];
         filterViewController.delegate=self;
         filterViewController.pamCategoryName=self.topTitle;
-//        filterViewController.categoryImageUrl=分类图片地址
+        //        filterViewController.categoryImageUrl=分类图片地址
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
         [delegate.navigationController pushViewController:filterViewController animated:YES];
         
@@ -447,28 +493,17 @@
     }
     [self paixu:sortkey];
 }
-//获取数据刷新
--(void)getFilterResult:(NSArray *)resultArray{
-    [self getGoodlist:resultArray];
-}
-
 #pragma mark 排序
 -(void)paixu:(NSString *)soryKey{
-    NSDictionary *parameters = @{@"s_cat":self.menuid,@"need_cat_index":@1,@"sort":soryKey};
-    _inParameters=[parameters mutableCopy];
+    NSMutableDictionary *dicNewKey=[[NSMutableDictionary alloc]initWithDictionary:self.keyDic];
+    [dicNewKey setObject:soryKey forKey:@"sort"];
+    _inParameters=[dicNewKey mutableCopy];
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
     ;
     
-    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getMenuGoodsList"];
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:dicNewKey withUrlName:@"getGoodsListForKey"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
-}
-#pragma mark退出
--(void)btnBack:(id)sender
-{
-    AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
-    [app.navigationController popViewControllerAnimated:YES];
-    [self.delegate changeFrame];
 }
 #pragma mark 商品详细信息
 -(void)goodContentTouch:(GoodImageButton *)sender{
@@ -484,74 +519,6 @@
     
     
 }
-#pragma mark 接受数据
--(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
-    //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    //    [app stopLoading];
-
-    //    if(![status isEqualToString:@"1"]){
-    ////        [self showMessage:message];
-    ////        return ;
-    //    }
-    if([urlname isEqualToString:@"getMenuGoodsList"]){
-        NSDictionary *dataDic=[dictemp objectForKey:@"data"];
-        NSArray *goodsArr=[dataDic objectForKey:@"list"];
-        NSMutableArray *goodsModelArr=[[NSMutableArray alloc]init];
-        for (NSDictionary *dic in goodsArr) {
-            New_Goods *goodsModel = [New_Goods objectWithKeyValues:dic] ;
-            [goodsModelArr addObject:goodsModel];
-        }
-        if(goodsModelArr.count<1){
-            ShowMessage(@"无数据");
-            return;
-        }
-        [self getGoodlist:goodsModelArr];
-        
-    }
-
-    if([urlname isEqualToString:@"getGoodsDetail"]){
-        NSDictionary *dataDic=[dictemp objectForKey:@"data"];
-        NSDictionary *goods_detail=[dataDic objectForKey:@"goods_detail"];
-        NSDictionary *goods_ext=[dataDic objectForKey:@"goods_ext"];
-        NSArray *goods_image=[dataDic objectForKey:@"goods_image"];
-        NSDictionary *goods_attr=[dataDic objectForKey:@"goods_attr"];
-        //        NSArray *priceArr=[goods_attr objectForKey:@"price"];
-        //        NSArray *attr_infoArr=[goods_attr objectForKey:@"attr_info"];
-        NSArray *goods_parity=[dataDic objectForKey:@"goods_parity"];
-        New_Goods *newGoods = [New_Goods objectWithKeyValues:goods_detail] ;
-        Goods_Ext *goodsExt=[Goods_Ext objectWithKeyValues:goods_ext];
-        //        NSDictionary *menuIndexDic=[dataDic objectForKey:@"cat_index"];
-        HTGoodDetailsViewController *htGoodDetailsViewController=[[HTGoodDetailsViewController alloc]init];
-        htGoodDetailsViewController.goods_parity=goods_parity;
-        htGoodDetailsViewController.goods=newGoods;
-        htGoodDetailsViewController.goods_attr=goods_attr;
-        htGoodDetailsViewController.goodsExt=goodsExt;
-        htGoodDetailsViewController.goods_image=goods_image;
-//        htGoodDetailsViewController.delegate=self;
-        AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
-        [delegate.navigationController pushViewController:htGoodDetailsViewController animated:YES];
-        
-    }
-    
-}
-#pragma mark -获取分类下的商品信息
--(void)getMenuGoodsList:(NSString *)s_cat{
-    NSDictionary *parameters = @{@"s_cat":s_cat,@"need_cat_index":@1};
-    _inParameters=[parameters mutableCopy];
-    NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
-    ;
-    
-    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getMenuGoodsList"];
-    httpController.delegate = self;
-    [httpController onSearchForPostJson];
-    
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 /*
 #pragma mark - Navigation
 

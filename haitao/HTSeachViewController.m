@@ -197,7 +197,8 @@
             nowCount++;
         }
         
-        dic =[@{@"dockName":menu.name,@"right":rightArr,@"image":menu.img} mutableCopy];
+        dic =[@{@"dockName":menu.name,@"right":rightArr,@"image":@"search_icon_meizhuang_"} mutableCopy];
+        //menu.img
         [_dockArray addObject:dic];    
     }
     _dockTavleView.dockArray=_dockArray;
@@ -206,12 +207,15 @@
         [_offsArray addObject:NSStringFromCGPoint(point)];
     }
     [_dockTavleView reloadData];
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     
     
     
     NSMutableDictionary *dic =_dockArray[0];
     rightTableView.rightArray=[dic objectForKey:@"right"];
     [rightTableView reloadData];
+    
+//    [_dockTavleView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 -(void)bottomLabelClick
 {
@@ -310,7 +314,7 @@
         //自定义继续UIButton的UIImageButton 里面只是加了2个row和column属性
         ClassificationBtn *button = [ClassificationBtn buttonWithType:UIButtonTypeCustom];
         button.bounds = CGRectMake(0, 0, kImageWidth, kImageHeight);
-        button.center = CGPointMake((1 + i) * 5 + kImageWidth *( 0.5 + i) , 5 + kImageHeight * 0.5);
+        button.center = CGPointMake((1 + i) * 5 + kImageWidth *( 0.7 + i) , 5 + kImageHeight * 0.5);
         //button.column = i;
         [button setValue:[NSNumber numberWithInt:i] forKey:@"column"];
         button.menuModel=menu;
@@ -318,10 +322,11 @@
         UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
         [imageView setImageWithURL:[NSURL URLWithString:menu.img] placeholderImage:[UIImage imageNamed:@"奶粉.jpg"]];
        // UIImage *image = [rightTableView cutCenterImage:imageView.image  size:CGSizeMake(50, 50)];
-        [button addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];             [button setBackgroundImage:imageView.image forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];
+        [button setBackgroundImage:imageView.image forState:UIControlStateNormal];
         [cell addSubview:button];
         [array addObject:button];
-        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(button.frame.origin.x,button.frame.origin.y+button.frame.size.height,kImageWidth,30)];
+        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(button.frame.origin.x,button.frame.origin.y+button.frame.size.height+5,kImageWidth,30)];
         _label.text=menu.name;
         _label.font=[UIFont boldSystemFontOfSize:13];
         _label.backgroundColor=[UIColor clearColor];

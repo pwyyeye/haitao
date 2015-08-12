@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UrlImageView.h"
 @interface BADockCell : UITableViewCell
 
 @property (nonatomic ,weak) NSString *categoryText;
+@property (nonatomic ,weak) NSString *imgurlText;
 @property (nonatomic ,weak) UILabel *category;
+@property (nonatomic ,weak) UrlImageView *urlView;
 @property (nonatomic ,weak) UIView *viewShow1;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 

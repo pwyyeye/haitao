@@ -716,6 +716,8 @@
 
 -(void)getFilterResult:(NSArray *)resultArray{
     NSLog(@"----pass-筛选回调%@---",resultArray);
+    isshuaxin=true;
+    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
     [self getGoodlistTwo:resultArray];
     [_tableView reloadData];
 }

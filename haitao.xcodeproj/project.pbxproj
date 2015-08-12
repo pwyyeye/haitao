@@ -107,6 +107,7 @@
 		A2E8D0F91B7AD8E60004ADB9 /* filter_btn_zhekou_selected_shang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E8D0EC1B7AD8E60004ADB9 /* filter_btn_zhekou_selected_shang@2x.png */; };
 		A2E8D0FA1B7AD8E60004ADB9 /* filter_btn_zhekou_selected_xia@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E8D0ED1B7AD8E60004ADB9 /* filter_btn_zhekou_selected_xia@2x.png */; };
 		A2E8D0FC1B7ADD870004ADB9 /* search_box@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E8D0FB1B7ADD870004ADB9 /* search_box@3x.png */; };
+		A2E8D1021B7B617C0004ADB9 /* CFContentForDicKeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E8D1011B7B617C0004ADB9 /* CFContentForDicKeyViewController.m */; };
 		A2F5FB4C1B5FD64100A8205C /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F5FB491B5FD64100A8205C /* UIScrollView+SVPullToRefresh.m */; };
 		A2F5FB4D1B5FD64100A8205C /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F5FB4B1B5FD64100A8205C /* UIScrollView+SVInfiniteScrolling.m */; };
 		A2F5FB4F1B5FD64A00A8205C /* SVPullToRefresh.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A2F5FB4E1B5FD64A00A8205C /* SVPullToRefresh.podspec */; };
@@ -874,6 +875,8 @@
 		A2E8D0EC1B7AD8E60004ADB9 /* filter_btn_zhekou_selected_shang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filter_btn_zhekou_selected_shang@2x.png"; sourceTree = "<group>"; };
 		A2E8D0ED1B7AD8E60004ADB9 /* filter_btn_zhekou_selected_xia@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filter_btn_zhekou_selected_xia@2x.png"; sourceTree = "<group>"; };
 		A2E8D0FB1B7ADD870004ADB9 /* search_box@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_box@3x.png"; sourceTree = "<group>"; };
+		A2E8D1001B7B617C0004ADB9 /* CFContentForDicKeyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFContentForDicKeyViewController.h; sourceTree = "<group>"; };
+		A2E8D1011B7B617C0004ADB9 /* CFContentForDicKeyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFContentForDicKeyViewController.m; sourceTree = "<group>"; };
 		A2F5FB471B5FD64100A8205C /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
 		A2F5FB481B5FD64100A8205C /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		A2F5FB491B5FD64100A8205C /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
@@ -2200,6 +2203,8 @@
 				A2FDE0F51B686A3600B374AA /* CFContentViewController.m */,
 				A2FDE0F71B687C2200B374AA /* GoodImageButton.h */,
 				A2FDE0F81B687C2200B374AA /* GoodImageButton.m */,
+				A2E8D1001B7B617C0004ADB9 /* CFContentForDicKeyViewController.h */,
+				A2E8D1011B7B617C0004ADB9 /* CFContentForDicKeyViewController.m */,
 			);
 			name = "分类";
 			sourceTree = "<group>";
@@ -4413,6 +4418,7 @@
 				A2FFE1711B608ED20004B4BC /* DJRefreshTopView.m in Sources */,
 				ADB5AC851B53CB5F0022B2C2 /* AppDelegate.m in Sources */,
 				AD50C5031B763CFC00119A42 /* ConfirmOrderController.m in Sources */,
+				A2E8D1021B7B617C0004ADB9 /* CFContentForDicKeyViewController.m in Sources */,
 				AD8AA6721B594EED00E324AD /* HZLocation.m in Sources */,
 				ADD2C4371B79CB8600A2E638 /* Cat_indexModel.m in Sources */,
 				A2FFE16F1B608ED20004B4BC /* DJRefresh.m in Sources */,

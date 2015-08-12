@@ -7,6 +7,7 @@
 //
 
 #import "HTGoodDetailsViewController.h"
+#import "CFContentForDicKeyViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "EScrollerView.h"
 #import "BiJiaView.h"
@@ -35,9 +36,9 @@ static CGFloat kImageOriginHight = 400;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    UIButton*btnBack=[UIButton buttonWithType:UIStatusBarStyleDefault];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
+    UIButton*btnBack=[UIButton buttonWithType:UIButtonTypeCustom];
+    
     btnBack.frame=CGRectMake(10, 20, 42, 42);
     [btnBack setImage:BundleImage(@"DetailsPage_btn_banner_share_") forState:0];
     [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
@@ -142,44 +143,108 @@ static CGFloat kImageOriginHight = 400;
     _bigView1.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
     _bigView1.backgroundColor=[UIColor whiteColor];
     [_scrollView addSubview:_bigView1];
+    //判断直邮和转运
+    if([self.goods.ship_type isEqualToString:@"2"]){
+        UILabel *title1=[[UILabel alloc]initWithFrame:CGRectMake(0,5, self.view.frame.size.width/2, 20)];
+        title1.text=[NSString stringWithFormat:@"%@g",self.goodsExt.weight_g];
+        title1.font=[UIFont systemFontOfSize:15];
+        title1.backgroundColor=[UIColor clearColor];
+        title1.textColor =RGB(128, 128, 128);
+        title1.textAlignment=1;
+        [_bigView1 addSubview:title1];
+        
+        UILabel *title2=[[UILabel alloc]initWithFrame:CGRectMake(0, title1.frame.size.height+5, 320/2, 20)];
+        title2.text=@"发货重量";
+        title2.font=[UIFont systemFontOfSize:15];
+        title2.backgroundColor=[UIColor clearColor];
+        title2.textColor =RGB(179, 179, 179) ;
+        title2.textAlignment=1;
+        [_bigView1 addSubview:title2];
+        
+        UIImageView*line1=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2,( _bigView1.frame.size.height-30)/2, 1, 30)];
+        line1.image=BundleImage(@"line_01_.png");
+        [_bigView1 addSubview:line1];
+        
+        
+        
+        UILabel *title11=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, 5, self.view.frame.size.width/2, 20)];
+        title11.text=@"0";
+        title11.font=[UIFont systemFontOfSize:15];
+        title11.backgroundColor=[UIColor clearColor];
+        title11.textColor =RGB(128, 128, 128) ;
+        title11.textAlignment=1;
+        [_bigView1 addSubview:title11];
+        
+        UILabel *title12=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, title1.frame.size.height+5, self.view.frame.size.width/2, 20)];
+        title12.text=@"转运运费";
+        title12.font=[UIFont systemFontOfSize:15];
+        title12.backgroundColor=[UIColor clearColor];
+        title12.textColor =RGB(179, 179, 179) ;
+        title12.textAlignment=1;
+        [_bigView1 addSubview:title12];
+    }else{
+        UILabel *title1=[[UILabel alloc]initWithFrame:CGRectMake(0,5, self.view.frame.size.width/3, 20)];
+        title1.text=[NSString stringWithFormat:@"%@g",self.goodsExt.weight_g];
+        title1.font=[UIFont systemFontOfSize:15];
+        title1.backgroundColor=[UIColor clearColor];
+        title1.textColor =RGB(128, 128, 128);
+        title1.textAlignment=1;
+        [_bigView1 addSubview:title1];
+        
+        UILabel *title2=[[UILabel alloc]initWithFrame:CGRectMake(0, title1.frame.size.height+5, self.view.frame.size.width/3, 20)];
+        title2.text=@"发货重量";
+        title2.font=[UIFont systemFontOfSize:15];
+        title2.backgroundColor=[UIColor clearColor];
+        title2.textColor =RGB(179, 179, 179) ;
+        title2.textAlignment=1;
+        [_bigView1 addSubview:title2];
+        
+        UIImageView*line1=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/3,( _bigView1.frame.size.height-30)/2, 1, 30)];
+        line1.image=BundleImage(@"line_01_.png");
+        [_bigView1 addSubview:line1];
+        
+        
+        
+        UILabel *title11=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/3, 5, self.view.frame.size.width/3, 20)];
+        title11.text=@"0";
+        title11.font=[UIFont systemFontOfSize:15];
+        title11.backgroundColor=[UIColor clearColor];
+        title11.textColor =RGB(128, 128, 128);
+        title11.textAlignment=1;
+        [_bigView1 addSubview:title11];
+        
+        UILabel *title12=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/3, title1.frame.size.height+5, self.view.frame.size.width/3, 20)];
+        title12.text=@"直邮运费";
+        title12.font=[UIFont systemFontOfSize:15];
+        title12.backgroundColor=[UIColor clearColor];
+        title12.textColor =RGB(179, 179, 179);
+        title12.textAlignment=1;
+        [_bigView1 addSubview:title12];
+        
+        UIImageView*line2=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width*2/3,( _bigView1.frame.size.height-30)/2, 1, 30)];
+        line2.image=BundleImage(@"line_01_.png");
+        [_bigView1 addSubview:line2];
+        
+        
+        
+        UILabel *title13=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width*2/3, 5, self.view.frame.size.width/3, 20)];
+        title13.text=[NSString stringWithFormat:@"%.f",self.goodsExt.direct_tax ];
+        title13.font=[UIFont systemFontOfSize:15];
+        title13.backgroundColor=[UIColor clearColor];
+        title13.textColor =RGB(128, 128, 128);
+        title13.textAlignment=1;
+        [_bigView1 addSubview:title13];
+        
+        UILabel *title32=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width*2/3, title1.frame.size.height+5, self.view.frame.size.width/3, 20)];
+        title32.text=@"税费";
+        title32.font=[UIFont systemFontOfSize:15];
+        title32.backgroundColor=[UIColor clearColor];
+        title32.textColor =RGB(179, 179, 179);
+        title32.textAlignment=1;
+        [_bigView1 addSubview:title32];
+
+    }
     
-    UILabel *title1=[[UILabel alloc]initWithFrame:CGRectMake(0,5, self.view.frame.size.width/2, 20)];
-    title1.text=@"1.5KG";
-    title1.font=[UIFont systemFontOfSize:15];
-    title1.backgroundColor=[UIColor clearColor];
-    title1.textColor =[UIColor grayColor];
-    title1.textAlignment=1;
-    [_bigView1 addSubview:title1];
-    
-    UILabel *title2=[[UILabel alloc]initWithFrame:CGRectMake(0, title1.frame.size.height+5, 320/2, 20)];
-    title2.text=@"发货重量";
-    title2.font=[UIFont systemFontOfSize:15];
-    title2.backgroundColor=[UIColor clearColor];
-    title2.textColor =hui2;
-    title2.textAlignment=1;
-    [_bigView1 addSubview:title2];
-    
-    UIImageView*line1=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2,( _bigView1.frame.size.height-30)/2, 1, 30)];
-    line1.image=BundleImage(@"line_01_.png");
-    [_bigView1 addSubview:line1];
-    
-    
-    
-    UILabel *title11=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, 5, self.view.frame.size.width/2, 20)];
-    title11.text=@"80";
-    title11.font=[UIFont systemFontOfSize:15];
-    title11.backgroundColor=[UIColor clearColor];
-    title11.textColor =[UIColor grayColor];
-    title11.textAlignment=1;
-    [_bigView1 addSubview:title11];
-    
-    UILabel *title12=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, title1.frame.size.height+5, self.view.frame.size.width/2, 20)];
-    title12.text=@"转运运费";
-    title12.font=[UIFont systemFontOfSize:15];
-    title12.backgroundColor=[UIColor clearColor];
-    title12.textColor =hui2;
-    title12.textAlignment=1;
-    [_bigView1 addSubview:title12];
     
     //邮费重量
     UIView *yunfeiView=[[UIView alloc]initWithFrame:CGRectMake(0, _bigView1.frame.size.height+_bigView1.frame.origin.y, self.view.frame.size.width, 30)];
@@ -246,7 +311,7 @@ static CGFloat kImageOriginHight = 400;
     [spzqBtn setTitle:@"商品专区" forState:UIControlStateNormal];
     spzqBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [spzqBtn setTitleColor:RGB(128, 128, 128)  forState:UIControlStateNormal];
-    [spzqBtn addTarget:self action:@selector(quanqiubijia:) forControlEvents:UIControlEventTouchUpInside];
+    [spzqBtn addTarget:self action:@selector(shopquQuery:) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *rightspimg=[[UIImageView alloc]initWithFrame:CGRectMake(spzqBtn.width-8, 12, 7, 7)];
     rightspimg.image=[UIImage  imageNamed:@"icon_Drop-rightList"];
     [spzqBtn addSubview:rightspimg];
@@ -282,7 +347,7 @@ static CGFloat kImageOriginHight = 400;
     
     
     UrlImageView *brandImg=[[UrlImageView alloc]initWithFrame:CGRectMake(10,10, 60, 60)];
-    [brandImg setImageWithURL:[NSURL URLWithString:self.goods.country_flag_url] placeholderImage:[UIImage imageNamed:@"df_04_"]];
+    [brandImg setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"default_04"]];
     [brandView addSubview:brandImg];
     brandImg.backgroundColor=[UIColor clearColor];
     
@@ -311,7 +376,7 @@ static CGFloat kImageOriginHight = 400;
     [brandAct setTitle:@"进入品牌专区" forState:UIControlStateNormal];
     brandAct.titleLabel.font = [UIFont systemFontOfSize:13];
     [brandAct setTitleColor:RGB(128, 128, 128)  forState:UIControlStateNormal];
-//    [brandAct addTarget:self action:@selector(queryBrand:) forControlEvents:UIControlEventTouchUpInside];
+    [brandAct addTarget:self action:@selector(brandQuQuery:) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *rightBrandimg=[[UIImageView alloc]initWithFrame:CGRectMake(brandAct.width-8, 12, 7, 7)];
     rightBrandimg.image=[UIImage  imageNamed:@"icon_Drop-rightList"];
     [brandAct addSubview:rightBrandimg];
@@ -986,6 +1051,26 @@ static CGFloat kImageOriginHight = 400;
     httpController.delegate = self;
     [httpController onSearchForPostJson];
 }
+#pragma mark 商品专区
+- (void)shopquQuery:(id)sender{
+    CFContentForDicKeyViewController *contentForDicKeyViewController=[[CFContentForDicKeyViewController alloc]init];
+    NSDictionary *dic=@{@"shop":self.goods.shop_id,@"need_cat_index":@1};
+    contentForDicKeyViewController.keyDic=dic;
+    contentForDicKeyViewController.title=self.goods.shop_name;
+    AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    [app.navigationController pushViewController:contentForDicKeyViewController animated:YES];
+}
+#pragma mark 品牌专区
+- (void)brandQuQuery:(id)sender{
+    CFContentForDicKeyViewController *contentForDicKeyViewController=[[CFContentForDicKeyViewController alloc]init];
+    NSDictionary *dic=@{@"brand":self.goods.brand_id,@"need_cat_index":@1};
+    contentForDicKeyViewController.keyDic=dic;
+    contentForDicKeyViewController.title=self.goods.brand_name;
+
+    AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    [app.navigationController pushViewController:contentForDicKeyViewController animated:YES];
+}
+
 #pragma mark 全球比价
 - (void)quanqiubijia:(id)sender{
     //    NSDictionary *parameters = @{@"id":@"626"};
