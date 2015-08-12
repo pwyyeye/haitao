@@ -695,15 +695,24 @@
     }
     else if(btn.tag==104)
     {
-        ScreenViewController *screenViewController=[[ScreenViewController alloc]init];
-        screenViewController.indexDic=indexDic;
+        NSLog(@"----pass-dic%@---",indexDic);
+        FilterViewController *filterViewController=[[FilterViewController alloc] initWithNibName:@"FilterViewController" bundle:nil andFilterType:FilterViewControllTypeDefault andParameter:indexDic];
+        filterViewController.delegate=self;
+        
+//        screenViewController.indexDic=indexDic;
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
-        [delegate.navigationController pushViewController:screenViewController animated:YES];
+        [delegate.navigationController pushViewController:filterViewController animated:YES];
         
         
     }
     [self paixu:sortkey];
 }
+#pragma mark 筛选回调
+
+-(void)getFilterResult:(NSArray *)resultArray{
+    NSLog(@"----pass-筛选回调%@---",resultArray);
+}
+
 #pragma mark 排序
 -(void)paixu:(NSString *)soryKey{
     NSDictionary *parameters = @{@"f_cat":self.menuModel.id,@"need_cat_index":@1,@"sort":soryKey};

@@ -14,7 +14,8 @@
 #import "CFContentViewController.h"
 #import "HTGoodDetailsViewController.h"
 #import "ShaiXuanBtn.h"
-@interface CustomViewController : LTKViewController<UITableViewDelegate,UITableViewDataSource,HTTPControllerProtocol,DJRefreshDelegate,ChangeTableDelegate,GoodChangeTableDelegate>
+#import "FilterViewController.h"
+@interface CustomViewController : LTKViewController<UITableViewDelegate,UITableViewDataSource,HTTPControllerProtocol,DJRefreshDelegate,ChangeTableDelegate,GoodChangeTableDelegate,FilterViewControllerDelegate>
 {
     NSMutableArray *listArr;
     NSString *title;
