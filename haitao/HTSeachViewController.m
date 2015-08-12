@@ -26,6 +26,7 @@
     UIView *view_bar1;
     BARightTableView *rightTableView ;
     NSString *typeTitle;
+    NSString *menuIdTemp;
 }
 @property (nonatomic ,strong) BAWineShoppingDockTavleView *dockTavleView;
 
@@ -161,6 +162,7 @@
         cfContentViewController.menuIndexDic=menuIndexDic;
         cfContentViewController.dataList=goodsModelArr;
         cfContentViewController.topTitle=typeTitle;
+        cfContentViewController.menuid=menuIdTemp;
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
         [delegate.navigationController pushViewController:cfContentViewController animated:YES];
         
@@ -233,36 +235,15 @@
     self.navigationController.navigationBarHidden = YES;
     view_bar1 =[[UIView alloc]init];
     view_bar1 .frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
-//    if ([[[UIDevice currentDevice]systemVersion]floatValue]>6.1)
-//    {
-//        view_bar1 .frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
-//        UIImageView *imageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, 44+20)];
-//        imageV.image = BundleImage(@"top.png");
-//        [view_bar1 addSubview:imageV];
-//        
-//        
-//    }else{
-//        view_bar1 .frame=CGRectMake(0, 0, self.view.frame.size.width,44);
-//        UIImageView *imageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width,44)];
-//        imageV.image = BundleImage(@"top.png");
-//        [view_bar1 addSubview:imageV];
-//        
-//    }
     view_bar1.backgroundColor=RGB(255, 13, 94);
     
     [self.view addSubview:view_bar1];
-    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar1.frame.size.height-44, self.view.frame.size.width-130, 44)];
-    title_label.text=@"商品快寻";
-    title_label.font=[UIFont boldSystemFontOfSize:20];
-    title_label.backgroundColor=[UIColor clearColor];
-    title_label.textColor =[UIColor whiteColor];
-    title_label.textAlignment=1;
-    [view_bar1 addSubview:title_label];
+    
     UIButton*btnSeach=[UIButton buttonWithType:0];
-    btnSeach.frame=CGRectMake(view_bar1.frame.size.width-55, view_bar1.frame.size.height-45, 49, 45);
+    btnSeach.frame=CGRectMake(view_bar1.frame.size.width/2-280/2,20+7 , 280, 30);
     
 //    [btnSeach setTitle:@"订单" forState:0];
-    [btnSeach setImage:BundleImage(@"sskx_search.png") forState:0];
+    [btnSeach setImage:BundleImage(@"search_box") forState:0];
     [btnSeach addTarget:self action:@selector(btnSeach:) forControlEvents:UIControlEventTouchUpInside];
     [view_bar1 addSubview:btnSeach];
 
@@ -283,8 +264,12 @@
 -(void)btnSeach:(id)sender
 {
     LTKSeachResultViewController *seachR=[[LTKSeachResultViewController alloc]init];
+    
+//    [self  presentViewController:seachR animated:false completion:^{
+//        
+//    }];
     AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
-    [delegate.navigationController pushViewController:seachR animated:YES];
+    [delegate.navigationController pushViewController:seachR animated:false];
     
 }
 -(void)cartImageClick
@@ -371,6 +356,7 @@
 
     MenuModel *menuChild=button.menuModel;
     typeTitle=menuChild.name;
+    menuIdTemp=menuChild.id;
     [self getMenuGoodsList:menuChild.id];
     /*
     NSString *msg = [NSString stringWithFormat:@"第%i行 第%i列",button.row + 1, button.column + 1];

@@ -480,18 +480,18 @@
     {
         view_bar1 .frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
         UIImageView *imageV1=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, 44+20)];
-        imageV1.image = BundleImage(@"top.png");
+        imageV.backgroundColor=RGB(255, 13, 94);
         [view_bar1 addSubview:imageV1];
         
         
     }else{
         view_bar1 .frame=CGRectMake(0, 0, self.view.frame.size.width,44);
         UIImageView *imageV1=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width,44)];
-        imageV1.image = BundleImage(@"top.png");
+        imageV.backgroundColor=RGB(255, 13, 94);
         [view_bar1 addSubview:imageV1];
         
     }
-    view_bar1.backgroundColor=[UIColor clearColor];
+//    view_bar1.backgroundColor=[UIColor clearColor];
     
     [self.view addSubview:view_bar1];
     UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar1.frame.size.height-44, self.view.frame.size.width-130, 44)];
