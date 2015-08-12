@@ -10,7 +10,7 @@
 #import "TitleBtn.h"
 #import "CFContentViewController.h"
 #import "New_Goods.h"
-
+#import "CFContentForDicKeyViewController.h"
 
 @interface LTKSeachResultViewController ()
 
@@ -44,18 +44,18 @@
 #pragma mark return事件
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     NSString *searchTex=serchText.text;
+    [serchText resignFirstResponder];
     if(searchTex.length>0)
     {
-        NSDictionary *parameters = @{@"keyword":searchTex};
-        
-        NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
-        ;
-        
-        HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getMenuGoodsList"];
-        httpController.delegate = self;
-        [httpController onSearchForPostJson];
+        NSDictionary *parameters = @{@"keyword":searchTex,@"need_cat_index":@1};
+
+        CFContentForDicKeyViewController *contentForDicKeyViewController=[[CFContentForDicKeyViewController alloc]init];
+        contentForDicKeyViewController.keyDic=parameters;
+        contentForDicKeyViewController.title=searchTex;
+        AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [app.navigationController pushViewController:contentForDicKeyViewController animated:YES];
     }
-    [serchText resignFirstResponder];
+    
     return YES;
 }
 -(UIView*)getNavigationBar
@@ -77,7 +77,7 @@
     serchText.returnKeyType=UIReturnKeySearch;
     serchText.delegate=self;
     [view_bar addSubview:serchText];
-    
+    [serchText becomeFirstResponder];
     UIButton*btnBack=[UIButton buttonWithType:0];
     btnBack.frame=CGRectMake(serchText.left+serchText.width+10, serchText.top, 60, 30);
     [btnBack setTitle:@"取消" forState:UIControlStateNormal];
