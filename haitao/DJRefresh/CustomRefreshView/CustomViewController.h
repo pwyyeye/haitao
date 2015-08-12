@@ -14,7 +14,8 @@
 #import "CFContentViewController.h"
 #import "HTGoodDetailsViewController.h"
 #import "ShaiXuanBtn.h"
-@interface CustomViewController : LTKViewController<UITableViewDelegate,UITableViewDataSource,HTTPControllerProtocol,DJRefreshDelegate,ChangeTableDelegate,GoodChangeTableDelegate>
+#import "FilterViewController.h"
+@interface CustomViewController : LTKViewController<UITableViewDelegate,UITableViewDataSource,HTTPControllerProtocol,DJRefreshDelegate,ChangeTableDelegate,GoodChangeTableDelegate,FilterViewControllerDelegate>
 {
     NSMutableArray *listArr;
     NSString *title;
@@ -22,5 +23,7 @@
 }
 @property (nonatomic,retain)NSDictionary *spcDic;
 @property (nonatomic,strong)DJRefresh *refresh;
+//存储所有筛选条件
+@property(strong,nonatomic) NSMutableDictionary *inParameters;
 
 @end

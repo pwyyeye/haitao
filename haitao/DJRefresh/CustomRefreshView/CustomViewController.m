@@ -65,6 +65,8 @@
     listArr=[[NSMutableArray alloc]init];
 
     
+    NSDictionary *parameters = @{@"s_cat":self.menuModel.id,@"need_cat_index":@1};
+    _inParameters=[parameters mutableCopy];
     
     [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:YES];
     [self getCatBanner];
@@ -90,6 +92,7 @@
 -(void)getCatBanner{
     //NSDictionary *parameters = @{@"cat_id":self.menuModel.id};
     NSDictionary *parameters = @{@"cat_id":@"1"};
+    _inParameters=[parameters mutableCopy];
     NSString* url =[NSString stringWithFormat:@"%@&m=ad&f=getCatBanner",requestUrl]
     ;
     
@@ -102,6 +105,7 @@
 
 -(void)getGoodsList{
     NSDictionary *parameters = @{@"f_cat":self.menuModel.id,@"need_cat_index":@1};
+    _inParameters=[parameters mutableCopy];
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
     ;
     
@@ -695,18 +699,31 @@
     }
     else if(btn.tag==104)
     {
-        ScreenViewController *screenViewController=[[ScreenViewController alloc]init];
-        screenViewController.indexDic=indexDic;
+        NSLog(@"----pass-dic%@---",indexDic);
+        FilterViewController *filterViewController=[[FilterViewController alloc] initWithNibName:@"FilterViewController" bundle:nil andFilterType:FilterViewControllTypeDefault andParameter:_inParameters];
+        filterViewController.delegate=self;
+        filterViewController.pamCategoryName=self.title;
+        //        filterViewController.categoryImageUrl=分类图片地址
+//        screenViewController.indexDic=indexDic;
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
-        [delegate.navigationController pushViewController:screenViewController animated:YES];
+        [delegate.navigationController pushViewController:filterViewController animated:YES];
         
         
     }
     [self paixu:sortkey];
 }
+#pragma mark 筛选回调
+
+-(void)getFilterResult:(NSArray *)resultArray{
+    NSLog(@"----pass-筛选回调%@---",resultArray);
+    [self getGoodlistTwo:resultArray];
+    [_tableView reloadData];
+}
+
 #pragma mark 排序
 -(void)paixu:(NSString *)soryKey{
     NSDictionary *parameters = @{@"f_cat":self.menuModel.id,@"need_cat_index":@1,@"sort":soryKey};
+    _inParameters=[parameters mutableCopy];
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
     ;
     

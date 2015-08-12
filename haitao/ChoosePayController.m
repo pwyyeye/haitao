@@ -78,7 +78,8 @@
     order.tradeNO = _orderNo; //订单ID（由商家自行制定）
     order.productName = _productName; //商品标题
     order.productDescription = _productDescription; //商品描述
-    order.amount = [NSString stringWithFormat:@"%.2f",_payAmount];
+//    order.amount = [NSString stringWithFormat:@"%.2f",_payAmount];
+    order.amount=[NSString stringWithFormat:@"%.2f",0.01];
     
     SingletonAlipay *alipay=[SingletonAlipay singletonAlipay];
     alipay.delegate=self;

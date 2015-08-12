@@ -94,7 +94,7 @@
     if (_rightArray.count!=0) {
         //一开始只load A选项
 //        _rightArray=[self loadRightView:_rightArray];
-        NSArray *modelArray=[self filterArray:_rightArray withLetter:@"A"];
+        NSArray *modelArray=_rightArray;
        NSArray  *Array=[self loadRightView:modelArray];
 
         
@@ -226,8 +226,12 @@
 
 
 -(NSArray *)filterArray:(NSArray *) array withLetter:(NSString *)letter{
-    
     NSString  *prediStr1 = [NSString stringWithFormat:@"first_name=='%@'", letter];
+    if ([letter isEqualToString:@"默认"]) {
+        prediStr1 = [NSString stringWithFormat:@"first_name like '*'"];
+    }
+    
+    
     
     NSLog(@"----pass-prediStr1%@---",[NSString stringWithFormat:@"%@",prediStr1]);
     NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@",prediStr1]];

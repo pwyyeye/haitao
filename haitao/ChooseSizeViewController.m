@@ -360,14 +360,14 @@
     
     btnCall=[UIButton buttonWithType:0];
     btnCall.frame=CGRectMake(0, 0, self.view.frame.size.width, 49);
-    btnCall.backgroundColor=hexColor(@"#ff0d5e");
+    btnCall.backgroundColor=RGB(255, 13, 94);
 //    [btnCall setTitle:@"加入购物车" forState:UIControlStateNormal];
     [btnCall addTarget:self action:@selector(addCar:) forControlEvents:UIControlEventTouchUpInside];
     btnCall.enabled=false;
     //
 //    [btnCall setBackgroundImage:[UIImage imageNamed:@"att_btn_base_"] forState:0];
     //
-    UIImageView *shoushiView=[[UIImageView alloc]initWithFrame:CGRectMake(btnCall.width/4, (49-23)/2, 20, 23)];
+    UIImageView *shoushiView=[[UIImageView alloc]initWithFrame:CGRectMake(btnCall.width/4, 9, 30, 30)];
     shoushiView.image=[UIImage imageNamed:@"icon_AddOrder"];
     [btnCall addSubview:shoushiView];
     UILabel *zanLabel=[[UILabel alloc]initWithFrame:CGRectMake(shoushiView.width+shoushiView.left+5, (btnCall.height-30)/2,btnCall.width-(shoushiView.width+shoushiView.left+5) , 30)];

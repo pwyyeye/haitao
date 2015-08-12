@@ -9,14 +9,17 @@
 #import "LTKViewController.h"
 #import "DJRefresh.h"
 #import "DJRefreshProgressView.h"
+#import "FilterViewController.h"
 @protocol ChangeTableDelegate
 - (void)changeFrame;
 @end
-@interface CFContentViewController : LTKViewController<UITableViewDelegate,UITableViewDataSource,HTTPControllerProtocol,DJRefreshDelegate>
+@interface CFContentViewController : LTKViewController<UITableViewDelegate,UITableViewDataSource,HTTPControllerProtocol,DJRefreshDelegate,FilterViewControllerDelegate>
 {
    NSMutableArray *listArr;
 }
 @property (nonatomic,retain)NSDictionary *menuIndexDic;
+//存储所有筛选条件
+@property(strong,nonatomic) NSMutableDictionary *inParameters;
 @property (nonatomic,strong)NSMutableArray *dataList;
 @property (nonatomic,strong)DJRefresh *refresh;
 @property (nonatomic,copy)NSString *topTitle;
