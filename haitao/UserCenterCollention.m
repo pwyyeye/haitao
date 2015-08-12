@@ -190,7 +190,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             headerView.user_name.text=[USER_DEFAULT objectForKey:@"user_nick"];
         
         }
-        headerView.user_img.image=[UIImage imageNamed:@"default_04.png"];
+        headerView.user_img.image=[UIImage imageNamed:@"df_03_"];
         
         if (![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"avatar_img"]]) {
             NSURL *url=[NSURL URLWithString:[USER_DEFAULT objectForKey:@"avatar_img"]];
@@ -269,10 +269,10 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     }else if(indexPath.item==7){
         detailViewController  = [[HelpViewController alloc] initWithNibName:@"HelpViewController" bundle:nil];
     }else if(indexPath.item==8){
-        detailViewController  = [[FilterViewController alloc] initWithNibName:@"FilterViewController" bundle:nil];
+//        detailViewController  = [[FilterViewController alloc] initWithNibName:@"FilterViewController" bundle:nil];
 
-//        ShowMessage(@"即将上线");
-//        return;
+        ShowMessage(@"即将上线");
+        return;
     }
     
     

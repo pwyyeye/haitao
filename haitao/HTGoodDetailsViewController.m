@@ -147,7 +147,7 @@ static CGFloat kImageOriginHight = 400;
     if([self.goods.ship_type isEqualToString:@"2"]){
         UILabel *title1=[[UILabel alloc]initWithFrame:CGRectMake(0,5, self.view.frame.size.width/2, 20)];
         title1.text=[NSString stringWithFormat:@"%@g",self.goodsExt.weight_g];
-        title1.font=[UIFont systemFontOfSize:15];
+        title1.font=[UIFont systemFontOfSize:13];
         title1.backgroundColor=[UIColor clearColor];
         title1.textColor =RGB(128, 128, 128);
         title1.textAlignment=1;
@@ -155,7 +155,7 @@ static CGFloat kImageOriginHight = 400;
         
         UILabel *title2=[[UILabel alloc]initWithFrame:CGRectMake(0, title1.frame.size.height+5, 320/2, 20)];
         title2.text=@"发货重量";
-        title2.font=[UIFont systemFontOfSize:15];
+        title2.font=[UIFont systemFontOfSize:10];
         title2.backgroundColor=[UIColor clearColor];
         title2.textColor =RGB(179, 179, 179) ;
         title2.textAlignment=1;
@@ -169,7 +169,7 @@ static CGFloat kImageOriginHight = 400;
         
         UILabel *title11=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, 5, self.view.frame.size.width/2, 20)];
         title11.text=@"0";
-        title11.font=[UIFont systemFontOfSize:15];
+        title11.font=[UIFont systemFontOfSize:13];
         title11.backgroundColor=[UIColor clearColor];
         title11.textColor =RGB(128, 128, 128) ;
         title11.textAlignment=1;
@@ -177,7 +177,7 @@ static CGFloat kImageOriginHight = 400;
         
         UILabel *title12=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, title1.frame.size.height+5, self.view.frame.size.width/2, 20)];
         title12.text=@"转运运费";
-        title12.font=[UIFont systemFontOfSize:15];
+        title12.font=[UIFont systemFontOfSize:10];
         title12.backgroundColor=[UIColor clearColor];
         title12.textColor =RGB(179, 179, 179) ;
         title12.textAlignment=1;
@@ -185,7 +185,7 @@ static CGFloat kImageOriginHight = 400;
     }else{
         UILabel *title1=[[UILabel alloc]initWithFrame:CGRectMake(0,5, self.view.frame.size.width/3, 20)];
         title1.text=[NSString stringWithFormat:@"%@g",self.goodsExt.weight_g];
-        title1.font=[UIFont systemFontOfSize:15];
+        title1.font=[UIFont systemFontOfSize:13];
         title1.backgroundColor=[UIColor clearColor];
         title1.textColor =RGB(128, 128, 128);
         title1.textAlignment=1;
@@ -193,7 +193,7 @@ static CGFloat kImageOriginHight = 400;
         
         UILabel *title2=[[UILabel alloc]initWithFrame:CGRectMake(0, title1.frame.size.height+5, self.view.frame.size.width/3, 20)];
         title2.text=@"发货重量";
-        title2.font=[UIFont systemFontOfSize:15];
+        title2.font=[UIFont systemFontOfSize:10];
         title2.backgroundColor=[UIColor clearColor];
         title2.textColor =RGB(179, 179, 179) ;
         title2.textAlignment=1;
@@ -207,7 +207,7 @@ static CGFloat kImageOriginHight = 400;
         
         UILabel *title11=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/3, 5, self.view.frame.size.width/3, 20)];
         title11.text=@"0";
-        title11.font=[UIFont systemFontOfSize:15];
+        title11.font=[UIFont systemFontOfSize:13];
         title11.backgroundColor=[UIColor clearColor];
         title11.textColor =RGB(128, 128, 128);
         title11.textAlignment=1;
@@ -215,7 +215,7 @@ static CGFloat kImageOriginHight = 400;
         
         UILabel *title12=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/3, title1.frame.size.height+5, self.view.frame.size.width/3, 20)];
         title12.text=@"直邮运费";
-        title12.font=[UIFont systemFontOfSize:15];
+        title12.font=[UIFont systemFontOfSize:10];
         title12.backgroundColor=[UIColor clearColor];
         title12.textColor =RGB(179, 179, 179);
         title12.textAlignment=1;
@@ -229,7 +229,7 @@ static CGFloat kImageOriginHight = 400;
         
         UILabel *title13=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width*2/3, 5, self.view.frame.size.width/3, 20)];
         title13.text=[NSString stringWithFormat:@"%.f",self.goodsExt.direct_tax ];
-        title13.font=[UIFont systemFontOfSize:15];
+        title13.font=[UIFont systemFontOfSize:13];
         title13.backgroundColor=[UIColor clearColor];
         title13.textColor =RGB(128, 128, 128);
         title13.textAlignment=1;
@@ -237,7 +237,7 @@ static CGFloat kImageOriginHight = 400;
         
         UILabel *title32=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width*2/3, title1.frame.size.height+5, self.view.frame.size.width/3, 20)];
         title32.text=@"税费";
-        title32.font=[UIFont systemFontOfSize:15];
+        title32.font=[UIFont systemFontOfSize:10];
         title32.backgroundColor=[UIColor clearColor];
         title32.textColor =RGB(179, 179, 179);
         title32.textAlignment=1;
@@ -270,14 +270,15 @@ static CGFloat kImageOriginHight = 400;
     //titel
     UILabel *title3=[[UILabel alloc]initWithFrame:CGRectMake(10, 10,190, 10)];
     title3.text=@"支持支付宝等支付方式";
-    title3.font=[UIFont boldSystemFontOfSize:14];
+    title3.font=[UIFont boldSystemFontOfSize:13];
     title3.backgroundColor=[UIColor clearColor];
     title3.textColor =RGB(51, 51, 51);
     title3.textAlignment=0;
     [_bigView2 addSubview:title3];
     
     UrlImageView *headImg=[[UrlImageView alloc]initWithFrame:CGRectMake(10, title3.height+title3.top+10, 60, 60)];
-    [headImg setImageWithURL:[NSURL URLWithString:self.goods.country_flag_url] placeholderImage:[UIImage imageNamed:@"df_04_"]];
+//    [headImg setImageWithURL:[NSURL URLWithString:self.goods.country_flag_url] placeholderImage:[UIImage imageNamed:@"df_04_"]];
+    headImg.image=[UIImage imageNamed:@"AlipayIcon"];
     [_bigView2 addSubview:headImg];
     headImg.backgroundColor=[UIColor clearColor];
     //国家
@@ -297,7 +298,7 @@ static CGFloat kImageOriginHight = 400;
     UILabel *title5=[[UILabel alloc]initWithFrame:CGRectMake(headImg.width+headImg.left+5, headImg.top+headImg.height-20,160, 20)];
     title5.text=@"下单后6-10个工作日到手";
     
-    title5.font=[UIFont systemFontOfSize:12];
+    title5.font=[UIFont systemFontOfSize:10];
     title5.numberOfLines=2;
     title5.backgroundColor=[UIColor clearColor];
     title5.textColor =RGB(179, 179, 179);
@@ -309,7 +310,7 @@ static CGFloat kImageOriginHight = 400;
     spzqBtn.backgroundColor=[UIColor clearColor];
     spzqBtn.frame =CGRectMake(_bigView2.width-10-80, title5.top-6, 80, 30);
     [spzqBtn setTitle:@"商品专区" forState:UIControlStateNormal];
-    spzqBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    spzqBtn.titleLabel.font = [UIFont systemFontOfSize:11];
     [spzqBtn setTitleColor:RGB(128, 128, 128)  forState:UIControlStateNormal];
     [spzqBtn addTarget:self action:@selector(shopquQuery:) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *rightspimg=[[UIImageView alloc]initWithFrame:CGRectMake(spzqBtn.width-8, 12, 7, 7)];
@@ -327,9 +328,9 @@ static CGFloat kImageOriginHight = 400;
     yansechicunImg.userInteractionEnabled=YES;
     [_scrollView addSubview:yansechicunImg];
     
-    UILabel *yansechicunLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, yansechicunImg.frame.size.height/2-20/2, 150, 20)];
+    UILabel *yansechicunLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, yansechicunImg.frame.size.height/2-20/2, 150, 25)];
     yansechicunLbl.text=@"选择颜色和尺寸";
-    yansechicunLbl.font=[UIFont boldSystemFontOfSize:14];
+    yansechicunLbl.font=[UIFont boldSystemFontOfSize:13];
     yansechicunLbl.backgroundColor=[UIColor clearColor];
     yansechicunLbl.textColor =RGB(51, 51, 51);
     yansechicunLbl.textAlignment=0;
@@ -374,7 +375,7 @@ static CGFloat kImageOriginHight = 400;
     brandAct.backgroundColor=[UIColor clearColor];
     brandAct.frame =CGRectMake(brandView.width-10-100, barndMiaoshu.top-6, 100, 30);
     [brandAct setTitle:@"进入品牌专区" forState:UIControlStateNormal];
-    brandAct.titleLabel.font = [UIFont systemFontOfSize:13];
+    brandAct.titleLabel.font = [UIFont systemFontOfSize:11];
     [brandAct setTitleColor:RGB(128, 128, 128)  forState:UIControlStateNormal];
     [brandAct addTarget:self action:@selector(brandQuQuery:) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *rightBrandimg=[[UIImageView alloc]initWithFrame:CGRectMake(brandAct.width-8, 12, 7, 7)];
@@ -383,12 +384,13 @@ static CGFloat kImageOriginHight = 400;
     [brandView insertSubview:brandAct atIndex:0];
     //品牌描述
     UILabel *barndMiaoshuContent=[[UILabel alloc]initWithFrame:CGRectMake(brandImg.left, brandImg.top+brandImg.height+25,brandView.width-brandImg.left-10, 20)];
-    barndMiaoshuContent.text=@"日本花王集团创立于1887年，是日本的家庭用品和化妆品生产企业。我们生产和销售日常生活中所需的高品质生活用品，有乐而雅，妙而舒，洁霸，碧柔，碧柔男士等品牌。花王集团立足于消费者和顾客，竭诚提供性能优异的高品质产品，努力为满足和丰富世界人民的生活作出贡献。";
+//    barndMiaoshuContent.text=@"    日本花王集团创立于1887年，是日本的家庭用品和化妆品生产企业。我们生产和销售日常生活中所需的高品质生活用品，有乐而雅，妙而舒，洁霸，碧柔，碧柔男士等品牌。花王集团立足于消费者和顾客，竭诚提供性能优异的高品质产品，努力为满足和丰富世界人民的生活作出贡献。";
+    barndMiaoshuContent.text=@"";
     
-    barndMiaoshuContent.font=[UIFont systemFontOfSize:12];
+    barndMiaoshuContent.font=[UIFont boldSystemFontOfSize:11];
     barndMiaoshuContent.backgroundColor=[UIColor clearColor];
-    barndMiaoshuContent.textColor =RGB(179, 179, 179);
-    barndMiaoshuContent.textAlignment=NSTextAlignmentCenter;
+    barndMiaoshuContent.textColor =RGB(51, 51, 51);
+    barndMiaoshuContent.textAlignment=NSTextAlignmentLeft;
     barndMiaoshuContent.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
     barndMiaoshuContent.lineBreakMode=UILineBreakModeWordWrap;
     //高度固定不折行，根据字的多少计算label的宽度
@@ -894,7 +896,7 @@ static CGFloat kImageOriginHight = 400;
         //问题标题
         UILabel *titleQA=[[UILabel alloc]initWithFrame:CGRectMake(10, 10,190, 10)];
         titleQA.text=@"为什么黄金奇异果比较贵?";
-        titleQA.font=[UIFont boldSystemFontOfSize:14];
+        titleQA.font=[UIFont boldSystemFontOfSize:11];
         titleQA.backgroundColor=[UIColor clearColor];
         titleQA.textColor =RGB(51, 51, 51);
         titleQA.textAlignment=0;
@@ -902,7 +904,7 @@ static CGFloat kImageOriginHight = 400;
         //具体内容
         UILabel *countentQA=[[UILabel alloc]initWithFrame:CGRectMake(10, titleQA.top+titleQA.height+10,qaCounteView.width-20, 10)];
         countentQA.text=@"黄金奇异果是新西兰的新国宝。光滑、古铜色的外皮，金黄色的果肉，香甜多汁。富含维生素及矿物质。也就是我们常说的“猕猴桃”的一种。它的营养价值很高";
-        countentQA.font=[UIFont systemFontOfSize:14];
+        countentQA.font=[UIFont systemFontOfSize:11];
         countentQA.backgroundColor=[UIColor clearColor];
         countentQA.textColor = RGB(179, 179, 179);
         countentQA.textAlignment=0;

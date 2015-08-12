@@ -93,13 +93,45 @@
     [self getCarInfo];
      [self getToolBar];
 }
+-(void)showEmptyView{
+    [_empty_view removeFromSuperview];
+    if(carShopList.count==0){
+        _empty_view=[[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 104)];
+        _empty_view.backgroundColor=RGB(237, 237, 237);
+
+        UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-75, SCREEN_HEIGHT/2-164, 150, 150)];
+        imageView.image=[UIImage imageNamed:@"shopping_icon_logo"];
+        [imageView setContentMode:UIViewContentModeScaleAspectFit];
+        [_empty_view addSubview:imageView];
+        
+        UIButton *button= [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-40, imageView.frame.origin.y+imageView.frame.size.height+10, 80, 30)];
+        button.backgroundColor=RGB(255, 13, 94);
+        [button setTitle:@"去逛逛" forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        button.titleLabel.font=[UIFont systemFontOfSize:13];
+        button.layer.masksToBounds=YES;
+        button.layer.cornerRadius=3;
+        [button addTarget:self action:@selector(goHome) forControlEvents:UIControlEventTouchUpInside];
+        [_empty_view addSubview:button];
+        
+        [self.view addSubview:_empty_view];
+    }
+    
+    
+}
+
+-(void)goHome{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"backHome" object:nil];
+
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:YES];
     
     [delShopList removeAllObjects];
     [self addViews];
-   
+    [self showEmptyView];
     //获取购物车数据
 }
 #pragma mark获取购物车数据
@@ -151,6 +183,7 @@
                 
             }
             [_tableView reloadData];
+            [self showEmptyView];
         }else{
             ShowMessage(@"获取购物车数据失败!");
         }
@@ -290,6 +323,7 @@
     if(sender.isSelected){
         [self changeToolBar:true];
         [_tableView reloadData];
+        [self showEmptyView];
     }else{
         [self editSave];
         [self changeToolBar:false];
@@ -925,6 +959,7 @@
         }
     }
     [_tableView reloadData];
+    [self showEmptyView];
     [self changePrice];
 }
 #pragma mark 计算金额
@@ -1007,6 +1042,7 @@
         }
     }else{
         [_tableView reloadData];
+        [self showEmptyView];
     }
 
 }

@@ -21,9 +21,10 @@
         backgroudView.backgroundColor=[UIColor whiteColor];
         [self addSubview:backgroudView];
         UrlImageView *imageHead=[[UrlImageView alloc]initWithFrame:CGRectMake(5, 10, 80, 80)];
-        if(goods.img_80){
+        if(!goods.img_80){
             imageHead.image=BundleImage(@"df_04_.png");
         }else{
+            
             NSURL *url=[NSURL URLWithString:goods.img_80];
             [imageHead setImageWithURL:url];
         }
@@ -36,7 +37,7 @@
         
         
         UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(imageHead.frame.size.width+imageHead.frame.origin.x+10, imageHead.frame.origin.y, backgroudView.width-20-75-10, 40)];
-        title_label.text=[NSString stringWithFormat:@"￥%.1f",goods.price_cn];
+        title_label.text=[NSString stringWithFormat:@"￥%.2f",goods.price_cn];
         title_label.font=[UIFont systemFontOfSize:14];
         title_label.textColor =hexColor(@"#ff0d5e");
         title_label.backgroundColor=[UIColor clearColor];
@@ -101,9 +102,9 @@
         [zanBtn addSubview:shoushiView];
         UILabel *zanLabel=[[UILabel alloc]initWithFrame:CGRectMake(shoushiView.width+shoushiView.left+5, (zanBtn.height-30)/2,zanBtn.width-(shoushiView.width+shoushiView.left+5) , 30)];
         zanLabel.text=@"配你夸，给个赞呗";
-        zanLabel.font=[UIFont boldSystemFontOfSize:17];
+        zanLabel.font=[UIFont boldSystemFontOfSize:13];
         zanLabel.backgroundColor=[UIColor clearColor];
-        zanLabel.textColor =hexColor(@"#cccccc");
+        zanLabel.textColor =[UIColor whiteColor];
         zanLabel.textAlignment=NSTextAlignmentLeft;
         zanLabel.numberOfLines=0;
         [zanBtn addSubview:zanLabel];
@@ -122,7 +123,7 @@
         
         UILabel *c_label=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, titleView.width, 20)];
         c_label.text=@"全球比价";
-        c_label.font=[UIFont boldSystemFontOfSize:16];
+        c_label.font=[UIFont boldSystemFontOfSize:15];
         c_label.backgroundColor=[UIColor clearColor];
         c_label.textColor =hexColor(@"#333333");
         c_label.textAlignment=NSTextAlignmentLeft;
@@ -140,7 +141,7 @@
             biJiaCell.backgroundColor=[UIColor whiteColor];
             [self addSubview:biJiaCell];
             UrlImageView *shipImge=[[UrlImageView alloc]initWithFrame:CGRectMake(10, 10, 50, 50)];
-            if(biJiaModel.shop_logo){
+            if(!biJiaModel.shop_logo){
                 shipImge.image=BundleImage(@"df_04_.png");
             }else{
                 NSURL *url=[NSURL URLWithString:goods.img_80];
@@ -156,7 +157,7 @@
             //商店名
             UILabel *shiplal=[[UILabel alloc]initWithFrame:CGRectMake(imageHead.frame.size.width+imageHead.frame.origin.x+10,biJiaCell.height/2-10, 80, 20)];
             shiplal.text=biJiaModel.shop_name;
-            shiplal.font=[UIFont boldSystemFontOfSize:10];
+            shiplal.font=[UIFont boldSystemFontOfSize:11];
             shiplal.backgroundColor=[UIColor clearColor];
             shiplal.textColor =hexColor(@"#b3b3b3");
             shiplal.numberOfLines=1;

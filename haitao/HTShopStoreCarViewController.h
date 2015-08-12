@@ -20,9 +20,10 @@
     UIView *view_toolBar;
 }
 @property(assign,nonatomic) BOOL isTabbar;;
-
+@property(strong,nonatomic) UIView *empty_view;
 
 -(id)initWithTabbar:(BOOL)isTabbar;
+
 
 
 @end
