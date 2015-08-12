@@ -374,7 +374,7 @@
     
     if (touchID>0) {
         
-        [btn1 setTitleColor:[UIColor colorWithRed:.2 green:.2 blue:.2 alpha:1.0] forState:0];
+        [btn1 setTitleColor:RGB(255, 13, 94) forState:0];
     }
     [button setTitleColor:[UIColor whiteColor] forState:0];
     
@@ -384,7 +384,7 @@
         
     }else{
         
-        button.backgroundColor=hongShe;
+        button.backgroundColor=RGB(255, 13, 94);
         touchID=button.tag;
     }
 }
