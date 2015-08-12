@@ -10,7 +10,7 @@
 #import "TitleBtn.h"
 #import "CFContentViewController.h"
 #import "New_Goods.h"
-
+#import "CFContentForDicKeyViewController.h"
 
 @interface LTKSeachResultViewController ()
 
@@ -44,18 +44,20 @@
 #pragma mark return事件
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     NSString *searchTex=serchText.text;
+    [serchText resignFirstResponder];
+    
     if(searchTex.length>0)
     {
-        NSDictionary *parameters = @{@"keyword":searchTex};
-        
-        NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
-        ;
-        
-        HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getMenuGoodsList"];
-        httpController.delegate = self;
-        [httpController onSearchForPostJson];
+        [self saveHisData:searchTex];
+        NSDictionary *parameters = @{@"keyword":searchTex,@"need_cat_index":@1};
+
+        CFContentForDicKeyViewController *contentForDicKeyViewController=[[CFContentForDicKeyViewController alloc]init];
+        contentForDicKeyViewController.keyDic=parameters;
+        contentForDicKeyViewController.title=searchTex;
+        AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [app.navigationController pushViewController:contentForDicKeyViewController animated:YES];
     }
-    [serchText resignFirstResponder];
+    
     return YES;
 }
 -(UIView*)getNavigationBar
@@ -77,7 +79,7 @@
     serchText.returnKeyType=UIReturnKeySearch;
     serchText.delegate=self;
     [view_bar addSubview:serchText];
-    
+    [serchText becomeFirstResponder];
     UIButton*btnBack=[UIButton buttonWithType:0];
     btnBack.frame=CGRectMake(serchText.left+serchText.width+10, serchText.top, 60, 30);
     [btnBack setTitle:@"取消" forState:UIControlStateNormal];
@@ -165,21 +167,70 @@
 //        
 //    }];
 }
+#pragma mark 获取历史搜索数据
+-(void)loadHisData{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *filename = [Path stringByAppendingPathComponent:@"hisSerchData.plist"];
+    if([fileManager fileExistsAtPath:filename]){
+        hisSerchArr= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
+    }else{
+        hisSerchArr = [[NSMutableArray alloc]initWithCapacity:20];
+        
+    }
 
+}
+#pragma mark 保存历史数据
+-(void)saveHisData:(NSString *)strKey{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *filename = [Path stringByAppendingPathComponent:@"hisSerchData.plist"];
+    if([fileManager fileExistsAtPath:filename]){
+        hisRoute= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
+    }else{
+        hisRoute = [[NSMutableArray alloc]initWithCapacity:8];
+        
+    }
+    bool ishis=false;
+    for (NSString *arrtemp in hisRoute) {
+        
+        if([arrtemp isEqualToString:strKey]){
+            ishis=true;
+            break;
+        }
+    }
+    if(!ishis){
+        if(hisRoute.count==8){
+            [hisRoute removeObjectAtIndex:hisRoute.count-1];
+        }
+        [hisRoute insertObject:strKey atIndex:0];
+        [NSKeyedArchiver archiveRootObject:hisRoute toFile:filename];
+    }
 
-
+}
+-(void)delHisData:(UIButton *)sendid{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *filename = [Path stringByAppendingPathComponent:@"hisSerchData.plist"];
+    if([fileManager fileExistsAtPath:filename]){
+        hisSerchArr= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
+        [hisSerchArr removeAllObjects];
+        [NSKeyedArchiver archiveRootObject:hisRoute toFile:filename];
+    }
+    hisView.hidden=YES;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden=YES;
     [self getNavigationBar];
-    
+    hisSerchArr=[[NSMutableArray alloc]init];
     _isFirstView=YES;
 
     appDelegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
 //    page=1;
     _marrayAll =[[NSMutableArray alloc]init];
-
+    [self loadHisData];
  
     //    imageViewToolBar=[[UIImageView alloc]initWithFrame:CGRectMake(0, self.searchBar.frame.size.height+self.searchBar.frame.origin.y, self.view.frame.size.width,35 )];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, view_bar.height+view_bar.top+20, 80, 15)];
@@ -196,37 +247,70 @@
     for (int i =0; i<8; i++)
     {
     
-        editBtn =[[TitleBtn alloc]initWithFrame:CGRectMake((i%4)*75+12, floor(i/4)*25+10+label.frame.size.height+label.frame.origin.y, 70, 20)];
-        [editBtn setTitle:@"play" forState:UIControlStateNormal];
+        editBtn =[[TitleBtn alloc]initWithFrame:CGRectMake((i%4)*75+12, floor(i/4)*35+10+label.frame.size.height+label.frame.origin.y, 70, 30)];
+        [editBtn setTitle:@"moon" forState:UIControlStateNormal];
         editBtn.backgroundColor=[UIColor blackColor];
         [editBtn addTarget:self action:@selector(goSerch:) forControlEvents:UIControlEventTouchUpInside];
-
+        editBtn.backgroundColor=[UIColor whiteColor];
+        [editBtn setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
+        editBtn.layer.borderWidth=1;//描边
+        editBtn.layer.cornerRadius=4;//圆角
+        editBtn.layer.borderColor=RGB(179, 179, 179).CGColor;
         [self.view addSubview:editBtn];
     }
+    
     UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(20, editBtn.frame.size.height+editBtn.frame.origin.y+20, 80, 15)];
     label1.font = [UIFont boldSystemFontOfSize:10.0f];  //UILabel的字体大小
     label1.numberOfLines = 1;  //必须定义这个属性，否则UILabel不会换行
     label1.textColor = [UIColor grayColor];
     label1.textAlignment = NSTextAlignmentLeft;  //文本对齐方式
     [label1 setBackgroundColor:[UIColor whiteColor]];
-    NSString *str1 = @"热门标题";
+    NSString *str1 = @"历史记录";
     
     label1.text = str1;
     [self.view addSubview:label1];
-    for (int i =0; i<8; i++)
-    {
+    CGRect lastFrame ;
+    hisView=[[UIView alloc]initWithFrame:CGRectMake(0, 10+label1.frame.size.height+label1.frame.origin.y, self.view.width, 80)];
+    [self.view addSubview:hisView];
+    lastFrame=hisView.frame;
+    if(hisSerchArr.count>0){
+        for (int i =0; i<hisSerchArr.count; i++)
+        {
+            
+            editBtn =[[TitleBtn alloc]initWithFrame:CGRectMake((i%4)*75+12, floor(i/4)*35+10, 70, 30)];
+            [editBtn setTitle:hisSerchArr[i] forState:UIControlStateNormal];
+            editBtn.backgroundColor=[UIColor whiteColor];
+            [editBtn setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
+            [editBtn addTarget:self action:@selector(goSerch:) forControlEvents:UIControlEventTouchUpInside];
+            editBtn.layer.borderWidth=1;//描边
+            editBtn.layer.cornerRadius=4;//圆角
+            editBtn.layer.borderColor=RGB(179, 179, 179).CGColor;
+            [hisView addSubview:editBtn];
+        }
         
-        editBtn =[[TitleBtn alloc]initWithFrame:CGRectMake((i%4)*75+12, floor(i/4)*25+10+label1.frame.size.height+label1.frame.origin.y, 70, 20)];
-        [editBtn setTitle:@"olay" forState:UIControlStateNormal];
-        editBtn.backgroundColor=[UIColor blackColor];
-        [editBtn addTarget:self action:@selector(goSerchTwo:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.view addSubview:editBtn];
     }
+    UIButton *qingchuBtn =[[UIButton alloc]initWithFrame:CGRectMake(self.view.width/2-200/2, lastFrame.origin.y+lastFrame.size.height, 200, 50)];
+    [qingchuBtn setTitle:@"清楚历史记录" forState:UIControlStateNormal];
+    [qingchuBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    qingchuBtn.backgroundColor=[UIColor clearColor];
+    [qingchuBtn addTarget:self action:@selector(delHisData:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:qingchuBtn];
     
 }
 -(void)goSerch:(TitleBtn *)id{
-    
+    NSString *searchTex=id.titleLabel.text;
+    [serchText resignFirstResponder];
+    if(searchTex.length>0)
+    {
+        NSDictionary *parameters = @{@"keyword":searchTex,@"need_cat_index":@1};
+        
+        CFContentForDicKeyViewController *contentForDicKeyViewController=[[CFContentForDicKeyViewController alloc]init];
+        contentForDicKeyViewController.keyDic=parameters;
+        contentForDicKeyViewController.title=searchTex;
+        AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [app.navigationController pushViewController:contentForDicKeyViewController animated:YES];
+    }
+
 }
 -(void)goSerchTwo:(TitleBtn *)id{
     

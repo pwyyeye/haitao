@@ -13,7 +13,7 @@
 @interface LTKSeachResultViewController : LTKViewController<UISearchBarDelegate, UISearchDisplayDelegate,UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,UINavigationBarDelegate,HTTPControllerProtocol>
 
 {
-
+    UIView *hisView;//历史记录
     UITextField                     *seachField;//搜索内容
     UIScrollView                    *_scrollView;
     UILabel                 *hotLabel;
@@ -25,8 +25,8 @@
     UIView                  *navigation;
     UIView                  *seachBarView;
     NSString                    *_seachString;
-    
-    
+    NSMutableArray *hisSerchArr;
+    NSMutableArray *hisRoute;
     UIView                  *view_bar;
 //    UIView                  *seachBar;
     UrlImageButton              *fourBtn;
