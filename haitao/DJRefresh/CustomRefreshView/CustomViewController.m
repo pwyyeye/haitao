@@ -711,6 +711,8 @@
 
 -(void)getFilterResult:(NSArray *)resultArray{
     NSLog(@"----pass-筛选回调%@---",resultArray);
+    [self getGoodlistTwo:resultArray];
+    [_tableView reloadData];
 }
 
 #pragma mark 排序
