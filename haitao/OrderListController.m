@@ -17,6 +17,9 @@
 #import "OrderSuccessController.h"
 #import "ChoosePayController.h"
 #import "AlipayOrder.h"
+#import "New_Goods.h"
+#import "Goods_Ext.h"
+#import "HTGoodDetailsViewController.h"
 @interface OrderListController ()
 
 @end
@@ -182,6 +185,29 @@
         [self showEmptyView];
         
     }
+    
+    if([urlname isEqualToString:@"getGoodsDetail"]){
+        NSDictionary *dataDic=[dictemp objectForKey:@"data"];
+        NSDictionary *goods_detail=[dataDic objectForKey:@"goods_detail"];
+        NSDictionary *goods_ext=[dataDic objectForKey:@"goods_ext"];
+        NSArray *goods_image=[dataDic objectForKey:@"goods_image"];
+        NSDictionary *goods_attr=[dataDic objectForKey:@"goods_attr"];
+        //        NSArray *priceArr=[goods_attr objectForKey:@"price"];
+        //        NSArray *attr_infoArr=[goods_attr objectForKey:@"attr_info"];
+        NSArray *goods_parity=[dataDic objectForKey:@"goods_parity"];
+        New_Goods *newGoods = [New_Goods objectWithKeyValues:goods_detail] ;
+        Goods_Ext *goodsExt=[Goods_Ext objectWithKeyValues:goods_ext];
+        //        NSDictionary *menuIndexDic=[dataDic objectForKey:@"cat_index"];
+        HTGoodDetailsViewController *htGoodDetailsViewController=[[HTGoodDetailsViewController alloc]init];
+        htGoodDetailsViewController.goods_parity=goods_parity;
+        htGoodDetailsViewController.goods=newGoods;
+        htGoodDetailsViewController.goods_attr=goods_attr;
+        htGoodDetailsViewController.goodsExt=goodsExt;
+        htGoodDetailsViewController.goods_image=goods_image;
+        AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [delegate.navigationController pushViewController:htGoodDetailsViewController animated:YES];
+        
+    }
 
 }
 
@@ -193,6 +219,8 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+
     [self showEmptyView];
 }
 
@@ -694,6 +722,15 @@
     
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView != _tableView){
+        Order_goods *goods=[_goods_arrayForSubView objectAtIndex:indexPath.row];
+        [self gotoGoodsDetail:goods.id];
+    }
+
+}
+
 #pragma mark - button Action
 
 -(void)gotoPackageDetail:(UIButton *)sender{
@@ -790,6 +827,16 @@
         _selectedOrderNo=nil;
     }
     
+}
+
+-(void)gotoGoodsDetail:(NSString *) goods_id{
+    NSDictionary *parameters = @{@"id":goods_id};
+    NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
+    ;
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsDetail"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
 }
 
 #pragma mark - alipay delegate

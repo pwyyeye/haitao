@@ -12,8 +12,19 @@ typedef NS_ENUM(NSInteger, FilterButtonType) {
     FilterButtonTypeShop = 0,                         // no button type
     FilterButtonTypeCategaty = 1
 };
+
+@protocol FilterViewForButtonsDelegate <NSObject>
+
+-(void)buttonClickForShopOrCategary:(IndexModel *)indexModel andType:(FilterButtonType) type;
+
+@end
+
 @interface FilterViewForButtons : UIView
-//所有商城按钮
+
+
+@property(strong,nonatomic) id<FilterViewForButtonsDelegate> delegate;
+
+//所有商城或者分类按钮
 @property(strong,nonatomic) NSMutableArray *btns;
 
 @property(strong,nonatomic) NSArray *array;

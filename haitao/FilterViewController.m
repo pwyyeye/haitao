@@ -16,6 +16,33 @@
 
 @implementation FilterViewController
 
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+    return [self initWithNibName:nibNameOrNil bundle:nil andFilterType:FilterViewControllTypeDefault andParameter:@{@"need_cat_index":@"1",@"need_page":@"1"}];
+}
+/**
+ f_cat=12(一级分类),
+ s_cat=317(二级分类),
+ local=1(国家),
+ shop=1(商城),
+ brand=1459(品牌),
+ ship=1(运输方式),
+ min_price:搜索开始价格
+ max_price：搜索结束价格
+ sort=price_cn-asc(排序), //价格price_cn-asc/desc  ，/销量 order_num，/折扣 discount
+ keyword=xxx(关键词),
+ need_page＝1(是否需要分页统计)
+ p=1(页码)
+ per=20(每页多少笔记录 默认20)
+ need_cat_index＝1//有需要筛选页面添加
+ */
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andFilterType:(FilterViewControllerType) type andParameter:(NSDictionary *)parameter{
+    self=[super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        _filterType=type;
+        _inParameter=parameter;
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -34,6 +61,9 @@
     self.title=@"筛选";
     UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     [self.navigationItem setLeftBarButtonItem:item];
+    //右边确定安妮
+    UIBarButtonItem *rightItem=[[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(makeSure)];
+    [self.navigationItem setRightBarButtonItem:rightItem];
     //设置标题颜色
     
     UIColor * color = [UIColor whiteColor];
@@ -57,18 +87,19 @@
     
     [self.footerView addSubview:_coll];
     
-    [self initData];
+    
+    [self initDataWithParameter:_inParameter];
     
  _brand_leftArray=@[@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z"];
     
 }
 
 
--(void)initData{
+-(void)initDataWithParameter:(NSDictionary *)parameter{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     
-    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_getGoodsList withType:POSTURL withPam:@{@"need_cat_index":@"1",@"need_page":@"1"} withUrlName:@"getGoodsList"];
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_getGoodsList withType:POSTURL withPam:parameter withUrlName:@"getGoodsList"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
     
@@ -84,9 +115,51 @@
     [self.navigationController popViewControllerAnimated:YES];
     
 }
+
+-(void)makeSure{
+    NSLog(@"----pass-pass %@---",@"makeSure");
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    NSMutableDictionary *mutarray=[_inParameter copy];
+    if (![MyUtil isEmptyString:_selected_brand]) {
+        [mutarray setObject:_selected_brand forKey:@"brand"];
+    }
+    if (![MyUtil isEmptyString:_selected_categary]) {
+        [mutarray setObject:_selected_categary forKey:@"s_cat"];
+
+    }
+    if (![MyUtil isEmptyString:_selected_shop]) {
+        [mutarray setObject:_selected_shop forKey:@"shop"];
+    
+    }
+    if (![MyUtil isEmptyString:_beginPrice.text]) {
+        [mutarray setObject:_beginPrice.text forKey:@"min_price"];
+
+    }
+    if (![MyUtil isEmptyString:_endPrice.text]) {
+        [mutarray setObject:_endPrice.text forKey:@"max_price"];
+    }
+    
+    if (_directBtn.selected) {
+        [mutarray setObject:@"1" forKey:@"ship"];
+    }else if(_transportBtn.selected){
+        [mutarray setObject:@"2" forKey:@"ship"];
+    }
+    
+    NSLog(@"----pass-_inParameter%@---",[mutarray copy]);
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_getGoodsList withType:POSTURL withPam:[mutarray copy] withUrlName:@"getResultList"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
+}
+
+
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     self.viewWidth.constant=SCREEN_WIDTH;
+    if (_filterType!=FilterButtonTypeCategaty) {
+        _categoryViewHeight.constant=0;
+    }
     //tableView的高度时header＋footer＋cell高度*cell个数
 
     //自身高度
@@ -121,6 +194,12 @@
 //            _coll.frame=CGRectMake(_coll.frame.origin.x, _coll.frame.origin.y, SCREEN_WIDTH, _shopsView.frame.size.height+3*_coll.cellHeight+20);
 //            [_coll openCollapseClickCellAtIndex:0 animated:YES];
 
+        }else if ([urlname isEqualToString:@"getResultList"]){
+            FilterGoodsModel *listModel=[FilterGoodsModel objectWithKeyValues: [dictemp objectForKey:@"data"]];
+
+            if ([self.delegate respondsToSelector:@selector(getFilterResult:)]) {
+                [self.delegate getFilterResult:listModel.list];
+            }
         }
 
     }
@@ -132,59 +211,203 @@
 
 // Required Methods
 -(int)numberOfCellsForCollapseClick {
-    return 3;
+    switch (_filterType) {
+        case FilterViewControllTypeDefault:
+            return 3;
+            break;
+        default:
+            return 2;
+            break;
+    }
+    
 }
 
 -(NSString *)titleForCollapseClickAtIndex:(int)index {
-    switch (index) {
-        case 0:
-            return @"商城";
-            break;
-        case 1:
-            return @"分类";
-            break;
-        case 2:
-            return @"品牌";
-            break;
-        default:
-            return @"";
-            break;
+    if (_filterType==FilterViewControllTypeDefault) {
+        switch (index) {
+            case 0:
+                return @"商城";
+                break;
+            case 1:
+                return @"分类";
+                break;
+            case 2:
+                return @"品牌";
+                break;
+            default:
+                return @"";
+                break;
+        }
+    }else if(_filterType==FilterViewControllTypeShop){
+        switch (index) {
+            case 0:
+                return @"分类";
+                break;
+            case 1:
+                return @"品牌";
+                break;
+            default:
+                return @"";
+                break;
+        }
+    }else if(_filterType==FilterViewControllTypeCategary){
+        switch (index) {
+            case 0:
+                return @"商城";
+                
+                break;
+
+            case 1:
+                return @"品牌";
+                break;
+            default:
+                return @"";
+                break;
+        }
+    }else if(_filterType==FilterViewControllTypeBrand){
+        switch (index) {
+            case 0:
+                return @"商城";
+                
+                break;
+            case 1:
+                return @"分类";
+                break;
+            default:
+                return @"";
+                break;
+        }
     }
+    return @"";
 }
+    
+
 
 -(UIView *)viewForCollapseClickContentViewAtIndex:(int)index {
+   
     
-    switch (index) {
-        case 0:
-        {
-            _shopsView =[[FilterViewForButtons alloc] initWithBtnArray:_shops andType:FilterButtonTypeShop];
-            [_shopsView loadShopsButtons];
-            return _shopsView;
-            break;
+    if (_filterType==FilterViewControllTypeDefault) {
+        
+        switch (index) {
+            case 0:
+            {
+                _shopsView =[[FilterViewForButtons alloc] initWithBtnArray:_shops andType:FilterButtonTypeShop];
+                _shopsView.delegate=self;
+                [_shopsView loadShopsButtons];
+                return _shopsView;
+                break;
+            }
+            case 1:
+            {
+                _categatiesView =[[FilterViewForButtons alloc] initWithBtnArray:_categaties andType:FilterButtonTypeCategaty];
+                _categatiesView.delegate=self;
+                [_categatiesView loadCategoriesButtons];
+                return _categatiesView;
+                break;
+            }
+            case 2:
+            {
+                
+                _brandTableView=[[FilterBrandTabelView alloc] initWithLeftArray:_brand_leftArray andRightArray: _brand_rightArray];
+                _brandTableView.delegate=self;
+                _brandTableView.leftTableHeight=30;
+                _brandTableView.leftTableWidth=30;
+                _brandTableView.rightTableHeight=50;
+                _brandTableView.rightTableWidth=SCREEN_WIDTH-30;
+                [_brandTableView loadView];
+                return _brandTableView;
+                break;
+            }
+                
+            default:
+                break;
+                
         }
-        case 1:
-        {
-            _categatiesView =[[FilterViewForButtons alloc] initWithBtnArray:_categaties andType:FilterButtonTypeCategaty];
-            [_categatiesView loadCategoriesButtons];
-            return _categatiesView;
-            break;
+        
+    }else if(_filterType==FilterViewControllTypeShop){
+        
+        switch (index) {
+            case 0:
+            {
+                _categatiesView =[[FilterViewForButtons alloc] initWithBtnArray:_categaties andType:FilterButtonTypeCategaty];
+                _categatiesView.delegate=self;
+                [_categatiesView loadCategoriesButtons];
+                return _categatiesView;
+                break;
+            }
+            case 1:
+            {
+                
+                _brandTableView=[[FilterBrandTabelView alloc] initWithLeftArray:_brand_leftArray andRightArray: _brand_rightArray];
+                _brandTableView.delegate=self;
+                _brandTableView.leftTableHeight=30;
+                _brandTableView.leftTableWidth=30;
+                _brandTableView.rightTableHeight=50;
+                _brandTableView.rightTableWidth=SCREEN_WIDTH-30;
+                [_brandTableView loadView];
+                return _brandTableView;
+                break;
+            }
+                
+            default:
+                break;
+                
         }
-        case 2:
-        {
-            
-            _brandTableView=[[FilterBrandTabelView alloc] initWithLeftArray:_brand_leftArray andRightArray: _brand_rightArray];
-            _brandTableView.leftTableHeight=30;
-            _brandTableView.leftTableWidth=30;
-            _brandTableView.rightTableHeight=50;
-            _brandTableView.rightTableWidth=SCREEN_WIDTH-30;
-            [_brandTableView loadView];
-            return _brandTableView;
-            break;
+        
+    }else if(_filterType==FilterViewControllTypeCategary){
+        
+        switch (index) {
+            case 0:
+            {
+                _shopsView =[[FilterViewForButtons alloc] initWithBtnArray:_shops andType:FilterButtonTypeShop];
+                _shopsView.delegate=self;
+                [_shopsView loadShopsButtons];
+                return _shopsView;
+                break;
+            }
+            case 1:
+            {
+                
+                _brandTableView=[[FilterBrandTabelView alloc] initWithLeftArray:_brand_leftArray andRightArray: _brand_rightArray];
+                _brandTableView.delegate=self;
+                _brandTableView.leftTableHeight=30;
+                _brandTableView.leftTableWidth=30;
+                _brandTableView.rightTableHeight=50;
+                _brandTableView.rightTableWidth=SCREEN_WIDTH-30;
+                [_brandTableView loadView];
+                return _brandTableView;
+                break;
+            }
+                
+            default:
+                break;
+                
         }
-            
-        default:
-            break;
-            
+        
+    }else if(_filterType==FilterViewControllTypeBrand){
+        
+        switch (index) {
+            case 0:
+            {
+                _shopsView =[[FilterViewForButtons alloc] initWithBtnArray:_shops andType:FilterButtonTypeShop];
+                _shopsView.delegate=self;
+                [_shopsView loadShopsButtons];
+                return _shopsView;
+                break;
+            }
+            case 1:
+            {
+                _categatiesView =[[FilterViewForButtons alloc] initWithBtnArray:_categaties andType:FilterButtonTypeCategaty];
+                _categatiesView.delegate=self;
+                [_categatiesView loadCategoriesButtons];
+                return _categatiesView;
+                break;
+            }
+            default:
+                break;
+                
+        }
+        
     }
     
     return nil;
@@ -249,4 +472,44 @@
 
 
 
+-(void)buttonClickForBrand:(IndexModel *)indexModel{
+    NSLog(@"----pass-pass%@--%@-",@"buttonClickForBrand",indexModel.name);
+    _selected_brand=indexModel.id;
+}
+
+-(void)buttonClickForShopOrCategary:(IndexModel *)indexModel andType:(FilterButtonType) type{
+    NSLog(@"----pass-pass%@--%@-",@"buttonClickForShopOrCategary",indexModel.name);
+    if (type==FilterButtonTypeCategaty) {
+        _selected_categary=indexModel.id;
+    }else{
+        _selected_shop=indexModel.id;
+    }
+}
+
+- (IBAction)btnClick:(id)sender {
+    UIButton *button=(UIButton *)sender;
+    if ([button isEqual:_transportBtn]) {
+        _transportBtn.selected=YES;
+        _transportBtn.backgroundColor=RGB(255, 13, 94);
+        [_transportBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        _directBtn.selected=NO;
+        _directBtn.backgroundColor=RGB(237, 237, 237);
+        [_directBtn setTitleColor:RGB(51, 51, 51) forState:UIControlStateNormal];
+        
+    }else if([button isEqual:_directBtn]){
+        _directBtn.selected=YES;
+        _directBtn.backgroundColor=RGB(255, 13, 94);
+        [_directBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+
+        _transportBtn.selected=NO;
+        _transportBtn.backgroundColor=RGB(237, 237, 237);
+        [_transportBtn setTitleColor:RGB(51, 51, 51) forState:UIControlStateNormal];
+
+    }
+}
+
+- (IBAction)didEndOnExit:(id)sender {
+    [sender resignFirstResponder];
+}
 @end

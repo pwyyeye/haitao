@@ -94,6 +94,7 @@
 }
 -(void)didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
     NSLog(@"----pass-getCaptcha%@---",dictemp);
+    ShowMessage(@"验证码已发送！");
 }
 -(void)dealloc{
     [_timer invalidate];

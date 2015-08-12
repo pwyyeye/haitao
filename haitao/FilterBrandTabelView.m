@@ -202,6 +202,10 @@
         sender.layer.borderColor=RGB(255, 13, 94).CGColor;
         sender.layer.borderWidth=0.5;
         sender.selected=YES;
+        if ([self.delegate respondsToSelector:@selector(buttonClickForBrand:)]) {
+            FilterBtn *btn=(FilterBtn *)sender;
+            [self.delegate buttonClickForBrand:btn.indexModel];
+        }
     }else{
         sender.layer.borderColor=CLEARCOLOR.CGColor;
         sender.layer.borderWidth=0;

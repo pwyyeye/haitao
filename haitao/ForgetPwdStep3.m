@@ -54,7 +54,7 @@
         ShowMessage(@"两次输入密码不一样！");
         return;
     }
-    NSDictionary *parameters = @{@"mobile":_username,@"new_pass":_password_TextField.text,@"mobile_code":_captcha};
+    NSDictionary *parameters = @{@"mobile":_username,@"new_pass":[MyUtil md5HexDigest:_password_TextField.text] ,@"mobile_code":_captcha};
     
     HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_resetPassByMobile withType:POSTURL withPam:parameters withUrlName:@"forgetPassword"];
     httpController.delegate = self;

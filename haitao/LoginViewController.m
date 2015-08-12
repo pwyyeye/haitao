@@ -118,7 +118,7 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
 
-     NSDictionary *parameters = @{@"user_name":_username,@"user_pass":_password};
+     NSDictionary *parameters = @{@"user_name":_username,@"user_pass":[MyUtil md5HexDigest:_password]};
     
     HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_doLogin withType:POSTURL withPam:parameters withUrlName:@"login"];
     httpController.delegate = self;
