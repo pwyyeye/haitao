@@ -23,5 +23,7 @@
 }
 @property (nonatomic,retain)NSDictionary *spcDic;
 @property (nonatomic,strong)DJRefresh *refresh;
+//存储所有筛选条件
+@property(strong,nonatomic) NSMutableDictionary *inParameters;
 
 @end
