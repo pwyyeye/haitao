@@ -39,6 +39,7 @@
 
     UIImageView*seachImageView;
     BOOL _isFirstView;
+    UITextField *serchText;
 
 }
 @property(nonatomic, strong) UISearchBar *searchBar;

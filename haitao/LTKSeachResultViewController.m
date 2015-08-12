@@ -41,37 +41,81 @@
     }
     return self;
 }
+#pragma mark return事件
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    NSString *searchTex=serchText.text;
+    if(searchTex.length>0)
+    {
+        NSDictionary *parameters = @{@"keyword":searchTex};
+        
+        NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
+        ;
+        
+        HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getMenuGoodsList"];
+        httpController.delegate = self;
+        [httpController onSearchForPostJson];
+    }
+    [serchText resignFirstResponder];
+    return YES;
+}
 -(UIView*)getNavigationBar
 {
     self.navigationController.navigationBarHidden = YES;
     view_bar =[[UIView alloc]init];
-    if ([[[UIDevice currentDevice]systemVersion]floatValue]>6.1)
-    {
-        view_bar .frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
-        UIImageView *imageV = [[UIImageView alloc]initWithImage:BundleImage(@"top.png")];
-        [view_bar addSubview:imageV];
+    view_bar .frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
+    view_bar.backgroundColor=RGB(255, 13, 94);
         
-    }else{
-        view_bar .frame=CGRectMake(0, 0, self.view.frame.size.width, 44);
-        UIImageView *imageV = [[UIImageView alloc]initWithImage:BundleImage(@"top.png")];
-        [view_bar addSubview:imageV];
-    }
-    view_bar.backgroundColor=[UIColor whiteColor];
+//    view_bar.backgroundColor=[UIColor whiteColor];
     
     [self.view addSubview: view_bar];
-    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar.frame.size.height-44, self.view.frame.size.width-130, 44)];
-    title_label.text=@"快寻";
-    title_label.font=[UIFont boldSystemFontOfSize:20];
-    title_label.backgroundColor=[UIColor clearColor];
-    title_label.textColor =[UIColor whiteColor];
-    title_label.textAlignment=1;
-    [view_bar addSubview:title_label];
+    serchText = [[UITextField alloc] initWithFrame:CGRectMake(10, 20+7,view_bar.width-10-90 , 30)];
+    [view_bar addSubview:serchText];
+    serchText.backgroundColor=[UIColor whiteColor];
+    serchText.layer.borderWidth=0.5;//描边
+    serchText.layer.cornerRadius=4;//圆角
+    serchText.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
+    serchText.returnKeyType=UIReturnKeySearch;
+    serchText.delegate=self;
+    [view_bar addSubview:serchText];
     
     UIButton*btnBack=[UIButton buttonWithType:0];
-    btnBack.frame=CGRectMake(0, view_bar.frame.size.height-34, 47, 34);
-    [btnBack setImage:BundleImage(@"btn_back") forState:0];
+    btnBack.frame=CGRectMake(serchText.left+serchText.width+10, serchText.top, 60, 30);
+    [btnBack setTitle:@"取消" forState:UIControlStateNormal];
     [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
     [view_bar addSubview:btnBack];
+    /*
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, (view_bar.frame.size.height-40)/2+20, 320, 40)];
+    self.searchBar.placeholder = @"搜索你喜欢的宝贝";
+    self.searchBar.delegate = self;
+    self.searchBar.barStyle=UIBarStyleDefault;
+    
+    self.searchBar.tintColor=[UIColor colorWithRed:1.0 green:.4 blue:.5 alpha:1.0];
+    self.searchBar.barTintColor=[UIColor colorWithRed:1.0 green:.4 blue:.5 alpha:1.0];
+    [self.searchBar sizeToFit];
+    self.searchBar.keyboardType=UIKeyboardTypeDefault;
+    
+    
+    [view_bar addSubview:self.searchBar];
+    [self.searchBar becomeFirstResponder];
+    self.strongSearchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
+    self.searchDisplayController.searchResultsDataSource = self;
+    self.searchDisplayController.searchResultsDelegate = self;
+    self.searchDisplayController.delegate = self;
+    [self.searchDisplayController.searchResultsTableView setHidden:YES];
+     */
+//    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar.frame.size.height-44, self.view.frame.size.width-130, 44)];
+//    title_label.text=@"快寻";
+//    title_label.font=[UIFont boldSystemFontOfSize:20];
+//    title_label.backgroundColor=[UIColor clearColor];
+//    title_label.textColor =[UIColor whiteColor];
+//    title_label.textAlignment=1;
+//    [view_bar addSubview:title_label];
+//    
+//    UIButton*btnBack=[UIButton buttonWithType:0];
+//    btnBack.frame=CGRectMake(0, view_bar.frame.size.height-34, 47, 34);
+//    [btnBack setImage:BundleImage(@"btn_back") forState:0];
+//    [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
+//    [view_bar addSubview:btnBack];
     
     
 //    UIButton*btnTJ=[UIButton buttonWithType:0];
@@ -115,8 +159,11 @@
 -(void)btnBack:(id)sender
 {
     AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
-    [app.navigationController popViewControllerAnimated:YES];
-    
+    [app.navigationController popViewControllerAnimated:false];
+    [self.searchBar resignFirstResponder];
+//    [self dismissViewControllerAnimated:false completion:^{
+//        
+//    }];
 }
 
 
@@ -134,26 +181,8 @@
     _marrayAll =[[NSMutableArray alloc]init];
 
  
-    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, view_bar.frame.size.height, 320, 40)];
-    self.searchBar.placeholder = @"搜索你喜欢的宝贝";
-    self.searchBar.delegate = self;
-    self.searchBar.barStyle=UIBarStyleDefault;
-
-    self.searchBar.tintColor=[UIColor colorWithRed:1.0 green:.4 blue:.5 alpha:1.0];
-    self.searchBar.barTintColor=[UIColor colorWithRed:1.0 green:.4 blue:.5 alpha:1.0];
-    [self.searchBar sizeToFit];
-    self.searchBar.keyboardType=UIKeyboardTypeDefault;
-    
-
- 
-    [self.view addSubview:self.searchBar];
-    self.strongSearchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
-    self.searchDisplayController.searchResultsDataSource = self;
-    self.searchDisplayController.searchResultsDelegate = self;
-    self.searchDisplayController.delegate = self;
-    [self.searchDisplayController.searchResultsTableView setHidden:YES];
-//    imageViewToolBar=[[UIImageView alloc]initWithFrame:CGRectMake(0, self.searchBar.frame.size.height+self.searchBar.frame.origin.y, self.view.frame.size.width,35 )];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, self.searchBar.frame.size.height+self.searchBar.frame.origin.y+20, 80, 15)];
+    //    imageViewToolBar=[[UIImageView alloc]initWithFrame:CGRectMake(0, self.searchBar.frame.size.height+self.searchBar.frame.origin.y, self.view.frame.size.width,35 )];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, view_bar.height+view_bar.top+20, 80, 15)];
     label.font = [UIFont boldSystemFontOfSize:10.0f];  //UILabel的字体大小
     label.numberOfLines = 1;  //必须定义这个属性，否则UILabel不会换行
     label.textColor = [UIColor grayColor];
@@ -228,6 +257,11 @@
 {
 
 
+}
+#pragma mark 取消按钮
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    
+    
 }
 #pragma mark 搜索按钮
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar

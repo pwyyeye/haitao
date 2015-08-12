@@ -56,16 +56,16 @@
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>6.1)
     {
         view_bar1 .frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
-        UIImageView *imageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, 44+20)];
-        imageV.backgroundColor=RGB(255, 13, 94);
-        [view_bar1 addSubview:imageV];
+        UIImageView *imageV1=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, 44+20)];
+        imageV1.backgroundColor=RGB(255, 13, 94);
+        [view_bar1 addSubview:imageV1];
         
         
     }else{
         view_bar1 .frame=CGRectMake(0, 0, self.view.frame.size.width,44);
-        UIImageView *imageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width,44)];
-        imageV.backgroundColor=RGB(255, 13, 94);
-        [view_bar1 addSubview:imageV];
+        UIImageView *imageV1=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width,44)];
+        imageV1.backgroundColor=RGB(255, 13, 94);
+        [view_bar1 addSubview:imageV1];
         
     }
     view_bar1.backgroundColor=[UIColor clearColor];

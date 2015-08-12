@@ -126,7 +126,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     
-    return 35;
+    return 33;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -278,13 +278,13 @@
 #pragma mark置顶按钮栏
 -(UIView*)getToolBar
 {
-    UIView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,45 )];
+    UIView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,33 )];
     imageView.backgroundColor=[UIColor clearColor];
     imageView.userInteractionEnabled=YES;
-    [self.view addSubview:imageView];
+    //    [self.view addSubview:imageView];
     if(!btnItem1){
         btnItem1 = [ShaiXuanBtn buttonWithType:UIButtonTypeCustom];
-        [btnItem1 setFrame:CGRectMake(0, 0, self.view.width/5, 45)];
+        [btnItem1 setFrame:CGRectMake(0, 0, imageView.width/5, imageView.height)];
         btnItem1.exclusiveTouch=YES;
         btnItem1.tag = 100;
         [btnItem1 setImage:[UIImage imageNamed:@"filter_btn_moren_default"] forState:UIControlStateNormal];
@@ -297,7 +297,7 @@
     [imageView addSubview:btnItem1];
     if(!btnItem2){
         btnItem2 = [ShaiXuanBtn buttonWithType:UIButtonTypeCustom];
-        [btnItem2 setFrame:CGRectMake(self.view.width/5*1, 0, self.view.width/5, 45)];
+        [btnItem2 setFrame:CGRectMake(self.view.width/5*1, 0, imageView.width/5, imageView.height)];
         
         btnItem2.exclusiveTouch=YES;
         btnItem2.tag = 101;
@@ -310,7 +310,7 @@
     [imageView addSubview:btnItem2];
     if(!btnItem3){
         btnItem3 = [ShaiXuanBtn buttonWithType:UIButtonTypeCustom];
-        [btnItem3 setFrame:CGRectMake(self.view.width/5*2, 0, self.view.width/5, 45)];
+        [btnItem3 setFrame:CGRectMake(self.view.width/5*2, 0, imageView.width/5, imageView.height)];
         btnItem3.exclusiveTouch=YES;
         btnItem3.tag = 102;
         btnItem3.isup=true;
@@ -321,7 +321,7 @@
     [imageView addSubview:btnItem3];
     if(!btnItem4){
         btnItem4 = [ShaiXuanBtn buttonWithType:UIButtonTypeCustom];
-        [btnItem4 setFrame:CGRectMake(self.view.width/5*3, 0, self.view.width/5, 45)];
+        [btnItem4 setFrame:CGRectMake(self.view.width/5*3, 0, imageView.width/5, imageView.height)];
         btnItem4.exclusiveTouch=YES;
         btnItem4.tag = 103;
         btnItem4.isup=true;
@@ -333,7 +333,7 @@
     [imageView addSubview:btnItem4];
     if(!btnItem5){
         btnItem5 = [ShaiXuanBtn buttonWithType:UIButtonTypeCustom];
-        [btnItem5 setFrame:CGRectMake(self.view.width/5*4, 0, self.view.width/5,45)];
+        [btnItem5 setFrame:CGRectMake(self.view.width/5*4, 0, imageView.width/5, imageView.height)];
         btnItem5.exclusiveTouch=YES;
         btnItem5.tag = 104;
         [btnItem5 setImage: [UIImage imageNamed:@"filter_btn_shaixuan_default"] forState:UIControlStateNormal];
