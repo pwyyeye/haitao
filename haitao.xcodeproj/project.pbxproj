@@ -202,7 +202,6 @@
 		AD8AA58F1B59423200E324AD /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8AA58E1B59423200E324AD /* HomeViewController.m */; };
 		AD8AA5931B59425A00E324AD /* HTSeachViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8AA5921B59425A00E324AD /* HTSeachViewController.m */; };
 		AD8AA5961B59427000E324AD /* HTBoutiqueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8AA5951B59427000E324AD /* HTBoutiqueViewController.m */; };
-		AD8AA59C1B5942F800E324AD /* HTCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8AA59B1B5942F800E324AD /* HTCartViewController.m */; };
 		AD8AA6151B59435C00E324AD /* AMRatingControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8AA5A11B59435C00E324AD /* AMRatingControl.m */; };
 		AD8AA6161B59435C00E324AD /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8AA5A41B59435C00E324AD /* ELCAlbumPickerController.m */; };
 		AD8AA6171B59435C00E324AD /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8AA5A61B59435C00E324AD /* ELCAsset.m */; };
@@ -697,6 +696,10 @@
 		ADD2C4371B79CB8600A2E638 /* Cat_indexModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD2C4361B79CB8600A2E638 /* Cat_indexModel.m */; };
 		ADD2C43D1B7A012F00A2E638 /* FilterBrandTabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD2C43C1B7A012F00A2E638 /* FilterBrandTabelView.m */; };
 		ADD2C4401B7A1E1100A2E638 /* ShaiXuanBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD2C43F1B7A1E1100A2E638 /* ShaiXuanBtn.m */; };
+		ADD2C4451B7B4C0700A2E638 /* addToCart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD2C4411B7B4C0700A2E638 /* addToCart@2x.png */; };
+		ADD2C4461B7B4C0700A2E638 /* addToCart@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD2C4421B7B4C0700A2E638 /* addToCart@3x.png */; };
+		ADD2C4471B7B4C0700A2E638 /* shopping_icon_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD2C4431B7B4C0700A2E638 /* shopping_icon_logo@2x.png */; };
+		ADD2C4481B7B4C0700A2E638 /* shopping_icon_logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD2C4441B7B4C0700A2E638 /* shopping_icon_logo@3x.png */; };
 		ADD33A171B65BFA600558372 /* UpdateAddressForEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD33A151B65BFA600558372 /* UpdateAddressForEdit.m */; };
 		ADD33A181B65BFA600558372 /* UpdateAddressForEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD33A161B65BFA600558372 /* UpdateAddressForEdit.xib */; };
 		ADD4D40B1B5B298F004AFBE2 /* HTGoodDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD4D40A1B5B298F004AFBE2 /* HTGoodDetailsViewController.m */; };
@@ -1120,8 +1123,6 @@
 		AD8AA5921B59425A00E324AD /* HTSeachViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTSeachViewController.m; sourceTree = "<group>"; };
 		AD8AA5941B59427000E324AD /* HTBoutiqueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTBoutiqueViewController.h; sourceTree = "<group>"; };
 		AD8AA5951B59427000E324AD /* HTBoutiqueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTBoutiqueViewController.m; sourceTree = "<group>"; };
-		AD8AA59A1B5942F800E324AD /* HTCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTCartViewController.h; sourceTree = "<group>"; };
-		AD8AA59B1B5942F800E324AD /* HTCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTCartViewController.m; sourceTree = "<group>"; };
 		AD8AA5A01B59435C00E324AD /* AMRatingControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMRatingControl.h; sourceTree = "<group>"; };
 		AD8AA5A11B59435C00E324AD /* AMRatingControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMRatingControl.m; sourceTree = "<group>"; };
 		AD8AA5A31B59435C00E324AD /* ELCAlbumPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAlbumPickerController.h; sourceTree = "<group>"; };
@@ -1732,6 +1733,10 @@
 		ADD2C43C1B7A012F00A2E638 /* FilterBrandTabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterBrandTabelView.m; sourceTree = "<group>"; };
 		ADD2C43E1B7A1E1100A2E638 /* ShaiXuanBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaiXuanBtn.h; sourceTree = "<group>"; };
 		ADD2C43F1B7A1E1100A2E638 /* ShaiXuanBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShaiXuanBtn.m; sourceTree = "<group>"; };
+		ADD2C4411B7B4C0700A2E638 /* addToCart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addToCart@2x.png"; sourceTree = "<group>"; };
+		ADD2C4421B7B4C0700A2E638 /* addToCart@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addToCart@3x.png"; sourceTree = "<group>"; };
+		ADD2C4431B7B4C0700A2E638 /* shopping_icon_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopping_icon_logo@2x.png"; sourceTree = "<group>"; };
+		ADD2C4441B7B4C0700A2E638 /* shopping_icon_logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopping_icon_logo@3x.png"; sourceTree = "<group>"; };
 		ADD33A141B65BFA600558372 /* UpdateAddressForEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateAddressForEdit.h; sourceTree = "<group>"; };
 		ADD33A151B65BFA600558372 /* UpdateAddressForEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateAddressForEdit.m; sourceTree = "<group>"; };
 		ADD33A161B65BFA600558372 /* UpdateAddressForEdit.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateAddressForEdit.xib; sourceTree = "<group>"; };
@@ -2471,22 +2476,6 @@
 				AD8AA5951B59427000E324AD /* HTBoutiqueViewController.m */,
 			);
 			name = controllers;
-			sourceTree = "<group>";
-		};
-		AD8AA59D1B59431400E324AD /* controllers */ = {
-			isa = PBXGroup;
-			children = (
-				AD8AA59A1B5942F800E324AD /* HTCartViewController.h */,
-				AD8AA59B1B5942F800E324AD /* HTCartViewController.m */,
-			);
-			name = controllers;
-			sourceTree = "<group>";
-		};
-		AD8AA59E1B59432100E324AD /* model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = model;
 			sourceTree = "<group>";
 		};
 		AD8AA59F1B59435C00E324AD /* Toolkit */ = {
@@ -3367,7 +3356,6 @@
 				ADB5ACAC1B54067B0022B2C2 /* Home */,
 				ADB5ACAE1B5406A20022B2C2 /* Search */,
 				AD8AA5971B59428E00E324AD /* 精品推荐 */,
-				ADB5ACAF1B5406AC0022B2C2 /* Cart */,
 				ADB5ACAB1B54066A0022B2C2 /* User */,
 			);
 			name = Classes;
@@ -3448,15 +3436,6 @@
 				AD8AA6631B59487600E324AD /* controller */,
 			);
 			name = Search;
-			sourceTree = "<group>";
-		};
-		ADB5ACAF1B5406AC0022B2C2 /* Cart */ = {
-			isa = PBXGroup;
-			children = (
-				AD8AA59E1B59432100E324AD /* model */,
-				AD8AA59D1B59431400E324AD /* controllers */,
-			);
-			name = Cart;
 			sourceTree = "<group>";
 		};
 		ADB5ACB01B5406CB0022B2C2 /* Utils */ = {
@@ -3652,6 +3631,10 @@
 		ADD2C4291B78A87100A2E638 /* pwy购物车 */ = {
 			isa = PBXGroup;
 			children = (
+				ADD2C4411B7B4C0700A2E638 /* addToCart@2x.png */,
+				ADD2C4421B7B4C0700A2E638 /* addToCart@3x.png */,
+				ADD2C4431B7B4C0700A2E638 /* shopping_icon_logo@2x.png */,
+				ADD2C4441B7B4C0700A2E638 /* shopping_icon_logo@3x.png */,
 				ADD2C4251B78A0AC00A2E638 /* icon_right2@2x.png */,
 				ADD2C4261B78A0AC00A2E638 /* icon_right2@3x.png */,
 			);
@@ -4035,6 +4018,7 @@
 				ADCF99131B6C72FB00EA5592 /* HelpViewController.xib in Resources */,
 				AD8E36F11B721A1500C9D5BA /* icon_FuWuTiaoKuang.png in Resources */,
 				AD8E379C1B721A1500C9D5BA /* UserCenter_icon_info.png in Resources */,
+				ADD2C4451B7B4C0700A2E638 /* addToCart@2x.png in Resources */,
 				AD8E37511B721A1500C9D5BA /* icon_UpTabBar.png in Resources */,
 				AD8E36F81B721A1500C9D5BA /* icon_Guan@2x.png in Resources */,
 				A2E8D0B21B770D8D0004ADB9 /* NavBar_icon_BaoJian@2x.png in Resources */,
@@ -4206,6 +4190,7 @@
 				A2E8D0DD1B788FF70004ADB9 /* DetailsPage_btn_shouchang@3x.png in Resources */,
 				AD8E373A1B721A1500C9D5BA /* icon_Return@2x.png in Resources */,
 				AD8E35931B70CA4300C9D5BA /* search_icon_xiangbao_@2x.png in Resources */,
+				ADD2C4461B7B4C0700A2E638 /* addToCart@3x.png in Resources */,
 				A2E8D0621B749A490004ADB9 /* DetailsPage_img_gouwuliucheng@2x.png in Resources */,
 				A2E8D0B41B770D8D0004ADB9 /* NavBar_icon_JiaDian@2x.png in Resources */,
 				AD8E35A71B71A82500C9D5BA /* 2_retina.jpg in Resources */,
@@ -4362,10 +4347,12 @@
 				A2E8D08D1B76D8910004ADB9 /* icon_LIqin_selected@2x.png in Resources */,
 				A2E8D0B71B770D8D0004ADB9 /* NavBar_icon_MuYing@3x.png in Resources */,
 				AD8E357F1B70CA4300C9D5BA /* home_img_banner_@2x.png in Resources */,
+				ADD2C4481B7B4C0700A2E638 /* shopping_icon_logo@3x.png in Resources */,
 				AD8E35851B70CA4300C9D5BA /* shuma_icon_shoujipeishi_top_@2x.png in Resources */,
 				ADD2C4111B7830E500A2E638 /* icon_DingDang2@3x.png in Resources */,
 				AD8E351B1B70A11300C9D5BA /* 3@2x.jpg in Resources */,
 				ADD655391B6F3700006F4127 /* userCenter_inco_Share@2x.png in Resources */,
+				ADD2C4471B7B4C0700A2E638 /* shopping_icon_logo@2x.png in Resources */,
 				AD8E357D1B70CA4300C9D5BA /* home_img_qianggou_@2x.png in Resources */,
 				AD8E370A1B721A1500C9D5BA /* icon_Kai_AnZhuo@2x.png in Resources */,
 				AD8E37921B721A1500C9D5BA /* UserCenter_icon_DiZhi@3x.png in Resources */,
@@ -4584,7 +4571,6 @@
 				AD8AA6181B59435C00E324AD /* ELCAssetCell.m in Sources */,
 				AD8E37C01B72F66000C9D5BA /* CollapseClick.m in Sources */,
 				AD8AA6291B59435C00E324AD /* SDWebImageDownloader.m in Sources */,
-				AD8AA59C1B5942F800E324AD /* HTCartViewController.m in Sources */,
 				ADECDC201B672C62009EA286 /* AboutPeiKua.m in Sources */,
 				AD8AA63E1B59435C00E324AD /* UIColor-Expanded.m in Sources */,
 				AD8AA6231B59435C00E324AD /* HZActivityIndicatorSubclassExample.m in Sources */,
