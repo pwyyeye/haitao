@@ -319,6 +319,7 @@
             carShopInfoModel.ischoose=false;
         }
     }
+    [allCheckBtn setSelected:false];
     [self changePrice];
     if(sender.isSelected){
         [self changeToolBar:true];
