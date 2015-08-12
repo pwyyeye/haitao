@@ -63,6 +63,10 @@
 -(UIView*)getNavigationBar
 {
     self.navigationController.navigationBarHidden = YES;
+    self.modalPresentationCapturesStatusBarAppearance = NO;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.extendedLayoutIncludesOpaqueBars = NO;
+    
     view_bar =[[UIView alloc]init];
     view_bar .frame=CGRectMake(0, 0, self.view.frame.size.width, 44+20);
     view_bar.backgroundColor=RGB(255, 13, 94);
@@ -70,8 +74,8 @@
 //    view_bar.backgroundColor=[UIColor whiteColor];
     
     [self.view addSubview: view_bar];
-    serchText = [[UITextField alloc] initWithFrame:CGRectMake(10, 20+7,view_bar.width-10-90 , 30)];
-    [view_bar addSubview:serchText];
+    serchText = [[UITextField alloc] initWithFrame:CGRectMake(20, 20+7,view_bar.width-10-90 , 30)];
+    serchText.textAlignment=NSTextAlignmentCenter;
     serchText.backgroundColor=[UIColor whiteColor];
     serchText.layer.borderWidth=0.5;//描边
     serchText.layer.cornerRadius=4;//圆角
