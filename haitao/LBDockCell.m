@@ -18,16 +18,16 @@
         
         
         
-        UILabel *category =[[UILabel alloc]initWithFrame:(CGRect){0,0,50,30}];
+        UILabel *category =[[UILabel alloc]initWithFrame:(CGRect){0,0,30,30}];
         [self.contentView addSubview:category];
         _category=category;
         
-        UIView *viewShow =[[UIView alloc]initWithFrame:(CGRect){0,49.5,50,0.5}];
+        UIView *viewShow =[[UIView alloc]initWithFrame:(CGRect){0,29.5,30,0.5}];
         viewShow.backgroundColor=[UIColor blackColor];
         viewShow.alpha=0.4;
         [self.contentView addSubview:viewShow];
-        UIView *viewShow1 =[[UIView alloc]initWithFrame:(CGRect){0,0,2,50}];
-        viewShow1.backgroundColor=UIColorRGBA(255, 127, 0, 1);
+        UIView *viewShow1 =[[UIView alloc]initWithFrame:(CGRect){0,0,2,30}];
+        viewShow1.backgroundColor=RGB(255, 13, 94);
         [self.contentView addSubview:viewShow1];
         
         viewShow1.hidden=YES;
@@ -42,7 +42,7 @@
 {
     _category.text=categoryText;
     _category.textAlignment=NSTextAlignmentCenter;
-    _category.font=Font(16);
+    _category.font=Font(13);
     
 }
 

@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 上海市配夸网络科技有限公司. All rights reserved.
 //
 
-#import "ShangChengBtn.h"
+#import "FilterBtn.h"
 
-@implementation ShangChengBtn
+@implementation FilterBtn
 
 /*
 // Only override drawRect: if you perform custom drawing.

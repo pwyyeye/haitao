@@ -8,7 +8,7 @@
 #define NUMBERS @"0123456789."
 #import "ScreenViewController.h"
 #import "IndexModel.h"
-#import "ShangChengBtn.h"
+#import "FilterBtn.h"
 #import "LetterBrandDockTavleView.h"
 #import "LBRightTableView.h"
 #import "LBDockCell.h"
@@ -265,7 +265,7 @@
         for (int i =0; i<shangchengArr.count; i++)
         {
             IndexModel *indexModel=shangchengArr[i];
-            ShangChengBtn *btn=[[ShangChengBtn alloc]initWithFrame:CGRectMake((i%3)*95+12, floor(i/3)*35+5, 90, 30)];
+            FilterBtn *btn=[[FilterBtn alloc]initWithFrame:CGRectMake((i%3)*95+12, floor(i/3)*35+5, 90, 30)];
             // 使用颜色创建UIImage//未选中颜色
             btn.indexModel=indexModel;
             CGSize imageSize = CGSizeMake(btn.frame.size.width, btn.frame.size.height);
@@ -315,7 +315,7 @@
         for (int i =0; i<fenleiArr.count; i++)
         {
             IndexModel *indexModel=fenleiArr[i];
-            ShangChengBtn *btnNine=[[ShangChengBtn alloc]initWithFrame:CGRectMake((i%4)*75+12, floor(i/4)*75+10, 70, 70)];
+            FilterBtn *btnNine=[[FilterBtn alloc]initWithFrame:CGRectMake((i%4)*75+12, floor(i/4)*75+10, 70, 70)];
             btnNine.indexModel=indexModel;
 //            NSString *img=menuTemp.img;
 //            if([img isEqualToString:@""]){

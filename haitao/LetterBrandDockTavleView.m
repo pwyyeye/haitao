@@ -62,8 +62,8 @@
 {
     
     LBDockCell *cell =[LBDockCell cellWithTableView:tableView];
-    cell.categoryText=_dockArray[indexPath.row][@"dockName"];
-    cell.backgroundColor=[UIColor whiteColor];
+    cell.categoryText=_dockArray[indexPath.row];
+    cell.backgroundColor=UIColorRGBA(246, 246, 246, 1);
     return cell;
 }
 
@@ -71,18 +71,19 @@
 {
     if (_path!=nil) {
         LBDockCell *cell = (LBDockCell *)[tableView cellForRowAtIndexPath:_path];
-        cell.backgroundColor=[UIColor whiteColor];
-        cell.category.textColor=[UIColor blackColor];
+        cell.backgroundColor=UIColorRGBA(246, 246, 246, 1);
+        cell.category.textColor=RGB(51, 51, 51);
         cell.viewShow1.hidden=YES;
     }
     if ([_dockDelegate respondsToSelector:@selector(lbDockClickindexPathRow:  index: indeXPath:)]) {
         
-        [_dockDelegate lbDockClickindexPathRow:_dockArray[indexPath.row][@"right"]  index:_path indeXPath:indexPath];
+        [_dockDelegate lbDockClickindexPathRow:_dockArray[indexPath.row] index:_path indeXPath:indexPath];
     }
     //取消选中颜色
     LBDockCell *cell = (LBDockCell *)[tableView cellForRowAtIndexPath:indexPath];
-    cell.category.textColor=UIColorRGBA(255, 127, 0, 1);
-    cell.backgroundColor=UIColorRGBA(246, 246, 246, 1);
+    cell.category.textColor=RGB(255, 13, 94);
+    
+    cell.backgroundColor=[UIColor whiteColor];
     cell.viewShow1.hidden=NO;
     _path=indexPath;
     

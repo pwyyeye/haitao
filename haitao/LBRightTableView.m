@@ -7,8 +7,9 @@
 //
 
 #import "LBRightTableView.h"
-#import "LBRightCell.h"
 #import "Header.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#import "IndexModel.h"
 @implementation LBRightTableView
 -(id)initWithFrame:(CGRect)frame
 {
@@ -17,8 +18,6 @@
         self.dataSource=self;
         self.delegate=self;
         
-        
-        
     }
     
     return self;
@@ -26,7 +25,9 @@
 
 
 
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
@@ -36,17 +37,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LBRightCell *cell =[LBRightCell cellWithTableView:tableView];
-    cell.TapActionBlock=^(NSInteger pageIndex ,NSInteger money,NSString *key){
-        if ([self.rightDelegate respondsToSelector:@selector(lbQuantity:money:key:)]) {
-            [self.rightDelegate lbQuantity:pageIndex money:money key:key];
-        }
-        
-    };
-    
-    cell.backgroundColor=UIColorRGBA(246, 246, 246, 1);
-    cell.rightData=_rightArray[indexPath.row];
+    static NSString *CellIdentifier = @"rightCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier]; //出列可重用的cell
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"OrderListCell"];
+    }
+//    cell.rightData=_rightArray[indexPath.row];
+    for (UIView *view in cell.contentView.subviews) {
+        [view removeFromSuperview];
+    }
+    [cell.contentView addSubview:_rightArray[indexPath.row]];
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
+
     return cell;
+//
     
     
 }
@@ -63,5 +67,9 @@
     // Drawing code
 }
 */
+
+
+
+    
 
 @end

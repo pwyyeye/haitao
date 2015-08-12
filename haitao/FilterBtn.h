@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "IndexModel.h"
 #import "UrlImageButton.h"
-@interface ShangChengBtn : UrlImageButton
+@interface FilterBtn : UrlImageButton
 @property (retain, nonatomic) IndexModel *indexModel;
 @end
