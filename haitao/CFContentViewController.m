@@ -154,6 +154,8 @@
     for (int i =0; i<arrTemp.count; i++)
     {
         New_Goods *new_Goods=arrTemp[i];
+        
+        
         GoodImageButton *gbBtn=[[GoodImageButton alloc]initWithFrame:CGRectMake((i%2)*((SCREEN_WIDTH-20)/2-5+10)+10, floor(i/2)*190+10, (SCREEN_WIDTH-20)/2-5, 180)];
         gbBtn.userInteractionEnabled=YES;
         gbBtn.backgroundColor=[UIColor whiteColor];
@@ -229,8 +231,9 @@
     }
     CGRect cellFrame = [cell frame];
     cellFrame.origin=CGPointMake(0, 0);
-    cellFrame.size.width=320;
-    cellFrame.size.height=140+40+10+20+10;
+    cellFrame.size.width=SCREEN_WIDTH;
+    cellFrame.size.height=lastFrame.size.height+10;
+
     [cell setFrame:cellFrame];
     
     
