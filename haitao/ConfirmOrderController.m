@@ -409,10 +409,10 @@
         ShowMessage(@"请选择收货地址！");
         return;
     }
-//    if ([_selectedAddress.idcard_status integerValue]!=1) {
-//        ShowMessage(@"必须上传真实有效身份证信息，才能进行购买！");
-//        return;
-//    }
+    if ([_selectedAddress.idcard_status integerValue]!=1) {
+        ShowMessage(@"必须上传真实有效身份证信息，才能进行购买！");
+        return;
+    }
     [_timer setFireDate:[NSDate distantPast]];//开启
     
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];

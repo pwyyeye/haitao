@@ -328,7 +328,7 @@ static CGFloat kImageOriginHight = 400;
     yansechicunImg.userInteractionEnabled=YES;
     [_scrollView addSubview:yansechicunImg];
     
-    UILabel *yansechicunLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, yansechicunImg.frame.size.height/2-20/2, 150, 25)];
+    UILabel *yansechicunLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, yansechicunImg.frame.size.height/2-30/2, 150, 30)];
     yansechicunLbl.text=@"选择颜色和尺寸";
     yansechicunLbl.font=[UIFont boldSystemFontOfSize:13];
     yansechicunLbl.backgroundColor=[UIColor clearColor];
@@ -1058,7 +1058,7 @@ static CGFloat kImageOriginHight = 400;
     CFContentForDicKeyViewController *contentForDicKeyViewController=[[CFContentForDicKeyViewController alloc]init];
     NSDictionary *dic=@{@"shop":self.goods.shop_id,@"need_cat_index":@1};
     contentForDicKeyViewController.keyDic=dic;
-    contentForDicKeyViewController.title=self.goods.shop_name;
+    contentForDicKeyViewController.topTitle=self.goods.shop_name;
     AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
     [app.navigationController pushViewController:contentForDicKeyViewController animated:YES];
 }
@@ -1067,7 +1067,7 @@ static CGFloat kImageOriginHight = 400;
     CFContentForDicKeyViewController *contentForDicKeyViewController=[[CFContentForDicKeyViewController alloc]init];
     NSDictionary *dic=@{@"brand":self.goods.brand_id,@"need_cat_index":@1};
     contentForDicKeyViewController.keyDic=dic;
-    contentForDicKeyViewController.title=self.goods.brand_name;
+    contentForDicKeyViewController.topTitle=self.goods.brand_name;
 
     AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
     [app.navigationController pushViewController:contentForDicKeyViewController animated:YES];

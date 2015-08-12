@@ -49,6 +49,8 @@
     listArr =[[NSMutableArray alloc]init];
     
     _inParameters=[self.keyDic mutableCopy];
+    self.navigationController.title=[_keyDic objectForKey:@"keyword"]?[_keyDic objectForKey:@"keyword"]:self.topTitle;
+    
     [self getGoodsList];
 //    [self getGoodlist:self.dataList];
 //    NSDictionary *parameters = @{@"s_cat":self.menuid,@"need_cat_index":@1};
@@ -482,7 +484,8 @@
     }
     else if(btn.tag==104)
     {
-        FilterViewController *filterViewController=[[FilterViewController alloc]initWithNibName:@"FilterViewController" bundle:nil andFilterType:FilterViewControllTypeCategary andParameter:_inParameters];
+        
+        FilterViewController *filterViewController=[[FilterViewController alloc]initWithNibName:@"FilterViewController" bundle:nil andFilterType:[[_inParameters allKeys] containsObject:@"brand"]? FilterViewControllTypeBrand:FilterViewControllTypeShop andParameter: _inParameters];
         filterViewController.delegate=self;
         filterViewController.pamCategoryName=self.topTitle;
         //        filterViewController.categoryImageUrl=分类图片地址

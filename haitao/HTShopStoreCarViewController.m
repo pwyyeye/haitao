@@ -96,7 +96,7 @@
 -(void)showEmptyView{
     [_empty_view removeFromSuperview];
     if(carShopList.count==0){
-        _empty_view=[[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 104)];
+        _empty_view=[[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 113)];
         _empty_view.backgroundColor=RGB(237, 237, 237);
 
         UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-75, SCREEN_HEIGHT/2-164, 150, 150)];
