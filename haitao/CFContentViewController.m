@@ -50,6 +50,8 @@
     [self.view addSubview:_tableView];
     listArr =[[NSMutableArray alloc]init];
     [self getGoodlist:self.dataList];
+    NSDictionary *parameters = @{@"s_cat":self.menuid,@"need_cat_index":@1};
+    _inParameters=[parameters mutableCopy];
     // Do any additional setup after loading the view.
 }
 #pragma mark获取商品数据
@@ -438,18 +440,26 @@
     }
     else if(btn.tag==104)
     {
-        ScreenViewController *screenViewController=[[ScreenViewController alloc]init];
-//        screenViewController.indexDic=indexDic;
+        FilterViewController *filterViewController=[[FilterViewController alloc]initWithNibName:@"FilterViewController" bundle:nil andFilterType:FilterViewControllTypeCategary andParameter:_inParameters];
+        filterViewController.delegate=self;
+        filterViewController.pamCategoryName=self.topTitle;
+//        filterViewController.categoryImageUrl=分类图片地址
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
-        [delegate.navigationController pushViewController:screenViewController animated:YES];
+        [delegate.navigationController pushViewController:filterViewController animated:YES];
         
         
     }
     [self paixu:sortkey];
 }
+//获取数据刷新
+-(void)getFilterResult:(NSArray *)resultArray{
+    [self getGoodlist:resultArray];
+}
+
 #pragma mark 排序
 -(void)paixu:(NSString *)soryKey{
     NSDictionary *parameters = @{@"s_cat":self.menuid,@"need_cat_index":@1,@"sort":soryKey};
+    _inParameters=[parameters mutableCopy];
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
     ;
     
@@ -482,8 +492,7 @@
 -(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
     //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     //    [app stopLoading];
-    NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
-    NSString *status=[dictemp objectForKey:@"status"];
+
     //    if(![status isEqualToString:@"1"]){
     ////        [self showMessage:message];
     ////        return ;
@@ -532,7 +541,7 @@
 #pragma mark -获取分类下的商品信息
 -(void)getMenuGoodsList:(NSString *)s_cat{
     NSDictionary *parameters = @{@"s_cat":s_cat,@"need_cat_index":@1};
-    
+    _inParameters=[parameters mutableCopy];
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
     ;
     

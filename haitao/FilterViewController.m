@@ -10,6 +10,7 @@
 #import "FilterGoodsModel.h"
 #import "Cat_indexModel.h"
 #import "IndexModel.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 @interface FilterViewController ()
 
 @end
@@ -84,21 +85,24 @@
     _coll.cellHeight=40;
     _coll.scrollEnabled=NO;
 
+    _brand_leftArray=@[@"默认",@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z"];
     
     [self.footerView addSubview:_coll];
     
     
     [self initDataWithParameter:_inParameter];
     
- _brand_leftArray=@[@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z"];
-    
+    if (_filterType==FilterViewControllTypeCategary) {
+        _categoryName.text=_pamCategoryName;
+        [_categoryImageView setImageWithURL:[NSURL URLWithString:_categoryImageUrl] placeholderImage:[UIImage imageNamed:@"default_04"]];
+    }
 }
 
 
 -(void)initDataWithParameter:(NSDictionary *)parameter{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
-    
+    NSLog(@"----pass-initDataWithParameter%@---",parameter);
     HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_getGoodsList withType:POSTURL withPam:parameter withUrlName:@"getGoodsList"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
@@ -120,7 +124,7 @@
     NSLog(@"----pass-pass %@---",@"makeSure");
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
-    NSMutableDictionary *mutarray=[_inParameter copy];
+    NSMutableDictionary *mutarray=[_inParameter mutableCopy];
     if (![MyUtil isEmptyString:_selected_brand]) {
         [mutarray setObject:_selected_brand forKey:@"brand"];
     }
@@ -159,6 +163,11 @@
     self.viewWidth.constant=SCREEN_WIDTH;
     if (_filterType!=FilterButtonTypeCategaty) {
         _categoryViewHeight.constant=0;
+        _categatyNameHeight.constant=0;
+        _categatyImageHeight.constant=0;
+        _headLineHeight.constant=0;
+        _categoryName.text=@"";
+    
     }
     //tableView的高度时header＋footer＋cell高度*cell个数
 
@@ -199,6 +208,9 @@
 
             if ([self.delegate respondsToSelector:@selector(getFilterResult:)]) {
                 [self.delegate getFilterResult:listModel.list];
+                
+                [self.navigationController popViewControllerAnimated:YES];
+
             }
         }
 
@@ -432,39 +444,144 @@
 -(void)didClickCollapseClickCellAtIndex:(int)index isNowOpen:(BOOL)open {
     NSLog(@"%d and it's open:%@", index, (open ? @"YES" : @"NO"));
     if (open) {
-        switch (index) {
-            case 0:
-            {
-                _collHeightTotal+=_shopsView.frame.size.height;
-               
+        if (_filterType==FilterViewControllTypeDefault) {
+            switch (index) {
+                    
+                case 0:
+                {
+                    _collHeightTotal+=_shopsView.frame.size.height;
+                    
+                }
+                    break;
+                case 1:
+                {
+                    _collHeightTotal+=_categatiesView.frame.size.height;
+                    
+                }
+                    break;
+                case 2:
+                    _collHeightTotal+=_brandTableView.frame.size.height;
+                default:
+                    break;
             }
-                break;
-            case 1:
-            {
-                 _collHeightTotal+=_categatiesView.frame.size.height;
+        }else if(_filterType==FilterViewControllTypeShop){
+            switch (index) {
+                case 0:
+                {
+                    _collHeightTotal+=_categatiesView.frame.size.height;
+                    
+                }
+                    break;
+                case 1:
+                    _collHeightTotal+=_brandTableView.frame.size.height;
+                default:
+                break;                    }
+        }else if(_filterType==FilterViewControllTypeCategary){
+            switch (index) {
+                    
+                case 0:
+                {
+                    _collHeightTotal+=_shopsView.frame.size.height;
+                    
+                }
+                    break;
+                case 1:
+                    _collHeightTotal+=_brandTableView.frame.size.height;
+                default:
+                    break;
+            }
+        }else if(_filterType==FilterViewControllTypeBrand){
+            switch (index) {
+                    
+                case 0:
+                {
+                    _collHeightTotal+=_shopsView.frame.size.height;
+                    
+                }
+                    break;
+                case 1:
+                {
+                    _collHeightTotal+=_categatiesView.frame.size.height;
+                    
+                }
+                    break;
+                default:
+                    break;
+            }
+        }
+        
 
-            }
-                break;
-            case 2:
-                _collHeightTotal+=_brandTableView.frame.size.height;
-            default:
-                break;
-        }
     }else{
-        switch (index) {
-            case 0:
-                _collHeightTotal-=_shopsView.frame.size.height;
-                break;
-            case 1:
-                _collHeightTotal-=_categatiesView.frame.size.height;
-                break;
-            case 2:
-                _collHeightTotal-=_brandTableView.frame.size.height;
-                break;
-            default:
-                break;
+        if (_filterType==FilterViewControllTypeDefault) {
+            switch (index) {
+                    
+                case 0:
+                {
+                    _collHeightTotal-=_shopsView.frame.size.height;
+                    
+                }
+                    break;
+                case 1:
+                {
+                    _collHeightTotal-=_categatiesView.frame.size.height;
+                    
+                }
+                    break;
+                case 2:
+                    _collHeightTotal-=_brandTableView.frame.size.height;
+                default:
+                    break;
+            }
+        }else if(_filterType==FilterViewControllTypeShop){
+            switch (index) {
+                case 0:
+                {
+                    _collHeightTotal-=_categatiesView.frame.size.height;
+                    
+                }
+                    break;
+                case 1:
+                    _collHeightTotal-=_brandTableView.frame.size.height;
+                default:
+                break;                    }
+        }else if(_filterType==FilterViewControllTypeCategary){
+            switch (index) {
+                    
+                case 0:
+                {
+                    _collHeightTotal-=_shopsView.frame.size.height;
+                    
+                }
+                    break;
+                case 1:
+                    _collHeightTotal-=_brandTableView.frame.size.height;
+                default:
+                    break;
+            }
+        }else if(_filterType==FilterViewControllTypeBrand){
+            switch (index) {
+                    
+                case 0:
+                {
+                    _collHeightTotal-=_shopsView.frame.size.height;
+                    
+                }
+                    break;
+                case 1:
+                {
+                    _collHeightTotal-=_categatiesView.frame.size.height;
+                    
+                }
+                    break;
+                default:
+                    break;
+            }
+
+        
         }
+
     }
+    NSLog(@"----pass-_collHeight%f---",_collHeightTotal);
      _coll.frame=CGRectMake(_coll.frame.origin.x, _coll.frame.origin.y, SCREEN_WIDTH, _collHeightTotal+3*_coll.cellHeight+20);
     [self updateViewConstraints];
     

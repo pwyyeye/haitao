@@ -37,7 +37,11 @@ typedef NS_ENUM(NSInteger, FilterViewControllerType) {
 
 @property (weak, nonatomic) IBOutlet UILabel *categoryName;
 
+@property(strong,nonatomic) NSString *pamCategoryName;//给categoryName赋值
+
 @property (weak, nonatomic) IBOutlet UIImageView *categoryImageView;
+
+@property(strong,nonatomic) NSString *categoryImageUrl;//给categoryImageView赋值
 
 //开始价格
 @property (weak, nonatomic) IBOutlet UITextField *beginPrice;
@@ -64,6 +68,16 @@ typedef NS_ENUM(NSInteger, FilterViewControllerType) {
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewHeight;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryViewHeight;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *categatyImageHeight;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *categatyNameHeight;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headLineHeight;
+
+
+
+
 
 
 //其他

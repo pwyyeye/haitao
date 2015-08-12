@@ -8,6 +8,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterViewController">
             <connections>
                 <outlet property="beginPrice" destination="rcZ-xh-LiK" id="uOE-zb-EmA"/>
+                <outlet property="categatyImageHeight" destination="Y8G-2l-18F" id="rvy-BK-Dvz"/>
+                <outlet property="categatyNameHeight" destination="o4H-E0-sjI" id="NJr-7i-gFu"/>
                 <outlet property="categoryImageView" destination="NG4-Ok-Oo2" id="ho1-rK-2vg"/>
                 <outlet property="categoryName" destination="QyQ-2Z-8rW" id="Iea-Qn-qc5"/>
                 <outlet property="categoryView" destination="dwD-kI-tG3" id="7vR-7g-E2i"/>
@@ -15,6 +17,7 @@
                 <outlet property="directBtn" destination="XgH-eB-D0K" id="INM-sU-JPG"/>
                 <outlet property="endPrice" destination="6y4-E0-uTv" id="rs2-KW-7J9"/>
                 <outlet property="footerView" destination="9HY-Bb-jIx" id="slL-5f-QLv"/>
+                <outlet property="headLineHeight" destination="NxG-EJ-Chy" id="4cs-RN-clO"/>
                 <outlet property="hengxian" destination="gND-dR-Szd" id="2u9-cf-Pof"/>
                 <outlet property="hengxianHeight" destination="TXb-rG-0cd" id="OR9-49-LYj"/>
                 <outlet property="myScrollView" destination="Qrg-xp-k6y" id="XlH-FJ-yEh"/>
@@ -184,6 +187,9 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="某某某品牌" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QyQ-2Z-8rW">
                                             <rect key="frame" x="10" y="20" width="65" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="16" id="o4H-E0-sjI"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                             <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -206,7 +212,7 @@
                                                 </mask>
                                             </variation>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NG4-Ok-Oo2">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_04.png" translatesAutoresizingMaskIntoConstraints="NO" id="NG4-Ok-Oo2">
                                             <rect key="frame" x="95" y="10" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="1zP-at-w9u"/>
@@ -273,4 +279,7 @@
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="default_04.png" width="64" height="47"/>
+    </resources>
 </document>
