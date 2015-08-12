@@ -14,6 +14,9 @@
 #import "Order_goods.h"
 #import "Order_goodsAttr.h"
 #import "LogisticsViewController.h"
+#import "New_Goods.h"
+#import "Goods_Ext.h"
+#import "HTGoodDetailsViewController.h"
 @interface PackageDetailController ()
 
 @end
@@ -52,6 +55,11 @@
 //    _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
 //    self.tableView.tableFooterView=[[UIView alloc]init];
     [self initData];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -305,6 +313,29 @@
             ShowMessage(@"已确认收货！");
             [self initData];
         }
+        
+        if([urlname isEqualToString:@"getGoodsDetail"]){
+            NSDictionary *dataDic=[dictemp objectForKey:@"data"];
+            NSDictionary *goods_detail=[dataDic objectForKey:@"goods_detail"];
+            NSDictionary *goods_ext=[dataDic objectForKey:@"goods_ext"];
+            NSArray *goods_image=[dataDic objectForKey:@"goods_image"];
+            NSDictionary *goods_attr=[dataDic objectForKey:@"goods_attr"];
+            //        NSArray *priceArr=[goods_attr objectForKey:@"price"];
+            //        NSArray *attr_infoArr=[goods_attr objectForKey:@"attr_info"];
+            NSArray *goods_parity=[dataDic objectForKey:@"goods_parity"];
+            New_Goods *newGoods = [New_Goods objectWithKeyValues:goods_detail] ;
+            Goods_Ext *goodsExt=[Goods_Ext objectWithKeyValues:goods_ext];
+            //        NSDictionary *menuIndexDic=[dataDic objectForKey:@"cat_index"];
+            HTGoodDetailsViewController *htGoodDetailsViewController=[[HTGoodDetailsViewController alloc]init];
+            htGoodDetailsViewController.goods_parity=goods_parity;
+            htGoodDetailsViewController.goods=newGoods;
+            htGoodDetailsViewController.goods_attr=goods_attr;
+            htGoodDetailsViewController.goodsExt=goodsExt;
+            htGoodDetailsViewController.goods_image=goods_image;
+            AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+            [delegate.navigationController pushViewController:htGoodDetailsViewController animated:YES];
+            
+        }
     }
     
 }
@@ -315,6 +346,15 @@
     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     vc.packageModel=_packageModel;
     [self.navigationController pushViewController:vc animated:YES];
+}
+-(void)gotoGoodsDetail:(NSString *) goods_id{
+    NSDictionary *parameters = @{@"id":goods_id};
+    NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
+    ;
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsDetail"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
 }
 
 -(void)confirmPackage:(UIButton *)sender{
@@ -558,6 +598,10 @@
     return cell;
     
     
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    Order_goods *goods=[_packageModel.package_info.goods objectAtIndex:indexPath.row];
+    [self gotoGoodsDetail:goods.id];
 }
 
 #pragma mark - Collapse Click Delegate

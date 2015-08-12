@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+#import <CommonCrypto/CommonDigest.h>
 @interface MyUtil : NSObject
 
 +(MyUtil *)shareUtil;
@@ -33,4 +33,6 @@
 +(NSString *)getFormatDate:(NSDate *)date;
 
 +(NSString *)trim:(NSString *)string;
+
++ (NSString *)md5HexDigest:(NSString*)input;
 @end

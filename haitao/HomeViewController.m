@@ -91,6 +91,7 @@
     
     [self.view addSubview:topButton];
     self.view.backgroundColor=[UIColor whiteColor];
+    
     [self reloadAll];
 //    isfirst=true;
 //    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:YES];
@@ -147,6 +148,7 @@
     [new_goods_pageDic removeAllObjects];
     nowpage =@"0";
     [self._scrollView.pullToRefreshView stopAnimating];
+    
     [self getMenuData];
 }
 - (void)refresh:(DJRefresh *)refresh didEngageRefreshDirection:(DJRefreshDirection)direction{

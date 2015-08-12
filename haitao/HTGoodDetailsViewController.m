@@ -75,6 +75,7 @@ static CGFloat kImageOriginHight = 400;
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self.navigationController setNavigationBarHidden:YES];
     _bigImg.frame=CGRectMake(0, -kImageOriginHight, _scrollView.frame.size.width, kImageOriginHight);
 //    _scrollView.contentOffset=CGPointMake(0, -kImageOriginHight+100);
 }

@@ -128,7 +128,7 @@
         ShowMessage(@"密码不能为空！");
         return;
     }
-    NSDictionary *dic=@{@"mobile":_mobile.text,@"mobile_code":_captcha.text,@"user_pass":_password.text,@"gotologin":@"1"};
+    NSDictionary *dic=@{@"mobile":_mobile.text,@"mobile_code":_captcha.text,@"user_pass":[MyUtil md5HexDigest:_password.text],@"gotologin":@"1"};
     HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_doMobileRegist withType:POSTURL withPam:dic withUrlName:@"registerAccount"];
     
     

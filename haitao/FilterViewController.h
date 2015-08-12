@@ -10,7 +10,28 @@
 #import "CollapseClick.h"
 #import "FilterViewForButtons.h"
 #import "FilterBrandTabelView.h"
-@interface FilterViewController : UIViewController<HTTPControllerProtocol, UITableViewDataSource,UITableViewDelegate,CollapseClickDelegate>
+
+typedef NS_ENUM(NSInteger, FilterViewControllerType) {
+    FilterViewControllTypeDefault = 0, // 所有搜索
+    FilterViewControllTypeCategary = 1,//类别
+    FilterViewControllTypeShop=2,//商城
+    FilterViewControllTypeBrand=3 //品牌
+};
+
+@protocol FilterViewControllerDelegate <NSObject>
+
+-(void)getFilterResult:(NSArray *)resultArray;
+
+@end
+
+@interface FilterViewController : UIViewController<HTTPControllerProtocol,CollapseClickDelegate,FilterViewForButtonsDelegate,FilterBrandTabelViewDelegate>
+
+@property(strong,nonatomic) id<FilterViewControllerDelegate> delegate;
+
+@property(assign,nonatomic,readonly) FilterViewControllerType filterType;
+
+@property(strong,nonatomic) NSDictionary *inParameter;
+
 //分类三选项
 @property (weak, nonatomic) IBOutlet UIView *categoryView;
 
@@ -44,6 +65,7 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryViewHeight;
 
+
 //其他
 //下来伸缩
 @property(strong,nonatomic) CollapseClick *coll;
@@ -67,7 +89,17 @@
 
 @property(strong,nonatomic) FilterBrandTabelView *brandTableView;
 
+@property(strong,nonatomic) NSString *selected_shop;
+
+@property(strong,nonatomic) NSString *selected_brand;
+
+@property(strong,nonatomic) NSString *selected_categary;
 
 
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andFilterType:(FilterViewControllerType) type andParameter:(NSDictionary *)parameter;
+
+- (IBAction)btnClick:(id)sender;
+
+- (IBAction)didEndOnExit:(id)sender;
 
 @end

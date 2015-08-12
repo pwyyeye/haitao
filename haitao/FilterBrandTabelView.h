@@ -9,7 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "LetterBrandDockTavleView.h"
 #import "LBRightTableView.h"
+#import "IndexModel.h"
+
+@protocol FilterBrandTabelViewDelegate <NSObject>
+
+-(void)buttonClickForBrand:(IndexModel *)indexModel;
+
+
+@end
+
 @interface FilterBrandTabelView : UIView<LetterBrandDockDelegate>
+
+@property(strong,nonatomic) id<FilterBrandTabelViewDelegate> delegate;
 
 @property(strong,nonatomic) LetterBrandDockTavleView *leftTable;
 

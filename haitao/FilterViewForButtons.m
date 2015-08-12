@@ -167,9 +167,14 @@
         }
         
     }
+    
     if (!sender.selected) {
         sender.backgroundColor=RGB(255, 13, 94);
         sender.selected=YES;
+        if ([self.delegate respondsToSelector:@selector(buttonClickForShopOrCategary:andType:)]) {
+            FilterBtn *btn=(FilterBtn *)sender;
+            [self.delegate buttonClickForShopOrCategary:btn.indexModel andType:FilterButtonTypeShop];
+        }
     }else{
         sender.backgroundColor=[UIColor whiteColor];
         sender.selected=NO;
@@ -192,6 +197,10 @@
         sender.layer.borderColor=RGB(255, 13, 94).CGColor;
         sender.layer.borderWidth=0.5;
         sender.selected=YES;
+        if ([self.delegate respondsToSelector:@selector(buttonClickForShopOrCategary:andType:)]) {
+            FilterBtn *btn=(FilterBtn *)sender;
+            [self.delegate buttonClickForShopOrCategary:btn.indexModel andType:FilterButtonTypeCategaty];
+        }
     }else{
         sender.layer.borderColor=CLEARCOLOR.CGColor;
         sender.layer.borderWidth=0;
