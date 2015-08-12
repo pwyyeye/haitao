@@ -26,9 +26,17 @@
         
         
         
-        UILabel *category =[[UILabel alloc]initWithFrame:(CGRect){0,0,75,50}];
+        UILabel *category =[[UILabel alloc]initWithFrame:(CGRect){23,0,75-23,75-28}];
         [self.contentView addSubview:category];
         _category=category;
+        UrlImageView *urlImgeView=[[UrlImageView alloc]initWithFrame:CGRectMake(2, 10, 25, 25)];
+        [urlImgeView setContentMode:UIViewContentModeScaleAspectFill];
+        urlImgeView.backgroundColor=[UIColor clearColor];
+        [self.contentView addSubview:urlImgeView];
+        _urlView=urlImgeView;
+        
+        
+
         
         UIView *viewShow =[[UIView alloc]initWithFrame:(CGRect){0,49.5,75,0.5}];
         viewShow.backgroundColor=[UIColor blackColor];
@@ -50,10 +58,12 @@
 {
     _category.text=categoryText;
     _category.textAlignment=NSTextAlignmentCenter;
-    _category.font=Font(16);
+    _category.font=Font(12);
     
 }
-
+-(void)setImgurlText:(NSString *)imgurlText{
+    [_urlView setImage:[UIImage imageNamed:imgurlText]];
+}
 + (instancetype)cellWithTableView:(UITableView *)tableView
 {
     static NSString *ID = @"BADockCell";

@@ -11,7 +11,9 @@
 #import "Header.h"
 @interface BAWineShoppingDockTavleView ()<UITableViewDelegate,UITableViewDataSource>
 
-
+{
+    bool isfis;
+}
 
 @property (nonatomic ,strong) NSIndexPath *path;
 
@@ -24,6 +26,7 @@
 -(id)initWithFrame:(CGRect)frame
 {
     self =[super initWithFrame:frame];
+    isfis=true;
     if (self) {
         self.dataSource=self;
         self.delegate=self;
@@ -67,8 +70,15 @@
     
     BADockCell *cell =[BADockCell cellWithTableView:tableView];
     cell.categoryText=_dockArray[indexPath.row][@"dockName"];
+    cell.imgurlText=_dockArray[indexPath.row][@"image"];
     cell.backgroundColor=RGB(237, 237, 237);
- 
+    if(indexPath.row==0){
+        if(isfis){
+            isfis=false;
+            cell.backgroundColor=[UIColor whiteColor];
+            cell.viewShow1.hidden=NO;
+        }
+    }
     
     return cell;
 }
@@ -78,7 +88,7 @@
     if (_path!=nil) {
         BADockCell *cell = (BADockCell *)[tableView cellForRowAtIndexPath:_path];
         cell.backgroundColor=RGB(237, 237, 237);
-        cell.category.textColor=RGB(51, 51, 51);
+//        cell.category.textColor=RGB(51, 51, 51);
         cell.viewShow1.hidden=YES;
     }
     if ([_dockDelegate respondsToSelector:@selector(dockClickindexPathRow:  index: indeXPath:)]) {
@@ -87,7 +97,7 @@
     }
     //取消选中颜色
     BADockCell *cell = (BADockCell *)[tableView cellForRowAtIndexPath:indexPath];
-    cell.category.textColor=RGB(255, 13, 94);
+//    cell.category.textColor=RGB(255, 13, 94);
     cell.backgroundColor=[UIColor whiteColor];
     cell.viewShow1.hidden=NO;
     _path=indexPath;
