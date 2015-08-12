@@ -517,6 +517,34 @@
     
     return view_bar1;
 }
+#pragma mark - 下拉刷新页面
+-(void)reloadAll{
+    
+    
+    [self getCatBanner];
+}
+- (void)refresh:(DJRefresh *)refresh didEngageRefreshDirection:(DJRefreshDirection)direction{
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * USEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self addDataWithDirection:direction];
+    });
+    
+    
+    
+}
+- (void)addDataWithDirection:(DJRefreshDirection)direction{
+    
+    if (direction==DJRefreshDirectionTop) {
+        [self reloadAll];
+    }
+    
+    
+    [_refresh finishRefreshingDirection:direction animation:YES];
+    
+    
+    
+}
+
 /*
 #pragma mark - Navigation
 
