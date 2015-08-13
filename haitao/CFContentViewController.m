@@ -472,6 +472,15 @@
 }
 #pragma mark 商品详细信息
 -(void)goodContentTouch:(GoodImageButton *)sender{
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(goodContentTouchDo:) object:sender];
+    [self performSelector:@selector(goodContentTouchDo:) withObject:sender afterDelay:0.2f];
+
+    
+    
+    
+}
+-(void)goodContentTouchDo:(GoodImageButton *)sender{
+    
     New_Goods *goods=sender.goods;
     //    NSDictionary *parameters = @{@"id":@"626"};
     NSDictionary *parameters = @{@"id":goods.id};//goods.id
