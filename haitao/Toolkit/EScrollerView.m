@@ -47,7 +47,7 @@
 		viewSize=rect;
 //        NSUInteger pageCount=3;
            NSUInteger pageCount=titleArray.count;
-        scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH)];
+        scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, viewSize.size.width, viewSize.size.height)];
         scrollView.pagingEnabled = YES;
         scrollView.contentSize = CGSizeMake(viewSize.size.width * pageCount, viewSize.size.height);
         scrollView.showsHorizontalScrollIndicator = NO;
@@ -59,7 +59,7 @@
         {
             UrlImageView *imgView=[[UrlImageView alloc] init];
             [imgView setContentMode:UIViewContentModeScaleAspectFill];
-            [imgView setFrame:CGRectMake(viewSize.size.width*i, 0,SCREEN_WIDTH, SCREEN_WIDTH)];
+            [imgView setFrame:CGRectMake(viewSize.size.width*i, 0,viewSize.size.width, viewSize.size.height)];
             imgView.tag= i;
             imgView.backgroundColor=[UIColor grayColor];
             if ([[imagePathArray objectAtIndex:i]length]>0)
