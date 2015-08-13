@@ -589,7 +589,7 @@ static CGFloat kImageOriginHight = 400;
                                              appKey:UmengAppkey
                                           shareText:ss
                                          shareImage:nil
-                                    shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,nil]
+                                    shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,UMShareToEmail,nil]
                                            delegate:nil];
     
     
