@@ -55,6 +55,8 @@
 #pragma mark 获取精品推荐
 -(void)getCatBanner{
     //NSDictionary *parameters = @{@"cat_id":self.menuModel.id};
+    
+ 
     NSDictionary *parameters = @{@"id":@"2"};
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getSubjectInfo",requestUrl]
     ;
@@ -65,6 +67,7 @@
     
     
 }
+
 #pragma mark 接受数据
 -(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
     //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -451,11 +454,18 @@
 #pragma mark 分类
 -(void)btnFenlei:(CFImageButton *)sender
 {
-    
-    [self getCatBanner];
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(getCatBanner) object:nil];
+    [self performSelector:@selector(getCatBanner) withObject:sender afterDelay:0.2f];
+//    [self getCatBanner];
     
 }
 -(void)goodContentTouch:(GoodImageButton *)sender{
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(goodContentTouchDo:) object:sender];
+    [self performSelector:@selector(goodContentTouchDo:) withObject:sender afterDelay:0.2f];
+    
+    
+}
+-(void)goodContentTouchDo:(GoodImageButton *)sender{
     New_Goods *goods=sender.goods;
     //    NSDictionary *parameters = @{@"id":@"626"};
     NSDictionary *parameters = @{@"id":goods.id};
@@ -465,8 +475,6 @@
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsDetail"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
-    
-    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

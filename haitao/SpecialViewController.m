@@ -129,6 +129,11 @@
 }
 #pragma mark tableView
 -(void)querySpContent:(SpeciaButton *)sender{
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(querySpContentDo:) object:sender];
+    [self performSelector:@selector(querySpContentDo:) withObject:sender afterDelay:0.2f];
+    
+}
+-(void)querySpContentDo:(SpeciaButton *)sender{
     [self getSpecialContentData:sender.specialModel.id];
 }
 #pragma mark tableView
