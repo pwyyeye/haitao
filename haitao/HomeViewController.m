@@ -142,6 +142,7 @@
     [app_home_brand removeAllObjects];//手机端国际名品
     [new_goods removeAllObjects];//手机端国际名品
     [new_goods_pageDic removeAllObjects];
+    nowpage = @"0";
     [self getMenuDataForRefresh];
 }
 
@@ -179,12 +180,14 @@
     }else{
         int pageCount= (int)[new_goods_pageDic allKeys].count;
         int nowPageCount=nowpage.intValue;
-        if(nowPageCount>=pageCount){
+        if(nowPageCount<pageCount-1){
             
-        }else{
             nowPageCount =nowpage.intValue+1;
+            NSLog(@"***********%d",nowPageCount);
             nowpage=[NSString stringWithFormat:@"%d",nowPageCount];
             [self reloadDeals];
+        }else{
+            
             
         }
 
