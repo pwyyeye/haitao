@@ -744,7 +744,7 @@
     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
-
+    
 -(void)gotoPay:(UIButton *)sender{
     //订单号
     NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"id=='%d'",sender.tag]];
@@ -829,7 +829,7 @@
     
 }
 
--(void)gotoGoodsDetail:(NSString *) goods_id{
+-(void)gotoGoodsDetailDo:(NSString *) goods_id{
     NSDictionary *parameters = @{@"id":goods_id};
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
     ;
@@ -838,7 +838,10 @@
     httpController.delegate = self;
     [httpController onSearchForPostJson];
 }
-
+-(void)gotoGoodsDetail:(NSString *) goods_id{
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(gotoGoodsDetailDo:) object:goods_id];
+    [self performSelector:@selector(gotoGoodsDetailDo:) withObject:goods_id afterDelay:0.3f];
+}
 #pragma mark - alipay delegate
 //-(void)callBack:(NSDictionary *)resultDic{
 //    if (resultDic.count==0) {

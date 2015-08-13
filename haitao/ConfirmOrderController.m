@@ -790,7 +790,7 @@
     [self gotoGoodsDetail:cartModel.goods_detail.id];
 }
 
--(void)gotoGoodsDetail:(NSString *) goods_id{
+-(void)gotoGoodsDetailDo:(NSString *) goods_id{
     NSDictionary *parameters = @{@"id":goods_id};
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
     ;
@@ -798,6 +798,10 @@
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsDetail"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
+}
+-(void)gotoGoodsDetail:(NSString *) goods_id{
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(gotoGoodsDetailDo:) object:goods_id];
+    [self performSelector:@selector(gotoGoodsDetailDo:) withObject:goods_id afterDelay:0.3f];
 }
 #pragma mark - Collapse Click Delegate
 

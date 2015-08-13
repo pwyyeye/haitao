@@ -194,6 +194,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
     [self showEmptyView];
 }
 
@@ -392,7 +393,7 @@ NSLog(@"----pass-before----%lu---",(unsigned long)_results.count);
     [self gotoGoodsDetail:goods.id];
 }
 
--(void)gotoGoodsDetail:(NSString *) goods_id{
+-(void)gotoGoodsDetailDo:(NSString *) goods_id{
     NSDictionary *parameters = @{@"id":goods_id};
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
     ;
@@ -400,6 +401,10 @@ NSLog(@"----pass-before----%lu---",(unsigned long)_results.count);
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsDetail"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
+}
+-(void)gotoGoodsDetail:(NSString *) goods_id{
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(gotoGoodsDetailDo:) object:goods_id];
+    [self performSelector:@selector(gotoGoodsDetailDo:) withObject:goods_id afterDelay:0.3f];
 }
 
 -(void)deleteFav:(NSString *)favid{
