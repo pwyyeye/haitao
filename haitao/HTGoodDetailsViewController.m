@@ -583,6 +583,14 @@ static CGFloat kImageOriginHight = 400;
 #pragma mark分享
 -(void)btnShare:(id)sender
 {
+    NSString *ss=[NSString stringWithFormat:@"%@:\n%@",self.goods.title,self.goods.goods_link];
+        [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
+        [UMSocialSnsService presentSnsIconSheetView:self
+                                             appKey:UmengAppkey
+                                          shareText:ss
+                                         shareImage:nil
+                                    shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,nil]
+                                           delegate:nil];
     
     
 }

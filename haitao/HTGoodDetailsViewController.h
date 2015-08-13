@@ -9,7 +9,7 @@
 #import "LTKViewController.h"
 #import "New_Goods.h"
 #import "Goods_Ext.h"
-
+#import "UMSocial.h"
 @protocol GoodChangeTableDelegate
 @optional
 - (void)changeGoodFrame;
