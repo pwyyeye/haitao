@@ -35,6 +35,7 @@
     NSArray *topMenuArr;
     NSMutableArray *jingpinPageArr;
     NSMutableArray *jingpinArr;
+    UIView *xinpintuijianTitleView;
     
 }
 @property (nonatomic,strong)DJRefresh *refresh;
@@ -134,6 +135,17 @@
     // Do any additional setup after loading the view.
 }
 #pragma mark - 下拉刷新页面
+-(void)shuaxinData{
+    [app_home_bigegg removeAllObjects] ;//首页通栏即广告栏
+    [app_home_grab removeAllObjects];//手机端抢购
+    [app_home_command removeAllObjects];//手机端精品推荐
+    [app_home_brand removeAllObjects];//手机端国际名品
+    [new_goods removeAllObjects];//手机端国际名品
+    [new_goods_pageDic removeAllObjects];
+    [self getMenuDataForRefresh];
+}
+
+#pragma mark - 加载全部页面
 -(void)reloadAll{
     for(UIView *view in [self._scrollView subviews])
     {
@@ -163,7 +175,7 @@
 - (void)addDataWithDirection:(DJRefreshDirection)direction{
     
     if (direction==DJRefreshDirectionTop) {
-        [self reloadAll];
+        [self shuaxinData];
     }else{
         int pageCount= (int)[new_goods_pageDic allKeys].count;
         int nowPageCount=nowpage.intValue;
@@ -218,6 +230,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark 首页画图
+
 -(void)drawViewRect
 {
     
@@ -469,7 +483,7 @@
     [guojimingpinContentView addSubview:rightdown];
     
     //新品推荐
-    UIView *xinpintuijianTitleView=[[UIView alloc]initWithFrame:CGRectMake(0,guojimingpinContentView.height+guojimingpinContentView.frame.origin.y+10, self.view.frame.size.width, 43)];
+    xinpintuijianTitleView=[[UIView alloc]initWithFrame:CGRectMake(0,guojimingpinContentView.height+guojimingpinContentView.frame.origin.y+10, self.view.frame.size.width, 43)];
     xinpintuijianTitleView.backgroundColor=[UIColor whiteColor];
     //色条
     UIImageView *tuhuangLine=[[UIImageView alloc]initWithFrame:CGRectMake(0,0, 3, xinpintuijianTitleView.height)];
@@ -577,6 +591,158 @@
    
     
 }
+
+-(void)drawViewRectForRefresh{
+    //滚动
+    NSMutableArray *bigArr=[[NSMutableArray alloc]init];
+    for (App_Home_Bigegg *bigTemp in app_home_bigegg) {
+        NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
+        [dicTemp setObject:bigTemp.img_url forKey:@"ititle"];
+        [dicTemp setObject:bigTemp.content forKey:@"mainHeading"];
+        [bigArr addObject:dicTemp];
+    }
+    EScrollerView *scrollerTemp=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 160)
+                                           scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
+    
+    scrollerTemp.delegate=self;
+    scrollerTemp.backgroundColor=[UIColor clearColor];
+    [self._scrollView addSubview:scrollerTemp];
+    [scroller removeFromSuperview];
+    scroller=scrollerTemp;
+    
+    //抢购
+    qiangouContentView.backgroundColor=[UIColor whiteColor];
+    
+    [qiangouContentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    for (int i =0; i<app_home_grab.count; i++)
+    {
+        App_Home_Bigegg *grabModel=app_home_grab[i];
+        btn=[[UrlImageButton alloc]initWithFrame:CGRectMake(20+i*(self._scrollView.width-80)/3+i*20, 10, (self._scrollView.width-80)/3, (self._scrollView.width-80)/3)];
+        NSURL *imgUrl=[NSURL URLWithString:grabModel.img_url];
+        [btn setImageWithURL:imgUrl placeholderImage:[UIImage imageNamed:@"default_02.png"]];
+        btn.tag=i;
+        //        [btn setImage:[UIImage imageNamed:@"default_02.png"] forState:0];
+        //        - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder;
+        [qiangouContentView addSubview:btn];
+        [btn addTarget:self action:@selector(qianggouAct:) forControlEvents:UIControlEventTouchUpInside];
+        btn.backgroundColor=[UIColor clearColor];
+        
+        label1=[[UILabel alloc]initWithFrame:CGRectMake(btn.left, btn.frame.size.height+btn.frame.origin.y+3, btn.width, 15)];
+        label1.text=grabModel.content;
+        label1.textColor =hexColor(@"#333333");
+        label1.font=[UIFont systemFontOfSize:11];
+        label1.textAlignment=1;
+        label1.backgroundColor=[UIColor clearColor];
+        //        label1.lineBreakMode = UILineBreakModeWordWrap;
+        label1.numberOfLines = 1;
+        //        CGRect txtFrame = label1.frame;
+        [qiangouContentView addSubview:label1];
+        
+        label2=[[UILabel alloc]initWithFrame:CGRectMake(label1.left, label1.frame.size.height+label1.frame.origin.y, label1.width, 20)];
+        label2.text=[NSString stringWithFormat:@"￥%.2f",grabModel.price];
+        label2.font=[UIFont boldSystemFontOfSize:14];
+        label2.backgroundColor=[UIColor clearColor];
+        label2.textColor =hexColor(@"#ff0d5e");
+        label2.textAlignment=1;
+        label2.backgroundColor=[UIColor clearColor];
+        //        if(maxFrame.origin.y<label2.frame.origin.y){
+        //            maxFrame=label2.frame;
+        //        }
+        [qiangouContentView addSubview:label2];
+        
+    }
+
+    
+    //新品推荐内容
+    [xinpinContentView removeFromSuperview];
+    
+    xinpinContentView=[[UIView alloc]initWithFrame:CGRectMake(0,xinpintuijianTitleView.height+xinpintuijianTitleView.frame.origin.y, xinpintuijianTitleView.width, 154)];
+    xinpinContentView.backgroundColor=[UIColor whiteColor];
+    [self._scrollView addSubview:xinpinContentView];
+    GoodImageButton *gbBtn;
+    CGRect lastFrame;
+    NSArray *goodsPageArr=[new_goods_pageDic objectForKey:nowpage];
+    for (int i =0; i<goodsPageArr.count; i++)
+    {
+        New_Goods *new_Goods=goodsPageArr[i];
+        gbBtn=[[GoodImageButton alloc]initWithFrame:CGRectMake((i%2)*((xinpinContentView.width-20)/2-5+10)+10, floor(i/2)*190+10, (xinpinContentView.width-20)/2-5, 180)];
+        gbBtn.userInteractionEnabled=YES;
+        gbBtn.backgroundColor=[UIColor whiteColor];
+        //            imageV.userInteractionEnabled=YES;
+        //            btn.layer.shadowOffset = CGSizeMake(1,1);
+        //            btn.layer.shadowOpacity = 0.2f;
+        //            btn.layer.shadowRadius = 3.0;
+        gbBtn.layer.borderWidth=0.5;//描边
+        gbBtn.layer.cornerRadius=4;//圆角
+        gbBtn.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
+        gbBtn.goods=new_Goods;
+        gbBtn.backgroundColor=[UIColor whiteColor];
+        [gbBtn addTarget:self action:@selector(goodContentTouch:) forControlEvents:UIControlEventTouchUpInside];
+        [xinpinContentView addSubview:gbBtn];
+        
+        UrlImageView*btn1=[[UrlImageView alloc]initWithFrame:CGRectMake((gbBtn.width/3/2), 10, gbBtn.frame.size.width*2/3, gbBtn.frame.size.width*2/3)];
+        [btn1 setContentMode:UIViewContentModeScaleAspectFill];
+        //            btn.userInteractionEnabled=YES;
+        //            btn.layer.borderWidth=1;//描边
+        //            btn.layer.cornerRadius=4;//圆角
+        //            btn.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
+        btn1.backgroundColor=RGBA(237, 237, 237, 1);
+        
+        NSString *urlStr=new_Goods.img_260;
+        if((urlStr==nil)||[urlStr isEqualToString:@""]){
+            btn1.image=BundleImage(@"df_04_.png");
+            
+        }else{
+            NSURL *imgUrl=[NSURL URLWithString:urlStr];
+            [btn1 setImageWithURL:imgUrl];
+        }
+        
+        //            [btn addTarget:self action:@selector(goodContentTouch:) forControlEvents:UIControlEventTouchUpInside];
+        //            [imageV addSubview:btn];
+        //商店名
+        [gbBtn addSubview:btn1];
+        UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(0, btn1.frame.size.width+5+btn1.frame.origin.y, gbBtn.width, 10)];
+        _label.text=new_Goods.shop_name;
+        _label.font=[UIFont boldSystemFontOfSize:10];
+        _label.backgroundColor=[UIColor clearColor];
+        _label.textColor =hexColor(@"#b3b3b3");
+        _label.numberOfLines=1;
+        _label.textAlignment=NSTextAlignmentCenter;
+        
+        [gbBtn addSubview:_label];
+        //商品名
+        UILabel *_label1=[[UILabel alloc]initWithFrame:CGRectMake(10, _label.frame.size.height+_label.frame.origin.y+1, gbBtn.frame.size.width-10-10, 30)];
+        _label1.text=new_Goods.title;
+        _label1.font=[UIFont boldSystemFontOfSize:11];
+        _label1.backgroundColor=[UIColor clearColor];
+        _label1.textColor =hexColor(@"#333333");
+        _label1.lineBreakMode = UILineBreakModeWordWrap;
+        _label1.numberOfLines=2;
+        _label1.textAlignment=NSTextAlignmentCenter;
+        
+        [gbBtn addSubview:_label1];
+        
+        
+        
+        
+        UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(0, _label1.frame.size.height+_label1.frame.origin.y+1 ,gbBtn.frame.size.width, 20)];
+        title_label.text=[NSString stringWithFormat:@"￥%.2f",new_Goods.price_cn];
+        
+        title_label.font=[UIFont boldSystemFontOfSize:14];
+        title_label.backgroundColor=[UIColor clearColor];
+        title_label.textColor =hexColor(@"#ff0d5e");
+        title_label.textAlignment=NSTextAlignmentCenter;
+        
+        //
+        [gbBtn addSubview:title_label];
+        lastFrame =gbBtn.frame;
+        lastFrameForPage=gbBtn.frame;
+    }
+    xinpinContentView.height=lastFrame.size.height+lastFrame.origin.y;
+    //    lastFrameForPage=xinpinContentView.frame;
+    [self._scrollView setContentSize:CGSizeMake(320, xinpinContentView.size.height+xinpinContentView.origin.y+10)];
+
+}
 -(void)getNewGoods{
 
     NSArray *goodsPageArr=[new_goods_pageDic objectForKey:nowpage];
@@ -662,6 +828,16 @@
 -(void)btnTouch:(id)sender{
     
 }
+-(void)getMenuDataForRefresh{
+    NSString* url =[NSString stringWithFormat:@"%@&m=home&f=getHomeData",requestUrl]
+    ;
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:GETURL withUrlName:@"getHomeDataForRefresh"];
+    httpController.delegate = self;
+    [httpController onSearch];
+
+    
+}
+#pragma mark 获取首页数据
 -(void)getMenuData{
 //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 //    [app startLoading];
@@ -750,6 +926,74 @@
             nowCount++;
         }
         [self drawViewRect];
+    }
+    if([urlname isEqualToString:@"getHomeDataForRefresh"]){
+        NSDictionary *dic=[dictemp objectForKey:@"data"];
+        if ((NSNull *)dic == [NSNull null]) {
+            showMessage(@"暂无数据!");
+            //            [self showMessage:@"暂无数据!"];
+            return;
+            
+        }
+        //        app_home_bigegg=[[NSMutableArray alloc]init] ;//首页通栏即广告栏
+        //        app_home_grab=[[NSMutableArray alloc]init];//手机端抢购
+        //        app_home_command=[[NSMutableArray alloc]init];//手机端精品推荐
+        //        app_home_brand=[[NSMutableArray alloc]init];//手机端国际名品
+        //        new_goods=[[NSMutableArray alloc]init];//新品推荐
+        NSDictionary *ad_infoDic=[dic objectForKey:@"ad_info"];
+        //首页通栏即广告栏
+        NSArray *app_home_bigeggArr= [ad_infoDic objectForKey:@"app_home_bigegg"];
+        for (NSDictionary *bigeggDic in app_home_bigeggArr) {
+            App_Home_Bigegg *app_Home_Bigegg= [App_Home_Bigegg objectWithKeyValues:bigeggDic] ;
+            [app_home_bigegg addObject:app_Home_Bigegg];
+        }
+        //手机端抢购
+        NSArray *app_home_grabArr= [ad_infoDic objectForKey:@"app_home_grab"];
+        for (NSDictionary *grabDic in app_home_grabArr) {
+            App_Home_Bigegg *app_Home_Bigegg= [App_Home_Bigegg objectWithKeyValues:grabDic] ;
+            [app_home_grab addObject:app_Home_Bigegg];
+        }
+        //手机端精品推荐
+        NSArray *app_home_commandArr= [ad_infoDic objectForKey:@"app_home_command"];
+        for (NSDictionary *commandDic in app_home_commandArr) {
+            App_Home_Bigegg *app_Home_Bigegg= [App_Home_Bigegg objectWithKeyValues:commandDic] ;
+            [app_home_command addObject:app_Home_Bigegg];
+        }
+        //手机端国际名品
+        NSArray *app_home_brandArr= [ad_infoDic objectForKey:@"app_home_brand"];
+        for (NSDictionary *brandDic in app_home_brandArr) {
+            App_Home_Bigegg *app_Home_Bigegg= [App_Home_Bigegg objectWithKeyValues:brandDic] ;
+            [app_home_brand addObject:app_Home_Bigegg];
+        }
+        //新品推荐
+        NSDictionary *new_goodsDic= [dic objectForKey:@"new_goods"];
+        NSArray *new_goodsArr= [new_goodsDic objectForKey:@"list"];
+        for (NSDictionary *goodsDic in new_goodsArr) {
+            New_Goods *new_Goods= [New_Goods objectWithKeyValues:goodsDic] ;
+            [new_goods addObject:new_Goods];
+        }
+        int pageKey=0;
+        int nowCount=1;
+        NSMutableArray *pageArr=[[NSMutableArray alloc]initWithCapacity:6];
+        for (int i=0; i<new_goods.count; i++) {
+            New_Goods *new_Goods= new_goods[i];
+            
+            if(nowCount%6==0){
+                [pageArr addObject:new_Goods];
+                NSString *key = [NSString stringWithFormat:@"%d",pageKey];
+                [new_goods_pageDic setValue:pageArr forKey:key];
+                pageKey++;
+                pageArr=[[NSMutableArray alloc]initWithCapacity:6];
+            }else{
+                [pageArr addObject:new_Goods];
+                if(i==new_goods.count-1){
+                    NSString *key = [NSString stringWithFormat:@"%d",pageKey];
+                    [new_goods_pageDic setValue:pageArr forKey:key];
+                }
+            }
+            nowCount++;
+        }
+        [self drawViewRectForRefresh];
     }
     if([urlname isEqualToString:@"getGoodsDetail"]){
         NSDictionary *dataDic=[dictemp objectForKey:@"data"];
