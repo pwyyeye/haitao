@@ -397,6 +397,8 @@ NSLog(@"----pass-before----%lu---",(unsigned long)_results.count);
     NSDictionary *parameters = @{@"id":goods_id};
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
     ;
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsDetail"];
     httpController.delegate = self;
