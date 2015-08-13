@@ -96,7 +96,7 @@ static CGFloat kImageOriginHight = 400;
         }
 
     }
-    EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, self.view.frame.size.width, 250)
+    EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH)
                                                           scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
     
     scroller.delegate=self;
@@ -283,7 +283,7 @@ static CGFloat kImageOriginHight = 400;
     headImg.backgroundColor=[UIColor clearColor];
     //国家
     //国家icon
-    UIImageView *country=[[UIImageView alloc] initWithFrame:CGRectMake(_bigView2.width-45-90, headImg.top-14, 20, 20)];
+    UIImageView *country=[[UIImageView alloc] initWithFrame:CGRectMake(_bigView2.width-45-90, headImg.top-10, 20, 20)];
     [country setImageWithURL:[NSURL URLWithString:self.goods.country_flag_url] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
     [_bigView2 addSubview:country];
     
