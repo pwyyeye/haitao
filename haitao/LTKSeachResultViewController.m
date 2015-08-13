@@ -219,7 +219,7 @@
     if([fileManager fileExistsAtPath:filename]){
         hisSerchArr= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
         [hisSerchArr removeAllObjects];
-        [NSKeyedArchiver archiveRootObject:hisRoute toFile:filename];
+        [NSKeyedArchiver archiveRootObject:hisSerchArr toFile:filename];
     }
     hisView.hidden=YES;
 }
