@@ -40,7 +40,7 @@
     [UMSocialData openLog:YES];
     //AppID：wxf1e19b28e6b1613c
     //设置微信AppId，设置分享url，默认使用友盟的网址
-    [UMSocialWechatHandler setWXAppId:@"wxf1e19b28e6b1613c" appSecret:@"65361a291828a788510c275f30637cc0" url:@"http://www.soueast-motor.com"];
+    [UMSocialWechatHandler setWXAppId:@"wx5996980f24fd25bd" appSecret:@"3f55485b6f1077e552820ea2e40dcf83" url:@"http://sns.whalecloud.com/sina2/callback"];
     
     //打开新浪微博的SSO开关
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];

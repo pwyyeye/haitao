@@ -32,14 +32,12 @@
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
-			<array>
-				<string>wxf1e19b28e6b1613c</string>
-			</array>
+			<string>Editor</string>
 			<key>CFBundleURLName</key>
 			<string>weixin</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string></string>
+				<string>wx5996980f24fd25bd</string>
 			</array>
 		</dict>
 	</array>
