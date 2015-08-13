@@ -12,6 +12,10 @@
 #import "LoginViewController.h"
 #import "MenuModel.h"
 #import <AlipaySDK/AlipaySDK.h>
+#import "UMSocial.h"
+#import "UMSocialControllerService.h"
+#import "UMSocialWechatHandler.h"
+#import "UMSocialSinaHandler.h"
 @interface AppDelegate ()
 
 @end
@@ -29,7 +33,19 @@
     [self.window makeKeyAndVisible];
     //    [self isConnectionAvailable];
     self.menuArr=[[NSMutableArray alloc]init];
+    //设置友盟社会化组件appkey
+    [UMSocialData setAppKey:UmengAppkey];
     
+    //打开调试log的开关
+    [UMSocialData openLog:YES];
+    //AppID：wxf1e19b28e6b1613c
+    //设置微信AppId，设置分享url，默认使用友盟的网址
+    [UMSocialWechatHandler setWXAppId:@"wx5996980f24fd25bd" appSecret:@"3f55485b6f1077e552820ea2e40dcf83" url:@"http://sns.whalecloud.com/sina2/callback"];
+    
+    //打开新浪微博的SSO开关
+    [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    
+
     if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
         [self showIntroWithCrossDissolve];
     }else{
@@ -242,6 +258,22 @@
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
+    /*
+     NSString *string =[url absoluteString];
+     if ([string hasPrefix:@"wb"])
+     {
+     return [WeiboSDK handleOpenURL:url delegate:self];
+     }
+     else if ([string hasPrefix:@"wx"])
+     {
+     return [WXApi handleOpenURL:url delegate:self];
+     }weixin
+     return YES;
+     */
+    NSString *string =[url absoluteString];
+    if([string hasPrefix:@"wx"]){
+        return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+    }
     
     //跳转支付宝钱包进行支付，处理支付结果
     [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
@@ -328,6 +360,10 @@
             abort();
         }
     }
+}
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [UMSocialSnsService handleOpenURL:url];
 }
 
 @end
