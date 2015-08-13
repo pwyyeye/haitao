@@ -96,7 +96,7 @@ static CGFloat kImageOriginHight = 400;
         }
 
     }
-    EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, self.view.frame.size.width, 250)
+    EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH)
                                                           scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
     
     scroller.delegate=self;
@@ -283,7 +283,7 @@ static CGFloat kImageOriginHight = 400;
     headImg.backgroundColor=[UIColor clearColor];
     //国家
     //国家icon
-    UIImageView *country=[[UIImageView alloc] initWithFrame:CGRectMake(_bigView2.width-45-90, headImg.top-14, 20, 20)];
+    UIImageView *country=[[UIImageView alloc] initWithFrame:CGRectMake(_bigView2.width-45-90, headImg.top-10, 20, 20)];
     [country setImageWithURL:[NSURL URLWithString:self.goods.country_flag_url] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
     [_bigView2 addSubview:country];
     
@@ -1042,7 +1042,8 @@ static CGFloat kImageOriginHight = 400;
     [_scrollView setContentSize:CGSizeMake(320, tuijianView.size.height+tuijianView.origin.y+70)];
 }
 #pragma mark 获取商品详情
--(void)goodContentTouch:(GoodImageButton *)sender{
+- (void)goodContentTouchDo:(GoodImageButton *)sender
+{
     New_Goods *goods=sender.goods;
     //    NSDictionary *parameters = @{@"id":@"626"};
     NSDictionary *parameters = @{@"id":goods.id};
@@ -1052,6 +1053,13 @@ static CGFloat kImageOriginHight = 400;
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsDetail"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
+    
+}
+
+-(void)goodContentTouch:(GoodImageButton *)sender{
+    //先将未到时间执行前的任务取消。
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(goodContentTouchDo:) object:sender];
+    [self performSelector:@selector(goodContentTouchDo:) withObject:sender afterDelay:0.2f];
 }
 #pragma mark 商品专区
 - (void)shopquQuery:(id)sender{

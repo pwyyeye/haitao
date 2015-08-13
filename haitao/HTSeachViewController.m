@@ -320,7 +320,7 @@
         button.menuModel=menu;
         button.tag=indexPath.row;
         UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-        [imageView setImageWithURL:[NSURL URLWithString:menu.img] placeholderImage:[UIImage imageNamed:@"奶粉.jpg"]];
+        [imageView setImageWithURL:[NSURL URLWithString:menu.img] placeholderImage:[UIImage imageNamed:@"ShuMa_icon_XiangJi"]];
        // UIImage *image = [rightTableView cutCenterImage:imageView.image  size:CGSizeMake(50, 50)];
         [button addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];
         [button setBackgroundImage:imageView.image forState:UIControlStateNormal];

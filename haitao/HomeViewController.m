@@ -1064,7 +1064,7 @@
     }
 }
 #pragma mark 获取商品详情
--(void)goodContentTouch:(GoodImageButton *)sender{
+-(void)goodContentTouchDo:(GoodImageButton *)sender{
     New_Goods *goods=sender.goods;
     //    NSDictionary *parameters = @{@"id":@"626"};
     NSDictionary *parameters = @{@"id":goods.id};
@@ -1075,7 +1075,16 @@
     httpController.delegate = self;
     [httpController onSearchForPostJson];
 }
+-(void)goodContentTouch:(GoodImageButton *)sender{
+    //先将未到时间执行前的任务取消。
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(goodContentTouchDo:) object:sender];
+    [self performSelector:@selector(goodContentTouchDo:) withObject:sender afterDelay:0.3f];
+}
 -(void)qianggouAct:(UrlImageButton *)sender{
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(qianggouActDo:) object:sender];
+    [self performSelector:@selector(qianggouActDo:) withObject:sender afterDelay:0.3f];
+}
+-(void)qianggouActDo:(UrlImageButton *)sender{
     App_Home_Bigegg *grabModel=app_home_grab[sender.tag];
     NSDictionary *parameters = @{@"id":grabModel.goods_id};
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
