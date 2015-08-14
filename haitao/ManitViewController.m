@@ -204,6 +204,7 @@
 #pragma mark MenuHrizontalDelegate
 -(void)didMenuHrizontalClickedButtonAtIndex:(NSInteger)aIndex{
     self.selectedIndex = aIndex;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCus" object:nil];
     
 }
 

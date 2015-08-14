@@ -36,14 +36,19 @@
 
 @implementation CustomViewController
 -(void)viewWillAppear:(BOOL)animated{
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCus) name:@"refreshCus" object:nil];
+}
+-(void)refreshCus{
+    isshuaxin=true;
+    if(_refresh){
+        [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
+    }
 }
 -(void)changeFrame{
     
     isshuaxin=true;
     
-    [_tableView setContentOffset:CGPointZero animated:false];
-    _tableView.contentInset=UIEdgeInsetsMake(0, 0, 0, 0);
+   
     [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
     
 }
@@ -56,7 +61,7 @@
 - (void)viewDidLoad {
     isshuaxin=false;
     [super viewDidLoad];
-    self.edgesForExtendedLayout =UIRectEdgeTop ;
+    
     title=@"";
     bannerArr =[[NSMutableArray alloc]initWithCapacity:8];
     _tableView =[[UITableView alloc]initWithFrame:self.mainFrame style:UITableViewStylePlain];
