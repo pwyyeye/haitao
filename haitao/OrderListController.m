@@ -511,7 +511,7 @@
         }
         
         
-        //给底部footer 加6.5个像素间距
+        //给底部footer 加13个像素间距
         UILabel *jianju=[[UILabel alloc] initWithFrame:CGRectMake(0, 58, SCREEN_WIDTH, 13)];
         jianju.backgroundColor=RGB(237, 237, 237);
         [view addSubview:jianju];
@@ -598,7 +598,14 @@
         return 72;
     }
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView==_tableView) {
+        return _goods_arrayForSubView.count*80+125;//＋120头尾高度
+    }else{
+        return 80;
+    }
+    
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if (tableView==_tableView) {
         return self.result_array.count;
@@ -617,14 +624,7 @@
     
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (tableView==_tableView) {
-        return _goods_arrayForSubView.count*80+112;//＋120头尾高度
-    }else{
-        return 80;
-    }
-    
-}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"OrderListCell";

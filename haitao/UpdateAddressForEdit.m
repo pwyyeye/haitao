@@ -211,7 +211,7 @@ NSLog(@"----pass-saveAddress %@---",@"test");
     }
 }
 - (IBAction)areaPick:(id)sender {
-    if ([[[UIDevice currentDevice]systemVersion]floatValue]<8.0){
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=8.0){
         UIAlertController* alertVc=[UIAlertController alertControllerWithTitle:@"\n\n\n\n\n\n\n\n\n\n" message:nil preferredStyle:(UIAlertControllerStyleActionSheet)];
         UIAlertAction* ok=[UIAlertAction actionWithTitle:@"确认" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action) {
             NSLog(@"----pass-ok%@---",@"test");
