@@ -423,10 +423,10 @@ NSLog(@"----pass-saveAddress %@---",@"test");
     
     if(_targetIdex==0){//正面
         //压缩0.5倍以后
-        _idcard_zhengmian.image=[[UIImage alloc] initWithData:UIImageJPEGRepresentation(image, 0.5)];
+        _idcard_zhengmian.image=[[UIImage alloc] initWithData:UIImageJPEGRepresentation(image, 0.3)];
         _uploadStatus_zhengmian=1;
     }else if(_targetIdex==1){
-        _idcard_fanmian.image=[[UIImage alloc] initWithData:UIImageJPEGRepresentation(image, 0.5)];
+        _idcard_fanmian.image=[[UIImage alloc] initWithData:UIImageJPEGRepresentation(image, 0.3)];
         _uploadStatus_fanmian=1;
     }
     

@@ -65,6 +65,8 @@
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getSubjectList",requestUrl]
     ;
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:GETURL withUrlName:@"getSubjectList"];
+    AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    [app startLoading];
     httpController.delegate = self;
     [httpController onSearch];
 
@@ -86,14 +88,9 @@
 
 #pragma mark 接受数据
 -(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
-    //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    //    [app stopLoading];
-    NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
-    NSString *status=[dictemp objectForKey:@"status"];
-    //    if(![status isEqualToString:@"1"]){
-    ////        [self showMessage:message];
-    ////        return ;
-    //    }
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [app stopLoading];
+
     if([urlname isEqualToString:@"getSubjectList"]){
         NSArray *dataArr=[dictemp objectForKey:@"data"];
         if ((NSNull *)dataArr == [NSNull null]) {
