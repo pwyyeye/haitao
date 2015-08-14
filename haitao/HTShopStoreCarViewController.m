@@ -130,7 +130,9 @@
     [self.navigationController setNavigationBarHidden:YES];
     
     [delShopList removeAllObjects];
+    
     [self addViews];
+    
     [self showEmptyView];
     //获取购物车数据
 }

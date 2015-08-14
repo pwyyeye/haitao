@@ -3439,7 +3439,6 @@
 		ADB5AC7E1B53CB5F0022B2C2 /* haitao */ = {
 			isa = PBXGroup;
 			children = (
-				A22D2FFC1B7C63B9004158F1 /* 社会化分享 */,
 				ADB5ACAA1B54065B0022B2C2 /* Classes */,
 				ADB5ACB01B5406CB0022B2C2 /* Utils */,
 				ADB5ACB21B5406FA0022B2C2 /* Sources */,
@@ -3598,6 +3597,7 @@
 		ADB5ACB11B5406D60022B2C2 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				A22D2FFC1B7C63B9004158F1 /* 社会化分享 */,
 				AD8E389B1B74C7E900C9D5BA /* Alipay */,
 				AD8E389A1B74C7D700C9D5BA /* 网络可用 */,
 				AD8E37B81B72F66000C9D5BA /* CollapseClick */,

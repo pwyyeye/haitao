@@ -84,6 +84,8 @@
 -(void)logout{
 
     HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_doLoginOut withType:POSTURL withPam:nil withUrlName:@"logout"];
+    AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    [app startLoading];
     httpController.delegate = self;
     [httpController onSearch];
 }
