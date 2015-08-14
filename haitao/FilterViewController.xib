@@ -212,7 +212,7 @@
                                                 </mask>
                                             </variation>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_04.png" translatesAutoresizingMaskIntoConstraints="NO" id="NG4-Ok-Oo2">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NG4-Ok-Oo2">
                                             <rect key="frame" x="95" y="10" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="1zP-at-w9u"/>
@@ -279,7 +279,4 @@
             </constraints>
         </view>
     </objects>
-    <resources>
-        <image name="default_04.png" width="64" height="47"/>
-    </resources>
 </document>

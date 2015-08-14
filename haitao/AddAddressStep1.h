@@ -27,6 +27,8 @@
 
 @property(strong,nonatomic) AreaPickerView *picker;
 
+@property(strong,nonatomic) UIView *pickerView;
+
 - (IBAction)textFieldBeginEdit:(id)sender;
 
 - (IBAction)textFieldEndEdit:(id)sender;

@@ -250,7 +250,7 @@ static CGFloat kImageOriginHight = 400;
     UIView *yunfeiView=[[UIView alloc]initWithFrame:CGRectMake(0, _bigView1.frame.size.height+_bigView1.frame.origin.y, self.view.frame.size.width, 30)];
     yunfeiView.backgroundColor=hexColor(@"#ffe0eb");
     UILabel *yunfeititle=[[UILabel alloc]initWithFrame:CGRectMake(20, 5, self.view.frame.size.width-40, 20)];
-    yunfeititle.text=@"￥40/受500g,￥5续100g,每个订单仅收一次首重。";
+    yunfeititle.text=@"￥40/首500g,￥5续100g,每个订单仅收一次首重。";
     yunfeititle.font=[UIFont systemFontOfSize:12];
     yunfeititle.backgroundColor=[UIColor clearColor];
     yunfeititle.textColor =RGB(175, 104, 122);
@@ -276,9 +276,9 @@ static CGFloat kImageOriginHight = 400;
     title3.textAlignment=0;
     [_bigView2 addSubview:title3];
     
-    UrlImageView *headImg=[[UrlImageView alloc]initWithFrame:CGRectMake(10, title3.height+title3.top+10, 60, 60)];
-//    [headImg setImageWithURL:[NSURL URLWithString:self.goods.country_flag_url] placeholderImage:[UIImage imageNamed:@"df_04_"]];
-    headImg.image=[UIImage imageNamed:@"AlipayIcon"];
+    UIImageView *headImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, title3.height+title3.top+10, 60, 60)];
+    [headImg setImageWithURL:[NSURL URLWithString:self.goods.shop_logo_app] placeholderImage:[UIImage imageNamed:@"AlipayIcon"]];
+//    headImg.image=[UIImage imageNamed:@"AlipayIcon"];
     [_bigView2 addSubview:headImg];
     headImg.backgroundColor=[UIColor clearColor];
     //国家
@@ -348,7 +348,7 @@ static CGFloat kImageOriginHight = 400;
     
     
     UrlImageView *brandImg=[[UrlImageView alloc]initWithFrame:CGRectMake(10,10, 60, 60)];
-    [brandImg setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"default_04"]];
+    [brandImg setImageWithURL:[NSURL URLWithString:self.goods.brand_logo] placeholderImage:[UIImage imageNamed:@"default_04"]];
     [brandView addSubview:brandImg];
     brandImg.backgroundColor=[UIColor clearColor];
     
@@ -620,7 +620,8 @@ static CGFloat kImageOriginHight = 400;
     NSDictionary *parameters = @{@"goods_id":self.goods.id};
     NSString* url =[NSString stringWithFormat:@"%@&f=addFav&m=user",requestUrl]
     ;
-    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"addFav"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
@@ -628,8 +629,8 @@ static CGFloat kImageOriginHight = 400;
 }
 #pragma mark 接受数据
 -(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
-    //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    //    [app stopLoading];
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [app stopLoading];
     NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
     NSString *status=[dictemp objectForKey:@"status"];
     //    if(![status isEqualToString:@"1"]){
@@ -1098,7 +1099,8 @@ static CGFloat kImageOriginHight = 400;
         NSDictionary *parameters = @{@"id":self.goods.id};
         NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsParityList",requestUrl]
         ;
-        
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [app startLoading];
         HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsParityList"];
         httpController.delegate = self;
         [httpController onSearchForPostJson];

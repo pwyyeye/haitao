@@ -141,7 +141,8 @@
     [delShopList removeAllObjects];
     NSString* url =[NSString stringWithFormat:@"%@&f=getCart&m=cart",requestUrl]
     ;
-    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:GETURL withUrlName:@"getCart"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
@@ -149,6 +150,8 @@
 #pragma mark 接受数据
 -(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
 //    NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app stopLoading];
     NSNumber *status=[dictemp objectForKey:@"status"];
     if([urlname isEqualToString:@"getCart"]){
         if(status.intValue==1){
@@ -1067,7 +1070,8 @@
     NSDictionary *parameters = @{@"id":goodsTemp.id};
     NSString* url =[NSString stringWithFormat:@"%@&f=getGoodsAttrValueById&m=goods",requestUrl]
     ;
-    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsAttrValueById"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];

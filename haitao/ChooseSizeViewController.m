@@ -415,6 +415,7 @@
     UILabel *zanLabel=[[UILabel alloc]initWithFrame:CGRectMake(shoushiView.width+shoushiView.left+15, (btnCall.height-30)/2,btnCall.width-(shoushiView.width+shoushiView.left+5) , 30)];
     if(self.ischange){
         zanLabel.text=@"确定";
+        zanLabel.frame=CGRectMake(shoushiView.width+shoushiView.left+35, (btnCall.height-30)/2,btnCall.width-(shoushiView.width+shoushiView.left+5) , 30);
     }else{
         zanLabel.text=@"加入购物车";
     }
@@ -449,7 +450,7 @@
     title_label.textAlignment=1;
     [view_bar1 addSubview:title_label];
     UIButton*btnBack=[UIButton buttonWithType:0];
-    btnBack.frame=CGRectMake(0, 26, 30, 30);
+    btnBack.frame=CGRectMake(10, 26, 30, 30);
     [btnBack setImage:BundleImage(@"btn_back") forState:0];
     [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
     [view_bar1 addSubview:btnBack];

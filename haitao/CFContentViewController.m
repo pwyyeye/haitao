@@ -486,7 +486,8 @@
     NSDictionary *parameters = @{@"id":goods.id};//goods.id
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
     ;
-    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsDetail"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
@@ -495,8 +496,8 @@
 }
 #pragma mark 接受数据
 -(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
-    //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    //    [app stopLoading];
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [app stopLoading];
 
     //    if(![status isEqualToString:@"1"]){
     ////        [self showMessage:message];

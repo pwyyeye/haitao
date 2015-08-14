@@ -39,6 +39,8 @@
 
 @property(strong,nonatomic) AreaPickerView *picker;//省市区选择器
 
+@property(strong,nonatomic) UIView *pickerView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *idcard_fanmian;
 
 @property(assign,nonatomic) int targetIdex;//纪录哪个UIImageView被触发

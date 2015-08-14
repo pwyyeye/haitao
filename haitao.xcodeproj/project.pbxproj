@@ -691,7 +691,7 @@
 		ADD2C4021B77785200A2E638 /* ChoosePayController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD2C4011B77785200A2E638 /* ChoosePayController.m */; };
 		ADD2C4061B77795700A2E638 /* PayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD2C4041B77795700A2E638 /* PayCell.m */; };
 		ADD2C4071B77795700A2E638 /* PayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD2C4051B77795700A2E638 /* PayCell.xib */; };
-		ADD2C4091B777A3C00A2E638 /* AlipayIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD2C4081B777A3C00A2E638 /* AlipayIcon.png */; };
+		ADD2C4091B777A3C00A2E638 /* AlipayIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD2C4081B777A3C00A2E638 /* AlipayIcon@2x.png */; };
 		ADD2C40B1B77988900A2E638 /* message_admin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD2C40A1B77988900A2E638 /* message_admin@2x.png */; };
 		ADD2C4111B7830E500A2E638 /* icon_DingDang2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD2C40C1B7830E500A2E638 /* icon_DingDang2@3x.png */; };
 		ADD2C4121B7830E500A2E638 /* icon_Home2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD2C40D1B7830E500A2E638 /* icon_Home2@2x.png */; };
@@ -1766,7 +1766,7 @@
 		ADD2C4031B77795700A2E638 /* PayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayCell.h; sourceTree = "<group>"; };
 		ADD2C4041B77795700A2E638 /* PayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayCell.m; sourceTree = "<group>"; };
 		ADD2C4051B77795700A2E638 /* PayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayCell.xib; sourceTree = "<group>"; };
-		ADD2C4081B777A3C00A2E638 /* AlipayIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlipayIcon.png; sourceTree = "<group>"; };
+		ADD2C4081B777A3C00A2E638 /* AlipayIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlipayIcon@2x.png"; sourceTree = "<group>"; };
 		ADD2C40A1B77988900A2E638 /* message_admin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message_admin@2x.png"; sourceTree = "<group>"; };
 		ADD2C40C1B7830E500A2E638 /* icon_DingDang2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_DingDang2@3x.png"; sourceTree = "<group>"; };
 		ADD2C40D1B7830E500A2E638 /* icon_Home2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_Home2@2x.png"; sourceTree = "<group>"; };
@@ -3418,7 +3418,7 @@
 				ADD2C40E1B7830E500A2E638 /* icon_Home2@3x.png */,
 				ADD2C40F1B7830E500A2E638 /* icon_Sherch2@2x.png */,
 				ADD2C4101B7830E500A2E638 /* icon_Sherch2@3x.png */,
-				ADD2C4081B777A3C00A2E638 /* AlipayIcon.png */,
+				ADD2C4081B777A3C00A2E638 /* AlipayIcon@2x.png */,
 				AD50C5181B77399500119A42 /* commitOrder@2x.png */,
 				AD50C5191B77399500119A42 /* commitOrder@3x.png */,
 				AD8E37CB1B7392EC00C9D5BA /* order_btn_definite@3x.png */,
@@ -4090,7 +4090,7 @@
 				AD50C5171B77035000119A42 /* Address_btn_selected@2x.png in Resources */,
 				AD8E37501B721A1500C9D5BA /* icon_TiJiaoDingDang@3x.png in Resources */,
 				A21814281B56063300D64E70 /* arrrow_left.png in Resources */,
-				ADD2C4091B777A3C00A2E638 /* AlipayIcon.png in Resources */,
+				ADD2C4091B777A3C00A2E638 /* AlipayIcon@2x.png in Resources */,
 				AD8E38A81B75AB9000C9D5BA /* LogisticsCell.xib in Resources */,
 				ADD2C4121B7830E500A2E638 /* icon_Home2@2x.png in Resources */,
 				AD8E377D1B721A1500C9D5BA /* ShuMa_icon_GeRenHuLi@3x.png in Resources */,

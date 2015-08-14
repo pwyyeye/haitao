@@ -222,6 +222,8 @@
             self.myScrollView.delegate=self;
             self.myScrollView.bounces=NO;
             
+            [self updateViewConstraints];
+            
         }else if([urlname isEqualToString:@"getAddress"]){
             NSArray *list=[dictemp objectForKey:@"data"];
             if (list.count==0) {
@@ -270,6 +272,8 @@
             [delegate.navigationController pushViewController:htGoodDetailsViewController animated:YES];
             
         }
+        
+        
     }
 }
 #pragma mark - 事件方法
@@ -457,7 +461,7 @@
     _hejiView=[[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-47-64)];
     _hejiView.backgroundColor=CLEARCOLOR;
     UIButton *halfButton=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/2-47)];
-    halfButton.backgroundColor=[UIColor colorWithWhite:0 alpha:0.2];
+    
     [halfButton addTarget:self action:@selector(removeHejiView) forControlEvents:UIControlEventTouchUpInside];
     
     [_hejiView addSubview:halfButton];
@@ -516,7 +520,7 @@
     [self MoveView:_hejiView To:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-47-64) During:0.5];
     
 
-
+    halfButton.backgroundColor=[UIColor colorWithWhite:0 alpha:0.2];
 }
 -(void)removeHejiView{
     [_hejiView removeFromSuperview];
@@ -794,7 +798,8 @@
     NSDictionary *parameters = @{@"id":goods_id};
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
     ;
-    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsDetail"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
