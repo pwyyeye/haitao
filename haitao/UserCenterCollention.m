@@ -20,6 +20,7 @@
 #import "TariffViewController.h"
 #import "OrderListController.h"
 #import "FilterViewController.h"
+#import "ChatViewController.h"
 @interface UserCenterCollention ()
 
 @end
@@ -269,10 +270,8 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     }else if(indexPath.item==7){
         detailViewController  = [[HelpViewController alloc] initWithNibName:@"HelpViewController" bundle:nil];
     }else if(indexPath.item==8){
-//        detailViewController  = [[FilterViewController alloc] initWithNibName:@"FilterViewController" bundle:nil];
+        detailViewController  = [[ChatViewController alloc] initWithNibName:@"ChatViewController" bundle:nil];
 
-        ShowMessage(@"即将上线");
-        return;
     }
     
     

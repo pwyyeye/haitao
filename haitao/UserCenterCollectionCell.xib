@@ -20,7 +20,7 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_03_h.png" translatesAutoresizingMaskIntoConstraints="NO" id="WUD-Fl-WFn">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WUD-Fl-WFn">
                         <rect key="frame" x="38" y="28" width="80" height="80"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="WUD-Fl-WFn" secondAttribute="height" multiplier="1:1" id="9Ji-TN-ITW"/>
@@ -59,7 +59,4 @@
             <point key="canvasLocation" x="228" y="335"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="ic_03_h.png" width="32" height="32"/>
-    </resources>
 </document>

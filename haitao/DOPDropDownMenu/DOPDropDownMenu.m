@@ -27,12 +27,11 @@
 #pragma mark - menu implementation
 
 @interface DOPDropDownMenu ()
-@property (nonatomic, assign) NSInteger currentSelectedMenudIndex;
 @property (nonatomic, assign) BOOL show;
 @property (nonatomic, assign) NSInteger numOfMenu;
 @property (nonatomic, assign) CGPoint origin;
 @property (nonatomic, strong) UIView *backGroundView;
-@property (nonatomic, strong) UITableView *tableView;
+
 //data source
 @property (nonatomic, copy) NSArray *array;
 //layers array
@@ -273,7 +272,12 @@
     CGPoint touchPoint = [paramSender locationInView:self];
     //calculate index
     NSInteger tapIndex = touchPoint.x / (self.frame.size.width / _numOfMenu);
- 
+    
+    //添加代理事件－－pwy
+    if (self.delegate || [self.delegate respondsToSelector:@selector(menu:didSelectTitleAtIndex:)]) {
+        [self.delegate menu:self didSelectTitleAtIndex:tapIndex];
+    }
+    
     for (int i = 0; i < _numOfMenu; i++) {
         
         if (i != tapIndex) {
@@ -292,6 +296,8 @@
     if ([self.dataSource respondsToSelector:@selector(menu:numberOfRowsInColumn:)]) {
         if ([self.dataSource menu:self numberOfRowsInColumn:tapIndex]==1) {//不为一笔才有下下拉箭头
             onlyOneCount=YES;
+            
+            
         }
     }
     //modify by pwy --判断纪录是否为一笔 如果为一笔 则不能下拉箭头  改变颜色 与背景色相同--end
