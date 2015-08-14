@@ -262,6 +262,17 @@
     }
     return nil;
 }
+- (void)menu:(DOPDropDownMenu *)menu didSelectTitleAtIndex:(NSInteger)index{
+    if(index==0){
+        self.results = self.goodsList;
+        [self.tableView reloadData];
+        for (int i=0; i<4; i++) {
+            menu.currentSelectedMenudIndex=i;
+            [menu confiMenuWithSelectRow:0];
+        }
+    }
+    
+}
 
 - (void)menu:(DOPDropDownMenu *)menu didSelectRowAtIndexPath:(DOPIndexPath *)indexPath {
     NSLog(@"column:%li row:%li", (long)indexPath.column, (long)indexPath.row);

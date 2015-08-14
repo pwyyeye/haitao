@@ -12,6 +12,7 @@
 
 @property (nonatomic, assign) NSInteger column;
 @property (nonatomic, assign) NSInteger row;
+
 - (instancetype)initWithColumn:(NSInteger)column row:(NSInteger)row;
 + (instancetype)indexPathWithCol:(NSInteger)col row:(NSInteger)row;
 
@@ -35,6 +36,9 @@
 @protocol DOPDropDownMenuDelegate <NSObject>
 @optional
 - (void)menu:(DOPDropDownMenu *)menu didSelectRowAtIndexPath:(DOPIndexPath *)indexPath;
+- (void)menu:(DOPDropDownMenu *)menu didSelectTitleAtIndex:(NSInteger)index;
+
+
 @end
 
 #pragma mark - interface
@@ -47,6 +51,10 @@
 @property (nonatomic, strong) UIColor *textColor;
 @property (nonatomic, strong) UIColor *separatorColor;
 @property (nonatomic, strong) UIColor *backgroundViewColor;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, assign) NSInteger currentSelectedMenudIndex;
+
+
 /**
  *  the width of menu will be set to screen width defaultly
  *
@@ -57,6 +65,7 @@
  */
 - (instancetype)initWithOrigin:(CGPoint)origin andHeight:(CGFloat)height;
 - (NSString *)titleForRowAtIndexPath:(DOPIndexPath *)indexPath;
+- (void)confiMenuWithSelectRow:(NSInteger)row;
 
 @end
 
