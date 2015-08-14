@@ -177,6 +177,7 @@
         [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];
 
         [btn setImage:[UIImage imageNamed:@"icon_Order_selected"] forState:UIControlStateNormal];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCar" object:nil];
     }
     else if(self.currentSelectedIndex==4)
         {

@@ -44,11 +44,20 @@
     if (self)
     {
         _isTabbar=isTabbar;
+        if(isTabbar){
+            [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCar) name:@"refreshCar" object:nil];
+        }
     }
     return self;
 }
+-(void)refreshCar{
+    if(isload){
+        [self getCarInfo];
+    }
+}
 -(void)viewDidLoad
 {
+    
     [super viewDidLoad];
     carShopList =[[NSMutableArray alloc]init];
     delShopList=[[NSMutableArray alloc]init];
@@ -92,6 +101,7 @@
     //    }
     [self getCarInfo];
      [self getToolBar];
+    isload =true;
 }
 -(void)showEmptyView{
     [_empty_view removeFromSuperview];
