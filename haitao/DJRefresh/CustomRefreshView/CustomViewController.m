@@ -39,10 +39,16 @@
     
 }
 -(void)changeFrame{
+    
     isshuaxin=true;
+    
+    [_tableView setContentOffset:CGPointZero animated:false];
+    _tableView.contentInset=UIEdgeInsetsMake(0, 0, 0, 0);
     [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
+    
 }
 -(void)changeGoodFrame{
+//    _tableView.contentInset=UIEdgeInsetsZero;
     isshuaxin=true;
     [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
 
