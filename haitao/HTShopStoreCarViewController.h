@@ -18,6 +18,7 @@
     UIView *view_bar;
     
     UIView *view_toolBar;
+    bool isload;
 }
 @property(assign,nonatomic) BOOL isTabbar;;
 @property(strong,nonatomic) UIView *empty_view;

@@ -3968,10 +3968,10 @@
 				TargetAttributes = {
 					ADB5AC7B1B53CB5F0022B2C2 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = EL277E2S2M;
 					};
 					ADB5AC971B53CB5F0022B2C2 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 5ZLNNRMM3Y;
 						TestTargetID = ADB5AC7B1B53CB5F0022B2C2;
 					};
 				};
@@ -4955,6 +4955,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -4966,6 +4968,7 @@
 				INFOPLIST_FILE = haitaoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/haitao.app/haitao";
 			};
 			name = Debug;
@@ -4974,6 +4977,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -4981,6 +4986,7 @@
 				INFOPLIST_FILE = haitaoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/haitao.app/haitao";
 			};
 			name = Release;

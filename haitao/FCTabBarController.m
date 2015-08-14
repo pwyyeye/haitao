@@ -64,8 +64,8 @@
     UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"icon_LIqin"]tag:-302];
     boutiqueViewController.tabBarItem=item3;
     //购物车
-    HTShopStoreCarViewController *cartViewController= [[HTShopStoreCarViewController alloc] init];
-    cartViewController.isTabbar=YES;
+    HTShopStoreCarViewController *cartViewController= [[HTShopStoreCarViewController alloc] initWithTabbar:YES];
+//    cartViewController.isTabbar=YES;
     UITabBarItem *item4 = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"icon_Order"]tag:-303];
     cartViewController.tabBarItem=item4;
     //个人中心

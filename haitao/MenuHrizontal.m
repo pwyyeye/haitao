@@ -36,7 +36,9 @@
 -(void)createMenuItems:(NSArray *)aItemsArray{
     int i = 0;
     float menuWidth = 0.0;
+    //
     for (NSDictionary *lDic in aItemsArray) {
+        NSDictionary *lDic=aItemsArray[i];
         NSString *vNormalImageStr = [lDic objectForKey:NOMALKEY];
         NSString *vHeligtImageStr = [lDic objectForKey:HEIGHTKEY];
         NSString *vTitleStr = [lDic objectForKey:TITLEKEY];
@@ -65,7 +67,9 @@
         [vButton setTag:i];
         [vButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [vButton setFrame:CGRectMake(menuWidth, 0, vButtonWidth, self.frame.size.height)];
-        
+        if(i==0){
+            [vButton setSelected:true];
+        }
         //添加图片和title；
         UrlImageView *icomImg=[[UrlImageView alloc]initWithFrame:CGRectMake(vButton.width/2-27/2, 3, 27, 27)];
         

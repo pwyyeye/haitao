@@ -29,6 +29,7 @@ static CGFloat kImageOriginHight = 400;
     UIView *view_bar1;
     UIWebView *webView1;
     NSMutableArray *bijiaArr;
+    UIButton *bijiaBtn;
 }
 @end
 
@@ -124,14 +125,16 @@ static CGFloat kImageOriginHight = 400;
     title_money.textAlignment=1;
     [nameView insertSubview:title_money atIndex:0];
     
-    UIButton *bijiaBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    bijiaBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     bijiaBtn.userInteractionEnabled=true;
     bijiaBtn.backgroundColor=[UIColor clearColor];
     bijiaBtn.frame =CGRectMake(self.view.frame.size.width/2-50, title_money.frame.origin.y+title_money.frame.size.height+3, 100, 30);
     [bijiaBtn setTitle:@"全球比价" forState:UIControlStateNormal];
     bijiaBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [bijiaBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [bijiaBtn setHidden:YES];
     [bijiaBtn addTarget:self action:@selector(quanqiubijia:) forControlEvents:UIControlEventTouchUpInside];
+    [self queryBiJia];
     UIImageView *rightimg=[[UIImageView alloc]initWithFrame:CGRectMake(bijiaBtn.width-20, 12, 7, 7)];
     rightimg.image=[UIImage  imageNamed:@"icon_Drop-rightList"];
     [bijiaBtn addSubview:rightimg];
@@ -583,7 +586,7 @@ static CGFloat kImageOriginHight = 400;
 #pragma mark分享
 -(void)btnShare:(id)sender
 {
-    NSString *ss=[NSString stringWithFormat:@"%@:\n%@",self.goods.title,self.goods.goods_link];
+    NSString *ss=[NSString stringWithFormat:@"%@:\n http://www.peikua.com/?m=goods&g=detail&id=%@",self.goods.title,self.goods.id];
         [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
         [UMSocialSnsService presentSnsIconSheetView:self
                                              appKey:UmengAppkey
@@ -649,9 +652,10 @@ static CGFloat kImageOriginHight = 400;
             [bijiaArr addObject:biJiaModel];
         }
         if(bijiaArr.count>0){
-            [self showBijia];
+            [bijiaBtn setHidden:false];
+//            [self showBijia];
         }else{
-            ShowMessage(@"暂无此类商品数据");
+//            ShowMessage(@"暂无此类商品数据");
         }
     }
     if([urlname isEqualToString:@"getOneBrandGoods"]){
@@ -796,9 +800,10 @@ static CGFloat kImageOriginHight = 400;
 #pragma mark - 商品评价等
 -(void)getShopEvaluation{
     //评论
-    pingjiaView=[[UIView alloc]initWithFrame:CGRectMake(0, webView1.frame.size.height+webView1.frame.origin.y+10, self.view.frame.size.width,80 )];
+//    pingjiaView=[[UIView alloc]initWithFrame:CGRectMake(0, webView1.frame.size.height+webView1.frame.origin.y+10, self.view.frame.size.width,80 )];
+    pingjiaView=[[UIView alloc]initWithFrame:CGRectMake(0, webView1.frame.size.height+webView1.frame.origin.y, self.view.frame.size.width,80 )];
     pingjiaView.backgroundColor=[UIColor whiteColor];
-    [_scrollView addSubview:pingjiaView];
+//    [_scrollView addSubview:pingjiaView];
     
     UILabel *pingjiaLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 80, 20)];
     pingjiaLbl.text=@"商品评价";
@@ -867,8 +872,8 @@ static CGFloat kImageOriginHight = 400;
     [pingjiaMore setTitleColor:hexColor(@"#18b112") forState:UIControlStateNormal];
 //    [pingjiaMore addTarget:self action:@selector(quanqiubijia:) forControlEvents:UIControlEventTouchUpInside];
     [pingjiaView addSubview:pingjiaMore];
-    pingjiaView.height=pingjiaMore.height+pingjiaMore.top+10;
-    
+//    pingjiaView.height=pingjiaMore.height+pingjiaMore.top+10;
+    pingjiaView.height=0;
     //购物流程QA
     gouwuQAView=[[UIView alloc]initWithFrame:CGRectMake(0, pingjiaView.frame.size.height+pingjiaView.frame.origin.y+10, self.view.frame.size.width,80 )];
     gouwuQAView.backgroundColor=[UIColor whiteColor];
@@ -1089,7 +1094,18 @@ static CGFloat kImageOriginHight = 400;
     AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
     [app.navigationController pushViewController:contentForDicKeyViewController animated:YES];
 }
+#pragma mark 全球比价查询
+- (void)queryBiJia{
+    NSDictionary *parameters = @{@"id":self.goods.id};
+    NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsParityList",requestUrl]
+    ;
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsParityList"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
 
+}
 #pragma mark 全球比价
 - (void)quanqiubijia:(id)sender{
     //    NSDictionary *parameters = @{@"id":@"626"};
