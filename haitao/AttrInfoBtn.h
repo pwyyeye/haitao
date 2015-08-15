@@ -10,4 +10,5 @@
 #import "SizeModel.h"
 @interface AttrInfoBtn : UrlImageButton
 @property (retain, nonatomic) SizeModel *sizeModel;
+@property (retain, nonatomic) NSArray *guanlianArr;
 @end
