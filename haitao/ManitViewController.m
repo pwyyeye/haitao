@@ -107,7 +107,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    [self setEdgesForExtendedLayout:UIRectEdgeBottom];
     [self drawViewRect];
     HomeViewController *homeViewController=[[HomeViewController alloc]init];
     homeViewController.mainFrame=mainFrame;
