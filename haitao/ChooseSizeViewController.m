@@ -189,7 +189,13 @@
                         label.backgroundColor=RGB(237, 237, 237);
                         [guige addSubview:label];
                     }
+                    CGSize imageSize = CGSizeMake(aiBtn.width, aiBtn.height);
+                    UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
+                    [RGB(237, 237, 237) set];
+                    UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
+                    UIImage *normalImg = UIGraphicsGetImageFromCurrentImageContext();
                     
+                    [aiBtn setBackgroundImage:normalImg forState:UIControlStateDisabled];
                     sizeModel.isflag=false;
                     aiBtn.sizeModel=sizeModel;
                     aiBtn.backgroundColor=[UIColor whiteColor];
@@ -201,7 +207,20 @@
                     [aiBtn setTitle:sizeModel.name forState:0];
                     [aiBtn setTitleColor:[UIColor colorWithRed:.2 green:.2 blue:.2 alpha:1.0] forState:0];
                     [aiBtn addTarget:self action:@selector(btnNine:) forControlEvents:UIControlEventTouchUpInside];
-                
+                //设置关联按钮
+                    NSString *aiBtnId=sizeModel.id;
+                    NSMutableArray *guanglianArr=[[NSMutableArray alloc]init];
+                    for (int z=0; z<priceArr.count; z++) {
+                        NSDictionary *picDic=priceArr[z];
+                        NSString *attr_values=[picDic objectForKey:@"attr_values"];
+                        NSRange range = [attr_values rangeOfString:aiBtnId];
+                        if (range.length > 0)
+                        {
+                            [guanglianArr addObject:attr_values];
+                        }
+
+                    }
+                    aiBtn.guanlianArr=guanglianArr;
                     [guige addSubview:aiBtn];
                     [btnArr addObject:aiBtn];
                     [arrTemp addObject:aiBtn];
@@ -303,8 +322,11 @@
     SizeModel *sizeMode= button.sizeModel;
     sizeMode.isflag=!sizeMode.isflag;
     NSString *ssTemp=[NSString stringWithFormat:@"%ld",button.tag];
+    //获取同一组尺寸的数据
     NSArray *arrTemp=[attrDic objectForKey:ssTemp];
     NSString *sid=sizeMode.id;
+    NSArray *keyAttrArr=[attrDic allKeys];
+    //同一组数据只能单选
     if(sizeMode.isflag){
         for (int i=0; i<arrTemp.count; i++) {
             AttrInfoBtn *buttonTemp=(AttrInfoBtn*)arrTemp[i];
@@ -315,7 +337,74 @@
             }
             
         }
+        //回复编辑状态1.选中的时候让非关联的尺寸处于禁止编辑状态.2.让非关联的尺寸如果选中变为不选中
+        
+        for (NSString *keyStrm in keyAttrArr) {
+            if(![keyStrm isEqualToString:ssTemp]){
+                //不同组的数据
+                 NSArray *arrTemp1=[attrDic objectForKey:keyStrm];
+                for (int i=0; i<arrTemp1.count; i++) {
+                    AttrInfoBtn *buttonTemp=(AttrInfoBtn*)arrTemp1[i];
+                    SizeModel *sizeModeTemp= buttonTemp.sizeModel;
+                    NSString *sidTemp=sizeModeTemp.id;
+                    NSArray *guanglingArr=button.guanlianArr;
+                    bool isGuangLiang=false;
+                    for (NSString *guangLiangKey in guanglingArr) {
+                        NSRange range = [guangLiangKey rangeOfString:sidTemp];
+                        if (range.length > 0)
+                        {
+                            isGuangLiang=true;
+                            break;
+                        }
 
+                    }
+                    if (isGuangLiang){
+                        buttonTemp.enabled=true;
+                        
+                    }else{
+                        buttonTemp.enabled=false;
+                        if(sizeModeTemp.isflag){
+                            sizeModeTemp.isflag=false;
+                        }
+                    }
+                    
+                }
+            }
+        }
+        
+        
+    }else{
+        //取消选中的时候让非关联的尺寸取消静止编辑状态
+        for (NSString *keyStrm in keyAttrArr) {
+            if(![keyStrm isEqualToString:ssTemp]){
+                //不同组的数据
+                NSArray *arrTemp1=[attrDic objectForKey:keyStrm];
+                for (int i=0; i<arrTemp1.count; i++) {
+                    AttrInfoBtn *buttonTemp=(AttrInfoBtn*)arrTemp1[i];
+                    SizeModel *sizeModeTemp= buttonTemp.sizeModel;
+                    NSString *sidTemp=sizeModeTemp.id;
+                    NSArray *guanglingArr=button.guanlianArr;
+                    bool isGuangLiang=false;
+                    for (NSString *guangLiangKey in guanglingArr) {
+                        NSRange range = [guangLiangKey rangeOfString:sidTemp];
+                        if (range.length > 0)
+                        {
+                            isGuangLiang=true;
+                            break;
+                        }
+                        
+                    }
+                    if (isGuangLiang){
+                        
+                        
+                    }else{
+                        buttonTemp.enabled=true;
+                        
+                    }
+                    
+                }
+            }
+        }
     }
     for (int i=0; i<arrTemp.count; i++) {
         AttrInfoBtn *buttonTemp=(AttrInfoBtn*)arrTemp[i];
@@ -327,6 +416,7 @@
           [buttonTemp setTitleColor:[UIColor colorWithRed:.2 green:.2 blue:.2 alpha:1.0] forState:0];
             buttonTemp.backgroundColor=[UIColor whiteColor];
         }
+        
     }
     //判断条件是否都选上了
     NSArray *keyArr = [attrDic allKeys];

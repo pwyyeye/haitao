@@ -39,23 +39,23 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCus) name:@"refreshCus" object:nil];
 }
 -(void)refreshCus{
-    isshuaxin=true;
-    if(_refresh){
-        [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
-    }
+//    isshuaxin=true;
+//    if(_refresh){
+//        [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
+//    }
 }
 -(void)changeFrame{
     
-//    isshuaxin=true;
-//    
-//   
-//    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
-//    
+    isshuaxin=true;
+    
+   
+    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
+    
 }
 -(void)changeGoodFrame{
-//    _tableView.contentInset=UIEdgeInsetsZero;
-//    isshuaxin=true;
-//    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
+    _tableView.contentInset=UIEdgeInsetsZero;
+    isshuaxin=true;
+    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
 
 }
 - (void)viewDidLoad {
@@ -599,8 +599,8 @@
 }
 -(void)goodContentTouchDo:(GoodImageButton *)sender{
     New_Goods *goods=sender.goods;
-    //    NSDictionary *parameters = @{@"id":@"626"};
-    NSDictionary *parameters = @{@"id":goods.id};
+      //   NSDictionary *parameters = @{@"id":@"656"};
+   NSDictionary *parameters = @{@"id":goods.id};
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
     ;
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
