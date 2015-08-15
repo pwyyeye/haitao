@@ -119,7 +119,7 @@
     [app startLoading];
 
      NSDictionary *parameters = @{@"user_name":_username,@"user_pass":[MyUtil md5HexDigest:_password]};
-    
+   // NSLog(@"----pass-pass%@---",[MyUtil md5HexDigest:_password]);
     HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_doLogin withType:POSTURL withPam:parameters withUrlName:@"login"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
