@@ -458,7 +458,8 @@
     _inParameters=[parameters mutableCopy];
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
     ;
-    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getMenuGoodsList"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
@@ -550,7 +551,8 @@
     _inParameters=[parameters mutableCopy];
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
     ;
-    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getMenuGoodsList"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];

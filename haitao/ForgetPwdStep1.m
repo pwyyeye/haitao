@@ -51,6 +51,8 @@
         ForgetPwdStep2 * vc=[[ForgetPwdStep2 alloc] initWithNibName:@"ForgetPwdStep2" bundle:nil];
         vc.username=_userame.text;
         [_timer setFireDate:[NSDate distantPast]];//开启
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [app startLoading];
         NSDictionary *dic=@{@"mobile":_userame.text};
         HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_captcha withType:GETURL withPam:dic withUrlName:@"getCaptcha"];
         
