@@ -36,26 +36,29 @@
 
 @implementation CustomViewController
 -(void)viewWillAppear:(BOOL)animated{
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCus) name:@"refreshCus" object:nil];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCus) name:@"refreshCus" object:nil];
 }
 -(void)refreshCus{
-//    isshuaxin=true;
-//    if(_refresh){
-//        [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
-//    }
+    
+
 }
 -(void)changeFrame{
     
-    isshuaxin=true;
-    
-   
-    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
-    
+//    UIEdgeInsets edge =UIEdgeInsetsMake (65, 0, 0, 0);
+//    
+//    _tableView.contentInset=edge;
+//    [_tableView setContentOffset:CGPointMake(0, -edge.top) animated:false];
+//    [_tableView setContentOffset:CGPointMake(0, 0) animated:false];
 }
 -(void)changeGoodFrame{
-    _tableView.contentInset=UIEdgeInsetsZero;
-    isshuaxin=true;
-    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
+//    UIEdgeInsets edge =UIEdgeInsetsMake (65, 0, 0, 0);
+//    
+//    _tableView.contentInset=edge;
+//    [_tableView setContentOffset:CGPointMake(0, -edge.top) animated:false];
+//    [_tableView setContentOffset:CGPointMake(0, 0) animated:false];
+//    _tableView.contentInset=UIEdgeInsetsZero;
+//    isshuaxin=true;
+//    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
 
 }
 - (void)viewDidLoad {
@@ -80,7 +83,7 @@
     _inParameters=[parameters mutableCopy];
     
     [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:YES];
-    [self getCatBanner];
+//    [self getCatBanner];
 }
 #pragma mark 下啦刷新
 - (void)refresh:(DJRefresh *)refresh didEngageRefreshDirection:(DJRefreshDirection)direction{

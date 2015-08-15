@@ -128,13 +128,15 @@
 {
     NSString *selectAtIndex = [NSString stringWithFormat:@"%d",self.currentSelectedIndex + 200];
     UIButton *selectedBtn = (UIButton*)[self.view viewWithTag:[selectAtIndex integerValue]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCus" object:nil];
+    
     if ([selectAtIndex integerValue] == 200)
     {
       
         [selectedBtn setImage:[UIImage imageNamed:@"icon_Home"] forState:UIControlStateNormal];
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        
         [app stopLoading];
+
     }else if ([selectAtIndex integerValue] == 201)
     {
         [selectedBtn setImage:[UIImage imageNamed:@"icon_Sherch"] forState:UIControlStateNormal];

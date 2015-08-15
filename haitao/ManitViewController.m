@@ -19,9 +19,11 @@
 @implementation ManitViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+  
     [self.navigationController setNavigationBarHidden:YES animated:YES]; // 隐藏导航栏
     //    [self.navigationItem setHidesBackButton:YES];
 }
+
 -(UIView *)getNavigationBar
 {
     self.navigationController.navigationBarHidden = YES;
@@ -105,7 +107,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    [self setEdgesForExtendedLayout:UIRectEdgeBottom];
     [self drawViewRect];
     HomeViewController *homeViewController=[[HomeViewController alloc]init];
     homeViewController.mainFrame=mainFrame;
@@ -131,7 +133,7 @@
         [viewControllers addObject:nav];
     }
     
-    self.viewControllers = viewControllers;
+    self.viewControllers = views;
     
     //    [self getNavigationBar];
     //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ChangeTabType)name:@"ChangeTabType"object:nil];
@@ -204,7 +206,7 @@
 #pragma mark MenuHrizontalDelegate
 -(void)didMenuHrizontalClickedButtonAtIndex:(NSInteger)aIndex{
     self.selectedIndex = aIndex;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCus" object:nil];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCus" object:nil];
     
 }
 
