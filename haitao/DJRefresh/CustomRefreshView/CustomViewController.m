@@ -46,16 +46,16 @@
 }
 -(void)changeFrame{
     
-    isshuaxin=true;
-    
-   
-    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
-    
+//    isshuaxin=true;
+//    
+//   
+//    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
+//    
 }
 -(void)changeGoodFrame{
 //    _tableView.contentInset=UIEdgeInsetsZero;
-    isshuaxin=true;
-    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
+//    isshuaxin=true;
+//    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
 
 }
 - (void)viewDidLoad {
