@@ -36,21 +36,32 @@
 
 @implementation CustomViewController
 -(void)viewWillAppear:(BOOL)animated{
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCus) name:@"refreshCus" object:nil];
+}
+-(void)refreshCus{
+    isshuaxin=true;
+    if(_refresh){
+        [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
+    }
 }
 -(void)changeFrame{
-    isshuaxin=true;
-    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
+    
+//    isshuaxin=true;
+//    
+//   
+//    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
+//    
 }
 -(void)changeGoodFrame{
-    isshuaxin=true;
-    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
+//    _tableView.contentInset=UIEdgeInsetsZero;
+//    isshuaxin=true;
+//    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
 
 }
 - (void)viewDidLoad {
     isshuaxin=false;
     [super viewDidLoad];
-    self.edgesForExtendedLayout =UIRectEdgeTop ;
+    
     title=@"";
     bannerArr =[[NSMutableArray alloc]initWithCapacity:8];
     _tableView =[[UITableView alloc]initWithFrame:self.mainFrame style:UITableViewStylePlain];
