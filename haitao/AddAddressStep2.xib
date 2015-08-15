@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="Address_img_shenfenzheng.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gnk-U0-Sl8">
-                    <rect key="frame" x="10" y="54.5" width="285" height="180.5"/>
+                    <rect key="frame" x="10" y="54" width="285" height="180.5"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份证照片（务必为收件人身份证）" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCY-iu-t3f">
                     <rect key="frame" x="10" y="20" width="570" height="14.5"/>
@@ -42,10 +42,10 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Address_img_shenfenzheng.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rzj-vy-22F">
-                    <rect key="frame" x="305" y="54.5" width="285" height="180.5"/>
+                    <rect key="frame" x="305" y="54" width="285" height="180.5"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="仅清关用" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BuQ-vB-Ipe">
-                    <rect key="frame" x="10" y="234.5" width="285" height="21"/>
+                    <rect key="frame" x="10" y="234" width="285" height="21"/>
                     <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="3T7-A7-INb"/>
@@ -61,7 +61,7 @@
                     </variation>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="仅清关用" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCK-X1-j4T">
-                    <rect key="frame" x="305" y="234.5" width="285" height="21"/>
+                    <rect key="frame" x="305" y="234" width="285" height="21"/>
                     <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="Qnf-1H-hhR"/>
@@ -77,23 +77,23 @@
                     </variation>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syY-GI-a64">
-                    <rect key="frame" x="0.0" y="356.5" width="600" height="203.5"/>
+                    <rect key="frame" x="0.0" y="382" width="600" height="177.5"/>
                     <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="温馨提示" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usr-QT-inl">
-                    <rect key="frame" x="274" y="286.5" width="52" height="16"/>
+                    <rect key="frame" x="274" y="286" width="52" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="1" green="0.050980392159999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传清晰的身份证照，可加速清关，缩短物流时间，身份证照片仅用于清关用途，请放心上传" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xz2-Sn-I4X">
-                    <rect key="frame" x="30" y="322.5" width="540" height="13.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="温馨提示：务必确保收货人姓名与身份证号相匹配，若因此导致商品清关异常或滞留， 将无法享受配夸的相关服务条款，如遇到商品缺货我们将尽快通知到您，请您在下单后的两天内关注自己的订单状态，如遇问题请联系客服：400-600-3500。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xz2-Sn-I4X">
+                    <rect key="frame" x="30" y="322" width="540" height="39.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="so9-5e-C7W">
-                    <rect key="frame" x="0.0" y="275.5" width="600" height="1"/>
+                    <rect key="frame" x="0.0" y="275" width="600" height="1"/>
                     <color key="backgroundColor" red="0.87196416440000002" green="0.87196416440000002" blue="0.87196416440000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="kAl-1G-DxJ"/>

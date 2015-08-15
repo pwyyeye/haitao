@@ -73,7 +73,7 @@
     //tableView的高度时header＋footer＋cell高度*cell个数
     self.tableViewHeight.constant=110+80*_packageModel.package_info.goods.count;
     //自身高度＝tableview的y坐标＋tableView的高度＋coll的高度*个数＋coll展开view的最大高度
-    self.viewHeight.constant=self.tableView.frame.origin.y+self.tableViewHeight.constant+_coll.cellHeight*3+200;
+    self.viewHeight.constant=self.tableView.frame.origin.y+self.tableViewHeight.constant+_coll.cellHeight*3+400;
     
     
 }
@@ -111,7 +111,7 @@
             
             [_tableView reloadData];
             
-            _coll=[[CollapseClick alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 300)];
+            _coll=[[CollapseClick alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 500)];
             _coll.CollapseClickDelegate = self;
             _coll.cellSpace=0;
             _coll.cellHeight=40;
@@ -189,7 +189,8 @@
                 UIButton *kefu=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/5*1.5, 30)];
                 [kefu setImage:[UIImage imageNamed:@"icon_LianXiKeFu"]  forState:UIControlStateNormal];
                 [kefu.imageView setContentMode:UIViewContentModeScaleAspectFill];
-                
+                [kefu addTarget:self action:@selector(connectKefu) forControlEvents:UIControlEventTouchUpInside];
+
                 //联系客服文字
                 UILabel *kefu_label=[[UILabel alloc] initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH/5*1.5, 15)];
                 kefu_label.text=@"在线客服";
@@ -236,14 +237,15 @@
                 UIButton *kefu=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/3, 30)];
                 [kefu setImage:[UIImage imageNamed:@"icon_LianXiKeFu"]  forState:UIControlStateNormal];
                 [kefu.imageView setContentMode:UIViewContentModeScaleAspectFill];
-                
+                [kefu addTarget:self action:@selector(connectKefu) forControlEvents:UIControlEventTouchUpInside];
+
                 //联系客服文字
                 UILabel *kefu_label=[[UILabel alloc] initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH/3, 15)];
                 kefu_label.text=@"在线客服";
                 kefu_label.textColor=RGB(128, 128, 128);
                 kefu_label.font=[UIFont boldSystemFontOfSize:11];
                 kefu_label.textAlignment=NSTextAlignmentCenter;
-                
+
                 
                 //联系电话
                 UIButton *telephone=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/3, 0, SCREEN_WIDTH/3, 30)];
@@ -650,23 +652,35 @@
     switch (index) {
         case 0:
         {
-            _shipDetailView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
+            _shipDetailView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
             _shipDetailView.backgroundColor=[UIColor whiteColor];
-            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 70, 100, 20)];
+            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, SCREEN_WIDTH-40, 80)];
             label.textColor=RGB(128, 128, 128);
-            label.text=@"暂无相关消息";
+            label.numberOfLines=0;
             label.font=[UIFont systemFontOfSize:11];
+            if ([_packageModel.package_info.ship_type integerValue]==1) {
+               label.text=[NSString stringWithFormat:@"直邮：直邮运费由%@发货时直接决定运费。详情请查看帮助说明页面。",_packageModel.package_info.shop_name] ;
+            }else{
+                NSString *shipname=[MyUtil isEmptyString:_packageModel.package_info.logistic_name]?_packageModel.package_info.ship_name:_packageModel.package_info.logistic_name;
+                
+                label.text=[NSString stringWithFormat:@"转运：转运运费=商品来源官网运费 + 转运费。/n  官网征收运费：满免标准（满%@免运费），转运费：该包裹由%@转运公司提供转运服务，该公司的转运收费标准请参考帮助详情。",[MyUtil isEmptyString:_packageModel.package_info.all_transport_free_logistic]?@"0":_packageModel.package_info.all_transport_free_logistic,shipname] ;
+            }
             [_shipDetailView addSubview:label];
             return _shipDetailView;
             break;
         }case 1:
         {
-            _taxDetailView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
+            _taxDetailView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
             _taxDetailView.backgroundColor=[UIColor whiteColor];
-            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 70, 100, 20)];
+            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, SCREEN_WIDTH-40, 80)];
             label.textColor=RGB(128, 128, 128);
-            label.text=@"暂无相关消息";
+            label.numberOfLines=0;
             label.font=[UIFont systemFontOfSize:11];
+            if ([_packageModel.package_info.ship_type integerValue]==1) {
+                label.text=[NSString stringWithFormat:@"直邮商品需要预先收取关税，预收关税为%@预先代收，需要在结算时一次性缴纳，多退少不补；预收关税计入商品总价。详情请查看帮助说明页面",_packageModel.package_info.shop_name] ;
+            }else{
+                label.text=[NSString stringWithFormat:@"转运商品在清关时可能产生的关税，关税额即为预估关税，如果产生关税需要及时缴纳，方可顺利清关；预估关税不计入商品总价。详情请查看帮助说明页面。"] ;
+            }
             [_taxDetailView addSubview:label];
             return _taxDetailView;
             break;
