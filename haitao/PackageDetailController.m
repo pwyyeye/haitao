@@ -17,6 +17,7 @@
 #import "New_Goods.h"
 #import "Goods_Ext.h"
 #import "HTGoodDetailsViewController.h"
+#import "ChatViewController.h"
 @interface PackageDetailController ()
 
 @end
@@ -146,6 +147,8 @@
                 UIButton *kefu=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2, 30)];
                 [kefu setImage:[UIImage imageNamed:@"icon_LianXiKeFu"]  forState:UIControlStateNormal];
                 [kefu.imageView setContentMode:UIViewContentModeScaleAspectFill];
+                
+                [kefu addTarget:self action:@selector(connectKefu) forControlEvents:UIControlEventTouchUpInside];
                 
                 //联系客服文字
                 UILabel *kefu_label=[[UILabel alloc] initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH/2, 15)];
@@ -386,6 +389,14 @@
     }
     
     [_phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+}
+
+-(void)connectKefu{
+    ChatViewController *chat=[ChatViewController shareChat];
+    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+    [self.navigationController pushViewController:chat animated:YES];
+    
+
 }
 /*
 #pragma mark - Navigation
