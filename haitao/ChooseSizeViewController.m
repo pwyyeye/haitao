@@ -494,6 +494,8 @@
     }else{
         NSString* url =[NSString stringWithFormat:@"%@&f=addCart&m=cart",requestUrl]
         ;
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [app startLoading];
         
         HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"addCart"];
         httpController.delegate = self;
@@ -585,6 +587,8 @@
 }
 #pragma mark 接受数据
 -(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app stopLoading];
     NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
     NSNumber *status=[dictemp objectForKey:@"status"];
     if([urlname isEqualToString:@"addCart"]){

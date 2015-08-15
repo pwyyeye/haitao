@@ -105,7 +105,8 @@
     _inParameters=[self.keyDic mutableCopy];
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
     ;
-    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:self.keyDic withUrlName:@"getGoodsListForKey"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
@@ -113,6 +114,8 @@
 }
 #pragma mark 接受数据
 -(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app stopLoading];
     if([urlname isEqualToString:@"getGoodsListForKey"]){
         NSDictionary *dataDic=[dictemp objectForKey:@"data"];
         NSArray *goodsArr=[dataDic objectForKey:@"list"];
@@ -503,7 +506,8 @@
     _inParameters=[dicNewKey mutableCopy];
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
     ;
-    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:dicNewKey withUrlName:@"getGoodsListForKey"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
@@ -526,6 +530,8 @@
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
     ;
     
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsDetail"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];

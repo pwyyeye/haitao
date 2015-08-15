@@ -18,6 +18,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title=@"意见反馈";
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_getSuggestTypeList withType:POSTURL withPam:nil withUrlName:@"types"];
     httpController.delegate = self;
     [httpController onSearch];
@@ -129,7 +131,8 @@
 - (IBAction)submit:(id)sender {
     NSDictionary *pam=@{@"type":[NSString stringWithFormat:@"%d",_selectedId] ,@"contact":_contact.text,@"content":_content.text};
     NSLog(@"----pass-btnClick%@---",pam);
-
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_addSuggest withType:POSTURL withPam:pam withUrlName:@"addSuggest"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];

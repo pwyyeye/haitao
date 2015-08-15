@@ -191,7 +191,8 @@
     NSDictionary *parameters = @{@"goods_id":myGoods.id};
     NSString* url =[NSString stringWithFormat:@"%@&f=addFav&m=user",requestUrl]
     ;
-    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"addFav"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];

@@ -95,7 +95,8 @@
     _inParameters=[parameters mutableCopy];
     NSString* url =[NSString stringWithFormat:@"%@&m=ad&f=getCatBanner",requestUrl]
     ;
-    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getCatBanner"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
@@ -118,8 +119,8 @@
 
 #pragma mark 接受数据
 -(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
-    //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    //    [app stopLoading];
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [app stopLoading];
     NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
     NSString *status=[dictemp objectForKey:@"status"];
     //    if(![status isEqualToString:@"1"]){
@@ -603,7 +604,8 @@
     
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
     ;
-    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getMenuGoodsList"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
@@ -741,7 +743,8 @@
     _inParameters=[parameters mutableCopy];
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
     ;
-    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsListSort"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
