@@ -11,6 +11,9 @@
 		A20BA77D1B61F33000F73A57 /* LTKSeachResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20BA77C1B61F33000F73A57 /* LTKSeachResultViewController.m */; };
 		A20BA77F1B61F38D00F73A57 /* sskx_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A20BA77E1B61F38D00F73A57 /* sskx_search@2x.png */; };
 		A20BA7821B620EEA00F73A57 /* TitleBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = A20BA7811B620EEA00F73A57 /* TitleBtn.m */; };
+		A20DB8D61B7F803C0079629C /* 物流须知.png in Resources */ = {isa = PBXBuildFile; fileRef = A20DB8D51B7F803C0079629C /* 物流须知.png */; };
+		A20DB8DA1B8035B60079629C /* GouWuXuZhiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20DB8D81B8035B60079629C /* GouWuXuZhiViewController.m */; };
+		A20DB8DB1B8035B60079629C /* GouWuXuZhiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20DB8D91B8035B60079629C /* GouWuXuZhiViewController.xib */; };
 		A21814251B56060100D64E70 /* ZRScrollableTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A21814241B56060100D64E70 /* ZRScrollableTabBar.m */; };
 		A21814281B56063300D64E70 /* arrrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = A21814261B56063300D64E70 /* arrrow_left.png */; };
 		A21814291B56063300D64E70 /* arrrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = A21814271B56063300D64E70 /* arrrow_right.png */; };
@@ -770,6 +773,10 @@
 		A20BA77E1B61F38D00F73A57 /* sskx_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sskx_search@2x.png"; sourceTree = "<group>"; };
 		A20BA7801B620EEA00F73A57 /* TitleBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleBtn.h; sourceTree = "<group>"; };
 		A20BA7811B620EEA00F73A57 /* TitleBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleBtn.m; sourceTree = "<group>"; };
+		A20DB8D51B7F803C0079629C /* 物流须知.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "物流须知.png"; sourceTree = "<group>"; };
+		A20DB8D71B8035B60079629C /* GouWuXuZhiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GouWuXuZhiViewController.h; sourceTree = "<group>"; };
+		A20DB8D81B8035B60079629C /* GouWuXuZhiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GouWuXuZhiViewController.m; sourceTree = "<group>"; };
+		A20DB8D91B8035B60079629C /* GouWuXuZhiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GouWuXuZhiViewController.xib; sourceTree = "<group>"; };
 		A21814231B56060100D64E70 /* ZRScrollableTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRScrollableTabBar.h; sourceTree = "<group>"; };
 		A21814241B56060100D64E70 /* ZRScrollableTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRScrollableTabBar.m; sourceTree = "<group>"; };
 		A21814261B56063300D64E70 /* arrrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrrow_left.png; sourceTree = "<group>"; };
@@ -2120,6 +2127,9 @@
 				A2E8D0A11B76F6C00004ADB9 /* QiangGouView.h */,
 				A2E8D0A21B76F6C10004ADB9 /* QiangGouView.m */,
 				A2E8D0C41B772E1C0004ADB9 /* QiangGuoView.xib */,
+				A20DB8D71B8035B60079629C /* GouWuXuZhiViewController.h */,
+				A20DB8D81B8035B60079629C /* GouWuXuZhiViewController.m */,
+				A20DB8D91B8035B60079629C /* GouWuXuZhiViewController.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -3055,6 +3065,7 @@
 				A2E8D0641B749FAB0004ADB9 /* 加入购物车_@2x.png */,
 				A2E8D0651B749FAB0004ADB9 /* 加入购物车_@3x.png */,
 				A2E8D0731B75F8BC0004ADB9 /* att_btn_base_@2x.png */,
+				A20DB8D51B7F803C0079629C /* 物流须知.png */,
 			);
 			path = "详情页";
 			sourceTree = "<group>";
@@ -4017,6 +4028,7 @@
 				AD8E37071B721A1500C9D5BA /* Icon_Kai@2x.png in Resources */,
 				ADECDC261B672CB3009EA286 /* Feedback.xib in Resources */,
 				A2E8D0901B76D8910004ADB9 /* icon_LIqin@3x.png in Resources */,
+				A20DB8DB1B8035B60079629C /* GouWuXuZhiViewController.xib in Resources */,
 				AD8E37A21B721A1500C9D5BA /* UserCenter_icon_LIJuan.png in Resources */,
 				AD8E351C1B70A11300C9D5BA /* 4@2x.jpg in Resources */,
 				AD8E35721B70CA4300C9D5BA /* home_bg_guojimingpin_shangpin_xiaotu_@2x.png in Resources */,
@@ -4135,6 +4147,7 @@
 				AD8E35701B70CA4300C9D5BA /* home_bg_guojimingpin_shangpin_datu_zhong_5@2x-1.png in Resources */,
 				AD8AA6321B59435C00E324AD /* MJRefresh.bundle in Resources */,
 				A2E8D0DA1B788FF70004ADB9 /* DetailsPage_btn_kehu@2x.png in Resources */,
+				A20DB8D61B7F803C0079629C /* 物流须知.png in Resources */,
 				AD8E36D71B721A1500C9D5BA /* icon_Descending@2x.png in Resources */,
 				A2E8D0961B76D8910004ADB9 /* icon_Sherch_selected@3x.png in Resources */,
 				ADD655331B6F3700006F4127 /* userCenter_inco_help@2x.png in Resources */,
@@ -4682,6 +4695,7 @@
 				AD8AA6361B59435C00E324AD /* NSData+Base64.m in Sources */,
 				ADCFB04B1B61F1BC001B3324 /* UserCenterCollectionCell.m in Sources */,
 				AD8AA62F1B59435C00E324AD /* JUUserDefaults.m in Sources */,
+				A20DB8DA1B8035B60079629C /* GouWuXuZhiViewController.m in Sources */,
 				ADCF993B1B6DAA6200EA5592 /* OrderModel.m in Sources */,
 				ADD7D8EF1B69E99B00304019 /* DOPDropDownMenu.m in Sources */,
 				A2D039031B5E902E00EB0FDC /* New_Goods.m in Sources */,

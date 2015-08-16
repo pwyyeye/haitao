@@ -17,6 +17,7 @@
 #import "HTShopStoreCarViewController.h"
 #import "BiJiaModel.h"
 #import "GoodImageButton.h"
+#import "GouWuXuZhiViewController.h"
 static CGFloat kImageOriginHight = 400;
 
 @interface HTGoodDetailsViewController ()<UIWebViewDelegate,ChooseSizeDelegate>
@@ -901,7 +902,7 @@ static CGFloat kImageOriginHight = 400;
     [gouwuQAView addSubview:qaTitleLbl];
     //线
     CGRect lastQAframe=qaTitleLbl.frame;
-    for (int i=0; i<2; i++) {
+    for (int i=0; i<1; i++) {
         UIView *qaCounteView=[[UIView alloc]initWithFrame:CGRectMake(0, lastQAframe.origin.y+lastQAframe.size.height+10, gouwuQAView.width, 100)];
         [gouwuQAView addSubview:qaCounteView];
         UILabel *qaLine=[[UILabel alloc] initWithFrame:CGRectMake(20, 1, pingjiaView.width-40, 0.5)];
@@ -938,13 +939,36 @@ static CGFloat kImageOriginHight = 400;
         lastQAframe=qaCounteView.frame;
 
     }
-    gouwuQAView.height=lastQAframe.size.height+lastQAframe.origin.y;
+    //线
+    UILabel *qaLine1=[[UILabel alloc] initWithFrame:CGRectMake(20, lastQAframe.origin.y+lastQAframe.size.height+10, gouwuQAView.width-40, 0.5)];
+    qaLine1.backgroundColor=RGB(237, 237, 237);
+    [gouwuQAView addSubview:qaLine1];
+    //查看更多
+    UIButton *gouwuxuzhiMore=[UIButton buttonWithType:UIButtonTypeCustom];
+    gouwuxuzhiMore.userInteractionEnabled=true;
+    gouwuxuzhiMore.backgroundColor=[UIColor clearColor];
+    gouwuxuzhiMore.frame =CGRectMake(gouwuQAView.width/2-50, qaLine1.frame.origin.y+qaLine1.frame.size.height+10, 100, 30);
+    [gouwuxuzhiMore setTitle:@"查看更多" forState:UIControlStateNormal];
+    gouwuxuzhiMore.titleLabel.font = [UIFont systemFontOfSize:15];
+    [gouwuxuzhiMore setTitleColor:hexColor(@"#18b112") forState:UIControlStateNormal];
+    [gouwuxuzhiMore addTarget:self action:@selector(gouwuxuzhiMore:) forControlEvents:UIControlEventTouchUpInside];
+    [gouwuQAView addSubview:gouwuxuzhiMore];
+    
+    gouwuQAView.height=gouwuxuzhiMore.height+gouwuxuzhiMore.top+10;
     
    
     [_scrollView setContentSize:CGSizeMake(320, gouwuQAView.frame.size.height+gouwuQAView.frame.origin.y+70)];
     //获取商品推荐
     [self getshopTuijianData];
     
+}
+#pragma mark 购物须知
+
+-(void)gouwuxuzhiMore:(id)sender{
+    GouWuXuZhiViewController *gouWuXuZhiViewController=[[GouWuXuZhiViewController alloc]initWithNibName:@"GouWuXuZhiViewController" bundle:nil];
+    [self presentViewController:gouWuXuZhiViewController animated:YES completion:^{
+        
+    }];
 }
 #pragma mark 获取商品推荐
 - (void)getshopTuijianData{

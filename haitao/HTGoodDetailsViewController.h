@@ -26,6 +26,7 @@
     UIView *pingjiaView;
     UIView *gouwuQAView;
     UIView *tuijianView;
+    UIView *gouwuxuzhiView;
     UrlImageButton *_bigImg;
     bool isLoadingFinished;
     UrlImageButton *btnNine;
