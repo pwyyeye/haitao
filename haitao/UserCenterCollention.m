@@ -270,7 +270,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     }else if(indexPath.item==7){
         detailViewController  = [[HelpViewController alloc] initWithNibName:@"HelpViewController" bundle:nil];
     }else if(indexPath.item==8){
-        detailViewController  = [[ChatViewController alloc] initWithNibName:@"ChatViewController" bundle:nil];
+        detailViewController  = [ChatViewController shareChat];
 
     }
     

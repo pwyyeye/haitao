@@ -63,7 +63,8 @@
     
     
     self.tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-40-64);
-
+    self.tableView.bounces=NO;
+    
     UIButton *logoutButton=[[UIButton alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40-64, SCREEN_WIDTH, 40)];
     logoutButton.backgroundColor=RGB(255, 13, 94);
     
@@ -139,13 +140,13 @@
 //    
 //    [cell.contentView insertSubview:label atIndex:0];
 //    
-//    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(20, 3, SCREEN_WIDTH, 30)];
-//    titleLabel.font=[UIFont systemFontOfSize:13.0];
-//    titleLabel.text=_data[indexPath.item];
-//    [cell.contentView addSubview:titleLabel];
+    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(60, 10, SCREEN_WIDTH-40, 30)];
+    titleLabel.font=[UIFont systemFontOfSize:15.0];
+    titleLabel.text=_data[indexPath.row];
+    [cell.contentView addSubview:titleLabel];
     
-    cell.textLabel.text=_data[indexPath.row];
-    cell.textLabel.font=[UIFont systemFontOfSize:15];
+//    cell.textLabel.text=_data[indexPath.row];
+//    cell.textLabel.font=[UIFont systemFontOfSize:15];
     
     switch (indexPath.row) {
         case 0:
@@ -190,6 +191,8 @@
     if (indexPath.row==0) {
 //        [self gotoAppStorePageRaisal:@""];//app评价地址
     }else if (indexPath.row==1) {
+        [USER_DEFAULT removeObjectForKey:@"user_name"];
+        [USER_DEFAULT removeObjectForKey:@"user_pass"];
         ShowMessage(@"清除成功！");
         
     }else if (indexPath.row==2) {

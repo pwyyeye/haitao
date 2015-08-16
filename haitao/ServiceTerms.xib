@@ -13,17 +13,17 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="639"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NlZ-q4-kte">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="639"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sd5-ye-Njj">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ii4-l1-vtf">
-                                    <rect key="frame" x="20" y="517.5" width="560" height="36"/>
+                                    <rect key="frame" x="20" y="517" width="560" height="36"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="确保可以提供给用户最尽善尽美的网购 体验！" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Evb-uV-vq4">
                                             <rect key="frame" x="20" y="10" width="520" height="16"/>
@@ -63,19 +63,23 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1、正品保证" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EjF-vF-AZN">
-                            <rect key="frame" x="20" y="50.5" width="83.5" height="18"/>
+                            <rect key="frame" x="20" y="50" width="83.5" height="18"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                             <color key="textColor" white="0.070000000000000007" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fea-Id-OiJ">
-                            <rect key="frame" x="20" y="76.5" width="560" height="129"/>
+                            <rect key="frame" x="20" y="76" width="560" height="129"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7l-qQ-Ccd">
                                     <rect key="frame" x="20" y="10" width="520" height="109"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <mutableString key="text">       雀夸网（www.quekua.com）是一家专注于购物搜索、网购比价的综合性导购平台，致力于为用户提供最好购物体验。雀夸网始终“以用户为中心”，想用户所想，之后业务会拓展到海淘、机票、酒店、服务比较领域。
-雀 夸网服务用户网购全流程：首先，通过导购信息，提供“正品+低价+多样化”选择给用户，刺激用户产生购买需求；其次，通过搜索引擎，快速定位心仪的产品， 通过比价一目了然全网最低价在哪里，促成快速做出购买决策；最后，我们还要做后期的交易闭环，商家入驻，支付发货等，确保可以提供给用户最尽善尽美的网购 体验！</mutableString>
+                                    <string key="text">亲爱的用户，
+从您进入网站的那一刻起，您就是我们最重要的顾客。
+我们竭诚为您提供正品商品，让您可以放心的购买我们的每一款商品。
+从商品源头对商品正品进行保障，我们选择海外商家的商品时确保选择由海外官方直接发货的商品，从源头确保商品为正品商品。
+政府保障，我们选择的商品在经过海关时都会经过海关质检抽检确保商品质量。
+您，与配夸的相遇，注定我们将会给您提供足够您心动的服务，也注定我们将会携手共行。</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -96,7 +100,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tQV-lA-oem">
-                            <rect key="frame" x="20" y="225.5" width="560" height="248"/>
+                            <rect key="frame" x="20" y="225" width="560" height="248"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKP-X9-rKq">
                                     <rect key="frame" x="20" y="50" width="520" height="62.5"/>
@@ -118,7 +122,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一键代购,方便快捷" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmj-tB-IcD">
-                                    <rect key="frame" x="20" y="122.5" width="540" height="40"/>
+                                    <rect key="frame" x="20" y="122" width="540" height="40"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="FSG-wf-tT2"/>
@@ -128,7 +132,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1xI-Nk-ePP">
-                                    <rect key="frame" x="0.0" y="163.5" width="560" height="1"/>
+                                    <rect key="frame" x="0.0" y="163" width="560" height="1"/>
                                     <color key="backgroundColor" red="0.87196416440000002" green="0.87196416440000002" blue="0.87196416440000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="f7e-yC-bPz"/>
@@ -138,7 +142,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxT-rD-mEh">
-                                    <rect key="frame" x="0.0" y="120.5" width="560" height="1"/>
+                                    <rect key="frame" x="0.0" y="120" width="560" height="1"/>
                                     <color key="backgroundColor" red="0.87196416440000002" green="0.87196416440000002" blue="0.87196416440000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="yzO-qd-TZI"/>
@@ -148,7 +152,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOp-s2-518">
-                                    <rect key="frame" x="20" y="177.5" width="520" height="62.5"/>
+                                    <rect key="frame" x="20" y="177" width="520" height="62.5"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <string key="text">       雀夸网（www.quekua.com）是一家专注于购物搜索、网购比价的综合性导购平台，致力于为用户提供最好购物体验。雀夸网始终“以用户为中心”，想用户所想，之后业务会拓展到海淘、机票、酒店、服务比较领域。
 </string>
@@ -205,8 +209,8 @@
                             </userDefinedRuntimeAttributes>
                             <variation key="default">
                                 <mask key="constraints">
-                                    <exclude reference="xEf-bY-Ao5"/>
                                     <exclude reference="Z57-c1-Zp8"/>
+                                    <exclude reference="xEf-bY-Ao5"/>
                                     <exclude reference="2B2-KY-4ks"/>
                                     <exclude reference="4vB-um-dPW"/>
                                     <exclude reference="aa0-s7-wZY"/>
@@ -214,7 +218,7 @@
                             </variation>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2、缺货、退货说明" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vz-pL-zJD">
-                            <rect key="frame" x="20" y="489.5" width="128.5" height="18"/>
+                            <rect key="frame" x="20" y="489" width="128.5" height="18"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                             <color key="textColor" white="0.070000000000000007" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>

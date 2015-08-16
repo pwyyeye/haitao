@@ -11,4 +11,7 @@
 @interface ChatViewController : UIViewController<UIWebViewDelegate>
 @property(strong,nonatomic) UIWebView *chatView;
 @property(strong,nonatomic) NSString *chatUrl;
+
++(ChatViewController *)shareChat;
+
 @end

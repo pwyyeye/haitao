@@ -41,10 +41,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21A-RF-9hS">
-                    <rect key="frame" x="20" y="140" width="560" height="109"/>
+                    <rect key="frame" x="20" y="140" width="560" height="124.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <mutableString key="text">       雀夸网（www.quekua.com）是一家专注于购物搜索、网购比价的综合性导购平台，致力于为用户提供最好购物体验。雀夸网始终“以用户为中心”，想用户所想，之后业务会拓展到海淘、机票、酒店、服务比较领域。
-雀 夸网服务用户网购全流程：首先，通过导购信息，提供“正品+低价+多样化”选择给用户，刺激用户产生购买需求；其次，通过搜索引擎，快速定位心仪的产品， 通过比价一目了然全网最低价在哪里，促成快速做出购买决策；最后，我们还要做后期的交易闭环，商家入驻，支付发货等，确保可以提供给用户最尽善尽美的网购 体验！</mutableString>
+                    <mutableString key="text">        配夸网（www.peikua.com）是首家全球比价购物平台，提供免费海淘代购、海淘特卖服务。“淘全球！真无忧”是我们的服务宗旨。 
+        配夸网是国内首家全球购物比价平台，一站全球比购，发现最低价！一站对比商品的全球报价，保证是最低价的基础上，为用户提供运送时效对比，为用户选择最优购买方案。 
+        配夸网提供全球范围的正品代购服务，100%海外直接采购发货，为用户省去代购费用，质优价低；同时与国际转运公司达成战略合作，保证快速、安全的把货物送到顾客手中，货物全程保险，全额赔付；我们的国际物流承运商在国内均为邮政清关，保证清关效率，同时对于符合网站规定的商品，给予关税补贴。真正“正品、低价、安全、快捷”，一切为用户着想。</mutableString>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>

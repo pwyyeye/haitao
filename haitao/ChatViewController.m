@@ -14,6 +14,19 @@
 
 @implementation ChatViewController
 
++(ChatViewController *)shareChat
+{
+    static dispatch_once_t onceToken;
+    static ChatViewController *singleton;
+    dispatch_once(&onceToken, ^{
+        singleton=[[ChatViewController alloc] init];
+    });
+    NSLog(@"-------singletonChat---------%@",singleton);
+    return singleton;    
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:NO];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -68,6 +81,9 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     ShowMessage(@"客服加载出现问题，请确保您的网络畅通！");
+}
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    return YES;
 }
 
 /*

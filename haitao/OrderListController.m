@@ -341,7 +341,15 @@
         return view;
     }else{//内层header
 //        OrderModel *order=_result_array[section];
-        
+        Order_package *selectedPackage;
+        for (OrderModel *orderModel in _result_array) {
+            NSArray *array=orderModel.package_info;
+            for (Order_package *package in array) {
+                if ([package.id integerValue]==tableView.tag) {
+                    selectedPackage=package;
+                }
+            }
+        }
         UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 38)];
         
         //包裹
@@ -353,19 +361,19 @@
         
         //国家icon
         UIImageView *country=[[UIImageView alloc] initWithFrame:CGRectMake(70, 9, 20, 20)];
-        [country setImageWithURL:[NSURL URLWithString:_package.country_flag_url] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
+        [country setImageWithURL:[NSURL URLWithString:selectedPackage.country_flag_url] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
         [view addSubview:country];
         
         //商城名称
         UILabel *shopname=[[UILabel alloc] initWithFrame:CGRectMake(105, 0, 70, 38)];
-        shopname.text=_package.shop_name;
+        shopname.text=selectedPackage.shop_name;
         shopname.font =[UIFont  systemFontOfSize:10];
         shopname.textColor=RGB(179, 179, 179);
         [view addSubview:shopname];
         
         //直邮转运
         UILabel *ship=[[UILabel alloc] initWithFrame:CGRectMake(170, 0, 30, 38)];
-        ship.text=_package.ship_name;
+        ship.text=selectedPackage.ship_name;
         ship.font =[UIFont  boldSystemFontOfSize:11];
         ship.textColor=RGB(51, 51, 51);
         [view addSubview:ship];
@@ -375,7 +383,7 @@
         [packageDetail setTitle:@"包裹详情" forState:UIControlStateNormal];
         [packageDetail setTitleColor:RGB(24, 177, 18) forState:UIControlStateNormal];
         packageDetail.titleLabel.font =[UIFont  systemFontOfSize:11];//加粗字体
-        packageDetail.tag=[_package.id integerValue];
+        packageDetail.tag=[selectedPackage.id integerValue];
         [packageDetail addTarget:self action:@selector(gotoPackageDetail:) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:packageDetail];
         
@@ -510,11 +518,14 @@
             
         }
         
+        if (_result_array.count!=section+1) {
+            //给底部footer 加13个像素间距
+            UILabel *jianju=[[UILabel alloc] initWithFrame:CGRectMake(0, 58, SCREEN_WIDTH, 13)];
+            jianju.backgroundColor=RGB(237, 237, 237);
+            [view addSubview:jianju];
+        }
         
-        //给底部footer 加13个像素间距
-        UILabel *jianju=[[UILabel alloc] initWithFrame:CGRectMake(0, 58, SCREEN_WIDTH, 13)];
-        jianju.backgroundColor=RGB(237, 237, 237);
-        [view addSubview:jianju];
+        
         
         view.backgroundColor=[UIColor whiteColor];
         return view;
@@ -619,7 +630,17 @@
         OrderModel *orderModel=_result_array[section];
         return orderModel.package_info.count;
     }else{
-        return _goods_arrayForSubView.count;
+        Order_package *selectedPackage;
+        for (OrderModel *orderModel in _result_array) {
+            NSArray *array=orderModel.package_info;
+            for (Order_package *package in array) {
+                if ([package.id integerValue]==tableView.tag) {
+                    selectedPackage=package;
+                }
+            }
+        }
+        
+        return selectedPackage.goods.count;
     }
     
 }
@@ -650,6 +671,7 @@
         _subTableView.delegate = self;
         _subTableView.dataSource = self;
         _subTableView.scrollEnabled = NO;
+        _subTableView.tag=[_package.id integerValue];
         [cell.contentView addSubview:_subTableView];
 //        cell.textLabel.text =[NSString stringWithFormat:@"rootTableView section=%ld item=%ld",(long)indexPath.section,(long)indexPath.row];
         
@@ -658,7 +680,17 @@
         return cell;
     }else
     {
-        Order_goods *goods=[_goods_arrayForSubView objectAtIndex:indexPath.row];
+        Order_package *selectedPackage;
+        for (OrderModel *orderModel in _result_array) {
+            NSArray *array=orderModel.package_info;
+            for (Order_package *package in array) {
+                if ([package.id integerValue]==tableView.tag) {
+                    selectedPackage=package;
+                }
+            }
+        }
+        
+        Order_goods *goods=[selectedPackage.goods objectAtIndex:indexPath.row];
         cell.textLabel.text = goods.goods_name;
         cell.textLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:11];
         cell.textLabel.textColor=RGB(51, 51, 51);
@@ -715,6 +747,7 @@
         [cell.imageView setContentMode:UIViewContentModeScaleAspectFill];
 
         cell.backgroundColor = [UIColor whiteColor];
+        
         return cell;
     }
 
@@ -725,8 +758,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView != _tableView){
-        Order_goods *goods=[_goods_arrayForSubView objectAtIndex:indexPath.row];
-        [self gotoGoodsDetail:goods.id];
+        Order_package *selectedPackage;
+        for (OrderModel *orderModel in _result_array) {
+            NSArray *array=orderModel.package_info;
+            for (Order_package *package in array) {
+                if ([package.id integerValue]==tableView.tag) {
+                    selectedPackage=package;
+                }
+            }
+        }
+        
+        Order_goods *goods=[selectedPackage.goods objectAtIndex:indexPath.row];
+        [self gotoGoodsDetail:goods.goods_id];
     }
 
 }

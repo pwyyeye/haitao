@@ -94,7 +94,10 @@
     
     if (_filterType==FilterViewControllTypeCategary) {
         _categoryName.text=_pamCategoryName;
-        [_categoryImageView setImageWithURL:[NSURL URLWithString:_categoryImageUrl] placeholderImage:[UIImage imageNamed:@"default_04"]];
+        if (![MyUtil isEmptyString:_categoryImageUrl]) {
+            [_categoryImageView setImageWithURL:[NSURL URLWithString:_categoryImageUrl] placeholderImage:[UIImage imageNamed:@"default_04"]];
+        }
+        
     }
 }
 
@@ -586,7 +589,9 @@
     }
     NSLog(@"----pass-_collHeight%f---",_collHeightTotal);
      _coll.frame=CGRectMake(_coll.frame.origin.x, _coll.frame.origin.y, SCREEN_WIDTH, _collHeightTotal+3*_coll.cellHeight+20);
+    
     [self updateViewConstraints];
+    
     
 }
 

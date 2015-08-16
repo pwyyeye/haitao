@@ -17,6 +17,7 @@
 #import "New_Goods.h"
 #import "Goods_Ext.h"
 #import "HTGoodDetailsViewController.h"
+#import "ChatViewController.h"
 @interface PackageDetailController ()
 
 @end
@@ -55,6 +56,8 @@
 //    _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
 //    self.tableView.tableFooterView=[[UIView alloc]init];
     [self initData];
+    
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -72,7 +75,7 @@
     //tableView的高度时header＋footer＋cell高度*cell个数
     self.tableViewHeight.constant=110+80*_packageModel.package_info.goods.count;
     //自身高度＝tableview的y坐标＋tableView的高度＋coll的高度*个数＋coll展开view的最大高度
-    self.viewHeight.constant=self.tableView.frame.origin.y+self.tableViewHeight.constant+_coll.cellHeight*3+200;
+    self.viewHeight.constant=self.tableView.frame.origin.y+self.tableViewHeight.constant+_coll.cellHeight*3+400;
     
     
 }
@@ -110,7 +113,7 @@
             
             [_tableView reloadData];
             
-            _coll=[[CollapseClick alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 300)];
+            _coll=[[CollapseClick alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 500)];
             _coll.CollapseClickDelegate = self;
             _coll.cellSpace=0;
             _coll.cellHeight=40;
@@ -124,10 +127,18 @@
             
             self.footView.backgroundColor=[UIColor whiteColor];
             
+            
+            //控制缩放
+            self.mediaFocusManager = [[ASMediaFocusManager alloc] init];
+            self.mediaFocusManager.delegate = self;
+            // Tells which views need to be focusable. You can put your image views in an array and give it to the focus manager.
+            [self.mediaFocusManager installOnViews:self.orderImageView.subviews];
+            
+            
             if (_footerBar!=nil) {
                 [_footerBar removeFromSuperview];
             }
-
+            
             
             //设置底部按钮
             _footerBar=[[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-47-64, SCREEN_WIDTH, 47)];
@@ -146,6 +157,8 @@
                 UIButton *kefu=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2, 30)];
                 [kefu setImage:[UIImage imageNamed:@"icon_LianXiKeFu"]  forState:UIControlStateNormal];
                 [kefu.imageView setContentMode:UIViewContentModeScaleAspectFill];
+                
+                [kefu addTarget:self action:@selector(connectKefu) forControlEvents:UIControlEventTouchUpInside];
                 
                 //联系客服文字
                 UILabel *kefu_label=[[UILabel alloc] initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH/2, 15)];
@@ -186,7 +199,8 @@
                 UIButton *kefu=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/5*1.5, 30)];
                 [kefu setImage:[UIImage imageNamed:@"icon_LianXiKeFu"]  forState:UIControlStateNormal];
                 [kefu.imageView setContentMode:UIViewContentModeScaleAspectFill];
-                
+                [kefu addTarget:self action:@selector(connectKefu) forControlEvents:UIControlEventTouchUpInside];
+
                 //联系客服文字
                 UILabel *kefu_label=[[UILabel alloc] initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH/5*1.5, 15)];
                 kefu_label.text=@"在线客服";
@@ -233,14 +247,15 @@
                 UIButton *kefu=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/3, 30)];
                 [kefu setImage:[UIImage imageNamed:@"icon_LianXiKeFu"]  forState:UIControlStateNormal];
                 [kefu.imageView setContentMode:UIViewContentModeScaleAspectFill];
-                
+                [kefu addTarget:self action:@selector(connectKefu) forControlEvents:UIControlEventTouchUpInside];
+
                 //联系客服文字
                 UILabel *kefu_label=[[UILabel alloc] initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH/3, 15)];
                 kefu_label.text=@"在线客服";
                 kefu_label.textColor=RGB(128, 128, 128);
                 kefu_label.font=[UIFont boldSystemFontOfSize:11];
                 kefu_label.textAlignment=NSTextAlignmentCenter;
-                
+
                 
                 //联系电话
                 UIButton *telephone=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/3, 0, SCREEN_WIDTH/3, 30)];
@@ -386,6 +401,14 @@
     }
     
     [_phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+}
+
+-(void)connectKefu{
+    ChatViewController *chat=[ChatViewController shareChat];
+    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+    [self.navigationController pushViewController:chat animated:YES];
+    
+
 }
 /*
 #pragma mark - Navigation
@@ -607,7 +630,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     Order_goods *goods=[_packageModel.package_info.goods objectAtIndex:indexPath.row];
-    [self gotoGoodsDetail:goods.id];
+    [self gotoGoodsDetail:goods.goods_id];
 }
 
 #pragma mark - Collapse Click Delegate
@@ -639,23 +662,35 @@
     switch (index) {
         case 0:
         {
-            _shipDetailView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
+            _shipDetailView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
             _shipDetailView.backgroundColor=[UIColor whiteColor];
-            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 70, 100, 20)];
+            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, SCREEN_WIDTH-40, 80)];
             label.textColor=RGB(128, 128, 128);
-            label.text=@"暂无相关消息";
+            label.numberOfLines=0;
             label.font=[UIFont systemFontOfSize:11];
+            if ([_packageModel.package_info.ship_type integerValue]==1) {
+               label.text=[NSString stringWithFormat:@"直邮：直邮运费由%@发货时直接决定运费。详情请查看帮助说明页面。",_packageModel.package_info.shop_name] ;
+            }else{
+                NSString *shipname=[MyUtil isEmptyString:_packageModel.package_info.logistic_name]?_packageModel.package_info.ship_name:_packageModel.package_info.logistic_name;
+                
+                label.text=[NSString stringWithFormat:@"转运：转运运费=商品来源官网运费 + 转运费。\n  官网征收运费：满免标准（满%@免运费），转运费：该包裹由%@转运公司提供转运服务，该公司的转运收费标准请参考帮助详情。",[MyUtil isEmptyString:_packageModel.package_info.all_transport_free_logistic]?@"0":_packageModel.package_info.all_transport_free_logistic,shipname] ;
+            }
             [_shipDetailView addSubview:label];
             return _shipDetailView;
             break;
         }case 1:
         {
-            _taxDetailView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
+            _taxDetailView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
             _taxDetailView.backgroundColor=[UIColor whiteColor];
-            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 70, 100, 20)];
+            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, SCREEN_WIDTH-40, 80)];
             label.textColor=RGB(128, 128, 128);
-            label.text=@"暂无相关消息";
+            label.numberOfLines=0;
             label.font=[UIFont systemFontOfSize:11];
+            if ([_packageModel.package_info.ship_type integerValue]==1) {
+                label.text=[NSString stringWithFormat:@"直邮商品需要预先收取关税，预收关税为%@预先代收，需要在结算时一次性缴纳，多退少不补；预收关税计入商品总价。详情请查看帮助说明页面",_packageModel.package_info.shop_name] ;
+            }else{
+                label.text=[NSString stringWithFormat:@"转运商品在清关时可能产生的关税，关税额即为预估关税，如果产生关税需要及时缴纳，方可顺利清关；预估关税不计入商品总价。详情请查看帮助说明页面。"] ;
+            }
             [_taxDetailView addSubview:label];
             return _taxDetailView;
             break;
@@ -664,11 +699,15 @@
         {
             _orderImageView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
             _orderImageView.backgroundColor=[UIColor whiteColor];
-            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 70, 100, 20)];
-            label.textColor=RGB(128, 128, 128);
-            label.text=@"暂无相关消息";
-            label.font=[UIFont systemFontOfSize:11];
-            [_orderImageView addSubview:label];
+//            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 70, 100, 20)];
+//            label.textColor=RGB(128, 128, 128);
+//            label.text=@"暂无相关消息";
+//            label.font=[UIFont systemFontOfSize:11];
+//            [_orderImageView addSubview:label];
+            _orderImage=[[UIImageView alloc] initWithFrame:CGRectMake(20, 0, SCREEN_WIDTH-40, 150)];
+            _orderImage.image=[UIImage imageNamed:@"2_retina.jpg"];
+            [_orderImage setContentMode:UIViewContentModeScaleAspectFit];
+            [_orderImageView addSubview:_orderImage];
             return _orderImageView;
             break;
         }
@@ -714,5 +753,33 @@
     self.footerBar.frame=CGRectMake(rect.origin.x, SCREEN_HEIGHT-64-47+point.y, rect.size.width, rect.size.height);
     
     
+}
+
+#pragma mark - ASMediaFocusDelegate
+- (UIImage *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager imageForView:(UIView *)view
+{
+    return ((UIImageView *)view).image;
+}
+
+- (CGRect)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager finalFrameforView:(UIView *)view
+{
+    return self.parentViewController.view.bounds;
+}
+
+- (UIViewController *)parentViewControllerForMediaFocusManager:(ASMediaFocusManager *)mediaFocusManager
+{
+    return self.parentViewController;
+}
+
+- (NSString *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager mediaPathForView:(UIView *)view
+{
+    NSString *path; 
+    NSString *name;
+    
+    // Here, images are accessed through their name "1f.jpg", "2f.jpg", …
+//    name = [NSString stringWithFormat:@"%df", ([self.imageViews indexOfObject:view] + 1)];
+    path = [[NSBundle mainBundle] pathForResource:@"2_retina" ofType:@"jpg"];
+    
+    return path;
 }
 @end
