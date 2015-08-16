@@ -602,8 +602,8 @@
 }
 -(void)goodContentTouchDo:(GoodImageButton *)sender{
     New_Goods *goods=sender.goods;
-      //   NSDictionary *parameters = @{@"id":@"656"};
-   NSDictionary *parameters = @{@"id":goods.id};
+        NSDictionary *parameters = @{@"id":@"656"};
+//   NSDictionary *parameters = @{@"id":goods.id};
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
     ;
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
