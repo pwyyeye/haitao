@@ -50,6 +50,7 @@
     _promptLabel=[[UILabel alloc] initWithFrame:CGRectZero];
     _promptLabel.backgroundColor=[UIColor clearColor];
     _promptLabel.font=[UIFont systemFontOfSize:13];
+    _promptLabel.textColor=RGB(128, 128, 128);
     _promptLabel.translatesAutoresizingMaskIntoConstraints=NO;
     [self addSubview:_promptLabel];
     
