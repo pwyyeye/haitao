@@ -122,7 +122,7 @@
 
 - (void) updateScrollView
 {
-    [NSTimer scheduledTimerWithTimeInterval:2 target:self
+    [NSTimer scheduledTimerWithTimeInterval:4 target:self
                                    selector:@selector(handleMaxShowTimer:)
                                    userInfo: nil
                                     repeats:YES];
