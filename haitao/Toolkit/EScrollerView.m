@@ -29,7 +29,7 @@
 }
 -(id)initWithFrameRect:(CGRect)rect scrolArray:(NSArray *)array needTitile:(BOOL)isNeedTitle
 {
-
+    imageArray=array;
     self.daoHangArray = [NSArray arrayWithArray:array];
     titleArray = [[NSMutableArray alloc] init];
     NSMutableArray *imagePathArray = [[NSMutableArray alloc] init];
@@ -116,7 +116,7 @@
             }
         }
     }
-    
+    [self updateScrollView];
 	return self;
 }
 
@@ -131,11 +131,11 @@
 - (void)handleMaxShowTimer:(NSTimer*)theTimer
 {
     CGPoint pt = scrollView.contentOffset;
-    int count = [imageArray count];
+    int count = [imageArray count]+1;
     if(pt.x == viewSize.size.width * (count-2))
     {
-    [scrollView setContentOffset:CGPointMake(viewSize.size.width, 0)];
-    [scrollView scrollRectToVisible:CGRectMake(viewSize.size.width,0,viewSize.size.width,viewSize.size.height) animated:YES];
+    [scrollView setContentOffset:CGPointMake(0, 0)];
+    [scrollView scrollRectToVisible:CGRectMake(0,0,viewSize.size.width,viewSize.size.height) animated:YES];
     }else{
         [scrollView scrollRectToVisible:CGRectMake(pt.x+viewSize.size.width,0,viewSize.size.width,viewSize.size.height) animated:YES];
     }
