@@ -191,6 +191,8 @@
     if (indexPath.row==0) {
 //        [self gotoAppStorePageRaisal:@""];//app评价地址
     }else if (indexPath.row==1) {
+        [USER_DEFAULT removeObjectForKey:@"user_name"];
+        [USER_DEFAULT removeObjectForKey:@"user_pass"];
         ShowMessage(@"清除成功！");
         
     }else if (indexPath.row==2) {

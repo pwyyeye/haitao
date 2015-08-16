@@ -620,7 +620,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     Order_goods *goods=[_packageModel.package_info.goods objectAtIndex:indexPath.row];
-    [self gotoGoodsDetail:goods.id];
+    [self gotoGoodsDetail:goods.goods_id];
 }
 
 #pragma mark - Collapse Click Delegate
@@ -663,7 +663,7 @@
             }else{
                 NSString *shipname=[MyUtil isEmptyString:_packageModel.package_info.logistic_name]?_packageModel.package_info.ship_name:_packageModel.package_info.logistic_name;
                 
-                label.text=[NSString stringWithFormat:@"转运：转运运费=商品来源官网运费 + 转运费。/n  官网征收运费：满免标准（满%@免运费），转运费：该包裹由%@转运公司提供转运服务，该公司的转运收费标准请参考帮助详情。",[MyUtil isEmptyString:_packageModel.package_info.all_transport_free_logistic]?@"0":_packageModel.package_info.all_transport_free_logistic,shipname] ;
+                label.text=[NSString stringWithFormat:@"转运：转运运费=商品来源官网运费 + 转运费。\n  官网征收运费：满免标准（满%@免运费），转运费：该包裹由%@转运公司提供转运服务，该公司的转运收费标准请参考帮助详情。",[MyUtil isEmptyString:_packageModel.package_info.all_transport_free_logistic]?@"0":_packageModel.package_info.all_transport_free_logistic,shipname] ;
             }
             [_shipDetailView addSubview:label];
             return _shipDetailView;

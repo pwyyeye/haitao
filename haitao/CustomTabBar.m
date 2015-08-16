@@ -218,7 +218,7 @@
 //        }else{
 //
     /**------------modify by pwy---------2015-7-25------ begin*/
-    if (self.currentSelectedIndex==4) {
+    if (self.currentSelectedIndex==4||self.currentSelectedIndex==3) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         if ([MyUtil isEmptyString:app.s_app_id]) {
             

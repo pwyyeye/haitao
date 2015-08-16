@@ -45,7 +45,7 @@
             }else{
                 lines=(int)_array.count/4+1;
             }
-            self.frame=CGRectMake(0, 0, SCREEN_WIDTH, lines*65+50);
+            self.frame=CGRectMake(0, 0, SCREEN_WIDTH, (lines+1)*75+50);
         
         }
         

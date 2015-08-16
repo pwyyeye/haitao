@@ -94,7 +94,10 @@
     
     if (_filterType==FilterViewControllTypeCategary) {
         _categoryName.text=_pamCategoryName;
-        [_categoryImageView setImageWithURL:[NSURL URLWithString:_categoryImageUrl] placeholderImage:[UIImage imageNamed:@"default_04"]];
+        if (![MyUtil isEmptyString:_categoryImageUrl]) {
+            [_categoryImageView setImageWithURL:[NSURL URLWithString:_categoryImageUrl] placeholderImage:[UIImage imageNamed:@"default_04"]];
+        }
+        
     }
 }
 
