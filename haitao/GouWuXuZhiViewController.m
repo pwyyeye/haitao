@@ -59,7 +59,7 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor=[UIColor whiteColor];
-        UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, self.view.width-20, 25)];
+        UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320-20, 25)];
         [lal1 setTag:1];
         lal1.textAlignment=NSTextAlignmentLeft;
         lal1.font=[UIFont boldSystemFontOfSize:12];
@@ -87,7 +87,7 @@
                                   lineBreakMode:NSLineBreakByWordWrapping];
     //        NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
     //根据计算结果重新设置UILabel的尺寸
-    lal.height=size.height;
+    lal.height=size.height+20;
     lal.attributedText=str;
     CGRect cellFrame = [cell frame];
     cellFrame.origin=CGPointMake(0, 0);

@@ -207,6 +207,8 @@
                     [aiBtn setTitle:sizeModel.name forState:0];
                     [aiBtn setTitleColor:[UIColor colorWithRed:.2 green:.2 blue:.2 alpha:1.0] forState:0];
                     [aiBtn addTarget:self action:@selector(btnNine:) forControlEvents:UIControlEventTouchUpInside];
+                    
+                    
                 //设置关联按钮
                     NSString *aiBtnId=sizeModel.id;
                     NSMutableArray *guanglianArr=[[NSMutableArray alloc]init];
@@ -220,7 +222,12 @@
                         }
 
                     }
+                    
                     aiBtn.guanlianArr=guanglianArr;
+                    //判断是否有货
+                    if(guanglianArr.count<1){
+                        aiBtn.enabled=false;
+                    }
                     [guige addSubview:aiBtn];
                     [btnArr addObject:aiBtn];
                     [arrTemp addObject:aiBtn];
@@ -398,7 +405,10 @@
                         
                         
                     }else{
-                        buttonTemp.enabled=true;
+                        if(buttonTemp.guanlianArr.count>0){
+                            buttonTemp.enabled=true;
+                        }
+                        
                         
                     }
                     
