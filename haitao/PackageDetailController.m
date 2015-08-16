@@ -773,7 +773,7 @@
 
 - (NSString *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager mediaPathForView:(UIView *)view
 {
-    NSString *path;
+    NSString *path; 
     NSString *name;
     
     // Here, images are accessed through their name "1f.jpg", "2f.jpg", …
