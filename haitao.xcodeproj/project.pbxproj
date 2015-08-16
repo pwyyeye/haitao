@@ -150,7 +150,6 @@
 		A2FC74E21B5A3F340094BC59 /* BARightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC74DD1B5A3F340094BC59 /* BARightCell.m */; };
 		A2FC74E31B5A3F340094BC59 /* BARightTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC74DF1B5A3F340094BC59 /* BARightTableView.m */; };
 		A2FC74E71B5A405A0094BC59 /* BALabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC74E61B5A405A0094BC59 /* BALabel.m */; };
-		A2FC74E91B5B5DD00094BC59 /* 奶粉.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A2FC74E81B5B5DD00094BC59 /* 奶粉.jpg */; };
 		A2FC74FE1B5D1FFA0094BC59 /* MJConst.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC74EE1B5D1FFA0094BC59 /* MJConst.m */; };
 		A2FC74FF1B5D1FFA0094BC59 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC74F11B5D1FFA0094BC59 /* MJFoundation.m */; };
 		A2FC75001B5D1FFA0094BC59 /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FC74F31B5D1FFA0094BC59 /* MJProperty.m */; };
@@ -206,6 +205,10 @@
 		AD50C5171B77035000119A42 /* Address_btn_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD50C5161B77035000119A42 /* Address_btn_selected@2x.png */; };
 		AD50C51A1B77399500119A42 /* commitOrder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD50C5181B77399500119A42 /* commitOrder@2x.png */; };
 		AD50C51B1B77399500119A42 /* commitOrder@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD50C5191B77399500119A42 /* commitOrder@3x.png */; };
+		AD6EFF141B807ED400E98480 /* ASImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6EFF0E1B807ED400E98480 /* ASImageScrollView.m */; };
+		AD6EFF151B807ED400E98480 /* ASMediaFocusController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6EFF101B807ED400E98480 /* ASMediaFocusController.m */; };
+		AD6EFF161B807ED400E98480 /* ASMediaFocusController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD6EFF111B807ED400E98480 /* ASMediaFocusController.xib */; };
+		AD6EFF171B807ED400E98480 /* ASMediaFocusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6EFF131B807ED400E98480 /* ASMediaFocusManager.m */; };
 		AD7BE4961B7612AF003D29F0 /* OrderSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7BE4941B7612AF003D29F0 /* OrderSuccessController.m */; };
 		AD7BE4971B7612AF003D29F0 /* OrderSuccessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD7BE4951B7612AF003D29F0 /* OrderSuccessController.xib */; };
 		AD7BE49B1B762512003D29F0 /* Sherch_icon_Sherch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD7BE49A1B762512003D29F0 /* Sherch_icon_Sherch@2x.png */; };
@@ -974,7 +977,6 @@
 		A2FC74E41B5A3F700094BC59 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		A2FC74E51B5A405A0094BC59 /* BALabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BALabel.h; sourceTree = "<group>"; };
 		A2FC74E61B5A405A0094BC59 /* BALabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BALabel.m; sourceTree = "<group>"; };
-		A2FC74E81B5B5DD00094BC59 /* 奶粉.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "奶粉.jpg"; path = "分类2级/奶粉.jpg"; sourceTree = "<group>"; };
 		A2FC74ED1B5D1FFA0094BC59 /* MJConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJConst.h; sourceTree = "<group>"; };
 		A2FC74EE1B5D1FFA0094BC59 /* MJConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJConst.m; sourceTree = "<group>"; };
 		A2FC74EF1B5D1FFA0094BC59 /* MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtension.h; sourceTree = "<group>"; };
@@ -1153,6 +1155,13 @@
 		AD50C5161B77035000119A42 /* Address_btn_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Address_btn_selected@2x.png"; sourceTree = "<group>"; };
 		AD50C5181B77399500119A42 /* commitOrder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "commitOrder@2x.png"; sourceTree = "<group>"; };
 		AD50C5191B77399500119A42 /* commitOrder@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "commitOrder@3x.png"; sourceTree = "<group>"; };
+		AD6EFF0D1B807ED400E98480 /* ASImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASImageScrollView.h; sourceTree = "<group>"; };
+		AD6EFF0E1B807ED400E98480 /* ASImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASImageScrollView.m; sourceTree = "<group>"; };
+		AD6EFF0F1B807ED400E98480 /* ASMediaFocusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMediaFocusController.h; sourceTree = "<group>"; };
+		AD6EFF101B807ED400E98480 /* ASMediaFocusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASMediaFocusController.m; sourceTree = "<group>"; };
+		AD6EFF111B807ED400E98480 /* ASMediaFocusController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASMediaFocusController.xib; sourceTree = "<group>"; };
+		AD6EFF121B807ED400E98480 /* ASMediaFocusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMediaFocusManager.h; sourceTree = "<group>"; };
+		AD6EFF131B807ED400E98480 /* ASMediaFocusManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASMediaFocusManager.m; sourceTree = "<group>"; };
 		AD7BE4931B7612AF003D29F0 /* OrderSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderSuccessController.h; sourceTree = "<group>"; };
 		AD7BE4941B7612AF003D29F0 /* OrderSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderSuccessController.m; sourceTree = "<group>"; };
 		AD7BE4951B7612AF003D29F0 /* OrderSuccessController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderSuccessController.xib; sourceTree = "<group>"; };
@@ -2606,6 +2615,20 @@
 			name = shopcartModel;
 			sourceTree = "<group>";
 		};
+		AD6EFF0C1B807ED400E98480 /* ASMediaFocusManager */ = {
+			isa = PBXGroup;
+			children = (
+				AD6EFF0D1B807ED400E98480 /* ASImageScrollView.h */,
+				AD6EFF0E1B807ED400E98480 /* ASImageScrollView.m */,
+				AD6EFF0F1B807ED400E98480 /* ASMediaFocusController.h */,
+				AD6EFF101B807ED400E98480 /* ASMediaFocusController.m */,
+				AD6EFF111B807ED400E98480 /* ASMediaFocusController.xib */,
+				AD6EFF121B807ED400E98480 /* ASMediaFocusManager.h */,
+				AD6EFF131B807ED400E98480 /* ASMediaFocusManager.m */,
+			);
+			path = ASMediaFocusManager;
+			sourceTree = "<group>";
+		};
 		AD8AA5901B59424100E324AD /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -3605,6 +3628,7 @@
 		ADB5ACB11B5406D60022B2C2 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				AD6EFF0C1B807ED400E98480 /* ASMediaFocusManager */,
 				A22D2FFC1B7C63B9004158F1 /* 社会化分享 */,
 				AD8E389B1B74C7E900C9D5BA /* Alipay */,
 				AD8E389A1B74C7D700C9D5BA /* 网络可用 */,
@@ -3625,7 +3649,6 @@
 				AD8E35A31B70CA6900C9D5BA /* 斯岐用 */,
 				AD8E35131B70A08A00C9D5BA /* 引导页 */,
 				ADD655271B6F36CD006F4127 /* UserCenter */,
-				A2FC74E81B5B5DD00094BC59 /* 奶粉.jpg */,
 				A2F7FD1F1B6FB18400657575 /* 购物车 */,
 				A2FC74AE1B5A31340094BC59 /* 分类2级 */,
 				A21815821B5A0E9A00D64E70 /* 商品详情 */,
@@ -4022,7 +4045,6 @@
 				AD8E389F1B75A7A400C9D5BA /* icon_BoDaDianHua@3x.png in Resources */,
 				AD8E357A1B70CA4300C9D5BA /* home_icon_jingpingtuijian_xiao_@2x.png in Resources */,
 				AD8E37701B721A1500C9D5BA /* QuanQiuBiJia_icon_Zan@2x.png in Resources */,
-				A2FC74E91B5B5DD00094BC59 /* 奶粉.jpg in Resources */,
 				AD8E36D21B721A1500C9D5BA /* icon_BaoJian@3x.png in Resources */,
 				AD8E36E81B721A1500C9D5BA /* icon_Filter.png in Resources */,
 				AD8E37071B721A1500C9D5BA /* Icon_Kai@2x.png in Resources */,
@@ -4274,6 +4296,7 @@
 				AD8E374E1B721A1500C9D5BA /* icon_TiJiaoDingDang.png in Resources */,
 				AD8E35951B70CA4300C9D5BA /* DetailsPage_btn_banner_return_@2x.png in Resources */,
 				AD8E36D81B721A1500C9D5BA /* icon_Descending@3x.png in Resources */,
+				AD6EFF161B807ED400E98480 /* ASMediaFocusController.xib in Resources */,
 				A22D301F1B7C63D2004158F1 /* UMShareEditViewController.xib in Resources */,
 				ADD2C4171B78326100A2E638 /* icon_DingDang2@2x.png in Resources */,
 				AD8E36DB1B721A1500C9D5BA /* icon_DingDang@3x.png in Resources */,
@@ -4607,6 +4630,7 @@
 				AD8AA58F1B59423200E324AD /* HomeViewController.m in Sources */,
 				ADCF99181B6CAF3700EA5592 /* MessageViewController.m in Sources */,
 				ADD2C43D1B7A012F00A2E638 /* FilterBrandTabelView.m in Sources */,
+				AD6EFF151B807ED400E98480 /* ASMediaFocusController.m in Sources */,
 				A2FDE0FD1B6886BE00B374AA /* Goods_Ext.m in Sources */,
 				AD8AA6281B59435C00E324AD /* SDImageCache.m in Sources */,
 				AD8AA6221B59435C00E324AD /* GlobalTool.m in Sources */,
@@ -4628,6 +4652,7 @@
 				A2FFE1701B608ED20004B4BC /* DJRefreshBottomView.m in Sources */,
 				AD8E35121B709D7D00C9D5BA /* EAIntroView.m in Sources */,
 				AD8AA6481B59435C00E324AD /* ZipArchive.m in Sources */,
+				AD6EFF171B807ED400E98480 /* ASMediaFocusManager.m in Sources */,
 				A2FC75101B5E1F640094BC59 /* App_Home_Bigegg.m in Sources */,
 				AD8E37C21B72F66000C9D5BA /* CollapseClickCell.m in Sources */,
 				AD8E37B71B723AF900C9D5BA /* OrderModelForPackageDetail.m in Sources */,
@@ -4707,6 +4732,7 @@
 				AD8AA62C1B59435C00E324AD /* UrlImageView.m in Sources */,
 				ADD4D40E1B5B29AF004AFBE2 /* TMRulerColor.m in Sources */,
 				A2E8D0061B71F68B0004ADB9 /* LetterBrandDockTavleView.m in Sources */,
+				AD6EFF141B807ED400E98480 /* ASImageScrollView.m in Sources */,
 				ADD4D40B1B5B298F004AFBE2 /* HTGoodDetailsViewController.m in Sources */,
 				ADD2C45A1B7E238200A2E638 /* ChatViewController.m in Sources */,
 				A2F7FCCA1B6E0D7700657575 /* CarShopInfoModel.m in Sources */,

@@ -53,7 +53,7 @@
 
         CFContentForDicKeyViewController *contentForDicKeyViewController=[[CFContentForDicKeyViewController alloc]init];
         contentForDicKeyViewController.keyDic=parameters;
-        contentForDicKeyViewController.title=searchTex;
+        contentForDicKeyViewController.topTitle=searchTex;
         AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
         [app.navigationController pushViewController:contentForDicKeyViewController animated:YES];
     }

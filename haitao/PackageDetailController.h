@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "PackageDetail.h"
 #import "CollapseClick.h"
-@interface PackageDetailController : UIViewController<HTTPControllerProtocol, UITableViewDataSource,UITableViewDelegate,CollapseClickDelegate,UIScrollViewDelegate>
+#import "ASMediaFocusManager.h"
+@interface PackageDetailController : UIViewController<HTTPControllerProtocol, UITableViewDataSource,UITableViewDelegate,CollapseClickDelegate,UIScrollViewDelegate,ASMediasFocusDelegate>
 
 @property(strong,nonatomic) NSString *package_id;
 
@@ -52,6 +53,8 @@
 //订单截图view
 @property(strong,nonatomic) UIView *orderImageView;
 
+@property(strong,nonatomic) UIImageView *orderImage;
+
 @property(strong,nonatomic) UIView *footerBar;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *myScollView;
@@ -59,4 +62,6 @@
 @property (weak, nonatomic) IBOutlet UIView *myView;
 
 @property(strong,nonatomic) UIWebView *phoneCallWebView;
+
+@property(strong,nonatomic) ASMediaFocusManager *mediaFocusManager;
 @end

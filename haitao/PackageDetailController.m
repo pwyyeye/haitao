@@ -56,6 +56,8 @@
 //    _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
 //    self.tableView.tableFooterView=[[UIView alloc]init];
     [self initData];
+    
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -125,10 +127,18 @@
             
             self.footView.backgroundColor=[UIColor whiteColor];
             
+            
+            //控制缩放
+            self.mediaFocusManager = [[ASMediaFocusManager alloc] init];
+            self.mediaFocusManager.delegate = self;
+            // Tells which views need to be focusable. You can put your image views in an array and give it to the focus manager.
+            [self.mediaFocusManager installOnViews:self.orderImageView.subviews];
+            
+            
             if (_footerBar!=nil) {
                 [_footerBar removeFromSuperview];
             }
-
+            
             
             //设置底部按钮
             _footerBar=[[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-47-64, SCREEN_WIDTH, 47)];
@@ -689,11 +699,15 @@
         {
             _orderImageView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
             _orderImageView.backgroundColor=[UIColor whiteColor];
-            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 70, 100, 20)];
-            label.textColor=RGB(128, 128, 128);
-            label.text=@"暂无相关消息";
-            label.font=[UIFont systemFontOfSize:11];
-            [_orderImageView addSubview:label];
+//            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 70, 100, 20)];
+//            label.textColor=RGB(128, 128, 128);
+//            label.text=@"暂无相关消息";
+//            label.font=[UIFont systemFontOfSize:11];
+//            [_orderImageView addSubview:label];
+            _orderImage=[[UIImageView alloc] initWithFrame:CGRectMake(20, 0, SCREEN_WIDTH-40, 150)];
+            _orderImage.image=[UIImage imageNamed:@"2_retina.jpg"];
+            [_orderImage setContentMode:UIViewContentModeScaleAspectFit];
+            [_orderImageView addSubview:_orderImage];
             return _orderImageView;
             break;
         }
@@ -739,5 +753,33 @@
     self.footerBar.frame=CGRectMake(rect.origin.x, SCREEN_HEIGHT-64-47+point.y, rect.size.width, rect.size.height);
     
     
+}
+
+#pragma mark - ASMediaFocusDelegate
+- (UIImage *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager imageForView:(UIView *)view
+{
+    return ((UIImageView *)view).image;
+}
+
+- (CGRect)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager finalFrameforView:(UIView *)view
+{
+    return self.parentViewController.view.bounds;
+}
+
+- (UIViewController *)parentViewControllerForMediaFocusManager:(ASMediaFocusManager *)mediaFocusManager
+{
+    return self.parentViewController;
+}
+
+- (NSString *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager mediaPathForView:(UIView *)view
+{
+    NSString *path;
+    NSString *name;
+    
+    // Here, images are accessed through their name "1f.jpg", "2f.jpg", …
+//    name = [NSString stringWithFormat:@"%df", ([self.imageViews indexOfObject:view] + 1)];
+    path = [[NSBundle mainBundle] pathForResource:@"2_retina" ofType:@"jpg"];
+    
+    return path;
 }
 @end
