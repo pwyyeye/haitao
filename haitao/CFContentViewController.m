@@ -96,12 +96,12 @@
      view_bar1.backgroundColor =RGB(255, 13, 94); 
     
     [self.view addSubview:view_bar1];
-    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar1.frame.size.height-44, self.view.frame.size.width-130, 44)];
+    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake((view_bar1.width-130)/2, view_bar1.frame.size.height-44, 130, 44)];
     title_label.text=self.topTitle;
     title_label.font=[UIFont boldSystemFontOfSize:20];
     title_label.backgroundColor=[UIColor clearColor];
     title_label.textColor =[UIColor whiteColor];
-    title_label.textAlignment=1;
+    title_label.textAlignment=NSTextAlignmentCenter;
     [view_bar1 addSubview:title_label];
     UIButton*btnBack=[UIButton buttonWithType:0];
     btnBack.frame=CGRectMake(0, view_bar1.frame.size.height-34, 47, 34);
@@ -192,7 +192,7 @@
         [gbBtn addSubview:btn1];
         UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(0, btn1.frame.size.width+5+btn1.frame.origin.y, gbBtn.width, 10)];
         _label.text=new_Goods.shop_name;
-        _label.font=[UIFont boldSystemFontOfSize:10];
+        _label.font=[UIFont boldSystemFontOfSize:9];
         _label.backgroundColor=[UIColor clearColor];
         _label.textColor =hexColor(@"#b3b3b3");
         _label.numberOfLines=1;
@@ -202,9 +202,9 @@
         //商品名
         UILabel *_label1=[[UILabel alloc]initWithFrame:CGRectMake(10, _label.frame.size.height+_label.frame.origin.y+1, gbBtn.frame.size.width-10-10, 30)];
         _label1.text=new_Goods.title;
-        _label1.font=[UIFont boldSystemFontOfSize:11];
+        _label1.font=[UIFont boldSystemFontOfSize:10];
         _label1.backgroundColor=[UIColor clearColor];
-        _label1.textColor =hexColor(@"#333333");
+        _label1.textColor =RGB(51, 51, 51);
         _label1.lineBreakMode = UILineBreakModeWordWrap;
         _label1.numberOfLines=2;
         _label1.textAlignment=NSTextAlignmentCenter;
@@ -420,7 +420,7 @@
             btnItem4.isup=!btnItem4.isup;
             
         }
-        if(!btnItem4.isup){
+        if(btnItem4.isup){
             [btnItem4 setImage:[UIImage imageNamed:@"filter_btn_jiage_selected_shang"] forState:UIControlStateSelected];
             sortkey=@"price_cn-asc";
         }else{

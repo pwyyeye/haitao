@@ -20,10 +20,13 @@
     NSMutableArray *listArr;
     NSString *title;
     NSString *menuid;
+    NSString *pageCount;
+    NSDictionary *paraDic;//记录下拉刷新的条件
 }
 @property (nonatomic,retain)NSDictionary *spcDic;
 @property (nonatomic,strong)DJRefresh *refresh;
 //存储所有筛选条件
 @property(strong,nonatomic) NSMutableDictionary *inParameters;
+
 
 @end

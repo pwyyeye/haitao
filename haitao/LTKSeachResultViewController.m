@@ -82,11 +82,13 @@
     serchText.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
     serchText.returnKeyType=UIReturnKeySearch;
     serchText.delegate=self;
+    serchText.clearButtonMode = UITextFieldViewModeWhileEditing;
     [view_bar addSubview:serchText];
     [serchText becomeFirstResponder];
     UIButton*btnBack=[UIButton buttonWithType:0];
-    btnBack.frame=CGRectMake(serchText.left+serchText.width+10, serchText.top, 60, 30);
+    btnBack.frame=CGRectMake(serchText.left+serchText.width+10, serchText.top+5, 50, 20);
     [btnBack setTitle:@"取消" forState:UIControlStateNormal];
+    btnBack.titleLabel.font = [UIFont systemFontOfSize: 15.0];
     [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
     [view_bar addSubview:btnBack];
     /*
@@ -213,15 +215,22 @@
 
 }
 -(void)delHisData:(UIButton *)sendid{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *filename = [Path stringByAppendingPathComponent:@"hisSerchData.plist"];
-    if([fileManager fileExistsAtPath:filename]){
-        hisSerchArr= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
-        [hisSerchArr removeAllObjects];
-        [NSKeyedArchiver archiveRootObject:hisSerchArr toFile:filename];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"删除历史记录" message:@"确定删除？" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+    [alertView show];
+    
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex==0){
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString *filename = [Path stringByAppendingPathComponent:@"hisSerchData.plist"];
+        if([fileManager fileExistsAtPath:filename]){
+            hisSerchArr= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
+            [hisSerchArr removeAllObjects];
+            [NSKeyedArchiver archiveRootObject:hisSerchArr toFile:filename];
+        }
+        hisView.hidden=YES;
     }
-    hisView.hidden=YES;
 }
 - (void)viewDidLoad
 {
@@ -243,7 +252,7 @@
     label.textColor = [UIColor grayColor];
     label.textAlignment = NSTextAlignmentLeft;  //文本对齐方式
     [label setBackgroundColor:[UIColor whiteColor]];
-    NSString *str = @"热门标题";
+    NSString *str = @"热门标签";
     
     label.text = str;
     [self.view addSubview:label];
@@ -251,8 +260,9 @@
     for (int i =0; i<8; i++)
     {
     
-        editBtn =[[TitleBtn alloc]initWithFrame:CGRectMake((i%4)*75+12, floor(i/4)*35+10+label.frame.size.height+label.frame.origin.y, 70, 30)];
+        editBtn =[[TitleBtn alloc]initWithFrame:CGRectMake((i%4)*75+12, floor(i/4)*35+10+label.frame.size.height+label.frame.origin.y, 70, 20)];
         [editBtn setTitle:@"moon" forState:UIControlStateNormal];
+        editBtn.titleLabel.font = [UIFont systemFontOfSize: 11.0];
         editBtn.backgroundColor=[UIColor blackColor];
         [editBtn addTarget:self action:@selector(goSerch:) forControlEvents:UIControlEventTouchUpInside];
         editBtn.backgroundColor=[UIColor whiteColor];
@@ -281,10 +291,11 @@
         for (int i =0; i<hisSerchArr.count; i++)
         {
             
-            editBtn =[[TitleBtn alloc]initWithFrame:CGRectMake((i%4)*75+12, floor(i/4)*35+10, 70, 30)];
+            editBtn =[[TitleBtn alloc]initWithFrame:CGRectMake((i%4)*75+12, floor(i/4)*35+10, 70, 20)];
             [editBtn setTitle:hisSerchArr[i] forState:UIControlStateNormal];
             editBtn.backgroundColor=[UIColor whiteColor];
             [editBtn setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
+            editBtn.titleLabel.font = [UIFont systemFontOfSize: 11.0];
             [editBtn addTarget:self action:@selector(goSerch:) forControlEvents:UIControlEventTouchUpInside];
             editBtn.layer.borderWidth=1;//描边
             editBtn.layer.cornerRadius=4;//圆角
@@ -294,7 +305,7 @@
         
     }
     UIButton *qingchuBtn =[[UIButton alloc]initWithFrame:CGRectMake(self.view.width/2-200/2, lastFrame.origin.y+lastFrame.size.height, 200, 50)];
-    [qingchuBtn setTitle:@"清楚历史记录" forState:UIControlStateNormal];
+    [qingchuBtn setTitle:@"清空历史记录" forState:UIControlStateNormal];
     qingchuBtn.titleLabel.font=[UIFont systemFontOfSize:13];
     [qingchuBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     qingchuBtn.backgroundColor=[UIColor clearColor];

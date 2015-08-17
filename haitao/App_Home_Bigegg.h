@@ -33,5 +33,5 @@
 @property (copy, nonatomic) NSString *ad_cat_id;
 @property (assign, nonatomic) double price;
 @property (assign, nonatomic) double mk_price;
-
+@property (assign, nonatomic) double price_cn;
 @end

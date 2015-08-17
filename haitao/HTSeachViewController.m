@@ -248,6 +248,7 @@
     
 //    [btnSeach setTitle:@"订单" forState:0];
     [btnSeach setImage:BundleImage(@"search_box") forState:0];
+    [btnSeach setImage:BundleImage(@"search_box") forState:UIControlStateHighlighted];
     [btnSeach addTarget:self action:@selector(btnSeach:) forControlEvents:UIControlEventTouchUpInside];
     [view_bar1 addSubview:btnSeach];
 
