@@ -11,7 +11,7 @@
     UIImageView                     * tabBarArrow;    //tabbar下面的动画线条，
     BOOL                    isFullScreen;//是否全屏
 
-
+    UILabel *qaLine;
     BOOL                    done;
         //Timer的使用：
     NSTimer                     *connectionTimer;  //timer对象
