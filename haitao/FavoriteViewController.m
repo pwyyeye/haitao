@@ -345,23 +345,25 @@
     New_Goods *goods=_results[indexPath.item];
     cell.textLabel.text=goods.title;
     
-    cell.textLabel.numberOfLines=2;
+    cell.textLabel.numberOfLines=1;
     
 //    cell.textLabel.font=[UIFont systemFontOfSize:13];
-    cell.textLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:13];
+    cell.textLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:11];
+    cell.textLabel.textColor=RGB(51, 51, 51);
     cell.detailTextLabel.text=[NSString stringWithFormat:@"¥%.2f", goods.price];
     cell.detailTextLabel.textColor=RGB(255, 13, 94);
-    cell.detailTextLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:13];
+    cell.detailTextLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:11];
     [cell.imageView setImageWithURL:[NSURL URLWithString:goods.img_80] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
     
     UILabel *shop_name=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-65, cell.frame.origin.y+45, 60, 20)];
     shop_name.text=goods.shop_name;
-    shop_name.font=[UIFont systemFontOfSize:11.0];
+    shop_name.font=[UIFont systemFontOfSize:10.0];
     shop_name.textColor=[UIColor colorWithWhite:0.6 alpha:0.9];
     [cell.contentView addSubview:shop_name];
     
-    UIImageView *shop_img=[[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, cell.frame.origin.y+45, 20, 20)];
+    UIImageView *shop_img=[[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-85, cell.frame.origin.y+47, 15, 15)];
     [shop_img setImageWithURL:[NSURL URLWithString:goods.country_flag_url] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
+    [shop_img setContentMode:UIViewContentModeScaleAspectFit];
     [cell.contentView addSubview:shop_img];
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色

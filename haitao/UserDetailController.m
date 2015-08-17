@@ -55,7 +55,7 @@
     
     
     self.tableView.backgroundColor=RGB(237, 237, 237);
-//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//无分割线
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//无分割线
     
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
 
@@ -121,24 +121,38 @@
     
     if (indexPath.row==0) {
         label.text=@"修改头像";
+        label.font=[UIFont systemFontOfSize:13];
+        label.textColor=RGB(51, 51, 51);
         cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        cell.imageView.image=[UIImage imageNamed:@"default_04.png"];
+        cell.imageView.image=[UIImage imageNamed:@"df_03_"];
         
         if (![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"avatar_img"]]) {
             NSURL *url=[NSURL URLWithString:[USER_DEFAULT objectForKey:@"avatar_img"]];
             [cell.imageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"default_04.png"]];
         }
-//        CALayer *layerShadow=[[CALayer alloc]init];
-//        layerShadow.frame=CGRectMake(120,cell.frame.size.height+5,cell.frame.size.width,1);
-//        layerShadow.borderColor=[RGB(237, 223, 223) CGColor];
-//        layerShadow.borderWidth=1;
-//        [cell.layer addSublayer:layerShadow];
+        
+        
+        CALayer *layerShadow=[[CALayer alloc]init];
+        layerShadow.frame=CGRectMake(0,79.5,SCREEN_WIDTH,1);
+        layerShadow.borderColor=[RGB(237, 227, 227) CGColor];
+        layerShadow.borderWidth=0.5;
+        [cell.layer addSublayer:layerShadow];
         
         
         
     }else{
-        cell.textLabel.text=[USER_DEFAULT objectForKey:@"user_nick"];
+        if ([MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"user_nick"]]) {
+            cell.textLabel.text=[USER_DEFAULT objectForKey:@"user_name"];
+        }else{
+            cell.textLabel.text=[USER_DEFAULT objectForKey:@"user_nick"];
+            
+        }
+        
+        cell.textLabel.font=[UIFont systemFontOfSize:11];
+        cell.textLabel.textColor=RGB(51, 51, 51);
         label.text=@"修改昵称";
+        label.font=[UIFont systemFontOfSize:13];
+        label.textColor=RGB(51, 51, 51);
     }
     cell.tag=100+indexPath.row;
     [cell.contentView addSubview:label];
@@ -191,7 +205,7 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row==0) {
-        UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择", nil];
+        UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择", nil];
         
         actionSheet.tag=255;
         
@@ -328,14 +342,20 @@
         
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             switch (buttonIndex) {
-                case 1:
-                    //取消
-                    return;
-                    break;
                 case 0:
+                    //拍照
+                    sourceType=UIImagePickerControllerSourceTypeCamera;
+                    
+                    break;
+                case 1:
                     //相册
                     sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
                     
+                    break;
+                case 2:
+                    //取消
+                    return;
+                    break;
                 default:
                     break;
             }

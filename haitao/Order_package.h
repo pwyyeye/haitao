@@ -44,6 +44,8 @@
 
 @property(strong,nonatomic) NSArray *logistic_info;
 
+@property(assign,nonatomic) int No;
+
 
 
 @end

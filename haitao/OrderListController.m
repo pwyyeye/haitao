@@ -157,6 +157,13 @@
             
             NSLog(@"----pass-order_array%@---",_order_array);
             
+            for (OrderModel *orderModel in _order_array) {
+                for (int i=0; i<orderModel.package_info.count; i++) {
+                    Order_package *package=orderModel.package_info[i];
+                    package.No=i+1;
+                }
+            }
+            
             _result_array=_order_array;
             
             
@@ -342,6 +349,8 @@
     }else{//内层header
 //        OrderModel *order=_result_array[section];
         Order_package *selectedPackage;
+
+      
         for (OrderModel *orderModel in _result_array) {
             NSArray *array=orderModel.package_info;
             for (Order_package *package in array) {
@@ -350,11 +359,14 @@
                 }
             }
         }
+        
+        
+        
         UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 38)];
         
         //包裹
         UILabel *head=[[UILabel alloc] initWithFrame:CGRectMake(10, 0, 40, 38)];
-        head.text=[NSString stringWithFormat:@"包裹%ld",(long)section+1];
+        head.text=[NSString stringWithFormat:@"包裹%d",selectedPackage.No];
         head.font =[UIFont  boldSystemFontOfSize:11];//加粗字体
         head.textColor=RGB(255, 13, 94);
         [view addSubview:head];
@@ -648,19 +660,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"OrderListCell";
-    OrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier]; //出列可重用的cell
-    if (cell == nil) {
-        cell = [[OrderListCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"OrderListCell"];
-    }
-//    
-//    OrderListCell *cell = [[OrderListCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"OrderListCell"];
-    //    cell.textLabel.text = self.results[indexPath.row];
     
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
 
     if (tableView == _tableView)
     {
+        static NSString *CellIdentifier = @"OrderListCell";
+        OrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier]; //出列可重用的cell
+        if (cell == nil) {
+            cell = [[OrderListCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"OrderListCell"];
+        }
+        
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
+        
         OrderModel *orderModel=_result_array[indexPath.section];
 
         _package=orderModel.package_info[indexPath.row];
@@ -680,6 +691,14 @@
         return cell;
     }else
     {
+        static NSString *CellIdentifier2 = @"OrderListCell2";
+        OrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2]; //出列可重用的cell
+        if (cell == nil) {
+            cell = [[OrderListCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier2];
+        }
+        
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
+        
         Order_package *selectedPackage;
         for (OrderModel *orderModel in _result_array) {
             NSArray *array=orderModel.package_info;
@@ -691,10 +710,14 @@
         }
         
         Order_goods *goods=[selectedPackage.goods objectAtIndex:indexPath.row];
-        cell.textLabel.text = goods.goods_name;
+        //图片
+        [cell.imageView setImageWithURL:[NSURL URLWithString:goods.img_url] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
+        [cell.imageView setContentMode:UIViewContentModeScaleAspectFill];
+        
+        cell.textLabel.text =[MyUtil trim:goods.goods_name] ;
         cell.textLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:11];
         cell.textLabel.textColor=RGB(51, 51, 51);
-        cell.textLabel.numberOfLines=2;
+        cell.textLabel.numberOfLines=1;
         //如果有规格 展示规格 只展示2条
         if (goods.goods_attr.count>0) {
             for (int i=0; i<goods.goods_attr.count; i++) {
@@ -732,7 +755,7 @@
         [cell.contentView addSubview:goodPrice];
         
         //商品价格
-        UILabel *goodnum=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, cell.frame.origin.y+60, 70, 20)];
+        UILabel *goodnum=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 55, 70, 20)];
         goodnum.text=[NSString stringWithFormat:@"x %d",goods.buy_num];
         goodnum.textAlignment=NSTextAlignmentRight;
         goodnum.font =[UIFont  boldSystemFontOfSize:11];
@@ -743,8 +766,7 @@
 //        cell.detailTextLabel.textColor=RGB(255, 13, 94);
 //        cell.detailTextLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:13];
         
-        [cell.imageView setImageWithURL:[NSURL URLWithString:goods.img_url] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
-        [cell.imageView setContentMode:UIViewContentModeScaleAspectFill];
+        
 
         cell.backgroundColor = [UIColor whiteColor];
         

@@ -27,11 +27,26 @@
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor=RGB(237, 237, 237);
     self.title=@"选择支付方式";
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+    [self.navigationItem setLeftBarButtonItem:item];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)gotoBack{
+    UIViewController *detailViewController;
+    
+    detailViewController  = [[OrderListController alloc] init];
+    
+    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
+    delegate.navigationController.navigationItem.backBarButtonItem=item;
+    [delegate.navigationController pushViewController:detailViewController animated:YES];
+    
 }
 
 #pragma mark - Table view data source

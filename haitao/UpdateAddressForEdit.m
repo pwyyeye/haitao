@@ -354,7 +354,7 @@ NSLog(@"----pass-saveAddress %@---",@"test");
     }else if([gr.view isEqual:_idcard_fanmian]){
         _targetIdex=1;
     }
-        UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择", nil];
+        UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择", nil];
         
         actionSheet.tag=255;
         
@@ -377,16 +377,23 @@ NSLog(@"----pass-saveAddress %@---",@"test");
         
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             switch (buttonIndex) {
+                case 0:
+                    //拍照
+                    sourceType=UIImagePickerControllerSourceTypeCamera;
+
+                    break;
                 case 1:
+                    //相册
+                    sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+
+                    break;
+                case 2:
                     //取消
                     return;
                     break;
-                case 0:
-                    //相册
-                    sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
-                    
                 default:
                     break;
+
             }
         }else{
             if (buttonIndex==1) {

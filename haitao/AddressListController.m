@@ -105,8 +105,12 @@
     if ([urlname isEqual:@"addressList"]) {
         if ([[dictemp objectForKey:@"status"] integerValue] ==1) {
             NSArray *list=[dictemp objectForKey:@"data"];
-            
-            _data=[[AddressModel objectArrayWithKeyValuesArray:list] copy];
+            if (list.count==0) {
+                _data=@[];
+            }else{
+                _data=[[AddressModel objectArrayWithKeyValuesArray:list] copy];
+
+            }
             [self reloadData];
         }else{
             id array=[dictemp objectForKey:@"msg"];
@@ -147,7 +151,7 @@
             [self.view addSubview:_emptyView];
             
             self.tableView.separatorColor=[UIColor clearColor];
-            
+            [self.tableView reloadData];
         }
         
     }else{
@@ -247,7 +251,7 @@
     
     NSString *address=[NSString stringWithFormat:@"%@%@",model.province,model.address];
     if([model.is_default integerValue]==1){
-        address=[NSString stringWithFormat:@"%@%@%@",@"［默认］",model.province,model.address];
+        address=[NSString stringWithFormat:@"%@%@%@",@"[默认]",model.province,model.address];
         NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:address];
         [AttributedStr addAttribute:NSForegroundColorAttributeName
          

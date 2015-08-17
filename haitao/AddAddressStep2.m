@@ -7,7 +7,7 @@
 //
 
 #import "AddAddressStep2.h"
-
+#import "AddressListController.h"
 @interface AddAddressStep2 ()
 
 @end
@@ -37,6 +37,7 @@
     
     [_idcard_zhengmian addGestureRecognizer:click];
     [_idcard_fanmian addGestureRecognizer:click2];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -99,14 +100,19 @@
 -(void)didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app stopLoading];
+    NSLog(@"----pass-上传身份证照片%@---",dictemp);
     if ([[dictemp objectForKey:@"status"] integerValue]== 1) {
         
         if ([urlname isEqualToString:@"modifyAddress"]) {
             ShowMessage(@"上传成功！");
         }
         //发送通知
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeToReload" object:nil];
-        [self.navigationController popViewControllerAnimated:YES];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeToReload" object:nil];
+        UIViewController *detailViewController  = [[AddressListController alloc] init];
+        AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
+        delegate.navigationController.navigationItem.backBarButtonItem=item;
+        [delegate.navigationController pushViewController:detailViewController animated:YES];
         
     }else{
     
@@ -124,7 +130,7 @@
     }else if([gr.view isEqual:_idcard_fanmian]){
         _targetIdex=1;
     }
-    UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择", nil];
+    UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择", nil];
     
     actionSheet.tag=255;
     
@@ -147,19 +153,25 @@
         
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             switch (buttonIndex) {
-                case 1:
-                    //取消
-                    return;
-                    break;
                 case 0:
+                    //拍照
+                    sourceType=UIImagePickerControllerSourceTypeCamera;
+                    
+                    break;
+                case 1:
                     //相册
                     sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
                     
+                    break;
+                case 2:
+                    //取消
+                    return;
+                    break;
                 default:
                     break;
             }
         }else{
-            if (buttonIndex==1) {
+            if (buttonIndex==2) {
                 return;
             }else{
                 sourceType=UIImagePickerControllerSourceTypeSavedPhotosAlbum;
