@@ -61,7 +61,7 @@
     //CGRectMake(self.view.frame.size.width-50, naviView.frame.size.height+10, 42, 42)
     
     //左边菜单
-    BAWineShoppingDockTavleView *dockTavleView =[[BAWineShoppingDockTavleView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height+1,75,kWindowHeight-50-(naviView.frame.size.height+1)}];
+    BAWineShoppingDockTavleView *dockTavleView =[[BAWineShoppingDockTavleView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height,75,kWindowHeight-49-(naviView.frame.size.height)}];
     dockTavleView.rowHeight=40;
     dockTavleView.dockDelegate=self;
     dockTavleView.backgroundColor=[UIColor whiteColor ];
@@ -72,7 +72,7 @@
     
     
     //右边列表
-    rightTableView =[[BARightTableView alloc]initWithFrame:(CGRect){75,naviView.frame.size.height+1,kWindowWidth-75,kWindowHeight-50-(-(naviView.frame.size.height+1))}];
+    rightTableView =[[BARightTableView alloc]initWithFrame:(CGRect){75,naviView.frame.size.height,kWindowWidth-75,kWindowHeight-49-(-(naviView.frame.size.height))}];
     rightTableView.rowHeight=65;
     rightTableView.rightDelegate=self;
     rightTableView.backgroundColor=[UIColor whiteColor];

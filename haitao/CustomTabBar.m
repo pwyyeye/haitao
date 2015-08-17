@@ -124,9 +124,11 @@
     }
     
     [self selectedTab:[self.buttons objectAtIndex:currentSelectedIndex]];
-    UILabel *qaLine=[[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-49, self.view.width, 0.5)];
-    qaLine.backgroundColor=RGB(128, 128, 128);
+    qaLine=[[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-49, self.view.width, 0.5)];
+    qaLine.backgroundColor=RGB(179, 179, 179);
+    
     [self.view  addSubview:qaLine];
+    qaLine.hidden=YES;
 }
 
 - (void)selectedTab:(UIButton *)button
@@ -139,26 +141,29 @@
       
         [selectedBtn setImage:[UIImage imageNamed:@"icon_Home"] forState:UIControlStateNormal];
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        
+        qaLine.hidden=YES;
         [app stopLoading];
 
     }else if ([selectAtIndex integerValue] == 201)
     {
         [selectedBtn setImage:[UIImage imageNamed:@"icon_Sherch"] forState:UIControlStateNormal];
+        qaLine.hidden=false;
     }else if ([selectAtIndex integerValue] == 202)
     {
 
         [selectedBtn setImage:[UIImage imageNamed:@"icon_LIqin"] forState:UIControlStateNormal];
+        qaLine.hidden=false;
     }else if ([selectAtIndex integerValue] == 203)
     {
 
         [selectedBtn setImage:[UIImage imageNamed:@"icon_Order"] forState:UIControlStateNormal];
+        qaLine.hidden=true;
     }
     else if([selectAtIndex integerValue]==204)
     {
         
         [selectedBtn setImage:[UIImage imageNamed:@"icon_UserConter"] forState:UIControlStateNormal];
-
+        qaLine.hidden=false;
     }
     
     UIButton *btn = (UIButton*)button;
@@ -168,28 +173,32 @@
     {
         [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];
         [btn setImage:[UIImage imageNamed:@"icon_Home_selected"] forState:UIControlStateNormal];
-        
+        qaLine.hidden=YES;
     }else if (self.currentSelectedIndex==1)
     {
         [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];
 
         [btn setImage:[UIImage imageNamed:@"icon_Sherch_selected"] forState:UIControlStateNormal];
+        qaLine.hidden=false;
     }else if (self.currentSelectedIndex==2)
     {
         [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];
 
         [btn setImage:[UIImage imageNamed:@"icon_LIqin_selected"] forState:UIControlStateNormal];
+        qaLine.hidden=false;
     }else if (self.currentSelectedIndex==3)
     {
         [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];
 
         [btn setImage:[UIImage imageNamed:@"icon_Order_selected"] forState:UIControlStateNormal];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCar" object:nil];
+        qaLine.hidden=true;
     }
     else if(self.currentSelectedIndex==4)
         {
         [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];;
         [btn setImage:[UIImage imageNamed:@"icon_UserConter_selected"] forState:UIControlStateNormal];
+            qaLine.hidden=false;
         }
     
     
