@@ -150,6 +150,8 @@
             NSDictionary *dic=[dictemp objectForKey:@"data"];
             
             if (dic.count==0) {
+                _order_array=@[];
+                [self segmentAction:_seg];
                 return;
             }
             
@@ -240,6 +242,8 @@
         _empty_view=[[UIView alloc] initWithFrame:CGRectMake(0, 34, SCREEN_WIDTH, SCREEN_HEIGHT - 34)];
         UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-100, SCREEN_HEIGHT/2-100, 200, 20)];
         label.text=@"暂无订单信息";
+        label.font=[UIFont systemFontOfSize:13];
+        label.textColor=RGB(51, 51, 51);
         [_empty_view addSubview:label];
         label.textAlignment = UITextAlignmentCenter;
         self.empty_view.backgroundColor=[UIColor whiteColor];
@@ -279,19 +283,19 @@
                 break;
             case 2:{
     
-                prediStr1 = [NSString stringWithFormat:@"order_status=='%d'", 2];//已付款
+                prediStr1 = [NSString stringWithFormat:@"order_status=='%d'", 2];//待发货
     
             }
                 break;
             case 3:{
                 
-                prediStr1 = [NSString stringWithFormat:@"order_status=='%d'", 8];//订单已完成
+                prediStr1 = [NSString stringWithFormat:@"order_status=='%d'", 3];//待收货
                 
             }
                 break;
             case 4:{
                 
-                prediStr1 = [NSString stringWithFormat:@"order_status=='%d'", 9];//取消订单到时候改成待评价
+                prediStr1 = [NSString stringWithFormat:@"order_status=='%d'", 7];//待评价
                 
             }
                 break;
@@ -304,9 +308,9 @@
         NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@",prediStr1]];
         NSArray *orderlist=self.order_array;
         self.result_array = [orderlist filteredArrayUsingPredicate:predicate];
-    
+    [self.subTableView reloadData];
         [self.tableView reloadData];
-    [self showEmptyView];
+        [self showEmptyView];
 }
 /*
 #pragma mark - Navigation

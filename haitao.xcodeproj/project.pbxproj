@@ -210,6 +210,8 @@
 		AD6EFF151B807ED400E98480 /* ASMediaFocusController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6EFF101B807ED400E98480 /* ASMediaFocusController.m */; };
 		AD6EFF161B807ED400E98480 /* ASMediaFocusController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD6EFF111B807ED400E98480 /* ASMediaFocusController.xib */; };
 		AD6EFF171B807ED400E98480 /* ASMediaFocusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6EFF131B807ED400E98480 /* ASMediaFocusManager.m */; };
+		AD6EFF1A1B82205B00E98480 /* order_bg_tijiaodingdan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6EFF181B82205B00E98480 /* order_bg_tijiaodingdan@2x.png */; };
+		AD6EFF1B1B82205B00E98480 /* order_bg_tijiaodingdan@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6EFF191B82205B00E98480 /* order_bg_tijiaodingdan@3x.png */; };
 		AD7BE4961B7612AF003D29F0 /* OrderSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7BE4941B7612AF003D29F0 /* OrderSuccessController.m */; };
 		AD7BE4971B7612AF003D29F0 /* OrderSuccessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD7BE4951B7612AF003D29F0 /* OrderSuccessController.xib */; };
 		AD7BE49B1B762512003D29F0 /* Sherch_icon_Sherch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD7BE49A1B762512003D29F0 /* Sherch_icon_Sherch@2x.png */; };
@@ -1165,6 +1167,8 @@
 		AD6EFF111B807ED400E98480 /* ASMediaFocusController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASMediaFocusController.xib; sourceTree = "<group>"; };
 		AD6EFF121B807ED400E98480 /* ASMediaFocusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMediaFocusManager.h; sourceTree = "<group>"; };
 		AD6EFF131B807ED400E98480 /* ASMediaFocusManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASMediaFocusManager.m; sourceTree = "<group>"; };
+		AD6EFF181B82205B00E98480 /* order_bg_tijiaodingdan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "order_bg_tijiaodingdan@2x.png"; sourceTree = "<group>"; };
+		AD6EFF191B82205B00E98480 /* order_bg_tijiaodingdan@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "order_bg_tijiaodingdan@3x.png"; sourceTree = "<group>"; };
 		AD7BE4931B7612AF003D29F0 /* OrderSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderSuccessController.h; sourceTree = "<group>"; };
 		AD7BE4941B7612AF003D29F0 /* OrderSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderSuccessController.m; sourceTree = "<group>"; };
 		AD7BE4951B7612AF003D29F0 /* OrderSuccessController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderSuccessController.xib; sourceTree = "<group>"; };
@@ -3810,6 +3814,8 @@
 		ADD2C4291B78A87100A2E638 /* pwy购物车 */ = {
 			isa = PBXGroup;
 			children = (
+				AD6EFF181B82205B00E98480 /* order_bg_tijiaodingdan@2x.png */,
+				AD6EFF191B82205B00E98480 /* order_bg_tijiaodingdan@3x.png */,
 				ADD2C4411B7B4C0700A2E638 /* addToCart@2x.png */,
 				ADD2C4421B7B4C0700A2E638 /* addToCart@3x.png */,
 				ADD2C4431B7B4C0700A2E638 /* shopping_icon_logo@2x.png */,
@@ -4098,6 +4104,7 @@
 				AD8E35791B70CA4300C9D5BA /* home_icon_jingpingtuijian_she_@2x.png in Resources */,
 				AD8E35891B70CA4300C9D5BA /* shuma_shaixuan_btn_shangjiantou_@2x.png in Resources */,
 				AD8AA6471B59435C00E324AD /* readme.txt in Resources */,
+				AD6EFF1A1B82205B00E98480 /* order_bg_tijiaodingdan@2x.png in Resources */,
 				AD50C5171B77035000119A42 /* Address_btn_selected@2x.png in Resources */,
 				AD8E37501B721A1500C9D5BA /* icon_TiJiaoDingDang@3x.png in Resources */,
 				A21814281B56063300D64E70 /* arrrow_left.png in Resources */,
@@ -4401,6 +4408,7 @@
 				AD8E36EF1B721A1500C9D5BA /* icon_FullStar@2x.png in Resources */,
 				AD8E375B1B721A1500C9D5BA /* icon_XiangBao@2x.png in Resources */,
 				A21815B81B5A0E9A00D64E70 /* df_04_@2x.png in Resources */,
+				AD6EFF1B1B82205B00E98480 /* order_bg_tijiaodingdan@3x.png in Resources */,
 				AD8E35251B70A11E00C9D5BA /* 3@3x.jpg in Resources */,
 				AD8E37781B721A1500C9D5BA /* ShuMa_icon_DianQi.png in Resources */,
 				ADD655311B6F3700006F4127 /* userCenter_inco_bell@2x.png in Resources */,

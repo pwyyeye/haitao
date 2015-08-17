@@ -122,6 +122,8 @@
         _empty_view=[[UIView alloc] initWithFrame:CGRectMake(0, 104, SCREEN_WIDTH, SCREEN_HEIGHT - 104)];
         UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-100, SCREEN_HEIGHT/2-164, 200, 20)];
         label.text=@"暂无关税信息";
+        label.font=[UIFont systemFontOfSize:13];
+        label.textColor=RGB(51, 51, 51);
         [_empty_view addSubview:label];
         label.textAlignment = NSTextAlignmentCenter;
         

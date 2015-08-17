@@ -24,6 +24,7 @@
     httpController.delegate = self;
     [httpController onSearch];
     _btn_array=[[NSMutableArray alloc] init];
+    _content.delegate=self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -116,6 +117,55 @@
     }
 
 }
+
+- (IBAction)didEndOnExit:(id)sender {
+    [sender resignFirstResponder];
+}
+
+- (IBAction)textFieldBeginEdit:(id)sender {
+    //
+    //增加监听，当键盘出现或改变时收出消息
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillChangeFrame:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    //增加监听，当键退出时收出消息
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillChangeFrame:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+
+- (IBAction)textFieldEndEdit:(id)sender {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+//当键盘出现或改变时调用
+- (void)keyboardWillChangeFrame:(NSNotification *)notification
+{
+    //获取键盘的高度
+    NSDictionary *info = [notification userInfo];
+    CGFloat duration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    CGRect beginKeyboardRect = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    CGRect endKeyboardRect = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    CGFloat yOffset = endKeyboardRect.origin.y - beginKeyboardRect.origin.y;
+    if (yOffset<0) {
+        yOffset+=30;
+    }else{
+        yOffset-=30;
+    }
+    CGRect inputFieldRect = self.view.frame;
+    
+    inputFieldRect.origin.y += yOffset;
+    
+    [UIView animateWithDuration:duration animations:^{
+        self.view.frame = inputFieldRect;
+    }];
+}
+
 /*
 #pragma mark - Navigation
 
@@ -126,7 +176,14 @@
 }
 */
 
-
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
 
 - (IBAction)submit:(id)sender {
     NSDictionary *pam=@{@"type":[NSString stringWithFormat:@"%d",_selectedId] ,@"contact":_contact.text,@"content":_content.text};
