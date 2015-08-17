@@ -446,8 +446,8 @@
         _btn_confirm.titleLabel.text=[NSString stringWithFormat:@"重新提交(%d)秒",_step];
         _btn_confirm.titleLabel.font=[UIFont systemFontOfSize:13];
         _btn_confirm.titleLabel.textColor=[UIColor whiteColor];
-        [_btn_confirm setBackgroundColor:RGB(255, 13, 94)];
-        [_btn_confirm setBackgroundImage:nil  forState:UIControlStateNormal];
+//        [_btn_confirm setBackgroundColor:RGB(255, 13, 94)];
+        [_btn_confirm setBackgroundImage:[UIImage imageNamed:@"order_bg_tijiaodingdan"]  forState:UIControlStateNormal];
 
         [_btn_confirm setTitle:[NSString stringWithFormat:@"重新提交(%d)秒",_step] forState:UIControlStateDisabled];
         [_btn_confirm setTitle:[NSString stringWithFormat:@"重新提交(%d)秒",_step] forState:UIControlStateNormal];

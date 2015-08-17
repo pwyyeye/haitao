@@ -19,7 +19,7 @@
     // Do any additional setup after loading the view from its nib.
     self.title=@"站内信";
     if (![_message isEqual:[NSNull null]]) {
-        _from_user.text=_message.from_user;
+        _from_user.text=_message.title;
         _content.text=_message.content;
 
         [_user_imageView setImageWithURL:[NSURL URLWithString:_message.img] placeholderImage:[UIImage imageNamed:@"message_admin"]];

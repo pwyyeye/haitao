@@ -52,7 +52,7 @@
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     
-    NSArray *segmentedArray = @[@"所有站内信",@"已读站内信",@"未读站内信"];
+    NSArray *segmentedArray = @[@"所有站内信",@"未读站内信",@"已读站内信"];
     
     UISegmentedControl *seg=[[UISegmentedControl alloc] initWithItems:segmentedArray];
     
@@ -174,7 +174,7 @@
 //                self.tableView.tableHeaderView=[[UIView alloc]init];
                 
             }
-            
+            [self.tableView reloadData];
             
         }else if([urlname isEqualToString:@"delMsgBat"]){
             
@@ -225,12 +225,12 @@
             break;
         case 1:{
             
-                prediStr1 = [NSString stringWithFormat:@"status=='%d'", 1];
+                prediStr1 = [NSString stringWithFormat:@"status=='%d'", 0];
         }
             break;
         case 2:{
             
-                prediStr1 = [NSString stringWithFormat:@"status=='%d'", 0];
+                prediStr1 = [NSString stringWithFormat:@"status=='%d'", 1];
             
         }
             break;
@@ -257,12 +257,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"MessageCell";
-    MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier]; //出列可重用的cell
-    if (cell == nil) {
-        cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"MessageCell"];
-    }
+//    MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier]; //出列可重用的cell
+//    if (cell == nil) {
+//        cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"MessageCell"];
+//    }
     
-//    MessageCell *cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    MessageCell *cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     
     
     MessageModel *message=_result_array[indexPath.row];
