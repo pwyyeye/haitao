@@ -41,7 +41,7 @@
     dataList=[[NSMutableArray alloc]initWithCapacity:3];
     listArr=[[NSMutableArray alloc]init];
     UIView *naviView=(UIView*) [self getNavigationBar];
-    _tableView =[[UITableView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height+1,naviView.frame.size.width,SCREEN_HEIGHT-50-(naviView.frame.size.height+1)} style:UITableViewStylePlain];
+    _tableView =[[UITableView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height,naviView.frame.size.width,SCREEN_HEIGHT-50-(naviView.frame.size.height+1)} style:UITableViewStylePlain];
     _tableView.delegate=self;
     _tableView.dataSource=self;
     _tableView.separatorColor=[UIColor clearColor];

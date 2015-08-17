@@ -713,7 +713,7 @@
             btnItem4.isup=!btnItem4.isup;
             
         }
-        if(!btnItem4.isup){
+        if(btnItem4.isup){
             [btnItem4 setImage:[UIImage imageNamed:@"filter_btn_jiage_selected_shang"] forState:UIControlStateSelected];
             sortkey=@"price_cn-asc";
         }else{

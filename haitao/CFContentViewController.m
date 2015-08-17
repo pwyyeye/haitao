@@ -96,12 +96,12 @@
      view_bar1.backgroundColor =RGB(255, 13, 94); 
     
     [self.view addSubview:view_bar1];
-    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar1.frame.size.height-44, self.view.frame.size.width-130, 44)];
+    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake((view_bar1.width-130)/2, view_bar1.frame.size.height-44, 130, 44)];
     title_label.text=self.topTitle;
     title_label.font=[UIFont boldSystemFontOfSize:20];
     title_label.backgroundColor=[UIColor clearColor];
     title_label.textColor =[UIColor whiteColor];
-    title_label.textAlignment=1;
+    title_label.textAlignment=NSTextAlignmentCenter;
     [view_bar1 addSubview:title_label];
     UIButton*btnBack=[UIButton buttonWithType:0];
     btnBack.frame=CGRectMake(0, view_bar1.frame.size.height-34, 47, 34);
@@ -420,7 +420,7 @@
             btnItem4.isup=!btnItem4.isup;
             
         }
-        if(!btnItem4.isup){
+        if(btnItem4.isup){
             [btnItem4 setImage:[UIImage imageNamed:@"filter_btn_jiage_selected_shang"] forState:UIControlStateSelected];
             sortkey=@"price_cn-asc";
         }else{
