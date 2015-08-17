@@ -77,7 +77,9 @@
 
     UIImageView *imgView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@""]];
     imgView.frame = CGRectMake(0, self.view.frame.size.height-49, self.view.frame.size.width, 49);
+    
     [self.view addSubview:imgView];
+
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.2];
 
@@ -122,6 +124,9 @@
     }
     
     [self selectedTab:[self.buttons objectAtIndex:currentSelectedIndex]];
+    UILabel *qaLine=[[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-49, self.view.width, 0.5)];
+    qaLine.backgroundColor=RGB(128, 128, 128);
+    [self.view  addSubview:qaLine];
 }
 
 - (void)selectedTab:(UIButton *)button

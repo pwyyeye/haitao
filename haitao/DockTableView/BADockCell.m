@@ -26,10 +26,10 @@
         
         
         
-        UILabel *category =[[UILabel alloc]initWithFrame:(CGRect){23,0,75-23,75-28}];
+        UILabel *category =[[UILabel alloc]initWithFrame:(CGRect){20,10,75-20,20}];
         [self.contentView addSubview:category];
         _category=category;
-        UrlImageView *urlImgeView=[[UrlImageView alloc]initWithFrame:CGRectMake(2, 10, 25, 25)];
+        UrlImageView *urlImgeView=[[UrlImageView alloc]initWithFrame:CGRectMake(2, (40-20)/2, 20, 20)];
         [urlImgeView setContentMode:UIViewContentModeScaleAspectFill];
         urlImgeView.backgroundColor=[UIColor clearColor];
         [self.contentView addSubview:urlImgeView];
@@ -38,11 +38,11 @@
         
 
         
-        UIView *viewShow =[[UIView alloc]initWithFrame:(CGRect){0,49.5,75,0.5}];
+        UIView *viewShow =[[UIView alloc]initWithFrame:(CGRect){0,39.5,75,0.5}];
         viewShow.backgroundColor=[UIColor blackColor];
         viewShow.alpha=0.4;
         [self.contentView addSubview:viewShow];
-        UIView *viewShow1 =[[UIView alloc]initWithFrame:(CGRect){0,0,2,50}];
+        UIView *viewShow1 =[[UIView alloc]initWithFrame:(CGRect){0,0,2,40}];
         viewShow1.backgroundColor=RGB(255, 13, 94);
         [self.contentView addSubview:viewShow1];
         

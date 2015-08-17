@@ -104,7 +104,7 @@
     [super reset];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        _imageView.hidden=NO;
+        _imageView.hidden=YES;
         [UIView animateWithDuration:0.25 animations:^{
             _imageView.transform=CGAffineTransformIdentity;
         }];

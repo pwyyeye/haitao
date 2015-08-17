@@ -62,7 +62,7 @@
     
     //左边菜单
     BAWineShoppingDockTavleView *dockTavleView =[[BAWineShoppingDockTavleView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height+1,75,kWindowHeight-50-(naviView.frame.size.height+1)}];
-    dockTavleView.rowHeight=50;
+    dockTavleView.rowHeight=40;
     dockTavleView.dockDelegate=self;
     dockTavleView.backgroundColor=[UIColor whiteColor ];
     [dockTavleView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
