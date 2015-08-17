@@ -22,13 +22,16 @@
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    CGRect rect=self.textLabel.frame;
+    CGRect rect=self.imageView.frame;
+    self.imageView.frame=CGRectMake(rect.origin.x, rect.origin.y, 50, 50);
+    
+    rect=self.textLabel.frame;
     self.textLabel.frame=CGRectMake(rect.origin.x, rect.origin.y-10, 180, rect.size.height);
     rect=self.detailTextLabel.frame;
-    self.detailTextLabel.frame=CGRectMake(rect.origin.x, rect.origin.y+5, rect.size.width, rect.size.height);
-    rect=self.imageView.frame;
+    self.detailTextLabel.frame=CGRectMake(rect.origin.x, rect.origin.y+13, rect.size.width, rect.size.height);
     
-    self.imageView.frame=CGRectMake(rect.origin.x, rect.origin.y, 50, 50);
+    
+    
     
 }
 

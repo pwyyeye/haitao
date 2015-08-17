@@ -20,6 +20,8 @@
     self.title=@"支付成功";
     _orderNo.text=_orderNoString;
     _payAmount.text=_payAmountString;
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+    [self.navigationItem setLeftBarButtonItem:item];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,6 +44,18 @@
    
     detailViewController  = [[OrderListController alloc] init];
         
+    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
+    delegate.navigationController.navigationItem.backBarButtonItem=item;
+    [delegate.navigationController pushViewController:detailViewController animated:YES];
+
+}
+-(void)gotoBack{
+    UIViewController *detailViewController;
+    
+    detailViewController  = [[OrderListController alloc] init];
+    
     AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
     
     UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];

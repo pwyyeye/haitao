@@ -613,7 +613,7 @@
         [cell.contentView addSubview:goodPrice];
         
         //商品价格
-        UILabel *goodnum=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, cell.frame.origin.y+60, 70, 20)];
+        UILabel *goodnum=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 55, 70, 20)];
         goodnum.text=[NSString stringWithFormat:@"x %d",goods.buy_num];
         goodnum.textAlignment=NSTextAlignmentRight;
         goodnum.font =[UIFont  boldSystemFontOfSize:11];

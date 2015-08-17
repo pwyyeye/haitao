@@ -109,7 +109,7 @@
         [self.layer addSublayer:bgLayer];
         [tempBgLayers addObject:bgLayer];
         //title
-        CGPoint titlePosition = CGPointMake( (i * 2 + 1) * textLayerInterval , self.frame.size.height / 2);
+        CGPoint titlePosition = CGPointMake( (i * 2 + 1) * textLayerInterval-(i==0?0:5) , self.frame.size.height / 2);
         NSString *titleString = [_dataSource menu:self titleForRowAtIndexPath:[DOPIndexPath indexPathWithCol:i row:0]];
         CATextLayer *title = [self createTextLayerWithNSString:titleString withColor:self.textColor andPosition:titlePosition];
         [self.layer addSublayer:title];
@@ -379,7 +379,7 @@
         tableView.frame = CGRectMake(self.origin.x, self.frame.origin.y + self.frame.size.height, self.frame.size.width, 0);
         [self.superview addSubview:tableView];
         
-        CGFloat tableViewHeight = ([tableView numberOfRowsInSection:0] > 5) ? (5 * tableView.rowHeight) : ([tableView numberOfRowsInSection:0] * tableView.rowHeight);
+        CGFloat tableViewHeight = ([tableView numberOfRowsInSection:0] > 5) ? (5 * tableView.rowHeight-1) : ([tableView numberOfRowsInSection:0] * tableView.rowHeight-1);
         
         [UIView animateWithDuration:0.2 animations:^{
             _tableView.frame = CGRectMake(self.origin.x, self.frame.origin.y + self.frame.size.height, self.frame.size.width, tableViewHeight);

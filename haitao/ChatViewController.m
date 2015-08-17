@@ -68,6 +68,9 @@
     [self.view addSubview:_chatView];
     
 }
+-(void)viewDidAppear:(BOOL)animated{
+    [_chatView reload];
+}
 -(void)gotoBack
 {
     AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -80,7 +83,7 @@
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-    ShowMessage(@"客服加载出现问题，请确保您的网络畅通！");
+//    ShowMessage(@"客服加载出现问题，请确保您的网络畅通！");
 }
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     return YES;

@@ -197,8 +197,11 @@
             
             [heji addSubview:hejiLabel];
             //右边图标
-            UIButton *rightIcon=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/5*3-40, 8, 30, 30)];
+            UIButton *rightIcon=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/5*3-40, 10, 30, 30)];
             [rightIcon setImage:[UIImage imageNamed:@"icon_Drop-downList"] forState:UIControlStateNormal];
+            rightIcon.tag=660;
+            CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI);
+            rightIcon.transform = transform;
             [_addressButton addSubview:rightIcon];
             
             [rightIcon addTarget:self action:@selector(showAmountDetail) forControlEvents:UIControlEventTouchUpInside];
@@ -458,6 +461,10 @@
         [self removeHejiView];
         return;
     }
+    CGAffineTransform transform = CGAffineTransformMakeRotation(0);
+    UIButton *rightIcon=(UIButton *)[_footerBar viewWithTag:660];
+    rightIcon.transform = transform;
+    
     _hejiView=[[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-47-64)];
     _hejiView.backgroundColor=CLEARCOLOR;
     UIButton *halfButton=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/2-47)];
@@ -525,6 +532,9 @@
 -(void)removeHejiView{
     [_hejiView removeFromSuperview];
     _hejiView=nil;
+    CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI);
+    UIButton *rightIcon=(UIButton *)[_footerBar viewWithTag:660];
+    rightIcon.transform = transform;
 }
 -(void)MoveView:(UIView *)view To:(CGRect)frame During:(float)time{
     
@@ -596,12 +606,12 @@
     [view addSubview:head];
     
     //国家icon
-    UIImageView *country=[[UIImageView alloc] initWithFrame:CGRectMake(70, 9, 20, 20)];
+    UIImageView *country=[[UIImageView alloc] initWithFrame:CGRectMake(70, 11, 15, 15)];
     [country setImageWithURL:[NSURL URLWithString:package.all_info.country_flag] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
     [view addSubview:country];
     
     //商城名称
-    UILabel *shopname=[[UILabel alloc] initWithFrame:CGRectMake(105, 0, 70, 38)];
+    UILabel *shopname=[[UILabel alloc] initWithFrame:CGRectMake(90, 0, 70, 38)];
     shopname.text=package.all_info.shop_name;
     shopname.font =[UIFont  systemFontOfSize:10];
     shopname.textColor=RGB(179, 179, 179);
@@ -670,7 +680,7 @@
     //小计
     UILabel *subTotal=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-240, 53, 170, 20)];
     //        subTotal.text=@"小计:";
-    subTotal.text=[NSString stringWithFormat:@"（包含运费，税费）合计："];
+    subTotal.text=[NSString stringWithFormat:@"（包含运费，%@税费）合计：",[package.all_info.ship_type intValue]==1?@"包含":@"不含"];
     subTotal.textAlignment=NSTextAlignmentRight;
     subTotal.font=[UIFont systemFontOfSize:11];
     subTotal.textColor=RGB(128, 128, 128);
@@ -734,7 +744,7 @@
     cell.textLabel.text = cartModel.goods_detail.title;
     cell.textLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:11];
     cell.textLabel.textColor=RGB(51, 51, 51);
-    cell.textLabel.numberOfLines=2;
+    cell.textLabel.numberOfLines=1;
     //如果有规格 展示规格 只展示2条
     if (cartModel.goods_attr.count>0) {
         for (int i=0; i<cartModel.goods_attr.count; i++) {
@@ -772,7 +782,7 @@
     [cell.contentView addSubview:goodPrice];
     
     //商品数量
-    UILabel *goodnum=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, cell.frame.origin.y+60, 70, 20)];
+    UILabel *goodnum=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 55, 70, 20)];
     goodnum.text=[NSString stringWithFormat:@"x %d",cartModel.buy_num];
     goodnum.textAlignment=NSTextAlignmentRight;
     goodnum.font =[UIFont  boldSystemFontOfSize:11];
