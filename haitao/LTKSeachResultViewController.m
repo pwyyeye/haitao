@@ -294,7 +294,7 @@
         
     }
     UIButton *qingchuBtn =[[UIButton alloc]initWithFrame:CGRectMake(self.view.width/2-200/2, lastFrame.origin.y+lastFrame.size.height, 200, 50)];
-    [qingchuBtn setTitle:@"清楚历史记录" forState:UIControlStateNormal];
+    [qingchuBtn setTitle:@"清空历史记录" forState:UIControlStateNormal];
     qingchuBtn.titleLabel.font=[UIFont systemFontOfSize:13];
     [qingchuBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     qingchuBtn.backgroundColor=[UIColor clearColor];

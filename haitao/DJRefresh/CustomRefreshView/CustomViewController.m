@@ -64,7 +64,7 @@
 - (void)viewDidLoad {
     isshuaxin=false;
     [super viewDidLoad];
-    
+    pageCount = @"0";
     title=@"";
     bannerArr =[[NSMutableArray alloc]initWithCapacity:8];
     _tableView =[[UITableView alloc]initWithFrame:self.mainFrame style:UITableViewStylePlain];
@@ -80,6 +80,7 @@
 
     
     NSDictionary *parameters = @{@"s_cat":self.menuModel.id,@"need_cat_index":@1};
+    paraDic= @{@"s_cat":self.menuModel.id,@"need_cat_index":@1};
     _inParameters=[parameters mutableCopy];
     
     [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:YES];
@@ -87,10 +88,10 @@
 }
 #pragma mark 下啦刷新
 - (void)refresh:(DJRefresh *)refresh didEngageRefreshDirection:(DJRefreshDirection)direction{
-    if(isshuaxin){
-        [_refresh finishRefreshingDirection:direction animation:false];
-        isshuaxin=false;
-    }
+//    if(isshuaxin){
+//        [_refresh finishRefreshingDirection:direction animation:false];
+//        isshuaxin=false;
+//    }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * USEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self addDataWithDirection:direction];
     });
@@ -117,7 +118,7 @@
     
     
 }
-
+#pragma mark 获取商品列表
 -(void)getGoodsList{
     NSDictionary *parameters = @{@"f_cat":self.menuModel.id,@"need_cat_index":@1};
     _inParameters=[parameters mutableCopy];
@@ -513,7 +514,7 @@
         [gbBtn addSubview:btn1];
         UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(0, btn1.frame.size.width+btn1.top+5, gbBtn.width, 10)];
         _label.text=new_Goods.shop_name;
-        _label.font=[UIFont boldSystemFontOfSize:10];
+        _label.font=[UIFont boldSystemFontOfSize:9];
         _label.backgroundColor=[UIColor clearColor];
         _label.textColor =hexColor(@"#b3b3b3");
         _label.numberOfLines=1;
@@ -523,9 +524,9 @@
         //商品名
         UILabel *_label1=[[UILabel alloc]initWithFrame:CGRectMake(10, _label.frame.size.height+_label.frame.origin.y+1, gbBtn.frame.size.width-10-10, 30)];
         _label1.text=new_Goods.title;
-        _label1.font=[UIFont boldSystemFontOfSize:11];
+        _label1.font=[UIFont boldSystemFontOfSize:10];
         _label1.backgroundColor=[UIColor clearColor];
-        _label1.textColor =hexColor(@"#333333");
+        _label1.textColor =RGB(51, 51, 51);
         _label1.lineBreakMode = UILineBreakModeWordWrap;
         _label1.numberOfLines=2;
         _label1.textAlignment=NSTextAlignmentCenter;
@@ -745,7 +746,7 @@
 
 -(void)getFilterResult:(NSArray *)resultArray{
     NSLog(@"----pass-筛选回调%@---",resultArray);
-    isshuaxin=true;
+//    isshuaxin=true;
 //    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];
     [self getGoodlistTwo:resultArray];
     [_tableView reloadData];

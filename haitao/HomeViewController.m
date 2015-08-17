@@ -18,6 +18,7 @@
 #import "GoodImageButton.h"
 #import "SpecialContentViewController.h"
 #import "SpecialModel.h"
+#import "QiangGouViewController.h"
 @interface HomeViewController ()
 {
     UrlImageButton *btn;
@@ -36,6 +37,7 @@
     NSMutableArray *jingpinPageArr;
     NSMutableArray *jingpinArr;
     UIView *xinpintuijianTitleView;
+    UIButton *topButton ;
     
 }
 @property (nonatomic,strong)DJRefresh *refresh;
@@ -73,6 +75,7 @@
     }
     self._scrollView.showsVerticalScrollIndicator=NO;
    self._scrollView.backgroundColor=RGB(237,237,237);
+    self._scrollView.delegate=self;
     [self.view addSubview:self._scrollView];
     self.automaticallyAdjustsScrollViewInsets=NO;
     _refresh=[[DJRefresh alloc] initWithScrollView:self._scrollView delegate:self];
@@ -82,10 +85,10 @@
     if (_type==eRefreshTypeProgress) {
         [_refresh registerClassForTopView:[DJRefreshProgressView class]];
     }
-    UIButton *topButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    topButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [topButton setFrame:CGRectMake(self._scrollView.width-60, self._scrollView.top+self._scrollView.height-40, 40, 40)];
     topButton.userInteractionEnabled=YES;
-    
+    [topButton setHidden:YES];
     
     [topButton setBackgroundImage:[UIImage imageNamed:@"home_btn_top_"] forState:UIControlStateNormal];
     [topButton addTarget:self action:@selector(topButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -321,7 +324,7 @@
         [qiangouContentView addSubview:label1];
         
         label2=[[UILabel alloc]initWithFrame:CGRectMake(label1.left, label1.frame.size.height+label1.frame.origin.y, label1.width, 20)];
-        label2.text=[NSString stringWithFormat:@"￥%.2f",grabModel.price];
+        label2.text=[NSString stringWithFormat:@"￥%.2f",grabModel.price_cn];
         label2.font=[UIFont boldSystemFontOfSize:14];
         label2.backgroundColor=[UIColor clearColor];
         label2.textColor =hexColor(@"#ff0d5e");
@@ -331,7 +334,9 @@
 //            maxFrame=label2.frame;
 //        }
         [qiangouContentView addSubview:label2];
-        
+        if(i==2){
+            break;
+        }
     }
     qiangouContentView.height=label2.height+label2.origin.y+10;
     //手机端精品推荐
@@ -552,7 +557,7 @@
         [gbBtn addSubview:btn1];
         UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(0, btn1.frame.size.width+5+btn1.frame.origin.y, gbBtn.width, 10)];
         _label.text=new_Goods.shop_name;
-        _label.font=[UIFont boldSystemFontOfSize:10];
+        _label.font=[UIFont boldSystemFontOfSize:9];
         _label.backgroundColor=[UIColor clearColor];
         _label.textColor =hexColor(@"#b3b3b3");
         _label.numberOfLines=1;
@@ -562,9 +567,9 @@
         //商品名
         UILabel *_label1=[[UILabel alloc]initWithFrame:CGRectMake(10, _label.frame.size.height+_label.frame.origin.y+1, gbBtn.frame.size.width-10-10, 30)];
         _label1.text=new_Goods.title;
-        _label1.font=[UIFont boldSystemFontOfSize:11];
+        _label1.font=[UIFont boldSystemFontOfSize:10];
         _label1.backgroundColor=[UIColor clearColor];
-        _label1.textColor =hexColor(@"#333333");
+        _label1.textColor =RGB(51, 51, 51);
         _label1.lineBreakMode = UILineBreakModeWordWrap;
         _label1.numberOfLines=2;
         _label1.textAlignment=NSTextAlignmentCenter;
@@ -633,7 +638,7 @@
         label1=[[UILabel alloc]initWithFrame:CGRectMake(btn.left, btn.frame.size.height+btn.frame.origin.y+3, btn.width, 15)];
         label1.text=grabModel.content;
         label1.textColor =hexColor(@"#333333");
-        label1.font=[UIFont systemFontOfSize:11];
+        label1.font=[UIFont systemFontOfSize:9];
         label1.textAlignment=1;
         label1.backgroundColor=[UIColor clearColor];
         //        label1.lineBreakMode = UILineBreakModeWordWrap;
@@ -643,7 +648,7 @@
         
         label2=[[UILabel alloc]initWithFrame:CGRectMake(label1.left, label1.frame.size.height+label1.frame.origin.y, label1.width, 20)];
         label2.text=[NSString stringWithFormat:@"￥%.2f",grabModel.price];
-        label2.font=[UIFont boldSystemFontOfSize:14];
+        label2.font=[UIFont boldSystemFontOfSize:10];
         label2.backgroundColor=[UIColor clearColor];
         label2.textColor =hexColor(@"#ff0d5e");
         label2.textAlignment=1;
@@ -1113,7 +1118,11 @@
 
 #pragma mark 更多
 -(void)moreButtonClicked:(id)button{
-    ShowMessage(@"暂无更多内容");
+    QiangGouViewController *qiangGouViewController=[[QiangGouViewController alloc]init];
+    qiangGouViewController.listArr=app_home_grab;
+    
+    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    [delegate.navigationController pushViewController:qiangGouViewController animated:YES];
 }
 
 #pragma mark 回到顶部
@@ -1124,7 +1133,44 @@
 -(void)jingpinMenu:(id)button{
     
 }
-
+#pragma mark scrollView 结束拖动
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    CGPoint point= scrollView.contentOffset;
+    if (point.y>scrollView.height/2){
+        [topButton setHidden:false];
+    }else{
+        [topButton setHidden:true];
+    }
+}
+// scrollView 开始拖动
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    CGPoint point= scrollView.contentOffset;
+    if (point.y>scrollView.height/2){
+        [topButton setHidden:false];
+    }else{
+        [topButton setHidden:true];
+    }
+}
+// scrollview 减速停止
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    CGPoint point= scrollView.contentOffset;
+    if (point.y>scrollView.height/2){
+        [topButton setHidden:false];
+    }else{
+        [topButton setHidden:true];
+    }
+}
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    CGPoint point= scrollView.contentOffset;
+    if (point.y>scrollView.height/2){
+        [topButton setHidden:false];
+    }else{
+        [topButton setHidden:true];
+    }
+}
 /*
 #pragma mark - Navigation
 

@@ -27,6 +27,7 @@
 		A21815B61B5A0E9A00D64E70 /* bt_share_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A21815951B5A0E9A00D64E70 /* bt_share_@2x.png */; };
 		A21815B71B5A0E9A00D64E70 /* df_03_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A21815961B5A0E9A00D64E70 /* df_03_@2x.png */; };
 		A21815B81B5A0E9A00D64E70 /* df_04_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A21815971B5A0E9A00D64E70 /* df_04_@2x.png */; };
+		A2185BBB1B81888200DD8CB3 /* QiangGouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2185BBA1B81888200DD8CB3 /* QiangGouViewController.m */; };
 		A22D30191B7C63D2004158F1 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A22D2FFE1B7C63D2004158F1 /* UMSocialLocalizable.strings */; };
 		A22D301A1B7C63D2004158F1 /* libUMSocial_Sdk_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A22D300C1B7C63D2004158F1 /* libUMSocial_Sdk_4.2.3.a */; };
 		A22D301B1B7C63D2004158F1 /* libUMSocial_Sdk_Comment_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A22D300D1B7C63D2004158F1 /* libUMSocial_Sdk_Comment_4.2.3.a */; };
@@ -795,6 +796,8 @@
 		A21815951B5A0E9A00D64E70 /* bt_share_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bt_share_@2x.png"; sourceTree = "<group>"; };
 		A21815961B5A0E9A00D64E70 /* df_03_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "df_03_@2x.png"; sourceTree = "<group>"; };
 		A21815971B5A0E9A00D64E70 /* df_04_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "df_04_@2x.png"; sourceTree = "<group>"; };
+		A2185BB91B81888200DD8CB3 /* QiangGouViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiangGouViewController.h; sourceTree = "<group>"; };
+		A2185BBA1B81888200DD8CB3 /* QiangGouViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiangGouViewController.m; sourceTree = "<group>"; };
 		A22D2FFF1B7C63D2004158F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		A22D30011B7C63D2004158F1 /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
 		A22D30021B7C63D2004158F1 /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
@@ -2139,6 +2142,8 @@
 				A20DB8D71B8035B60079629C /* GouWuXuZhiViewController.h */,
 				A20DB8D81B8035B60079629C /* GouWuXuZhiViewController.m */,
 				A20DB8D91B8035B60079629C /* GouWuXuZhiViewController.xib */,
+				A2185BB91B81888200DD8CB3 /* QiangGouViewController.h */,
+				A2185BBA1B81888200DD8CB3 /* QiangGouViewController.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -4771,6 +4776,7 @@
 				A2FC75001B5D1FFA0094BC59 /* MJProperty.m in Sources */,
 				AD50C50F1B7652C200119A42 /* ShoppingCartModel.m in Sources */,
 				A2F5FB4D1B5FD64100A8205C /* UIScrollView+SVInfiniteScrolling.m in Sources */,
+				A2185BBB1B81888200DD8CB3 /* QiangGouViewController.m in Sources */,
 				A2E8D0721B75A4970004ADB9 /* BiJiaView.m in Sources */,
 				AD8AA6341B59435C00E324AD /* MJRefreshFooterView.m in Sources */,
 				AD8AA6491B59435C00E324AD /* ZSYPopoverAlertView.m in Sources */,
