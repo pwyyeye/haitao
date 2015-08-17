@@ -87,6 +87,12 @@ static CGFloat kImageOriginHight = 400;
     
     
     NSMutableArray *bigArr=[[NSMutableArray alloc]init];
+    if(self.goods.img_450){
+        NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
+        [dicTemp setObject:self.goods.img_450 forKey:@"ititle"];
+        [dicTemp setObject:@"" forKey:@"mainHeading"];
+        [bigArr addObject:dicTemp];
+    }
     if(self.goods_image.count<1){
         
     }else{
@@ -110,7 +116,7 @@ static CGFloat kImageOriginHight = 400;
     title_label.text=self.goods.title;
     title_label.font=[UIFont boldSystemFontOfSize:15];
     title_label.backgroundColor=[UIColor clearColor];
-    title_label.textColor =[UIColor colorWithRed:.3 green:.3 blue:.3 alpha:1.0];
+    title_label.textColor =RGB(51, 51, 51);
     title_label.textAlignment=NSTextAlignmentCenter;
     [nameView insertSubview:title_label atIndex:0];
     
@@ -333,7 +339,7 @@ static CGFloat kImageOriginHight = 400;
     [_scrollView addSubview:yansechicunImg];
     
     UILabel *yansechicunLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, yansechicunImg.frame.size.height/2-30/2, 150, 30)];
-    yansechicunLbl.text=@"选择颜色和尺寸";
+    yansechicunLbl.text=@"选择商品属性和数量";
     yansechicunLbl.font=[UIFont boldSystemFontOfSize:13];
     yansechicunLbl.backgroundColor=[UIColor clearColor];
     yansechicunLbl.textColor =RGB(51, 51, 51);
