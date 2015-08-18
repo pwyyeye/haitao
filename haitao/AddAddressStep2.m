@@ -37,6 +37,9 @@
     
     [_idcard_zhengmian addGestureRecognizer:click];
     [_idcard_fanmian addGestureRecognizer:click2];
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+    [self.navigationItem setLeftBarButtonItem:item];
+    
 
 }
 
@@ -45,6 +48,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)gotoBack{
+//    UIViewController *detailViewController  = [[AddressListController alloc] init];
+//    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+//    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
+//    delegate.navigationController.navigationItem.backBarButtonItem=item;
+//    [delegate.navigationController pushViewController:detailViewController animated:YES];
+    
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[AddressListController class]]) {
+            [self.navigationController popToViewController:controller animated:YES];
+        }
+    }
+    
+
+}
 /*
 #pragma mark - Navigation
 
@@ -107,18 +125,19 @@
             ShowMessage(@"上传成功！");
         }
         //发送通知
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeToReload" object:nil];
-        UIViewController *detailViewController  = [[AddressListController alloc] init];
-        AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
-        UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
-        delegate.navigationController.navigationItem.backBarButtonItem=item;
-        [delegate.navigationController pushViewController:detailViewController animated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeToReload" object:nil];
+        for (UIViewController *controller in self.navigationController.viewControllers) {
+            if ([controller isKindOfClass:[AddressListController class]]) {
+                [self.navigationController popToViewController:controller animated:YES];
+            }
+        }
         
     }else{
     
         NSLog(@"----pass-modify address upolad idcard%@---",@"test");
     }
 }
+
 
 
 -(void)pickupImage:(UITapGestureRecognizer *) gr{

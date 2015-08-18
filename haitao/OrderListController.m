@@ -61,7 +61,9 @@
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     
-    NSArray *segmentedArray = @[@"全部",@"待付款",@"待发货",@"待收货",@"待评价"];
+//    NSArray *segmentedArray = @[@"全部",@"待付款",@"待发货",@"待收货",@"待评价"];
+    NSArray *segmentedArray = @[@"全部",@"待付款",@"待发货",@"待收货",@"已完成"];
+
     
     _seg=[[UISegmentedControl alloc] initWithItems:segmentedArray];
     
@@ -295,7 +297,7 @@
                 break;
             case 4:{
                 
-                prediStr1 = [NSString stringWithFormat:@"order_status=='%d'", 7];//待评价
+                prediStr1 = [NSString stringWithFormat:@"order_status=='%d'", 8];//已完成
                 
             }
                 break;
@@ -469,24 +471,25 @@
 
             
             [view addSubview:btnCancel];
-        }else if(([orderModel.order_status integerValue]==2)){//已付款
-            //付款按钮
-//            UIButton *btnPay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 29, 80, 24)];
-//            [btnPay setTitle:@"确认收货" forState:UIControlStateNormal];
-//            [btnPay setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//            btnPay.titleLabel.font =[UIFont  systemFontOfSize:11];
-//            btnPay.backgroundColor=RGB(255, 13, 94);
-//            btnPay.layer.masksToBounds=YES;
-//            btnPay.layer.cornerRadius=3;
-//            [view addSubview:btnPay];
-            UIButton *btnPay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 29, 80, 24)];
-            [btnPay setTitle:@"已付款" forState:UIControlStateNormal];
+        }else if(([orderModel.order_status integerValue]==2)){//已付款，待发货
+            UIButton *btnPay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-85, 29, 80, 24)];
+            [btnPay setTitle:@"等待卖家发货" forState:UIControlStateNormal];
             [btnPay setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
             btnPay.titleLabel.font =[UIFont  systemFontOfSize:11];
+//            btnPay.titleLabel.textAlignment=NSTextAlignmentRight;
             btnPay.backgroundColor=[UIColor whiteColor];
+            [view addSubview:btnPay];
             
+        }else if(([orderModel.order_status integerValue]==3)){//待收货
+            UIButton *btnPay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-85, 29, 80, 24)];
+            [btnPay setTitle:@"卖家已发货" forState:UIControlStateNormal];
+            [btnPay setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
+            btnPay.titleLabel.font =[UIFont  systemFontOfSize:11];
+            //            btnPay.titleLabel.textAlignment=NSTextAlignmentRight;
+            btnPay.backgroundColor=[UIColor whiteColor];
+            [view addSubview:btnPay];
             
-        }else if([orderModel.order_status integerValue]==8){//订单完成和取消状态
+        }else if([orderModel.order_status integerValue]==8 || [orderModel.order_status integerValue]==9){//订单完成和取消状态
             
             //付款按钮
 //            UIButton *btnPay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 29, 80, 24)];
@@ -514,11 +517,11 @@
             [view addSubview:btnDel];
 
             
-        }else if([orderModel.order_status integerValue]==9){//订单完成和取消状态
+        }else if([orderModel.order_status integerValue]==7){//订单完成和取消状态
             
             //删除订单按钮
             UIButton *btnDel=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 29, 80, 24)];
-            [btnDel setTitle:@"删除订单" forState:UIControlStateNormal];
+            [btnDel setTitle:@"我要评价" forState:UIControlStateNormal];
             [btnDel setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
             btnDel.titleLabel.font =[UIFont  systemFontOfSize:11];
             btnDel.backgroundColor=[UIColor whiteColor];

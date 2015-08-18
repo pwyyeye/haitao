@@ -12,6 +12,7 @@
                 <outlet property="consignee" destination="EcO-Pc-IdA" id="NuG-q7-jip"/>
                 <outlet property="idcard" destination="ek2-pm-g0i" id="9DG-Qb-h73"/>
                 <outlet property="mobile" destination="612-oL-47C" id="oCH-3D-y9R"/>
+                <outlet property="nextBtn" destination="HLl-2u-VMO" id="dLe-I1-53t"/>
                 <outlet property="province" destination="rKO-of-8xk" id="Bij-Yk-VuH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="zipcode" destination="DQz-ep-R3t" id="gQ1-oB-qKc"/>

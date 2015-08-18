@@ -96,6 +96,8 @@
 }
 -(void)didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
     NSLog(@"----pass-getCaptcha%@---",dictemp);
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app stopLoading];
     ShowMessage(@"验证码已发送！");
 }
 -(void)dealloc{

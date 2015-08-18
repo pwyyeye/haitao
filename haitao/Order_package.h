@@ -20,6 +20,8 @@
 @property(strong,nonatomic) NSString *shop_name;
 @property(strong,nonatomic) NSString *ship_name;
 @property(strong,nonatomic) NSString *country_flag_url;
+@property(strong,nonatomic) NSString *package_img;
+
 @property(strong,nonatomic) NSString *logistic_number;
 @property(strong,nonatomic) NSString *all_transport_free_logistic;
 
