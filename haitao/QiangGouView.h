@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QiangGouView : UIView
+@interface QiangGouView : UIView{
+    NSTimer *timer;
+    NSDate *dateTime;
+}
 @property(strong,nonatomic)IBOutlet UILabel *hour10;
 @property(strong,nonatomic)IBOutlet UILabel *hour1;
 @property(strong,nonatomic)IBOutlet UILabel *min10;
 @property(strong,nonatomic)IBOutlet UILabel *min1;
 @property(strong,nonatomic)IBOutlet UILabel *sec10;
 @property(strong,nonatomic)IBOutlet UILabel *sec1;
+-(void)setTimeStart:(NSDate *)qiangDate;
 @end

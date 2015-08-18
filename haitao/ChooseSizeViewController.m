@@ -145,7 +145,8 @@
     guige.layer.cornerRadius = 3;
     guige.backgroundColor=[UIColor whiteColor];
     if(attr_info==nil){
-        btnCall.enabled=true;
+        btnCall.selected=true;
+//        btnCall.enabled=true;
         guige.frame=CGRectMake(0, topView.height+10, SCREEN_WIDTH, 0);
     }else{
         if(attr_info.count>0){
@@ -174,12 +175,12 @@
                     SizeModel *sizeModel=[SizeModel objectWithKeyValues:childDic];
                     sizeModel.attr_name=name;
                     sizeModel.attr_id=attr_id;
-                    AttrInfoBtn *aiBtn=[[AttrInfoBtn alloc]initWithFrame:CGRectMake((j%4)*(SCREEN_WIDTH-44)/4+10, floor(j/4)*(SCREEN_WIDTH)/10+5+ys_label.frame.size.height+ys_label.frame.origin.y+5, (SCREEN_WIDTH-30-15)/4, (SCREEN_WIDTH-30-15)/10)];
+                    AttrInfoBtn *aiBtn=[[AttrInfoBtn alloc]initWithFrame:CGRectMake((j%3)*(SCREEN_WIDTH-44)/3+10, floor(j/3)*(SCREEN_WIDTH)/10+5+ys_label.frame.size.height+ys_label.frame.origin.y+5, (SCREEN_WIDTH-30-15)/3-5, (SCREEN_WIDTH-30-15)/10)];
                     
-                    if ((j+1)%4==0) {
+                    if ((j+1)%3==0) {
                         biaoti+=(SCREEN_WIDTH-30-15)/10+10;
                     }
-                    if (j==childArr.count-1&&(j+1)%4!=0) {
+                    if (j==childArr.count-1&&(j+1)%3!=0) {
                         biaoti+=(SCREEN_WIDTH-30-15)/10+10;
                         
                         
@@ -261,7 +262,7 @@
     UIButton *btnCut=[UIButton buttonWithType:0];
     btnCut.frame=CGRectMake(SCREEN_WIDTH/2-95, sl_label.frame.size.height+sl_label.frame.origin.y+10, 30, 30);
     btnCut.tag=-99;
-    [btnCut setImage:BundleImage(@"bt_01_.png") forState:0];
+    [btnCut setImage:BundleImage(@"减号") forState:0];
     [btnCut addTarget:self action:@selector(btnCut:) forControlEvents:UIControlEventTouchUpInside];
     
     [numberView addSubview:btnCut];
@@ -288,10 +289,10 @@
     //加
     UIButton *btnAdd=[UIButton buttonWithType:0];
     btnAdd.frame=CGRectMake(numTextField.frame.origin.x+numTextField.frame.size.width,btnCut.frame.origin.y, 30, 30);
-    [btnAdd setBackgroundImage:BundleImage(@"bt_02_.png") forState:0];
+    [btnAdd setBackgroundImage:BundleImage(@"加号") forState:0];
     [btnAdd addTarget:self action:@selector(btnAdd:) forControlEvents:UIControlEventTouchUpInside];
     if (btnAdd.highlighted) {
-        [btnAdd setBackgroundImage:BundleImage(@"number_up_click.png") forState:0];
+        [btnAdd setBackgroundImage:BundleImage(@"加号") forState:0];
     }
     btnAdd.tag=-101;
     [numberView addSubview:btnAdd];
@@ -445,7 +446,8 @@
             }
         }
         if(!isChoose){
-            btnCall.enabled=false;
+            [btnCall setSelected:false];;
+//            btnCall.enabled=false;
             break;
         }else{
             if(i!=keyArr.count-1){
@@ -456,7 +458,8 @@
     }
     //判断当前价格
     if(isChoose){
-        btnCall.enabled=true;
+        btnCall.selected=true;
+//        btnCall.enabled=true;
         NSMutableArray *idStrArr=[[NSMutableArray alloc]init];
         for (int i=0; i<chooseArr.count; i++) {
             SizeModel *sizeModeTemp=chooseArr[i];
@@ -505,7 +508,8 @@
     btnCall.backgroundColor=RGB(255, 13, 94);
 //    [btnCall setTitle:@"加入购物车" forState:UIControlStateNormal];
     [btnCall addTarget:self action:@selector(addCar:) forControlEvents:UIControlEventTouchUpInside];
-    btnCall.enabled=false;
+//    btnCall.enabled=false;
+    [btnCall setSelected:false];
     //
 //    [btnCall setBackgroundImage:[UIImage imageNamed:@"att_btn_base_"] forState:0];
     //
@@ -565,6 +569,10 @@
 }
 #pragma mark - 加入购物车
 -(void)addCar:(id)sender{
+    if(!btnCall.selected){
+        ShowMessage(@"需要选择商品属性");
+        return;
+    }
     [parameters removeAllObjects];
     NSMutableDictionary *dic=[[NSMutableDictionary alloc]initWithDictionary:chooseDic];
     [dic setObject:numTextField.text forKey:@"buy_num"];

@@ -62,7 +62,7 @@
     
     /////
     NSLayoutConstraint * activityTop=[NSLayoutConstraint constraintWithItem:_activityIndicatorView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1 constant:10];
-    NSLayoutConstraint * activityRight=[NSLayoutConstraint constraintWithItem:_activityIndicatorView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:_promptLabel attribute:NSLayoutAttributeLeft multiplier:1 constant:-20];
+    NSLayoutConstraint * activityRight=[NSLayoutConstraint constraintWithItem:_activityIndicatorView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:_promptLabel attribute:NSLayoutAttributeLeft multiplier:1 constant:-5];
     [self addConstraints:@[activityTop,activityRight]];
     
     [self reset];

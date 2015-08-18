@@ -151,6 +151,7 @@
     [carShopList removeAllObjects];
     [modifyList removeAllObjects];
     [delShopList removeAllObjects];
+    allCheckBtn.selected=false;
     NSString* url =[NSString stringWithFormat:@"%@&f=getCart&m=cart",requestUrl]
     ;
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -173,6 +174,7 @@
                 
                 NSArray *listArr=[dic1 objectForKey:@"list"];
                 NSMutableArray *addList=[[NSMutableArray alloc]init];
+                NSString *country_flag_url;
                 for (NSDictionary *listDic in listArr) {
                     CarShopInfoModel *carShopInfoModel= [CarShopInfoModel objectWithKeyValues:listDic] ;
                     carShopInfoModel.change_attr_price_id=carShopInfoModel.attr_price_id;
@@ -187,10 +189,16 @@
                     [modifDic setObject:attr_price_id forKey:@"attr_price_id"];
                     [modifDic setObject:buy_num forKey:@"buy_num"];
                     [modifyList addObject:modifDic];
+                    if(carShopInfoModel.goods_detail){
+                        if(carShopInfoModel.goods_detail.country_flag_url){
+                            country_flag_url=carShopInfoModel.goods_detail.country_flag_url;
+                        }
+                    }
                 }
                 
                 NSDictionary *allInfoDic=[dic1 objectForKey:@"all_info"];
                 ShopInfoModel *shopInfoModel= [ShopInfoModel objectWithKeyValues:allInfoDic] ;
+                shopInfoModel.country_flag_url=country_flag_url;
                 [dicTemp setObject:shopInfoModel forKey:@"all_info"];
                 [dicTemp setObject:addList forKey:@"list"];
                 [carShopList addObject:dicTemp];
@@ -404,9 +412,9 @@
     
     [view_toolBar addSubview:all_label];
     [view_toolBar addSubview:allCheckBtn];
-    heji_label=[[UILabel alloc]initWithFrame:CGRectMake(view_toolBar.frame.size.width-200, 5, 38, 20)];
+    heji_label=[[UILabel alloc]initWithFrame:CGRectMake(view_toolBar.frame.size.width-210, 5, 38, 20)];
     heji_label.text=@"合计:";
-    heji_label.font=[UIFont boldSystemFontOfSize:15];
+    heji_label.font=[UIFont boldSystemFontOfSize:14];
     heji_label.backgroundColor=[UIColor clearColor];
     heji_label.textColor =hongShe;
     heji_label.textAlignment=1;
@@ -420,7 +428,7 @@
     price_count_label.textAlignment=0;
     [view_toolBar addSubview:price_count_label];
     
-    shuoming=[[UILabel alloc]initWithFrame:CGRectMake(view_toolBar.frame.size.width-200+2, 25, 95, 20)];
+    shuoming=[[UILabel alloc]initWithFrame:CGRectMake(view_toolBar.frame.size.width-210+2, 25, 95, 20)];
     shuoming.text=@"不含其它费用";
     shuoming.font=[UIFont boldSystemFontOfSize:11];
     shuoming.backgroundColor=[UIColor clearColor];
@@ -528,7 +536,9 @@
     [view1 addSubview:button];
     
     //国籍
-    
+    UIImageView *country=[[UIImageView alloc] initWithFrame:CGRectMake(button.frame.origin.x+button.frame.size.height+5, 10, 20, 20)];
+    [country setImageWithURL:[NSURL URLWithString:shopInfoModel.country_flag_url] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
+    [view1 addSubview:country];
     UILabel *countryLabel=[[UILabel alloc]initWithFrame:CGRectMake(button.frame.origin.x+button.frame.size.height+5,10 , 100, 20)];
     NSString *country_nameStr=shopInfoModel.country_name;
     countryLabel.font=[UIFont boldSystemFontOfSize:13];
@@ -544,9 +554,9 @@
                                 countryLabel.frame.origin.y,
                                 theStringSize.width,countryLabel.frame.size.height);
     countryLabel.text = country_nameStr;
-     [view1 addSubview:countryLabel];
+//     [view1 addSubview:countryLabel];
     //商城
-    UILabel *shopNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(countryLabel.frame.origin.x+countryLabel.frame.size.width+10, countryLabel.frame.origin.y, 200, 20)];
+    UILabel *shopNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(countryLabel.frame.origin.x+countryLabel.frame.size.width, countryLabel.frame.origin.y, 200, 20)];
     shopNameLabel.text=shopInfoModel.shop_name;
     shopNameLabel.font=[UIFont systemFontOfSize:12];
     shopNameLabel.backgroundColor=[UIColor clearColor];
@@ -585,7 +595,7 @@
     [cell addSubview:button];
         //图片
     
-    UrlImageView *imgView=[[UrlImageView alloc]initWithFrame:CGRectMake(40, 10, 60,60)];
+    UrlImageView *imgView=[[UrlImageView alloc]initWithFrame:CGRectMake(40, 15, 50,50)];
     
     //        if ([[[[_marrayAll objectAtIndex:indexPath.row]productList]objectAtIndex:0] icon]==nil)
     //        {
@@ -604,20 +614,20 @@
         [cell addSubview:cell.showView];
         
         //title
-        UILabel*title=[[UILabel alloc]initWithFrame:CGRectMake(0,0, cell.showView.frame.size.width-55, 30)];
+        UILabel*title=[[UILabel alloc]initWithFrame:CGRectMake(10,0, cell.showView.frame.size.width-65-10, 30)];
         title.backgroundColor=[UIColor clearColor];
         title.textAlignment=0;
         title.numberOfLines=2;
         title.text=newGoods.title;
         title.textColor=RGB(51, 51, 51);
-        title.font=[UIFont boldSystemFontOfSize:13];
+        title.font=[UIFont boldSystemFontOfSize:11];
         [cell.showView addSubview:title];
         //颜色尺寸参数
         
         CGRect lastFrame;
         for (int i=0; i<goods_attrList.count; i++) {
             NSDictionary *carShopDic=goods_attrList[i];
-            UILabel*labelColor=[[UILabel alloc]initWithFrame:CGRectMake((i%2)*(cell.showView.frame.size.width-2-55)/2+2, 35, (cell.showView.frame.size.width-2-55)/2, 20)];
+            UILabel*labelColor=[[UILabel alloc]initWithFrame:CGRectMake((i%2)*(cell.showView.frame.size.width-2-65)/2+2+10, 45, (cell.showView.frame.size.width-2-65-10)/2, 20)];
             labelColor.textAlignment=0;
             labelColor.font=[UIFont systemFontOfSize:11];
             labelColor.textColor=[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
@@ -630,17 +640,17 @@
             [cell.showView  addSubview:labelColor];
         }
         //价格
-        UILabel*labelPrice=[[UILabel alloc]initWithFrame:CGRectMake((cell.showView.frame.size.width-55), 25, 55, 20)];
+        UILabel*labelPrice=[[UILabel alloc]initWithFrame:CGRectMake((cell.showView.frame.size.width-65), 0, 55, 30)];
         labelPrice.textColor=[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
         NSString *priceTemp=[NSString stringWithFormat:@"%.2f",newGoods.price_cn];
         labelPrice.text=[NSString stringWithFormat:@"￥%@",priceTemp];
-        labelPrice.textAlignment=NSTextAlignmentLeft;
+        labelPrice.textAlignment=NSTextAlignmentRight;
         labelPrice.font =[UIFont  boldSystemFontOfSize:11];
         labelPrice.textColor=RGB(255, 13, 94);
         [cell.showView  addSubview:labelPrice];
         //商品数量
-        UILabel*labelCount=[[UILabel alloc]initWithFrame:CGRectMake((cell.showView.frame.size.width-55), 45, 55, 20)];
-        labelCount.textAlignment=0;
+        UILabel*labelCount=[[UILabel alloc]initWithFrame:CGRectMake((cell.showView.frame.size.width-65), 45, 55, 20)];
+        labelCount.textAlignment=NSTextAlignmentRight;
         labelCount.font=[UIFont systemFontOfSize:10];
         labelCount.textColor=[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
         NSString *buy_num=carShopInfoModel.buy_num;
@@ -658,14 +668,14 @@
         [cell addSubview:cell.editView];
         //减按钮
         UIButton *btnCut=[UIButton buttonWithType:0];
-        btnCut.frame=CGRectMake(0, 25, 30, 30);
+        btnCut.frame=CGRectMake(15, 27.5, 25, 25);
         btnCut.tag=indexPath.row;
-        [btnCut setImage:BundleImage(@"bt_01_.png") forState:0];
+        [btnCut setImage:BundleImage(@"减号") forState:0];
         [btnCut addTarget:self action:@selector(btnCut:event:) forControlEvents:UIControlEventTouchUpInside];
         
         [cell.editView addSubview:btnCut];
         
-        UILabel*  numTextField=[[UILabel alloc]initWithFrame:CGRectMake(btnCut.frame.size.width+btnCut.frame.origin.x+1, btnCut.frame.origin.y+3,29,28)];
+        UILabel*  numTextField=[[UILabel alloc]initWithFrame:CGRectMake(btnCut.frame.size.width+btnCut.frame.origin.x+1, btnCut.frame.origin.y,29,28)];
         numTextField.textAlignment=1;
         numTextField.font=[UIFont systemFontOfSize:14];
         numTextField.textColor=[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
@@ -678,11 +688,11 @@
         
         //加
         UIButton *btnAdd=[UIButton buttonWithType:0];
-        btnAdd.frame=CGRectMake(numTextField.frame.origin.x+numTextField.frame.size.width+3,25, 30, 30);
-        [btnAdd setImage:BundleImage(@"bt_02_.png") forState:0];
+        btnAdd.frame=CGRectMake(numTextField.frame.origin.x+numTextField.frame.size.width+3,27.5, 25, 25);
+        [btnAdd setImage:BundleImage(@"加号") forState:0];
         [btnAdd addTarget:self action:@selector(btnAdd:event:) forControlEvents:UIControlEventTouchUpInside];
         if (btnAdd.highlighted) {
-            [btnAdd setBackgroundImage:BundleImage(@"number_up_click.png") forState:0];
+            [btnAdd setBackgroundImage:BundleImage(@"加号") forState:0];
         }
         [cell.editView addSubview:btnAdd];
         //属性按钮

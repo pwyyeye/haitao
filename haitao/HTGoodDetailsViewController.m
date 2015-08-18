@@ -18,6 +18,7 @@
 #import "BiJiaModel.h"
 #import "GoodImageButton.h"
 #import "GouWuXuZhiViewController.h"
+#import "ChatViewController.h"
 static CGFloat kImageOriginHight = 400;
 
 @interface HTGoodDetailsViewController ()<UIWebViewDelegate,ChooseSizeDelegate>
@@ -110,19 +111,21 @@ static CGFloat kImageOriginHight = 400;
     scroller.delegate=self;
     scroller.backgroundColor=[UIColor whiteColor];
     [_scrollView addSubview:scroller];
-    UIView  *nameView=[[UIView alloc]initWithFrame:CGRectMake(0, scroller.frame.size.height+scroller.frame.origin.y, self.view.frame.size.width,90 )];
+    UIView  *nameView=[[UIView alloc]initWithFrame:CGRectMake(0, scroller.frame.size.height+scroller.frame.origin.y, self.view.frame.size.width,100 )];
     nameView.backgroundColor=[UIColor whiteColor];
-    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, self.view.frame.size.width-20, 15)];
+    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, self.view.frame.size.width-20, 40)];
     title_label.text=self.goods.title;
+    title_label.numberOfLines=2;
+    title_label.lineBreakMode=UILineBreakModeWordWrap;
     title_label.font=[UIFont boldSystemFontOfSize:15];
     title_label.backgroundColor=[UIColor clearColor];
-    title_label.textColor =RGB(51, 51, 51);
+    title_label.textColor =RGB(128, 128, 128);
     title_label.textAlignment=NSTextAlignmentCenter;
     [nameView insertSubview:title_label atIndex:0];
     
     
     
-    UILabel *title_money=[[UILabel alloc]initWithFrame:CGRectMake(10, title_label.frame.origin.y+title_label.frame.size.height+10+3, self.view.frame.size.width-20, 15)];
+    UILabel *title_money=[[UILabel alloc]initWithFrame:CGRectMake(10, title_label.frame.origin.y+title_label.frame.size.height+5, self.view.frame.size.width-20, 15)];
     NSString *ss=[NSString stringWithFormat:@"￥%.2f",self.goods.price_cn];
     title_money.text=[NSString stringWithFormat:@"%@%@",ss,@""];
     
@@ -268,7 +271,7 @@ static CGFloat kImageOriginHight = 400;
     [yunfeiView addSubview:yunfeititle];
     [_scrollView addSubview:yunfeiView];
     //支付方式
-    _bigView2=[[UIView alloc]initWithFrame:CGRectMake(0, yunfeiView.frame.size.height+yunfeiView.frame.origin.y+10, _scrollView.width, 100)];
+    _bigView2=[[UIView alloc]initWithFrame:CGRectMake(0, yunfeiView.frame.size.height+yunfeiView.frame.origin.y+10, _scrollView.width, 80)];
     _bigView2.backgroundColor=[UIColor whiteColor];
 //    _bigView2.layer.borderWidth=0.5;
 //    _bigView2.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
@@ -278,22 +281,22 @@ static CGFloat kImageOriginHight = 400;
     
     
     //titel
-    UILabel *title3=[[UILabel alloc]initWithFrame:CGRectMake(10, 10,190, 10)];
-    title3.text=@"支持支付宝等支付方式";
-    title3.font=[UIFont boldSystemFontOfSize:13];
-    title3.backgroundColor=[UIColor clearColor];
-    title3.textColor =RGB(51, 51, 51);
-    title3.textAlignment=0;
-    [_bigView2 addSubview:title3];
+//    UILabel *title3=[[UILabel alloc]initWithFrame:CGRectMake(10, 10,190, 10)];
+//    title3.text=@"支持支付宝等支付方式";
+//    title3.font=[UIFont boldSystemFontOfSize:13];
+//    title3.backgroundColor=[UIColor clearColor];
+//    title3.textColor =RGB(51, 51, 51);
+//    title3.textAlignment=0;
+//    [_bigView2 addSubview:title3];
     
-    UIImageView *headImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, title3.height+title3.top+10, 60, 60)];
+    UIImageView *headImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 60, 60)];
     [headImg setImageWithURL:[NSURL URLWithString:self.goods.shop_logo_app] placeholderImage:[UIImage imageNamed:@"AlipayIcon"]];
 //    headImg.image=[UIImage imageNamed:@"AlipayIcon"];
     [_bigView2 addSubview:headImg];
     headImg.backgroundColor=[UIColor clearColor];
     //国家
     //国家icon
-    UIImageView *country=[[UIImageView alloc] initWithFrame:CGRectMake(_bigView2.width-45-90, headImg.top-10, 20, 20)];
+    UIImageView *country=[[UIImageView alloc] initWithFrame:CGRectMake(_bigView2.width-45-90, headImg.top, 20, 20)];
     [country setImageWithURL:[NSURL URLWithString:self.goods.country_flag_url] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
     [_bigView2 addSubview:country];
     
@@ -620,9 +623,9 @@ static CGFloat kImageOriginHight = 400;
 #pragma mark 联系卖家
 -(void)call:(id)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"10086" message:@"确认要拨打电话吗？" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
-    alert.tag = 1001;
-    [alert show];
+    ChatViewController *chat=[ChatViewController shareChat];
+    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+    [self.navigationController pushViewController:chat animated:YES];
     
 }
 #pragma mark 收藏
