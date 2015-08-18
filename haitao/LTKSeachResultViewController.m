@@ -84,6 +84,7 @@
     serchText.delegate=self;
     serchText.clearButtonMode = UITextFieldViewModeWhileEditing;
     [view_bar addSubview:serchText];
+     serchText.font = [UIFont fontWithName:@"Arial" size:13.0f];
     [serchText becomeFirstResponder];
     UIButton*btnBack=[UIButton buttonWithType:0];
     btnBack.frame=CGRectMake(serchText.left+serchText.width+10, serchText.top+5, 50, 20);
@@ -246,7 +247,7 @@
     [self loadHisData];
  
     //    imageViewToolBar=[[UIImageView alloc]initWithFrame:CGRectMake(0, self.searchBar.frame.size.height+self.searchBar.frame.origin.y, self.view.frame.size.width,35 )];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, view_bar.height+view_bar.top+20, 80, 15)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, view_bar.height+view_bar.top+10, 80, 15)];
     label.font = [UIFont boldSystemFontOfSize:10.0f];  //UILabel的字体大小
     label.numberOfLines = 1;  //必须定义这个属性，否则UILabel不会换行
     label.textColor = [UIColor grayColor];

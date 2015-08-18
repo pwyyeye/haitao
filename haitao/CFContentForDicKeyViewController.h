@@ -16,4 +16,5 @@
 @property(strong,nonatomic) NSMutableDictionary *inParameters;
 @property (nonatomic,retain)NSDictionary *keyDic;
 @property (nonatomic,copy)NSString *topTitle;
+@property (assign,nonatomic)BOOL isSou;
 @end

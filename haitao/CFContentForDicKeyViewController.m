@@ -29,7 +29,7 @@
     UITextField *toPriceText;
     UIButton*zhiyouBtn;
     UIButton*zhuanyunBtn;
-
+    UIView *nullview;
 }
 @end
 
@@ -39,6 +39,10 @@
     [super viewDidLoad];
     UIView *naviView=(UIView*) [self getNavigationBar];
     _tableView =[[UITableView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height+1,self.view.frame.size.width,kWindowHeight-naviView.frame.size.height} style:UITableViewStylePlain];
+    nullview=[[UIView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height+1,self.view.frame.size.width,kWindowHeight-naviView.frame.size.height}];
+    nullview.backgroundColor=RGB(237,237,237);
+    nullview.hidden=true;
+    [self addView];
     _tableView.delegate=self;
     _tableView.dataSource=self;
     _tableView.separatorColor=[UIColor clearColor];
@@ -46,16 +50,66 @@
 //    _refresh.topEnabled=YES;
     //    _tableView.backgroundColor=[UIColor blueColor];
     [self.view addSubview:_tableView];
+    [self.view addSubview:nullview];
     listArr =[[NSMutableArray alloc]init];
     
     _inParameters=[self.keyDic mutableCopy];
     self.navigationController.title=[_keyDic objectForKey:@"keyword"]?[_keyDic objectForKey:@"keyword"]:self.topTitle;
     
     [self getGoodsList];
+    
+    
 //    [self getGoodlist:self.dataList];
 //    NSDictionary *parameters = @{@"s_cat":self.menuid,@"need_cat_index":@1};
 //    _inParameters=[parameters mutableCopy];
     // Do any additional setup after loading the view.
+}
+-(void)addView{
+    //没有搜到相关商品
+    UIView *nosouView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, nullview.width, 200)];
+    nosouView.backgroundColor=[UIColor whiteColor];
+    UILabel *contentLal=[[UILabel alloc]initWithFrame:CGRectMake(0, (nosouView.height-20)/2, nosouView.width, 20)];
+    contentLal.text=@"没有搜到相关商品";
+    contentLal.font=[UIFont boldSystemFontOfSize:15];
+    contentLal.backgroundColor=[UIColor clearColor];
+    contentLal.textColor =RGB(128, 128, 128);
+    contentLal.textAlignment=NSTextAlignmentCenter;
+    [nosouView addSubview:contentLal];
+    [nullview addSubview:nosouView];
+    //你可继续
+    UIView *anniuView=[[UIView alloc]initWithFrame:CGRectMake(0, nosouView.height+nosouView.top+10, nullview.width, 110)];
+    
+    anniuView.backgroundColor=[UIColor whiteColor];
+    [nullview addSubview:anniuView];
+    UILabel *jixuLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, 5, 80, 20)];
+    jixuLbl.text=@"你可继续";
+    jixuLbl.font=[UIFont boldSystemFontOfSize:13];
+    jixuLbl.backgroundColor=[UIColor clearColor];
+    jixuLbl.textColor =RGB(51, 51, 51);
+    jixuLbl.textAlignment=0;
+    [anniuView addSubview:jixuLbl];
+    UILabel *qaLine=[[UILabel alloc] initWithFrame:CGRectMake(20, jixuLbl.top+jixuLbl.height+5, anniuView.width-40, 0.5)];
+    qaLine.backgroundColor=RGB(237, 237, 237);
+    [anniuView addSubview:qaLine];
+    //返回首页按钮
+    UIButton *homeBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    [homeBtn setBackgroundImage:[UIImage imageNamed:@"返回首页"] forState:UIControlStateNormal];
+    homeBtn.userInteractionEnabled=true;
+    homeBtn.backgroundColor=[UIColor clearColor];
+    homeBtn.frame =CGRectMake(50,(anniuView.height-qaLine.height-qaLine.top-35)/2+qaLine.height+qaLine.top , 40, 35);
+    [homeBtn addTarget:self action:@selector(backHome:) forControlEvents:UIControlEventTouchUpInside];
+    [anniuView addSubview:homeBtn];
+    //重新搜索
+    UIButton *serchBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    [serchBtn setBackgroundImage:[UIImage imageNamed:@"重新搜索"] forState:UIControlStateNormal];
+    serchBtn.userInteractionEnabled=true;
+    serchBtn.backgroundColor=[UIColor clearColor];
+    serchBtn.frame =CGRectMake(anniuView.width-50-40,(anniuView.height-qaLine.height-qaLine.top-35)/2+qaLine.height+qaLine.top , 40, 35);
+    [serchBtn addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
+    [anniuView addSubview:serchBtn];
+}
+-(void)backHome:(id)sender{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"backHome" object:nil];
 }
 #pragma mark - Navigation
 -(UIView*)getNavigationBar
@@ -76,7 +130,7 @@
    
     
     [self.view addSubview:view_bar1];
-    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar1.frame.size.height-44, self.view.frame.size.width-130, 44)];
+    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, (view_bar1.frame.size.height-20-44)/2+20, self.view.frame.size.width-130, 44)];
     title_label.text=self.topTitle;
     title_label.font=[UIFont boldSystemFontOfSize:20];
     title_label.backgroundColor=[UIColor clearColor];
@@ -84,7 +138,7 @@
     title_label.textAlignment=1;
     [view_bar1 addSubview:title_label];
     UIButton*btnBack=[UIButton buttonWithType:0];
-    btnBack.frame=CGRectMake(0, view_bar1.frame.size.height-34, 47, 34);
+    btnBack.frame=CGRectMake(0, (view_bar1.frame.size.height-20-34)/2+20, 47, 34);
     [btnBack setImage:BundleImage(@"btn_back") forState:0];
     [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
     [view_bar1 addSubview:btnBack];
@@ -125,9 +179,11 @@
             [goodsModelArr addObject:goodsModel];
         }
         if(goodsModelArr.count<1){
-            ShowMessage(@"无数据");
+            nullview.hidden=false;
+//            ShowMessage(@"无数据");
             return;
         }
+        nullview.hidden=true;
         [self getGoodlist:goodsModelArr];
         
     }

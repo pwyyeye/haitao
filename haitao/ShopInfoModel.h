@@ -14,4 +14,5 @@
 @property (copy, nonatomic) NSString *ship_name;
 @property (copy, nonatomic) NSString *shop_name;
 @property (assign, nonatomic) BOOL ischoose;
+@property (copy, nonatomic) NSString *country_flag_url;
 @end

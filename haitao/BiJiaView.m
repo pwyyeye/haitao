@@ -74,8 +74,9 @@
         xiaoliangBtn.backgroundColor=[UIColor clearColor];
         //    [shoucangBtn setImage:BundleImage(@"shopbt_02_.png") forState:0];
         [backgroudView addSubview:xiaoliangBtn];
-        UIImageView *xlImg=[[UrlImageView alloc]initWithFrame:CGRectMake(1, (30-(24*2/3))/2, 24*2/3, 24*2/3)];
-        xlImg.image=[UIImage imageNamed:@"DetailsPage_icon_tag_"];
+        UIImageView *xlImg=[[UrlImageView alloc]initWithFrame:CGRectMake(1, (30-(24*2/3))/2, 24*2/3, 24*1/3)];
+        xlImg.backgroundColor=[UIColor clearColor];
+//        xlImg.image=[UIImage imageNamed:@"DetailsPage_icon_tag_"];
         [xiaoliangBtn addSubview:xlImg];
         UILabel *xlLbl=[[UILabel alloc]initWithFrame:CGRectMake(xlImg.frame.origin.x+xlImg.width,xlImg.frame.origin.y-3,xiaoliangBtn.frame.size.width-(xlImg.frame.origin.x+xlImg.width), 22)];
         xlLbl.text=[NSString stringWithFormat:@"销量：%@",goods.order_num ];
@@ -95,7 +96,8 @@
         zanBtn.frame=CGRectMake(0, self.height-49, self.width, 49);
         
         [self addSubview:zanBtn];
-        [zanBtn setBackgroundImage:[UIImage imageNamed:@"att_btn_base_"] forState:0];
+        //RGB(255, 13, 94)
+        [zanBtn setBackgroundColor:RGB(255, 13, 94)];
 //
         UIImageView *shoushiView=[[UIImageView alloc]initWithFrame:CGRectMake(zanBtn.width/4, (49-23)/2, 20, 23)];
         shoushiView.image=[UIImage imageNamed:@"DetailsPage_icon_damuzhi_"];
