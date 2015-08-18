@@ -269,7 +269,7 @@
     qianggouView= (QiangGouView *)[nibView objectAtIndex:0];
     qianggouView.clipsToBounds = YES;
     qianggouView.frame = CGRectMake(55, 7, 127, 25);
-    NSString *dateStr=@"2016-08-18 22:23:00";//传入时间
+    NSString *dateStr=@"2015-08-20 22:23:00";//传入时间
     //将传入时间转化成需要的格式
     NSDateFormatter *format=[[NSDateFormatter alloc] init];
     [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
