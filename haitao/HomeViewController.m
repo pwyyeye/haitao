@@ -19,6 +19,7 @@
 #import "SpecialContentViewController.h"
 #import "SpecialModel.h"
 #import "QiangGouViewController.h"
+#import "QiangGouView.h"
 @interface HomeViewController ()
 {
     UrlImageButton *btn;
@@ -38,6 +39,7 @@
     NSMutableArray *jingpinArr;
     UIView *xinpintuijianTitleView;
     UIButton *topButton ;
+    QiangGouView *qianggouView;
     
 }
 @property (nonatomic,strong)DJRefresh *refresh;
@@ -264,9 +266,15 @@
     UIView *qiangouTitleView=[[UIView alloc]initWithFrame:CGRectMake(0,scroller.frame.size.height+scroller.frame.origin.y+10, self.view.frame.size.width, 43)];
     qiangouTitleView.backgroundColor=[UIColor whiteColor];
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"QiangGuoView" owner:nil options:nil];
-    UIView *qianggouView= [nibView objectAtIndex:0];
+    qianggouView= (QiangGouView *)[nibView objectAtIndex:0];
     qianggouView.clipsToBounds = YES;
     qianggouView.frame = CGRectMake(55, 7, 127, 25);
+    NSString *dateStr=@"2016-08-18 22:23:00";//传入时间
+    //将传入时间转化成需要的格式
+    NSDateFormatter *format=[[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *todate=[format dateFromString:dateStr];
+    [qianggouView setTimeStart:todate];
     [qiangouTitleView addSubview:qianggouView];
     //色条
     UIImageView *hongLine=[[UIImageView alloc]initWithFrame:CGRectMake(0,0, 3, qiangouTitleView.height)];
