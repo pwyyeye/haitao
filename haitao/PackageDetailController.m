@@ -104,14 +104,16 @@
             NSDictionary *dic=[dictemp objectForKey:@"data"];
             
             if (dic.count==0) {
+                [_tableView reloadData];
                 return;
+                
             }
             
             _packageModel=[PackageDetail objectWithKeyValues:dic];
             
             NSLog(@"----pass-_packageModel%@---",_packageModel);
             
-            [_tableView reloadData];
+            
             
             _coll=[[CollapseClick alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 500)];
             _coll.CollapseClickDelegate = self;
@@ -134,6 +136,18 @@
             // Tells which views need to be focusable. You can put your image views in an array and give it to the focus manager.
             [self.mediaFocusManager installOnViews:self.orderImageView.subviews];
             
+            //是否点击释放
+            self.mediaFocusManager.isDefocusingWithTap=YES;
+            //动画时间
+            self.mediaFocusManager.animationDuration=0.5;
+            //
+            self.mediaFocusManager.gestureDisabledDuringZooming=NO;
+            
+            self.mediaFocusManager.defocusOnVerticalSwipe=NO;
+            
+            self.mediaFocusManager.zoomEnabled=YES;
+//            [self.mediaFocusManager startFocusingView:_orderImageView];
+            
             
             if (_footerBar!=nil) {
                 [_footerBar removeFromSuperview];
@@ -151,6 +165,49 @@
             //order_status 1、刚录入订单 2、订单已支付  8、订单完成 用户已确认 9、取消订单
             //package_status 1、待发货 2、已发货 8、已确认
             if ([_packageModel.package_info.package_status intValue]==1) {
+                _orderStatus.text=[NSString stringWithFormat:@"还未付款"];
+                
+                //联系客服
+                UIButton *kefu=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2, 30)];
+                [kefu setImage:[UIImage imageNamed:@"icon_LianXiKeFu"]  forState:UIControlStateNormal];
+                [kefu.imageView setContentMode:UIViewContentModeScaleAspectFill];
+                
+                [kefu addTarget:self action:@selector(connectKefu) forControlEvents:UIControlEventTouchUpInside];
+                
+                //联系客服文字
+                UILabel *kefu_label=[[UILabel alloc] initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH/2, 15)];
+                kefu_label.text=@"在线客服";
+                kefu_label.textColor=RGB(128, 128, 128);
+                kefu_label.font=[UIFont boldSystemFontOfSize:11];
+                kefu_label.textAlignment=NSTextAlignmentCenter;
+                
+                
+                //联系电话
+                UIButton *telephone=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2, 0, SCREEN_WIDTH/2, 30)];
+                [telephone setImage:[UIImage imageNamed:@"icon_BoDaDianHua"]  forState:UIControlStateNormal];
+                [telephone.imageView setContentMode:UIViewContentModeScaleAspectFill];
+                
+                [telephone addTarget:self action:@selector(callTelephone) forControlEvents:UIControlEventTouchUpInside];
+                
+                //联系电话文字
+                UILabel *telephone_label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2, 30, SCREEN_WIDTH/2, 15)];
+                telephone_label.text=@"拨打电话";
+                telephone_label.textColor=RGB(128, 128, 128);
+                telephone_label.font=[UIFont boldSystemFontOfSize:11];
+                telephone_label.textAlignment=NSTextAlignmentCenter;
+                
+                
+                //添加进入 footerBar
+                [self.footerBar addSubview:kefu];
+                [self.footerBar addSubview:kefu_label];
+                
+                [self.footerBar addSubview:telephone];
+                [self.footerBar addSubview:telephone_label];
+                
+                
+                [self.myView addSubview:_footerBar];
+                
+            }else if ([_packageModel.package_info.package_status intValue]==2) {
                 _orderStatus.text=[NSString stringWithFormat:@"等待卖家发货"];
                 
                 //联系客服
@@ -193,7 +250,7 @@
                 
                 [self.myView addSubview:_footerBar];
                 
-            }else if([_packageModel.package_info.package_status intValue]==2){
+            } else if([_packageModel.package_info.package_status intValue]==3){
                 _orderStatus.text=[NSString stringWithFormat:@"卖家已发货"];
                 //联系客服
                 UIButton *kefu=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/5*1.5, 30)];
@@ -319,6 +376,8 @@
             _address.text= [NSString stringWithFormat:@"%@%@",_packageModel.order.province,_packageModel.order.address];;
             self.myScollView.delegate=self;
             self.myScollView.bounces=NO;//遇到边框不反弹
+            
+            [self updateViewConstraints];
             
             [_tableView reloadData];
 
@@ -560,11 +619,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    OrderListCell *cell = [[OrderListCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"packagecell"];
 
-    static NSString *CellIdentifier = @"packagecell";
-    OrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier]; //出列可重用的cell
-    if (cell == nil) {
-        cell = [[OrderListCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"packagecell"];
-    }
+//    static NSString *CellIdentifier = @"packagecell";
+//    OrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier]; //出列可重用的cell
+//    if (cell == nil) {
+      OrderListCell *  cell = [[OrderListCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"packagecell"];
+//    }
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
 
@@ -572,7 +631,7 @@
         cell.textLabel.text = goods.goods_name;
         cell.textLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:11];
         cell.textLabel.textColor=RGB(51, 51, 51);
-        cell.textLabel.numberOfLines=2;
+        cell.textLabel.numberOfLines=1;
         //如果有规格 展示规格 只展示2条
         if (goods.goods_attr.count>0) {
             for (int i=0; i<goods.goods_attr.count; i++) {
@@ -705,7 +764,7 @@
 //            label.font=[UIFont systemFontOfSize:11];
 //            [_orderImageView addSubview:label];
             _orderImage=[[UIImageView alloc] initWithFrame:CGRectMake(20, 0, SCREEN_WIDTH-40, 150)];
-            _orderImage.image=[UIImage imageNamed:@"2_retina.jpg"];
+            [_orderImage setImageWithURL:[NSURL URLWithString:_packageModel.package_info.package_img] placeholderImage:nil];            
             [_orderImage setContentMode:UIViewContentModeScaleAspectFit];
             [_orderImageView addSubview:_orderImage];
             return _orderImageView;
@@ -756,30 +815,31 @@
 }
 
 #pragma mark - ASMediaFocusDelegate
-- (UIImage *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager imageForView:(UIView *)view
-{
-    return ((UIImageView *)view).image;
+// Returns the view controller in which the focus controller is going to be added. This can be any view controller, full screen or not.
+- (UIViewController *)parentViewControllerForMediaFocusManager:(ASMediaFocusManager *)mediaFocusManager{
+
+     return self.parentViewController;
+}
+// Returns the URL where the media (image or video) is stored. The URL may be local (file://) or distant (http://).
+- (NSURL *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager mediaURLForView:(UIView *)view{
+    return [NSURL URLWithString:_packageModel.package_info.package_img];
+
+}
+// Returns the title for this media view. Return nil if you don't want any title to appear.
+- (NSString *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager titleForView:(UIView *)view{
+    return nil;
 }
 
-- (CGRect)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager finalFrameforView:(UIView *)view
-{
-    return self.parentViewController.view.bounds;
-}
+//- (UIImage *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager imageForView:(UIView *)view
+//{
+//    return ((UIImageView *)view).image;
+//}
 
-- (UIViewController *)parentViewControllerForMediaFocusManager:(ASMediaFocusManager *)mediaFocusManager
-{
-    return self.parentViewController;
-}
+//- (CGRect)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager finalFrameforView:(UIView *)view
+//{
+//    return self.parentViewController.view.bounds;
+//}
 
-- (NSString *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager mediaPathForView:(UIView *)view
-{
-    NSString *path; 
-    NSString *name;
-    
-    // Here, images are accessed through their name "1f.jpg", "2f.jpg", …
-//    name = [NSString stringWithFormat:@"%df", ([self.imageViews indexOfObject:view] + 1)];
-    path = [[NSBundle mainBundle] pathForResource:@"2_retina" ofType:@"jpg"];
-    
-    return path;
-}
+
+
 @end

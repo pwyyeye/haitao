@@ -127,6 +127,10 @@
         ShowMessage(@"请输入邮编！");
         return;
     }
+    
+    UIButton *button=(UIButton *) sender;
+    button.enabled=false;
+    button.backgroundColor=RGB(179, 179, 179);
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     NSDictionary *parameters = @{@"consignee":_consignee.text,@"mobile":_mobile.text,@"idcard":_idcard.text,@"province":_province.text,@"address":_address.text,@"zipcode":_zipcode.text,@"is_default":@"1",@"idcard_1":@"",@"idcard_2":@""};

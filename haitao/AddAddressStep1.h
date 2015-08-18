@@ -33,6 +33,8 @@
 
 - (IBAction)textFieldEndEdit:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIButton *nextBtn;
+
 
 - (IBAction)gotoStep2:(id)sender;
 

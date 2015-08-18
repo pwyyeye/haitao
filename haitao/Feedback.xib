@@ -58,6 +58,11 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    <connections>
+                                        <action selector="didEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="dHZ-Hk-9vZ"/>
+                                        <action selector="textFieldBeginEdit:" destination="-1" eventType="editingDidBegin" id="O6Z-vd-MKo"/>
+                                        <action selector="textFieldEndEdit:" destination="-1" eventType="editingDidEnd" id="5zk-SS-kzh"/>
+                                    </connections>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如果您填写了有效的联系方式配夸将在24小时内根据您反馈的内容，以邮件、短信或电话的形式回复您" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hx-23-ksu">
                                     <rect key="frame" x="10" y="361" width="580" height="32"/>

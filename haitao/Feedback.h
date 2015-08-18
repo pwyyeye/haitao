@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Feedback : UIViewController<HTTPControllerProtocol>
+@interface Feedback : UIViewController<HTTPControllerProtocol,UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *buttonView;
 
@@ -32,4 +32,11 @@
 @property(assign,nonatomic) int selectedId;
 
 - (IBAction)submit:(id)sender;
+
+- (IBAction)didEndOnExit:(id)sender;
+
+- (IBAction)textFieldBeginEdit:(id)sender;
+
+- (IBAction)textFieldEndEdit:(id)sender;
+
 @end
