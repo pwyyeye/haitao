@@ -483,8 +483,6 @@
 		AD8E37121B721A1500C9D5BA /* icon_LianXiPeiKua.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E36131B721A1400C9D5BA /* icon_LianXiPeiKua.png */; };
 		AD8E37131B721A1500C9D5BA /* icon_LianXiPeiKua@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E36141B721A1400C9D5BA /* icon_LianXiPeiKua@2x.png */; };
 		AD8E37141B721A1500C9D5BA /* icon_LianXiPeiKua@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E36151B721A1400C9D5BA /* icon_LianXiPeiKua@3x.png */; };
-		AD8E37151B721A1500C9D5BA /* icon_LIqin.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E36161B721A1400C9D5BA /* icon_LIqin.png */; };
-		AD8E37161B721A1500C9D5BA /* icon_LIqin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E36171B721A1400C9D5BA /* icon_LIqin@2x.png */; };
 		AD8E37181B721A1500C9D5BA /* icon_MeiZhuang.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E36191B721A1400C9D5BA /* icon_MeiZhuang.png */; };
 		AD8E37191B721A1500C9D5BA /* icon_MeiZhuang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E361A1B721A1400C9D5BA /* icon_MeiZhuang@2x.png */; };
 		AD8E371A1B721A1500C9D5BA /* icon_MeiZhuang@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E361B1B721A1400C9D5BA /* icon_MeiZhuang@3x.png */; };
@@ -1530,8 +1528,6 @@
 		AD8E36131B721A1400C9D5BA /* icon_LianXiPeiKua.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_LianXiPeiKua.png; sourceTree = "<group>"; };
 		AD8E36141B721A1400C9D5BA /* icon_LianXiPeiKua@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_LianXiPeiKua@2x.png"; sourceTree = "<group>"; };
 		AD8E36151B721A1400C9D5BA /* icon_LianXiPeiKua@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_LianXiPeiKua@3x.png"; sourceTree = "<group>"; };
-		AD8E36161B721A1400C9D5BA /* icon_LIqin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_LIqin.png; sourceTree = "<group>"; };
-		AD8E36171B721A1400C9D5BA /* icon_LIqin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_LIqin@2x.png"; sourceTree = "<group>"; };
 		AD8E36191B721A1400C9D5BA /* icon_MeiZhuang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_MeiZhuang.png; sourceTree = "<group>"; };
 		AD8E361A1B721A1400C9D5BA /* icon_MeiZhuang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_MeiZhuang@2x.png"; sourceTree = "<group>"; };
 		AD8E361B1B721A1400C9D5BA /* icon_MeiZhuang@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_MeiZhuang@3x.png"; sourceTree = "<group>"; };
@@ -3316,8 +3312,6 @@
 				AD8E36131B721A1400C9D5BA /* icon_LianXiPeiKua.png */,
 				AD8E36141B721A1400C9D5BA /* icon_LianXiPeiKua@2x.png */,
 				AD8E36151B721A1400C9D5BA /* icon_LianXiPeiKua@3x.png */,
-				AD8E36161B721A1400C9D5BA /* icon_LIqin.png */,
-				AD8E36171B721A1400C9D5BA /* icon_LIqin@2x.png */,
 				AD8E36191B721A1400C9D5BA /* icon_MeiZhuang.png */,
 				AD8E361A1B721A1400C9D5BA /* icon_MeiZhuang@2x.png */,
 				AD8E361B1B721A1400C9D5BA /* icon_MeiZhuang@3x.png */,
@@ -4343,7 +4337,6 @@
 				AD8AA6A91B59E14400E324AD /* sy_setup@2x.png in Resources */,
 				AD8E377B1B721A1500C9D5BA /* ShuMa_icon_GeRenHuLi.png in Resources */,
 				AD8E37651B721A1500C9D5BA /* Product_icon_FengXiang@3x.png in Resources */,
-				AD8E37161B721A1500C9D5BA /* icon_LIqin@2x.png in Resources */,
 				A2E8D08F1B76D8910004ADB9 /* icon_LIqin@2x.png in Resources */,
 				ADD2C4241B78400100A2E638 /* WuLiu_line@3x.png in Resources */,
 				A2E8D0F51B7AD8E60004ADB9 /* filter_btn_xiaoliang_default@2x.png in Resources */,
@@ -4396,7 +4389,6 @@
 				A2FFE1801B608EDF0004B4BC /* pull_refresh@3x.png in Resources */,
 				AD8E36EA1B721A1500C9D5BA /* icon_Filter@3x.png in Resources */,
 				AD8AA61C1B59435C00E324AD /* ELCAssetPicker.xib in Resources */,
-				AD8E37151B721A1500C9D5BA /* icon_LIqin.png in Resources */,
 				AD8E37881B721A1500C9D5BA /* ShuMa_icon_phone@2x.png in Resources */,
 				A2E8D0EE1B7AD8E60004ADB9 /* filter_btn_jiage_default@2x.png in Resources */,
 				ADD655461B6F4CD2006F4127 /* Address_btn_toPickupArea@2x.png in Resources */,

@@ -59,7 +59,7 @@
     
     _shipType.text=_packageModel.package_info.ship_name;
     _shipNumber.text=[NSString stringWithFormat:@"物流单号：%@",_packageModel.package_info.logistic_number]; ;
-    _shipStatus.text=[NSString stringWithFormat:@"物流状态：%@",@"???"];
+//    _shipStatus.text=[NSString stringWithFormat:@"物流状态：%@",@"???"];
 }
 
 - (void)didReceiveMemoryWarning {
