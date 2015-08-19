@@ -198,7 +198,7 @@
         
         //        添加单元行的设置的标题
         
-        [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:listArr.count inSection:2]]  withRowAnimation:UITableViewRowAnimationRight];
+        
     }
     
     if([urlname isEqualToString:@"getGoodsListSort"]){
@@ -289,23 +289,32 @@
 #pragma mark商品分页数据排2列
 -(void)getGoodlistTwoPage:(NSArray *)arr{
     int nowCount=1;
-    
+    NSMutableArray *addArr=[[NSMutableArray alloc]init];
     NSMutableArray *pageArr=[[NSMutableArray alloc]initWithCapacity:2];
+    int count=(int)listArr.count;
     for (int i=0; i<arr.count; i++) {
         New_Goods *new_Goods= arr[i];
         
         if(nowCount%2==0){
             [pageArr addObject:new_Goods];
+            [addArr addObject:pageArr];
             [listArr addObject:pageArr];
             pageArr=[[NSMutableArray alloc]initWithCapacity:2];
         }else{
             [pageArr addObject:new_Goods];
             if(i==arr.count-1){
+                [addArr addObject:pageArr];
                 [listArr addObject:pageArr];
             }
         }
         nowCount++;
     }
+    NSMutableArray *indexArr=[[NSMutableArray alloc]init];
+    for (int i=0; i<addArr.count; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:count+i inSection:2];
+        [indexArr addObject:indexPath];
+    }
+    [_tableView insertRowsAtIndexPaths:indexArr  withRowAnimation:UITableViewRowAnimationBottom];
 }
 #pragma mark置顶按钮栏
 -(UIView*)getToolBar
@@ -826,7 +835,7 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)returnInParameters:(NSDictionary *)inParameterss{
-    _inParameters=inParameterss;
+    _inParameters=[[NSMutableDictionary alloc]initWithDictionary:inParameterss];
 }
 /*
  #pragma mark - Navigation
