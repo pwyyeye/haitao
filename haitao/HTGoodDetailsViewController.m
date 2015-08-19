@@ -809,6 +809,9 @@ static CGFloat kImageOriginHight = 400;
     webView.frame = webViewFrame;
     
     [_scrollView setContentSize:CGSizeMake(self.view.width, webView.frame.size.height+webView.frame.origin.y+10)];
+    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '70%'"];//修改百分比即可
+    
+    
     [self getShopEvaluation];
     
     
