@@ -143,7 +143,7 @@
             //
             self.mediaFocusManager.gestureDisabledDuringZooming=NO;
             
-            self.mediaFocusManager.defocusOnVerticalSwipe=NO;
+            self.mediaFocusManager.defocusOnVerticalSwipe=YES;
             
             self.mediaFocusManager.zoomEnabled=YES;
 //            [self.mediaFocusManager startFocusingView:_orderImageView];
@@ -264,20 +264,21 @@
                 kefu_label.font=[UIFont boldSystemFontOfSize:11];
                 kefu_label.textColor=RGB(128, 128, 128);
                 kefu_label.textAlignment=NSTextAlignmentCenter;
+//                [kefu addSubview:kefu_label];
                 
-                
-                //联系电话
-                UIButton *telephone=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/5*1.5, 0, SCREEN_WIDTH/5*1.5, 30)];
-                [telephone setImage:[UIImage imageNamed:@"icon_BoDaDianHua"]  forState:UIControlStateNormal];
-                [telephone.imageView setContentMode:UIViewContentModeScaleAspectFill];
-                [telephone addTarget:self action:@selector(callTelephone) forControlEvents:UIControlEventTouchUpInside];
+                //查看物流
+                UIButton *logistics=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/5*1.5, 0, SCREEN_WIDTH/5*1.5, 30)];
+                [logistics setImage:[UIImage imageNamed:@"icon_WuLIuChaKan"]  forState:UIControlStateNormal];
+                [logistics.imageView setContentMode:UIViewContentModeScaleAspectFill];
+                [logistics addTarget:self action:@selector(gotoLogistics:) forControlEvents:UIControlEventTouchUpInside];
 
-                //联系电话文字
-                UILabel *telephone_label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/5*1.5, 30, SCREEN_WIDTH/5*1.5, 15)];
-                telephone_label.text=@"拨打电话";
-                telephone_label.textColor=RGB(128, 128, 128);
-                telephone_label.font=[UIFont boldSystemFontOfSize:11];
-                telephone_label.textAlignment=NSTextAlignmentCenter;
+                //查看物流文字
+                UILabel *logistics_label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/5*1.5, 30, SCREEN_WIDTH/5*1.5, 15)];
+                logistics_label.text=@"查看物流";
+                logistics_label.textColor=RGB(128, 128, 128);
+                logistics_label.font=[UIFont boldSystemFontOfSize:11];
+                logistics_label.textAlignment=NSTextAlignmentCenter;
+//                [logistics addSubview:logistics_label];
                 
                 //确认收货
                 UIButton *confirm=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/5*3, 8, SCREEN_WIDTH/5*2,35)];
@@ -289,8 +290,8 @@
                 [self.footerBar addSubview:kefu];
                 [self.footerBar addSubview:kefu_label];
                 
-                [self.footerBar addSubview:telephone];
-                [self.footerBar addSubview:telephone_label];
+                [self.footerBar addSubview:logistics];
+                [self.footerBar addSubview:logistics_label];
                 
                 [self.footerBar addSubview:confirm];
                 

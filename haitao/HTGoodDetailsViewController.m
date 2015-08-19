@@ -289,7 +289,7 @@ static CGFloat kImageOriginHight = 400;
 //    title3.textAlignment=0;
 //    [_bigView2 addSubview:title3];
     
-    UIImageView *headImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 60, 60)];
+    UIImageView *headImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, 20, 40, 40)];
     [headImg setImageWithURL:[NSURL URLWithString:self.goods.shop_logo_app] placeholderImage:[UIImage imageNamed:@"AlipayIcon"]];
 //    headImg.image=[UIImage imageNamed:@"AlipayIcon"];
     [_bigView2 addSubview:headImg];
@@ -925,7 +925,7 @@ static CGFloat kImageOriginHight = 400;
         [qaCounteView addSubview:qaLine];
         //问题标题
         UILabel *titleQA=[[UILabel alloc]initWithFrame:CGRectMake(10, 10,190, 10)];
-        titleQA.text=@"为什么黄金奇异果比较贵?";
+        titleQA.text=@"如何下单?";
         titleQA.font=[UIFont boldSystemFontOfSize:11];
         titleQA.backgroundColor=[UIColor clearColor];
         titleQA.textColor =RGB(51, 51, 51);
@@ -933,7 +933,7 @@ static CGFloat kImageOriginHight = 400;
         [qaCounteView addSubview:titleQA];
         //具体内容
         UILabel *countentQA=[[UILabel alloc]initWithFrame:CGRectMake(10, titleQA.top+titleQA.height+10,qaCounteView.width-20, 10)];
-        countentQA.text=@"黄金奇异果是新西兰的新国宝。光滑、古铜色的外皮，金黄色的果肉，香甜多汁。富含维生素及矿物质。也就是我们常说的“猕猴桃”的一种。它的营养价值很高";
+        countentQA.text=@"    您可以在我们平台上方便快捷的把全球各地的商品收入自己的购物车并一键购买，由于国外商品过海关时需要提供收货人的身份证证件信息，所以在您确认订单时，请务必上传收货人本人的身份证照片。";
         countentQA.font=[UIFont systemFontOfSize:11];
         countentQA.backgroundColor=[UIColor clearColor];
         countentQA.textColor = RGB(179, 179, 179);

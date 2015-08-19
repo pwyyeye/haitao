@@ -43,8 +43,11 @@
                                         </mask>
                                     </variation>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="物流状态：海关清关" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jf8-gc-K04">
-                                    <rect key="frame" x="10" y="42" width="580" height="13.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jf8-gc-K04">
+                                    <rect key="frame" x="10" y="42" width="580" height="5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="5" id="iow-US-0gA"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -62,14 +65,14 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Kvl-6B-AmU">
-                                    <rect key="frame" x="0.0" y="70.5" width="600" height="200"/>
+                                    <rect key="frame" x="0.0" y="70" width="600" height="200"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="200" id="naE-xs-3sF"/>
                                     </constraints>
                                 </tableView>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TjB-cC-ZaM">
-                                    <rect key="frame" x="0.0" y="280.5" width="600" height="200"/>
+                                    <rect key="frame" x="0.0" y="280" width="600" height="200"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="300" id="JKe-m8-hIo"/>
@@ -90,6 +93,7 @@
                                 <constraint firstAttribute="trailing" secondItem="igy-tF-R7c" secondAttribute="trailing" constant="10" id="Gzu-1y-nAI"/>
                                 <constraint firstItem="rJa-xT-t5I" firstAttribute="leading" secondItem="8Vd-Ns-kq8" secondAttribute="leading" id="H5q-YV-phi"/>
                                 <constraint firstItem="igy-tF-R7c" firstAttribute="leading" secondItem="8Vd-Ns-kq8" secondAttribute="leading" constant="10" id="Jia-Y5-Kjg"/>
+                                <constraint firstItem="Kvl-6B-AmU" firstAttribute="top" secondItem="rJa-xT-t5I" secondAttribute="bottom" constant="10" id="O1F-FC-cuD"/>
                                 <constraint firstAttribute="trailing" secondItem="Kvl-6B-AmU" secondAttribute="trailing" id="S2G-iw-WTN"/>
                                 <constraint firstItem="TjB-cC-ZaM" firstAttribute="leading" secondItem="8Vd-Ns-kq8" secondAttribute="leading" id="TKY-6n-Jt5"/>
                                 <constraint firstAttribute="height" constant="600" id="TVY-cm-xFO"/>
@@ -105,6 +109,11 @@
                                 <constraint firstItem="rJa-xT-t5I" firstAttribute="top" secondItem="8Vd-Ns-kq8" secondAttribute="top" id="uQN-5j-fcg"/>
                                 <constraint firstAttribute="trailing" secondItem="EBA-Vr-qYx" secondAttribute="trailing" constant="10" id="w2w-Wj-zEQ"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="eNf-OB-J0Y"/>
+                                </mask>
+                            </variation>
                         </view>
                     </subviews>
                     <constraints>
