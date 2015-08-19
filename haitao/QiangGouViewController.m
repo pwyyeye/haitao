@@ -53,7 +53,7 @@
     
     
     [self.view addSubview:view_bar1];
-    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar1.frame.size.height-44, self.view.frame.size.width-130, 44)];
+    UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake((view_bar1.width-130)/2, (view_bar1.frame.size.height-20-44)/2+20, 130, 44)];
     title_label.text=@"抢购";
     title_label.font=[UIFont boldSystemFontOfSize:20];
     title_label.backgroundColor=[UIColor clearColor];
@@ -61,7 +61,7 @@
     title_label.textAlignment=1;
     [view_bar1 addSubview:title_label];
     UIButton*btnBack=[UIButton buttonWithType:0];
-    btnBack.frame=CGRectMake(0, view_bar1.frame.size.height-34, 47, 34);
+    btnBack.frame=CGRectMake(0, (view_bar1.frame.size.height-20-34)/2+20, 47, 34);
     [btnBack setImage:BundleImage(@"btn_back") forState:0];
     [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
     [view_bar1 addSubview:btnBack];

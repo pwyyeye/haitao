@@ -64,7 +64,7 @@
 - (void)viewDidLoad {
     isshuaxin=false;
     [super viewDidLoad];
-    pageCount = @"0";
+    pageCount = @"1";
     title=@"";
     bannerArr =[[NSMutableArray alloc]initWithCapacity:8];
     _tableView =[[UITableView alloc]initWithFrame:self.mainFrame style:UITableViewStylePlain];
@@ -74,13 +74,13 @@
     _tableView.separatorColor=[UIColor clearColor];
     _refresh=[[DJRefresh alloc] initWithScrollView:_tableView delegate:self];
     _refresh.topEnabled=YES;
+    _refresh.bottomEnabled=YES;
     [self.view addSubview:_tableView];
     tupianArr=@[@"shuma_icon_diannao_top_",@"shuma_icon_gehudaqi_top",@"shuma_icon_iphone_top_",@"shuma_icon_shenghuodiaqi_top_",@"shuma_icon_shouji_top_",@"shuma_icon_shoujipeishi_top_",@"shuma_icon_xiangji_top_",@"shuma_icon_yingyin_top_"];
     listArr=[[NSMutableArray alloc]init];
 
     
     NSDictionary *parameters = @{@"s_cat":self.menuModel.id,@"need_cat_index":@1};
-    paraDic= @{@"s_cat":self.menuModel.id,@"need_cat_index":@1};
     _inParameters=[parameters mutableCopy];
     
     [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:YES];
@@ -101,11 +101,14 @@
     
     if (direction==DJRefreshDirectionTop) {
         [self getCatBanner];
+    }else{
+        [self getXialaData];
     }
     [_refresh finishRefreshingDirection:direction animation:YES];
 }
 -(void)getCatBanner{
     //NSDictionary *parameters = @{@"cat_id":self.menuModel.id};
+    pageCount=@"1";
     NSDictionary *parameters = @{@"cat_id":@"1"};
     _inParameters=[parameters mutableCopy];
     NSString* url =[NSString stringWithFormat:@"%@&m=ad&f=getCatBanner",requestUrl]
@@ -120,7 +123,7 @@
 }
 #pragma mark 获取商品列表
 -(void)getGoodsList{
-    NSDictionary *parameters = @{@"f_cat":self.menuModel.id,@"need_cat_index":@1};
+    NSDictionary *parameters = @{@"f_cat":self.menuModel.id,@"need_cat_index":@"1",@"need_page":@"1",@"p":pageCount,@"per":@"12"};
     _inParameters=[parameters mutableCopy];
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
     ;
@@ -131,7 +134,21 @@
     
     
 }
+#pragma mark 下拉刷新
+-(void)getXialaData{
+    int pageCountInt=pageCount.intValue;
+    pageCountInt++;
+    pageCount=[NSString stringWithFormat:@"%d",pageCountInt];
+    [_inParameters removeObjectForKey:@"p"];
+    [_inParameters setObject:pageCount forKey:@"p"];
+    NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
+    ;
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:_inParameters withUrlName:@"getGoodsListPage"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
 
+}
 #pragma mark 接受数据
 -(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -165,6 +182,25 @@
         indexDic=[dataDic objectForKey:@"cat_index"];
         [_tableView reloadData];
     }
+    if([urlname isEqualToString:@"getGoodsListPage"]){
+        NSDictionary *dataDic=[dictemp objectForKey:@"data"];
+        NSArray *goodsArr=[dataDic objectForKey:@"list"];
+        NSMutableArray *goodsModelArr=[[NSMutableArray alloc]init];
+        for (NSDictionary *dic in goodsArr) {
+            New_Goods *goodsModel = [New_Goods objectWithKeyValues:dic] ;
+            [goodsModelArr addObject:goodsModel];
+        }
+        [self getGoodlistTwoPage:goodsModelArr];
+//        indexDic=[dataDic objectForKey:@"cat_index"];
+//        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];
+//        [_tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+        
+        
+        //        添加单元行的设置的标题
+        
+        
+    }
+    
     if([urlname isEqualToString:@"getGoodsListSort"]){
         NSDictionary *dataDic=[dictemp objectForKey:@"data"];
         NSArray *goodsArr=[dataDic objectForKey:@"list"];
@@ -176,7 +212,7 @@
         [self getGoodlistTwo:goodsModelArr];
         indexDic=[dataDic objectForKey:@"cat_index"];
         NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];
-        [_tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+        [_tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationTop];
 //        [_tableView reloadData];
     }
 
@@ -250,7 +286,36 @@
     }
     
 }
-
+#pragma mark商品分页数据排2列
+-(void)getGoodlistTwoPage:(NSArray *)arr{
+    int nowCount=1;
+    NSMutableArray *addArr=[[NSMutableArray alloc]init];
+    NSMutableArray *pageArr=[[NSMutableArray alloc]initWithCapacity:2];
+    int count=(int)listArr.count;
+    for (int i=0; i<arr.count; i++) {
+        New_Goods *new_Goods= arr[i];
+        
+        if(nowCount%2==0){
+            [pageArr addObject:new_Goods];
+            [addArr addObject:pageArr];
+            [listArr addObject:pageArr];
+            pageArr=[[NSMutableArray alloc]initWithCapacity:2];
+        }else{
+            [pageArr addObject:new_Goods];
+            if(i==arr.count-1){
+                [addArr addObject:pageArr];
+                [listArr addObject:pageArr];
+            }
+        }
+        nowCount++;
+    }
+    NSMutableArray *indexArr=[[NSMutableArray alloc]init];
+    for (int i=0; i<addArr.count; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:count+i inSection:2];
+        [indexArr addObject:indexPath];
+    }
+    [_tableView insertRowsAtIndexPaths:indexArr  withRowAnimation:UITableViewRowAnimationBottom];
+}
 #pragma mark置顶按钮栏
 -(UIView*)getToolBar
 {
@@ -754,7 +819,8 @@
 
 #pragma mark 排序
 -(void)paixu:(NSString *)soryKey{
-    NSDictionary *parameters = @{@"f_cat":self.menuModel.id,@"need_cat_index":@1,@"sort":soryKey};
+    pageCount=@"1";
+    NSDictionary *parameters = @{@"f_cat":self.menuModel.id,@"need_cat_index":@1,@"sort":soryKey,@"need_page":@"1",@"p":pageCount,@"per":@"12"};
     _inParameters=[parameters mutableCopy];
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
     ;
@@ -768,7 +834,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)returnInParameters:(NSDictionary *)inParameterss{
+    _inParameters=[[NSMutableDictionary alloc]initWithDictionary:inParameterss];
+}
 /*
  #pragma mark - Navigation
  

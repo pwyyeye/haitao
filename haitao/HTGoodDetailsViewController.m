@@ -803,7 +803,6 @@ static CGFloat kImageOriginHight = 400;
 //        return;
 //    }
     CGSize actualSize = [webView sizeThatFits:CGSizeZero];
-    
     CGRect webViewFrame = webView.frame;
     webViewFrame.size.height = actualSize.height;
     webView.frame = webViewFrame;
