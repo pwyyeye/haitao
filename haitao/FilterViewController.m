@@ -157,6 +157,7 @@
     }
     
     NSLog(@"----pass-_inParameter%@---",[mutarray copy]);
+    _inParameter=[mutarray copy];
     
     HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_getGoodsList withType:POSTURL withPam:[mutarray copy] withUrlName:@"getResultList"];
     httpController.delegate = self;
@@ -214,6 +215,11 @@
 
             if ([self.delegate respondsToSelector:@selector(getFilterResult:)]) {
                 [self.delegate getFilterResult:listModel.list];
+                
+                if ([self.delegate respondsToSelector:@selector(returnInParameters:)]) {
+                    [self.delegate returnInParameters:_inParameter];
+
+                }
                 
                 [self.navigationController popViewControllerAnimated:YES];
 
