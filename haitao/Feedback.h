@@ -22,6 +22,9 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonsViewHeight;
 
+@property (weak, nonatomic) IBOutlet UIView *myView;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *myScollView;
 
 @property(strong,nonatomic) NSArray *data;
 
