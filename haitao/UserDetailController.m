@@ -123,12 +123,16 @@
         label.text=@"修改头像";
         label.font=[UIFont systemFontOfSize:13];
         label.textColor=RGB(51, 51, 51);
-        cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        cell.imageView.image=[UIImage imageNamed:@"df_03_"];
-        
+        UIImageView *headerImage=[[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 70, 70)];
+        headerImage.contentMode = UIViewContentModeScaleAspectFit;
+//        headerImage.image=[UIImage imageNamed:@"df_03_"];
+        headerImage.layer.masksToBounds=YES;
+        headerImage.layer.cornerRadius=headerImage.frame.size.height/2;
+        headerImage.tag=888;
+        [cell addSubview:headerImage];
         if (![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"avatar_img"]]) {
             NSURL *url=[NSURL URLWithString:[USER_DEFAULT objectForKey:@"avatar_img"]];
-            [cell.imageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"default_04.png"]];
+            [headerImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"df_03_"]];
         }
         
         
@@ -285,7 +289,8 @@
     
     UIGraphicsEndImageContext();
     
-    _selectcedCell.imageView.image=scaledImage ;
+    UIImageView *imageView= (UIImageView *)[_selectcedCell viewWithTag:888];
+    imageView.image=scaledImage ;
 
 
     HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_modifyUserAvatar withType:POSTURL withPam:nil withUrlName:@"modifyAvata"];

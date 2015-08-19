@@ -21,7 +21,7 @@ typedef NS_ENUM(NSInteger, FilterViewControllerType) {
 @protocol FilterViewControllerDelegate <NSObject>
 
 -(void)getFilterResult:(NSArray *)resultArray;
-
+-(void)returnInParameters:(NSDictionary *)inParameters;
 @end
 
 @interface FilterViewController : UIViewController<HTTPControllerProtocol,CollapseClickDelegate,FilterViewForButtonsDelegate,FilterBrandTabelViewDelegate>
