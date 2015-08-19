@@ -67,9 +67,6 @@
 		A2E8D0261B7491020004ADB9 /* 提交订单@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E8D0231B7491020004ADB9 /* 提交订单@2x.png */; };
 		A2E8D0271B7491020004ADB9 /* 提交订单@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E8D0241B7491020004ADB9 /* 提交订单@3x.png */; };
 		A2E8D0281B7491020004ADB9 /* 提交订单6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E8D0251B7491020004ADB9 /* 提交订单6@2x.png */; };
-		A2E8D0611B749A490004ADB9 /* DetailsPage_img_gouwuliucheng_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E8D05E1B749A490004ADB9 /* DetailsPage_img_gouwuliucheng_6@2x.png */; };
-		A2E8D0621B749A490004ADB9 /* DetailsPage_img_gouwuliucheng@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E8D05F1B749A490004ADB9 /* DetailsPage_img_gouwuliucheng@2x.png */; };
-		A2E8D0631B749A490004ADB9 /* DetailsPage_img_gouwuliucheng@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E8D0601B749A490004ADB9 /* DetailsPage_img_gouwuliucheng@3x.png */; };
 		A2E8D0661B749FAB0004ADB9 /* 加入购物车_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E8D0641B749FAB0004ADB9 /* 加入购物车_@2x.png */; };
 		A2E8D0671B749FAB0004ADB9 /* 加入购物车_@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2E8D0651B749FAB0004ADB9 /* 加入购物车_@3x.png */; };
 		A2E8D06F1B759C1D0004ADB9 /* BiJiaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E8D06E1B759C1D0004ADB9 /* BiJiaModel.m */; };
@@ -647,6 +644,8 @@
 		AD8E38A21B75A7C200C9D5BA /* icon_LianXiKeFu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E38A01B75A7C200C9D5BA /* icon_LianXiKeFu@2x.png */; };
 		AD8E38A31B75A7C200C9D5BA /* icon_LianXiKeFu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E38A11B75A7C200C9D5BA /* icon_LianXiKeFu@3x.png */; };
 		AD8E38A81B75AB9000C9D5BA /* LogisticsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD8E38A61B75AB9000C9D5BA /* LogisticsCell.xib */; };
+		AD959E331B841266009BBF77 /* DetailsPage_img_gouwuliucheng@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD959E311B841266009BBF77 /* DetailsPage_img_gouwuliucheng@2x.png */; };
+		AD959E341B841266009BBF77 /* DetailsPage_img_gouwuliucheng@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD959E321B841266009BBF77 /* DetailsPage_img_gouwuliucheng@3x.png */; };
 		ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC811B53CB5F0022B2C2 /* main.m */; };
 		ADB5AC851B53CB5F0022B2C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC841B53CB5F0022B2C2 /* AppDelegate.m */; };
 		ADB5AC881B53CB5F0022B2C2 /* haitao.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC861B53CB5F0022B2C2 /* haitao.xcdatamodeld */; };
@@ -889,9 +888,6 @@
 		A2E8D0231B7491020004ADB9 /* 提交订单@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "提交订单@2x.png"; sourceTree = "<group>"; };
 		A2E8D0241B7491020004ADB9 /* 提交订单@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "提交订单@3x.png"; sourceTree = "<group>"; };
 		A2E8D0251B7491020004ADB9 /* 提交订单6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "提交订单6@2x.png"; sourceTree = "<group>"; };
-		A2E8D05E1B749A490004ADB9 /* DetailsPage_img_gouwuliucheng_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailsPage_img_gouwuliucheng_6@2x.png"; sourceTree = "<group>"; };
-		A2E8D05F1B749A490004ADB9 /* DetailsPage_img_gouwuliucheng@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailsPage_img_gouwuliucheng@2x.png"; sourceTree = "<group>"; };
-		A2E8D0601B749A490004ADB9 /* DetailsPage_img_gouwuliucheng@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailsPage_img_gouwuliucheng@3x.png"; sourceTree = "<group>"; };
 		A2E8D0641B749FAB0004ADB9 /* 加入购物车_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加入购物车_@2x.png"; sourceTree = "<group>"; };
 		A2E8D0651B749FAB0004ADB9 /* 加入购物车_@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加入购物车_@3x.png"; sourceTree = "<group>"; };
 		A2E8D06D1B759C1D0004ADB9 /* BiJiaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BiJiaModel.h; sourceTree = "<group>"; };
@@ -1709,6 +1705,8 @@
 		AD8E38A41B75AB9000C9D5BA /* LogisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogisticsCell.h; sourceTree = "<group>"; };
 		AD8E38A51B75AB9000C9D5BA /* LogisticsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogisticsCell.m; sourceTree = "<group>"; };
 		AD8E38A61B75AB9000C9D5BA /* LogisticsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogisticsCell.xib; sourceTree = "<group>"; };
+		AD959E311B841266009BBF77 /* DetailsPage_img_gouwuliucheng@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailsPage_img_gouwuliucheng@2x.png"; sourceTree = "<group>"; };
+		AD959E321B841266009BBF77 /* DetailsPage_img_gouwuliucheng@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailsPage_img_gouwuliucheng@3x.png"; sourceTree = "<group>"; };
 		ADB5AC7C1B53CB5F0022B2C2 /* haitao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = haitao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADB5AC801B53CB5F0022B2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADB5AC811B53CB5F0022B2C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -3163,14 +3161,13 @@
 		AD8E35571B70CA4300C9D5BA /* 详情页 */ = {
 			isa = PBXGroup;
 			children = (
+				AD959E311B841266009BBF77 /* DetailsPage_img_gouwuliucheng@2x.png */,
+				AD959E321B841266009BBF77 /* DetailsPage_img_gouwuliucheng@3x.png */,
 				A2E8D0D51B788FF70004ADB9 /* 客服与收藏 */,
 				AD8E35581B70CA4300C9D5BA /* DetailsPage_bg_@2x.png */,
 				AD8E35591B70CA4300C9D5BA /* DetailsPage_btn_banner_return_@2x.png */,
 				AD8E355A1B70CA4300C9D5BA /* DetailsPage_btn_banner_share_@2x.png */,
 				AD8E355B1B70CA4300C9D5BA /* DetailsPage_img_zhifufangshi_left.png */,
-				A2E8D05E1B749A490004ADB9 /* DetailsPage_img_gouwuliucheng_6@2x.png */,
-				A2E8D05F1B749A490004ADB9 /* DetailsPage_img_gouwuliucheng@2x.png */,
-				A2E8D0601B749A490004ADB9 /* DetailsPage_img_gouwuliucheng@3x.png */,
 				A2E8D0641B749FAB0004ADB9 /* 加入购物车_@2x.png */,
 				A2E8D0651B749FAB0004ADB9 /* 加入购物车_@3x.png */,
 				A2E8D0731B75F8BC0004ADB9 /* att_btn_base_@2x.png */,
@@ -4260,6 +4257,7 @@
 				AD8E351D1B70A11300C9D5BA /* skip-btn@2x.png in Resources */,
 				AD8E35A21B70CA4300C9D5BA /* FeaturedPages_img_banner_bg_@2x.png in Resources */,
 				AD8E35701B70CA4300C9D5BA /* home_bg_guojimingpin_shangpin_datu_zhong_5@2x-1.png in Resources */,
+				AD959E331B841266009BBF77 /* DetailsPage_img_gouwuliucheng@2x.png in Resources */,
 				AD8AA6321B59435C00E324AD /* MJRefresh.bundle in Resources */,
 				A2E8D0DA1B788FF70004ADB9 /* DetailsPage_btn_kehu@2x.png in Resources */,
 				AD8E36D71B721A1500C9D5BA /* icon_Descending@2x.png in Resources */,
@@ -4439,7 +4437,6 @@
 				AD8E379D1B721A1500C9D5BA /* UserCenter_icon_info@2x.png in Resources */,
 				AD8E35901B70CA4300C9D5BA /* search_icon_pinpai_@2x.png in Resources */,
 				AD8E37A81B721A1500C9D5BA /* UserCenter_icon_ShouCang.png in Resources */,
-				A2E8D0631B749A490004ADB9 /* DetailsPage_img_gouwuliucheng@3x.png in Resources */,
 				A2E8D0671B749FAB0004ADB9 /* 加入购物车_@3x.png in Resources */,
 				AD8E35881B70CA4300C9D5BA /* shuma_shaixuan_btn_dou_@2x.png in Resources */,
 				AD8E37CE1B7392EC00C9D5BA /* order_btn_definite@3x.png in Resources */,
@@ -4462,7 +4459,6 @@
 				AD8E358A1B70CA4300C9D5BA /* shuma_shaixuan_btn_xiajiantou_@2x.png in Resources */,
 				A22D30191B7C63D2004158F1 /* UMSocialLocalizable.strings in Resources */,
 				ADD655381B6F3700006F4127 /* userCenter_inco_youhuiquan@2x.png in Resources */,
-				A2E8D0611B749A490004ADB9 /* DetailsPage_img_gouwuliucheng_6@2x.png in Resources */,
 				AD8E376A1B721A1500C9D5BA /* QuanQiuBiJia_icon_ShouCang@2x.png in Resources */,
 				A2E8D0CF1B7772570004ADB9 /* home_bg_guojimingpin_shangpin_xiaotu_zhong@2x.png in Resources */,
 				AD8E356A1B70CA4300C9D5BA /* filter_btn_bottombar_peisong_selected_@2x.png in Resources */,
@@ -4475,7 +4471,6 @@
 				AD8E373A1B721A1500C9D5BA /* icon_Return@2x.png in Resources */,
 				AD8E35931B70CA4300C9D5BA /* search_icon_xiangbao_@2x.png in Resources */,
 				ADD2C4461B7B4C0700A2E638 /* addToCart@3x.png in Resources */,
-				A2E8D0621B749A490004ADB9 /* DetailsPage_img_gouwuliucheng@2x.png in Resources */,
 				A2E8D0B41B770D8D0004ADB9 /* NavBar_icon_JiaDian@2x.png in Resources */,
 				AD8E35A71B71A82500C9D5BA /* 2_retina.jpg in Resources */,
 				AD8E37091B721A1500C9D5BA /* icon_Kai_AnZhuo.png in Resources */,
@@ -4534,6 +4529,7 @@
 				AD6EFF3A1B831A7900E98480 /* asmedia_pause.png in Resources */,
 				AD8E36C61B721A1500C9D5BA /* icon_add_ShenFengZheng@3x.png in Resources */,
 				AD8E377A1B721A1500C9D5BA /* ShuMa_icon_DianQi@3x.png in Resources */,
+				AD959E341B841266009BBF77 /* DetailsPage_img_gouwuliucheng@3x.png in Resources */,
 				ADD2C4561B7DC94B00A2E638 /* icon_Order@3x.png in Resources */,
 				A2FFE17F1B608EDF0004B4BC /* pull_refresh@2x.png in Resources */,
 				AD8E35801B70CA4300C9D5BA /* shuma_icon_diannao_top_@2x.png in Resources */,
@@ -5111,8 +5107,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -5133,8 +5129,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

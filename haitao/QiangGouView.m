@@ -46,7 +46,7 @@
         }
         return;
     }
-    NSLog(@"****%d*****%d****%d",hours,minute,second);
+//    NSLog(@"****%d*****%d****%d",hours,minute,second);
     if(hours<10){
         self.hour10.text=@"0";
         self.hour1.text=[NSString stringWithFormat:@"%d",hours];
