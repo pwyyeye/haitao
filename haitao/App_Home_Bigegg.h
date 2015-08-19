@@ -31,6 +31,7 @@
 @property (copy, nonatomic) NSString *img_url;
 @property (copy, nonatomic) NSString *img_detail;
 @property (copy, nonatomic) NSString *ad_cat_id;
+@property (assign, nonatomic) int last_time;
 @property (assign, nonatomic) double price;
 @property (assign, nonatomic) double mk_price;
 @property (assign, nonatomic) double price_cn;

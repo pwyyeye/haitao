@@ -269,12 +269,19 @@
     qianggouView= (QiangGouView *)[nibView objectAtIndex:0];
     qianggouView.clipsToBounds = YES;
     qianggouView.frame = CGRectMake(55, 7, 127, 25);
-    NSString *dateStr=@"2015-08-20 22:23:00";//传入时间
-    //将传入时间转化成需要的格式
-    NSDateFormatter *format=[[NSDateFormatter alloc] init];
-    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *todate=[format dateFromString:dateStr];
-    [qianggouView setTimeStart:todate];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *comps;
+    App_Home_Bigegg *grabModel1=app_home_grab[0];
+    int last_time=0;
+    last_time=grabModel1.last_time;
+    comps = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:[[NSDate alloc] init]];
+    
+    [comps setHour:0]; //+24表示获取下一天的date，-24表示获取前一天的date；
+    [comps setMinute:0];
+    [comps setSecond:last_time];
+    NSDate *nowDate = [calendar dateByAddingComponents:comps toDate:[NSDate date] options:0];
+    
+    [qianggouView setTimeStart:nowDate];
     [qiangouTitleView addSubview:qianggouView];
     //色条
     UIImageView *hongLine=[[UIImageView alloc]initWithFrame:CGRectMake(0,0, 3, qiangouTitleView.height)];
