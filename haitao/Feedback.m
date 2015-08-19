@@ -25,6 +25,7 @@
     [httpController onSearch];
     _btn_array=[[NSMutableArray alloc] init];
     _content.delegate=self;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,6 +85,7 @@
         if ([urlname isEqualToString:@"types"]) {
             _data=[dictemp objectForKey:@"data"];
             [self initFeedBackType];
+            [self updateViewConstraints];
         }else if([urlname isEqualToString:@"addSuggest"]) {
             ShowMessage(@"提交成功！");
             [self.navigationController popViewControllerAnimated:YES];
@@ -97,7 +99,12 @@
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     self.viewWidth.constant=SCREEN_WIDTH;
-    
+    if (SCREEN_HEIGHT<=480) {
+        self.viewHeight.constant=_contact.frame.origin.y+200;
+
+    }else{
+        self.viewHeight.constant=SCREEN_HEIGHT-64;
+    }
     _buttonsViewHeight.constant=_buttonHeight;
 }
 
@@ -162,7 +169,15 @@
     inputFieldRect.origin.y += yOffset;
     
     [UIView animateWithDuration:duration animations:^{
-        self.view.frame = inputFieldRect;
+//        self.view.frame = inputFieldRect;
+        if (yOffset<0) {
+            self.myScollView.contentOffset=CGPointMake(self.myScollView.contentOffset.x, self.myScollView.contentOffset.y -yOffset);
+        }else{
+            self.myScollView.contentOffset=CGPointMake(0, 0);
+        }
+        
+
+        
     }];
 }
 

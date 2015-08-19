@@ -550,6 +550,18 @@
         return view;
     }else{
         //内层footer
+        Order_package *selectedPackage;
+        for (OrderModel *orderModel in _result_array) {
+            NSArray *array=orderModel.package_info;
+            for (Order_package *package in array) {
+                if ([package.id integerValue]==tableView.tag) {
+                    selectedPackage=package;
+                }
+            }
+        }
+        
+        
+        
         UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 72)];
         
         //运费
@@ -561,7 +573,7 @@
         
         //运费金额
         UILabel *ship=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 5, 70, 20)];
-        ship.text=[NSString stringWithFormat:@"¥%.2f",_package.shipping_amount];
+        ship.text=[NSString stringWithFormat:@"¥%.2f",selectedPackage.shipping_amount];
         ship.textAlignment=NSTextAlignmentRight;
         ship.font =[UIFont  boldSystemFontOfSize:11];
         ship.textColor=RGB(255, 13, 94);
@@ -576,7 +588,7 @@
         
         //预付税费金额
         UILabel *transport_amout=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 28, 70, 20)];
-        transport_amout.text=[NSString stringWithFormat:@"¥%.2f",_package.transport_amount];
+        transport_amout.text=[NSString stringWithFormat:@"¥%.2f",selectedPackage.transport_amount];
         transport_amout.textAlignment=NSTextAlignmentRight;
         transport_amout.font =[UIFont  boldSystemFontOfSize:11];
         transport_amout.textColor=RGB(255, 13, 94);
@@ -585,14 +597,14 @@
         //小计
         UILabel *subTotal=[[UILabel alloc] initWithFrame:CGRectMake(10, 50, SCREEN_WIDTH/2, 20)];
 //        subTotal.text=@"小计:";
-        subTotal.text=[NSString stringWithFormat:@"共 %d 件商品",_package.buy_num];
+        subTotal.text=[NSString stringWithFormat:@"共 %d 件商品",selectedPackage.buy_num];
         subTotal.font=[UIFont systemFontOfSize:11];
         subTotal.textColor=RGB(128, 128, 128);
         [view addSubview:subTotal];
         
         //小计金额
         UILabel *subTotal_amout=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 50, 70, 20)];
-        subTotal_amout.text=[NSString stringWithFormat:@"¥%.2f",_package.package_amount];
+        subTotal_amout.text=[NSString stringWithFormat:@"¥%.2f",selectedPackage.package_amount];
         subTotal_amout.textAlignment=NSTextAlignmentRight;
         subTotal_amout.font =[UIFont  boldSystemFontOfSize:11];
         subTotal_amout.textColor=RGB(255, 13, 94);

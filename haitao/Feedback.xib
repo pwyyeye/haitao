@@ -11,6 +11,8 @@
                 <outlet property="buttonsViewHeight" destination="GFM-pg-cgn" id="mxq-27-EpA"/>
                 <outlet property="contact" destination="uju-S6-hnq" id="bjk-Se-avw"/>
                 <outlet property="content" destination="cTt-Nc-NgT" id="Wf8-BP-AHf"/>
+                <outlet property="myScollView" destination="mJG-9b-6xy" id="U9C-N2-Niy"/>
+                <outlet property="myView" destination="B5L-C2-zar" id="Zmr-83-OA5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewHeight" destination="MLz-YI-y4c" id="F3g-pQ-cF1"/>
                 <outlet property="viewWidth" destination="xxH-eR-C7p" id="Egq-mq-Hsw"/>
@@ -25,16 +27,16 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B5L-C2-zar">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="512"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系方式(必填)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDh-s2-nyK">
-                                    <rect key="frame" x="10" y="285" width="86" height="16"/>
+                                    <rect key="frame" x="10" y="285" width="85.5" height="16"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                     <color key="textColor" white="0.070000000000000007" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择您要反馈的问题类型(必填)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uqq-MO-Dh5">
-                                    <rect key="frame" x="10" y="10" width="190" height="16"/>
+                                    <rect key="frame" x="10" y="10" width="189.5" height="16"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                     <color key="textColor" white="0.070000000000000007" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -65,19 +67,19 @@
                                     </connections>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如果您填写了有效的联系方式配夸将在24小时内根据您反馈的内容，以邮件、短信或电话的形式回复您" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hx-23-ksu">
-                                    <rect key="frame" x="10" y="361" width="580" height="32"/>
+                                    <rect key="frame" x="10" y="361" width="580" height="31.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="紧急问题请致电 400-892-8080" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQS-BQ-mMX">
-                                    <rect key="frame" x="10" y="403" width="580" height="15"/>
+                                    <rect key="frame" x="10" y="402.5" width="580" height="14.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.67951040740000002" green="0.67951040740000002" blue="0.67951040740000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wwP-vX-rjz">
-                                    <rect key="frame" x="0.0" y="472" width="600" height="40"/>
+                                    <rect key="frame" x="0.0" y="560" width="600" height="40"/>
                                     <color key="backgroundColor" red="1" green="0.050980392159999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="0k9-xz-KFj"/>
@@ -91,7 +93,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您的建议(必填)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBH-dr-wBe">
-                                    <rect key="frame" x="10" y="149" width="86" height="16"/>
+                                    <rect key="frame" x="10" y="149" width="85.5" height="16"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                     <color key="textColor" white="0.070000000000000007" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -124,7 +126,7 @@
                                 <constraint firstItem="Uqq-MO-Dh5" firstAttribute="leading" secondItem="B5L-C2-zar" secondAttribute="leading" constant="10" id="M0w-g0-5r9"/>
                                 <constraint firstItem="4hx-23-ksu" firstAttribute="top" secondItem="uju-S6-hnq" secondAttribute="bottom" constant="10" id="M98-Nk-ahg"/>
                                 <constraint firstAttribute="trailing" secondItem="uju-S6-hnq" secondAttribute="trailing" constant="10" id="MA5-ZP-FJb"/>
-                                <constraint firstAttribute="height" constant="512" id="MLz-YI-y4c"/>
+                                <constraint firstAttribute="height" constant="600" id="MLz-YI-y4c"/>
                                 <constraint firstItem="wwP-vX-rjz" firstAttribute="leading" secondItem="B5L-C2-zar" secondAttribute="leading" id="Rw9-dP-BKG"/>
                                 <constraint firstAttribute="trailing" secondItem="4hx-23-ksu" secondAttribute="trailing" constant="10" id="W0N-c7-yeC"/>
                                 <constraint firstItem="MDh-s2-nyK" firstAttribute="top" secondItem="cTt-Nc-NgT" secondAttribute="bottom" constant="10" id="XGh-26-zcH"/>
@@ -164,7 +166,7 @@
                 <constraint firstItem="mJG-9b-6xy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Zhk-ue-kOL"/>
                 <constraint firstAttribute="bottom" secondItem="mJG-9b-6xy" secondAttribute="bottom" id="qNK-g1-tpy"/>
             </constraints>
-            <point key="canvasLocation" x="328" y="324"/>
+            <point key="canvasLocation" x="343" y="273"/>
         </view>
     </objects>
 </document>
