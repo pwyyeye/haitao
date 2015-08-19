@@ -21,6 +21,7 @@
     NSString *title;
     NSString *menuid;
     NSString *pageCount;
+    NSMutableDictionary *shaixuanDic;
 }
 @property (nonatomic,retain)NSDictionary *spcDic;
 @property (nonatomic,strong)DJRefresh *refresh;

@@ -80,9 +80,9 @@
     listArr=[[NSMutableArray alloc]init];
 
     
-    NSDictionary *parameters = @{@"s_cat":self.menuModel.id,@"need_cat_index":@1};
+    NSDictionary *parameters = @{@"f_cat":self.menuModel.id,@"need_cat_index":@"1",@"need_page":@"1",@"p":pageCount,@"per":@"12"};
     _inParameters=[parameters mutableCopy];
-    
+    shaixuanDic=[parameters mutableCopy];
     [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:YES];
 //    [self getCatBanner];
 }
@@ -795,7 +795,7 @@
     else if(btn.tag==104)
     {
         NSLog(@"----pass-dic%@---",indexDic);
-        FilterViewController *filterViewController=[[FilterViewController alloc] initWithNibName:@"FilterViewController" bundle:nil andFilterType:FilterViewControllTypeDefault andParameter:_inParameters];
+        FilterViewController *filterViewController=[[FilterViewController alloc] initWithNibName:@"FilterViewController" bundle:nil andFilterType:FilterViewControllTypeDefault andParameter:shaixuanDic];
         filterViewController.delegate=self;
         filterViewController.pamCategoryName=self.title;
         //        filterViewController.categoryImageUrl=分类图片地址
@@ -820,13 +820,15 @@
 #pragma mark 排序
 -(void)paixu:(NSString *)soryKey{
     pageCount=@"1";
-    NSDictionary *parameters = @{@"f_cat":self.menuModel.id,@"need_cat_index":@1,@"sort":soryKey,@"need_page":@"1",@"p":pageCount,@"per":@"12"};
-    _inParameters=[parameters mutableCopy];
+    [_inParameters removeObjectForKey:@"p"];
+    [_inParameters setObject:pageCount forKey:@"p"];
+    [_inParameters removeObjectForKey:@"sort"];
+    [_inParameters setObject:soryKey forKey:@"sort"];
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
     ;
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
-    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsListSort"];
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:_inParameters withUrlName:@"getGoodsListSort"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
 }
