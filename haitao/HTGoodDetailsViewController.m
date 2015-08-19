@@ -419,13 +419,19 @@ static CGFloat kImageOriginHight = 400;
     brandView.height=barndMiaoshuContent.height+barndMiaoshuContent.top+20;
     
     //加载html商品信息
-    webView1=[[UIWebView alloc]initWithFrame:CGRectMake(0, brandView.top+brandView.height, _scrollView.width,200)];
+    webView1=[[UIWebView alloc]initWithFrame:CGRectMake(-2, brandView.top+brandView.height, _scrollView.width+2,200)];
     
     
-    NSString *webStr=[NSString stringWithFormat:@"<body><meta name=\"viewport\" content=\"width=device-width, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no\" />%@</body>",self.goodsExt.content];
+    NSString *webStr=[NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" /></head><body>%@<script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '310';imgs[i].style.height = 'auto';}</script></body>",self.goodsExt.content];
+    //
+    
+    
+    
+//
     isLoadingFinished = NO;
     [webView1 loadHTMLString:webStr baseURL:nil];
-    [webView1 setScalesPageToFit:YES];
+    [webView1 setScalesPageToFit:NO];
+    [webView1  setUserInteractionEnabled:NO];
     [webView1 setBackgroundColor:[UIColor whiteColor]];
     webView1.delegate=self;
     webView1.opaque = NO;
@@ -796,12 +802,12 @@ static CGFloat kImageOriginHight = 400;
 //        
 //        return;
 //    }
-
-    UIScrollView *scrollView = (UIScrollView *)[[webView subviews] objectAtIndex:0];
-    CGFloat webViewHeight = [scrollView contentSize].height;
-    CGRect newFrame = webView.frame;
-    newFrame.size.height = webViewHeight;
-    webView.frame = newFrame;
+    CGSize actualSize = [webView sizeThatFits:CGSizeZero];
+    
+    CGRect webViewFrame = webView.frame;
+    webViewFrame.size.height = actualSize.height;
+    webView.frame = webViewFrame;
+    
     [_scrollView setContentSize:CGSizeMake(self.view.width, webView.frame.size.height+webView.frame.origin.y+10)];
     [self getShopEvaluation];
     
