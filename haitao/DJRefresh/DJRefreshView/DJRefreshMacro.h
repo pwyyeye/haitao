@@ -28,15 +28,15 @@
 /**
  *  默认Top字段
  */
-#define kDJRefreshTopTypeDefine         @"下拉刷新"
+#define kDJRefreshTopTypeDefine         @"下拉加载"
 #define kDJRefreshTopTypeCanRefresh     @"松开刷新"
 #define kDJRefreshTopTypeRefreshing     @"正在加载..."
 
 /**
  *  默认Bottom字段
  */
-#define kDJRefreshBottomTypeDefine      @"上拉加载更多"
-#define kDJRefreshBottomTypeCanRefresh  @"松开即可加载"
+#define kDJRefreshBottomTypeDefine      @"上拉加载"
+#define kDJRefreshBottomTypeCanRefresh  @"松开刷新"
 #define kDJRefreshBottomTypeRefreshing  @"正在加载..."
 
 

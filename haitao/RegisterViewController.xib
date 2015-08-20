@@ -98,7 +98,7 @@
                         <constraint firstAttribute="height" constant="15" id="lI7-qh-lNa"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
-                    <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="0.67951040740000002" green="0.67951040740000002" blue="0.67951040740000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uLw-L9-s93">

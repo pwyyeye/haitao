@@ -165,7 +165,7 @@
             //order_status 1、刚录入订单 2、订单已支付  8、订单完成 用户已确认 9、取消订单
             //package_status 1、待发货 2、已发货 8、已确认
             if ([_packageModel.package_info.package_status intValue]==1) {
-                _orderStatus.text=[NSString stringWithFormat:@"还未付款"];
+                _orderStatus.text=[NSString stringWithFormat:@"待付款"];
                 
                 //联系客服
                 UIButton *kefu=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2, 30)];
@@ -208,7 +208,7 @@
                 [self.myView addSubview:_footerBar];
                 
             }else if ([_packageModel.package_info.package_status intValue]==2) {
-                _orderStatus.text=[NSString stringWithFormat:@"等待卖家发货"];
+                _orderStatus.text=[NSString stringWithFormat:@"待发货"];
                 
                 //联系客服
                 UIButton *kefu=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2, 30)];
@@ -251,7 +251,7 @@
                 [self.myView addSubview:_footerBar];
                 
             } else if([_packageModel.package_info.package_status intValue]==3){
-                _orderStatus.text=[NSString stringWithFormat:@"卖家已发货"];
+                _orderStatus.text=[NSString stringWithFormat:@"已发货"];
                 //联系客服
                 UIButton *kefu=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/5*1.5, 30)];
                 [kefu setImage:[UIImage imageNamed:@"icon_LianXiKeFu"]  forState:UIControlStateNormal];
@@ -300,7 +300,7 @@
 
                 
             }else if([_packageModel.package_info.package_status intValue]==8){
-                _orderStatus.text=[NSString stringWithFormat:@"订单已完成"];
+                _orderStatus.text=[NSString stringWithFormat:@"交易成功"];
                 //联系客服
                 UIButton *kefu=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/3, 30)];
                 [kefu setImage:[UIImage imageNamed:@"icon_LianXiKeFu"]  forState:UIControlStateNormal];
@@ -357,22 +357,20 @@
                 
                 
             }else if([_packageModel.package_info.package_status intValue]==9){
-                _orderStatus.text=[NSString stringWithFormat:@"订单已取消"];
+                _orderStatus.text=[NSString stringWithFormat:@"交易关闭"];
                 
 
             }
             
-            _payAmount.text=[NSString stringWithFormat:@"包裹应付金额（包含运费税费）: %.2f",_packageModel.package_info.package_amount];
+            _payAmount.text=[NSString stringWithFormat:@"包裹应付金额(%@): %.2f",[_packageModel.package_info.ship_type integerValue]==1?@"含商品金额，直邮运费，预收关税":@"含商品金额，转运运费",_packageModel.package_info.package_amount];
+            _payAmount.numberOfLines=0;
+            _shipAmount.text=[NSString stringWithFormat:@"%@: %.2f",[_packageModel.package_info.ship_type integerValue]==1?@"直邮运费":@"转运运费",_packageModel.package_info.shipping_amount];
             
-            _shipAmount.text=[NSString stringWithFormat:@"运费: %.2f",_packageModel.package_info.shipping_amount];
-            
-            _taxAmount.text=[NSString stringWithFormat:@"税费: %.2f",_packageModel.package_info.transport_amount];
+            _taxAmount.text=[NSString stringWithFormat:@"%@: %.2f",[_packageModel.package_info.ship_type integerValue]==1?@"预收税费":@"预估税费",[_packageModel.package_info.ship_type integerValue]==1?_packageModel.package_info.direct_amount:_packageModel.package_info.transport_amount];
             
             _consignee.text=[NSString stringWithFormat:@"收件人: %@",_packageModel.order.consignee];
             
             _mobile.text=[NSString stringWithFormat:@"%@",_packageModel.order.mobile];
-            
-            _consignee.text=[NSString stringWithFormat:@"收件人: %@",_packageModel.order.consignee];
             
             _address.text= [NSString stringWithFormat:@"%@%@",_packageModel.order.province,_packageModel.order.address];;
             self.myScollView.delegate=self;
@@ -501,7 +499,7 @@
         [view addSubview:country];
         
         //商城名称
-        UILabel *shopname=[[UILabel alloc] initWithFrame:CGRectMake(105, 0, 70, 38)];
+        UILabel *shopname=[[UILabel alloc] initWithFrame:CGRectMake(95, 0, 70, 38)];
         shopname.text=package.shop_name;
         shopname.font =[UIFont  systemFontOfSize:10];
         shopname.textColor=RGB(179, 179, 179);
@@ -533,7 +531,7 @@
     
     //运费
     UILabel *head=[[UILabel alloc] initWithFrame:CGRectMake(10, 5, SCREEN_WIDTH/2, 20)];
-    head.text=@"运费:";
+    head.text=[_packageModel.package_info.ship_type integerValue]==1?@"直邮运费":@"转运运费";
     head.font=[UIFont boldSystemFontOfSize:11];
     head.textColor=RGB(51, 51, 51);
     [view addSubview:head];
@@ -548,14 +546,14 @@
     
     //预付税费 transport_amount
     UILabel *transport=[[UILabel alloc] initWithFrame:CGRectMake(10, 28, SCREEN_WIDTH/2, 20)];
-    transport.text=@"预估税费:";
+    transport.text=[_packageModel.package_info.ship_type integerValue]==1?@"预收税费":@"预估税费";
     transport.textColor=RGB(51, 51, 51);
     transport.font=[UIFont boldSystemFontOfSize:11];
     [view addSubview:transport];
     
     //预付税费金额
     UILabel *transport_amout=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 28, 70, 20)];
-    transport_amout.text=[NSString stringWithFormat:@"¥%.2f",package.transport_amount];
+    transport_amout.text=[NSString stringWithFormat:@"%.2f", [_packageModel.package_info.ship_type integerValue]==1?_packageModel.package_info.direct_amount:_packageModel.package_info.transport_amount];
     transport_amout.textAlignment=NSTextAlignmentRight;
     transport_amout.font =[UIFont  boldSystemFontOfSize:11];
     transport_amout.textColor=RGB(255, 13, 94);

@@ -158,7 +158,7 @@ static CGFloat kImageOriginHight = 400;
     [_scrollView addSubview:_bigView1];
     //判断直邮和转运
     if([self.goods.ship_type isEqualToString:@"2"]){
-        UILabel *title1=[[UILabel alloc]initWithFrame:CGRectMake(0,5, self.view.frame.size.width/2, 20)];
+        UILabel *title1=[[UILabel alloc]initWithFrame:CGRectMake(0,5, self.view.frame.size.width, 20)];
         title1.text=[NSString stringWithFormat:@"%@g",self.goodsExt.weight_g];
         title1.font=[UIFont systemFontOfSize:13];
         title1.backgroundColor=[UIColor clearColor];
@@ -166,11 +166,11 @@ static CGFloat kImageOriginHight = 400;
         title1.textAlignment=1;
         [_bigView1 addSubview:title1];
         
-        UILabel *title2=[[UILabel alloc]initWithFrame:CGRectMake(0, title1.frame.size.height+5, 320/2, 20)];
+        UILabel *title2=[[UILabel alloc]initWithFrame:CGRectMake(0, title1.frame.size.height+5, self.view.frame.size.width, 20)];
         title2.text=@"发货重量";
         title2.font=[UIFont systemFontOfSize:10];
         title2.backgroundColor=[UIColor clearColor];
-        title2.textColor =RGB(179, 179, 179) ;
+        title2.textColor =RGB(179, 179, 179);
         title2.textAlignment=1;
         [_bigView1 addSubview:title2];
         
@@ -179,24 +179,24 @@ static CGFloat kImageOriginHight = 400;
         [_bigView1 addSubview:line1];
         
         
-        
-        UILabel *title11=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, 5, self.view.frame.size.width/2, 20)];
-        title11.text=@"0";
-        title11.font=[UIFont systemFontOfSize:13];
-        title11.backgroundColor=[UIColor clearColor];
-        title11.textColor =RGB(128, 128, 128) ;
-        title11.textAlignment=1;
-        [_bigView1 addSubview:title11];
-        
-        UILabel *title12=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, title1.frame.size.height+5, self.view.frame.size.width/2, 20)];
-        title12.text=@"转运运费";
-        title12.font=[UIFont systemFontOfSize:10];
-        title12.backgroundColor=[UIColor clearColor];
-        title12.textColor =RGB(179, 179, 179) ;
-        title12.textAlignment=1;
-        [_bigView1 addSubview:title12];
+//        
+//        UILabel *title11=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, 5, self.view.frame.size.width/2, 20)];
+//        title11.text=@"0";
+//        title11.font=[UIFont systemFontOfSize:13];
+//        title11.backgroundColor=[UIColor clearColor];
+//        title11.textColor =RGB(128, 128, 128) ;
+//        title11.textAlignment=1;
+//        [_bigView1 addSubview:title11];
+//        
+//        UILabel *title12=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, title1.frame.size.height+5, self.view.frame.size.width/2, 20)];
+//        title12.text=@"转运运费";
+//        title12.font=[UIFont systemFontOfSize:10];
+//        title12.backgroundColor=[UIColor clearColor];
+//        title12.textColor =RGB(179, 179, 179) ;
+//        title12.textAlignment=1;
+//        [_bigView1 addSubview:title12];
     }else{
-        UILabel *title1=[[UILabel alloc]initWithFrame:CGRectMake(0,5, self.view.frame.size.width/3, 20)];
+        UILabel *title1=[[UILabel alloc]initWithFrame:CGRectMake(0,5, self.view.frame.size.width/2, 20)];
         title1.text=[NSString stringWithFormat:@"%@g",self.goodsExt.weight_g];
         title1.font=[UIFont systemFontOfSize:13];
         title1.backgroundColor=[UIColor clearColor];
@@ -204,7 +204,7 @@ static CGFloat kImageOriginHight = 400;
         title1.textAlignment=1;
         [_bigView1 addSubview:title1];
         
-        UILabel *title2=[[UILabel alloc]initWithFrame:CGRectMake(0, title1.frame.size.height+5, self.view.frame.size.width/3, 20)];
+        UILabel *title2=[[UILabel alloc]initWithFrame:CGRectMake(0, title1.frame.size.height+5, self.view.frame.size.width/2, 20)];
         title2.text=@"发货重量";
         title2.font=[UIFont systemFontOfSize:10];
         title2.backgroundColor=[UIColor clearColor];
@@ -218,29 +218,29 @@ static CGFloat kImageOriginHight = 400;
         
         
         
-        UILabel *title11=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/3, 5, self.view.frame.size.width/3, 20)];
-        title11.text=@"0";
-        title11.font=[UIFont systemFontOfSize:13];
-        title11.backgroundColor=[UIColor clearColor];
-        title11.textColor =RGB(128, 128, 128);
-        title11.textAlignment=1;
-        [_bigView1 addSubview:title11];
+//        UILabel *title11=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/3, 5, self.view.frame.size.width/3, 20)];
+//        title11.text=@"0";
+//        title11.font=[UIFont systemFontOfSize:13];
+//        title11.backgroundColor=[UIColor clearColor];
+//        title11.textColor =RGB(128, 128, 128);
+//        title11.textAlignment=1;
+//        [_bigView1 addSubview:title11];
+//        
+//        UILabel *title12=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/3, title1.frame.size.height+5, self.view.frame.size.width/3, 20)];
+//        title12.text=@"直邮运费";
+//        title12.font=[UIFont systemFontOfSize:10];
+//        title12.backgroundColor=[UIColor clearColor];
+//        title12.textColor =RGB(179, 179, 179);
+//        title12.textAlignment=1;
+//        [_bigView1 addSubview:title12];
+//        
+//        UIImageView*line2=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width*2/3,( _bigView1.frame.size.height-30)/2, 1, 30)];
+//        line2.image=BundleImage(@"line_01_.png");
+//        [_bigView1 addSubview:line2];
         
-        UILabel *title12=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/3, title1.frame.size.height+5, self.view.frame.size.width/3, 20)];
-        title12.text=@"直邮运费";
-        title12.font=[UIFont systemFontOfSize:10];
-        title12.backgroundColor=[UIColor clearColor];
-        title12.textColor =RGB(179, 179, 179);
-        title12.textAlignment=1;
-        [_bigView1 addSubview:title12];
-        
-        UIImageView*line2=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width*2/3,( _bigView1.frame.size.height-30)/2, 1, 30)];
-        line2.image=BundleImage(@"line_01_.png");
-        [_bigView1 addSubview:line2];
         
         
-        
-        UILabel *title13=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width*2/3, 5, self.view.frame.size.width/3, 20)];
+        UILabel *title13=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, 5, self.view.frame.size.width/2, 20)];
         title13.text=[NSString stringWithFormat:@"%.f",self.goodsExt.direct_tax ];
         title13.font=[UIFont systemFontOfSize:13];
         title13.backgroundColor=[UIColor clearColor];
@@ -248,8 +248,8 @@ static CGFloat kImageOriginHight = 400;
         title13.textAlignment=1;
         [_bigView1 addSubview:title13];
         
-        UILabel *title32=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width*2/3, title1.frame.size.height+5, self.view.frame.size.width/3, 20)];
-        title32.text=@"税费";
+        UILabel *title32=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, title1.frame.size.height+5, self.view.frame.size.width/2, 20)];
+        title32.text=@"预收关税";
         title32.font=[UIFont systemFontOfSize:10];
         title32.backgroundColor=[UIColor clearColor];
         title32.textColor =RGB(179, 179, 179);
@@ -269,9 +269,9 @@ static CGFloat kImageOriginHight = 400;
     yunfeititle.textColor =RGB(175, 104, 122);
     yunfeititle.textAlignment=1;
     [yunfeiView addSubview:yunfeititle];
-    [_scrollView addSubview:yunfeiView];
+//    [_scrollView addSubview:yunfeiView];
     //支付方式
-    _bigView2=[[UIView alloc]initWithFrame:CGRectMake(0, yunfeiView.frame.size.height+yunfeiView.frame.origin.y+10, _scrollView.width, 80)];
+    _bigView2=[[UIView alloc]initWithFrame:CGRectMake(0, _bigView1.frame.size.height+_bigView1.frame.origin.y+10, _scrollView.width, 60)];
     _bigView2.backgroundColor=[UIColor whiteColor];
 //    _bigView2.layer.borderWidth=0.5;
 //    _bigView2.layer.borderColor=[UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0].CGColor;
@@ -289,29 +289,29 @@ static CGFloat kImageOriginHight = 400;
 //    title3.textAlignment=0;
 //    [_bigView2 addSubview:title3];
     
-    UIImageView *headImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, 20, 40, 40)];
+    UIImageView *headImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 40, 40)];
     [headImg setImageWithURL:[NSURL URLWithString:self.goods.shop_logo_app] placeholderImage:[UIImage imageNamed:@"AlipayIcon"]];
 //    headImg.image=[UIImage imageNamed:@"AlipayIcon"];
     [_bigView2 addSubview:headImg];
     headImg.backgroundColor=[UIColor clearColor];
     //国家
     //国家icon
-    UIImageView *country=[[UIImageView alloc] initWithFrame:CGRectMake(_bigView2.width-45-90, headImg.top, 20, 20)];
+    UIImageView *country=[[UIImageView alloc] initWithFrame:CGRectMake(_bigView2.width-45-90, 10, 15, 15)];
     [country setImageWithURL:[NSURL URLWithString:self.goods.country_flag_url] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
     [_bigView2 addSubview:country];
     
-    //商城名称
-    UILabel *shopname=[[UILabel alloc] initWithFrame:CGRectMake(country.left+country.width+5, country.top-8, 70, 38)];
+    //国家名称
+    UILabel *shopname=[[UILabel alloc] initWithFrame:CGRectMake(country.left+country.width+5, 8, 70, 20)];
     shopname.text=self.goods.country_name;
     shopname.font =[UIFont  systemFontOfSize:10];
     shopname.textColor=RGB(179, 179, 179);
     [_bigView2 addSubview:shopname];
 
     
-    UILabel *title5=[[UILabel alloc]initWithFrame:CGRectMake(headImg.width+headImg.left+5, headImg.top+headImg.height-20,160, 20)];
-    title5.text=@"下单后6-10个工作日到手";
+    UILabel *title5=[[UILabel alloc]initWithFrame:CGRectMake(headImg.width+headImg.left+5, 35,200, 20)];
+    title5.text=[self.goods.country_name isEqualToString:@"美国"]?@"一般为国外商城发货后10~17个工作日到手":@"一般为国外商城发货后3-5个工作日到手";
     
-    title5.font=[UIFont systemFontOfSize:10];
+    title5.font=[UIFont systemFontOfSize:9];
     title5.numberOfLines=2;
     title5.backgroundColor=[UIColor clearColor];
     title5.textColor =RGB(179, 179, 179);
@@ -322,7 +322,7 @@ static CGFloat kImageOriginHight = 400;
     spzqBtn.userInteractionEnabled=true;
     spzqBtn.backgroundColor=[UIColor clearColor];
     spzqBtn.frame =CGRectMake(_bigView2.width-10-80, title5.top-6, 80, 30);
-    [spzqBtn setTitle:@"商品专区" forState:UIControlStateNormal];
+    [spzqBtn setTitle:@"商城专区" forState:UIControlStateNormal];
     spzqBtn.titleLabel.font = [UIFont systemFontOfSize:11];
     [spzqBtn setTitleColor:RGB(128, 128, 128)  forState:UIControlStateNormal];
     [spzqBtn addTarget:self action:@selector(shopquQuery:) forControlEvents:UIControlEventTouchUpInside];
@@ -387,7 +387,7 @@ static CGFloat kImageOriginHight = 400;
     brandAct.userInteractionEnabled=true;
     brandAct.backgroundColor=[UIColor clearColor];
     brandAct.frame =CGRectMake(brandView.width-10-100, barndMiaoshu.top-6, 100, 30);
-    [brandAct setTitle:@"进入品牌专区" forState:UIControlStateNormal];
+    [brandAct setTitle:@"品牌专区" forState:UIControlStateNormal];
     brandAct.titleLabel.font = [UIFont systemFontOfSize:11];
     [brandAct setTitleColor:RGB(128, 128, 128)  forState:UIControlStateNormal];
     [brandAct addTarget:self action:@selector(brandQuQuery:) forControlEvents:UIControlEventTouchUpInside];
@@ -574,7 +574,7 @@ static CGFloat kImageOriginHight = 400;
 //    [carBtn setImage:BundleImage(@"icon_Order") forState:0];
     [view_bar addSubview:carBtn];
     UIImageView *gwcImg=[[UrlImageView alloc]initWithFrame:CGRectMake(20, 8, 24, 22)];
-    gwcImg.image=[UIImage imageNamed:@"icon_AddOrder"];
+    gwcImg.image=[UIImage imageNamed:@"icon_AddOrder"];//icon_Order
     [carBtn addSubview:gwcImg];
     UILabel *gwcLbl=[[UILabel alloc]initWithFrame:CGRectMake(gwcImg.frame.origin.x-4, gwcImg.frame.size.height+gwcImg.frame.origin.y+6,gwcImg.frame.size.width+10, 10)];
     gwcLbl.text=@"购物车";
@@ -904,15 +904,16 @@ static CGFloat kImageOriginHight = 400;
     gouwuTitleLbl.textColor =RGB(51, 51, 51);
     gouwuTitleLbl.textAlignment=0;
     [gouwuQAView addSubview:gouwuTitleLbl];
-    UIImageView *gouwuliuchengImg=[[UIImageView alloc]initWithFrame:CGRectMake(0,gouwuTitleLbl.frame.size.height+gouwuTitleLbl.frame.origin.y+10,SCREEN_WIDTH,158)];
+    UIImageView *gouwuliuchengImg=[[UIImageView alloc]initWithFrame:CGRectMake(0,gouwuTitleLbl.frame.size.height+gouwuTitleLbl.frame.origin.y,SCREEN_WIDTH,158)];
     
     [gouwuliuchengImg setContentMode:UIViewContentModeScaleAspectFill];
     gouwuliuchengImg.image=BundleImage(@"DetailsPage_img_gouwuliucheng");
+    [gouwuliuchengImg setContentMode:UIViewContentModeScaleAspectFit];
     [gouwuQAView addSubview:gouwuliuchengImg];
     //QA
-    UILabel *qaTitleLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, gouwuliuchengImg.top+gouwuliuchengImg.height+10, 80, 20)];
+    UILabel *qaTitleLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, gouwuliuchengImg.top+gouwuliuchengImg.height, 80, 20)];
     qaTitleLbl.text=@"常见Q&A";
-    qaTitleLbl.font=[UIFont boldSystemFontOfSize:17];
+    qaTitleLbl.font=[UIFont boldSystemFontOfSize:15];
     qaTitleLbl.backgroundColor=[UIColor clearColor];
     qaTitleLbl.textColor =hexColor(@"#18b112");
     qaTitleLbl.textAlignment=0;
@@ -927,7 +928,7 @@ static CGFloat kImageOriginHight = 400;
         [qaCounteView addSubview:qaLine];
         //问题标题
         UILabel *titleQA=[[UILabel alloc]initWithFrame:CGRectMake(10, 10,190, 10)];
-        titleQA.text=@"如何下单?";
+        titleQA.text=@"购买的海淘商品，要多久到货？";
         titleQA.font=[UIFont boldSystemFontOfSize:11];
         titleQA.backgroundColor=[UIColor clearColor];
         titleQA.textColor =RGB(51, 51, 51);
@@ -935,7 +936,7 @@ static CGFloat kImageOriginHight = 400;
         [qaCounteView addSubview:titleQA];
         //具体内容
         UILabel *countentQA=[[UILabel alloc]initWithFrame:CGRectMake(10, titleQA.top+titleQA.height+10,qaCounteView.width-20, 10)];
-        countentQA.text=@"    您可以在我们平台上方便快捷的把全球各地的商品收入自己的购物车并一键购买，由于国外商品过海关时需要提供收货人的身份证证件信息，所以在您确认订单时，请务必上传收货人本人的身份证照片。";
+        countentQA.text=@"    海淘购物，需要经过跨国运输、海关清关等环节。这和国内快递不同，一是手续相对繁杂、且运输环节较多，而且还存在着海关严查及其他不可抗力的情况。 鉴于此配夸网与国际和国内优质物流服务商达成合作，确保商品按时到达用户手中。日本发货商品一般为商城发货后3~5个工作日到货；美国发货商品一般为商城发货后10~17个工作日到货。";
         countentQA.font=[UIFont systemFontOfSize:11];
         countentQA.backgroundColor=[UIColor clearColor];
         countentQA.textColor = RGB(179, 179, 179);

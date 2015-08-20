@@ -7,7 +7,7 @@
 //
 
 #import "ConnetPeiKua.h"
-
+#import "ChatViewController.h"
 @interface ConnetPeiKua ()
 
 @end
@@ -49,5 +49,11 @@
     
     [_phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
     
+}
+
+- (IBAction)gotoKefu:(id)sender {
+    ChatViewController *chat=[ChatViewController shareChat];
+    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+    [self.navigationController pushViewController:chat animated:YES];
 }
 @end

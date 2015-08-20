@@ -123,7 +123,7 @@
     if([urlname isEqualToString:@"menu"]){
         NSArray *arrtemp=[dictemp objectForKey:@"data"];
         if ((NSNull *)arrtemp == [NSNull null]) {
-            showMessage(@"暂无数据!");
+            showMessage(@"暂无商品!");
             //            [self showMessage:@"暂无数据!"];
             return;
             
@@ -154,7 +154,7 @@
             [goodsModelArr addObject:goodsModel];
         }
         if(goodsModelArr.count<1){
-            ShowMessage(@"无数据");
+            ShowMessage(@"暂无商品");
             return;
         }
         NSDictionary *menuIndexDic=[dataDic objectForKey:@"cat_index"];

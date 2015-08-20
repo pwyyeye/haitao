@@ -14,4 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
 
 - (IBAction)callPhone:(id)sender;
+
+- (IBAction)gotoKefu:(id)sender;
+
 @end
