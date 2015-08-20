@@ -128,7 +128,7 @@
     qaLine.backgroundColor=RGB(179, 179, 179);
     
     [self.view  addSubview:qaLine];
-    qaLine.hidden=YES;
+//    qaLine.hidden=YES;
 }
 
 - (void)selectedTab:(UIButton *)button

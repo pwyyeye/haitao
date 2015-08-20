@@ -39,7 +39,7 @@
         UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(imageHead.frame.size.width+imageHead.frame.origin.x+10, imageHead.frame.origin.y, backgroudView.width-20-75-10, 40)];
         title_label.text=[NSString stringWithFormat:@"￥%.2f",goods.price_cn];
         title_label.font=[UIFont boldSystemFontOfSize:13];
-        title_label.textColor =hexColor(@"#ff0d5e");
+        title_label.textColor =RGB(255, 13, 94);
         title_label.backgroundColor=[UIColor clearColor];
         
         title_label.textAlignment=0;
@@ -170,7 +170,7 @@
             UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(shiplal.frame.size.width+shiplal.frame.origin.x+10, shiplal.frame.origin.y+3, biJiaCell.width-(shiplal.frame.size.width+shiplal.frame.origin.x+10), 10)];
             title_label.text=[NSString stringWithFormat:@"￥%@",biJiaModel.price];
             title_label.font=[UIFont boldSystemFontOfSize:13];
-            title_label.textColor =hexColor(@"#ff0d5e");
+            title_label.textColor =RGB(255, 13, 94);
             title_label.backgroundColor=[UIColor clearColor];
             
             title_label.textAlignment=NSTextAlignmentLeft;

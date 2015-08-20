@@ -511,6 +511,9 @@
     return 35;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (section+1==carShopList.count) {
+        return 0;
+    }
     return 13;
 }
 

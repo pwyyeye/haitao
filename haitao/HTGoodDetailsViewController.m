@@ -289,11 +289,18 @@ static CGFloat kImageOriginHight = 400;
 //    title3.textAlignment=0;
 //    [_bigView2 addSubview:title3];
     
-    UIImageView *headImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 40, 40)];
+    UIImageView *headImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, 0, 60, 60)];
     [headImg setImageWithURL:[NSURL URLWithString:self.goods.shop_logo_app] placeholderImage:[UIImage imageNamed:@"AlipayIcon"]];
 //    headImg.image=[UIImage imageNamed:@"AlipayIcon"];
     [_bigView2 addSubview:headImg];
     headImg.backgroundColor=[UIColor clearColor];
+    
+    //商城名称
+    UILabel *shopname=[[UILabel alloc] initWithFrame:CGRectMake(headImg.width+headImg.left+5, 8, 70, 20)];
+    shopname.text=self.goods.shop_name;
+    shopname.font =[UIFont  systemFontOfSize:10];
+    shopname.textColor=RGB(179, 179, 179);
+    [_bigView2 addSubview:shopname];
     //国家
     //国家icon
     UIImageView *country=[[UIImageView alloc] initWithFrame:CGRectMake(_bigView2.width-45-90, 10, 15, 15)];
@@ -301,11 +308,11 @@ static CGFloat kImageOriginHight = 400;
     [_bigView2 addSubview:country];
     
     //国家名称
-    UILabel *shopname=[[UILabel alloc] initWithFrame:CGRectMake(country.left+country.width+5, 8, 70, 20)];
-    shopname.text=self.goods.country_name;
-    shopname.font =[UIFont  systemFontOfSize:10];
-    shopname.textColor=RGB(179, 179, 179);
-    [_bigView2 addSubview:shopname];
+    UILabel *countryname=[[UILabel alloc] initWithFrame:CGRectMake(country.left+country.width+5, 8, 70, 20)];
+    countryname.text=self.goods.country_name;
+    countryname.font =[UIFont  systemFontOfSize:10];
+    countryname.textColor=RGB(179, 179, 179);
+    [_bigView2 addSubview:countryname];
 
     
     UILabel *title5=[[UILabel alloc]initWithFrame:CGRectMake(headImg.width+headImg.left+5, 35,200, 20)];
@@ -368,7 +375,7 @@ static CGFloat kImageOriginHight = 400;
     //titel
     UILabel *pinpaiLbl=[[UILabel alloc]initWithFrame:CGRectMake(brandImg.width+brandImg.left+10, 10,190, 10)];
     pinpaiLbl.text=self.goods.brand_name;
-    pinpaiLbl.font=[UIFont boldSystemFontOfSize:12];
+    pinpaiLbl.font=[UIFont boldSystemFontOfSize:10];
     pinpaiLbl.backgroundColor=[UIColor clearColor];
     pinpaiLbl.textColor =RGB(179, 179, 179);
     pinpaiLbl.textAlignment=0;
@@ -377,7 +384,7 @@ static CGFloat kImageOriginHight = 400;
     UILabel *barndMiaoshu=[[UILabel alloc]initWithFrame:CGRectMake(brandImg.width+brandImg.left+10, brandImg.top+brandImg.height-20,160, 20)];
     barndMiaoshu.text=@"国际知名品牌";
     
-    barndMiaoshu.font=[UIFont systemFontOfSize:12];
+    barndMiaoshu.font=[UIFont systemFontOfSize:10];
     barndMiaoshu.backgroundColor=[UIColor clearColor];
     barndMiaoshu.textColor =RGB(179, 179, 179);
     barndMiaoshu.textAlignment=0;
@@ -386,7 +393,7 @@ static CGFloat kImageOriginHight = 400;
     UIButton *brandAct=[UIButton buttonWithType:UIButtonTypeCustom];
     brandAct.userInteractionEnabled=true;
     brandAct.backgroundColor=[UIColor clearColor];
-    brandAct.frame =CGRectMake(brandView.width-10-100, barndMiaoshu.top-6, 100, 30);
+    brandAct.frame =CGRectMake(brandView.width-10-80, barndMiaoshu.top-6, 80, 30);
     [brandAct setTitle:@"品牌专区" forState:UIControlStateNormal];
     brandAct.titleLabel.font = [UIFont systemFontOfSize:11];
     [brandAct setTitleColor:RGB(128, 128, 128)  forState:UIControlStateNormal];
