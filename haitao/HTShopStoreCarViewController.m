@@ -43,6 +43,7 @@
     self=[super init];
     if (self)
     {
+        isback=false;
         _isTabbar=isTabbar;
         if(isTabbar){
             [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCar) name:@"refreshCar" object:nil];
@@ -52,7 +53,12 @@
 }
 -(void)refreshCar{
     if(isload){
-        [self getCarInfo];
+        if(!isback){
+            [self getCarInfo];
+        }else{
+            isback=false;
+        }
+        
     }
 }
 -(void)viewDidLoad
@@ -1100,6 +1106,7 @@
 }
 #pragma mark改变尺寸代理
 - (void)addShopCarFinsh:(NSDictionary *)dic{
+    isback=true;
     NSDictionary *dicTemp= [carShopList objectAtIndex:indexRow.section];
     NSArray *listContent=[dicTemp objectForKey:@"list"];
     
