@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ForgetForEmail : UIViewController
+@interface ForgetForEmail : UIViewController<HTTPControllerProtocol>
 @property (weak, nonatomic) IBOutlet UILabel *message;
 @property(strong,nonatomic) NSString *username;
 - (IBAction)reSend:(id)sender;

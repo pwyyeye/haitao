@@ -51,6 +51,9 @@
 //重置密码
 #define requestUrl_resetPassByMobile [NSString stringWithFormat:@"%@&f=resetPassByMobile&m=user",requestUrl]
 
+//重置密码邮件
+#define requestUrl_sendForgetMail [NSString stringWithFormat:@"%@&f=sendForgetMail&m=user",requestUrl]
+
 //登出
 #define requestUrl_doLoginOut [NSString stringWithFormat:@"%@&f=doLoginOut&m=user",requestUrl]
 
