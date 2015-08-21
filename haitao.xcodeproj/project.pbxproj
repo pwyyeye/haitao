@@ -642,8 +642,10 @@
 		AD8E38A21B75A7C200C9D5BA /* icon_LianXiKeFu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E38A01B75A7C200C9D5BA /* icon_LianXiKeFu@2x.png */; };
 		AD8E38A31B75A7C200C9D5BA /* icon_LianXiKeFu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8E38A11B75A7C200C9D5BA /* icon_LianXiKeFu@3x.png */; };
 		AD8E38A81B75AB9000C9D5BA /* LogisticsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD8E38A61B75AB9000C9D5BA /* LogisticsCell.xib */; };
-		AD959E331B841266009BBF77 /* DetailsPage_img_gouwuliucheng@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD959E311B841266009BBF77 /* DetailsPage_img_gouwuliucheng@2x.png */; };
-		AD959E341B841266009BBF77 /* DetailsPage_img_gouwuliucheng@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD959E321B841266009BBF77 /* DetailsPage_img_gouwuliucheng@3x.png */; };
+		AD959E371B8578E6009BBF77 /* DetailsPage_img_gouwuliucheng@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD959E351B8578E6009BBF77 /* DetailsPage_img_gouwuliucheng@2x.png */; };
+		AD959E381B8578E6009BBF77 /* DetailsPage_img_gouwuliucheng@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD959E361B8578E6009BBF77 /* DetailsPage_img_gouwuliucheng@3x.png */; };
+		AD959E3A1B86EC9F009BBF77 /* TabBar_icon_Cart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD959E391B86EC9F009BBF77 /* TabBar_icon_Cart@2x.png */; };
+		AD959E3C1B86ECCB009BBF77 /* TabBar_icon_Cart@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD959E3B1B86ECCB009BBF77 /* TabBar_icon_Cart@3x.png */; };
 		ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC811B53CB5F0022B2C2 /* main.m */; };
 		ADB5AC851B53CB5F0022B2C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC841B53CB5F0022B2C2 /* AppDelegate.m */; };
 		ADB5AC881B53CB5F0022B2C2 /* haitao.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC861B53CB5F0022B2C2 /* haitao.xcdatamodeld */; };
@@ -1702,8 +1704,10 @@
 		AD8E38A41B75AB9000C9D5BA /* LogisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogisticsCell.h; sourceTree = "<group>"; };
 		AD8E38A51B75AB9000C9D5BA /* LogisticsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogisticsCell.m; sourceTree = "<group>"; };
 		AD8E38A61B75AB9000C9D5BA /* LogisticsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogisticsCell.xib; sourceTree = "<group>"; };
-		AD959E311B841266009BBF77 /* DetailsPage_img_gouwuliucheng@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailsPage_img_gouwuliucheng@2x.png"; sourceTree = "<group>"; };
-		AD959E321B841266009BBF77 /* DetailsPage_img_gouwuliucheng@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailsPage_img_gouwuliucheng@3x.png"; sourceTree = "<group>"; };
+		AD959E351B8578E6009BBF77 /* DetailsPage_img_gouwuliucheng@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailsPage_img_gouwuliucheng@2x.png"; sourceTree = "<group>"; };
+		AD959E361B8578E6009BBF77 /* DetailsPage_img_gouwuliucheng@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailsPage_img_gouwuliucheng@3x.png"; sourceTree = "<group>"; };
+		AD959E391B86EC9F009BBF77 /* TabBar_icon_Cart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_icon_Cart@2x.png"; sourceTree = "<group>"; };
+		AD959E3B1B86ECCB009BBF77 /* TabBar_icon_Cart@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_icon_Cart@3x.png"; sourceTree = "<group>"; };
 		ADB5AC7C1B53CB5F0022B2C2 /* haitao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = haitao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADB5AC801B53CB5F0022B2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADB5AC811B53CB5F0022B2C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -2281,6 +2285,8 @@
 		A2F7FD1F1B6FB18400657575 /* 购物车 */ = {
 			isa = PBXGroup;
 			children = (
+				AD959E391B86EC9F009BBF77 /* TabBar_icon_Cart@2x.png */,
+				AD959E3B1B86ECCB009BBF77 /* TabBar_icon_Cart@3x.png */,
 				A2F7FD261B6FB18400657575 /* df_01_@2x.png */,
 				A2F7FD2C1B6FB18400657575 /* ic_01_h_@2x.png */,
 				A2F7FD2D1B6FB18400657575 /* ic_01_n_@2x.png */,
@@ -3150,8 +3156,8 @@
 		AD8E35571B70CA4300C9D5BA /* 详情页 */ = {
 			isa = PBXGroup;
 			children = (
-				AD959E311B841266009BBF77 /* DetailsPage_img_gouwuliucheng@2x.png */,
-				AD959E321B841266009BBF77 /* DetailsPage_img_gouwuliucheng@3x.png */,
+				AD959E351B8578E6009BBF77 /* DetailsPage_img_gouwuliucheng@2x.png */,
+				AD959E361B8578E6009BBF77 /* DetailsPage_img_gouwuliucheng@3x.png */,
 				A2E8D0D51B788FF70004ADB9 /* 客服与收藏 */,
 				AD8E35581B70CA4300C9D5BA /* DetailsPage_bg_@2x.png */,
 				AD8E35591B70CA4300C9D5BA /* DetailsPage_btn_banner_return_@2x.png */,
@@ -4219,6 +4225,7 @@
 				AD8E37A61B721A1500C9D5BA /* UserCenter_icon_MyOrder@2x.png in Resources */,
 				AD8E36EE1B721A1500C9D5BA /* icon_FullStar.png in Resources */,
 				A2E8D0FA1B7AD8E60004ADB9 /* filter_btn_zhekou_selected_xia@2x.png in Resources */,
+				AD959E381B8578E6009BBF77 /* DetailsPage_img_gouwuliucheng@3x.png in Resources */,
 				AD8E37661B721A1500C9D5BA /* Product_icon_Rerurn.png in Resources */,
 				AD6EFF3B1B831A7900E98480 /* asmedia_pause@2x.png in Resources */,
 				AD8E37261B721A1500C9D5BA /* icon_MyInfo@3x.png in Resources */,
@@ -4236,7 +4243,6 @@
 				ADD6553F1B6F45B1006F4127 /* userCenter_icon_toUserInfo@2x.png in Resources */,
 				AD8E351D1B70A11300C9D5BA /* skip-btn@2x.png in Resources */,
 				AD8E35701B70CA4300C9D5BA /* home_bg_guojimingpin_shangpin_datu_zhong_5@2x-1.png in Resources */,
-				AD959E331B841266009BBF77 /* DetailsPage_img_gouwuliucheng@2x.png in Resources */,
 				AD8AA6321B59435C00E324AD /* MJRefresh.bundle in Resources */,
 				A2E8D0DA1B788FF70004ADB9 /* DetailsPage_btn_kehu@2x.png in Resources */,
 				AD8E36D71B721A1500C9D5BA /* icon_Descending@2x.png in Resources */,
@@ -4404,6 +4410,7 @@
 				ADD655461B6F4CD2006F4127 /* Address_btn_toPickupArea@2x.png in Resources */,
 				AD8E378A1B721A1500C9D5BA /* ShuMa_icon_XiangJi.png in Resources */,
 				AD8E36BB1B721A1500C9D5BA /* home_icon_XIaoShunFuMu.png in Resources */,
+				AD959E371B8578E6009BBF77 /* DetailsPage_img_gouwuliucheng@2x.png in Resources */,
 				AD8E37611B721A1500C9D5BA /* icon_ZhuangTi@2x.png in Resources */,
 				ADECDC211B672C62009EA286 /* AboutPeiKua.xib in Resources */,
 				A2F7FD391B6FB18400657575 /* df_01_@2x.png in Resources */,
@@ -4420,6 +4427,7 @@
 				AD8E37CE1B7392EC00C9D5BA /* order_btn_definite@3x.png in Resources */,
 				AD8E36D01B721A1500C9D5BA /* icon_BaoJian.png in Resources */,
 				AD8AA61E1B59435C00E324AD /* Overlay.png in Resources */,
+				AD959E3C1B86ECCB009BBF77 /* TabBar_icon_Cart@3x.png in Resources */,
 				AD8E389E1B75A7A400C9D5BA /* icon_BoDaDianHua@2x.png in Resources */,
 				AD8E35971B70CA4300C9D5BA /* DetailsPage_img_zhifufangshi_left.png in Resources */,
 				AD8E356E1B70CA4300C9D5BA /* jingpintuijian_icon_topbar_xsfm_@2x.png in Resources */,
@@ -4505,7 +4513,6 @@
 				AD6EFF3A1B831A7900E98480 /* asmedia_pause.png in Resources */,
 				AD8E36C61B721A1500C9D5BA /* icon_add_ShenFengZheng@3x.png in Resources */,
 				AD8E377A1B721A1500C9D5BA /* ShuMa_icon_DianQi@3x.png in Resources */,
-				AD959E341B841266009BBF77 /* DetailsPage_img_gouwuliucheng@3x.png in Resources */,
 				ADD2C4561B7DC94B00A2E638 /* icon_Order@3x.png in Resources */,
 				A2FFE17F1B608EDF0004B4BC /* pull_refresh@2x.png in Resources */,
 				AD8E35801B70CA4300C9D5BA /* shuma_icon_diannao_top_@2x.png in Resources */,
@@ -4528,6 +4535,7 @@
 				ADD2C4281B78A0AC00A2E638 /* icon_right2@3x.png in Resources */,
 				AD8E37281B721A1500C9D5BA /* icon_NotSelected@2x.png in Resources */,
 				AD8E36B31B721A1500C9D5BA /* home_icon_ChangXian@2x.png in Resources */,
+				AD959E3A1B86EC9F009BBF77 /* TabBar_icon_Cart@2x.png in Resources */,
 				A2FC74C41B5A31340094BC59 /* df_01.png in Resources */,
 				AD8E379E1B721A1500C9D5BA /* UserCenter_icon_info@3x.png in Resources */,
 				AD8E36C21B721A1500C9D5BA /* icon_Add@2x.png in Resources */,
@@ -5085,8 +5093,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -5107,8 +5115,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

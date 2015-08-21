@@ -87,7 +87,7 @@
      serchText.font = [UIFont fontWithName:@"Arial" size:13.0f];
     [serchText becomeFirstResponder];
     UIButton*btnBack=[UIButton buttonWithType:0];
-    btnBack.frame=CGRectMake(serchText.left+serchText.width+10, serchText.top+5, 50, 20);
+    btnBack.frame=CGRectMake(serchText.left+serchText.width+13, serchText.top+5, 50, 20);
     [btnBack setTitle:@"取消" forState:UIControlStateNormal];
     btnBack.titleLabel.font = [UIFont systemFontOfSize: 15.0];
     [btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
@@ -397,7 +397,7 @@
             [goodsModelArr addObject:goodsModel];
         }
         if(goodsModelArr.count<1){
-            ShowMessage(@"无数据");
+            ShowMessage(@"暂无商品");
             return;
         }
         NSDictionary *menuIndexDic=[dataDic objectForKey:@"cat_index"];

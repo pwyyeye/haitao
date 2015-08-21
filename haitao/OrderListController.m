@@ -383,7 +383,7 @@
         [view addSubview:country];
         
         //商城名称
-        UILabel *shopname=[[UILabel alloc] initWithFrame:CGRectMake(105, 0, 70, 38)];
+        UILabel *shopname=[[UILabel alloc] initWithFrame:CGRectMake(95, 0, 70, 38)];
         shopname.text=selectedPackage.shop_name;
         shopname.font =[UIFont  systemFontOfSize:10];
         shopname.textColor=RGB(179, 179, 179);
@@ -395,6 +395,18 @@
         ship.font =[UIFont  boldSystemFontOfSize:11];
         ship.textColor=RGB(51, 51, 51);
         [view addSubview:ship];
+        
+        if ([selectedPackage.package_status integerValue]==3||[selectedPackage.package_status integerValue]==2) {
+            //包裹状态
+            UILabel *packageStatus=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-120, 0, 40, 38)];
+            packageStatus.text=[selectedPackage.package_status integerValue]==2?@"待发货":@"已发货";
+            packageStatus.font =[UIFont  boldSystemFontOfSize:10];
+            packageStatus.textAlignment=NSTextAlignmentCenter;
+            packageStatus.textColor=RGB(179, 179, 179);
+            [view addSubview:packageStatus];
+        }
+        
+        
         
         //包裹详情
         UIButton *packageDetail=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-70, 4, 60, 30)];
@@ -445,7 +457,7 @@
         if ([orderModel.order_status integerValue]==1) {
             //付款按钮
             UIButton *btnPay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 29, 80, 24)];
-            [btnPay setTitle:@"付款" forState:UIControlStateNormal];
+            [btnPay setTitle:@"立即支付" forState:UIControlStateNormal];
             [btnPay setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             btnPay.titleLabel.font =[UIFont  systemFontOfSize:11];
             btnPay.backgroundColor=RGB(255, 13, 94);
@@ -473,7 +485,7 @@
             [view addSubview:btnCancel];
         }else if(([orderModel.order_status integerValue]==2)){//已付款，待发货
             UIButton *btnPay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-85, 29, 80, 24)];
-            [btnPay setTitle:@"等待卖家发货" forState:UIControlStateNormal];
+            [btnPay setTitle:@"完成海外下单" forState:UIControlStateNormal];
             [btnPay setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
             btnPay.titleLabel.font =[UIFont  systemFontOfSize:11];
 //            btnPay.titleLabel.textAlignment=NSTextAlignmentRight;
@@ -482,24 +494,15 @@
             
         }else if(([orderModel.order_status integerValue]==3)){//待收货
             UIButton *btnPay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-85, 29, 80, 24)];
-            [btnPay setTitle:@"卖家已发货" forState:UIControlStateNormal];
+            [btnPay setTitle:@"有包裹已发货" forState:UIControlStateNormal];
             [btnPay setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
             btnPay.titleLabel.font =[UIFont  systemFontOfSize:11];
             //            btnPay.titleLabel.textAlignment=NSTextAlignmentRight;
             btnPay.backgroundColor=[UIColor whiteColor];
-            [view addSubview:btnPay];
+//            [view addSubview:btnPay];
             
         }else if([orderModel.order_status integerValue]==8 || [orderModel.order_status integerValue]==9){//订单完成和取消状态
             
-            //付款按钮
-//            UIButton *btnPay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 29, 80, 24)];
-//            [btnPay setTitle:@"确认收货" forState:UIControlStateNormal];
-//            [btnPay setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//            btnPay.titleLabel.font =[UIFont  systemFontOfSize:11];
-//            btnPay.backgroundColor=RGB(255, 13, 94);
-//            btnPay.layer.masksToBounds=YES;
-//            btnPay.layer.cornerRadius=3;
-//            [view addSubview:btnPay];;
             //删除订单按钮
             UIButton *btnDel=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 29, 80, 24)];
             [btnDel setTitle:@"删除订单" forState:UIControlStateNormal];
@@ -516,7 +519,15 @@
 
             [view addSubview:btnDel];
 
-            
+            if ([orderModel.order_status integerValue]==9) {
+                UIButton *btnPay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-180, 29, 80, 24)];
+                [btnPay setTitle:@"订单关闭" forState:UIControlStateNormal];
+                [btnPay setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
+                btnPay.titleLabel.font =[UIFont  systemFontOfSize:11];
+                //            btnPay.titleLabel.textAlignment=NSTextAlignmentRight;
+                btnPay.backgroundColor=[UIColor whiteColor];
+                [view addSubview:btnPay];
+            }
         }else if([orderModel.order_status integerValue]==7){//订单完成和取消状态
             
             //删除订单按钮
@@ -566,7 +577,7 @@
         
         //运费
         UILabel *head=[[UILabel alloc] initWithFrame:CGRectMake(10, 5, SCREEN_WIDTH/2, 20)];
-        head.text=@"运费:";
+        head.text=[selectedPackage.ship_type integerValue]==1?@"直邮运费":@"转运运费";
         head.font=[UIFont boldSystemFontOfSize:11];
         head.textColor=RGB(51, 51, 51);
         [view addSubview:head];
@@ -581,14 +592,14 @@
         
         //预付税费 transport_amount
         UILabel *transport=[[UILabel alloc] initWithFrame:CGRectMake(10, 28, SCREEN_WIDTH/2, 20)];
-        transport.text=@"预估税费:";
+        transport.text=[selectedPackage.ship_type integerValue]==1?@"预收税费":@"预估税费";
         transport.textColor=RGB(51, 51, 51);
         transport.font=[UIFont boldSystemFontOfSize:11];
         [view addSubview:transport];
         
         //预付税费金额
         UILabel *transport_amout=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 28, 70, 20)];
-        transport_amout.text=[NSString stringWithFormat:@"¥%.2f",selectedPackage.transport_amount];
+        transport_amout.text=[NSString stringWithFormat:@"¥%.2f", [selectedPackage.ship_type integerValue]==1?selectedPackage.direct_amount:selectedPackage.transport_amount];
         transport_amout.textAlignment=NSTextAlignmentRight;
         transport_amout.font =[UIFont  boldSystemFontOfSize:11];
         transport_amout.textColor=RGB(255, 13, 94);

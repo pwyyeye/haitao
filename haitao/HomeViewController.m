@@ -257,7 +257,7 @@
         [dicTemp setObject:bigTemp.content forKey:@"mainHeading"];
         [bigArr addObject:dicTemp];
     }
-    scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 160)
+    scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH/21)*8)
                                                           scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
     
     scroller.delegate=self;
@@ -887,7 +887,7 @@
     if([urlname isEqualToString:@"getHomeData"]){
          NSDictionary *dic=[dictemp objectForKey:@"data"];
         if ((NSNull *)dic == [NSNull null]) {
-            showMessage(@"暂无数据!");
+            showMessage(@"暂无商品!");
             //            [self showMessage:@"暂无数据!"];
             return;
             
@@ -955,7 +955,7 @@
     if([urlname isEqualToString:@"getHomeDataForRefresh"]){
         NSDictionary *dic=[dictemp objectForKey:@"data"];
         if ((NSNull *)dic == [NSNull null]) {
-            showMessage(@"暂无数据!");
+            showMessage(@"暂无商品!");
             //            [self showMessage:@"暂无数据!"];
             return;
             

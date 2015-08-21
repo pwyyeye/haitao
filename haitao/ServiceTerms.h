@@ -11,4 +11,10 @@
 @interface ServiceTerms : UIViewController
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewWith;
 
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewHeight;
+
+@property (weak, nonatomic) IBOutlet UILabel *contentText;
+
+
 @end

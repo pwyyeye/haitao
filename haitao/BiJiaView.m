@@ -38,8 +38,8 @@
         
         UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(imageHead.frame.size.width+imageHead.frame.origin.x+10, imageHead.frame.origin.y, backgroudView.width-20-75-10, 40)];
         title_label.text=[NSString stringWithFormat:@"￥%.2f",goods.price_cn];
-        title_label.font=[UIFont systemFontOfSize:14];
-        title_label.textColor =hexColor(@"#ff0d5e");
+        title_label.font=[UIFont boldSystemFontOfSize:13];
+        title_label.textColor =RGB(255, 13, 94);
         title_label.backgroundColor=[UIColor clearColor];
         
         title_label.textAlignment=0;
@@ -56,12 +56,12 @@
         UIImageView *scImg=[[UrlImageView alloc]initWithFrame:CGRectMake(5, (30-(24*2/3))/2, 24*2/3, 24*2/3)];
         scImg.image=[UIImage imageNamed:@"DetailsPage_icon_love_"];
         [shoucangBtn addSubview:scImg];
-        UILabel *scLbl=[[UILabel alloc]initWithFrame:CGRectMake(scImg.frame.origin.x+scImg.width+2,scImg.frame.origin.y-3,shoucangBtn.frame.size.width-(scImg.frame.origin.x+scImg.width+5), 22)];
-        scLbl.text=@"收藏";
-        scLbl.font=[UIFont boldSystemFontOfSize:13];
+        UILabel *scLbl=[[UILabel alloc]initWithFrame:CGRectMake(scImg.frame.origin.x+scImg.width+2,scImg.frame.origin.y-3,shoucangBtn.frame.size.width-(scImg.frame.origin.x+scImg.width+5)+20, 20)];
+        scLbl.text=[NSString stringWithFormat:@"收藏：%@",goods.fav_num];
+        scLbl.font=[UIFont boldSystemFontOfSize:11];
         scLbl.backgroundColor=[UIColor clearColor];
         scLbl.textColor =hexColor(@"#b3b3b3");
-        scLbl.numberOfLines=0;
+        scLbl.numberOfLines=1;
         scLbl.textAlignment=NSTextAlignmentCenter;
         
         [shoucangBtn addSubview:scLbl];
@@ -78,9 +78,9 @@
         xlImg.backgroundColor=[UIColor clearColor];
 //        xlImg.image=[UIImage imageNamed:@"DetailsPage_icon_tag_"];
         [xiaoliangBtn addSubview:xlImg];
-        UILabel *xlLbl=[[UILabel alloc]initWithFrame:CGRectMake(xlImg.frame.origin.x+xlImg.width,xlImg.frame.origin.y-3,xiaoliangBtn.frame.size.width-(xlImg.frame.origin.x+xlImg.width), 22)];
-        xlLbl.text=[NSString stringWithFormat:@"销量：%@",goods.order_num ];
-        xlLbl.font=[UIFont boldSystemFontOfSize:13];
+        UILabel *xlLbl=[[UILabel alloc]initWithFrame:CGRectMake(xlImg.frame.origin.x+xlImg.width-10,xlImg.frame.origin.y-4,xiaoliangBtn.frame.size.width-(xlImg.frame.origin.x+xlImg.width), 22)];
+        xlLbl.text=[NSString stringWithFormat:@"销量:%@",goods.order_num ];
+        xlLbl.font=[UIFont boldSystemFontOfSize:11];
         xlLbl.backgroundColor=[UIColor clearColor];
         xlLbl.textColor =hexColor(@"#b3b3b3");
         xlLbl.numberOfLines=0;
@@ -143,8 +143,9 @@
             biJiaCell.backgroundColor=[UIColor whiteColor];
             [self addSubview:biJiaCell];
             UrlImageView *shipImge=[[UrlImageView alloc]initWithFrame:CGRectMake(10, 10, 50, 50)];
-            if(!biJiaModel.shop_logo){
-                shipImge.image=BundleImage(@"df_04_.png");
+            if(![MyUtil isEmptyString:biJiaModel.shop_logo]){
+                NSURL *url=[NSURL URLWithString:biJiaModel.shop_logo];
+                [shipImge setImageWithURL:url];//BundleImage(@"df_04_.png");
             }else{
                 NSURL *url=[NSURL URLWithString:goods.img_80];
                 [shipImge setImageWithURL:url];
@@ -157,7 +158,7 @@
             [biJiaCell addSubview:shipImge];
             
             //商店名
-            UILabel *shiplal=[[UILabel alloc]initWithFrame:CGRectMake(imageHead.frame.size.width+imageHead.frame.origin.x+10,biJiaCell.height/2-10, 80, 20)];
+            UILabel *shiplal=[[UILabel alloc]initWithFrame:CGRectMake(imageHead.frame.size.width+imageHead.frame.origin.x+10,biJiaCell.height/2-20, 80, 20)];
             shiplal.text=biJiaModel.shop_name;
             shiplal.font=[UIFont boldSystemFontOfSize:11];
             shiplal.backgroundColor=[UIColor clearColor];
@@ -167,20 +168,34 @@
             [biJiaCell addSubview:shiplal];
             
             UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(shiplal.frame.size.width+shiplal.frame.origin.x+10, shiplal.frame.origin.y+3, biJiaCell.width-(shiplal.frame.size.width+shiplal.frame.origin.x+10), 10)];
-            title_label.text=[NSString stringWithFormat:@"￥%.1f",goods.price_cn];
-            title_label.font=[UIFont systemFontOfSize:14];
-            title_label.textColor =hexColor(@"#ff0d5e");
+            title_label.text=[NSString stringWithFormat:@"￥%@",biJiaModel.price];
+            title_label.font=[UIFont boldSystemFontOfSize:13];
+            title_label.textColor =RGB(255, 13, 94);
             title_label.backgroundColor=[UIColor clearColor];
             
             title_label.textAlignment=NSTextAlignmentLeft;
             title_label.numberOfLines=1;
             [biJiaCell addSubview:title_label];
             
+            
+            UILabel *title5=[[UILabel alloc]initWithFrame:CGRectMake(imageHead.frame.size.width+imageHead.frame.origin.x+10, 45,200, 20)];
+            title5.text=[goods.country_name isEqualToString:@"美国"]?@"发货后10~17个工作日到手":@"发货后3-5个工作日到手";
+            
+            title5.font=[UIFont systemFontOfSize:9];
+            title5.numberOfLines=2;
+            title5.backgroundColor=[UIColor clearColor];
+            title5.textColor =RGB(179, 179, 179);
+            title5.textAlignment=0;
+            [biJiaCell addSubview:title5];
+            
             if(i!=biJiaModelArr.count-1){
                 UIImageView *lineImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, biJiaCell.height-1, biJiaCell.width, 1)];
                 lineImg.image=BundleImage(@"gwc_line_.png");
                 [biJiaCell addSubview:lineImg];
             }
+            
+            
+            
             [_scrollView addSubview:biJiaCell];
         }
         _scrollView.contentSize=CGSizeMake(_scrollView.width, lastFrame.origin.y+lastFrame.size.height);

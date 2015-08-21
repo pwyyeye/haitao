@@ -34,9 +34,9 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SY9-7t-be0">
-                                    <rect key="frame" x="560" y="204" width="30" height="30"/>
+                                    <rect key="frame" x="540" y="204" width="50" height="30"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="30" id="DsW-b3-Arv"/>
+                                        <constraint firstAttribute="width" constant="50" id="DsW-b3-Arv"/>
                                         <constraint firstAttribute="height" constant="30" id="dh2-pu-xI3"/>
                                     </constraints>
                                     <state key="normal" image="Address_btn_toPickupArea.png">
@@ -115,7 +115,7 @@
                             </connections>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="必填" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ajs-e3-JQm">
-                            <rect key="frame" x="63" y="204" width="487" height="30"/>
+                            <rect key="frame" x="63" y="204" width="467" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="bU1-jt-Obp"/>
                             </constraints>
@@ -228,8 +228,8 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传清晰的身份证照，可加速清关，缩短物流时间，身份证照片仅用于清关用途，请放心上传" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQe-BD-eCZ">
-                            <rect key="frame" x="30" y="586" width="540" height="13.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="温馨提示：务必确保收货人姓名与身份证号相匹配，若因此导致商品清关异常或滞留， 将无法享受配夸的相关服务条款，如遇到商品缺货我们将尽快通知到您，请您在下单后的两天内关注自己的订单状态，如遇问题请联系客服。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQe-BD-eCZ">
+                            <rect key="frame" x="30" y="586" width="540" height="26.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>

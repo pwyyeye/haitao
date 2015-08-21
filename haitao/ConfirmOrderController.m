@@ -475,13 +475,15 @@
     UIView *buttom_view=[[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT/3-47, SCREEN_WIDTH, SCREEN_HEIGHT/3*2-64)];
     buttom_view.backgroundColor=[UIColor whiteColor];
     
+    UIScrollView *buttomScrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/3*2-64)];
+    
     //商品价格
     UILabel *productLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, 5, 100, 20)];
     productLabel.text=@"商品价格";
     productLabel.font=[UIFont boldSystemFontOfSize:11];
     productLabel.textColor=RGB(51, 51, 51);
     
-    [buttom_view addSubview:productLabel];
+    [buttomScrollView addSubview:productLabel];
     
     double goodsPrice=_confirmOrderModel.all_info.all_goods_price;
     UILabel *allGoodsPrice=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-75, 5, 70, 20)];
@@ -489,7 +491,7 @@
     allGoodsPrice.font=[UIFont boldSystemFontOfSize:11];
     allGoodsPrice.textColor=RGB(255, 13, 94);
     allGoodsPrice.textAlignment=NSTextAlignmentRight;
-    [buttom_view addSubview:allGoodsPrice];
+    [buttomScrollView addSubview:allGoodsPrice];
     
     NSArray *array=_confirmOrderModel.list;
     int y=25;
@@ -509,7 +511,7 @@
             productLabel.font=[UIFont systemFontOfSize:11];
             productLabel.textColor=RGB(51, 51, 51);
             
-            [buttom_view addSubview:productLabel];
+            [buttomScrollView addSubview:productLabel];
             
             
             double goodsPrice=shopmodel.goods_detail.price_cn;
@@ -518,7 +520,7 @@
             goodsPriceText.font=[UIFont systemFontOfSize:11];
             goodsPriceText.textColor=RGB(255, 13, 94);
             goodsPriceText.textAlignment=NSTextAlignmentRight;
-            [buttom_view addSubview:goodsPriceText];
+            [buttomScrollView addSubview:goodsPriceText];
             
             y+=23;
             
@@ -530,7 +532,7 @@
     //横线
     UILabel *jianju1=[[UILabel alloc] initWithFrame:CGRectMake(0, y+5, SCREEN_WIDTH, 0.5)];
     jianju1.backgroundColor=RGB(237, 237, 237);
-    [buttom_view addSubview:jianju1];
+    [buttomScrollView addSubview:jianju1];
     
     //官网运费
     UILabel *guanwangLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, jianju1.frame.origin.y+5, 100, 20)];
@@ -538,14 +540,14 @@
     guanwangLabel.font=[UIFont boldSystemFontOfSize:11];
     guanwangLabel.textColor=RGB(51, 51, 51);
     
-    [buttom_view addSubview:guanwangLabel];
+    [buttomScrollView addSubview:guanwangLabel];
     
     UILabel *allShipPrice=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-75, jianju1.frame.origin.y+5, 70, 20)];
     allShipPrice.text=[NSString stringWithFormat:@"¥%.2f",_confirmOrderModel.all_info.all_ship];
     allShipPrice.font=[UIFont boldSystemFontOfSize:11];
     allShipPrice.textColor=RGB(255, 13, 94);
     allShipPrice.textAlignment=NSTextAlignmentRight;
-    [buttom_view addSubview:allShipPrice];
+    [buttomScrollView addSubview:allShipPrice];
     
     y=10;
     for (int i=0; i<array.count; i++) {
@@ -555,15 +557,15 @@
         shopLabel.text=[NSString stringWithFormat:@"%@    %@", package.all_info.shop_name,package.all_info.ship_name];
         shopLabel.font=[UIFont systemFontOfSize:11];
         shopLabel.textColor=RGB(51, 51, 51);
-        [buttom_view addSubview:shopLabel];
+        [buttomScrollView addSubview:shopLabel];
         
-        double taxprice = [package.all_info.ship_type integerValue]==1?package.all_info.all_direct_ship:package.all_info.all_transport_logistic_ship_show;
+        double taxprice = [package.all_info.ship_type integerValue]==1?package.all_info.all_direct_ship_show:package.all_info.all_transport_logistic_ship_show;
         UILabel *goodsPriceText=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-75, i*23+guanwangLabel.frame.origin.y+20, 70, 20)];
         goodsPriceText.text=[NSString stringWithFormat:@"¥%.2f",taxprice];
         goodsPriceText.font=[UIFont systemFontOfSize:11];
         goodsPriceText.textColor=RGB(255, 13, 94);
         goodsPriceText.textAlignment=NSTextAlignmentRight;
-        [buttom_view addSubview:goodsPriceText];
+        [buttomScrollView addSubview:goodsPriceText];
         
         y+=23;
 
@@ -573,7 +575,7 @@
     //横线
     UILabel *jianju2=[[UILabel alloc] initWithFrame:CGRectMake(0, guanwangLabel.origin.y+y+15, SCREEN_WIDTH, 0.5)];
     jianju2.backgroundColor=RGB(237, 237, 237);
-    [buttom_view addSubview:jianju2];
+    [buttomScrollView addSubview:jianju2];
     
     //预收税费
     UILabel *shuifeiLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, jianju2.frame.origin.y+5, 100, 20)];
@@ -581,23 +583,24 @@
     shuifeiLabel.font=[UIFont boldSystemFontOfSize:11];
     shuifeiLabel.textColor=RGB(51, 51, 51);
     
-    [buttom_view addSubview:shuifeiLabel];
+    [buttomScrollView addSubview:shuifeiLabel];
     
     UILabel *allTaxPrice=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-75, jianju2.frame.origin.y+5, 70, 20)];
     allTaxPrice.text=[NSString stringWithFormat:@"¥%.2f",_confirmOrderModel.all_info.all_transport+_confirmOrderModel.all_info.all_direct_tax];
     allTaxPrice.font=[UIFont boldSystemFontOfSize:11];
     allTaxPrice.textColor=RGB(255, 13, 94);
     allTaxPrice.textAlignment=NSTextAlignmentRight;
-    [buttom_view addSubview:allTaxPrice];
+    [buttomScrollView addSubview:allTaxPrice];
     
     UILabel *taxText=[[UILabel alloc] initWithFrame:CGRectMake(10, allTaxPrice.frame.origin.y+20, SCREEN_WIDTH-30, 50)];
     taxText.numberOfLines=0;
-    taxText.text=@"直邮商品，货源官网会直接收取税费\n转运商品，税费估而不收，清关产生税费时会生成税费订单，并通知到您。";
+    taxText.text=@"直邮商品，货源官网会直接收取税费。\n转运商品，税费估而不收，清关产生税费时会生成税费订单，并通知到您。";
     
-    taxText.font=[UIFont boldSystemFontOfSize:11];
+    taxText.font=[UIFont systemFontOfSize:11];
     taxText.textColor=RGB(51, 51, 51);
-    [buttom_view addSubview:taxText];
-    
+    [buttomScrollView addSubview:taxText];
+    buttomScrollView.contentSize= CGSizeMake(SCREEN_WIDTH,taxText.frame.origin.y+100);
+    [buttom_view addSubview:buttomScrollView];
     [_hejiView addSubview:buttom_view];
 
     [self.view addSubview:_hejiView];
@@ -721,7 +724,7 @@
     
     //运费
     UILabel *head=[[UILabel alloc] initWithFrame:CGRectMake(10, 5, SCREEN_WIDTH/2, 20)];
-    head.text=@"运费:";
+    head.text=[package.all_info.ship_type integerValue]==1?@"直邮运费":@"转运运费";
     head.font=[UIFont boldSystemFontOfSize:11];
     head.textColor=RGB(51, 51, 51);
     [view addSubview:head];
@@ -737,7 +740,7 @@
     
     //预付税费 transport_amount
     UILabel *transport=[[UILabel alloc] initWithFrame:CGRectMake(10, 28, SCREEN_WIDTH/2, 20)];
-    transport.text=@"预估税费:";
+    transport.text=[package.all_info.ship_type integerValue]==1?@"预收税费":@"预估税费";
     transport.textColor=RGB(51, 51, 51);
     transport.font=[UIFont boldSystemFontOfSize:11];
     [view addSubview:transport];
@@ -755,11 +758,11 @@
     [view addSubview:hengxian];
     
     //小计
-    UILabel *subTotal=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-240, 53, 170, 20)];
+    UILabel *subTotal=[[UILabel alloc] initWithFrame:CGRectMake(10, 53, 250, 20)];
     //        subTotal.text=@"小计:";
-    subTotal.text=[NSString stringWithFormat:@"（包含运费，%@税费）合计：",[package.all_info.ship_type intValue]==1?@"包含":@"不含"];
-    subTotal.textAlignment=NSTextAlignmentRight;
-    subTotal.font=[UIFont systemFontOfSize:11];
+    subTotal.text=[NSString stringWithFormat:@"%@",[package.all_info.ship_type intValue]==1?@"包裹应付总额（含商品金额，直邮运费，预收关税）:":@"包裹应付总额（含商品金额，转运运费）:"];
+    subTotal.textAlignment=NSTextAlignmentLeft;
+    subTotal.font=[UIFont systemFontOfSize:10];
     subTotal.textColor=RGB(128, 128, 128);
     [view addSubview:subTotal];
     

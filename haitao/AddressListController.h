@@ -26,6 +26,8 @@
 
 @property(strong,nonatomic) UIButton *addAddressBtn;
 
+@property(assign,nonatomic) BOOL editFlag;
+
 -(void)initData;
 
 @end

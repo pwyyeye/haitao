@@ -12,4 +12,5 @@
 @property (copy, nonatomic) NSString *shop_name;
 @property (copy, nonatomic) NSString *price;
 @property (copy, nonatomic) NSString *shop_logo;
+@property (copy, nonatomic) NSString *shop_logo_app;
 @end

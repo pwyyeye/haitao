@@ -18,7 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title=@"配夸服务条款";
+    self.title=@"配夸网服务协议";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,6 +29,8 @@
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     self.viewWith.constant=SCREEN_WIDTH;
+    self.viewHeight.constant=self.contentText.size.height+100;
+//    self.contentView.height
 
 }
 /*

@@ -144,7 +144,7 @@
             [self.view addSubview:_menu];
             
             self.tableView = ({
-                UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+                UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT - 40-64)];
                 tableView.dataSource = self;
                 tableView.delegate=self;
                 [self.view addSubview:tableView];
@@ -271,6 +271,7 @@
         for (int i=0; i<4; i++) {
             menu.currentSelectedMenudIndex=i;
             [menu confiMenuWithSelectRow:0];
+            [self menu:menu didSelectRowAtIndexPath:[DOPIndexPath indexPathWithCol:i row:0]];
         }
     }
     

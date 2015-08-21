@@ -85,15 +85,15 @@
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gND-dR-Szd">
                                             <rect key="frame" x="0.0" y="66.5" width="600" height="1"/>
-                                            <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.9834057092666626" green="0.97295498847961426" blue="0.97337931394577026" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="TXb-rG-0cd"/>
                                                 <constraint firstAttribute="height" constant="1" id="Tr6-BO-h8s"/>
                                                 <constraint firstAttribute="width" constant="20" id="fG4-Bb-jmP"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
+                                            <color key="textColor" red="0.98340570930000004" green="0.97295498849999995" blue="0.97337931389999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="0.98340570930000004" green="0.97295498849999995" blue="0.97337931389999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="Tr6-BO-h8s"/>

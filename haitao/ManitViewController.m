@@ -173,7 +173,7 @@
     if([urlname isEqualToString:@"getHomeNav"]){
         NSArray *arrtemp=[dictemp objectForKey:@"data"];
         if ((NSNull *)arrtemp == [NSNull null]) {
-            showMessage(@"暂无数据!");
+            showMessage(@"暂无商品!");
             //            [self showMessage:@"暂无数据!"];
             return;
             

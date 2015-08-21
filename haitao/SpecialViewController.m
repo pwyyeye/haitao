@@ -96,7 +96,7 @@
     if([urlname isEqualToString:@"getSubjectList"]){
         NSArray *dataArr=[dictemp objectForKey:@"data"];
         if ((NSNull *)dataArr == [NSNull null]) {
-            showMessage(@"暂无数据!");
+            showMessage(@"暂无商品!");
             //            [self showMessage:@"暂无数据!"];
             return;
             

@@ -76,8 +76,8 @@
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     
-    _hengxian.height=0.5;
-    _hengxian.backgroundColor=RGB(179, 179, 179);
+    _hengxian.height=0.7;
+    _hengxian.backgroundColor=RGB(237, 237, 237);
     
     _coll=[[CollapseClick alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 300)];
     _coll.CollapseClickDelegate = self;

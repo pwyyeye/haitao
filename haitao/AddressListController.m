@@ -39,6 +39,15 @@
     //返回值
     UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     [self.navigationItem setLeftBarButtonItem:item];
+    _editFlag=NO;
+    if ([self.addressListDelegate respondsToSelector:@selector(selectedAddress:)]) {
+        
+        UIBarButtonItem *itemRight=[[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(changeEditFlag)];
+        
+        [self.navigationItem setRightBarButtonItem:itemRight];
+
+    }
+    
 //    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(gotoBack)];
 //    
     //返回的颜色
@@ -83,6 +92,18 @@
 
     
 }
+-(void)changeEditFlag{
+    if (_editFlag==YES) {
+        _editFlag=NO;
+        self.navigationItem.rightBarButtonItem.title=@"编辑";
+    }else{
+        _editFlag=YES;
+        self.navigationItem.rightBarButtonItem.title=@"完成";
+    }
+    [self.tableView reloadData];
+
+}
+
 -(void)initData{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
@@ -298,12 +319,16 @@
     [button setBackgroundImage:image forState:UIControlStateNormal];
     
 //    button.backgroundColor =[UIColor redColor];
+    if (_editFlag) {
+        cell.accessoryView = nil;
+        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    }else{
+        cell.accessoryView = button;
+        
+        cell.accessoryType=UITableViewCellAccessoryCheckmark;
+    }
     
-    cell.accessoryView = button;
     
-    
-    
-    cell.accessoryType=UITableViewCellAccessoryCheckmark;
     
     
 
@@ -315,7 +340,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here, for example:
     // Create the next view controller.
-    if ([self.addressListDelegate respondsToSelector:@selector(selectedAddress:)]) {
+    if ([self.addressListDelegate respondsToSelector:@selector(selectedAddress:)]&&_editFlag==NO) {
         [self.addressListDelegate selectedAddress:_data[indexPath.row]];
         [self.navigationController popViewControllerAnimated:YES];
     }else{

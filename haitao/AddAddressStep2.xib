@@ -70,7 +70,7 @@
                     <color key="textColor" red="1" green="0.050980392159999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="温馨提示：务必确保收货人姓名与身份证号相匹配，若因此导致商品清关异常或滞留， 将无法享受配夸的相关服务条款，如遇到商品缺货我们将尽快通知到您，请您在下单后的两天内关注自己的订单状态，如遇问题请联系客服：400-600-3500。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xz2-Sn-I4X">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="温馨提示：务必确保收货人姓名与身份证号相匹配，若因此导致商品清关异常或滞留， 将无法享受配夸的相关服务条款，如遇到商品缺货我们将尽快通知到您，请您在下单后的两天内关注自己的订单状态，如遇问题请联系客服。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xz2-Sn-I4X">
                     <rect key="frame" x="30" y="322" width="540" height="39.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>

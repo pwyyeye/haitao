@@ -547,7 +547,7 @@
     
     [self.view addSubview:view_bar1];
     UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar1.frame.size.height-44, self.view.frame.size.width-130, 44)];
-    title_label.text=@"选择商品属性/数量";
+    title_label.text=@"选择商品属性和数量";
     title_label.font=[UIFont boldSystemFontOfSize:17];
     title_label.backgroundColor=[UIColor clearColor];
     title_label.textColor =[UIColor whiteColor];
