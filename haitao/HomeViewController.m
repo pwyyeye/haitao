@@ -343,7 +343,7 @@
         label2.text=[NSString stringWithFormat:@"￥%.2f",grabModel.price_cn];
         label2.font=[UIFont boldSystemFontOfSize:14];
         label2.backgroundColor=[UIColor clearColor];
-        label2.textColor =hexColor(@"#ff0d5e");
+        label2.textColor =RGB(255, 13, 94);
         label2.textAlignment=1;
         label2.backgroundColor=[UIColor clearColor];
 //        if(maxFrame.origin.y<label2.frame.origin.y){
@@ -654,7 +654,7 @@
         label1=[[UILabel alloc]initWithFrame:CGRectMake(btn.left, btn.frame.size.height+btn.frame.origin.y+3, btn.width, 15)];
         label1.text=grabModel.content;
         label1.textColor =hexColor(@"#333333");
-        label1.font=[UIFont systemFontOfSize:9];
+        label1.font=[UIFont systemFontOfSize:11];
         label1.textAlignment=1;
         label1.backgroundColor=[UIColor clearColor];
         //        label1.lineBreakMode = UILineBreakModeWordWrap;
@@ -663,17 +663,19 @@
         [qiangouContentView addSubview:label1];
         
         label2=[[UILabel alloc]initWithFrame:CGRectMake(label1.left, label1.frame.size.height+label1.frame.origin.y, label1.width, 20)];
-        label2.text=[NSString stringWithFormat:@"￥%.2f",grabModel.price];
-        label2.font=[UIFont boldSystemFontOfSize:10];
+        label2.text=[NSString stringWithFormat:@"￥%.2f",grabModel.price_cn];
+        label2.font=[UIFont boldSystemFontOfSize:14];
         label2.backgroundColor=[UIColor clearColor];
-        label2.textColor =hexColor(@"#ff0d5e");
+        label2.textColor =RGB(255, 13, 94);
         label2.textAlignment=1;
         label2.backgroundColor=[UIColor clearColor];
         //        if(maxFrame.origin.y<label2.frame.origin.y){
         //            maxFrame=label2.frame;
         //        }
         [qiangouContentView addSubview:label2];
-        
+        if(i==2){
+            break;
+        }
     }
 
     
@@ -911,9 +913,9 @@
             [app_home_grab addObject:app_Home_Bigegg];
         }
         //手机端精品推荐
-        NSArray *app_home_commandArr= [ad_infoDic objectForKey:@"app_home_command"];
+        NSArray *app_home_commandArr= [ad_infoDic objectForKey:@"home_command"];
         for (NSDictionary *commandDic in app_home_commandArr) {
-            App_Home_Bigegg *app_Home_Bigegg= [App_Home_Bigegg objectWithKeyValues:commandDic] ;
+            SpecialModel *app_Home_Bigegg= [SpecialModel objectWithKeyValues:commandDic] ;
             [app_home_command addObject:app_Home_Bigegg];
         }
         //手机端国际名品

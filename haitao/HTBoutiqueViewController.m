@@ -74,7 +74,8 @@
 -(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
 //        NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
 //    NSString *status=[dictemp objectForKey:@"status"];
-   
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app stopLoading];
     if([urlname isEqualToString:@"getSubjectTagsList"]){
          [topMenuArr removeAllObjects];
         NSArray *dataArr=[dictemp objectForKey:@"data"];
@@ -439,7 +440,7 @@
     //[imge setContentMode:UIViewContentModeScaleAspectFill];
     SpecialModel *spc=listArr[section];
     imge.specialModel=spc;
-    NSString *urlStr=spc.img;
+    NSString *urlStr=spc.img_app;
     if((urlStr==nil)||[urlStr isEqualToString:@""]){
         [imge setImage:BundleImage(@"df_04_.png") forState:UIControlStateNormal];
         
@@ -463,6 +464,8 @@
 }
 #pragma mark 专题查询
 -(void)queryzhuanti:(SpeciaButton *)sender{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     [self getSpecialContentData:sender.specialModel.id];
 }
 #pragma mark  获取专题详细信息
@@ -484,6 +487,8 @@
 #pragma mark 分类
 -(void)btnFenlei:(SpeciaButton *)sender
 {
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(btnFenleiDo:) object:nil];
     [self performSelector:@selector(btnFenleiDo:) withObject:sender afterDelay:0.2f];
 //    [self getCatBanner];
@@ -496,12 +501,15 @@
     [self getTagSubjectGoods:sid];
 }
 -(void)goodContentTouch:(GoodImageButton *)sender{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
     [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(goodContentTouchDo:) object:sender];
     [self performSelector:@selector(goodContentTouchDo:) withObject:sender afterDelay:0.2f];
     
     
 }
 -(void)goodContentTouchDo:(GoodImageButton *)sender{
+    
     New_Goods *goods=sender.goods;
     //    NSDictionary *parameters = @{@"id":@"626"};
     NSDictionary *parameters = @{@"id":goods.id};
