@@ -26,4 +26,5 @@
 @property (copy, nonatomic) NSString *is_command;
 @property (nonatomic, retain) NSArray *goods_list;
 @property (nonatomic, retain) NSArray *goods_list_page;
+@property (nonatomic, retain) NSArray *subject_list;
 @end
