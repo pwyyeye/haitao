@@ -126,13 +126,13 @@
     [self selectedTab:[self.buttons objectAtIndex:currentSelectedIndex]];
     qaLine=[[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-49, self.view.width, 0.3)];
     if (currentSelectedIndex== 0) {
-        qaLine.frame=CGRectMake(0, self.view.frame.size.height-49, self.view.width, 0);
+        qaLine.frame=CGRectMake(0, self.view.frame.size.height-49, self.view.width, 0.1);
         
     }else{
         qaLine.frame=CGRectMake(0, self.view.frame.size.height-49, self.view.width, 0.3);
         
     }
-    qaLine.backgroundColor=RGB(128, 128, 128);
+    qaLine.backgroundColor=RGB(179, 179, 179);
     
     [self.view  addSubview:qaLine];
 //    qaLine.hidden=YES;
@@ -144,7 +144,7 @@
     UIButton *selectedBtn = (UIButton*)[self.view viewWithTag:[selectAtIndex integerValue]];
 
     if ([selectAtIndex integerValue] == 200) {
-        qaLine.frame=CGRectMake(0, self.view.frame.size.height-49, self.view.width, 0);
+        qaLine.frame=CGRectMake(0, self.view.frame.size.height-49, self.view.width, 0.1);
         
     }else{
         qaLine.frame=CGRectMake(0, self.view.frame.size.height-49, self.view.width, 0.3);
@@ -186,7 +186,7 @@
 
     self.currentSelectedIndex = btn.tag - 200;
     if (currentSelectedIndex== 0) {
-        qaLine.frame=CGRectMake(0, self.view.frame.size.height-49, self.view.width, 0);
+        qaLine.frame=CGRectMake(0, self.view.frame.size.height-49, self.view.width, 0.1);
         
     }else{
         qaLine.frame=CGRectMake(0, self.view.frame.size.height-49, self.view.width, 0.3);

@@ -138,4 +138,8 @@
 //获取包裹详情
 #define requestUrl_confirmPackage [NSString stringWithFormat:@"%@&f=confirmPackage&m=user",requestUrl]
 
+//心跳接口
+#define requestUrl_doHeart [NSString stringWithFormat:@"%@&f=doHeart&m=home",requestUrl]
+
+
 #endif
