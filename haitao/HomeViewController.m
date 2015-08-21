@@ -625,7 +625,7 @@
         [dicTemp setObject:bigTemp.content forKey:@"mainHeading"];
         [bigArr addObject:dicTemp];
     }
-    EScrollerView *scrollerTemp=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 160)
+    EScrollerView *scrollerTemp=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH/21)*8)
                                            scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
     
     scrollerTemp.delegate=self;
