@@ -93,7 +93,10 @@
         cell = (CusCell *)[nibArray objectAtIndex:0];
         cell.backgroundColor=[UIColor clearColor];
         [cell.shopbtn addTarget:self action:@selector(qianggouAct:) forControlEvents:UIControlEventTouchUpInside];
-        
+//        cell.lineLal.height=0.5;
+        UILabel *lineLal1=[[UILabel alloc]initWithFrame:CGRectMake(10, 92, 300, 0.5)];
+        lineLal1.backgroundColor=RGB(237, 237, 237);
+        [cell addSubview:lineLal1];
     }
     
     App_Home_Bigegg *grabModel=self.listArr[indexPath.row];

@@ -13,6 +13,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+//        self.lineLal.height=0.5;
         // Initialization code
     }
     return self;
