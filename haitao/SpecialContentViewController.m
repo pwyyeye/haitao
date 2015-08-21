@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIView *naviView=(UIView*) [self getNavigationBar];
-    _tableView =[[UITableView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height+1,self.view.frame.size.width,kWindowHeight-naviView.frame.size.height} style:UITableViewStylePlain];
+    _tableView =[[UITableView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height,self.view.frame.size.width,kWindowHeight-naviView.frame.size.height} style:UITableViewStylePlain];
     _tableView.delegate=self;
     _tableView.dataSource=self;
     _tableView.separatorColor=[UIColor clearColor];
