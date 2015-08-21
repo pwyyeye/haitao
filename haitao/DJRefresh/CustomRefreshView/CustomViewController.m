@@ -680,7 +680,7 @@
 }
 #pragma mark -获取分类下的商品信息
 -(void)getMenuGoodsList:(NSString *)s_cat{
-    NSDictionary *parameters = @{@"s_cat":s_cat,@"need_cat_index":@1};
+    NSDictionary *parameters = @{@"s_cat":s_cat,@"need_cat_index":@"1",@"need_page":@"1",@"p":pageCount,@"per":@"12"};
     
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
     ;

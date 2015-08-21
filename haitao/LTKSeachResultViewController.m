@@ -49,7 +49,7 @@
     if(searchTex.length>0)
     {
         [self saveHisData:searchTex];
-        NSDictionary *parameters = @{@"keyword":searchTex,@"need_cat_index":@1};
+        NSDictionary *parameters = @{@"keyword":searchTex,@"need_cat_index":@"1",@"need_page":@"1",@"p":@"1",@"per":@"12"};
 
         CFContentForDicKeyViewController *contentForDicKeyViewController=[[CFContentForDicKeyViewController alloc]init];
         contentForDicKeyViewController.keyDic=parameters;
@@ -319,7 +319,7 @@
     [serchText resignFirstResponder];
     if(searchTex.length>0)
     {
-        NSDictionary *parameters = @{@"keyword":searchTex,@"need_cat_index":@1};
+        NSDictionary *parameters = @{@"keyword":searchTex,@"need_cat_index":@"1",@"need_page":@"1",@"p":@"1",@"per":@"12"};
         
         CFContentForDicKeyViewController *contentForDicKeyViewController=[[CFContentForDicKeyViewController alloc]init];
         contentForDicKeyViewController.keyDic=parameters;

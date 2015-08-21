@@ -14,6 +14,7 @@
 #import "GoodImageButton.h"
 #import "HTGoodDetailsViewController.h"
 #import "SpecialModel.h"
+#import "SpecialContentViewController.h"
 @interface HTBoutiqueViewController ()
 <EScrollerViewDelegate>
 {
@@ -28,7 +29,7 @@
     UIImageView*  tabBarArrow;//上部桔红线条
     NSDictionary *indexDic;
     NSMutableArray *bannerArr;
-    NSArray *topMenuArr;
+    NSMutableArray *topMenuArr;
     NSMutableArray *dataList;
 }
 
@@ -37,14 +38,18 @@
 @implementation HTBoutiqueViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    bannerArr =[[NSMutableArray alloc]initWithCapacity:8];
-    dataList=[[NSMutableArray alloc]initWithCapacity:3];
+    topMenuArr=[[NSMutableArray alloc]initWithCapacity:4];
+    bannerArr =[[NSMutableArray alloc]initWithCapacity:4];
+    dataList=[[NSMutableArray alloc]initWithCapacity:4];
     listArr=[[NSMutableArray alloc]init];
     UIView *naviView=(UIView*) [self getNavigationBar];
-    _tableView =[[UITableView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height,naviView.frame.size.width,SCREEN_HEIGHT-50-(naviView.frame.size.height+1)} style:UITableViewStylePlain];
+    _tableView =[[UITableView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height,naviView.frame.size.width,SCREEN_HEIGHT-50-(naviView.frame.size.height+1)} style:UITableViewStyleGrouped];
     _tableView.delegate=self;
     _tableView.dataSource=self;
     _tableView.separatorColor=[UIColor clearColor];
+    _tableView.backgroundView = [[UIView alloc]init];
+    _tableView.backgroundColor = [UIColor clearColor];
+
     _refresh=[[DJRefresh alloc] initWithScrollView:_tableView delegate:self];
     _refresh.topEnabled=YES;
     [self.view addSubview:_tableView];
@@ -54,30 +59,48 @@
 }
 #pragma mark 获取精品推荐
 -(void)getCatBanner{
-    //NSDictionary *parameters = @{@"cat_id":self.menuModel.id};
-    
- 
-    NSDictionary *parameters = @{@"id":@"2"};
-    NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getSubjectInfo",requestUrl]
+    NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getSubjectTagsList",requestUrl]
     ;
     
-    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getSubjectInfo"];
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:GETURL withUrlName:@"getSubjectTagsList"];
     httpController.delegate = self;
-    [httpController onSearchForPostJson];
+    [httpController onSearch];
+
     
     
 }
 
 #pragma mark 接受数据
 -(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
-    //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    //    [app stopLoading];
-    NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
-    NSString *status=[dictemp objectForKey:@"status"];
-    //    if(![status isEqualToString:@"1"]){
-    ////        [self showMessage:message];
-    ////        return ;
-    //    }
+//        NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
+//    NSString *status=[dictemp objectForKey:@"status"];
+   
+    if([urlname isEqualToString:@"getSubjectTagsList"]){
+         [topMenuArr removeAllObjects];
+        NSArray *dataArr=[dictemp objectForKey:@"data"];
+        
+
+        for (NSDictionary *dic in dataArr) {
+            SpecialModel *specialModel = [SpecialModel objectWithKeyValues:dic] ;
+            [topMenuArr addObject:specialModel];
+        }
+        [self drawTop];
+       
+    }
+    if([urlname isEqualToString:@"getTagSubjectGoods"]){
+        [listArr removeAllObjects];
+        NSArray *dataArr=[dictemp objectForKey:@"data"];
+        
+        //
+        [listArr addObjectsFromArray:[SpecialModel objectArrayWithKeyValuesArray:dataArr]];
+        
+        for (SpecialModel *speciaTemp in listArr) {
+            NSArray *newArr=[New_Goods objectArrayWithKeyValuesArray:speciaTemp.goods_list];
+            speciaTemp.goods_list_page=[self getGoodlist:newArr];
+        }
+        [_tableView reloadData];
+        
+    }
     if([urlname isEqualToString:@"getSubjectInfo"]){
         NSDictionary *dataDic=[dictemp objectForKey:@"data"];
         NSDictionary *detailDic=[dataDic objectForKey:@"detail"];
@@ -89,41 +112,11 @@
             [goodsModelArr addObject:goodsModel];
         }
         NSDictionary *spdic=@{@"detail":specialModel,@"goods":goodsModelArr};
-        NSArray *goodArr=[spdic objectForKey:@"goods"];
-        [self getGoodlist:goodArr];
-    }
-    if([urlname isEqualToString:@"getGoodsList"]){
-        NSDictionary *dataDic=[dictemp objectForKey:@"data"];
-        NSArray *goodsArr=[dataDic objectForKey:@"list"];
-        NSMutableArray *goodsModelArr=[[NSMutableArray alloc]init];
-        for (NSDictionary *dic in goodsArr) {
-            New_Goods *goodsModel = [New_Goods objectWithKeyValues:dic] ;
-            [goodsModelArr addObject:goodsModel];
-        }
-//        [self getGoodlistTwo:goodsModelArr];
-        indexDic=[dataDic objectForKey:@"cat_index"];
-        [_tableView reloadData];
-    }
-    if([urlname isEqualToString:@"getMenuGoodsList"]){
-        NSDictionary *dataDic=[dictemp objectForKey:@"data"];
-        NSArray *goodsArr=[dataDic objectForKey:@"list"];
-        NSMutableArray *goodsModelArr=[[NSMutableArray alloc]init];
-        for (NSDictionary *dic in goodsArr) {
-            New_Goods *goodsModel = [New_Goods objectWithKeyValues:dic] ;
-            [goodsModelArr addObject:goodsModel];
-        }
-        if(goodsModelArr.count<1){
-            ShowMessage(@"无数据");
-            return;
-        }
-        NSDictionary *menuIndexDic=[dataDic objectForKey:@"cat_index"];
-        CFContentViewController *cfContentViewController=[[CFContentViewController alloc]init];
-        cfContentViewController.menuIndexDic=menuIndexDic;
-        cfContentViewController.dataList=goodsModelArr;
-//        cfContentViewController.topTitle=title;
+        SpecialContentViewController *specialContentViewController=[[SpecialContentViewController alloc]init];
+        specialContentViewController.spcDic=spdic;
+        specialContentViewController.sid=sidTemp;
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
-        [delegate.navigationController pushViewController:cfContentViewController animated:YES];
-        
+        [delegate.navigationController pushViewController:specialContentViewController animated:YES];
     }
     if([urlname isEqualToString:@"getGoodsDetail"]){
         NSDictionary *dataDic=[dictemp objectForKey:@"data"];
@@ -149,61 +142,125 @@
     }
     
 }
+#pragma mark获取顶部菜单
+-(void)drawTop{
+    UIView *topView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 20)];
+    topView.backgroundColor=[UIColor whiteColor];
+    CGRect lastFram;
+    for (int i =0; i<topMenuArr.count; i++)
+    {
+        if(i==4){
+            break;
+        }
+        SpecialModel *menuTemp=topMenuArr[i];
+//        NSString *imgname=[menuTemp objectForKey:@"img"];
+        NSString *menutitle=menuTemp.name;
+        SpeciaButton *btnNine=[[SpeciaButton alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH/4, 0, SCREEN_WIDTH/4, SCREEN_WIDTH/4)];
+        //            [btnNine setImage:[UIImage imageNamed:topMenuArr[i]] forState:0];
+        
+        btnNine.backgroundColor=[UIColor clearColor];
+        [btnNine addTarget:self action:@selector(btnFenlei:) forControlEvents:UIControlEventTouchUpInside];
+        btnNine.specialModel=menuTemp;
+        [topView addSubview:btnNine];
+        
+        UrlImageView *image=[[UrlImageView alloc]initWithFrame:CGRectMake(btnNine.frame.size.width*0.3125, btnNine.frame.size.height*0.2125, btnNine.frame.size.width*0.375, btnNine.frame.size.width*0.375)];
+        [btnNine addSubview:image];
+        
+        [image setImageWithURL:[NSURL URLWithString:menuTemp.img] placeholderImage:[UIImage imageNamed:@"default_04"]];
+        [image setContentMode:UIViewContentModeScaleAspectFill];
+        image.layer.borderWidth=1;
+        image.layer.cornerRadius = 4;
+        image.layer.borderColor = [[UIColor clearColor] CGColor];
+        image.backgroundColor=[UIColor clearColor];
+        
+        //            UILabel *labelLine=[[UILabel alloc]initWithFrame:CGRectMake(2, 50+10, 70-4, 1)];
+        //            labelLine.backgroundColor=[UIColor grayColor];
+        //            [btnNine addSubview:labelLine];
+        
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, image.frame.size.height+image.frame.origin.y+btnNine.frame.size.height/10, btnNine.frame.size.width, 10)];
+        label.font = [UIFont boldSystemFontOfSize:10.0f];  //UILabel的字体大小
+        label.numberOfLines = 1;  //必须定义这个属性，否则UILabel不会换行
+        label.textColor = [UIColor grayColor];
+        label.textAlignment = NSTextAlignmentCenter;  //文本对齐方式
+        [label setBackgroundColor:[UIColor whiteColor]];
+        label.text=menutitle;
+        lastFram=btnNine.frame;
+        [btnNine addSubview:label];
+    }
+    
+    topView.height=lastFram.origin.y+lastFram.size.height;
+    _tableView.tableHeaderView=topView;
+    //获取第一组数据
+    SpecialModel *menuTemp=topMenuArr[0];
+    //请求获取标签及其下专题
+    [self getTagSubjectGoods:menuTemp.id];
+//    [self getTagSubjectGoods:@"1"];
+    
+}
+#pragma mark请求获取标签及其下专题
+-(void)getTagSubjectGoods:(NSString *)tag_id{
+    NSDictionary *parameters = @{@"tag_id":tag_id};
+    NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getTagSubjectGoods",requestUrl]
+    ;
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getTagSubjectGoods"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
 
+}
 #pragma mark获取商品数据
--(void)getGoodlist:(NSArray *)arr{
+-(NSArray *)getGoodlist:(NSArray *)arr{
     int nowCount=1;
-    [listArr removeAllObjects];
-    [dataList removeAllObjects];
-    [bannerArr removeAllObjects];
+//    [listArr removeAllObjects];
+//    [dataList removeAllObjects];
+//    [bannerArr removeAllObjects];
+    NSMutableArray *newPageArr=[[NSMutableArray alloc]initWithCapacity:2];
     NSMutableArray *pageArr=[[NSMutableArray alloc]initWithCapacity:2];
     for (int i=0; i<arr.count; i++) {
         New_Goods *new_Goods= arr[i];
         
         if(nowCount%2==0){
             [pageArr addObject:new_Goods];
-            [listArr addObject:pageArr];
+            [newPageArr addObject:pageArr];
             pageArr=[[NSMutableArray alloc]initWithCapacity:2];
         }else{
             [pageArr addObject:new_Goods];
             if(i==arr.count-1){
-                [listArr addObject:pageArr];
+                [newPageArr addObject:pageArr];
             }
         }
         nowCount++;
     }
-    
-    App_Home_Bigegg *bigTemp=[[App_Home_Bigegg alloc]init];
-    bigTemp.img_url=@"FeaturedPages_img_banner_6";
-
-    [bannerArr addObject:bigTemp];
-    
-    
-    NSDictionary *dic1=@{@"img":@"jingpintuijian_icon_topbar_xsfm_",@"title":@"孝敬父母"};
-    NSDictionary *dic2=@{@"img":@"jingpintuijian_icon_topbar_dsxn_",@"title":@"都市型男"};
-    NSDictionary *dic3=@{@"img":@"jingpintuijian_icon_topbar_cxz_",@"title":@"尝鲜者"};
-    NSDictionary *dic4=@{@"img":@"jingpintuijian_icon_topbar_scmp_",@"title":@"奢侈名牌"};
-    topMenuArr=@[dic1,dic2,dic3,dic4];
-    
-    [dataList addObject:topMenuArr];
-    [dataList addObject:bannerArr];
-    [dataList addObject:listArr];
-    [_tableView reloadData];
+    return newPageArr;
+//    App_Home_Bigegg *bigTemp=[[App_Home_Bigegg alloc]init];
+//    bigTemp.img_url=@"FeaturedPages_img_banner_6";
+//
+//    [bannerArr addObject:bigTemp];
+//    
+//    
+//    NSDictionary *dic1=@{@"img":@"jingpintuijian_icon_topbar_xsfm_",@"title":@"孝敬父母"};
+//    NSDictionary *dic2=@{@"img":@"jingpintuijian_icon_topbar_dsxn_",@"title":@"都市型男"};
+//    NSDictionary *dic3=@{@"img":@"jingpintuijian_icon_topbar_cxz_",@"title":@"尝鲜者"};
+//    NSDictionary *dic4=@{@"img":@"jingpintuijian_icon_topbar_scmp_",@"title":@"奢侈名牌"};
+//    topMenuArr=@[dic1,dic2,dic3,dic4];
+//    
+//    [dataList addObject:topMenuArr];
+//    [dataList addObject:bannerArr];
+//    [dataList addObject:listArr];
+//    [_tableView reloadData];
 }
 #pragma mark tableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section==2){
-        NSArray *arr=dataList[section];
-        return arr.count;
-    }
-    return 1;
+    SpecialModel *specialModel=listArr[section];
+        return specialModel.goods_list_page.count;
     
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return dataList.count;
+    return listArr.count;
 }
 
 
@@ -211,64 +268,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"sec:%ld row:%ld",indexPath.section,indexPath.row);
-    if(indexPath.section==0){
-        static NSString *menu_cell = @"menu_cell";
-        
-        UITableViewCell *cell =nil;
-        if (cell == nil)
-        {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:menu_cell] ;
-            cell.accessoryType=UITableViewCellAccessoryNone;
-            cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame] ;
-            cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:0.88 green:0.94 blue:0.99 alpha:1.0];
-            
-        }
-        CGRect lastFram;
-        for (int i =0; i<topMenuArr.count; i++)
-        {
-            NSDictionary *menuTemp=topMenuArr[i];
-            NSString *imgname=[menuTemp objectForKey:@"img"];
-            NSString *menutitle=[menuTemp objectForKey:@"title"];
-            CFImageButton *btnNine=[[CFImageButton alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH/4, 0, SCREEN_WIDTH/4, SCREEN_WIDTH/4)];
-            //            [btnNine setImage:[UIImage imageNamed:topMenuArr[i]] forState:0];
-            
-            btnNine.backgroundColor=[UIColor clearColor];
-            [btnNine addTarget:self action:@selector(btnFenlei:) forControlEvents:UIControlEventTouchUpInside];
-            btnNine.tag=i;
-            [cell addSubview:btnNine];
-            
-            UrlImageView*image=[[UrlImageView alloc]initWithFrame:CGRectMake(btnNine.frame.size.width*0.3125, btnNine.frame.size.height*0.2125, btnNine.frame.size.width*0.375, btnNine.frame.size.width*0.375)];
-            [btnNine addSubview:image];
-            
-            [image setImage:[UIImage imageNamed:imgname]];[image setContentMode:UIViewContentModeScaleAspectFill];
-            image.layer.borderWidth=1;
-            image.layer.cornerRadius = 4;
-            image.layer.borderColor = [[UIColor clearColor] CGColor];
-            image.backgroundColor=[UIColor clearColor];
-            
-            //            UILabel *labelLine=[[UILabel alloc]initWithFrame:CGRectMake(2, 50+10, 70-4, 1)];
-            //            labelLine.backgroundColor=[UIColor grayColor];
-            //            [btnNine addSubview:labelLine];
-            
-            
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, image.frame.size.height+image.frame.origin.y+btnNine.frame.size.height/10, btnNine.frame.size.width, 10)];
-            label.font = [UIFont boldSystemFontOfSize:10.0f];  //UILabel的字体大小
-            label.numberOfLines = 1;  //必须定义这个属性，否则UILabel不会换行
-            label.textColor = [UIColor grayColor];
-            label.textAlignment = NSTextAlignmentCenter;  //文本对齐方式
-            [label setBackgroundColor:[UIColor whiteColor]];
-            label.text=menutitle;
-            lastFram=btnNine.frame;
-            [btnNine addSubview:label];
-        }
-        CGRect cellFrame = [cell frame];
-        cellFrame.origin=CGPointMake(0, 0);
-        cellFrame.size.width=self.view.frame.size.width;
-        cellFrame.size.height=lastFram.origin.y+lastFram.size.height;
-        [cell setFrame:cellFrame];
-        return cell;
-        
-    }else if (indexPath.section==1){
+    /*
+    else if (indexPath.section==1){
         static NSString *contet_cell = @"contet_cell";
         
         UITableViewCell *cell =nil;
@@ -295,14 +296,9 @@
             
             [bigArr addObject:dicTemp];
         }
-        /*
-        EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 160)
-                                                              scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
-        
-        scroller.delegate=self;
-        scroller.backgroundColor=[UIColor clearColor];
-        [cell addSubview:scroller];
-         */
+     
+     
+     
         UIImageView *imge=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 160)];
         imge.image =[UIImage imageNamed:ss];
         [cell addSubview:imge];
@@ -314,7 +310,8 @@
         
         return cell;
     }
-    else if(indexPath.section==2){
+*/
+
         static NSString *CellIdentifier = @"cate_cell";
         
         UITableViewCell *cell =nil;
@@ -328,7 +325,8 @@
             
         }
         CGRect lastFrame;
-        NSArray *arrTemp=listArr[indexPath.row];
+        SpecialModel *specialData=listArr[indexPath.section];
+        NSArray *arrTemp=specialData.goods_list_page[indexPath.row];
         for (int i =0; i<arrTemp.count; i++)
         {
             New_Goods *new_Goods=arrTemp[i];
@@ -414,22 +412,6 @@
         
         return cell;
     }
-    
-    static NSString *non_cell = @"non_cell";
-    
-    UITableViewCell *cell =nil;
-    
-    if (cell == nil)
-    {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:non_cell] ;
-        cell.accessoryType=UITableViewCellAccessoryNone;
-        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame] ;
-        cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:0.88 green:0.94 blue:0.99 alpha:1.0];
-        
-    }
-
-    return  cell;
-}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -442,6 +424,35 @@
     NSLog(@"长度:%f",cell.frame.size.height);
 //    return 100;
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    
+    return 140;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 140)];
+     SpeciaButton *imge=[[SpeciaButton alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 140)];
+    
+    [imge addTarget:self action:@selector(queryzhuanti:) forControlEvents:UIControlEventTouchUpInside];
+    //[imge setContentMode:UIViewContentModeScaleAspectFill];
+    SpecialModel *spc=listArr[section];
+    imge.specialModel=spc;
+    NSString *urlStr=spc.img;
+    if((urlStr==nil)||[urlStr isEqualToString:@""]){
+        [imge setImage:BundleImage(@"df_04_.png") forState:UIControlStateNormal];
+        
+    }else{
+        NSURL *imgUrl=[NSURL URLWithString:urlStr];
+        
+        [imge setImageWithURL:imgUrl];
+    }
+    [view addSubview:imge];
+    return view;
+
+    
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [_tableView deselectRowAtIndexPath:indexPath animated:false];
@@ -450,14 +461,39 @@
     //
     //    [delegate.navigationController pushViewController:goods animated:YES];
 }
-
+#pragma mark 专题查询
+-(void)queryzhuanti:(SpeciaButton *)sender{
+    [self getSpecialContentData:sender.specialModel.id];
+}
+#pragma mark  获取专题详细信息
+-(void)getSpecialContentData:(NSString *)sid{
+    
+    NSDictionary *parameters = @{@"id":sid};
+    sidTemp=sid;
+    NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getSubjectInfo",requestUrl]
+    ;
+//    AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+//    [app startLoading];
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getSubjectInfo"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
+    
+    
+}
 #pragma mark 分类
--(void)btnFenlei:(CFImageButton *)sender
+-(void)btnFenlei:(SpeciaButton *)sender
 {
-    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(getCatBanner) object:nil];
-    [self performSelector:@selector(getCatBanner) withObject:sender afterDelay:0.2f];
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(btnFenleiDo:) object:nil];
+    [self performSelector:@selector(btnFenleiDo:) withObject:sender afterDelay:0.2f];
 //    [self getCatBanner];
     
+}
+-(void)btnFenleiDo:(SpeciaButton *)sender
+{
+    NSString *sid=sender.specialModel.id;
+    
+    [self getTagSubjectGoods:sid];
 }
 -(void)goodContentTouch:(GoodImageButton *)sender{
     [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(goodContentTouchDo:) object:sender];

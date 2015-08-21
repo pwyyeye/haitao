@@ -9,7 +9,8 @@
 #import "QiangGouViewController.h"
 #import "App_Home_Bigegg.h"
 #import "UrlImageButton.h"
-
+#import "CusCell.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 @interface QiangGouViewController ()
 {
      UITableView                 *_tableView;
@@ -70,7 +71,7 @@
 #pragma mark tableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return self.listArr.count;
     
 }
 
@@ -84,65 +85,32 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"cate_cell";
+    static NSString *CellIdentifier = @"CusCell";
     
-    UITableViewCell *cell =nil;
-    
-    if (cell == nil)
-    {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] ;
-        cell.accessoryType=UITableViewCellAccessoryNone;
-        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame] ;
-        cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:0.88 green:0.94 blue:0.99 alpha:1.0];
+    CusCell *cell = (CusCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+        cell = (CusCell *)[nibArray objectAtIndex:0];
+        cell.backgroundColor=[UIColor clearColor];
+        [cell.shopbtn addTarget:self action:@selector(qianggouAct:) forControlEvents:UIControlEventTouchUpInside];
         
     }
-//    CGRect lastFrame;
-    UrlImageButton *btn;
-    UILabel *label1;
-    UILabel *label2;
-    for (int i =0; i<self.listArr.count; i++)
-    {
-        App_Home_Bigegg *grabModel=self.listArr[i];
-        btn=[[UrlImageButton alloc]initWithFrame:CGRectMake(20+i*(SCREEN_WIDTH-80)/3+i*20, floor(i/3)*(SCREEN_WIDTH-80)/3+10, (SCREEN_WIDTH-80)/3, (SCREEN_WIDTH-80)/3)];
-        NSURL *imgUrl=[NSURL URLWithString:grabModel.img_url];
-        [btn setImageWithURL:imgUrl placeholderImage:[UIImage imageNamed:@"default_02.png"]];
-        btn.tag=i;
-        //        [btn setImage:[UIImage imageNamed:@"default_02.png"] forState:0];
-        //        - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder;
-        [cell addSubview:btn];
-        [btn addTarget:self action:@selector(qianggouAct:) forControlEvents:UIControlEventTouchUpInside];
-        btn.backgroundColor=[UIColor clearColor];
-        
-        label1=[[UILabel alloc]initWithFrame:CGRectMake(btn.left, btn.frame.size.height+btn.frame.origin.y+3, btn.width, 15)];
-        label1.text=grabModel.content;
-        label1.textColor =hexColor(@"#333333");
-        label1.font=[UIFont systemFontOfSize:11];
-        label1.textAlignment=1;
-        label1.backgroundColor=[UIColor clearColor];
-        //        label1.lineBreakMode = UILineBreakModeWordWrap;
-        label1.numberOfLines = 1;
-        //        CGRect txtFrame = label1.frame;
-        [cell addSubview:label1];
-        
-        label2=[[UILabel alloc]initWithFrame:CGRectMake(label1.left, label1.frame.size.height+label1.frame.origin.y, label1.width, 20)];
-        label2.text=[NSString stringWithFormat:@"￥%.2f",grabModel.price_cn];
-        label2.font=[UIFont boldSystemFontOfSize:14];
-        label2.backgroundColor=[UIColor clearColor];
-        label2.textColor =hexColor(@"#ff0d5e");
-        label2.textAlignment=1;
-        label2.backgroundColor=[UIColor clearColor];
-        //        if(maxFrame.origin.y<label2.frame.origin.y){
-        //            maxFrame=label2.frame;
-        //        }
-        [cell addSubview:label2];
-    }
-    [cell setBackgroundColor:[UIColor whiteColor]];
-    CGRect cellFrame = [cell frame];
-    cellFrame.origin=CGPointMake(0, 0);
-    cellFrame.size.width=SCREEN_WIDTH;
-    cellFrame.size.height=label2.top +label2.size.height+10;
     
-    [cell setFrame:cellFrame];
+    App_Home_Bigegg *grabModel=self.listArr[indexPath.row];
+    cell.shopbtn.tag=indexPath.row;
+    cell.shopName.text=grabModel.content;
+    NSURL *imgUrl=[NSURL URLWithString:grabModel.img_url];
+    [cell.shopImgView setImageWithURL:imgUrl placeholderImage:[UIImage imageNamed:@"default_02.png"]];
+    cell.shipName.text=grabModel.country_name;
+    [cell.shipImgView setImageWithURL:[NSURL URLWithString:grabModel.country_flag_url] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
+    cell.priceLbl.text=[NSString stringWithFormat:@"￥%.2f",grabModel.price_cn];
+//    @property (weak, nonatomic) IBOutlet UILabel *shopName;
+//    @property (weak, nonatomic) IBOutlet UrlImageView *shopImgView;
+//    @property (weak, nonatomic) IBOutlet UILabel *shipName;
+//    @property (weak, nonatomic) IBOutlet UIButton *shopbtn;
+//    @property (weak, nonatomic) IBOutlet UrlImageView *shipImgView;
+//    @property (weak, nonatomic) IBOutlet UILabel *priceLbl;
+
     
     
     
@@ -154,8 +122,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    return cell.frame.size.height;
+    return 98;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -173,11 +140,11 @@
     [app.navigationController popViewControllerAnimated:YES];
 }
 
--(void)qianggouAct:(UrlImageButton *)sender{
+-(void)qianggouAct:(UIButton *)sender{
     [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(qianggouActDo:) object:sender];
     [self performSelector:@selector(qianggouActDo:) withObject:sender afterDelay:0.3f];
 }
--(void)qianggouActDo:(UrlImageButton *)sender{
+-(void)qianggouActDo:(UIButton *)sender{
     App_Home_Bigegg *grabModel=self.listArr[sender.tag];
     NSDictionary *parameters = @{@"id":grabModel.goods_id};
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
@@ -200,9 +167,6 @@
     ////        [self showMessage:message];
     ////        return ;
     //    }
-    if([urlname isEqualToString:@"addFav"]){
-        ShowMessage(@"收藏成功");
-    }
     
     if([urlname isEqualToString:@"getGoodsDetail"]){
         NSDictionary *dataDic=[dictemp objectForKey:@"data"];
