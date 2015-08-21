@@ -16,6 +16,8 @@
 @interface CFContentViewController : LTKViewController<UITableViewDelegate,UITableViewDataSource,HTTPControllerProtocol,DJRefreshDelegate,FilterViewControllerDelegate>
 {
    NSMutableArray *listArr;
+    NSString *pageCount;
+    NSMutableDictionary *shaixuanDic;
 }
 @property (nonatomic,retain)NSDictionary *menuIndexDic;
 //存储所有筛选条件

@@ -37,6 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    pageCount=@"1";
     UIView *naviView=(UIView*) [self getNavigationBar];
     _tableView =[[UITableView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height+1,self.view.frame.size.width,kWindowHeight-naviView.frame.size.height} style:UITableViewStylePlain];
     nullview=[[UIView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height+1,self.view.frame.size.width,kWindowHeight-naviView.frame.size.height}];
@@ -46,14 +47,15 @@
     _tableView.delegate=self;
     _tableView.dataSource=self;
     _tableView.separatorColor=[UIColor clearColor];
-//    _refresh=[[DJRefresh alloc] initWithScrollView:_tableView delegate:self];
-//    _refresh.topEnabled=YES;
+    _refresh=[[DJRefresh alloc] initWithScrollView:_tableView delegate:self];
+    _refresh.bottomEnabled=YES;
     //    _tableView.backgroundColor=[UIColor blueColor];
     [self.view addSubview:_tableView];
     [self.view addSubview:nullview];
     listArr =[[NSMutableArray alloc]init];
     
     _inParameters=[self.keyDic mutableCopy];
+    shaixuanDic=[self.keyDic mutableCopy];
     self.navigationController.title=[_keyDic objectForKey:@"keyword"]?[_keyDic objectForKey:@"keyword"]:self.topTitle;
     
     [self getGoodsList];
@@ -108,6 +110,40 @@
     [serchBtn addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
     [anniuView addSubview:serchBtn];
 }
+#pragma mark  下拉刷新
+- (void)refresh:(DJRefresh *)refresh didEngageRefreshDirection:(DJRefreshDirection)direction{
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self addDataWithDirection:direction];
+    });
+    
+}
+#pragma mark  下拉刷新
+- (void)addDataWithDirection:(DJRefreshDirection)direction{
+    
+    if (direction==DJRefreshDirectionTop) {
+        
+    }else{
+        [self getXialaData];
+    }
+    [_refresh finishRefreshingDirection:direction animation:YES];
+    
+    
+    
+}
+-(void)getXialaData{
+    int pageCountInt=pageCount.intValue;
+    pageCountInt++;
+    pageCount=[NSString stringWithFormat:@"%d",pageCountInt];
+    [_inParameters removeObjectForKey:@"p"];
+    [_inParameters setObject:pageCount forKey:@"p"];
+    NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
+    ;
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:_inParameters withUrlName:@"getGoodsListPage"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
+}
 -(void)backHome:(id)sender{
     [[NSNotificationCenter defaultCenter] postNotificationName:@"backHome" object:nil];
 }
@@ -156,6 +192,7 @@
 }
 #pragma mark -根据条件获取商品信息
 -(void)getGoodsList{
+    pageCount=@"1";
     _inParameters=[self.keyDic mutableCopy];
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
     ;
@@ -187,6 +224,19 @@
         [self getGoodlist:goodsModelArr];
         
     }
+    if([urlname isEqualToString:@"getGoodsListPage"]){
+        NSDictionary *dataDic=[dictemp objectForKey:@"data"];
+        NSArray *goodsArr=[dataDic objectForKey:@"list"];
+        NSMutableArray *goodsModelArr=[[NSMutableArray alloc]init];
+        for (NSDictionary *dic in goodsArr) {
+            New_Goods *goodsModel = [New_Goods objectWithKeyValues:dic] ;
+            [goodsModelArr addObject:goodsModel];
+        }
+        [self getGoodlistTwoPage:goodsModelArr];
+        
+        
+        
+    }
     if([urlname isEqualToString:@"getGoodsDetail"]){
         NSDictionary *dataDic=[dictemp objectForKey:@"data"];
         NSDictionary *goods_detail=[dataDic objectForKey:@"goods_detail"];
@@ -211,6 +261,37 @@
         
     }
 }
+#pragma mark商品分页数据排2列
+-(void)getGoodlistTwoPage:(NSArray *)arr{
+    int nowCount=1;
+    NSMutableArray *addArr=[[NSMutableArray alloc]init];
+    NSMutableArray *pageArr=[[NSMutableArray alloc]initWithCapacity:2];
+    int count=(int)listArr.count;
+    for (int i=0; i<arr.count; i++) {
+        New_Goods *new_Goods= arr[i];
+        
+        if(nowCount%2==0){
+            [pageArr addObject:new_Goods];
+            [addArr addObject:pageArr];
+            [listArr addObject:pageArr];
+            pageArr=[[NSMutableArray alloc]initWithCapacity:2];
+        }else{
+            [pageArr addObject:new_Goods];
+            if(i==arr.count-1){
+                [addArr addObject:pageArr];
+                [listArr addObject:pageArr];
+            }
+        }
+        nowCount++;
+    }
+    NSMutableArray *indexArr=[[NSMutableArray alloc]init];
+    for (int i=0; i<addArr.count; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:count+i inSection:0];
+        [indexArr addObject:indexPath];
+    }
+    [_tableView insertRowsAtIndexPaths:indexArr  withRowAnimation:UITableViewRowAnimationBottom];
+}
+
 #pragma mark 获取数据刷新
 -(void)getFilterResult:(NSArray *)resultArray{
     [self getGoodlist:resultArray];
@@ -558,14 +639,16 @@
 }
 #pragma mark 排序
 -(void)paixu:(NSString *)soryKey{
-    NSMutableDictionary *dicNewKey=[[NSMutableDictionary alloc]initWithDictionary:self.keyDic];
-    [dicNewKey setObject:soryKey forKey:@"sort"];
-    _inParameters=[dicNewKey mutableCopy];
+    pageCount=@"1";
+    [_inParameters removeObjectForKey:@"p"];
+    [_inParameters setObject:pageCount forKey:@"p"];
+    [_inParameters removeObjectForKey:@"sort"];
+    [_inParameters setObject:soryKey forKey:@"sort"];
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsList",requestUrl]
     ;
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
-    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:dicNewKey withUrlName:@"getGoodsListForKey"];
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:_inParameters withUrlName:@"getGoodsListForKey"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
 }
@@ -594,6 +677,9 @@
     [httpController onSearchForPostJson];
     
     
+}
+-(void)returnInParameters:(NSDictionary *)inParameterss{
+    _inParameters=[[NSMutableDictionary alloc]initWithDictionary:inParameterss];
 }
 /*
 #pragma mark - Navigation

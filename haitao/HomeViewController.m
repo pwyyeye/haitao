@@ -20,6 +20,7 @@
 #import "SpecialModel.h"
 #import "QiangGouViewController.h"
 #import "QiangGouView.h"
+#import "CFContentForDicKeyViewController.h"
 @interface HomeViewController ()
 {
     UrlImageButton *btn;
@@ -624,7 +625,7 @@
         [dicTemp setObject:bigTemp.content forKey:@"mainHeading"];
         [bigArr addObject:dicTemp];
     }
-    EScrollerView *scrollerTemp=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 160)
+    EScrollerView *scrollerTemp=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH/21)*8)
                                            scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
     
     scrollerTemp.delegate=self;
@@ -1083,8 +1084,23 @@
         [httpController onSearchForPostJson];
     }else if (adType==4){
         
-    }else if (adType==5){
+            NSDictionary *parameters = @{@"s_cat":bigegg.cat_id,@"need_cat_index":@"1",@"need_page":@"1",@"p":@"1",@"per":@"12"};
+            
+            CFContentForDicKeyViewController *contentForDicKeyViewController=[[CFContentForDicKeyViewController alloc]init];
+            contentForDicKeyViewController.keyDic=parameters;
+            contentForDicKeyViewController.topTitle=@"";
+            AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+            [app.navigationController pushViewController:contentForDicKeyViewController animated:YES];
         
+        
+    }else if (adType==5){
+        NSDictionary *parameters = @{@"brand":bigegg.brand_id,@"need_cat_index":@"1",@"need_page":@"1",@"p":@"1",@"per":@"12"};
+        
+        CFContentForDicKeyViewController *contentForDicKeyViewController=[[CFContentForDicKeyViewController alloc]init];
+        contentForDicKeyViewController.keyDic=parameters;
+        contentForDicKeyViewController.topTitle=@"";
+        AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [app.navigationController pushViewController:contentForDicKeyViewController animated:YES];
     }
 }
 #pragma mark 获取商品详情
