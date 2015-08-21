@@ -101,8 +101,8 @@
 }
 
 -(void)doHeart{
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [app startLoading];
+//    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//    [app startLoading];
     HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_doHeart withType:GETURL withUrlName:@"doheart"];
     httpController.delegate = self;
     [httpController onSearch];
