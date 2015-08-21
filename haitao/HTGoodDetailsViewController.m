@@ -581,7 +581,7 @@ static CGFloat kImageOriginHight = 400;
 //    [carBtn setImage:BundleImage(@"icon_Order") forState:0];
     [view_bar addSubview:carBtn];
     UIImageView *gwcImg=[[UrlImageView alloc]initWithFrame:CGRectMake(20, 8, 24, 22)];
-    gwcImg.image=[UIImage imageNamed:@"icon_AddOrder"];//icon_Order
+    gwcImg.image=[UIImage imageNamed:@"TabBar_icon_Cart"];//icon_Order
     [carBtn addSubview:gwcImg];
     UILabel *gwcLbl=[[UILabel alloc]initWithFrame:CGRectMake(gwcImg.frame.origin.x-4, gwcImg.frame.size.height+gwcImg.frame.origin.y+6,gwcImg.frame.size.width+10, 10)];
     gwcLbl.text=@"购物车";
@@ -990,6 +990,7 @@ static CGFloat kImageOriginHight = 400;
 #pragma mark 购物须知
 
 -(void)gouwuxuzhiMore:(id)sender{
+    return;
     GouWuXuZhiViewController *gouWuXuZhiViewController=[[GouWuXuZhiViewController alloc]initWithNibName:@"GouWuXuZhiViewController" bundle:nil];
     [self presentViewController:gouWuXuZhiViewController animated:YES completion:^{
         

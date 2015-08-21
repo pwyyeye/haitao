@@ -396,8 +396,13 @@
     }
     //菜单
     view_toolBar.backgroundColor=[UIColor whiteColor];
-    view_toolBar.layer.borderColor=[UIColor colorWithRed:.9 green:.9  blue:.9  alpha:1.0].CGColor;
-    view_toolBar.layer.borderWidth=1;
+//    view_toolBar.layer.borderColor=[UIColor colorWithRed:.9 green:.9  blue:.9  alpha:1.0].CGColor;
+//    view_toolBar.layer.borderWidth=1;
+    CALayer *layer=[[CALayer alloc] init];
+    layer.frame=CGRectMake(0, 0, SCREEN_WIDTH, 0.5);
+    layer.backgroundColor=RGB(237, 237, 237).CGColor;
+    [view_toolBar.layer addSublayer:layer];
+    
     [self.view addSubview:view_toolBar];
     //全选按钮
     //(8, 10, 40, 30);

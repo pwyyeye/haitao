@@ -642,6 +642,8 @@
 		AD8E38A81B75AB9000C9D5BA /* LogisticsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD8E38A61B75AB9000C9D5BA /* LogisticsCell.xib */; };
 		AD959E371B8578E6009BBF77 /* DetailsPage_img_gouwuliucheng@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD959E351B8578E6009BBF77 /* DetailsPage_img_gouwuliucheng@2x.png */; };
 		AD959E381B8578E6009BBF77 /* DetailsPage_img_gouwuliucheng@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD959E361B8578E6009BBF77 /* DetailsPage_img_gouwuliucheng@3x.png */; };
+		AD959E3A1B86EC9F009BBF77 /* TabBar_icon_Cart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD959E391B86EC9F009BBF77 /* TabBar_icon_Cart@2x.png */; };
+		AD959E3C1B86ECCB009BBF77 /* TabBar_icon_Cart@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD959E3B1B86ECCB009BBF77 /* TabBar_icon_Cart@3x.png */; };
 		ADB5AC821B53CB5F0022B2C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC811B53CB5F0022B2C2 /* main.m */; };
 		ADB5AC851B53CB5F0022B2C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC841B53CB5F0022B2C2 /* AppDelegate.m */; };
 		ADB5AC881B53CB5F0022B2C2 /* haitao.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADB5AC861B53CB5F0022B2C2 /* haitao.xcdatamodeld */; };
@@ -1699,6 +1701,8 @@
 		AD8E38A61B75AB9000C9D5BA /* LogisticsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogisticsCell.xib; sourceTree = "<group>"; };
 		AD959E351B8578E6009BBF77 /* DetailsPage_img_gouwuliucheng@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailsPage_img_gouwuliucheng@2x.png"; sourceTree = "<group>"; };
 		AD959E361B8578E6009BBF77 /* DetailsPage_img_gouwuliucheng@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailsPage_img_gouwuliucheng@3x.png"; sourceTree = "<group>"; };
+		AD959E391B86EC9F009BBF77 /* TabBar_icon_Cart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_icon_Cart@2x.png"; sourceTree = "<group>"; };
+		AD959E3B1B86ECCB009BBF77 /* TabBar_icon_Cart@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_icon_Cart@3x.png"; sourceTree = "<group>"; };
 		ADB5AC7C1B53CB5F0022B2C2 /* haitao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = haitao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADB5AC801B53CB5F0022B2C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADB5AC811B53CB5F0022B2C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -2266,6 +2270,8 @@
 		A2F7FD1F1B6FB18400657575 /* 购物车 */ = {
 			isa = PBXGroup;
 			children = (
+				AD959E391B86EC9F009BBF77 /* TabBar_icon_Cart@2x.png */,
+				AD959E3B1B86ECCB009BBF77 /* TabBar_icon_Cart@3x.png */,
 				A2F7FD261B6FB18400657575 /* df_01_@2x.png */,
 				A2F7FD2C1B6FB18400657575 /* ic_01_h_@2x.png */,
 				A2F7FD2D1B6FB18400657575 /* ic_01_n_@2x.png */,
@@ -4405,6 +4411,7 @@
 				AD8E37CE1B7392EC00C9D5BA /* order_btn_definite@3x.png in Resources */,
 				AD8E36D01B721A1500C9D5BA /* icon_BaoJian.png in Resources */,
 				AD8AA61E1B59435C00E324AD /* Overlay.png in Resources */,
+				AD959E3C1B86ECCB009BBF77 /* TabBar_icon_Cart@3x.png in Resources */,
 				AD8E389E1B75A7A400C9D5BA /* icon_BoDaDianHua@2x.png in Resources */,
 				AD8E35971B70CA4300C9D5BA /* DetailsPage_img_zhifufangshi_left.png in Resources */,
 				AD8E356E1B70CA4300C9D5BA /* jingpintuijian_icon_topbar_xsfm_@2x.png in Resources */,
@@ -4512,6 +4519,7 @@
 				ADD2C4281B78A0AC00A2E638 /* icon_right2@3x.png in Resources */,
 				AD8E37281B721A1500C9D5BA /* icon_NotSelected@2x.png in Resources */,
 				AD8E36B31B721A1500C9D5BA /* home_icon_ChangXian@2x.png in Resources */,
+				AD959E3A1B86EC9F009BBF77 /* TabBar_icon_Cart@2x.png in Resources */,
 				A2FC74C41B5A31340094BC59 /* df_01.png in Resources */,
 				AD8E379E1B721A1500C9D5BA /* UserCenter_icon_info@3x.png in Resources */,
 				AD8E36C21B721A1500C9D5BA /* icon_Add@2x.png in Resources */,
