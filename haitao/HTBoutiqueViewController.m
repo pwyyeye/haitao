@@ -255,6 +255,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     SpecialModel *specialModel=listArr[section];
+    if(specialModel.goods_list_page.count>2){
+        return 2;
+    }
         return specialModel.goods_list_page.count;
     
 }
@@ -440,7 +443,7 @@
     //[imge setContentMode:UIViewContentModeScaleAspectFill];
     SpecialModel *spc=listArr[section];
     imge.specialModel=spc;
-    NSString *urlStr=spc.img_app;
+    NSString *urlStr=spc.img;
     if((urlStr==nil)||[urlStr isEqualToString:@""]){
         [imge setImage:BundleImage(@"df_04_.png") forState:UIControlStateNormal];
         

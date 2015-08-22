@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *shopbtn;
 @property (weak, nonatomic) IBOutlet UrlImageView *shipImgView;
 @property (weak, nonatomic) IBOutlet UILabel *priceLbl;
+@property (weak, nonatomic) IBOutlet UILabel *lineLal;
 
 @end

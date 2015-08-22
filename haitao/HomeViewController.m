@@ -20,6 +20,7 @@
 #import "SpecialModel.h"
 #import "QiangGouViewController.h"
 #import "QiangGouView.h"
+#import "SpeciaButton.h"
 #import "CFContentForDicKeyViewController.h"
 @interface HomeViewController ()
 {
@@ -380,23 +381,28 @@
     jingpinContentView.backgroundColor=[UIColor whiteColor];
     [self._scrollView addSubview:jingpinContentView];
     CGRect lastFram1;
-    for (int i =0; i<topMenuArr.count; i++)
+    for (int i =0; i<app_home_command.count; i++)
     {
-        NSDictionary *menuTemp=topMenuArr[i];
-        NSString *imgname=[menuTemp objectForKey:@"img"];
-        NSString *menutitle=[menuTemp objectForKey:@"title"];
-        CFImageButton *btnNine=[[CFImageButton alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH/4, 0, SCREEN_WIDTH/4, SCREEN_WIDTH/4)];
+        if(i==4){
+            break;
+        }
+
+        SpecialModel *menuTemp=app_home_command[i];
+//        NSString *imgname=[menuTemp objectForKey:@"img"];
+         NSString *menutitle=menuTemp.name;
+        SpeciaButton *btnNine=[[SpeciaButton alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH/4, 0, SCREEN_WIDTH/4, SCREEN_WIDTH/4)];
         //            [btnNine setImage:[UIImage imageNamed:topMenuArr[i]] forState:0];
         
         btnNine.backgroundColor=[UIColor clearColor];
         [btnNine addTarget:self action:@selector(jingpinMenu:) forControlEvents:UIControlEventTouchUpInside];
-        btnNine.tag=i;
+        btnNine.specialModel=menuTemp;
         [jingpinContentView addSubview:btnNine];
         
         UrlImageView*image=[[UrlImageView alloc]initWithFrame:CGRectMake(btnNine.frame.size.width*0.3125, btnNine.frame.size.height*0.2125, btnNine.frame.size.width*0.375, btnNine.frame.size.width*0.375)];
+        
         [btnNine addSubview:image];
         [image setContentMode:UIViewContentModeScaleAspectFill];
-        [image setImage:[UIImage imageNamed:imgname]];
+        [image setImageWithURL:[NSURL URLWithString:menuTemp.img] placeholderImage:[UIImage imageNamed:@"default_04"]];
         image.layer.borderWidth=1;
         image.layer.cornerRadius = 4;
         image.layer.borderColor = [[UIColor clearColor] CGColor];
@@ -418,13 +424,26 @@
         [btnNine addSubview:label];
     }
     CGRect lastFram;
+    SpecialModel *menuTemp1=app_home_command[0];
+    NSArray *speChildArr=menuTemp1.goods_list;
     for (int i=0; i<jingpinPageArr.count; i++) {
-        CFImageButton *btnNine=[[CFImageButton alloc]initWithFrame:CGRectMake(20+(jingpinContentView.width-40-123)*(i%2), floor(i/2)*123+10+lastFram1.origin.y+lastFram1.size.height, 123, 123)];
+        SpeciaButton *btnNine=[[SpeciaButton alloc]initWithFrame:CGRectMake(20+(jingpinContentView.width-40-123)*(i%2), floor(i/2)*123+10+lastFram1.origin.y+lastFram1.size.height, 123, 123)];
 //        (i%2)*123+20+(jingpinContentView.width-40-123*2)*(i%2)
         btnNine.backgroundColor=[UIColor clearColor];
-        [btnNine addTarget:self action:@selector(btnFenlei:) forControlEvents:UIControlEventTouchUpInside];
-        btnNine.tag=i;
-        [btnNine setImage:[UIImage imageNamed:jingpinPageArr[i]] forState:0];
+        [btnNine addTarget:self action:@selector(queryzhuanti:) forControlEvents:UIControlEventTouchUpInside];
+        if(i<speChildArr.count){
+           SpecialModel *menuTemp=speChildArr[i];
+            btnNine.specialModel=menuTemp;
+            if(menuTemp.img_app){
+                [btnNine setImageWithURL:[NSURL URLWithString:menuTemp.img_app]  placeholderImage:[UIImage imageNamed:jingpinPageArr[i]]];
+            }else{
+                [btnNine setImage:[UIImage imageNamed:jingpinPageArr[i]] forState:0];
+            }
+        }else{
+            [btnNine setImage:[UIImage imageNamed:jingpinPageArr[i]] forState:0];
+        }
+        btnNine.tag=i+100;
+        
         lastFram=btnNine.frame;
         [jingpinContentView addSubview:btnNine];
     }
@@ -913,11 +932,16 @@
             [app_home_grab addObject:app_Home_Bigegg];
         }
         //手机端精品推荐
-        NSArray *app_home_commandArr= [ad_infoDic objectForKey:@"home_command"];
+        NSArray *app_home_commandArr= [dic objectForKey:@"home_command"];
         for (NSDictionary *commandDic in app_home_commandArr) {
             SpecialModel *app_Home_Bigegg= [SpecialModel objectWithKeyValues:commandDic] ;
             [app_home_command addObject:app_Home_Bigegg];
         }
+        for (SpecialModel *speciaTemp in app_home_command) {
+            NSArray *newArr=[SpecialModel objectArrayWithKeyValuesArray:speciaTemp.subject_list];
+            speciaTemp.goods_list=newArr;
+        }
+
         //手机端国际名品
         NSArray *app_home_brandArr= [ad_infoDic objectForKey:@"app_home_brand"];
         for (NSDictionary *brandDic in app_home_brandArr) {
@@ -1058,6 +1082,7 @@
         NSDictionary *spdic=@{@"detail":specialModel,@"goods":goodsModelArr};
         SpecialContentViewController *specialContentViewController=[[SpecialContentViewController alloc]init];
         specialContentViewController.spcDic=spdic;
+        specialContentViewController.sid=sidTemp;
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
         [delegate.navigationController pushViewController:specialContentViewController animated:YES];
     }
@@ -1078,6 +1103,7 @@
     }else if (adType==3){
         //专题
         NSDictionary *parameters = @{@"id":bigegg.subject_id};
+        sidTemp=bigegg.subject_id;
         NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getSubjectInfo",requestUrl]
         ;
         
@@ -1163,7 +1189,48 @@
     [self._scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 #pragma mark 精品菜单
--(void)jingpinMenu:(id)button{
+-(void)jingpinMenu:(SpeciaButton *)button{
+    SpecialModel *specialModel=button.specialModel;
+    NSArray *speChildArr=specialModel.goods_list;
+    for(int i=0;i<4;i++){
+        SpeciaButton *btnNine=(SpeciaButton *)[jingpinContentView viewWithTag:i+100];
+        if(i<speChildArr.count){
+            SpecialModel *menuTemp=speChildArr[i];
+            btnNine.specialModel=menuTemp;
+            if(menuTemp.img_app){
+                [btnNine setImageWithURL:[NSURL URLWithString:menuTemp.img_app]  placeholderImage:[UIImage imageNamed:jingpinPageArr[i]]];
+            }else{
+                [btnNine setImage:[UIImage imageNamed:jingpinPageArr[i]] forState:0];
+            }
+
+        }else{
+            [btnNine setImage:[UIImage imageNamed:jingpinPageArr[i]] forState:0];
+        }
+    }
+}
+#pragma mark 专题查询
+-(void)queryzhuanti:(SpeciaButton *)sender{
+    if(sender.specialModel){
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [app startLoading];
+        [self getSpecialContentData:sender.specialModel.id];
+    }
+    
+}
+#pragma mark  获取专题详细信息
+-(void)getSpecialContentData:(NSString *)sid{
+    
+    NSDictionary *parameters = @{@"id":sid};
+    sidTemp=sid;
+    NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getSubjectInfo",requestUrl]
+    ;
+    //    AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    //    [app startLoading];
+    
+    HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getSubjectInfo"];
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
+    
     
 }
 #pragma mark scrollView 结束拖动

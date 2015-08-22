@@ -14,6 +14,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Mez-wz-e1f">
+                        <rect key="frame" x="91" y="5" width="169" height="33"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sH3-kT-Nl6">
                         <rect key="frame" x="112" y="61" width="117" height="25"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -35,26 +40,22 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vO-dz-Dz0">
-                        <rect key="frame" x="10" y="94" width="300" height="1"/>
+                        <rect key="frame" x="10" y="92" width="300" height="0.0"/>
                         <color key="backgroundColor" red="0.72156862749999995" green="0.72156862749999995" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXJ-dJ-40r" customClass="UrlImageButton">
-                        <rect key="frame" x="5" y="5" width="80" height="80"/>
+                        <rect key="frame" x="18" y="19" width="60" height="60"/>
                         <state key="normal">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Mez-wz-e1f">
-                        <rect key="frame" x="91" y="5" width="169" height="33"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="lineLal" destination="1vO-dz-Dz0" id="dsw-Cz-wQx"/>
                 <outlet property="priceLbl" destination="2Ml-E1-0cw" id="Djc-wv-vZp"/>
                 <outlet property="shipImgView" destination="lAj-ZZ-AM5" id="UKg-GV-uMI"/>
                 <outlet property="shipName" destination="sH3-kT-Nl6" id="82z-i6-GW0"/>
