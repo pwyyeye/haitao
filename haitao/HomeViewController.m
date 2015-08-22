@@ -448,24 +448,7 @@
         [jingpinContentView addSubview:btnNine];
     }
     jingpinContentView.height=lastFram.size.height+2+lastFram.origin.y;
-//    for (int i =0; i<app_home_command.count; i++)
-//    {
-//        App_Home_Bigegg *grabModel=app_home_command[i];
-//        fourBtn=[[UrlImageButton alloc]initWithFrame:CGRectMake(12+i*75, jingpintuijianTitleView.frame.size.height+jingpintuijianTitleView.frame.origin.y+8, 70, 70)];
-//        [fourBtn addTarget:self action:@selector(btnShopStore:) forControlEvents:UIControlEventTouchUpInside];
-//        [self._scrollView addSubview:fourBtn];
-//        [fourBtn setBackgroundImage: [UIImage imageNamed:@"default_02.png"] forState:0];
-//         NSURL *imgUrl=[NSURL URLWithString:grabModel.img_url];
-//        [fourBtn setImageWithURL:imgUrl];
-//        fourLab=[[UILabel alloc]initWithFrame:CGRectMake(12+i*75, fourBtn.frame.size.height+fourBtn.frame.origin.y+8, 70, 20)];
-//        fourLab.text=grabModel.content;
-//        fourLab.textColor=[UIColor grayColor];
-//        fourLab.font=[UIFont boldSystemFontOfSize:10];
-//        fourLab.textAlignment=1;
-//        fourLab.backgroundColor=[UIColor clearColor];
-//        [self._scrollView addSubview:fourLab];
-//        
-//    }
+
     
     
     //手机端国际名品
@@ -496,32 +479,73 @@
 //        App_Home_Bigegg *grabModel=app_home_brand[i];
 //        
 //        
-//    }
-    UrlImageButton *gjmp_left=[[UrlImageButton alloc]initWithFrame:CGRectMake(30,0, 149, 149)];
+//    }//app_home_brandArr
+    //左边按钮
+    NSArray *arrTemp=[[NSArray alloc]init];
+    if(app_home_brand.count>0){
+        SpecialModel *speModel=app_home_brand[0];
+        arrTemp=speModel.goods_list;
+    }
+    SpeciaButton *gjmp_left=[[SpeciaButton alloc]initWithFrame:CGRectMake(30,0, 149, 149)];
     //        (i%2)*123+20+(jingpinContentView.width-40-123*2)*(i%2)
     gjmp_left.backgroundColor=[UIColor clearColor];
     [gjmp_left addTarget:self action:@selector(btnFenlei:) forControlEvents:UIControlEventTouchUpInside];
-    gjmp_left.tag=0;
+    if(arrTemp.count>0){
+        SpecialModel *speModel=arrTemp[0];
+        gjmp_left.specialModel=speModel;
+        if(speModel.img_app){
+            [gjmp_left setImageWithURL:[NSURL URLWithString:speModel.img_app]  placeholderImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_datu_zhong"]];
+        }else{
+            [gjmp_left setImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_datu_zhong"] forState:0];
+        }
+    }else{
+        [gjmp_left setImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_datu_zhong"] forState:0];
+    }
+    gjmp_left.tag=1000;
 //    [gjmp_left setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_datu_zhong"]];
-    [gjmp_left setImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_datu_zhong"] forState:0];
+    
     [guojimingpinContentView addSubview:gjmp_left];
     
-    UrlImageButton *rightUp=[[UrlImageButton alloc]initWithFrame:CGRectMake(guojimingpinContentView.width-72-10-20,0, 72, 72)];
+    SpeciaButton *rightUp=[[SpeciaButton alloc]initWithFrame:CGRectMake(guojimingpinContentView.width-72-10-20,0, 72, 72)];
     //        (i%2)*123+20+(jingpinContentView.width-40-123*2)*(i%2)
     rightUp.backgroundColor=[UIColor clearColor];
     [rightUp addTarget:self action:@selector(btnFenlei:) forControlEvents:UIControlEventTouchUpInside];
-    rightUp.tag=1;
+    rightUp.tag=1001;
 //    [rightUp setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_xiaotu_zhong"]];
-    [rightUp setImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_xiaotu_zhong"] forState:0];
+
+    if(arrTemp.count>1){
+        SpecialModel *speModel=arrTemp[1];
+        rightUp.specialModel=speModel;
+        if(speModel.img_app){
+            [rightUp setImageWithURL:[NSURL URLWithString:speModel.img_app]  placeholderImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_xiaotu_zhong"]];
+        }else{
+            [rightUp setImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_xiaotu_zhong"] forState:0];
+        }
+    }else{
+        [rightUp setImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_xiaotu_zhong"] forState:0];
+    }
+
+    
     [guojimingpinContentView addSubview:rightUp];
     
-    UrlImageButton *rightdown=[[UrlImageButton alloc]initWithFrame:CGRectMake(guojimingpinContentView.width-72-10-20,149-72, 72, 72)];
+    SpeciaButton *rightdown=[[SpeciaButton alloc]initWithFrame:CGRectMake(guojimingpinContentView.width-72-10-20,149-72, 72, 72)];
     //        (i%2)*123+20+(jingpinContentView.width-40-123*2)*(i%2)
     rightdown.backgroundColor=[UIColor clearColor];
-    [rightdown setImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_xiaotu"] forState:0];
+    if(arrTemp.count>2){
+        SpecialModel *speModel=arrTemp[2];
+        rightdown.specialModel=speModel;
+        if(speModel.img_app){
+            [rightdown setImageWithURL:[NSURL URLWithString:speModel.img_app]  placeholderImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_xiaotu"]];
+        }else{
+            [rightdown setImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_xiaotu"] forState:0];
+        }
+    }else{
+        [rightdown setImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_xiaotu"] forState:0];
+    }
+    
 
     [rightdown addTarget:self action:@selector(btnFenlei:) forControlEvents:UIControlEventTouchUpInside];
-    rightdown.tag=2;
+    rightdown.tag=1002;
 //    [rightdown setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_xiaotu"]];
     [guojimingpinContentView addSubview:rightdown];
     
@@ -696,8 +720,120 @@
             break;
         }
     }
-
+//精品推荐
+    jingpinContentView.backgroundColor=[UIColor whiteColor];
     
+    [jingpinContentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    CGRect lastFram1;
+    for (int i =0; i<app_home_command.count; i++)
+    {
+        if(i==4){
+            break;
+        }
+        
+        SpecialModel *menuTemp=app_home_command[i];
+        //        NSString *imgname=[menuTemp objectForKey:@"img"];
+        NSString *menutitle=menuTemp.name;
+        SpeciaButton *btnNine=[[SpeciaButton alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH/4, 0, SCREEN_WIDTH/4, SCREEN_WIDTH/4)];
+        //            [btnNine setImage:[UIImage imageNamed:topMenuArr[i]] forState:0];
+        
+        btnNine.backgroundColor=[UIColor clearColor];
+        [btnNine addTarget:self action:@selector(jingpinMenu:) forControlEvents:UIControlEventTouchUpInside];
+        btnNine.specialModel=menuTemp;
+        [jingpinContentView addSubview:btnNine];
+        
+        UrlImageView*image=[[UrlImageView alloc]initWithFrame:CGRectMake(btnNine.frame.size.width*0.3125, btnNine.frame.size.height*0.2125, btnNine.frame.size.width*0.375, btnNine.frame.size.width*0.375)];
+        
+        [btnNine addSubview:image];
+        [image setContentMode:UIViewContentModeScaleAspectFill];
+        [image setImageWithURL:[NSURL URLWithString:menuTemp.img] placeholderImage:[UIImage imageNamed:@"default_04"]];
+        image.layer.borderWidth=1;
+        image.layer.cornerRadius = 4;
+        image.layer.borderColor = [[UIColor clearColor] CGColor];
+        image.backgroundColor=[UIColor clearColor];
+        
+        //            UILabel *labelLine=[[UILabel alloc]initWithFrame:CGRectMake(2, 50+10, 70-4, 1)];
+        //            labelLine.backgroundColor=[UIColor grayColor];
+        //            [btnNine addSubview:labelLine];
+        
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, image.frame.size.height+image.frame.origin.y+btnNine.frame.size.height/10, btnNine.frame.size.width, 10)];
+        label.font = [UIFont boldSystemFontOfSize:10.0f];  //UILabel的字体大小
+        label.numberOfLines = 1;  //必须定义这个属性，否则UILabel不会换行
+        label.textColor = [UIColor grayColor];
+        label.textAlignment = NSTextAlignmentCenter;  //文本对齐方式
+        [label setBackgroundColor:[UIColor whiteColor]];
+        label.text=menutitle;
+        lastFram1=btnNine.frame;
+        [btnNine addSubview:label];
+    }
+    CGRect lastFram;
+    SpecialModel *menuTemp1=app_home_command[0];
+    NSArray *speChildArr=menuTemp1.goods_list;
+    for (int i=0; i<jingpinPageArr.count; i++) {
+        SpeciaButton *btnNine=[[SpeciaButton alloc]initWithFrame:CGRectMake(20+(jingpinContentView.width-40-123)*(i%2), floor(i/2)*123+10+lastFram1.origin.y+lastFram1.size.height, 123, 123)];
+        //        (i%2)*123+20+(jingpinContentView.width-40-123*2)*(i%2)
+        btnNine.backgroundColor=[UIColor clearColor];
+        [btnNine addTarget:self action:@selector(queryzhuanti:) forControlEvents:UIControlEventTouchUpInside];
+        if(i<speChildArr.count){
+            SpecialModel *menuTemp=speChildArr[i];
+            btnNine.specialModel=menuTemp;
+            if(menuTemp.img_app){
+                [btnNine setImageWithURL:[NSURL URLWithString:menuTemp.img_app]  placeholderImage:[UIImage imageNamed:jingpinPageArr[i]]];
+            }else{
+                [btnNine setImage:[UIImage imageNamed:jingpinPageArr[i]] forState:0];
+            }
+        }else{
+            [btnNine setImage:[UIImage imageNamed:jingpinPageArr[i]] forState:0];
+        }
+        btnNine.tag=i+100;
+        
+        lastFram=btnNine.frame;
+        [jingpinContentView addSubview:btnNine];
+    }
+   //国际名品
+    NSArray *arrTemp=[[NSArray alloc]init];
+    if(app_home_brand.count>0){
+        SpecialModel *speModel=app_home_brand[0];
+        arrTemp=speModel.goods_list;
+    }
+    SpeciaButton *gjmp_left=(SpeciaButton *)[guojimingpinContentView viewWithTag:1000];
+    if(arrTemp.count>0){
+        SpecialModel *speModel=arrTemp[0];
+        gjmp_left.specialModel=speModel;
+        if(speModel.img_app){
+            [gjmp_left setImageWithURL:[NSURL URLWithString:speModel.img_app]  placeholderImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_datu_zhong"]];
+        }else{
+            [gjmp_left setImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_datu_zhong"] forState:0];
+        }
+    }else{
+        [gjmp_left setImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_datu_zhong"] forState:0];
+    }
+    SpeciaButton *rightUp=(SpeciaButton *)[guojimingpinContentView viewWithTag:1001];
+    if(arrTemp.count>1){
+        SpecialModel *speModel=arrTemp[1];
+        rightUp.specialModel=speModel;
+        if(speModel.img_app){
+            [rightUp setImageWithURL:[NSURL URLWithString:speModel.img_app]  placeholderImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_xiaotu_zhong"]];
+        }else{
+            [rightUp setImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_xiaotu_zhong"] forState:0];
+        }
+    }else{
+        [rightUp setImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_xiaotu_zhong"] forState:0];
+    }
+    SpeciaButton *rightdown=(SpeciaButton *)[guojimingpinContentView viewWithTag:1002];
+    if(arrTemp.count>2){
+        SpecialModel *speModel=arrTemp[2];
+        rightdown.specialModel=speModel;
+        if(speModel.img_app){
+            [rightdown setImageWithURL:[NSURL URLWithString:speModel.img_app]  placeholderImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_xiaotu"]];
+        }else{
+            [rightdown setImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_xiaotu"] forState:0];
+        }
+    }else{
+        [rightdown setImage:[UIImage imageNamed:@"home_bg_guojimingpin_shangpin_xiaotu"] forState:0];
+    }
+
     //新品推荐内容
     [xinpinContentView removeFromSuperview];
     
@@ -943,11 +1079,16 @@
         }
 
         //手机端国际名品
-        NSArray *app_home_brandArr= [ad_infoDic objectForKey:@"app_home_brand"];
+        NSArray *app_home_brandArr= [dic objectForKey:@"home_brand"];
         for (NSDictionary *brandDic in app_home_brandArr) {
-            App_Home_Bigegg *app_Home_Bigegg= [App_Home_Bigegg objectWithKeyValues:brandDic] ;
+            SpecialModel *app_Home_Bigegg= [SpecialModel objectWithKeyValues:brandDic] ;
             [app_home_brand addObject:app_Home_Bigegg];
         }
+        for (SpecialModel *speciaTemp in app_home_brand) {
+            NSArray *newArr=[SpecialModel objectArrayWithKeyValuesArray:speciaTemp.subject_list];
+            speciaTemp.goods_list=newArr;
+        }
+
         //新品推荐
         NSDictionary *new_goodsDic= [dic objectForKey:@"new_goods"];
         NSArray *new_goodsArr= [new_goodsDic objectForKey:@"list"];
@@ -1005,18 +1146,26 @@
             [app_home_grab addObject:app_Home_Bigegg];
         }
         //手机端精品推荐
-        NSArray *app_home_commandArr= [ad_infoDic objectForKey:@"app_home_command"];
+        NSArray *app_home_commandArr= [dic objectForKey:@"home_command"];
         for (NSDictionary *commandDic in app_home_commandArr) {
-            App_Home_Bigegg *app_Home_Bigegg= [App_Home_Bigegg objectWithKeyValues:commandDic] ;
+            SpecialModel *app_Home_Bigegg= [SpecialModel objectWithKeyValues:commandDic] ;
             [app_home_command addObject:app_Home_Bigegg];
         }
+        for (SpecialModel *speciaTemp in app_home_command) {
+            NSArray *newArr=[SpecialModel objectArrayWithKeyValuesArray:speciaTemp.subject_list];
+            speciaTemp.goods_list=newArr;
+        }
+
         //手机端国际名品
-        NSArray *app_home_brandArr= [ad_infoDic objectForKey:@"app_home_brand"];
+        NSArray *app_home_brandArr= [dic objectForKey:@"home_brand"];
         for (NSDictionary *brandDic in app_home_brandArr) {
-            App_Home_Bigegg *app_Home_Bigegg= [App_Home_Bigegg objectWithKeyValues:brandDic] ;
+            SpecialModel *app_Home_Bigegg= [SpecialModel objectWithKeyValues:brandDic] ;
             [app_home_brand addObject:app_Home_Bigegg];
         }
-        //新品推荐
+        for (SpecialModel *speciaTemp in app_home_brand) {
+            NSArray *newArr=[SpecialModel objectArrayWithKeyValuesArray:speciaTemp.subject_list];
+            speciaTemp.goods_list=newArr;
+        }        //新品推荐
         NSDictionary *new_goodsDic= [dic objectForKey:@"new_goods"];
         NSArray *new_goodsArr= [new_goodsDic objectForKey:@"list"];
         for (NSDictionary *goodsDic in new_goodsArr) {
@@ -1166,8 +1315,12 @@
     [httpController onSearchForPostJson];
 
 }
--(void)btnFenlei:(id)sender{
-
+-(void)btnFenlei:(SpeciaButton *)sender{
+    if(sender.specialModel){
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [app startLoading];
+        [self getSpecialContentData:sender.specialModel.id];
+    }
 }
 -(void)btnShopStore:(id)sender
 {
