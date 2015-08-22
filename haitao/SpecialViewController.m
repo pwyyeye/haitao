@@ -65,8 +65,8 @@
     NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getSubjectList",requestUrl]
     ;
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:GETURL withUrlName:@"getSubjectList"];
-    AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
-    [app startLoading];
+//    AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+//    [app startLoading];
     httpController.delegate = self;
     [httpController onSearch];
 

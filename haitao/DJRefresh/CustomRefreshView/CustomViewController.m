@@ -113,8 +113,8 @@
     _inParameters=[parameters mutableCopy];
     NSString* url =[NSString stringWithFormat:@"%@&m=ad&f=getCatBanner",requestUrl]
     ;
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [app startLoading];
+//    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//    [app startLoading];
     HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getCatBanner"];
     httpController.delegate = self;
     [httpController onSearchForPostJson];
