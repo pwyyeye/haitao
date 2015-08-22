@@ -225,7 +225,7 @@
             [goodsModelArr addObject:goodsModel];
         }
         if(goodsModelArr.count<1){
-            ShowMessage(@"无数据");
+            ShowMessage(@"暂无商品");
             return;
         }
         NSDictionary *menuIndexDic=[dataDic objectForKey:@"cat_index"];
