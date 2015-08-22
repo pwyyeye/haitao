@@ -140,12 +140,14 @@
     if ([[dictemp objectForKey:@"status"] integerValue]== 1) {
         NSDictionary *dic=[dictemp objectForKey:@"data"];
 
-        if ([urlname isEqualToString:@"getOrderList"]) {
+        if ([urlname isEqualToString:@"getPackageDetail"]) {
             if (dic.count==0) {
                 [_tableView reloadData];
                 return;
                 
             }
+            _packageModel=[PackageDetail objectWithKeyValues:dic];
+            [_tableView reloadData];
         }
     }
 }
