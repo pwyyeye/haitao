@@ -622,9 +622,9 @@
         [view addSubview:subTotal_amout];
         
         
-        UILabel *jianju=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
-        jianju.backgroundColor=RGB(237, 237, 237);
-        [view addSubview:jianju];
+//        UILabel *jianju=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
+//        jianju.backgroundColor=RGB(237, 237, 237);
+//        [view addSubview:jianju];
         
         UILabel *jianju_footer=[[UILabel alloc] initWithFrame:CGRectMake(0, 71.5, SCREEN_WIDTH, 0.5)];
         jianju_footer.backgroundColor=RGB(237, 237, 237);

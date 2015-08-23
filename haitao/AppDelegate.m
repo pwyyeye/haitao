@@ -62,6 +62,9 @@
 
     [_reach startNotifier];
     
+    _timer=[NSTimer scheduledTimerWithTimeInterval:60*5 target:self selector:@selector(doHeart) userInfo:nil repeats:YES];
+    [_timer setFireDate:[NSDate distantFuture]];//暂停
+    
 //    [self isConnectionAvailable:_reach];
     //推送
     [UMessage startWithAppkey:@"55d9670e67e58e5f5e0074ea" launchOptions:launchOptions];
@@ -143,6 +146,14 @@
     return isExistenceNetwork;
 }
 
+-(void)doHeart{
+//    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//    [app startLoading];
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_doHeart withType:GETURL withUrlName:@"doheart"];
+    httpController.delegate = self;
+    [httpController onSearch];
+
+}
 -(void)dealloc{
 
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
@@ -190,6 +201,8 @@
         self.window.rootViewController=self.navigationController;
         self.window.backgroundColor = [UIColor whiteColor];
         [self.window makeKeyAndVisible];
+    }else{
+        NSLog(@"----pass-doheart%@---",urlname);
     }
     
     
@@ -291,7 +304,8 @@
             [login login:nil];
         }
     }
-   
+    [_timer setFireDate:[NSDate distantPast]];//开启
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

@@ -51,6 +51,9 @@
 //重置密码
 #define requestUrl_resetPassByMobile [NSString stringWithFormat:@"%@&f=resetPassByMobile&m=user",requestUrl]
 
+//重置密码邮件
+#define requestUrl_sendForgetMail [NSString stringWithFormat:@"%@&f=sendForgetMail&m=user",requestUrl]
+
 //登出
 #define requestUrl_doLoginOut [NSString stringWithFormat:@"%@&f=doLoginOut&m=user",requestUrl]
 
@@ -137,5 +140,9 @@
 
 //获取包裹详情
 #define requestUrl_confirmPackage [NSString stringWithFormat:@"%@&f=confirmPackage&m=user",requestUrl]
+
+//心跳接口
+#define requestUrl_doHeart [NSString stringWithFormat:@"%@&f=doHeart&m=home",requestUrl]
+
 
 #endif

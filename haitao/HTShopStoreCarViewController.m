@@ -1010,7 +1010,8 @@
         for (CarShopInfoModel *carShopInfoModel in listContent) {
             if(carShopInfoModel.ischoose){
                 New_Goods *goods_detailTemp=carShopInfoModel.goods_detail;
-                _price+=goods_detailTemp.price_cn;
+                _price+=goods_detailTemp.price_cn*[carShopInfoModel.buy_num integerValue];
+
             }
         }
         

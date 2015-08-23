@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PackageDetail.h"
 
 @interface TariffViewController : UIViewController<HTTPControllerProtocol, UITableViewDataSource,UITableViewDelegate>
 @property(strong,nonatomic) UIView *empty_view;
@@ -16,4 +17,8 @@
 @property(strong,nonatomic) NSArray *Tariff_array;
 
 @property(strong,nonatomic) NSArray *result_array;
+
+@property(strong,nonatomic) PackageDetail *packageModel;
+
+
 @end

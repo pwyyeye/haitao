@@ -63,6 +63,8 @@
     }else if([MyUtil isValidateEmail:_userame.text]){
         ForgetForEmail * vc=[[ForgetForEmail alloc] initWithNibName:@"ForgetForEmail" bundle:nil];
         vc.username=_userame.text;
+        UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
+        self.navigationController.navigationItem.backBarButtonItem=item;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
         ShowMessage(@"请输入正确的手机号码或者邮箱！");
