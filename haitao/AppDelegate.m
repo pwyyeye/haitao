@@ -64,7 +64,7 @@
     
 //    [self isConnectionAvailable:_reach];
     //推送
-    [UMessage startWithAppkey:@"your app key" launchOptions:launchOptions];
+    [UMessage startWithAppkey:@"55d9670e67e58e5f5e0074ea" launchOptions:launchOptions];
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
     if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
