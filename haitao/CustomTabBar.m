@@ -38,7 +38,8 @@
         }
     }
     
-    slideBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu_bg_click1.png"]];
+//    slideBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu_bg_click1.png"]];
+    slideBg = [[UIImageView alloc] init];
 
     [self hideRealTabBar];
     [self customTabBar];

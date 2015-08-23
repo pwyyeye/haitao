@@ -9,6 +9,7 @@
 #import "ChoosePayController.h"
 #import "OrderSuccessController.h"
 #import "OrderListController.h"
+#import "TariffViewController.h"
 @interface ChoosePayController ()
 
 @end
@@ -37,6 +38,13 @@
 }
 
 -(void)gotoBack{
+    
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[TariffViewController class]]) {
+            [self.navigationController popToViewController:controller animated:YES];
+            return;
+        }
+    }
     UIViewController *detailViewController;
     
     detailViewController  = [[OrderListController alloc] init];
@@ -46,6 +54,7 @@
     UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
     delegate.navigationController.navigationItem.backBarButtonItem=item;
     [delegate.navigationController pushViewController:detailViewController animated:YES];
+   
     
 }
 

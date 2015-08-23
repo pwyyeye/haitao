@@ -43,9 +43,9 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21A-RF-9hS">
                     <rect key="frame" x="20" y="140" width="560" height="124.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <mutableString key="text">        配夸网（www.peikua.com）是首家全球比价购物平台，提供免费海淘代购、海淘特卖服务。“淘全球！真无忧”是我们的服务宗旨。 
+                    <string key="text">        配夸网（www.peikua.com）是首家全球比价购物平台，提供免费海淘代购、海淘特卖服务。“淘全球！真无忧”是我们的服务宗旨。 
         配夸网是国内首家全球购物比价平台，一站全球比购，发现最低价！一站对比商品的全球报价，保证是最低价的基础上，为用户提供运送时效对比，为用户选择最优购买方案。 
-        配夸网提供全球范围的正品代购服务，100%海外直接采购发货，为用户省去代购费用，质优价低；同时与国际转运公司达成战略合作，保证快速、安全的把货物送到顾客手中，货物全程保险，全额赔付；我们的国际物流承运商在国内均为邮政清关，保证清关效率，同时对于符合网站规定的商品，给予关税补贴。真正“正品、低价、安全、快捷”，一切为用户着想。</mutableString>
+        配夸网提供全球范围的正品代购服务，100%海外直接采购发货，为用户省去代购费用，质优价低；同时与国际转运公司达成战略合作，保证快速、安全的把货物送到顾客手中，货物全程保险，全额赔付；我们的国际物流承运商在国内均为邮政清关，保证清关效率，同时对于符合网站规定的商品，给予关税补贴。真正“正品、低价、安全、快捷”，一切为用户着想。</string>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>

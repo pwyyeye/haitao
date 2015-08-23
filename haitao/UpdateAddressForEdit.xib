@@ -46,11 +46,18 @@
                                         <action selector="areaPick:" destination="-1" eventType="touchUpInside" id="Z3D-os-ZAO"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传身份证照片（务必与收件人名称&amp;身份证号一致）" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smt-rD-j3V">
+                                    <rect key="frame" x="8" y="322" width="284" height="14.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" red="0.094117647060000004" green="0.69411764710000001" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="600" id="4FR-OU-OOl"/>
                                 <constraint firstAttribute="trailing" secondItem="SY9-7t-be0" secondAttribute="trailing" constant="10" id="5Da-wn-ND2"/>
+                                <constraint firstItem="Smt-rD-j3V" firstAttribute="leading" secondItem="cdc-s3-Fv4" secondAttribute="leading" constant="8" id="Bpi-z7-cI3"/>
                                 <constraint firstAttribute="height" constant="600" id="Op0-w2-tVg"/>
                             </constraints>
                         </view>
@@ -171,13 +178,13 @@
                             </connections>
                         </textField>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="Address_img_shenfenzheng.png" translatesAutoresizingMaskIntoConstraints="NO" id="jks-pr-18U">
-                            <rect key="frame" x="10" y="328" width="285" height="180.5"/>
+                            <rect key="frame" x="10" y="341.5" width="285" height="180.5"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Address_img_shenfenzheng.png" translatesAutoresizingMaskIntoConstraints="NO" id="tyc-4H-ahX">
-                            <rect key="frame" x="305" y="328" width="285" height="180.5"/>
+                            <rect key="frame" x="305" y="341.5" width="285" height="180.5"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="仅清关用" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MR1-eW-ktZ">
-                            <rect key="frame" x="10" y="508" width="285" height="21"/>
+                            <rect key="frame" x="10" y="521.5" width="285" height="21"/>
                             <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="nDm-mZ-Iv0"/>
@@ -195,7 +202,7 @@
                             </variation>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="仅清关用" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6k-LO-vqZ">
-                            <rect key="frame" x="305" y="508" width="285" height="21"/>
+                            <rect key="frame" x="305" y="521.5" width="285" height="21"/>
                             <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="6ug-BW-tjD"/>
@@ -213,13 +220,13 @@
                             </variation>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="温馨提示" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7rH-dI-ibV">
-                            <rect key="frame" x="274" y="560" width="52" height="16"/>
+                            <rect key="frame" x="274" y="573.5" width="52" height="16"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" red="1" green="0.050980392159999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5lR-oT-rOf">
-                            <rect key="frame" x="0.0" y="549" width="0.0" height="1"/>
+                            <rect key="frame" x="0.0" y="562.5" width="0.0" height="1"/>
                             <color key="backgroundColor" red="0.87196416440000002" green="0.87196416440000002" blue="0.87196416440000002" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="7Pe-5r-ETF"/>
@@ -228,8 +235,8 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="温馨提示：务必确保收货人姓名与身份证号相匹配，若因此导致商品清关异常或滞留， 将无法享受配夸的相关服务条款，如遇到商品缺货我们将尽快通知到您，请您在下单后的两天内关注自己的订单状态，如遇问题请联系客服。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQe-BD-eCZ">
-                            <rect key="frame" x="30" y="586" width="540" height="26.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="温馨提示：务必确保收货人姓名与身份证号相匹配，若因此导致商品清关异常或滞留， 将无法享受配夸的相关服务条款，如遇到商品缺货我们将尽快通知到您，请您在下单后的两天内关注自己的订单状态，如遇问题请联系客服。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQe-BD-eCZ">
+                            <rect key="frame" x="30" y="599.5" width="540" height="39.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -263,6 +270,7 @@
                         <constraint firstItem="JO7-7O-Twt" firstAttribute="leading" secondItem="uiN-xx-cub" secondAttribute="trailing" constant="20" id="3zy-lX-Gm7"/>
                         <constraint firstItem="XRF-LV-rQQ" firstAttribute="top" secondItem="0CH-qK-Tr2" secondAttribute="bottom" constant="24.5" id="4ZB-Cl-Adk"/>
                         <constraint firstItem="iQe-BD-eCZ" firstAttribute="top" secondItem="7rH-dI-ibV" secondAttribute="bottom" constant="10" id="4aQ-b9-6e1"/>
+                        <constraint firstItem="tyc-4H-ahX" firstAttribute="top" secondItem="Smt-rD-j3V" secondAttribute="bottom" constant="5" id="5HL-OW-nF3"/>
                         <constraint firstItem="ajs-e3-JQm" firstAttribute="leading" secondItem="uiN-xx-cub" secondAttribute="trailing" constant="20" id="5JT-uD-py1"/>
                         <constraint firstAttribute="trailing" secondItem="az9-nW-PjL" secondAttribute="trailing" constant="8" id="5U8-mb-4LZ"/>
                         <constraint firstItem="tyc-4H-ahX" firstAttribute="width" secondItem="jks-pr-18U" secondAttribute="width" id="6EB-ly-5S5"/>
@@ -287,6 +295,7 @@
                         <constraint firstItem="ajs-e3-JQm" firstAttribute="top" secondItem="ncF-7v-gvn" secondAttribute="bottom" constant="10" id="NCL-gO-V7O"/>
                         <constraint firstItem="uiN-xx-cub" firstAttribute="leading" secondItem="bXV-X8-Veb" secondAttribute="leading" constant="10" id="O6P-sA-1Hp"/>
                         <constraint firstItem="5jh-X0-x5I" firstAttribute="top" secondItem="Xih-NX-FOt" secondAttribute="bottom" constant="17" id="OUH-Tb-llB"/>
+                        <constraint firstItem="Smt-rD-j3V" firstAttribute="top" secondItem="lpN-hH-jKM" secondAttribute="bottom" constant="10" id="OX3-iD-aOk"/>
                         <constraint firstAttribute="trailing" secondItem="JO7-7O-Twt" secondAttribute="trailing" constant="10" id="Om1-97-OOy"/>
                         <constraint firstItem="Tax-yh-uk3" firstAttribute="top" secondItem="az9-nW-PjL" secondAttribute="bottom" constant="5" id="PPd-gt-cc7"/>
                         <constraint firstItem="tyc-4H-ahX" firstAttribute="width" secondItem="O6k-LO-vqZ" secondAttribute="width" id="PVr-UV-NSe"/>
@@ -296,6 +305,7 @@
                         <constraint firstItem="Xih-NX-FOt" firstAttribute="leading" secondItem="bXV-X8-Veb" secondAttribute="leading" id="TL7-Fl-yDs"/>
                         <constraint firstAttribute="trailing" secondItem="cdc-s3-Fv4" secondAttribute="trailing" id="TZx-t8-7It"/>
                         <constraint firstItem="0CH-qK-Tr2" firstAttribute="leading" secondItem="bXV-X8-Veb" secondAttribute="leading" constant="10" id="UIZ-vE-78m"/>
+                        <constraint firstItem="jks-pr-18U" firstAttribute="top" secondItem="Smt-rD-j3V" secondAttribute="bottom" constant="5" id="VKA-1p-QSw"/>
                         <constraint firstItem="cdc-s3-Fv4" firstAttribute="leading" secondItem="bXV-X8-Veb" secondAttribute="leading" id="XoW-uy-dwT"/>
                         <constraint firstItem="lpN-hH-jKM" firstAttribute="top" secondItem="6iN-Rn-yd3" secondAttribute="bottom" constant="8" id="YFO-yk-7z2"/>
                         <constraint firstItem="O6k-LO-vqZ" firstAttribute="top" secondItem="tyc-4H-ahX" secondAttribute="bottom" id="ZCx-UE-50Y"/>
@@ -330,6 +340,8 @@
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="fPk-5V-ecE"/>
+                            <exclude reference="nwn-fC-Hae"/>
+                            <exclude reference="FXg-2K-DhM"/>
                         </mask>
                     </variation>
                 </scrollView>
@@ -341,7 +353,7 @@
                 <constraint firstAttribute="trailing" secondItem="bXV-X8-Veb" secondAttribute="trailing" id="gbs-Mm-yo2"/>
                 <constraint firstItem="bXV-X8-Veb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="zsb-MB-zZB"/>
             </constraints>
-            <point key="canvasLocation" x="353" y="229"/>
+            <point key="canvasLocation" x="351" y="254"/>
         </view>
     </objects>
     <resources>

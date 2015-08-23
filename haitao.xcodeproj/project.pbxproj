@@ -192,6 +192,11 @@
 		A2FFE1871B60B4A60004B4BC /* UIImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FFE1851B60B4A60004B4BC /* UIImageButton.m */; };
 		AD1386921B54D5BF00130E49 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1386901B54D5BF00130E49 /* LoginViewController.m */; };
 		AD1386931B54D5BF00130E49 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1386911B54D5BF00130E49 /* LoginViewController.xib */; };
+		AD310DF21B8864E500B0D03D /* OrderTax.m in Sources */ = {isa = PBXBuildFile; fileRef = AD310DF11B8864E500B0D03D /* OrderTax.m */; };
+		AD310DF91B88838E00B0D03D /* TariffDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD310DF71B88838E00B0D03D /* TariffDetailController.m */; };
+		AD310DFA1B88838E00B0D03D /* TariffDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD310DF81B88838E00B0D03D /* TariffDetailController.xib */; };
+		AD310DFD1B88992000B0D03D /* Nav_icon_meizhuang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD310DFB1B88992000B0D03D /* Nav_icon_meizhuang@2x.png */; };
+		AD310E011B88993500B0D03D /* Nav_icon_meizhuang@3x..png in Resources */ = {isa = PBXBuildFile; fileRef = AD310DFF1B88993500B0D03D /* Nav_icon_meizhuang@3x..png */; };
 		AD50C4F01B762FE600119A42 /* base64.m in Sources */ = {isa = PBXBuildFile; fileRef = AD50C4E01B762FE600119A42 /* base64.m */; };
 		AD50C4F11B762FE600119A42 /* DataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = AD50C4E31B762FE600119A42 /* DataSigner.m */; };
 		AD50C4F21B762FE600119A42 /* DataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = AD50C4E51B762FE600119A42 /* DataVerifier.m */; };
@@ -1071,6 +1076,13 @@
 		AD13868F1B54D5BF00130E49 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AD1386901B54D5BF00130E49 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		AD1386911B54D5BF00130E49 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		AD310DF01B8864E500B0D03D /* OrderTax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTax.h; sourceTree = "<group>"; };
+		AD310DF11B8864E500B0D03D /* OrderTax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderTax.m; sourceTree = "<group>"; };
+		AD310DF61B88838E00B0D03D /* TariffDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TariffDetailController.h; sourceTree = "<group>"; };
+		AD310DF71B88838E00B0D03D /* TariffDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TariffDetailController.m; sourceTree = "<group>"; };
+		AD310DF81B88838E00B0D03D /* TariffDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TariffDetailController.xib; sourceTree = "<group>"; };
+		AD310DFB1B88992000B0D03D /* Nav_icon_meizhuang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Nav_icon_meizhuang@2x.png"; sourceTree = "<group>"; };
+		AD310DFF1B88993500B0D03D /* Nav_icon_meizhuang@3x..png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Nav_icon_meizhuang@3x..png"; sourceTree = "<group>"; };
 		AD50C4931B762FCC00119A42 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
 		AD50C4941B762FCC00119A42 /* asn1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1.h; sourceTree = "<group>"; };
 		AD50C4951B762FCC00119A42 /* asn1_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1_mac.h; sourceTree = "<group>"; };
@@ -2211,6 +2223,8 @@
 		A2E8D0A41B770D7E0004ADB9 /* 菜单 */ = {
 			isa = PBXGroup;
 			children = (
+				AD310DFF1B88993500B0D03D /* Nav_icon_meizhuang@3x..png */,
+				AD310DFB1B88992000B0D03D /* Nav_icon_meizhuang@2x.png */,
 				ADD2C44F1B7DC94B00A2E638 /* icon_Order_selected@2x.png */,
 				ADD2C4501B7DC94B00A2E638 /* icon_Order_selected@3x.png */,
 				ADD2C4511B7DC94B00A2E638 /* icon_Order@2x.png */,
@@ -3778,6 +3792,9 @@
 				ADCF992E1B6CE7DB00EA5592 /* TariffViewController.h */,
 				ADCF992F1B6CE7DB00EA5592 /* TariffViewController.m */,
 				ADCF99301B6CE7DB00EA5592 /* TariffViewController.xib */,
+				AD310DF61B88838E00B0D03D /* TariffDetailController.h */,
+				AD310DF71B88838E00B0D03D /* TariffDetailController.m */,
+				AD310DF81B88838E00B0D03D /* TariffDetailController.xib */,
 			);
 			name = Tariff;
 			sourceTree = "<group>";
@@ -3847,6 +3864,8 @@
 				AD8E37B21B7232F400C9D5BA /* PackageDetail.m */,
 				AD8E37B51B723AF900C9D5BA /* OrderModelForPackageDetail.h */,
 				AD8E37B61B723AF900C9D5BA /* OrderModelForPackageDetail.m */,
+				AD310DF01B8864E500B0D03D /* OrderTax.h */,
+				AD310DF11B8864E500B0D03D /* OrderTax.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -4076,6 +4095,7 @@
 				TargetAttributes = {
 					ADB5AC7B1B53CB5F0022B2C2 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = EL277E2S2M;
 					};
 					ADB5AC971B53CB5F0022B2C2 = {
 						CreatedOnToolsVersion = 6.1;
@@ -4176,6 +4196,7 @@
 				AD8E38A81B75AB9000C9D5BA /* LogisticsCell.xib in Resources */,
 				ADD2C4121B7830E500A2E638 /* icon_Home2@2x.png in Resources */,
 				AD8E377D1B721A1500C9D5BA /* ShuMa_icon_GeRenHuLi@3x.png in Resources */,
+				AD310DFD1B88992000B0D03D /* Nav_icon_meizhuang@2x.png in Resources */,
 				AD8E36C41B721A1500C9D5BA /* icon_add_ShenFengZheng.png in Resources */,
 				ADCF99261B6CD4B400EA5592 /* MessageDetail.xib in Resources */,
 				AD8E374C1B721A1500C9D5BA /* icon_ShuMa@2x.png in Resources */,
@@ -4195,6 +4216,7 @@
 				A2E8D0F31B7AD8E60004ADB9 /* filter_btn_shaixuan_default@2x.png in Resources */,
 				AD8E359E1B70CA4300C9D5BA /* att_btn_chicun_@2x.png in Resources */,
 				AD8E376D1B721A1500C9D5BA /* QuanQiuBiJia_icon_XiaoLiang@2x.png in Resources */,
+				AD310DFA1B88838E00B0D03D /* TariffDetailController.xib in Resources */,
 				ADCFB0351B61C2BA001B3324 /* ForgetPwdStep3.xib in Resources */,
 				ADD6554C1B6F53DE006F4127 /* Address_textField_bg@2x.png in Resources */,
 				AD8E37311B721A1500C9D5BA /* icon_QingChuHuanCun@2x.png in Resources */,
@@ -4314,6 +4336,7 @@
 				AD8E37401B721A1500C9D5BA /* icon_Selected@2x.png in Resources */,
 				A2185BC51B82D2BF00DD8CB3 /* icon_Home@3x.png in Resources */,
 				AD8E375F1B721A1500C9D5BA /* icon_YiJianFanKui@3x.png in Resources */,
+				AD310E011B88993500B0D03D /* Nav_icon_meizhuang@3x..png in Resources */,
 				AD8E37D51B74875F00C9D5BA /* LogisticsViewController.xib in Resources */,
 				AD8E37961B721A1500C9D5BA /* UserCenter_icon_GuanShui.png in Resources */,
 				AD8AA6971B59E14400E324AD /* line@2x.png in Resources */,
@@ -4854,6 +4877,7 @@
 				ADECDC201B672C62009EA286 /* AboutPeiKua.m in Sources */,
 				AD8AA63E1B59435C00E324AD /* UIColor-Expanded.m in Sources */,
 				AD8AA6231B59435C00E324AD /* HZActivityIndicatorSubclassExample.m in Sources */,
+				AD310DF21B8864E500B0D03D /* OrderTax.m in Sources */,
 				AD50C50C1B7650C000119A42 /* AllInfo.m in Sources */,
 				AD50C5091B764D9F00119A42 /* ConfirmOrderModel.m in Sources */,
 				ADCF99451B6E10E400EA5592 /* OrderListCell.m in Sources */,
@@ -4877,6 +4901,7 @@
 				ADD7D8F81B6A6F2C00304019 /* CustomViewController.m in Sources */,
 				A21814351B5652F000D64E70 /* ManitViewController.m in Sources */,
 				ADCFB0391B61DF69001B3324 /* ForgetForEmail.m in Sources */,
+				AD310DF91B88838E00B0D03D /* TariffDetailController.m in Sources */,
 				AD8AA5961B59427000E324AD /* HTBoutiqueViewController.m in Sources */,
 				AD8AA64A1B59435C00E324AD /* ZSYPopoverListView.m in Sources */,
 				AD8AA63B1B59435C00E324AD /* ProfileImagesViewController.m in Sources */,

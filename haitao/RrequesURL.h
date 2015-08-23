@@ -145,4 +145,11 @@
 #define requestUrl_doHeart [NSString stringWithFormat:@"%@&f=doHeart&m=home",requestUrl]
 
 
+//获取关税列表
+#define requestUrl_getOrderTaxList [NSString stringWithFormat:@"%@&f=getOrderTaxList&m=user",requestUrl]
+
+//删除税单
+#define requestUrl_delTaxOrder [NSString stringWithFormat:@"%@&f=delTaxOrder&m=user",requestUrl]
+
+
 #endif
