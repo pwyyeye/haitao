@@ -236,6 +236,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
+                                             initWithTarget:self action:@selector(respondToTapGesture:)];
+    
+    // Specify that the gesture must be a single tap
+    tapRecognizer.numberOfTapsRequired = 1;
+    
+    // Add the tap gesture recognizer to the view
+    [self.view addGestureRecognizer:tapRecognizer];
     self.navigationController.navigationBarHidden=YES;
     [self getNavigationBar];
     hisSerchArr=[[NSMutableArray alloc]init];
@@ -565,7 +573,18 @@
     //    [self.navigationController pushViewController:VC animated:YES];
     
 }
+- (void)respondToTapGesture:(id)sender
+{
+    
 
+    
+    if([serchText isFirstResponder])
+    {
+        [serchText resignFirstResponder];
+    }
+    
+
+}
 
 - (void)didReceiveMemoryWarning
 {

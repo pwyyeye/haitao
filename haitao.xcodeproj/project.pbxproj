@@ -55,6 +55,7 @@
 		A22D303F1B7C6A31004158F1 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A22D303A1B7C6A31004158F1 /* WeiboSDK.bundle */; };
 		A22D30431B7C6A5B004158F1 /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A22D30411B7C6A5B004158F1 /* libSocialSina.a */; };
 		A2813F3B1B70B50A00EEEB5A /* ClassificationBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = A2813F3A1B70B50A00EEEB5A /* ClassificationBtn.m */; };
+		A28B22FD1B8878E80004C1F0 /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A28B22FB1B8878E80004C1F0 /* libUMessage_Sdk_1.1.0.a */; };
 		A2D039031B5E902E00EB0FDC /* New_Goods.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D039021B5E902E00EB0FDC /* New_Goods.m */; };
 		A2E858851B86CB35006362DE /* CusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E858831B86CB35006362DE /* CusCell.m */; };
 		A2E858861B86CB35006362DE /* CusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2E858841B86CB35006362DE /* CusCell.xib */; };
@@ -874,6 +875,8 @@
 		A22D30421B7C6A5B004158F1 /* UMSocialSinaHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSinaHandler.h; sourceTree = "<group>"; };
 		A2813F391B70B50A00EEEB5A /* ClassificationBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassificationBtn.h; sourceTree = "<group>"; };
 		A2813F3A1B70B50A00EEEB5A /* ClassificationBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationBtn.m; sourceTree = "<group>"; };
+		A28B22FB1B8878E80004C1F0 /* libUMessage_Sdk_1.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.1.0.a; sourceTree = "<group>"; };
+		A28B22FC1B8878E80004C1F0 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		A2D039011B5E902E00EB0FDC /* New_Goods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = New_Goods.h; sourceTree = "<group>"; };
 		A2D039021B5E902E00EB0FDC /* New_Goods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = New_Goods.m; sourceTree = "<group>"; };
 		A2E858821B86CB35006362DE /* CusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CusCell.h; sourceTree = "<group>"; };
@@ -1935,6 +1938,7 @@
 				A22D303E1B7C6A31004158F1 /* libWeiboSDK.a in Frameworks */,
 				AD8AA65A1B5947C400E324AD /* OpenGLES.framework in Frameworks */,
 				AD8AA6581B5947A000E324AD /* libz.1.2.5.dylib in Frameworks */,
+				A28B22FD1B8878E80004C1F0 /* libUMessage_Sdk_1.1.0.a in Frameworks */,
 				AD8AA6561B59478B00E324AD /* libicucore.dylib in Frameworks */,
 				AD8AA6521B59475300E324AD /* CFNetwork.framework in Frameworks */,
 				AD8AA6501B59474200E324AD /* libiconv.2.4.0.dylib in Frameworks */,
@@ -2128,6 +2132,15 @@
 				A22D30421B7C6A5B004158F1 /* UMSocialSinaHandler.h */,
 			);
 			name = Sina;
+			sourceTree = "<group>";
+		};
+		A28B22FA1B8878E80004C1F0 /* UMessage_Sdk_1.1.0 */ = {
+			isa = PBXGroup;
+			children = (
+				A28B22FB1B8878E80004C1F0 /* libUMessage_Sdk_1.1.0.a */,
+				A28B22FC1B8878E80004C1F0 /* UMessage.h */,
+			);
+			path = UMessage_Sdk_1.1.0;
 			sourceTree = "<group>";
 		};
 		A2E858811B8606F1006362DE /* model */ = {
@@ -3714,6 +3727,7 @@
 		ADB5ACB11B5406D60022B2C2 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				A28B22FA1B8878E80004C1F0 /* UMessage_Sdk_1.1.0 */,
 				AD6EFF441B83200000E98480 /* ASBPlayerScrubbing */,
 				AD6EFF1C1B831A7900E98480 /* ASMediaFocusManager */,
 				A22D2FFC1B7C63B9004158F1 /* 社会化分享 */,
@@ -5056,8 +5070,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/haitao",
@@ -5076,9 +5090,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/haitao",
 					"$(PROJECT_DIR)/haitao/UMSocial_Sdk_4.2.3",
+					"$(PROJECT_DIR)/haitao/UMessage_Sdk_1.1.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c150e2af-ed89-45a9-9253-4effe99eac25";
 			};
 			name = Debug;
 		};
@@ -5088,8 +5103,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/haitao",
@@ -5108,9 +5123,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/haitao",
 					"$(PROJECT_DIR)/haitao/UMSocial_Sdk_4.2.3",
+					"$(PROJECT_DIR)/haitao/UMessage_Sdk_1.1.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c150e2af-ed89-45a9-9253-4effe99eac25";
 			};
 			name = Release;
 		};
