@@ -22,7 +22,7 @@
 @property (retain, nonatomic) NSMutableArray *menuArr;
 @property(strong,nonatomic) NSString *s_app_id;
 @property(strong,nonatomic) Reachability *reach;
-
+@property (strong, nonatomic) NSDictionary *userInfo;
 - (void)startLoading;
 - (void)stopLoading;
 - (void)saveContext;
