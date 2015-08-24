@@ -12,7 +12,7 @@
 /**
  //转运
  "all_transport_weight": 3400,//（包裹总量）
- "all_transport_tax": 0,//（预估税费）
+ "all_transport_tax": 0,//（预估关税）
  "all_price_ut": "JPY",
  "all_price": 284.9,//（产品价格）
  "all_num": 2,

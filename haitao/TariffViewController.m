@@ -359,7 +359,7 @@
 //    
 //    //预付税费 transport_amount
 //    UILabel *transport=[[UILabel alloc] initWithFrame:CGRectMake(10, 28, SCREEN_WIDTH/2, 20)];
-//    transport.text=[_packageDetail.package_info.ship_type integerValue]==1?@"预收税费":@"预估税费";
+//    transport.text=[_packageDetail.package_info.ship_type integerValue]==1?@"预收关税":@"预估关税";
 //    transport.textColor=RGB(51, 51, 51);
 //    transport.font=[UIFont boldSystemFontOfSize:11];
 //    [view addSubview:transport];

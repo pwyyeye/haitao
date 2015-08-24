@@ -196,24 +196,24 @@
     
     if (self.currentSelectedIndex==0)
     {
-        [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];
+//        [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];
         [btn setImage:[UIImage imageNamed:@"icon_Home_selected"] forState:UIControlStateNormal];
 //        qaLine.hidden=YES;
     }else if (self.currentSelectedIndex==1)
     {
-        [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];
+//        [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];
 
         [btn setImage:[UIImage imageNamed:@"icon_Sherch_selected"] forState:UIControlStateNormal];
 //        qaLine.hidden=false;
     }else if (self.currentSelectedIndex==2)
     {
-        [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];
+//        [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];
 
         [btn setImage:[UIImage imageNamed:@"icon_LIqin_selected"] forState:UIControlStateNormal];
 //        qaLine.hidden=false;
     }else if (self.currentSelectedIndex==3)
     {
-        [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];
+//        [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];
 
         [btn setImage:[UIImage imageNamed:@"icon_Order_selected"] forState:UIControlStateNormal];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCar" object:nil];
@@ -221,7 +221,7 @@
     }
     else if(self.currentSelectedIndex==4)
         {
-        [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];;
+//        [slideBg setImage:  BundleImage(@"menu_bg_click1.png")];;
         [btn setImage:[UIImage imageNamed:@"icon_UserConter_selected"] forState:UIControlStateNormal];
 //            qaLine.hidden=false;
         }

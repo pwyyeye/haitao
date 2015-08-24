@@ -392,17 +392,17 @@
         //直邮转运
         UILabel *ship=[[UILabel alloc] initWithFrame:CGRectMake(170, 0, 30, 38)];
         ship.text=selectedPackage.ship_name;
-        ship.font =[UIFont  boldSystemFontOfSize:11];
-        ship.textColor=RGB(51, 51, 51);
+        ship.font =[UIFont  systemFontOfSize:11];
+        ship.textColor=RGB(179, 179, 179);
         [view addSubview:ship];
         
         if ([selectedPackage.package_status integerValue]==3||[selectedPackage.package_status integerValue]==2) {
             //包裹状态
             UILabel *packageStatus=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-120, 0, 40, 38)];
             packageStatus.text=[selectedPackage.package_status integerValue]==2?@"待发货":@"已发货";
-            packageStatus.font =[UIFont  boldSystemFontOfSize:10];
+            packageStatus.font =[UIFont  boldSystemFontOfSize:11];
             packageStatus.textAlignment=NSTextAlignmentCenter;
-            packageStatus.textColor=RGB(179, 179, 179);
+            packageStatus.textColor=RGB(51, 51, 51);
             [view addSubview:packageStatus];
         }
         
@@ -592,7 +592,7 @@
         
         //预付税费 transport_amount
         UILabel *transport=[[UILabel alloc] initWithFrame:CGRectMake(10, 28, SCREEN_WIDTH/2, 20)];
-        transport.text=[selectedPackage.ship_type integerValue]==1?@"预收税费":@"预估税费";
+        transport.text=[selectedPackage.ship_type integerValue]==1?@"预收关税":@"预估关税";
         transport.textColor=RGB(51, 51, 51);
         transport.font=[UIFont boldSystemFontOfSize:11];
         [view addSubview:transport];
@@ -696,6 +696,7 @@
     {
         static NSString *CellIdentifier = @"OrderListCell";
         OrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier]; //出列可重用的cell
+        cell=nil;
         if (cell == nil) {
             cell = [[OrderListCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"OrderListCell"];
         }

@@ -24,6 +24,9 @@
     _step=60;
     _timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(captchaWait) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];//暂停
+    
+    _mobile.delegate=self;
+    _btn_captcha.enabled=NO;
 
 
 }
@@ -67,6 +70,12 @@
             
         }
         
+    }else if([urlname isEqualToString:@"checkUserName"]){
+        if ([[dictemp objectForKey:@"data"] boolValue]) {
+            ShowMessage(@"手机号码已经被注册！");
+        }else{
+            _btn_captcha.enabled=YES ;
+        }
     }
 
 }
@@ -135,6 +144,18 @@
     httpController.delegate = self;
     [httpController onSearchForPostJson];
 
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    if ([MyUtil isEmptyString: textField.text]) {
+        return;
+    }
+    NSDictionary *dic=@{@"user_name":_mobile.text};
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_checkUserName withType:POSTURL withPam:dic withUrlName:@"checkUserName"];
+    
+    
+    httpController.delegate = self;
+    [httpController onSearchForPostJson];
 }
 
 - (IBAction)didEndOnExit:(id)sender {

@@ -37,6 +37,9 @@
 //注册
 #define requestUrl_doMobileRegist [NSString stringWithFormat:@"%@&f=doMobileRegist&m=user",requestUrl]
 
+//手机是否已注册校验
+#define requestUrl_checkUserName [NSString stringWithFormat:@"%@&f=checkUserName&m=user",requestUrl]
+
 //登录
 #define requestUrl_doLogin [NSString stringWithFormat:@"%@&f=doLogin&m=user",requestUrl]
 

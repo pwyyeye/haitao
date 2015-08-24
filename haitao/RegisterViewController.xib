@@ -72,7 +72,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auI-gj-wyB">
-                    <rect key="frame" x="500" y="65" width="90" height="30"/>
+                    <rect key="frame" x="500" y="67" width="90" height="30"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="aIA-fW-MCX"/>
@@ -129,7 +129,7 @@
                 <constraint firstAttribute="trailing" secondItem="6aO-4P-ttP" secondAttribute="trailing" constant="13" id="ZFA-Pu-aAf"/>
                 <constraint firstItem="b8G-Ns-Day" firstAttribute="top" secondItem="5Gj-J4-ggz" secondAttribute="bottom" constant="49" id="bZc-90-hVZ"/>
                 <constraint firstAttribute="trailing" secondItem="ZQU-RO-gUd" secondAttribute="trailing" constant="10" id="cLI-mM-9AP"/>
-                <constraint firstItem="auI-gj-wyB" firstAttribute="top" secondItem="5Gj-J4-ggz" secondAttribute="bottom" constant="10" id="d8V-Mg-ez6"/>
+                <constraint firstItem="auI-gj-wyB" firstAttribute="top" secondItem="5Gj-J4-ggz" secondAttribute="bottom" constant="12" id="d8V-Mg-ez6"/>
                 <constraint firstItem="auI-gj-wyB" firstAttribute="leading" secondItem="b8G-Ns-Day" secondAttribute="trailing" constant="14" id="dCB-Og-GJm"/>
                 <constraint firstAttribute="trailing" secondItem="lOh-ae-3I3" secondAttribute="trailing" constant="10" id="lvf-DE-fa5"/>
                 <constraint firstItem="5Gj-J4-ggz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="oZ1-rN-zbC"/>

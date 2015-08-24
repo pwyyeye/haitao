@@ -57,7 +57,13 @@
     _consignee.leftView = paddingView;
     
     _consignee.leftViewMode = UITextFieldViewModeAlways;
-    _province.enabled=NO;
+//    _province.enabled=NO;
+    _province.delegate=self;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    [self areaPick:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -15,7 +15,7 @@
  "all_package": 1,//（包裹数量）
  "all_num": 2,//（产品数量）
  "all_direct_tax": 0,//（直邮税费 计算入总金额）
- "all_transport": 0,//（预估税费 不计入总金额）
+ "all_transport": 0,//（预估关税 不计入总金额）
  "all_ship": 474.73//（物流费用）
  */
 @property(assign,nonatomic) double all_goods_price;
