@@ -56,6 +56,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    titleTemp=@"";
     app_home_bigegg=[[NSMutableArray alloc]init] ;//首页通栏即广告栏
     app_home_grab=[[NSMutableArray alloc]init];//手机端抢购
     app_home_command=[[NSMutableArray alloc]init];//手机端精品推荐
@@ -1240,6 +1241,8 @@
 //    NSLog([NSString stringWithFormat:@"第几个%ld",index]);
     App_Home_Bigegg *bigegg=app_home_bigegg[index];
     int adType=bigegg.ad_type;
+    NSString *content=bigegg.content;
+    titleTemp=content;
     if(adType==2){
     //商品
         NSDictionary *parameters = @{@"id":bigegg.goods_id};
@@ -1265,7 +1268,10 @@
             
             CFContentForDicKeyViewController *contentForDicKeyViewController=[[CFContentForDicKeyViewController alloc]init];
             contentForDicKeyViewController.keyDic=parameters;
-            contentForDicKeyViewController.topTitle=@"";
+        if(content){
+            contentForDicKeyViewController.topTitle=content;
+
+        }
             AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
             [app.navigationController pushViewController:contentForDicKeyViewController animated:YES];
         
@@ -1275,7 +1281,11 @@
         
         CFContentForDicKeyViewController *contentForDicKeyViewController=[[CFContentForDicKeyViewController alloc]init];
         contentForDicKeyViewController.keyDic=parameters;
-        contentForDicKeyViewController.topTitle=@"";
+        if(content){
+            contentForDicKeyViewController.topTitle=content;
+            
+        }
+        
         AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
         [app.navigationController pushViewController:contentForDicKeyViewController animated:YES];
     }
