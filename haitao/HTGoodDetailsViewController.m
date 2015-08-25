@@ -19,6 +19,7 @@
 #import "GoodImageButton.h"
 #import "GouWuXuZhiViewController.h"
 #import "ChatViewController.h"
+#import "QAViewController.h"
 static CGFloat kImageOriginHight = 400;
 
 @interface HTGoodDetailsViewController ()<UIWebViewDelegate,ChooseSizeDelegate>
@@ -996,11 +997,12 @@ static CGFloat kImageOriginHight = 400;
 #pragma mark 购物须知
 
 -(void)gouwuxuzhiMore:(id)sender{
-    return;
-    GouWuXuZhiViewController *gouWuXuZhiViewController=[[GouWuXuZhiViewController alloc]initWithNibName:@"GouWuXuZhiViewController" bundle:nil];
-    [self presentViewController:gouWuXuZhiViewController animated:YES completion:^{
-        
-    }];
+    
+    QAViewController *gouWuXuZhiViewController=[[QAViewController alloc]init];
+//    [self presentViewController:gouWuXuZhiViewController animated:YES completion:^{
+//        
+//    }];
+    [self.navigationController pushViewController:gouWuXuZhiViewController animated:YES];
 }
 #pragma mark 获取商品推荐
 - (void)getshopTuijianData{

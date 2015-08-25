@@ -22,6 +22,7 @@
 #import "FilterViewController.h"
 #import "ChatViewController.h"
 #import "GouWuXuZhiViewController.h"
+#import "HelpContentController.h"
 @interface UserCenterCollention ()
 
 @end
@@ -269,11 +270,13 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     }else if(indexPath.item==5){
         detailViewController  = [[FavoriteViewController alloc] init];
     }else if(indexPath.item==7){
-        detailViewController=[[GouWuXuZhiViewController alloc]initWithNibName:@"GouWuXuZhiViewController" bundle:nil];
+//        detailViewController=[[GouWuXuZhiViewController alloc]initWithNibName:@"GouWuXuZhiViewController" bundle:nil];
 //        [self presentViewController:gouWuXuZhiViewController animated:YES completion:^{
 //            
 //        }];
 //        detailViewController  = [[HelpViewController alloc] initWithNibName:@"HelpViewController" bundle:nil];
+        
+        detailViewController  = [[HelpContentController alloc] init];
     }else if(indexPath.item==8){
         detailViewController  = [ChatViewController shareChat];
 

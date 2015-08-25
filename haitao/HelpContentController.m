@@ -39,7 +39,7 @@
     
     //navigationBar的标题
     //self.navigationItem.title=@"登录";
-    self.title=@"联系客服";
+    self.title=@"帮助说明";
     
     //设置标题颜色
     
@@ -53,7 +53,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     
     _webView=[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
-    
+    [self getUrl];
 }
 -(void)getUrl{
     NSString* url =[NSString stringWithFormat:@"%@&m=home&f=helpApi",requestUrl]

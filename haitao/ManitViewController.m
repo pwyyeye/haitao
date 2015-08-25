@@ -80,6 +80,9 @@
     [itme1 setObject:[NSNumber numberWithFloat:view_bar.width/5]  forKey:TITLEWIDTH];
     [barArr addObject:itme1];
     for (int i=0; i<=menuArrNew.count-1; i++) {
+        if (i>=4) {
+            break;
+        }
         MenuModel *me=menuArrNew[i];
         NSMutableDictionary *itemTemp =[[NSMutableDictionary alloc]init] ;
         [itemTemp setObject:me.img forKey:NOMALKEY];
