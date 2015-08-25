@@ -140,36 +140,38 @@
 //    
 //    [cell.contentView insertSubview:label atIndex:0];
 //    
-    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(60, 10, SCREEN_WIDTH-40, 30)];
+    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(60, 3, SCREEN_WIDTH-40, 50)];
     titleLabel.font=[UIFont systemFontOfSize:15.0];
     titleLabel.text=_data[indexPath.row];
     [cell.contentView addSubview:titleLabel];
     
 //    cell.textLabel.text=_data[indexPath.row];
 //    cell.textLabel.font=[UIFont systemFontOfSize:15];
-    
+    UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(20, 16, 25, 25)];
     switch (indexPath.row) {
         case 0:
-            cell.imageView.image=[UIImage imageNamed:@"icon_PingJia"];
+            imageView.image=[UIImage imageNamed:@"icon_PingJia"];
             break;
         case 1:
-            cell.imageView.image=[UIImage imageNamed:@"icon_QingChuHuanCun"];
+            imageView.image=[UIImage imageNamed:@"icon_QingChuHuanCun"];
             break;
         case 2:
-            cell.imageView.image=[UIImage imageNamed:@"icon_LianXiPeiKua"];
+            imageView.image=[UIImage imageNamed:@"icon_LianXiPeiKua"];
             break;
         case 3:
-            cell.imageView.image=[UIImage imageNamed:@"Icon_About"];
+            imageView.image=[UIImage imageNamed:@"Icon_About"];
             break;
         case 4:
-            cell.imageView.image=[UIImage imageNamed:@"icon_FuWuTiaoKuang"];
+            imageView.image=[UIImage imageNamed:@"icon_FuWuTiaoKuang"];
             break;
         case 5:
-            cell.imageView.image=[UIImage imageNamed:@"icon_YiJianFanKui"];
+            imageView.image=[UIImage imageNamed:@"icon_YiJianFanKui"];
             break;
         default:
             break;
     }
+    [imageView setContentMode:UIViewContentModeScaleAspectFit];
+    [cell.contentView addSubview:imageView];
     
     CALayer *layerShadow=[[CALayer alloc]init];
     layerShadow.frame=CGRectMake(0, cell.frame.origin.y, cell.frame.size.width, 5);

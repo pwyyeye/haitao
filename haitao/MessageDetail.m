@@ -51,8 +51,8 @@
     app.s_app_id=[dictemp objectForKey:@"s_app_id"];
     [app stopLoading];
     if ([[dictemp objectForKey:@"status"] integerValue]== 1) {
-        NSDictionary *dic=[dictemp objectForKey:@"data"];
-        NSLog(@"----pass-dic%@---",dic);
+//        NSDictionary *dic=[dictemp objectForKey:@"data"];
+//        NSLog(@"----pass-dic%@---",dic);
         //判断是否有注册通知
         [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeToReload" object:nil];
         

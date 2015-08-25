@@ -127,7 +127,7 @@
         headerImage.contentMode = UIViewContentModeScaleAspectFit;
 //        headerImage.image=[UIImage imageNamed:@"df_03_"];
         headerImage.layer.masksToBounds=YES;
-        headerImage.layer.cornerRadius=headerImage.frame.size.height/2;
+        headerImage.layer.cornerRadius=35;
         headerImage.tag=888;
         [cell addSubview:headerImage];
         if (![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"avatar_img"]]) {

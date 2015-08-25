@@ -467,70 +467,80 @@
     
     _hejiView=[[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-47-64)];
     _hejiView.backgroundColor=CLEARCOLOR;
-    UIButton *halfButton=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/3-47)];
+    UIButton *halfButton=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/2-47)];
     
     [halfButton addTarget:self action:@selector(removeHejiView) forControlEvents:UIControlEventTouchUpInside];
     
     [_hejiView addSubview:halfButton];
-    UIView *buttom_view=[[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT/3-47, SCREEN_WIDTH, SCREEN_HEIGHT/3*2-64)];
+    UIView *buttom_view=[[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT/2-47, SCREEN_WIDTH, SCREEN_HEIGHT/2-64)];
     buttom_view.backgroundColor=[UIColor whiteColor];
     
-    UIScrollView *buttomScrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/3*2-64)];
+    UIScrollView *buttomScrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/2-64)];
     
     //商品价格
     UILabel *productLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, 5, 100, 20)];
-    productLabel.text=@"商品价格";
+    productLabel.text=@"商品总计";
     productLabel.font=[UIFont boldSystemFontOfSize:11];
     productLabel.textColor=RGB(51, 51, 51);
     
     [buttomScrollView addSubview:productLabel];
     
+   
+    
+    NSArray *array=_confirmOrderModel.list;
+//    int y=25;
+//    for (int i=0; i<array.count; i++) {
+//        ConfirmPackage *package=array[i];
+//        for (int j=0; j<package.list.count; j++) {
+//            ShoppingCartModel *shopmodel=package.list[j];
+//            //商品名称
+//            UILabel *productLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, y, 220, 20)];
+//            NSString *goodsName;
+//            if (shopmodel.goods_detail.title.length>25) {
+//                goodsName=[NSString stringWithFormat:@"%@.. x%d",[[MyUtil trim:shopmodel.goods_detail.title] substringToIndex:23],shopmodel.buy_num];
+//            }else{
+//                goodsName=[NSString stringWithFormat:@"%@ x%d",[MyUtil trim:shopmodel.goods_detail.title] ,shopmodel.buy_num];
+//            }
+//            productLabel.text=goodsName;
+//            productLabel.font=[UIFont systemFontOfSize:11];
+//            productLabel.textColor=RGB(51, 51, 51);
+//            
+//            [buttomScrollView addSubview:productLabel];
+//            
+//            
+//            double goodsPrice=shopmodel.goods_detail.price_cn;
+//            UILabel *goodsPriceText=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-75, y, 70, 20)];
+//            goodsPriceText.text=[NSString stringWithFormat:@"¥%.2f",goodsPrice];
+//            goodsPriceText.font=[UIFont systemFontOfSize:11];
+//            goodsPriceText.textColor=RGB(255, 13, 94);
+//            goodsPriceText.textAlignment=NSTextAlignmentRight;
+//            [buttomScrollView addSubview:goodsPriceText];
+//            
+//            y+=23;
+//            
+//        }
+//        
+//        
+//    }
+    
+    UILabel *numLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, 25, 220, 20)];
+    numLabel.text=[NSString stringWithFormat:@"%d个包裹，%d件商品，总商品金额：",_confirmOrderModel.all_info.all_package,_confirmOrderModel.all_info.all_num];
+    numLabel.font=[UIFont systemFontOfSize:11];
+    numLabel.textColor=RGB(51, 51, 51);
+    [buttomScrollView addSubview:numLabel];
+    
+    
     double goodsPrice=_confirmOrderModel.all_info.all_goods_price;
-    UILabel *allGoodsPrice=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-75, 5, 70, 20)];
+    UILabel *allGoodsPrice=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-75, 25, 70, 20)];
     allGoodsPrice.text=[NSString stringWithFormat:@"¥%.2f",goodsPrice];
     allGoodsPrice.font=[UIFont boldSystemFontOfSize:11];
     allGoodsPrice.textColor=RGB(255, 13, 94);
     allGoodsPrice.textAlignment=NSTextAlignmentRight;
     [buttomScrollView addSubview:allGoodsPrice];
     
-    NSArray *array=_confirmOrderModel.list;
-    int y=25;
-    for (int i=0; i<array.count; i++) {
-        ConfirmPackage *package=array[i];
-        for (int j=0; j<package.list.count; j++) {
-            ShoppingCartModel *shopmodel=package.list[j];
-            //商品名称
-            UILabel *productLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, y, 220, 20)];
-            NSString *goodsName;
-            if (shopmodel.goods_detail.title.length>25) {
-                goodsName=[NSString stringWithFormat:@"%@.. x%d",[[MyUtil trim:shopmodel.goods_detail.title] substringToIndex:23],shopmodel.buy_num];
-            }else{
-                goodsName=[NSString stringWithFormat:@"%@ x%d",[MyUtil trim:shopmodel.goods_detail.title] ,shopmodel.buy_num];
-            }
-            productLabel.text=goodsName;
-            productLabel.font=[UIFont systemFontOfSize:11];
-            productLabel.textColor=RGB(51, 51, 51);
-            
-            [buttomScrollView addSubview:productLabel];
-            
-            
-            double goodsPrice=shopmodel.goods_detail.price_cn;
-            UILabel *goodsPriceText=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-75, y, 70, 20)];
-            goodsPriceText.text=[NSString stringWithFormat:@"¥%.2f",goodsPrice];
-            goodsPriceText.font=[UIFont systemFontOfSize:11];
-            goodsPriceText.textColor=RGB(255, 13, 94);
-            goodsPriceText.textAlignment=NSTextAlignmentRight;
-            [buttomScrollView addSubview:goodsPriceText];
-            
-            y+=23;
-            
-        }
-        
-        
-    }
     
     //横线
-    UILabel *jianju1=[[UILabel alloc] initWithFrame:CGRectMake(0, y+5, SCREEN_WIDTH, 0.5)];
+    UILabel *jianju1=[[UILabel alloc] initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH, 0.5)];
     jianju1.backgroundColor=RGB(237, 237, 237);
     [buttomScrollView addSubview:jianju1];
     
@@ -542,64 +552,101 @@
     
     [buttomScrollView addSubview:guanwangLabel];
     
-    UILabel *allShipPrice=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-75, jianju1.frame.origin.y+5, 70, 20)];
+    UILabel *guanwangLabel2=[[UILabel alloc] initWithFrame:CGRectMake(10, jianju1.frame.origin.y+25, 100, 20)];
+    guanwangLabel2.text=@"运费总计";
+    guanwangLabel2.font=[UIFont systemFontOfSize:11];
+    guanwangLabel2.textColor=RGB(51, 51, 51);
+    
+    [buttomScrollView addSubview:guanwangLabel2];
+    
+    UILabel *allShipPrice=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-75, jianju1.frame.origin.y+25, 70, 20)];
     allShipPrice.text=[NSString stringWithFormat:@"¥%.2f",_confirmOrderModel.all_info.all_ship];
     allShipPrice.font=[UIFont boldSystemFontOfSize:11];
     allShipPrice.textColor=RGB(255, 13, 94);
     allShipPrice.textAlignment=NSTextAlignmentRight;
     [buttomScrollView addSubview:allShipPrice];
     
-    y=10;
-    for (int i=0; i<array.count; i++) {
-        ConfirmPackage *package=array[i];
-        //shop_name
-        UILabel *shopLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, i*23+guanwangLabel.frame.origin.y+20, 220, 20)];
-        shopLabel.text=[NSString stringWithFormat:@"%@    %@", package.all_info.shop_name,package.all_info.ship_name];
-        shopLabel.font=[UIFont systemFontOfSize:11];
-        shopLabel.textColor=RGB(51, 51, 51);
-        [buttomScrollView addSubview:shopLabel];
-        
-        double taxprice = [package.all_info.ship_type integerValue]==1?package.all_info.all_direct_ship_show:package.all_info.all_transport_logistic_ship_show;
-        UILabel *goodsPriceText=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-75, i*23+guanwangLabel.frame.origin.y+20, 70, 20)];
-        goodsPriceText.text=[NSString stringWithFormat:@"¥%.2f",taxprice];
-        goodsPriceText.font=[UIFont systemFontOfSize:11];
-        goodsPriceText.textColor=RGB(255, 13, 94);
-        goodsPriceText.textAlignment=NSTextAlignmentRight;
-        [buttomScrollView addSubview:goodsPriceText];
-        
-        y+=23;
-
-    }
+//    int y=10;
+//    for (int i=0; i<array.count; i++) {
+//        ConfirmPackage *package=array[i];
+//        //shop_name
+//        UILabel *shopLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, i*23+guanwangLabel.frame.origin.y+20, 220, 20)];
+//        shopLabel.text=[NSString stringWithFormat:@"%@    %@", package.all_info.shop_name,package.all_info.ship_name];
+//        shopLabel.font=[UIFont systemFontOfSize:11];
+//        shopLabel.textColor=RGB(51, 51, 51);
+//        [buttomScrollView addSubview:shopLabel];
+//        
+//        double taxprice = [package.all_info.ship_type integerValue]==1?package.all_info.all_direct_ship_show:package.all_info.all_transport_logistic_ship_show;
+//        UILabel *goodsPriceText=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-75, i*23+guanwangLabel.frame.origin.y+20, 70, 20)];
+//        goodsPriceText.text=[NSString stringWithFormat:@"¥%.2f",taxprice];
+//        goodsPriceText.font=[UIFont systemFontOfSize:11];
+//        goodsPriceText.textColor=RGB(255, 13, 94);
+//        goodsPriceText.textAlignment=NSTextAlignmentRight;
+//        [buttomScrollView addSubview:goodsPriceText];
+//        
+//        y+=23;
+//
+//    }
     
 
     //横线
-    UILabel *jianju2=[[UILabel alloc] initWithFrame:CGRectMake(0, guanwangLabel.origin.y+y+15, SCREEN_WIDTH, 0.5)];
+    UILabel *jianju2=[[UILabel alloc] initWithFrame:CGRectMake(0, guanwangLabel2.origin.y+25, SCREEN_WIDTH, 0.5)];
     jianju2.backgroundColor=RGB(237, 237, 237);
     [buttomScrollView addSubview:jianju2];
     
     //预收关税
     UILabel *shuifeiLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, jianju2.frame.origin.y+5, 250, 20)];
-    shuifeiLabel.text=@"预收关税";
+    shuifeiLabel.text=@"关税";
     shuifeiLabel.font=[UIFont boldSystemFontOfSize:11];
     shuifeiLabel.textColor=RGB(51, 51, 51);
     
     [buttomScrollView addSubview:shuifeiLabel];
     
-    UILabel *allTaxPrice=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-75, jianju2.frame.origin.y+5, 70, 20)];
-    allTaxPrice.text=[NSString stringWithFormat:@"¥%.2f",_confirmOrderModel.all_info.all_direct_tax];
-    allTaxPrice.font=[UIFont boldSystemFontOfSize:11];
-    allTaxPrice.textColor=RGB(255, 13, 94);
-    allTaxPrice.textAlignment=NSTextAlignmentRight;
-    [buttomScrollView addSubview:allTaxPrice];
     
-    UILabel *taxText=[[UILabel alloc] initWithFrame:CGRectMake(10, allTaxPrice.frame.origin.y+20, SCREEN_WIDTH-30, 50)];
-    taxText.numberOfLines=0;
-    taxText.text=@"直邮商品，预收关税，货源官网会直接收取关税。\n转运商品，预估关税，关税估而不收，清关产生关税时会生成关税订单，并通知到您";
+    UILabel *shuifeiLabel2=[[UILabel alloc] initWithFrame:CGRectMake(10, jianju2.frame.origin.y+25, 100, 20)];
+    shuifeiLabel2.text=@"预收关税：";
+    shuifeiLabel2.font=[UIFont systemFontOfSize:11];
+    shuifeiLabel2.textColor=RGB(51, 51, 51);
     
-    taxText.font=[UIFont systemFontOfSize:11];
-    taxText.textColor=RGB(51, 51, 51);
-    [buttomScrollView addSubview:taxText];
-    buttomScrollView.contentSize= CGSizeMake(SCREEN_WIDTH,taxText.frame.origin.y+100);
+    [buttomScrollView addSubview:shuifeiLabel2];
+    
+    UILabel *all_direct_tax=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-75, jianju2.frame.origin.y+25, 70, 20)];
+    all_direct_tax.text=[NSString stringWithFormat:@"¥%.2f",_confirmOrderModel.all_info.all_direct_tax];
+    all_direct_tax.font=[UIFont boldSystemFontOfSize:11];
+    all_direct_tax.textColor=RGB(255, 13, 94);
+    all_direct_tax.textAlignment=NSTextAlignmentRight;
+    [buttomScrollView addSubview:all_direct_tax];
+    
+    UILabel *shuifeiLabel3=[[UILabel alloc] initWithFrame:CGRectMake(10, jianju2.frame.origin.y+45, 100, 20)];
+    shuifeiLabel3.text=@"预估关税：";
+    shuifeiLabel3.font=[UIFont systemFontOfSize:11];
+    shuifeiLabel3.textColor=RGB(51, 51, 51);
+    
+    [buttomScrollView addSubview:shuifeiLabel3];
+    
+    UILabel *all_transport=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-75, jianju2.frame.origin.y+45, 70, 20)];
+    all_transport.text=[NSString stringWithFormat:@"¥%.2f",_confirmOrderModel.all_info.all_transport];
+    all_transport.font=[UIFont boldSystemFontOfSize:11];
+    all_transport.textColor=RGB(255, 13, 94);
+    all_transport.textAlignment=NSTextAlignmentRight;
+    [buttomScrollView addSubview:all_transport];
+    
+    
+//    UILabel *allTaxPrice=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-75, jianju2.frame.origin.y+5, 70, 20)];
+//    allTaxPrice.text=[NSString stringWithFormat:@"¥%.2f",_confirmOrderModel.all_info.all_direct_tax];
+//    allTaxPrice.font=[UIFont boldSystemFontOfSize:11];
+//    allTaxPrice.textColor=RGB(255, 13, 94);
+//    allTaxPrice.textAlignment=NSTextAlignmentRight;
+//    [buttomScrollView addSubview:allTaxPrice];
+    
+//    UILabel *taxText=[[UILabel alloc] initWithFrame:CGRectMake(10, allTaxPrice.frame.origin.y+20, SCREEN_WIDTH-30, 50)];
+//    taxText.numberOfLines=0;
+//    taxText.text=@"直邮商品，预收关税，货源官网会直接收取关税。\n转运商品，预估关税，关税估而不收，清关产生关税时会生成关税订单，并通知到您";
+//    
+//    taxText.font=[UIFont systemFontOfSize:11];
+//    taxText.textColor=RGB(51, 51, 51);
+//    [buttomScrollView addSubview:taxText];
+//    buttomScrollView.contentSize= CGSizeMake(SCREEN_WIDTH,taxText.frame.origin.y+100);
     [buttom_view addSubview:buttomScrollView];
     [_hejiView addSubview:buttom_view];
 

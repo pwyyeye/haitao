@@ -209,7 +209,7 @@
         label.font=[UIFont systemFontOfSize:13];
         label.textColor=RGB(51, 51, 51);
         [_empty_view addSubview:label];
-        label.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentCenter;
         
         [self.view addSubview:_empty_view];
     }
@@ -324,9 +324,9 @@
         default:
             break;
     }
-    NSString *string=[NSString stringWithFormat:@"%@ AND %@ AND %@",prediStr1,prediStr2,prediStr3];
-    
-    NSLog(@"----pass-bijiao%@---",string);
+//    NSString *string=[NSString stringWithFormat:@"%@ AND %@ AND %@",prediStr1,prediStr2,prediStr3];
+//    
+//    NSLog(@"----pass-bijiao%@---",string);
     NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ AND %@ AND %@",prediStr1,prediStr2,prediStr3]];
     
     self.results = [self.goodsList filteredArrayUsingPredicate:predicate];

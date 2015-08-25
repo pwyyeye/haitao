@@ -146,7 +146,7 @@
         orderNum.text=[NSString stringWithFormat:@"订单编号：%@",_packageModel.order.id] ;
         orderNum.font =[UIFont  boldSystemFontOfSize:11];
         orderNum.textColor=RGB(51, 51, 51);
-        orderNum.textAlignment=UITextAlignmentRight;
+        orderNum.textAlignment=NSTextAlignmentRight;
         [view addSubview:orderNum];
         
         

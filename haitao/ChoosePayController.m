@@ -196,13 +196,26 @@
         [self.navigationController pushViewController:detailViewController animated:YES];
     }else if([[resultDic objectForKey:@"resultStatus"] longLongValue]==6001){
         UIViewController *detailViewController;
-        detailViewController  = [[OrderListController alloc] init];
+        
+        if([_orderNo rangeOfString:@"tax"].location !=NSNotFound)//_roaldSearchText
+        {
+            detailViewController  = [[TariffViewController alloc] init];
+        }
+        else
+        {
+            detailViewController  = [[OrderListController alloc] init];
+        }
+        
+        
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
         //    delegate.navigationController.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:nil];
         
         UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
         delegate.navigationController.navigationItem.backBarButtonItem=item;
         [delegate.navigationController pushViewController:detailViewController animated:YES];
+        
+        
+        
     }
     
     

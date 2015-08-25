@@ -40,6 +40,7 @@
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
+    [textField resignFirstResponder];
     [self areaPick:nil];
 
 }

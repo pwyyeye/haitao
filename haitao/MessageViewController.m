@@ -136,7 +136,7 @@
         UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-100, SCREEN_HEIGHT/2-164, 200, 20)];
         label.text=@"暂无消息";
         [_empty_view addSubview:label];
-        label.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentCenter;
         
         [self.view addSubview:_empty_view];
     }
@@ -204,7 +204,7 @@
     
     NSInteger Index = Seg.selectedSegmentIndex;
     
-    NSLog(@"Index %i", Index);
+//    NSLog(@"Index %i", Index);
     
     static NSString *prediStr1 = @"cat_name LIKE '*'";
     

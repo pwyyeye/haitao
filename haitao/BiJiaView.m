@@ -186,7 +186,7 @@
             title5.backgroundColor=[UIColor clearColor];
             title5.textColor =RGB(179, 179, 179);
             title5.textAlignment=0;
-            [biJiaCell addSubview:title5];
+//            [biJiaCell addSubview:title5];
             
             if(i!=biJiaModelArr.count-1){
                 UIImageView *lineImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, biJiaCell.height-1, biJiaCell.width, 1)];

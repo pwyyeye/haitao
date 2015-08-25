@@ -657,8 +657,8 @@ static CGFloat kImageOriginHight = 400;
 -(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         [app stopLoading];
-    NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
-    NSString *status=[dictemp objectForKey:@"status"];
+//    NSString *s_app_id=[dictemp objectForKey:@"s_app_id"];
+//    NSString *status=[dictemp objectForKey:@"status"];
     //    if(![status isEqualToString:@"1"]){
     ////        [self showMessage:message];
     ////        return ;
