@@ -390,7 +390,7 @@
         [view addSubview:shopname];
         
         //直邮转运
-        UILabel *ship=[[UILabel alloc] initWithFrame:CGRectMake(170, 0, 30, 38)];
+        UILabel *ship=[[UILabel alloc] initWithFrame:CGRectMake(160, 0, 30, 38)];
         ship.text=selectedPackage.ship_name;
         ship.font =[UIFont  systemFontOfSize:11];
         ship.textColor=RGB(179, 179, 179);
@@ -400,6 +400,14 @@
             //包裹状态
             UILabel *packageStatus=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-120, 0, 40, 38)];
             packageStatus.text=[selectedPackage.package_status integerValue]==2?@"待发货":@"已发货";
+            packageStatus.font =[UIFont  boldSystemFontOfSize:11];
+            packageStatus.textAlignment=NSTextAlignmentCenter;
+            packageStatus.textColor=RGB(51, 51, 51);
+            [view addSubview:packageStatus];
+        }else if ([selectedPackage.package_status integerValue]==8||[selectedPackage.package_status integerValue]==9) {
+            //包裹状态
+            UILabel *packageStatus=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-120, 0, 50, 38)];
+            packageStatus.text=[selectedPackage.package_status integerValue]==8?@"交易成功":@"交易关闭";
             packageStatus.font =[UIFont  boldSystemFontOfSize:11];
             packageStatus.textAlignment=NSTextAlignmentCenter;
             packageStatus.textColor=RGB(51, 51, 51);
@@ -521,7 +529,7 @@
 
             if ([orderModel.order_status integerValue]==9) {
                 UIButton *btnPay=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-180, 29, 80, 24)];
-                [btnPay setTitle:@"订单关闭" forState:UIControlStateNormal];
+                [btnPay setTitle:@"交易关闭" forState:UIControlStateNormal];
                 [btnPay setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
                 btnPay.titleLabel.font =[UIFont  systemFontOfSize:11];
                 //            btnPay.titleLabel.textAlignment=NSTextAlignmentRight;
