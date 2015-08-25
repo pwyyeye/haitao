@@ -80,7 +80,15 @@
             [icomImg setImageWithURL:[NSURL URLWithString:vNormalImageStr]];
         }else{
             if([vNormalImageStr isEqualToString:@""]){
-                [icomImg setImage:[UIImage imageNamed:@"NavBar_icon_SheChiPin"]];
+                switch (i) {
+                    case 1:
+                        [icomImg setImage:[UIImage imageNamed:@"Nav_icon_meizhuang"]];
+
+                        break;
+                    default:
+                        [icomImg setImage:[UIImage imageNamed:@"NavBar_icon_SheChiPin"]];
+                        break;
+                }
             }else{
                 [icomImg setImage:[UIImage imageNamed:vNormalImageStr]];
             }

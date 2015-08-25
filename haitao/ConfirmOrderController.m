@@ -142,7 +142,7 @@
             //展开第一个
             //            [_coll openCollapseClickCellAtIndex:0 animated:NO];
             
-            [self.myFooter addSubview:_coll];
+//            [self.myFooter addSubview:_coll];
             
             self.myFooter.backgroundColor=[UIColor whiteColor];
             
@@ -577,16 +577,16 @@
     jianju2.backgroundColor=RGB(237, 237, 237);
     [buttomScrollView addSubview:jianju2];
     
-    //预收税费
-    UILabel *shuifeiLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, jianju2.frame.origin.y+5, 100, 20)];
-    shuifeiLabel.text=@"预收税费";
+    //预收关税
+    UILabel *shuifeiLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, jianju2.frame.origin.y+5, 250, 20)];
+    shuifeiLabel.text=@"预收关税";
     shuifeiLabel.font=[UIFont boldSystemFontOfSize:11];
     shuifeiLabel.textColor=RGB(51, 51, 51);
     
     [buttomScrollView addSubview:shuifeiLabel];
     
     UILabel *allTaxPrice=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-75, jianju2.frame.origin.y+5, 70, 20)];
-    allTaxPrice.text=[NSString stringWithFormat:@"¥%.2f",_confirmOrderModel.all_info.all_transport+_confirmOrderModel.all_info.all_direct_tax];
+    allTaxPrice.text=[NSString stringWithFormat:@"¥%.2f",_confirmOrderModel.all_info.all_direct_tax];
     allTaxPrice.font=[UIFont boldSystemFontOfSize:11];
     allTaxPrice.textColor=RGB(255, 13, 94);
     allTaxPrice.textAlignment=NSTextAlignmentRight;
@@ -594,7 +594,7 @@
     
     UILabel *taxText=[[UILabel alloc] initWithFrame:CGRectMake(10, allTaxPrice.frame.origin.y+20, SCREEN_WIDTH-30, 50)];
     taxText.numberOfLines=0;
-    taxText.text=@"直邮商品，货源官网会直接收取税费。\n转运商品，税费估而不收，清关产生税费时会生成税费订单，并通知到您。";
+    taxText.text=@"直邮商品，预收关税，货源官网会直接收取关税。\n转运商品，预估关税，关税估而不收，清关产生关税时会生成关税订单，并通知到您";
     
     taxText.font=[UIFont systemFontOfSize:11];
     taxText.textColor=RGB(51, 51, 51);
@@ -740,7 +740,7 @@
     
     //预付税费 transport_amount
     UILabel *transport=[[UILabel alloc] initWithFrame:CGRectMake(10, 28, SCREEN_WIDTH/2, 20)];
-    transport.text=[package.all_info.ship_type integerValue]==1?@"预收税费":@"预估税费";
+    transport.text=[package.all_info.ship_type integerValue]==1?@"预收关税":@"预估关税";
     transport.textColor=RGB(51, 51, 51);
     transport.font=[UIFont boldSystemFontOfSize:11];
     [view addSubview:transport];
@@ -779,7 +779,7 @@
     jianju.backgroundColor=RGB(237, 237, 237);
     [view addSubview:jianju];
     
-    UILabel *jianju_footer=[[UILabel alloc] initWithFrame:CGRectMake(0, 76.5, SCREEN_WIDTH, 9.5)];
+    UILabel *jianju_footer=[[UILabel alloc] initWithFrame:CGRectMake(0, 76.5, SCREEN_WIDTH, 19.5)];
     jianju_footer.backgroundColor=RGB(237, 237, 237);
     [view addSubview:jianju_footer];
     

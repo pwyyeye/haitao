@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AreaPickerView.h"
 
-@interface AddAddressStep1 : UIViewController<UIActionSheetDelegate,UIPickerViewDataSource,UIPickerViewDelegate,HTTPControllerProtocol>
+@interface AddAddressStep1 : UIViewController<UIActionSheetDelegate,UIPickerViewDataSource,UIPickerViewDelegate,HTTPControllerProtocol,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *consignee;//收货人
 

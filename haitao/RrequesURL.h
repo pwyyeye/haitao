@@ -37,6 +37,9 @@
 //注册
 #define requestUrl_doMobileRegist [NSString stringWithFormat:@"%@&f=doMobileRegist&m=user",requestUrl]
 
+//手机是否已注册校验
+#define requestUrl_checkUserName [NSString stringWithFormat:@"%@&f=checkUserName&m=user",requestUrl]
+
 //登录
 #define requestUrl_doLogin [NSString stringWithFormat:@"%@&f=doLogin&m=user",requestUrl]
 
@@ -143,6 +146,13 @@
 
 //心跳接口
 #define requestUrl_doHeart [NSString stringWithFormat:@"%@&f=doHeart&m=home",requestUrl]
+
+
+//获取关税列表
+#define requestUrl_getOrderTaxList [NSString stringWithFormat:@"%@&f=getOrderTaxList&m=user",requestUrl]
+
+//删除税单
+#define requestUrl_delTaxOrder [NSString stringWithFormat:@"%@&f=delTaxOrder&m=user",requestUrl]
 
 
 #endif

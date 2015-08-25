@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegisterViewController : UIViewController<HTTPControllerProtocol>
+@interface RegisterViewController : UIViewController<HTTPControllerProtocol,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *mobile;
 

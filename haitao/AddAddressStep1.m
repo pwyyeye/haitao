@@ -32,10 +32,18 @@
     
     _consignee.leftViewMode = UITextFieldViewModeAlways;
     
-    _province.enabled=NO;
+//    _province.enabled=NO;
+    
+    _province.delegate=self;
     
 
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    [self areaPick:nil];
+
+}
+
 //当键盘出现或改变时调用
 - (void)keyboardWillChangeFrame:(NSNotification *)notification
 {

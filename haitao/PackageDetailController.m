@@ -366,7 +366,7 @@
             _payAmount.numberOfLines=0;
             _shipAmount.text=[NSString stringWithFormat:@"%@: %.2f",[_packageModel.package_info.ship_type integerValue]==1?@"直邮运费":@"转运运费",_packageModel.package_info.shipping_amount];
             
-            _taxAmount.text=[NSString stringWithFormat:@"%@: %.2f",[_packageModel.package_info.ship_type integerValue]==1?@"预收税费":@"预估税费",[_packageModel.package_info.ship_type integerValue]==1?_packageModel.package_info.direct_amount:_packageModel.package_info.transport_amount];
+            _taxAmount.text=[NSString stringWithFormat:@"%@: %.2f",[_packageModel.package_info.ship_type integerValue]==1?@"预收关税":@"预估关税",[_packageModel.package_info.ship_type integerValue]==1?_packageModel.package_info.direct_amount:_packageModel.package_info.transport_amount];
             
             _consignee.text=[NSString stringWithFormat:@"收件人: %@",_packageModel.order.consignee];
             
@@ -532,7 +532,7 @@
     //运费
     UILabel *head=[[UILabel alloc] initWithFrame:CGRectMake(10, 5, SCREEN_WIDTH/2, 20)];
     head.text=[_packageModel.package_info.ship_type integerValue]==1?@"直邮运费":@"转运运费";
-    head.font=[UIFont boldSystemFontOfSize:11];
+    head.font=[UIFont boldSystemFontOfSize:10];
     head.textColor=RGB(51, 51, 51);
     [view addSubview:head];
     
@@ -546,9 +546,9 @@
     
     //预付税费 transport_amount
     UILabel *transport=[[UILabel alloc] initWithFrame:CGRectMake(10, 28, SCREEN_WIDTH/2, 20)];
-    transport.text=[_packageModel.package_info.ship_type integerValue]==1?@"预收税费":@"预估税费";
+    transport.text=[_packageModel.package_info.ship_type integerValue]==1?@"预收关税":@"预估关税";
     transport.textColor=RGB(51, 51, 51);
-    transport.font=[UIFont boldSystemFontOfSize:11];
+    transport.font=[UIFont boldSystemFontOfSize:10];
     [view addSubview:transport];
     
     //预付税费金额
@@ -560,10 +560,10 @@
     [view addSubview:transport_amout];
     
     //小计
-    UILabel *subTotal=[[UILabel alloc] initWithFrame:CGRectMake(10, 50, SCREEN_WIDTH/2, 20)];
+    UILabel *subTotal=[[UILabel alloc] initWithFrame:CGRectMake(10, 50, 250, 20)];
     //        subTotal.text=@"小计:";
-    subTotal.text=[NSString stringWithFormat:@"实付款"];
-    subTotal.font=[UIFont boldSystemFontOfSize:11];
+    subTotal.text=[NSString stringWithFormat:@"%@",[_packageModel.package_info.ship_type integerValue]==1?@"包裹应付金额（含商品金额，直邮运费，预收关税）":@"包裹应付金额（含商品金额，转运运费）"];
+    subTotal.font=[UIFont boldSystemFontOfSize:10];
     subTotal.textColor=RGB(51, 51, 51);
     [view addSubview:subTotal];
     

@@ -196,7 +196,7 @@ static CGFloat kImageOriginHight = 400;
 //        title12.textAlignment=1;
 //        [_bigView1 addSubview:title12];
     }else{
-        UILabel *title1=[[UILabel alloc]initWithFrame:CGRectMake(0,5, self.view.frame.size.width/2, 20)];
+        UILabel *title1=[[UILabel alloc]initWithFrame:CGRectMake(0,5, self.view.frame.size.width, 20)];
         title1.text=[NSString stringWithFormat:@"%@g",self.goodsExt.weight_g];
         title1.font=[UIFont systemFontOfSize:13];
         title1.backgroundColor=[UIColor clearColor];
@@ -204,7 +204,7 @@ static CGFloat kImageOriginHight = 400;
         title1.textAlignment=1;
         [_bigView1 addSubview:title1];
         
-        UILabel *title2=[[UILabel alloc]initWithFrame:CGRectMake(0, title1.frame.size.height+5, self.view.frame.size.width/2, 20)];
+        UILabel *title2=[[UILabel alloc]initWithFrame:CGRectMake(0, title1.frame.size.height+5, self.view.frame.size.width, 20)];
         title2.text=@"发货重量";
         title2.font=[UIFont systemFontOfSize:10];
         title2.backgroundColor=[UIColor clearColor];
@@ -240,21 +240,21 @@ static CGFloat kImageOriginHight = 400;
         
         
         
-        UILabel *title13=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, 5, self.view.frame.size.width/2, 20)];
-        title13.text=[NSString stringWithFormat:@"%.f",self.goodsExt.direct_tax ];
-        title13.font=[UIFont systemFontOfSize:13];
-        title13.backgroundColor=[UIColor clearColor];
-        title13.textColor =RGB(128, 128, 128);
-        title13.textAlignment=1;
-        [_bigView1 addSubview:title13];
-        
-        UILabel *title32=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, title1.frame.size.height+5, self.view.frame.size.width/2, 20)];
-        title32.text=@"预收关税";
-        title32.font=[UIFont systemFontOfSize:10];
-        title32.backgroundColor=[UIColor clearColor];
-        title32.textColor =RGB(179, 179, 179);
-        title32.textAlignment=1;
-        [_bigView1 addSubview:title32];
+//        UILabel *title13=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, 5, self.view.frame.size.width/2, 20)];
+//        title13.text=[NSString stringWithFormat:@"%.f",self.goodsExt.direct_tax ];
+//        title13.font=[UIFont systemFontOfSize:13];
+//        title13.backgroundColor=[UIColor clearColor];
+//        title13.textColor =RGB(128, 128, 128);
+//        title13.textAlignment=1;
+//        [_bigView1 addSubview:title13];
+//        
+//        UILabel *title32=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, title1.frame.size.height+5, self.view.frame.size.width/2, 20)];
+//        title32.text=@"预收关税";
+//        title32.font=[UIFont systemFontOfSize:10];
+//        title32.backgroundColor=[UIColor clearColor];
+//        title32.textColor =RGB(179, 179, 179);
+//        title32.textAlignment=1;
+//        [_bigView1 addSubview:title32];
 
     }
     
@@ -290,7 +290,7 @@ static CGFloat kImageOriginHight = 400;
 //    [_bigView2 addSubview:title3];
     
     UIImageView *headImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, 0, 60, 60)];
-    [headImg setImageWithURL:[NSURL URLWithString:self.goods.shop_logo_app] placeholderImage:[UIImage imageNamed:@"AlipayIcon"]];
+    [headImg setImageWithURL:[NSURL URLWithString:self.goods.shop_logo_app] placeholderImage:[UIImage imageNamed:@"default_04"]];
 //    headImg.image=[UIImage imageNamed:@"AlipayIcon"];
     [_bigView2 addSubview:headImg];
     headImg.backgroundColor=[UIColor clearColor];
@@ -316,7 +316,7 @@ static CGFloat kImageOriginHight = 400;
 
     
     UILabel *title5=[[UILabel alloc]initWithFrame:CGRectMake(headImg.width+headImg.left+5, 35,200, 20)];
-    title5.text=[self.goods.country_name isEqualToString:@"美国"]?@"一般为国外商城发货后10~17个工作日到手":@"一般为国外商城发货后3-5个工作日到手";
+    title5.text=[self.goods.country_name isEqualToString:@"美国"]?@"国外商城发货后10~17个工作日到手":@"国外商城发货后3-5个工作日到手";
     
     title5.font=[UIFont systemFontOfSize:9];
     title5.numberOfLines=2;
@@ -373,7 +373,7 @@ static CGFloat kImageOriginHight = 400;
     brandImg.backgroundColor=[UIColor clearColor];
     
     //titel
-    UILabel *pinpaiLbl=[[UILabel alloc]initWithFrame:CGRectMake(brandImg.width+brandImg.left+10, 10,190, 10)];
+    UILabel *pinpaiLbl=[[UILabel alloc]initWithFrame:CGRectMake(brandImg.width+brandImg.left+5, 10,190, 10)];
     pinpaiLbl.text=self.goods.brand_name;
     pinpaiLbl.font=[UIFont boldSystemFontOfSize:10];
     pinpaiLbl.backgroundColor=[UIColor clearColor];
@@ -381,7 +381,7 @@ static CGFloat kImageOriginHight = 400;
     pinpaiLbl.textAlignment=0;
     [brandView addSubview:pinpaiLbl];
     
-    UILabel *barndMiaoshu=[[UILabel alloc]initWithFrame:CGRectMake(brandImg.width+brandImg.left+10, brandImg.top+brandImg.height-20,160, 20)];
+    UILabel *barndMiaoshu=[[UILabel alloc]initWithFrame:CGRectMake(brandImg.width+brandImg.left+5, brandImg.top+brandImg.height-20,160, 20)];
     barndMiaoshu.text=@"国际知名品牌";
     
     barndMiaoshu.font=[UIFont systemFontOfSize:10];
@@ -917,8 +917,14 @@ static CGFloat kImageOriginHight = 400;
     gouwuliuchengImg.image=BundleImage(@"DetailsPage_img_gouwuliucheng");
     [gouwuliuchengImg setContentMode:UIViewContentModeScaleAspectFit];
     [gouwuQAView addSubview:gouwuliuchengImg];
+    
+     UILabel *jianju=[[UILabel alloc]initWithFrame:CGRectMake(0, gouwuliuchengImg.top+gouwuliuchengImg.height, SCREEN_WIDTH, 10)];
+    jianju.backgroundColor=[UIColor colorWithRed:.98 green:.98 blue:.98 alpha:1.0];
+    [gouwuQAView addSubview:jianju];
+
+    
     //QA
-    UILabel *qaTitleLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, gouwuliuchengImg.top+gouwuliuchengImg.height, 80, 20)];
+    UILabel *qaTitleLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, gouwuliuchengImg.top+gouwuliuchengImg.height+18, 80, 20)];
     qaTitleLbl.text=@"常见Q&A";
     qaTitleLbl.font=[UIFont boldSystemFontOfSize:15];
     qaTitleLbl.backgroundColor=[UIColor clearColor];

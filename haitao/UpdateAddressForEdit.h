@@ -11,7 +11,7 @@
 #import "AreaPickerView.h"
 #import "UpdateAddress.h"
 
-@interface UpdateAddressForEdit : UIViewController<HTTPControllerProtocol,UIActionSheetDelegate,UIImagePickerControllerDelegate,UIGestureRecognizerDelegate>
+@interface UpdateAddressForEdit : UIViewController<HTTPControllerProtocol,UIActionSheetDelegate,UIImagePickerControllerDelegate,UIGestureRecognizerDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewWith;
