@@ -70,7 +70,9 @@
     
     BADockCell *cell =[BADockCell cellWithTableView:tableView];
     cell.categoryText=_dockArray[indexPath.row][@"dockName"];
-    cell.imgurlText=_dockArray[indexPath.row][@"image"];
+//    cell.imgurlText=_dockArray[indexPath.row][@"image"];
+    NSLog(@"----pass-pass%@---",_dockArray[indexPath.row][@"image"]);
+    [cell.urlView setImageWithURL:[NSURL URLWithString:_dockArray[indexPath.row][@"image"]] placeholderImage:[UIImage imageNamed:@"search_icon_meizhuang_"]];
     cell.backgroundColor=RGB(237, 237, 237);
     if(indexPath.row==0){
         if(isfis){

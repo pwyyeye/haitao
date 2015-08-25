@@ -107,9 +107,9 @@
     [_refresh finishRefreshingDirection:direction animation:YES];
 }
 -(void)getCatBanner{
-    //NSDictionary *parameters = @{@"cat_id":self.menuModel.id};
+    NSDictionary *parameters = @{@"cat_id":self.menuModel.id};
     pageCount=@"1";
-    NSDictionary *parameters = @{@"cat_id":@"1"};
+//    NSDictionary *parameters = @{@"cat_id":@"1"};
     _inParameters=[parameters mutableCopy];
     NSString* url =[NSString stringWithFormat:@"%@&m=ad&f=getCatBanner",requestUrl]
     ;
@@ -486,7 +486,13 @@
             
             UrlImageView*image=[[UrlImageView alloc]initWithFrame:CGRectMake(0.225*btnNine.frame.size.width,0.125*btnNine.frame.size.height, 0.55*btnNine.frame.size.width,0.55*btnNine.frame.size.height)];
             [btnNine addSubview:image];
-            [image setImage:[UIImage imageNamed:tupianArr[i]]];
+            if ([MyUtil isEmptyString:menuTemp.img_app_icon]) {
+               [image setImage:[UIImage imageNamed:tupianArr[i]]];
+
+            }else{
+                [image setImageWithURL:[NSURL URLWithString:menuTemp.img_app_icon] placeholderImage:[UIImage imageNamed:tupianArr[i]]];
+            }
+            
             image.layer.borderWidth=1;
             image.layer.cornerRadius = 4;
             image.layer.borderColor = [[UIColor clearColor] CGColor];

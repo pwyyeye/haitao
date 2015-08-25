@@ -197,7 +197,7 @@
             nowCount++;
         }
         
-        dic =[@{@"dockName":menu.name,@"right":rightArr,@"image":@"search_icon_meizhuang_"} mutableCopy];
+        dic =[@{@"dockName":menu.name,@"right":rightArr,@"image":menu.img_app} mutableCopy];
         //menu.img
         [_dockArray addObject:dic];    
     }
@@ -320,16 +320,18 @@
         [button setValue:[NSNumber numberWithInt:i] forKey:@"column"];
         button.menuModel=menu;
         button.tag=indexPath.row;
-        UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-        [imageView setImageWithURL:[NSURL URLWithString:menu.img] placeholderImage:[UIImage imageNamed:@"ShuMa_icon_XiangJi"]];
+//        UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+//        NSLog(@"----pass-menu.img_app%@---",menu.img_app);
+//        [imageView setImageWithURL:[NSURL URLWithString:menu.img_app] placeholderImage:[UIImage imageNamed:@"ShuMa_icon_XiangJi"]];
        // UIImage *image = [rightTableView cutCenterImage:imageView.image  size:CGSizeMake(50, 50)];
         [button addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];
-        [button setBackgroundImage:imageView.image forState:UIControlStateNormal];
+//        [button setImage:imageView.image forState:UIControlStateNormal];
+        [button setImageWithURL:[NSURL URLWithString:menu.img_app] placeholderImage:[UIImage imageNamed:@"ShuMa_icon_XiangJi"]];
         [cell addSubview:button];
         [array addObject:button];
         UILabel *_label=[[UILabel alloc]initWithFrame:CGRectMake(button.frame.origin.x,button.frame.origin.y+button.frame.size.height+5,kImageWidth,30)];
         _label.text=menu.name;
-        _label.font=[UIFont boldSystemFontOfSize:13];
+        _label.font=[UIFont boldSystemFontOfSize:11];
         _label.backgroundColor=[UIColor clearColor];
         _label.textColor =RGB(51, 51, 51);
         _label.numberOfLines=1;

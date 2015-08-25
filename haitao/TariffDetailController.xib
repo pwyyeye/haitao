@@ -33,7 +33,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="税单详情" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTj-gw-tJm">
                                             <rect key="frame" x="0.0" y="15" width="600" height="16"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -70,10 +70,10 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="税单快照" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfA-n5-BKl">
                                             <rect key="frame" x="10" y="8" width="52" height="16"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_01.png" translatesAutoresizingMaskIntoConstraints="NO" id="i7s-sP-t8T">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i7s-sP-t8T">
                                             <rect key="frame" x="10" y="32" width="580" height="100"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="100" id="ngy-Md-lMY"/>
@@ -143,7 +143,4 @@
             </constraints>
         </view>
     </objects>
-    <resources>
-        <image name="default_01.png" width="320" height="161"/>
-    </resources>
 </document>

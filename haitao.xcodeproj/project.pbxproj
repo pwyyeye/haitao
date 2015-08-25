@@ -202,6 +202,9 @@
 		AD310E0D1B8AD21F00B0D03D /* logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD310E0B1B8AD21F00B0D03D /* logo@3x.png */; };
 		AD310E141B8AE1B400B0D03D /* DetailsPage_img_gouwuliucheng@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD310E121B8AE1B400B0D03D /* DetailsPage_img_gouwuliucheng@2x.png */; };
 		AD310E151B8AE1B400B0D03D /* DetailsPage_img_gouwuliucheng@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD310E131B8AE1B400B0D03D /* DetailsPage_img_gouwuliucheng@3x.png */; };
+		AD310E191B8C485700B0D03D /* QAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD310E181B8C485700B0D03D /* QAViewController.m */; };
+		AD310E1C1B8C4B7D00B0D03D /* SizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD310E1B1B8C4B7D00B0D03D /* SizeViewController.m */; };
+		AD310E1F1B8C4BD100B0D03D /* HelpContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD310E1E1B8C4BD100B0D03D /* HelpContentController.m */; };
 		AD50C4F01B762FE600119A42 /* base64.m in Sources */ = {isa = PBXBuildFile; fileRef = AD50C4E01B762FE600119A42 /* base64.m */; };
 		AD50C4F11B762FE600119A42 /* DataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = AD50C4E31B762FE600119A42 /* DataSigner.m */; };
 		AD50C4F21B762FE600119A42 /* DataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = AD50C4E51B762FE600119A42 /* DataVerifier.m */; };
@@ -1092,6 +1095,12 @@
 		AD310E0B1B8AD21F00B0D03D /* logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@3x.png"; sourceTree = "<group>"; };
 		AD310E121B8AE1B400B0D03D /* DetailsPage_img_gouwuliucheng@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailsPage_img_gouwuliucheng@2x.png"; sourceTree = "<group>"; };
 		AD310E131B8AE1B400B0D03D /* DetailsPage_img_gouwuliucheng@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DetailsPage_img_gouwuliucheng@3x.png"; sourceTree = "<group>"; };
+		AD310E171B8C485700B0D03D /* QAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAViewController.h; sourceTree = "<group>"; };
+		AD310E181B8C485700B0D03D /* QAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAViewController.m; sourceTree = "<group>"; };
+		AD310E1A1B8C4B7D00B0D03D /* SizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SizeViewController.h; sourceTree = "<group>"; };
+		AD310E1B1B8C4B7D00B0D03D /* SizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SizeViewController.m; sourceTree = "<group>"; };
+		AD310E1D1B8C4BD100B0D03D /* HelpContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpContentController.h; sourceTree = "<group>"; };
+		AD310E1E1B8C4BD100B0D03D /* HelpContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpContentController.m; sourceTree = "<group>"; };
 		AD50C4931B762FCC00119A42 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
 		AD50C4941B762FCC00119A42 /* asn1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1.h; sourceTree = "<group>"; };
 		AD50C4951B762FCC00119A42 /* asn1_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1_mac.h; sourceTree = "<group>"; };
@@ -2575,6 +2584,19 @@
 			name = logo;
 			sourceTree = "<group>";
 		};
+		AD310E161B8C480100B0D03D /* 三个html */ = {
+			isa = PBXGroup;
+			children = (
+				AD310E171B8C485700B0D03D /* QAViewController.h */,
+				AD310E181B8C485700B0D03D /* QAViewController.m */,
+				AD310E1A1B8C4B7D00B0D03D /* SizeViewController.h */,
+				AD310E1B1B8C4B7D00B0D03D /* SizeViewController.m */,
+				AD310E1D1B8C4BD100B0D03D /* HelpContentController.h */,
+				AD310E1E1B8C4BD100B0D03D /* HelpContentController.m */,
+			);
+			name = "三个html";
+			sourceTree = "<group>";
+		};
 		AD50C4911B762F9600119A42 /* Alipay */ = {
 			isa = PBXGroup;
 			children = (
@@ -3629,6 +3651,7 @@
 		ADB5ACAA1B54065B0022B2C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				AD310E161B8C480100B0D03D /* 三个html */,
 				ADD2C45C1B7E238800A2E638 /* Chat */,
 				AD50C4911B762F9600119A42 /* Alipay */,
 				A2E8D0681B759AE90004ADB9 /* 比价 */,
@@ -4123,6 +4146,7 @@
 				TargetAttributes = {
 					ADB5AC7B1B53CB5F0022B2C2 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = EL277E2S2M;
 					};
 					ADB5AC971B53CB5F0022B2C2 = {
 						CreatedOnToolsVersion = 6.1;
@@ -4838,6 +4862,7 @@
 				AD8AA5931B59425A00E324AD /* HTSeachViewController.m in Sources */,
 				ADCF99121B6C72FB00EA5592 /* HelpViewController.m in Sources */,
 				AD8AA6151B59435C00E324AD /* AMRatingControl.m in Sources */,
+				AD310E191B8C485700B0D03D /* QAViewController.m in Sources */,
 				A20BA77D1B61F33000F73A57 /* LTKSeachResultViewController.m in Sources */,
 				A20BA7821B620EEA00F73A57 /* TitleBtn.m in Sources */,
 				AD8AA6171B59435C00E324AD /* ELCAsset.m in Sources */,
@@ -4871,6 +4896,7 @@
 				ADCF99371B6DA62700EA5592 /* OrderListController.m in Sources */,
 				AD8AA62C1B59435C00E324AD /* UrlImageView.m in Sources */,
 				ADD4D40E1B5B29AF004AFBE2 /* TMRulerColor.m in Sources */,
+				AD310E1C1B8C4B7D00B0D03D /* SizeViewController.m in Sources */,
 				A2E8D0061B71F68B0004ADB9 /* LetterBrandDockTavleView.m in Sources */,
 				ADD4D40B1B5B298F004AFBE2 /* HTGoodDetailsViewController.m in Sources */,
 				ADD2C45A1B7E238200A2E638 /* ChatViewController.m in Sources */,
@@ -4942,6 +4968,7 @@
 				ADD33A171B65BFA600558372 /* UpdateAddressForEdit.m in Sources */,
 				ADD2C42D1B79A09800A2E638 /* FilterViewController.m in Sources */,
 				AD6EFF321B831A7900E98480 /* ASImageScrollView.m in Sources */,
+				AD310E1F1B8C4BD100B0D03D /* HelpContentController.m in Sources */,
 				A2FDE1371B6DA59E00B374AA /* FCShoppingCell.m in Sources */,
 				ADD2C4401B7A1E1100A2E638 /* ShaiXuanBtn.m in Sources */,
 				ADD1718D1B5F2F7A00E451D5 /* BaseModel.m in Sources */,
@@ -5085,8 +5112,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: youren huang (P4N3EPBLYC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: youren huang (P4N3EPBLYC)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/haitao",
@@ -5108,7 +5135,7 @@
 					"$(PROJECT_DIR)/haitao/UMessage_Sdk_1.1.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6fbeae85-7a9c-4530-bb0c-6b2fc103ed16";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -5118,8 +5145,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: youren huang (P4N3EPBLYC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: youren huang (P4N3EPBLYC)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/haitao",
@@ -5141,7 +5168,7 @@
 					"$(PROJECT_DIR)/haitao/UMessage_Sdk_1.1.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6fbeae85-7a9c-4530-bb0c-6b2fc103ed16";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -5149,8 +5176,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -5171,8 +5198,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

@@ -13,6 +13,10 @@
 @property (copy, nonatomic) NSString *id;
 /** 图像 */
 @property (copy, nonatomic) NSString *img;
+
+@property(strong,nonatomic) NSString *img_app;//搜索页面使用图标
+
+@property(strong,nonatomic) NSString *img_app_icon;
 //标题
 @property (copy, nonatomic) NSString *name;
 //子目录
