@@ -36,7 +36,20 @@
     _refresh=[[DJRefresh alloc] initWithScrollView:_tableView delegate:self];
     _refresh.topEnabled=YES;
     [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:YES];
-
+    //左右滑动
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(tappedRightButton:)];
+    
+    [swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+    
+    [self.view addGestureRecognizer:swipeLeft];
+    
+    
+    
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(tappedLeftButton:)];
+    
+    [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+    
+    [self.view addGestureRecognizer:swipeRight];
 //    [self getSpecialData];
     // Do any additional setup after loading the view from its nib.
 }
@@ -193,7 +206,93 @@
     //    [delegate.navigationController pushViewController:goods animated:YES];
 }
 
+- (IBAction) tappedRightButton:(id)sender
 
+{
+    
+    NSUInteger selectedIndex = [self.tabBarController selectedIndex];
+    
+    
+    
+    NSArray *aryViewController = self.tabBarController.viewControllers;
+    
+    if (selectedIndex < aryViewController.count - 1) {
+        UIView *fromView = [self.tabBarController.selectedViewController view];
+        
+        UIView *toView = [[self.tabBarController.viewControllers objectAtIndex:selectedIndex + 1] view];
+        toView.left=SCREEN_WIDTH;
+        // 动画开始
+        
+        [UIView beginAnimations:nil context:nil];
+        
+        // 动画时间曲线 EaseInOut效果
+        
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        
+        // 动画时间
+        
+        [UIView setAnimationDuration:0.5];
+        
+        fromView.left =-SCREEN_WIDTH;
+        toView.left=0;
+        // 动画结束（或者用提交也不错）
+        
+        [UIView commitAnimations];
+        
+        [self.tabBarController setSelectedIndex:selectedIndex + 1];
+        NSString *ss=[NSString stringWithFormat:@"%ld",selectedIndex+1];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"changeMenu" object:ss];
+        
+        
+        
+        
+    }
+    
+    
+    
+}
+
+
+
+- (IBAction) tappedLeftButton:(id)sender
+
+{
+    
+    NSUInteger selectedIndex = [self.tabBarController selectedIndex];
+    
+    
+    
+    if (selectedIndex > 0) {
+        
+        UIView *fromView = [self.tabBarController.selectedViewController view];
+        
+        UIView *toView = [[self.tabBarController.viewControllers objectAtIndex:selectedIndex - 1] view];
+        toView.left=-SCREEN_WIDTH;
+        // 动画开始
+        
+        [UIView beginAnimations:nil context:nil];
+        
+        // 动画时间曲线 EaseInOut效果
+        
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        
+        // 动画时间
+        
+        [UIView setAnimationDuration:0.5];
+        
+        fromView.left =SCREEN_WIDTH;
+        toView.left=0;
+        // 动画结束（或者用提交也不错）
+        
+        [UIView commitAnimations];
+        [self.tabBarController setSelectedIndex:selectedIndex - 1];
+        NSString *ss=[NSString stringWithFormat:@"%ld",selectedIndex-1];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"changeMenu" object:ss];
+        
+        
+    }
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
