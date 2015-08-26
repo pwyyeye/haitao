@@ -34,6 +34,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSArray *goodArr=[self.spcDic objectForKey:@"goods"];
+    specialModel=[self.spcDic objectForKey:@"detail"];
     UIView *naviView=(UIView*) [self getNavigationBar];
     _tableView =[[UITableView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height,self.view.frame.size.width,kWindowHeight-naviView.frame.size.height} style:UITableViewStylePlain];
     _tableView.delegate=self;
@@ -43,8 +45,7 @@
     _refresh.topEnabled=YES;
     //    _tableView.backgroundColor=[UIColor blueColor];
     [self.view addSubview:_tableView];
-    NSArray *goodArr=[self.spcDic objectForKey:@"goods"];
-    specialModel=[self.spcDic objectForKey:@"detail"];
+   
     listArr=[[NSMutableArray alloc]init];
     [self getGoodlist:goodArr];
     // Do any additional setup after loading the view.
@@ -72,7 +73,7 @@
     
     [self.view addSubview:view_bar1];
     UILabel *title_label=[[UILabel alloc]initWithFrame:CGRectMake(65, view_bar1.frame.size.height-44, self.view.frame.size.width-130, 44)];
-    title_label.text=@"专题";
+    title_label.text=specialModel.name;
     title_label.font=[UIFont boldSystemFontOfSize:20];
     title_label.backgroundColor=[UIColor clearColor];
     title_label.textColor =[UIColor whiteColor];
