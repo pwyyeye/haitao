@@ -83,8 +83,8 @@
     NSDictionary *parameters = @{@"f_cat":self.menuModel.id,@"need_cat_index":@"1",@"need_page":@"1",@"p":pageCount,@"per":@"12"};
     _inParameters=[parameters mutableCopy];
     shaixuanDic=[parameters mutableCopy];
-    [self getCatBanner];
-//    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:YES];
+//    [self getCatBanner];
+    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:YES];
     //左右滑动
     UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(tappedRightButton:)];
     
@@ -458,7 +458,7 @@
             
             [bigArr addObject:dicTemp];
         }
-        EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 140)
+        EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, (SCREEN_WIDTH/21)*8)
                                                               scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
         
         scroller.delegate=self;
@@ -649,7 +649,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section==0){
-        return 140;
+        return (SCREEN_WIDTH/21)*8;
     }
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     return cell.frame.size.height;
