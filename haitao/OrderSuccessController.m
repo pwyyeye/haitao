@@ -8,6 +8,7 @@
 
 #import "OrderSuccessController.h"
 #import "OrderListController.h"
+#import "TariffViewController.h"
 @interface OrderSuccessController ()
 
 @end
@@ -53,8 +54,15 @@
 }
 -(void)gotoBack{
     UIViewController *detailViewController;
-    
-    detailViewController  = [[OrderListController alloc] init];
+    if([_orderNo.text rangeOfString:@"tax"].location !=NSNotFound)//_roaldSearchText
+    {
+        detailViewController  = [[TariffViewController alloc] init];
+    }
+    else
+    {
+        detailViewController  = [[OrderListController alloc] init];
+    }
+//    detailViewController  = [[OrderListController alloc] init];
     
     AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
     
