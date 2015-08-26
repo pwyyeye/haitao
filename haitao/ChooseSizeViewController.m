@@ -11,6 +11,7 @@
 #import "SizeModel.h"
 #import "GoodsAttrModel.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "SizeViewController.h"
 @interface ChooseSizeViewController ()<UITextFieldDelegate>
 {
     UIScrollView              *_scrollView;
@@ -126,19 +127,25 @@
     //邮费重量
     UIView *yunfeiView=[[UIView alloc]initWithFrame:CGRectMake(0, nameView.frame.size.height+nameView.frame.origin.y+15, _scrollView.frame.size.width, 30)];
     yunfeiView.backgroundColor=hexColor(@"#ffe0eb");
-    UILabel *yunfeititle=[[UILabel alloc]initWithFrame:CGRectMake(yunfeiView.frame.origin.x, 5, _scrollView.frame.size.width-40, 20)];
+    UILabel *yunfeititle=[[UILabel alloc]initWithFrame:CGRectMake(yunfeiView.frame.origin.x+5, 5, _scrollView.frame.size.width-40, 20)];
     yunfeititle.text=@"温馨提示:商品尺寸参数均来自国外,仅供参考。";
     yunfeititle.font=[UIFont systemFontOfSize:10];
     yunfeititle.backgroundColor=[UIColor clearColor];
     yunfeititle.textColor =RGB(175, 104, 122);
-    yunfeititle.textAlignment=1;
+    yunfeititle.textAlignment=0;
     [yunfeiView addSubview:yunfeititle];
     [topView addSubview:yunfeiView];
     topView.height=yunfeiView.top+yunfeiView.height;
     
+    UIButton *chima=[[UIButton alloc]initWithFrame:CGRectMake(yunfeititle.frame.size.width-40,nameView.frame.size.height+nameView.frame.origin.y+20,45, 20)];
     
-    
-//    CGRect lastFrame=CGRectMake(0, topView.frame.size.height+topView.frame.origin.y, _scrollView.frame.size.width, 20);
+    chima.titleLabel.font=[UIFont systemFontOfSize:11.0];
+    [chima setTitle:@"尺码说明" forState:UIControlStateNormal];
+    [chima setTitleColor:RGB(24, 177, 18) forState:UIControlStateNormal];
+    [chima addTarget:self action:@selector(gotoChima) forControlEvents:UIControlEventTouchUpInside];
+
+    [topView addSubview:chima];
+    //    CGRect lastFrame=CGRectMake(0, topView.frame.size.height+topView.frame.origin.y, _scrollView.frame.size.width, 20);
     
     UIView *guige= [[UIView alloc] initWithFrame:CGRectMake(0, topView.height+10, SCREEN_WIDTH-24, 100)];
     guige.layer.masksToBounds=YES;
@@ -565,6 +572,14 @@
 {
     AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
     [app.navigationController popViewControllerAnimated:YES];
+    
+}
+#pragma mark - 尺码说明
+-(void)gotoChima
+{
+    AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    SizeViewController *sv=[[SizeViewController alloc] init];
+    [app.navigationController pushViewController:sv animated:YES];
     
 }
 #pragma mark - 加入购物车
