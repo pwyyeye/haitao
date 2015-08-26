@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets=0;
     spcList =[[NSMutableArray alloc]init];
     _tableView =[[UITableView alloc]initWithFrame:self.mainFrame style:UITableViewStylePlain];
     _tableView.tableHeaderView.backgroundColor=[UIColor blueColor];
