@@ -83,7 +83,8 @@
     NSDictionary *parameters = @{@"f_cat":self.menuModel.id,@"need_cat_index":@"1",@"need_page":@"1",@"p":pageCount,@"per":@"12"};
     _inParameters=[parameters mutableCopy];
     shaixuanDic=[parameters mutableCopy];
-    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:YES];
+    [self getCatBanner];
+//    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:YES];
     //左右滑动
     UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(tappedRightButton:)];
     
