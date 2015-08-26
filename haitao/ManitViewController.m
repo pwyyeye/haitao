@@ -80,7 +80,9 @@
     [itme1 setObject:[NSNumber numberWithFloat:view_bar.width/5]  forKey:TITLEWIDTH];
     [barArr addObject:itme1];
     for (int i=0; i<=menuArrNew.count-1; i++) {
-
+        if(i==4){
+            break;
+        }
         MenuModel *me=menuArrNew[i];
         NSMutableDictionary *itemTemp =[[NSMutableDictionary alloc]init] ;
         [itemTemp setObject:me.img forKey:NOMALKEY];
@@ -113,19 +115,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setEdgesForExtendedLayout:UIRectEdgeBottom];
+//    [self setEdgesForExtendedLayout:UIRectEdgeBottom];
     [self drawViewRect];
     HomeViewController *homeViewController=[[HomeViewController alloc]init];
     homeViewController.mainFrame=mainFrame;
     SpecialViewController *specialViewController=[[SpecialViewController alloc]init];
     specialViewController.mainFrame=mainFrame;
     
-    NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:12];
+//    NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:12];
     NSMutableArray *views =[NSMutableArray arrayWithCapacity:12];
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSArray *menuArrNew=app.menuArr;
     [views addObject:homeViewController];
    
     for (int i=0; i<=menuArrNew.count-1; i++) {
+        if(i==4){
+            break;
+        }
         MenuModel *menuModel=menuArrNew[i];
         CustomViewController *custome=[[CustomViewController alloc]init];
         custome.menuModel=menuModel;
@@ -133,10 +139,10 @@
         [views addObject:custome];
     }
     [views addObject:specialViewController];
-    for (UIViewController *viewController in views) {
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
-        [viewControllers addObject:nav];
-    }
+//    for (UIViewController *viewController in views) {
+//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
+//        [viewControllers addObject:nav];
+//    }
     
     self.viewControllers = views;
     
