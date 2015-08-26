@@ -12,7 +12,7 @@
 #import "AddressModel.h"
 #import "LoginViewController.h"
 #import "UpdateAddress.h"
-
+#import "ConfirmOrderController.h"
 
 @interface AddressListController ()
 
@@ -88,7 +88,17 @@
 }
 -(void)gotoBack
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    BOOL b=NO;
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[ConfirmOrderController class]]) {
+            b=YES;
+            [self.navigationController popToViewController:controller animated:YES];
+            break;
+        }
+    }
+    if (!b) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 
     
 }
@@ -173,6 +183,11 @@
             
             self.tableView.separatorColor=[UIColor clearColor];
             [self.tableView reloadData];
+            if ([self.addressListDelegate respondsToSelector:@selector(selectedAddress:)]){
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeToReloadComfirmOrder" object:nil];
+
+            }
+
         }
         
     }else{

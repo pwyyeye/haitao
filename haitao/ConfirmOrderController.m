@@ -58,6 +58,14 @@
     _step=30;
     _timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(commitWait) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];//暂停
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotoGetAddress) name:@"noticeToReloadComfirmOrder" object:nil];
+    
+}
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"noticeToReloadComfirmOrder" object:nil];
+
+    
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -88,6 +96,10 @@
     
     [self.navigationController popViewControllerAnimated:YES];
     
+}
+-(void)gotoGetAddress{
+    _selectedAddress=nil;
+    [self getAddress];
 }
 -(void)getAddress{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];

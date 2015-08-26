@@ -147,6 +147,10 @@ NSLog(@"----pass-saveAddress %@---",@"test");
         ShowMessage(@"请填写身份证号码！");
         return;
     }
+    if (![MyUtil validateIdentityCard:_idcard.text]) {
+        ShowMessage(@"请填写有效身份证号码！");
+        return;
+    }
     if ([MyUtil isEmptyString:_province.text]) {
         ShowMessage(@"请选择省市区！");
         return;

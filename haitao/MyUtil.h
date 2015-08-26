@@ -35,4 +35,7 @@
 +(NSString *)trim:(NSString *)string;
 
 + (NSString *)md5HexDigest:(NSString*)input;
+
++ (BOOL) validateIdentityCard: (NSString *)identityCard;
+
 @end

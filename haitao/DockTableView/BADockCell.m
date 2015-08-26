@@ -39,7 +39,7 @@
 
         
         UIView *viewShow =[[UIView alloc]initWithFrame:(CGRect){0,39.5,75,0.5}];
-        viewShow.backgroundColor=[UIColor blackColor];
+        viewShow.backgroundColor=RGB(204, 204, 204);
         viewShow.alpha=0.4;
         [self.contentView addSubview:viewShow];
         UIView *viewShow1 =[[UIView alloc]initWithFrame:(CGRect){0,0,2,40}];
