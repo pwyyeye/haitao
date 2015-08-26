@@ -297,23 +297,7 @@
 {
     return 2;
 }
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    
-        return 0;
-    
-    
-}
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-//    if(section==1){
-//        return  [self getToolBar];
-//    }
-    UIView * uiview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 1)] ;
-    uiview.backgroundColor=[UIColor clearColor];
-    return uiview;
-}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section==0){
@@ -329,7 +313,7 @@
             cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:0.88 green:0.94 blue:0.99 alpha:1.0];
             cell.backgroundColor=[UIColor whiteColor];
         }
-        UrlImageButton *urlImageView=[[UrlImageButton alloc]initWithFrame:CGRectMake(0, 0, 320, 120)];
+        UrlImageButton *urlImageView=[[UrlImageButton alloc]initWithFrame:CGRectMake(0, 0, 320, (SCREEN_WIDTH/21)*8)];
         NSURL *url =[NSURL URLWithString:specialModel.img];
         [urlImageView setImageWithURL:url];
         urlImageView.backgroundColor=[UIColor clearColor];
@@ -443,7 +427,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section==0){
-        return 120;
+        return (SCREEN_WIDTH/21)*8;
     }
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     return cell.frame.size.height;
