@@ -294,6 +294,13 @@
 
 #pragma mark 获取数据刷新
 -(void)getFilterResult:(NSArray *)resultArray{
+    btnItem1.selected=false;
+    btnItem2.selected=false;
+    btnItem3.selected=false;
+    btnItem4.selected=false;
+    btnItem2.isup=true;
+    btnItem3.isup=true;
+    btnItem4.isup=true;
     [self getGoodlist:resultArray];
 }
 #pragma mark获取商品数据

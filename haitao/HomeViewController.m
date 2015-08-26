@@ -321,6 +321,8 @@
     {
         App_Home_Bigegg *grabModel=app_home_grab[i];
         btn=[[UrlImageButton alloc]initWithFrame:CGRectMake(20+i*(self._scrollView.width-80)/3+i*20, 10, (self._scrollView.width-80)/3, (self._scrollView.width-80)/3)];
+        btn.backgroundColor=[UIColor whiteColor];
+        btn.userInteractionEnabled=YES;
         NSURL *imgUrl=[NSURL URLWithString:grabModel.img_url];
         [btn setImageWithURL:imgUrl placeholderImage:[UIImage imageNamed:@"default_02.png"]];
         btn.tag=i;
@@ -686,6 +688,7 @@
     {
         App_Home_Bigegg *grabModel=app_home_grab[i];
         btn=[[UrlImageButton alloc]initWithFrame:CGRectMake(20+i*(self._scrollView.width-80)/3+i*20, 10, (self._scrollView.width-80)/3, (self._scrollView.width-80)/3)];
+        btn.backgroundColor=[UIColor whiteColor];
         NSURL *imgUrl=[NSURL URLWithString:grabModel.img_url];
         [btn setImageWithURL:imgUrl placeholderImage:[UIImage imageNamed:@"default_02.png"]];
         btn.tag=i;

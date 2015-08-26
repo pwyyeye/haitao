@@ -800,6 +800,8 @@
     }
     else if(btn.tag==104)
     {
+        
+
         NSLog(@"----pass-dic%@---",indexDic);
         FilterViewController *filterViewController=[[FilterViewController alloc] initWithNibName:@"FilterViewController" bundle:nil andFilterType:FilterViewControllTypeDefault andParameter:shaixuanDic];
         filterViewController.delegate=self;
@@ -816,6 +818,13 @@
 #pragma mark 筛选回调
 
 -(void)getFilterResult:(NSArray *)resultArray{
+    btnItem1.selected=false;
+    btnItem2.selected=false;
+    btnItem3.selected=false;
+    btnItem4.selected=false;
+    btnItem2.isup=true;
+    btnItem3.isup=true;
+    btnItem4.isup=true;
     NSLog(@"----pass-筛选回调%@---",resultArray);
 //    isshuaxin=true;
 //    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:false];

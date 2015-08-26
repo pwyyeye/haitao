@@ -35,9 +35,13 @@
 	if(isBkg)
 	{
 		[self setBackgroundImage:[self getDefaultImage] forState:UIControlStateNormal];
+        [self setBackgroundImage:[self getDefaultImage] forState:UIControlStateSelected];
+        [self setBackgroundImage:[self getDefaultImage] forState:UIControlStateHighlighted];
 	}
 	else {
 		[self setImage:[self getDefaultImage] forState:UIControlStateNormal];
+        [self setImage:[self getDefaultImage] forState:UIControlStateSelected];
+        [self setImage:[self getDefaultImage] forState:UIControlStateHighlighted];
 	}
 
 	NSURL* tempUrl = [NSURL URLWithString:iconUrl];
@@ -130,9 +134,13 @@
 	if(_isBackgroundImage)
 	{
 	    [self setBackgroundImage:image forState:UIControlStateNormal];
+        [self setBackgroundImage:image forState:UIControlStateSelected];
+        [self setBackgroundImage:image forState:UIControlStateHighlighted];
 	}
 	else {
 		[self setImage:image forState:UIControlStateNormal];
+        [self setImage:image forState:UIControlStateSelected];
+        [self setImage:image forState:UIControlStateHighlighted];
 	}
 
 //	if(_animated)
