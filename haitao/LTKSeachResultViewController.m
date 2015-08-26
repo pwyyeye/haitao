@@ -266,11 +266,12 @@
     label.text = str;
     [self.view addSubview:label];
     TitleBtn *editBtn ;
+    NSArray *array=@[@"奶粉",@"纸尿裤",@"GNC",@"防晒",@"平板电脑",@"剃须刀",@"电动牙刷",@"手机"];
     for (int i =0; i<8; i++)
     {
     
         editBtn =[[TitleBtn alloc]initWithFrame:CGRectMake((i%4)*75+12, floor(i/4)*35+10+label.frame.size.height+label.frame.origin.y, 70, 20)];
-        [editBtn setTitle:@"moon" forState:UIControlStateNormal];
+        [editBtn setTitle:array[i] forState:UIControlStateNormal];
         editBtn.titleLabel.font = [UIFont systemFontOfSize: 11.0];
         editBtn.backgroundColor=[UIColor blackColor];
         [editBtn addTarget:self action:@selector(goSerch:) forControlEvents:UIControlEventTouchUpInside];
