@@ -177,7 +177,7 @@ static CGFloat kImageOriginHight = 400;
         
         UIImageView*line1=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2,( _bigView1.frame.size.height-30)/2, 1, 30)];
         line1.image=BundleImage(@"line_01_.png");
-        [_bigView1 addSubview:line1];
+//        [_bigView1 addSubview:line1];
         
         
 //        
@@ -215,7 +215,7 @@ static CGFloat kImageOriginHight = 400;
         
         UIImageView*line1=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/3,( _bigView1.frame.size.height-30)/2, 1, 30)];
         line1.image=BundleImage(@"line_01_.png");
-        [_bigView1 addSubview:line1];
+//        [_bigView1 addSubview:line1];
         
         
         
