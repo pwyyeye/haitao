@@ -43,6 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    [self setEdgesForExtendedLayout:UIRectEdgeAll];
     self.navigationController.navigationBarHidden=YES;
     CGRect screenRect = [[UIScreen mainScreen] bounds];
 
