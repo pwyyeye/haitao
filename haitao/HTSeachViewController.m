@@ -72,7 +72,7 @@
     
     
     //右边列表
-    rightTableView =[[BARightTableView alloc]initWithFrame:(CGRect){75,naviView.frame.size.height,kWindowWidth-75,kWindowHeight-49-(-(naviView.frame.size.height))}];
+    rightTableView =[[BARightTableView alloc]initWithFrame:(CGRect){75,naviView.frame.size.height,kWindowWidth-75,kWindowHeight-49-((naviView.frame.size.height))}];
     rightTableView.rowHeight=65;
     rightTableView.rightDelegate=self;
     rightTableView.backgroundColor=[UIColor whiteColor];

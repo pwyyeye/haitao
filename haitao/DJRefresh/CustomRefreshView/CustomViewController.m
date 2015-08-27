@@ -77,7 +77,7 @@
     _refresh.topEnabled=YES;
     _refresh.bottomEnabled=YES;
     [self.view addSubview:_tableView];
-    tupianArr=@[@"shuma_icon_diannao_top_",@"shuma_icon_gehudaqi_top",@"shuma_icon_iphone_top_",@"shuma_icon_shenghuodiaqi_top_",@"shuma_icon_shouji_top_",@"shuma_icon_shoujipeishi_top_",@"shuma_icon_xiangji_top_",@"shuma_icon_yingyin_top_"];
+    tupianArr=@[@"shuma_icon_diannao_top_",@"shuma_icon_gehudaqi_top",@"shuma_icon_iphone_top_",@"shuma_icon_shenghuodiaqi_top_",@"shuma_icon_shouji_top_",@"shuma_icon_shoujipeishi_top_",@"shuma_icon_xiangji_top_",@"shuma_icon_yingyin_top_",];
     listArr=[[NSMutableArray alloc]init];
 
     
@@ -87,6 +87,7 @@
     [self getCatBanner];
 //    [_refresh startRefreshingDirection:DJRefreshDirectionTop animation:YES];
     //左右滑动
+    
     UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(tappedRightButton:)];
     
     [swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
@@ -484,6 +485,9 @@
         CGRect lastFram;
         for (int i =0; i<menuModelarr.count; i++)
         {
+            if(i==tupianArr.count){
+                break;
+            }
             MenuModel *menuTemp=menuModelarr[i];
             //i*SCREEN_WIDTH/4, 0, SCREEN_WIDTH/4, SCREEN_WIDTH/4)
             CFImageButton *btnNine=[[CFImageButton alloc]initWithFrame:CGRectMake((i%4)*SCREEN_WIDTH/4, floor(i/4)*SCREEN_WIDTH/4, SCREEN_WIDTH/4, SCREEN_WIDTH/4)];
