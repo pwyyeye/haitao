@@ -110,7 +110,7 @@
     [self initData];
     
     self.tableView = ({
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 34, SCREEN_WIDTH, SCREEN_HEIGHT-98)];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 34, SCREEN_WIDTH, SCREEN_HEIGHT-98) style:UITableViewStyleGrouped];
         
         tableView.dataSource = self;
         tableView.delegate=self;
@@ -556,12 +556,12 @@
             
         }
         
-        if (_result_array.count!=section+1) {
+//        if (_result_array.count!=section+1) {
             //给底部footer 加13个像素间距
             UILabel *jianju=[[UILabel alloc] initWithFrame:CGRectMake(0, 58, SCREEN_WIDTH, 13)];
             jianju.backgroundColor=RGB(237, 237, 237);
             [view addSubview:jianju];
-        }
+//        }
         
         
         
@@ -661,7 +661,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView==_tableView) {
-        return _goods_arrayForSubView.count*80+125;//＋120头尾高度
+        return _goods_arrayForSubView.count*80+110;//＋120头尾高度
     }else{
         return 80;
     }

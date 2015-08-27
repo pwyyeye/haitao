@@ -105,7 +105,7 @@
     
     
     self.tableView = ({
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 34, SCREEN_WIDTH, SCREEN_HEIGHT-98)];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 34, SCREEN_WIDTH, SCREEN_HEIGHT-98) style:UITableViewStyleGrouped];
         
         tableView.dataSource = self;
         tableView.delegate=self;
