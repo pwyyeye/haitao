@@ -205,6 +205,13 @@
 		AD310E191B8C485700B0D03D /* QAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD310E181B8C485700B0D03D /* QAViewController.m */; };
 		AD310E1C1B8C4B7D00B0D03D /* SizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD310E1B1B8C4B7D00B0D03D /* SizeViewController.m */; };
 		AD310E1F1B8C4BD100B0D03D /* HelpContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD310E1E1B8C4BD100B0D03D /* HelpContentController.m */; };
+		AD310E341B8ED58800B0D03D /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD310E261B8ED58800B0D03D /* libopencore-amrnb.a */; };
+		AD310E351B8ED58800B0D03D /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD310E271B8ED58800B0D03D /* libopencore-amrwb.a */; };
+		AD310E361B8ED58800B0D03D /* MeChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD310E321B8ED58800B0D03D /* MeChat.a */; };
+		AD310E371B8ED58800B0D03D /* MeChatSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AD310E331B8ED58800B0D03D /* MeChatSDK.bundle */; };
+		AD310E391B8ED63600B0D03D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD310E381B8ED63600B0D03D /* Accelerate.framework */; };
+		AD310E3B1B8ED66500B0D03D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD310E3A1B8ED66500B0D03D /* AVFoundation.framework */; };
+		AD310E3D1B8ED67300B0D03D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD310E3C1B8ED67300B0D03D /* AudioToolbox.framework */; };
 		AD50C4F01B762FE600119A42 /* base64.m in Sources */ = {isa = PBXBuildFile; fileRef = AD50C4E01B762FE600119A42 /* base64.m */; };
 		AD50C4F11B762FE600119A42 /* DataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = AD50C4E31B762FE600119A42 /* DataSigner.m */; };
 		AD50C4F21B762FE600119A42 /* DataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = AD50C4E51B762FE600119A42 /* DataVerifier.m */; };
@@ -1101,6 +1108,27 @@
 		AD310E1B1B8C4B7D00B0D03D /* SizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SizeViewController.m; sourceTree = "<group>"; };
 		AD310E1D1B8C4BD100B0D03D /* HelpContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpContentController.h; sourceTree = "<group>"; };
 		AD310E1E1B8C4BD100B0D03D /* HelpContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpContentController.m; sourceTree = "<group>"; };
+		AD310E221B8ED58800B0D03D /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
+		AD310E231B8ED58800B0D03D /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
+		AD310E241B8ED58800B0D03D /* interf_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_dec.h; sourceTree = "<group>"; };
+		AD310E251B8ED58800B0D03D /* interf_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_enc.h; sourceTree = "<group>"; };
+		AD310E261B8ED58800B0D03D /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
+		AD310E271B8ED58800B0D03D /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
+		AD310E281B8ED58800B0D03D /* MCAudioMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCAudioMessage.h; sourceTree = "<group>"; };
+		AD310E291B8ED58800B0D03D /* MCChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCChatViewController.h; sourceTree = "<group>"; };
+		AD310E2A1B8ED58800B0D03D /* MCCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCore.h; sourceTree = "<group>"; };
+		AD310E2B1B8ED58800B0D03D /* MCDefination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDefination.h; sourceTree = "<group>"; };
+		AD310E2C1B8ED58800B0D03D /* MCDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDelegate.h; sourceTree = "<group>"; };
+		AD310E2D1B8ED58800B0D03D /* MCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCEvent.h; sourceTree = "<group>"; };
+		AD310E2E1B8ED58800B0D03D /* MCImageMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCImageMessage.h; sourceTree = "<group>"; };
+		AD310E2F1B8ED58800B0D03D /* MCMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCMessage.h; sourceTree = "<group>"; };
+		AD310E301B8ED58800B0D03D /* MCService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCService.h; sourceTree = "<group>"; };
+		AD310E311B8ED58800B0D03D /* MCTextMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCTextMessage.h; sourceTree = "<group>"; };
+		AD310E321B8ED58800B0D03D /* MeChat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = MeChat.a; sourceTree = "<group>"; };
+		AD310E331B8ED58800B0D03D /* MeChatSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MeChatSDK.bundle; sourceTree = "<group>"; };
+		AD310E381B8ED63600B0D03D /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		AD310E3A1B8ED66500B0D03D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		AD310E3C1B8ED67300B0D03D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		AD50C4931B762FCC00119A42 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
 		AD50C4941B762FCC00119A42 /* asn1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1.h; sourceTree = "<group>"; };
 		AD50C4951B762FCC00119A42 /* asn1_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1_mac.h; sourceTree = "<group>"; };
@@ -1934,6 +1962,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD310E3D1B8ED67300B0D03D /* AudioToolbox.framework in Frameworks */,
+				AD310E3B1B8ED66500B0D03D /* AVFoundation.framework in Frameworks */,
+				AD310E391B8ED63600B0D03D /* Accelerate.framework in Frameworks */,
 				AD8E38951B74BB2800C9D5BA /* libcrypto.a in Frameworks */,
 				AD8E38961B74BB2800C9D5BA /* libssl.a in Frameworks */,
 				AD8E37D91B74A08400C9D5BA /* AlipaySDK.framework in Frameworks */,
@@ -1943,10 +1974,12 @@
 				AD8AA6621B59484A00E324AD /* QuartzCore.framework in Frameworks */,
 				AD8AA6541B59476500E324AD /* CoreData.framework in Frameworks */,
 				A22D301A1B7C63D2004158F1 /* libUMSocial_Sdk_4.2.3.a in Frameworks */,
+				AD310E361B8ED58800B0D03D /* MeChat.a in Frameworks */,
 				AD8AA6691B594E8B00E324AD /* libsqlite3.0.dylib in Frameworks */,
 				AD8AA66A1B594E8B00E324AD /* libsqlite3.dylib in Frameworks */,
 				AD8AA6661B594E5C00E324AD /* MessageUI.framework in Frameworks */,
 				AD8AA6601B59482C00E324AD /* libstdc++.dylib in Frameworks */,
+				AD310E341B8ED58800B0D03D /* libopencore-amrnb.a in Frameworks */,
 				AD8AA65E1B59480300E324AD /* CoreTelephony.framework in Frameworks */,
 				A22D303E1B7C6A31004158F1 /* libWeiboSDK.a in Frameworks */,
 				AD8AA65A1B5947C400E324AD /* OpenGLES.framework in Frameworks */,
@@ -1958,6 +1991,7 @@
 				AD8AA64E1B59470E00E324AD /* CoreLocation.framework in Frameworks */,
 				A22D302D1B7C6A0E004158F1 /* libWeChatSDK.a in Frameworks */,
 				AD8AA64C1B5946F200E324AD /* MapKit.framework in Frameworks */,
+				AD310E351B8ED58800B0D03D /* libopencore-amrwb.a in Frameworks */,
 				A22D301B1B7C63D2004158F1 /* libUMSocial_Sdk_Comment_4.2.3.a in Frameworks */,
 				ADB5ACA91B5404140022B2C2 /* libz.dylib in Frameworks */,
 				A22D302C1B7C6A0E004158F1 /* libSocialWechat.a in Frameworks */,
@@ -1979,6 +2013,9 @@
 		206417A9CDC7122819AA2138 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AD310E3C1B8ED67300B0D03D /* AudioToolbox.framework */,
+				AD310E3A1B8ED66500B0D03D /* AVFoundation.framework */,
+				AD310E381B8ED63600B0D03D /* Accelerate.framework */,
 				ADD7D8F91B6A729800304019 /* CoreGraphics.framework */,
 				AD8AA6671B594E8B00E324AD /* libsqlite3.0.dylib */,
 				AD8AA6681B594E8B00E324AD /* libsqlite3.dylib */,
@@ -2595,6 +2632,39 @@
 				AD310E1E1B8C4BD100B0D03D /* HelpContentController.m */,
 			);
 			name = "三个html";
+			sourceTree = "<group>";
+		};
+		AD310E201B8ED58800B0D03D /* MeChatSDK */ = {
+			isa = PBXGroup;
+			children = (
+				AD310E211B8ED58800B0D03D /* libopencore */,
+				AD310E281B8ED58800B0D03D /* MCAudioMessage.h */,
+				AD310E291B8ED58800B0D03D /* MCChatViewController.h */,
+				AD310E2A1B8ED58800B0D03D /* MCCore.h */,
+				AD310E2B1B8ED58800B0D03D /* MCDefination.h */,
+				AD310E2C1B8ED58800B0D03D /* MCDelegate.h */,
+				AD310E2D1B8ED58800B0D03D /* MCEvent.h */,
+				AD310E2E1B8ED58800B0D03D /* MCImageMessage.h */,
+				AD310E2F1B8ED58800B0D03D /* MCMessage.h */,
+				AD310E301B8ED58800B0D03D /* MCService.h */,
+				AD310E311B8ED58800B0D03D /* MCTextMessage.h */,
+				AD310E321B8ED58800B0D03D /* MeChat.a */,
+				AD310E331B8ED58800B0D03D /* MeChatSDK.bundle */,
+			);
+			path = MeChatSDK;
+			sourceTree = "<group>";
+		};
+		AD310E211B8ED58800B0D03D /* libopencore */ = {
+			isa = PBXGroup;
+			children = (
+				AD310E221B8ED58800B0D03D /* dec_if.h */,
+				AD310E231B8ED58800B0D03D /* if_rom.h */,
+				AD310E241B8ED58800B0D03D /* interf_dec.h */,
+				AD310E251B8ED58800B0D03D /* interf_enc.h */,
+				AD310E261B8ED58800B0D03D /* libopencore-amrnb.a */,
+				AD310E271B8ED58800B0D03D /* libopencore-amrwb.a */,
+			);
+			path = libopencore;
 			sourceTree = "<group>";
 		};
 		AD50C4911B762F9600119A42 /* Alipay */ = {
@@ -3763,6 +3833,7 @@
 		ADB5ACB11B5406D60022B2C2 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				AD310E201B8ED58800B0D03D /* MeChatSDK */,
 				A28B22FA1B8878E80004C1F0 /* UMessage_Sdk_1.1.0 */,
 				AD6EFF441B83200000E98480 /* ASBPlayerScrubbing */,
 				AD6EFF1C1B831A7900E98480 /* ASMediaFocusManager */,
@@ -4227,6 +4298,7 @@
 				AD8E36BA1B721A1500C9D5BA /* home_icon_SheCiMingPin@3x.png in Resources */,
 				AD8E37731B721A1500C9D5BA /* Sherch_icon_EXit@2x.png in Resources */,
 				ADD2C40B1B77988900A2E638 /* message_admin@2x.png in Resources */,
+				AD310E371B8ED58800B0D03D /* MeChatSDK.bundle in Resources */,
 				AD8E36CD1B721A1500C9D5BA /* icon_Ascending.png in Resources */,
 				AD8E35811B70CA4300C9D5BA /* shuma_icon_gehudaqi_top@2x.png in Resources */,
 				ADD2C4531B7DC94B00A2E638 /* icon_Order_selected@2x.png in Resources */,
@@ -5133,6 +5205,8 @@
 					"$(PROJECT_DIR)/haitao",
 					"$(PROJECT_DIR)/haitao/UMSocial_Sdk_4.2.3",
 					"$(PROJECT_DIR)/haitao/UMessage_Sdk_1.1.0",
+					"$(PROJECT_DIR)/haitao/MeChatSDK/libopencore",
+					"$(PROJECT_DIR)/haitao/MeChatSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -5166,6 +5240,8 @@
 					"$(PROJECT_DIR)/haitao",
 					"$(PROJECT_DIR)/haitao/UMSocial_Sdk_4.2.3",
 					"$(PROJECT_DIR)/haitao/UMessage_Sdk_1.1.0",
+					"$(PROJECT_DIR)/haitao/MeChatSDK/libopencore",
+					"$(PROJECT_DIR)/haitao/MeChatSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

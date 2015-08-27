@@ -278,22 +278,29 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         
         detailViewController  = [[HelpContentController alloc] init];
     }else if(indexPath.item==8){
-        detailViewController  = [ChatViewController shareChat];
+        [ChatViewController shareChat].isHome=YES;
+        [[ChatViewController shareChat] mechat];
+        
+        detailViewController  = [ChatViewController shareChat].viewController;
+
 
     }
+    
+        //    [self.navigationController pushViewController:detailViewController animated:YES];
+    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    //    delegate.navigationController.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:nil];
+    
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
+    delegate.navigationController.navigationItem.backBarButtonItem=item;
+    [delegate.navigationController pushViewController:detailViewController animated:YES];
+    
     
     
     // Pass the selected object to the new view controller.
     
     // Push the view controller.
     
-//    [self.navigationController pushViewController:detailViewController animated:YES];
-    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
-//    delegate.navigationController.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:nil];
-    
-    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
-    delegate.navigationController.navigationItem.backBarButtonItem=item;
-    [delegate.navigationController pushViewController:detailViewController animated:YES];
+
 
 }
 //定义每个UICollectionView 的大小

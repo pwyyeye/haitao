@@ -53,7 +53,14 @@
 
 - (IBAction)gotoKefu:(id)sender {
     ChatViewController *chat=[ChatViewController shareChat];
-    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
-    [self.navigationController pushViewController:chat animated:YES];
+    chat.isHome=NO;
+    [chat mechat];
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationController.navigationItem.backBarButtonItem=item;
+    
+    [self.navigationController pushViewController:chat.viewController animated:YES];
+//    [chat mechat];
+//    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+//    [self.navigationController pushViewController:chat animated:YES];
 }
 @end

@@ -346,16 +346,23 @@
     FavoriteCell *cell = [[FavoriteCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
 //    cell.textLabel.text = self.results[indexPath.row];
     New_Goods *goods=_results[indexPath.item];
-    cell.textLabel.text=goods.title;
+//    cell.textLabel.text=[MyUtil trim:goods.title];
     
     cell.textLabel.numberOfLines=1;
+    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(80, 5, 200, 20)];
+    titleLabel.font=[UIFont systemFontOfSize:11];
+    titleLabel.tintColor=RGB(51, 51, 51);
+    titleLabel.text=[MyUtil trim:goods.title];
+    [cell.contentView addSubview:titleLabel];
     
 //    cell.textLabel.font=[UIFont systemFontOfSize:13];
-    cell.textLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:11];
-    cell.textLabel.textColor=RGB(51, 51, 51);
-    cell.detailTextLabel.text=[NSString stringWithFormat:@"¥%.2f", goods.price];
-    cell.detailTextLabel.textColor=RGB(255, 13, 94);
-    cell.detailTextLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:11];
+    
+    UILabel *detailTextLabel=[[UILabel alloc] initWithFrame:CGRectMake(80, cell.frame.origin.y+45, 200, 20)];
+    detailTextLabel.text=[NSString stringWithFormat:@"¥%.2f", goods.price_cn];
+    detailTextLabel.textColor=RGB(255, 13, 94);
+    detailTextLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:11];
+    [cell.contentView addSubview:detailTextLabel];
+    
     [cell.imageView setImageWithURL:[NSURL URLWithString:goods.img_80] placeholderImage:[UIImage imageNamed:@"default_04.png"]];
     
     UILabel *shop_name=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-65, cell.frame.origin.y+45, 60, 20)];

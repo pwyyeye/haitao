@@ -49,6 +49,9 @@
     
     self.navigationController.navigationBar.titleTextAttributes = dict;
     
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+    [self.navigationItem setLeftBarButtonItem:item];
+    
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     _tableView.dataSource = self;
@@ -57,6 +60,11 @@
 //    self.tableView.tableFooterView=[[UIView alloc]init];
     [self initData];
     
+    
+}
+-(void)gotoBack{
+    
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -463,8 +471,17 @@
 
 -(void)connectKefu{
     ChatViewController *chat=[ChatViewController shareChat];
-    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
-    [self.navigationController pushViewController:chat animated:YES];
+    chat.isHome=YES;
+    [chat mechat];
+    [self.navigationController setNavigationBarHidden:YES];
+    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    //    delegate.navigationController.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:nil];
+    
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationController.navigationItem.backBarButtonItem=item;
+    [self.navigationController pushViewController:chat.viewController animated:YES];
+//    chat.isHome=NO;
+//    [chat mechat];
     
 
 }

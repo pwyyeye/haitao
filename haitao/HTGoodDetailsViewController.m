@@ -638,8 +638,10 @@ static CGFloat kImageOriginHight = 400;
 -(void)call:(id)sender
 {
     ChatViewController *chat=[ChatViewController shareChat];
+    chat.isHome=YES;
+    [chat mechat];
     [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
-    [self.navigationController pushViewController:chat animated:YES];
+    [self.navigationController pushViewController:chat.viewController animated:YES];
     
 }
 #pragma mark 收藏

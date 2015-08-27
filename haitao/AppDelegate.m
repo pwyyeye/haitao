@@ -17,6 +17,7 @@
 #import "UMSocialWechatHandler.h"
 #import "UMSocialSinaHandler.h"
 #import "UMessage.h"
+#import "MCCore.h"
 @interface AppDelegate ()
 
 @end
@@ -30,6 +31,22 @@
     // Override point for customization after application launch.
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
+    //美洽客服
+    [MCCore initWithAppkey:@"55de9d6d4eae35192b00000e" expcetionDelegate:nil];
+    //为美洽注册推送
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0){
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings
+                                                                             settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge)
+                                                                             categories:nil]];
+        
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }else{
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+         (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
+    }
+    
+    
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -286,6 +303,9 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    //退出到后台时，告诉美洽SDK开启推送
+    NSUserDefaults* userData = [NSUserDefaults standardUserDefaults];
+    [MCCore letUserOffOnlineIsSynchronizationWithDeviceToken:[userData objectForKey:@"deviceToken"]];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -428,7 +448,12 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     [UMessage registerDeviceToken:deviceToken];
+    //美洽token
+    NSString* _deviceToken = [[[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]] stringByReplacingOccurrencesOfString: @" " withString: @""];
     
+    NSUserDefaults* userData = [NSUserDefaults standardUserDefaults];
+    //保存deviceToken
+    [userData setObject:_deviceToken forKey:@"deviceToken"];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo

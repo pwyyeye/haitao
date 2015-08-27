@@ -45,7 +45,7 @@
             }else{
                 lines=(int)_array.count/4+1;
             }
-            self.frame=CGRectMake(0, 0, SCREEN_WIDTH, (lines+1)*75+50);
+            self.frame=CGRectMake(0, 0, SCREEN_WIDTH, (lines+1)*75);
         
         }
         
@@ -128,8 +128,8 @@
             
 //            [button setTitle:button.indexModel.name forState:UIControlStateNormal];
             
-            UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 65, 65)];
-            [imageView setImageWithURL:[NSURL URLWithString:button.indexModel.img] placeholderImage:[UIImage imageNamed:@"default_04"]];
+            UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+            [imageView setImageWithURL:[NSURL URLWithString:button.indexModel.app_img] placeholderImage:[UIImage imageNamed:@"default_04"]];
             [imageView setContentMode:UIViewContentModeScaleAspectFit];
             [button addSubview:imageView];
             
