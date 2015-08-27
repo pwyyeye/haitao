@@ -503,7 +503,7 @@
         SpecialModel *speModel=app_home_brand[0];
         arrTemp=speModel.goods_list;
     }
-    SpeciaButton *gjmp_left=[[SpeciaButton alloc]initWithFrame:CGRectMake(30,0, 149, 149)];
+    SpeciaButton *gjmp_left=[[SpeciaButton alloc]initWithFrame:CGRectMake(10,0, 188, 150)];
     //        (i%2)*123+20+(jingpinContentView.width-40-123*2)*(i%2)
     gjmp_left.backgroundColor=[UIColor clearColor];
     [gjmp_left addTarget:self action:@selector(btnFenlei:) forControlEvents:UIControlEventTouchUpInside];
@@ -523,7 +523,7 @@
     
     [guojimingpinContentView addSubview:gjmp_left];
     
-    SpeciaButton *rightUp=[[SpeciaButton alloc]initWithFrame:CGRectMake(guojimingpinContentView.width-72-10-20,0, 72, 72)];
+    SpeciaButton *rightUp=[[SpeciaButton alloc]initWithFrame:CGRectMake(gjmp_left.left+gjmp_left.width+10,0, 106, 72)];
     //        (i%2)*123+20+(jingpinContentView.width-40-123*2)*(i%2)
     rightUp.backgroundColor=[UIColor clearColor];
     [rightUp addTarget:self action:@selector(btnFenlei:) forControlEvents:UIControlEventTouchUpInside];
@@ -545,7 +545,7 @@
     
     [guojimingpinContentView addSubview:rightUp];
     
-    SpeciaButton *rightdown=[[SpeciaButton alloc]initWithFrame:CGRectMake(guojimingpinContentView.width-72-10-20,149-72, 72, 72)];
+    SpeciaButton *rightdown=[[SpeciaButton alloc]initWithFrame:CGRectMake(gjmp_left.left+gjmp_left.width+10,150-72, 106, 72)];
     //        (i%2)*123+20+(jingpinContentView.width-40-123*2)*(i%2)
     rightdown.backgroundColor=[UIColor clearColor];
     if(arrTemp.count>2){
