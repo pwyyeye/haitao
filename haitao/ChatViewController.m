@@ -182,6 +182,7 @@
         title.textAlignment=1;
         title.font=[UIFont boldSystemFontOfSize:17];
         title.textColor=[UIColor whiteColor];
+        [bar bringSubviewToFront:backItem];
         [bar addSubview:title];
         //     viewController.navigationController.navigationBar.hidden = YES;
         [_viewController.view addSubview:bar];

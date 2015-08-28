@@ -115,7 +115,7 @@
     NSString *ss=[NSString stringWithFormat:@"%.2f",self.goods.price_cn];
     chooseDic=@{@"price":ss};
     title_money.text=[NSString stringWithFormat:@"%@%@",@"￥",ss];
-    title_money.textColor=hexColor(@"#ff0d5e");
+    title_money.textColor=RGB(255, 13, 94);
     title_money.font=[UIFont boldSystemFontOfSize:13];
     title_money.backgroundColor=[UIColor clearColor ];
 //    title_money.textColor =hongShe;

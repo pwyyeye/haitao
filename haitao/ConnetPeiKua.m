@@ -19,7 +19,10 @@
     // Do any additional setup after loading the view from its nib.
     self.title=@"联系配夸网";
 }
+-(void)viewWillAppear:(BOOL)animated{
 
+[self.navigationController setNavigationBarHidden:NO];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -53,8 +56,9 @@
 
 - (IBAction)gotoKefu:(id)sender {
     ChatViewController *chat=[ChatViewController shareChat];
-    chat.isHome=NO;
+    chat.isHome=YES;
     [chat mechat];
+    [self.navigationController setNavigationBarHidden:YES];
     UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationController.navigationItem.backBarButtonItem=item;
     

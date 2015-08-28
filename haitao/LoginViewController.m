@@ -88,8 +88,9 @@
 */
 
 -(void)gotoBack{
-  
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+
+    [app.navigationController popViewControllerAnimated:YES];
     
 }
 #pragma mark - login
