@@ -23,6 +23,7 @@
 #import "ChatViewController.h"
 #import "GouWuXuZhiViewController.h"
 #import "HelpContentController.h"
+#import "UMSocial.h"
 @interface UserCenterCollention ()
 
 @end
@@ -269,6 +270,16 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         detailViewController  = [[AddressListController alloc] init];
     }else if(indexPath.item==5){
         detailViewController  = [[FavoriteViewController alloc] init];
+    }else if(indexPath.item==6){
+        NSString *ss=[NSString stringWithFormat:@"配夸海淘，淘全球，真无忧\n一键海淘，正品无忧！马上下载，体验海淘的畅快无忧！\n https://itunes.apple.com/app/id1034269192"];
+        [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
+        [UMSocialSnsService presentSnsIconSheetView:self
+                                             appKey:UmengAppkey
+                                          shareText:ss
+                                         shareImage:nil
+                                    shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,UMShareToEmail,nil]
+                                           delegate:nil];
+        return;
     }else if(indexPath.item==7){
 //        detailViewController=[[GouWuXuZhiViewController alloc]initWithNibName:@"GouWuXuZhiViewController" bundle:nil];
 //        [self presentViewController:gouWuXuZhiViewController animated:YES completion:^{

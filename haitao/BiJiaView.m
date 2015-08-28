@@ -109,6 +109,7 @@
         zanLabel.textColor =[UIColor whiteColor];
         zanLabel.textAlignment=NSTextAlignmentLeft;
         zanLabel.numberOfLines=0;
+        [zanBtn addTarget:self action:@selector(gotoPingJia) forControlEvents:UIControlEventTouchUpInside];
         [zanBtn addSubview:zanLabel];
         //中间
         _scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(10, backgroudView.top+backgroudView.height+5, self.width-20, self.height-(backgroudView.top+backgroudView.height+5)-49)];
@@ -240,5 +241,9 @@
     // Drawing code
 }
 */
+-(void)gotoPingJia{
+[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/gb/app/yi-dong-cai-bian/id1034269192?mt=8"]];
+
+}
 
 @end

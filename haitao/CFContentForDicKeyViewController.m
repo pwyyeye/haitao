@@ -39,8 +39,8 @@
     [super viewDidLoad];
     pageCount=@"1";
     UIView *naviView=(UIView*) [self getNavigationBar];
-    _tableView =[[UITableView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height+1,self.view.frame.size.width,kWindowHeight-naviView.frame.size.height} style:UITableViewStylePlain];
-    nullview=[[UIView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height+1,self.view.frame.size.width,kWindowHeight-naviView.frame.size.height}];
+    _tableView =[[UITableView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height,self.view.frame.size.width,kWindowHeight-naviView.frame.size.height} style:UITableViewStylePlain];
+    nullview=[[UIView alloc]initWithFrame:(CGRect){0,naviView.frame.size.height,self.view.frame.size.width,kWindowHeight-naviView.frame.size.height}];
     nullview.backgroundColor=RGB(237,237,237);
     nullview.hidden=true;
     [self addView];
