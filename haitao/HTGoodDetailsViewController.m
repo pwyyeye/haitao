@@ -610,7 +610,7 @@ static CGFloat kImageOriginHight = 400;
 #pragma mark分享
 -(void)btnShare:(id)sender
 {
-    NSString *ss=[NSString stringWithFormat:@"%@:\n 配夸网，淘全球，枕无忧！\nhttp://www.peikua.com/?m=goods&g=detail&id=%@",self.goods.title,self.goods.id];
+    NSString *ss=[NSString stringWithFormat:@"%@:\n 配夸网，淘全球，真无忧！\nhttp://www.peikua.com/?m=goods&g=detail&id=%@",self.goods.title,self.goods.id];
         [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
         [UMSocialSnsService presentSnsIconSheetView:self
                                              appKey:UmengAppkey
