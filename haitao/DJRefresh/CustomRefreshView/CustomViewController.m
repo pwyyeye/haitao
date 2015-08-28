@@ -756,7 +756,8 @@
         NSDictionary *parameters = @{@"id":bigegg.goods_id};
         NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
         ;
-        
+        AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [app startLoading];
         HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsDetail"];
         httpController.delegate = self;
         [httpController onSearchForPostJson];
@@ -766,7 +767,8 @@
         sidTemp=bigegg.subject_id;
         NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getSubjectInfo",requestUrl]
         ;
-        
+        AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [app startLoading];
         HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getSubjectInfo"];
         httpController.delegate = self;
         [httpController onSearchForPostJson];
