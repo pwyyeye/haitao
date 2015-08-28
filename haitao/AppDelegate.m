@@ -32,7 +32,7 @@
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     //美洽客服
-    [MCCore initWithAppkey:@"55de9d6d4eae35192b00000e" expcetionDelegate:nil];
+    [MCCore initWithAppkey:@"55debfd94eae351a2b000010" expcetionDelegate:nil];
     //为美洽注册推送
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0){
