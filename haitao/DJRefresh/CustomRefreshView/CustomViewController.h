@@ -22,6 +22,7 @@
     NSString *menuid;
     NSString *pageCount;
     NSMutableDictionary *shaixuanDic;
+    NSString *sidTemp;
 }
 @property (nonatomic,retain)NSDictionary *spcDic;
 @property (nonatomic,strong)DJRefresh *refresh;

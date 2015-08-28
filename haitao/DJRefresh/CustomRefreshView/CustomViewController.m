@@ -11,9 +11,10 @@
 #import "App_Home_Bigegg.h"
 #import "EScrollerView.h"
 #import "screenViewController.h"
-
+#import "CFContentForDicKeyViewController.h"
 #import "GoodImageButton.h"
-
+#import "SpecialContentViewController.h"
+#import "SpecialModel.h"
 @interface CustomViewController ()<EScrollerViewDelegate>
 {
     UITableView                 *_tableView;
@@ -279,7 +280,24 @@
         [delegate.navigationController pushViewController:htGoodDetailsViewController animated:YES];
         
     }
-    
+    //专题
+    if([urlname isEqualToString:@"getSubjectInfo"]){
+        NSDictionary *dataDic=[dictemp objectForKey:@"data"];
+        NSDictionary *detailDic=[dataDic objectForKey:@"detail"];
+        NSArray *goodsArr=[dataDic objectForKey:@"goods"];
+        SpecialModel *specialModel= [SpecialModel objectWithKeyValues:detailDic] ;
+        NSMutableArray *goodsModelArr=[[NSMutableArray alloc]init];
+        for (NSDictionary *dic in goodsArr) {
+            New_Goods *goodsModel = [New_Goods objectWithKeyValues:dic] ;
+            [goodsModelArr addObject:goodsModel];
+        }
+        NSDictionary *spdic=@{@"detail":specialModel,@"goods":goodsModelArr};
+        SpecialContentViewController *specialContentViewController=[[SpecialContentViewController alloc]init];
+        specialContentViewController.spcDic=spdic;
+        specialContentViewController.sid=sidTemp;
+        AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [delegate.navigationController pushViewController:specialContentViewController animated:YES];
+    }
 }
 #pragma mark商品数据排2列
 -(void)getGoodlistTwo:(NSArray *)arr{
@@ -729,7 +747,56 @@
 
 #pragma mark  通告栏
 -(void)EScrollerViewDidClicked:(NSUInteger)index{
-    NSLog(@"第几个广告%ld",index);
+    App_Home_Bigegg *bigegg=bannerArr[index];
+    int adType=bigegg.ad_type;
+    NSString *content=bigegg.content;
+//    titleTemp=content;
+    if(adType==2){
+        //商品
+        NSDictionary *parameters = @{@"id":bigegg.goods_id};
+        NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
+        ;
+        
+        HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsDetail"];
+        httpController.delegate = self;
+        [httpController onSearchForPostJson];
+    }else if (adType==3){
+        //专题
+        NSDictionary *parameters = @{@"id":bigegg.subject_id};
+        sidTemp=bigegg.subject_id;
+        NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getSubjectInfo",requestUrl]
+        ;
+        
+        HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getSubjectInfo"];
+        httpController.delegate = self;
+        [httpController onSearchForPostJson];
+    }else if (adType==4){
+        
+        NSDictionary *parameters = @{@"s_cat":bigegg.cat_id,@"need_cat_index":@"1",@"need_page":@"1",@"p":@"1",@"per":@"12"};
+        
+        CFContentForDicKeyViewController *contentForDicKeyViewController=[[CFContentForDicKeyViewController alloc]init];
+        contentForDicKeyViewController.keyDic=parameters;
+        if(content){
+            contentForDicKeyViewController.topTitle=content;
+            
+        }
+        AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [app.navigationController pushViewController:contentForDicKeyViewController animated:YES];
+        
+        
+    }else if (adType==5){
+        NSDictionary *parameters = @{@"brand":bigegg.brand_id,@"need_cat_index":@"1",@"need_page":@"1",@"p":@"1",@"per":@"12"};
+        
+        CFContentForDicKeyViewController *contentForDicKeyViewController=[[CFContentForDicKeyViewController alloc]init];
+        contentForDicKeyViewController.keyDic=parameters;
+        if(content){
+            contentForDicKeyViewController.topTitle=content;
+            
+        }
+        
+        AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [app.navigationController pushViewController:contentForDicKeyViewController animated:YES];
+    }
 }
 #pragma mark5个按钮事件
 -(void)change:(id)sender
@@ -961,6 +1028,7 @@
     }
     
 }
+
 /*
  #pragma mark - Navigation
  
