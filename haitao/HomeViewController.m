@@ -1265,7 +1265,8 @@
         NSDictionary *parameters = @{@"id":bigegg.goods_id};
         NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getGoodsDetail",requestUrl]
         ;
-        
+        AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [app startLoading];
         HTTPController *httpController =  [[HTTPController alloc]initWith:url withType:POSTURL withPam:parameters withUrlName:@"getGoodsDetail"];
         httpController.delegate = self;
         [httpController onSearchForPostJson];
@@ -1273,6 +1274,8 @@
         //专题
         NSDictionary *parameters = @{@"id":bigegg.subject_id};
         sidTemp=bigegg.subject_id;
+        AppDelegate *app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        [app startLoading];
         NSString* url =[NSString stringWithFormat:@"%@&m=goods&f=getSubjectInfo",requestUrl]
         ;
         

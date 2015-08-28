@@ -11,7 +11,8 @@
 #import "LTKNavigationViewController.h"
 #import "EAIntroView.h"
 #import "Reachability.h"
-#define UmengAppkey @"55cc18e567e58eb91f000701"
+#define UmengAppkey @"55d9670e67e58e5f5e0074ea"
+//55cc18e567e58eb91f000701
 @interface AppDelegate : UIResponder <UIApplicationDelegate,HTTPControllerProtocol,EAIntroDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
