@@ -5117,8 +5117,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Meng Jiao Huang (7RDU726373)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Meng Jiao Huang (7RDU726373)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: PeiKua Network Technology Co., Ltd. (9MQ7NFCFDK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: PeiKua Network Technology Co., Ltd. (9MQ7NFCFDK)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -5160,8 +5160,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Meng Jiao Huang (7RDU726373)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Meng Jiao Huang (7RDU726373)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: PeiKua Network Technology Co., Ltd. (9MQ7NFCFDK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: PeiKua Network Technology Co., Ltd. (9MQ7NFCFDK)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -5186,8 +5186,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Meng Jiao Huang (7RDU726373)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Meng Jiao Huang (7RDU726373)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: PeiKua Network Technology Co., Ltd. (9MQ7NFCFDK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: PeiKua Network Technology Co., Ltd. (9MQ7NFCFDK)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/haitao",
@@ -5221,8 +5221,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Meng Jiao Huang (7RDU726373)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Meng Jiao Huang (7RDU726373)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: PeiKua Network Technology Co., Ltd. (9MQ7NFCFDK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: PeiKua Network Technology Co., Ltd. (9MQ7NFCFDK)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/haitao",
@@ -5254,8 +5254,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Meng Jiao Huang (7RDU726373)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Meng Jiao Huang (7RDU726373)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: PeiKua Network Technology Co., Ltd. (9MQ7NFCFDK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: PeiKua Network Technology Co., Ltd. (9MQ7NFCFDK)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -5276,8 +5276,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Meng Jiao Huang (7RDU726373)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Meng Jiao Huang (7RDU726373)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: PeiKua Network Technology Co., Ltd. (9MQ7NFCFDK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: PeiKua Network Technology Co., Ltd. (9MQ7NFCFDK)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

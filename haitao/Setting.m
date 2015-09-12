@@ -101,6 +101,8 @@
         [app stopLoading];
         
         [NSUserDefaults resetStandardUserDefaults];
+        [USER_DEFAULT removeObjectForKey:@"user_name"];
+        [USER_DEFAULT removeObjectForKey:@"user_pass"];
         [self.navigationController popToRootViewControllerAnimated:YES];
         
         

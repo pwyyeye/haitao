@@ -409,7 +409,7 @@
 }
 
 -(void)callTelephone{
-    NSString *phoneNum = @"400-892-8080";// 电话号码
+    NSString *phoneNum = @"400-600-3500";// 电话号码
     
     NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNum]];
     

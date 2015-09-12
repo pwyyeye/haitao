@@ -273,6 +273,8 @@
             [menu confiMenuWithSelectRow:0];
             [self menu:menu didSelectRowAtIndexPath:[DOPIndexPath indexPathWithCol:i row:0]];
         }
+    }else{
+//        [menu.tableView reloadData];
     }
     
 }

@@ -26,7 +26,7 @@
     [_timer setFireDate:[NSDate distantFuture]];//暂停
     
     _mobile.delegate=self;
-    _btn_captcha.enabled=NO;
+    _btn_captcha.enabled=YES;
 
 
 }
@@ -75,6 +75,17 @@
             ShowMessage(@"手机号码已经被注册！");
         }else{
             _btn_captcha.enabled=YES ;
+            [_timer setFireDate:[NSDate distantPast]];//开启
+            
+            
+            NSLog(@"----pass-captcha%@---",requestUrl_captcha);
+            
+            NSDictionary *dic=@{@"mobile":_mobile.text};
+            HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_captcha withType:GETURL withPam:dic withUrlName:@"getCaptcha"];
+            
+            
+            httpController.delegate = self;
+            [httpController onSearch];
         }
     }
 
@@ -86,18 +97,15 @@
         ShowMessage(@"请输入正确的手机号码！");
         return;
     }
-   
-    [_timer setFireDate:[NSDate distantPast]];//开启
-
-
-    NSLog(@"----pass-captcha%@---",requestUrl_captcha);
     
-    NSDictionary *dic=@{@"mobile":_mobile.text};
-    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_captcha withType:GETURL withPam:dic withUrlName:@"getCaptcha"];
+    NSDictionary *dic=@{@"user_name":_mobile.text};
+    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_checkUserName withType:POSTURL withPam:dic withUrlName:@"checkUserName"];
     
     
     httpController.delegate = self;
-    [httpController onSearch];
+    [httpController onSearchForPostJson];
+   
+    
 }
 
 //定时器更新验证码按钮
@@ -150,12 +158,7 @@
     if ([MyUtil isEmptyString: textField.text]) {
         return;
     }
-    NSDictionary *dic=@{@"user_name":_mobile.text};
-    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_checkUserName withType:POSTURL withPam:dic withUrlName:@"checkUserName"];
     
-    
-    httpController.delegate = self;
-    [httpController onSearchForPostJson];
 }
 
 - (IBAction)didEndOnExit:(id)sender {

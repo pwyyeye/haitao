@@ -19,7 +19,12 @@
 @implementation ManitViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-  
+    for(UIView *view in self.view.subviews){
+        if([view isKindOfClass:[UITabBar class]]){
+            view.hidden = YES;
+            break;
+        }
+    }
     [self.navigationController setNavigationBarHidden:YES animated:YES]; // 隐藏导航栏
     //    [self.navigationItem setHidesBackButton:YES];
 }
