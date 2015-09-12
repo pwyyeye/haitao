@@ -80,6 +80,7 @@ static CGFloat kImageOriginHight = 400;
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
     _bigImg.frame=CGRectMake(0, -kImageOriginHight, _scrollView.frame.size.width, kImageOriginHight);
 //    _scrollView.contentOffset=CGPointMake(0, -kImageOriginHight+100);
@@ -109,7 +110,7 @@ static CGFloat kImageOriginHight = 400;
     EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH)
                                                           scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
     
-    scroller.delegate=self;
+//    scroller.delegate=self;
     scroller.backgroundColor=[UIColor whiteColor];
     [_scrollView addSubview:scroller];
     UIView  *nameView=[[UIView alloc]initWithFrame:CGRectMake(0, scroller.frame.size.height+scroller.frame.origin.y, self.view.frame.size.width,100 )];
@@ -1034,7 +1035,7 @@ static CGFloat kImageOriginHight = 400;
     tuijianTitleLbl.textAlignment=0;
     [tuijianView addSubview:tuijianTitleLbl];
     
-    CGRect lastFrame;
+    CGRect lastFrame=CGRectZero;
     for (int i =0; i<tuijianGoods.count; i++)
     {
         New_Goods *new_Goods=tuijianGoods[i];
@@ -1187,7 +1188,15 @@ static CGFloat kImageOriginHight = 400;
 - (void)addShopCarFinsh:(NSDictionary *)dic{
     ShowMessage(@"添加成功");
 }
-
+- (void)dealloc {
+    _scrollView=nil;
+    self.goods_parity=nil;
+    self.goods=nil;
+    self.goods_attr=nil;
+    self.goodsExt=nil;
+    self.goods_image=nil;
+    [self.view.layer removeAllAnimations];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
